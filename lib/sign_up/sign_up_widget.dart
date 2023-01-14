@@ -13,22 +13,27 @@ class SignUpWidget extends StatefulWidget {
 }
 
 class _SignUpWidgetState extends State<SignUpWidget> {
+  TextEditingController? confirmPasswordTextController;
+  late bool passwordVisibility2;
   TextEditingController? emailTextController;
   TextEditingController? passwordTextController;
-  late bool passwordVisibility;
+  late bool passwordVisibility1;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
+    confirmPasswordTextController = TextEditingController();
+    passwordVisibility2 = false;
     emailTextController = TextEditingController();
     passwordTextController = TextEditingController();
-    passwordVisibility = false;
+    passwordVisibility1 = false;
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
   void dispose() {
+    confirmPasswordTextController?.dispose();
     emailTextController?.dispose();
     passwordTextController?.dispose();
     super.dispose();
@@ -209,7 +214,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
                         child: TextFormField(
                           controller: passwordTextController,
-                          obscureText: !passwordVisibility,
+                          obscureText: !passwordVisibility1,
                           decoration: InputDecoration(
                             labelText: 'Password',
                             labelStyle: FlutterFlowTheme.of(context).bodyText2,
@@ -249,11 +254,91 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                 EdgeInsetsDirectional.fromSTEB(20, 24, 20, 24),
                             suffixIcon: InkWell(
                               onTap: () => setState(
-                                () => passwordVisibility = !passwordVisibility,
+                                () =>
+                                    passwordVisibility1 = !passwordVisibility1,
                               ),
                               focusNode: FocusNode(skipTraversal: true),
                               child: Icon(
-                                passwordVisibility
+                                passwordVisibility1
+                                    ? Icons.visibility_outlined
+                                    : Icons.visibility_off_outlined,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                size: 22,
+                              ),
+                            ),
+                          ),
+                          style: FlutterFlowTheme.of(context).bodyText1,
+                          minLines: 1,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                    child: Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 6,
+                            color: Color(0x3416202A),
+                            offset: Offset(0, 2),
+                          )
+                        ],
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
+                        child: TextFormField(
+                          controller: confirmPasswordTextController,
+                          obscureText: !passwordVisibility2,
+                          decoration: InputDecoration(
+                            labelText: 'Repeat Password',
+                            labelStyle: FlutterFlowTheme.of(context).bodyText2,
+                            hintStyle: FlutterFlowTheme.of(context).bodyText2,
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 1,
+                              ),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 1,
+                              ),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 1,
+                              ),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 1,
+                              ),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            filled: true,
+                            fillColor: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            contentPadding:
+                                EdgeInsetsDirectional.fromSTEB(20, 24, 20, 24),
+                            suffixIcon: InkWell(
+                              onTap: () => setState(
+                                () =>
+                                    passwordVisibility2 = !passwordVisibility2,
+                              ),
+                              focusNode: FocusNode(skipTraversal: true),
+                              child: Icon(
+                                passwordVisibility2
                                     ? Icons.visibility_outlined
                                     : Icons.visibility_off_outlined,
                                 color:
@@ -277,6 +362,17 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                         FFButtonWidget(
                           onPressed: () async {
                             GoRouter.of(context).prepareAuthEvent();
+                            if (passwordTextController?.text !=
+                                confirmPasswordTextController?.text) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Passwords don\'t match!',
+                                  ),
+                                ),
+                              );
+                              return;
+                            }
 
                             final user = await createAccountWithEmail(
                               context,
@@ -310,6 +406,79 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                         ),
                       ],
                     ),
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: Align(
+                          alignment: AlignmentDirectional(0, 0),
+                          child: Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 40, 20, 0),
+                            child: Container(
+                              width: 230,
+                              height: 44,
+                              child: Stack(
+                                children: [
+                                  Align(
+                                    alignment: AlignmentDirectional(0, 0),
+                                    child: FFButtonWidget(
+                                      onPressed: () async {
+                                        GoRouter.of(context).prepareAuthEvent();
+                                        final user =
+                                            await signInWithGoogle(context);
+                                        if (user == null) {
+                                          return;
+                                        }
+
+                                        context.goNamedAuth('Home', mounted);
+                                      },
+                                      text: 'Sign up with Google',
+                                      icon: Icon(
+                                        Icons.add,
+                                        color: Colors.transparent,
+                                        size: 20,
+                                      ),
+                                      options: FFButtonOptions(
+                                        width: 230,
+                                        height: 44,
+                                        color: Colors.white,
+                                        textStyle: GoogleFonts.getFont(
+                                          'Roboto',
+                                          color: Color(0xFF606060),
+                                          fontSize: 17,
+                                        ),
+                                        elevation: 4,
+                                        borderSide: BorderSide(
+                                          color: Colors.transparent,
+                                          width: 0,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: AlignmentDirectional(-0.83, 0),
+                                    child: Container(
+                                      width: 22,
+                                      height: 22,
+                                      clipBehavior: Clip.antiAlias,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: Image.network(
+                                        'https://i0.wp.com/nanophorm.com/wp-content/uploads/2018/04/google-logo-icon-PNG-Transparent-Background.png?w=1000&ssl=1',
+                                        fit: BoxFit.contain,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
