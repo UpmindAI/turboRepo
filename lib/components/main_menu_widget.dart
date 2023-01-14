@@ -50,16 +50,6 @@ class _MainMenuWidgetState extends State<MainMenuWidget> {
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (Theme.of(context).brightness == Brightness.dark)
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(8, 0, 0, 0),
-                    child: Image.asset(
-                      'assets/images/ff_Experts_Logo_onDark@2x.png',
-                      width: 180,
-                      height: 40,
-                      fit: BoxFit.fitWidth,
-                    ),
-                  ),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 12),
                   child: Container(

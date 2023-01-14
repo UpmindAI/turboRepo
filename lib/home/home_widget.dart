@@ -47,23 +47,11 @@ class _HomeWidgetState extends State<HomeWidget> {
         child: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
-          title: Align(
-            alignment: AlignmentDirectional(0, 0),
-            child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
-              child: Image.asset(
-                'assets/images/Logo-OMP-192-76.png',
-                width: 96,
-                height: 38,
-                fit: BoxFit.fitWidth,
-              ),
-            ),
-          ),
           actions: [
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.1',
+                'v0.2',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
