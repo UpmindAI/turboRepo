@@ -62,7 +62,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.7',
+                'v0.8',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -316,9 +316,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                       .bodyText1,
                                             ),
                                           ),
-                                          Align(
-                                            alignment:
-                                                AlignmentDirectional(0, 0),
+                                          Expanded(
                                             child: Container(
                                               width: 260,
                                               height: 100,
@@ -373,91 +371,95 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                         final listViewUserDatasetsRecord =
                                                             listViewUserDatasetsRecordList[
                                                                 listViewIndex];
-                                                        return Material(
-                                                          color: Colors
-                                                              .transparent,
-                                                          elevation: 2,
-                                                          child: Container(
-                                                            width: 260,
-                                                            height: 40,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primaryBackground,
-                                                            ),
-                                                            child: Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              children: [
-                                                                Expanded(
-                                                                  flex: 1,
-                                                                  child: Column(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    children: [
-                                                                      Expanded(
-                                                                        child:
-                                                                            Align(
-                                                                          alignment: AlignmentDirectional(
-                                                                              0,
-                                                                              0),
+                                                        return Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      0, 0, 10),
+                                                          child: Material(
+                                                            color: Colors
+                                                                .transparent,
+                                                            elevation: 2,
+                                                            child: Container(
+                                                              width: 260,
+                                                              height: 40,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryBackground,
+                                                              ),
+                                                              child: Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                children: [
+                                                                  Expanded(
+                                                                    flex: 1,
+                                                                    child:
+                                                                        Column(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .max,
+                                                                      children: [
+                                                                        Expanded(
                                                                           child:
-                                                                              Theme(
-                                                                            data:
-                                                                                ThemeData(
-                                                                              checkboxTheme: CheckboxThemeData(
-                                                                                shape: RoundedRectangleBorder(
-                                                                                  borderRadius: BorderRadius.circular(0),
-                                                                                ),
-                                                                              ),
-                                                                              unselectedWidgetColor: Color(0xFFF5F5F5),
-                                                                            ),
+                                                                              Align(
+                                                                            alignment:
+                                                                                AlignmentDirectional(0, 0),
                                                                             child:
-                                                                                Checkbox(
-                                                                              value: checkboxValueMap[listViewUserDatasetsRecord] ??= true,
-                                                                              onChanged: (newValue) async {
-                                                                                setState(() => checkboxValueMap[listViewUserDatasetsRecord] = newValue!);
-                                                                              },
-                                                                              activeColor: FlutterFlowTheme.of(context).primaryColor,
+                                                                                Theme(
+                                                                              data: ThemeData(
+                                                                                checkboxTheme: CheckboxThemeData(
+                                                                                  shape: RoundedRectangleBorder(
+                                                                                    borderRadius: BorderRadius.circular(0),
+                                                                                  ),
+                                                                                ),
+                                                                                unselectedWidgetColor: Color(0xFFF5F5F5),
+                                                                              ),
+                                                                              child: Checkbox(
+                                                                                value: checkboxValueMap[listViewUserDatasetsRecord] ??= true,
+                                                                                onChanged: (newValue) async {
+                                                                                  setState(() => checkboxValueMap[listViewUserDatasetsRecord] = newValue!);
+                                                                                },
+                                                                                activeColor: FlutterFlowTheme.of(context).primaryColor,
+                                                                              ),
                                                                             ),
                                                                           ),
                                                                         ),
-                                                                      ),
-                                                                    ],
+                                                                      ],
+                                                                    ),
                                                                   ),
-                                                                ),
-                                                                Expanded(
-                                                                  flex: 7,
-                                                                  child: Column(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    children: [
-                                                                      Expanded(
-                                                                        child:
-                                                                            Align(
-                                                                          alignment: AlignmentDirectional(
-                                                                              0,
-                                                                              0),
+                                                                  Expanded(
+                                                                    flex: 7,
+                                                                    child:
+                                                                        Column(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .max,
+                                                                      children: [
+                                                                        Expanded(
                                                                           child:
-                                                                              Text(
-                                                                            listViewUserDatasetsRecord.datasetName!,
-                                                                            style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                  fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                  fontSize: 19,
-                                                                                  fontWeight: FontWeight.bold,
-                                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                                ),
+                                                                              Align(
+                                                                            alignment:
+                                                                                AlignmentDirectional(0, -0.3),
+                                                                            child:
+                                                                                Text(
+                                                                              listViewUserDatasetsRecord.datasetName!,
+                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                    fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                    fontSize: 14,
+                                                                                    fontWeight: FontWeight.normal,
+                                                                                    useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                  ),
+                                                                            ),
                                                                           ),
                                                                         ),
-                                                                      ),
-                                                                    ],
+                                                                      ],
+                                                                    ),
                                                                   ),
-                                                                ),
-                                                              ],
+                                                                ],
+                                                              ),
                                                             ),
                                                           ),
                                                         );
@@ -467,11 +469,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 ),
                                               ),
                                             ),
-                                          ),
-                                          Text(
-                                            'Chunks',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyText1,
                                           ),
                                           Container(
                                             width: 260,
@@ -488,6 +485,19 @@ class _HomeWidgetState extends State<HomeWidget> {
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                0, 10, 0, 0),
+                                                    child: Text(
+                                                      'Chunks',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1,
+                                                    ),
+                                                  ),
                                                   Slider(
                                                     activeColor:
                                                         FlutterFlowTheme.of(
