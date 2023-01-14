@@ -4,14 +4,14 @@ import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class CollectionsWidget extends StatefulWidget {
-  const CollectionsWidget({Key? key}) : super(key: key);
+class DatasetsWidget extends StatefulWidget {
+  const DatasetsWidget({Key? key}) : super(key: key);
 
   @override
-  _CollectionsWidgetState createState() => _CollectionsWidgetState();
+  _DatasetsWidgetState createState() => _DatasetsWidgetState();
 }
 
-class _CollectionsWidgetState extends State<CollectionsWidget> {
+class _DatasetsWidgetState extends State<DatasetsWidget> {
   final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
