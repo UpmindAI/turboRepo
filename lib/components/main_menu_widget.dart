@@ -32,7 +32,7 @@ class _MainMenuWidgetState extends State<MainMenuWidget> {
       child: Padding(
         padding: EdgeInsetsDirectional.fromSTEB(0, 0, 4, 0),
         child: Container(
-          width: 270,
+          width: MediaQuery.of(context).size.width,
           height: 800,
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -52,190 +52,210 @@ class _MainMenuWidgetState extends State<MainMenuWidget> {
               children: [
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 12),
-                  child: Container(
-                    width: double.infinity,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).primaryBackground,
-                      borderRadius: BorderRadius.circular(12),
-                      shape: BoxShape.rectangle,
-                    ),
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
-                            child: Container(
-                              width: 4,
-                              height: 60,
-                              decoration: BoxDecoration(
-                                color:
-                                    FlutterFlowTheme.of(context).primaryColor,
-                                borderRadius: BorderRadius.circular(4),
+                  child: InkWell(
+                    onTap: () async {
+                      context.pushNamed('Home');
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        borderRadius: BorderRadius.circular(12),
+                        shape: BoxShape.rectangle,
+                      ),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                              child: Container(
+                                width: 4,
+                                height: 60,
+                                decoration: BoxDecoration(
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryColor,
+                                  borderRadius: BorderRadius.circular(4),
+                                ),
                               ),
                             ),
-                          ),
-                          Icon(
-                            Icons.home_filled,
-                            color: FlutterFlowTheme.of(context).primaryColor,
-                            size: 28,
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                            child: Text(
-                              'Home',
-                              style: FlutterFlowTheme.of(context)
-                                  .subtitle2
-                                  .override(
-                                    fontFamily: 'Work Sans',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryColor,
-                                  ),
+                            Icon(
+                              Icons.home_filled,
+                              color: FlutterFlowTheme.of(context).primaryColor,
+                              size: 28,
                             ),
-                          ),
-                        ],
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                              child: Text(
+                                'Home',
+                                style: FlutterFlowTheme.of(context)
+                                    .subtitle2
+                                    .override(
+                                      fontFamily: 'Work Sans',
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryColor,
+                                    ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
                 ),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
-                  child: Container(
-                    width: double.infinity,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                      borderRadius: BorderRadius.circular(12),
-                      shape: BoxShape.rectangle,
-                    ),
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
-                            child: Container(
-                              width: 4,
-                              height: 60,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
-                                borderRadius: BorderRadius.circular(4),
+                  child: InkWell(
+                    onTap: () async {
+                      context.pushNamed('Datasets');
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        borderRadius: BorderRadius.circular(12),
+                        shape: BoxShape.rectangle,
+                      ),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                              child: Container(
+                                width: 4,
+                                height: 60,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                  borderRadius: BorderRadius.circular(4),
+                                ),
                               ),
                             ),
-                          ),
-                          FaIcon(
-                            FontAwesomeIcons.archive,
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            size: 28,
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                            child: Text(
-                              'Datasets',
-                              style: FlutterFlowTheme.of(context).subtitle2,
+                            FaIcon(
+                              FontAwesomeIcons.archive,
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              size: 28,
                             ),
-                          ),
-                        ],
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                              child: Text(
+                                'Datasets',
+                                style: FlutterFlowTheme.of(context).subtitle2,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
                 ),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
-                  child: Container(
-                    width: double.infinity,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                      borderRadius: BorderRadius.circular(12),
-                      shape: BoxShape.rectangle,
-                    ),
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
-                            child: Container(
-                              width: 4,
-                              height: 60,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
-                                borderRadius: BorderRadius.circular(4),
+                  child: InkWell(
+                    onTap: () async {
+                      context.pushNamed('History');
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        borderRadius: BorderRadius.circular(12),
+                        shape: BoxShape.rectangle,
+                      ),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                              child: Container(
+                                width: 4,
+                                height: 60,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                  borderRadius: BorderRadius.circular(4),
+                                ),
                               ),
                             ),
-                          ),
-                          FaIcon(
-                            FontAwesomeIcons.clock,
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            size: 28,
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                            child: Text(
-                              'History',
-                              style: FlutterFlowTheme.of(context).subtitle2,
+                            FaIcon(
+                              FontAwesomeIcons.clock,
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              size: 28,
                             ),
-                          ),
-                        ],
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                              child: Text(
+                                'History',
+                                style: FlutterFlowTheme.of(context).subtitle2,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
                 ),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
-                  child: Container(
-                    width: double.infinity,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                      borderRadius: BorderRadius.circular(12),
-                      shape: BoxShape.rectangle,
-                    ),
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
-                            child: Container(
-                              width: 4,
-                              height: 60,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
-                                borderRadius: BorderRadius.circular(4),
+                  child: InkWell(
+                    onTap: () async {
+                      context.pushNamed('Settings');
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        borderRadius: BorderRadius.circular(12),
+                        shape: BoxShape.rectangle,
+                      ),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                              child: Container(
+                                width: 4,
+                                height: 60,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                  borderRadius: BorderRadius.circular(4),
+                                ),
                               ),
                             ),
-                          ),
-                          Icon(
-                            Icons.settings_outlined,
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            size: 28,
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                            child: Text(
-                              'Settings',
-                              style: FlutterFlowTheme.of(context).subtitle2,
+                            Icon(
+                              Icons.settings_outlined,
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              size: 28,
                             ),
-                          ),
-                        ],
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                              child: Text(
+                                'Settings',
+                                style: FlutterFlowTheme.of(context).subtitle2,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -257,14 +277,15 @@ class _MainMenuWidgetState extends State<MainMenuWidget> {
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(50),
-                                child: CachedNetworkImage(
-                                  imageUrl:
-                                      'https://images.unsplash.com/photo-1624561172888-ac93c696e10c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjJ8fHVzZXJzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
-                                  width: 44,
-                                  height: 44,
-                                  fit: BoxFit.cover,
+                              AuthUserStreamWidget(
+                                builder: (context) => ClipRRect(
+                                  borderRadius: BorderRadius.circular(50),
+                                  child: CachedNetworkImage(
+                                    imageUrl: currentUserPhoto,
+                                    width: 44,
+                                    height: 44,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
                               Expanded(

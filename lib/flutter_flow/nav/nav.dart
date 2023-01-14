@@ -93,14 +93,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => HomeWidget(),
             ),
             FFRoute(
-              name: 'Collections',
-              path: 'collections',
-              builder: (context, params) => CollectionsWidget(),
+              name: 'Datasets',
+              path: 'datasets',
+              builder: (context, params) => DatasetsWidget(),
             ),
             FFRoute(
               name: 'Settings',
               path: 'settings',
               builder: (context, params) => SettingsWidget(),
+            ),
+            FFRoute(
+              name: 'History',
+              path: 'history',
+              builder: (context, params) => HistoryWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

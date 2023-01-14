@@ -14,8 +14,7 @@ class HomeWidget extends StatefulWidget {
 
 class _HomeWidgetState extends State<HomeWidget> {
   TextEditingController? textController;
-  bool? checkboxValue1;
-  bool? checkboxValue2;
+  bool? checkboxValue;
   double? sliderValue1;
   double? sliderValue2;
   final _unfocusNode = FocusNode();
@@ -51,7 +50,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.4',
+                'v0.5',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -310,113 +309,117 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
                                               ),
-                                              child: ListView(
-                                                padding: EdgeInsets.zero,
-                                                scrollDirection: Axis.vertical,
-                                                children: [
-                                                  Material(
-                                                    color: Colors.transparent,
-                                                    elevation: 2,
-                                                    child: Container(
-                                                      width: 260,
-                                                      height: 40,
-                                                      decoration: BoxDecoration(
-                                                        color: FlutterFlowTheme
-                                                                .of(context)
-                                                            .primaryBackground,
-                                                      ),
-                                                      child: Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          Expanded(
-                                                            flex: 1,
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              children: [
-                                                                Expanded(
-                                                                  child: Align(
-                                                                    alignment:
-                                                                        AlignmentDirectional(
-                                                                            0,
-                                                                            0),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(10, 0, 10, 0),
+                                                child: ListView(
+                                                  padding: EdgeInsets.zero,
+                                                  scrollDirection:
+                                                      Axis.vertical,
+                                                  children: [
+                                                    Material(
+                                                      color: Colors.transparent,
+                                                      elevation: 2,
+                                                      child: Container(
+                                                        width: 260,
+                                                        height: 40,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryBackground,
+                                                        ),
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          children: [
+                                                            Expanded(
+                                                              flex: 1,
+                                                              child: Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                children: [
+                                                                  Expanded(
                                                                     child:
-                                                                        Theme(
-                                                                      data:
-                                                                          ThemeData(
-                                                                        checkboxTheme:
-                                                                            CheckboxThemeData(
-                                                                          shape:
-                                                                              RoundedRectangleBorder(
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(0),
-                                                                          ),
-                                                                        ),
-                                                                        unselectedWidgetColor:
-                                                                            Color(0xFFF5F5F5),
-                                                                      ),
+                                                                        Align(
+                                                                      alignment:
+                                                                          AlignmentDirectional(
+                                                                              0,
+                                                                              0),
                                                                       child:
-                                                                          Checkbox(
-                                                                        value: checkboxValue1 ??=
-                                                                            true,
-                                                                        onChanged:
-                                                                            (newValue) async {
-                                                                          setState(() =>
-                                                                              checkboxValue1 = newValue!);
-                                                                        },
-                                                                        activeColor:
-                                                                            FlutterFlowTheme.of(context).primaryColor,
+                                                                          Theme(
+                                                                        data:
+                                                                            ThemeData(
+                                                                          checkboxTheme:
+                                                                              CheckboxThemeData(
+                                                                            shape:
+                                                                                RoundedRectangleBorder(
+                                                                              borderRadius: BorderRadius.circular(0),
+                                                                            ),
+                                                                          ),
+                                                                          unselectedWidgetColor:
+                                                                              Color(0xFFF5F5F5),
+                                                                        ),
+                                                                        child:
+                                                                            Checkbox(
+                                                                          value: checkboxValue ??=
+                                                                              true,
+                                                                          onChanged:
+                                                                              (newValue) async {
+                                                                            setState(() =>
+                                                                                checkboxValue = newValue!);
+                                                                          },
+                                                                          activeColor:
+                                                                              FlutterFlowTheme.of(context).primaryColor,
+                                                                        ),
                                                                       ),
                                                                     ),
                                                                   ),
-                                                                ),
-                                                              ],
+                                                                ],
+                                                              ),
                                                             ),
-                                                          ),
-                                                          Expanded(
-                                                            flex: 7,
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              children: [
-                                                                Expanded(
-                                                                  child: Align(
-                                                                    alignment:
-                                                                        AlignmentDirectional(
-                                                                            0,
-                                                                            0),
-                                                                    child: Text(
-                                                                      'Collection Name',
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyText1
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                'Work Sans',
-                                                                            fontSize:
-                                                                                19,
-                                                                            fontWeight:
-                                                                                FontWeight.bold,
-                                                                          ),
+                                                            Expanded(
+                                                              flex: 7,
+                                                              child: Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                children: [
+                                                                  Expanded(
+                                                                    child:
+                                                                        Align(
+                                                                      alignment:
+                                                                          AlignmentDirectional(
+                                                                              0,
+                                                                              0),
+                                                                      child:
+                                                                          Text(
+                                                                        'Dataset Name',
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyText1
+                                                                            .override(
+                                                                              fontFamily: 'Work Sans',
+                                                                              fontSize: 19,
+                                                                              fontWeight: FontWeight.bold,
+                                                                            ),
+                                                                      ),
                                                                     ),
                                                                   ),
-                                                                ),
-                                                              ],
+                                                                ],
+                                                              ),
                                                             ),
-                                                          ),
-                                                        ],
+                                                          ],
+                                                        ),
                                                       ),
                                                     ),
-                                                  ),
-                                                ],
+                                                  ],
+                                                ),
                                               ),
                                             ),
                                           ),
                                           Text(
-                                            'Settings',
+                                            'Chunks',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText1,
                                           ),
@@ -443,7 +446,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                     inactiveColor:
                                                         Color(0xFF9E9E9E),
                                                     min: 0,
-                                                    max: 10,
+                                                    max: 25,
                                                     value: sliderValue1 ??= 0,
                                                     onChanged: (newValue) {
                                                       newValue = double.parse(
@@ -454,6 +457,28 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                           sliderValue1 =
                                                               newValue);
                                                     },
+                                                  ),
+                                                  Text(
+                                                    valueOrDefault<String>(
+                                                      sliderValue1?.toString(),
+                                                      '1',
+                                                    ),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyText1,
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                0, 20, 0, 0),
+                                                    child: Text(
+                                                      'Top K',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1,
+                                                    ),
                                                   ),
                                                   Slider(
                                                     activeColor:
@@ -475,34 +500,14 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                               newValue);
                                                     },
                                                   ),
-                                                  Theme(
-                                                    data: ThemeData(
-                                                      checkboxTheme:
-                                                          CheckboxThemeData(
-                                                        shape:
-                                                            RoundedRectangleBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(0),
-                                                        ),
-                                                      ),
-                                                      unselectedWidgetColor:
-                                                          Color(0xFFF5F5F5),
+                                                  Text(
+                                                    valueOrDefault<String>(
+                                                      sliderValue2?.toString(),
+                                                      '1',
                                                     ),
-                                                    child: Checkbox(
-                                                      value: checkboxValue2 ??=
-                                                          true,
-                                                      onChanged:
-                                                          (newValue) async {
-                                                        setState(() =>
-                                                            checkboxValue2 =
-                                                                newValue!);
-                                                      },
-                                                      activeColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryColor,
-                                                    ),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyText1,
                                                   ),
                                                 ],
                                               ),

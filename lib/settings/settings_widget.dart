@@ -53,7 +53,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
           },
         ),
         title: Text(
-          'Profile',
+          'Settings',
           style: FlutterFlowTheme.of(context).subtitle2,
         ),
         actions: [],
