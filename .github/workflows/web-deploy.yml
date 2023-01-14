@@ -38,7 +38,7 @@ jobs:
 #      - uses: FirebaseExtended/action-hosting-deploy@v0
 #        with:
 #          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-#          firebaseServiceAccount: '${{ secrets.FIREBASE_TOKEN }}'
+#          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_DIGITALVENTURES_3FFEE }}'
 #          channelId: live
 #          projectId: paperwiz1
   deploy:
@@ -58,4 +58,4 @@ jobs:
         with:
           args: deploy --only hosting
         env:
-          GCP_SA_KEY: ${{ secrets.FIREBASE_TOKEN }}
+          GCP_SA_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_DIGITALVENTURES_3FFEE }}
