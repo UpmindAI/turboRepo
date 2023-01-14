@@ -46,11 +46,17 @@ class _HomeWidgetState extends State<HomeWidget> {
         child: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
+          title: Image.asset(
+            'assets/images/OMP-188-60.png',
+            width: 188,
+            height: 60,
+            fit: BoxFit.cover,
+          ),
           actions: [
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.5',
+                'v0.6',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
