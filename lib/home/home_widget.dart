@@ -1,6 +1,7 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/main_menu_widget.dart';
+import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -23,6 +24,7 @@ class _HomeWidgetState extends State<HomeWidget> {
 
   double? sliderValue1;
   double? sliderValue2;
+  String? dropDownValue;
   TextEditingController? textController;
   final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -63,7 +65,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.9',
+                'v0.10',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -218,54 +220,119 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 minLines: 30,
                                               ),
                                             ),
-                                            Expanded(
-                                              child: Align(
-                                                alignment:
-                                                    AlignmentDirectional(1, -1),
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(0, 0, 20, 0),
-                                                  child: FFButtonWidget(
-                                                    onPressed: () {
-                                                      print(
-                                                          'Button pressed ...');
-                                                    },
-                                                    text: 'Send',
-                                                    options: FFButtonOptions(
-                                                      width: 130,
-                                                      height: 40,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryColor,
-                                                      textStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .subtitle2
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .subtitle2Family,
-                                                                color: Colors
-                                                                    .white,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .subtitle2Family),
-                                                              ),
-                                                      borderSide: BorderSide(
-                                                        color:
-                                                            Colors.transparent,
-                                                        width: 1,
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Expanded(
+                                                  child: Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            1, 0),
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0, 0, 20, 0),
+                                                      child:
+                                                          FlutterFlowDropDown<
+                                                              String>(
+                                                        options: [
+                                                          'Costum Engine based on selected Datasets',
+                                                          'Plain GPT-3',
+                                                          'Pinecone Only'
+                                                        ],
+                                                        onChanged: (val) =>
+                                                            setState(() =>
+                                                                dropDownValue =
+                                                                    val),
+                                                        width: 280,
+                                                        height: 50,
+                                                        textStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyText1Family,
+                                                                  color: Colors
+                                                                      .black,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyText1Family),
+                                                                ),
+                                                        hintText:
+                                                            'Please select an Engine...',
+                                                        fillColor: Colors.white,
+                                                        elevation: 2,
+                                                        borderColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
+                                                        borderWidth: 1,
+                                                        borderRadius: 0,
+                                                        margin:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(12, 4,
+                                                                    12, 4),
+                                                        hidesUnderline: true,
                                                       ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8),
                                                     ),
                                                   ),
                                                 ),
-                                              ),
+                                                Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          1, -1),
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                0, 0, 20, 0),
+                                                    child: FFButtonWidget(
+                                                      onPressed: () {
+                                                        print(
+                                                            'Button pressed ...');
+                                                      },
+                                                      text: 'Send',
+                                                      options: FFButtonOptions(
+                                                        width: 130,
+                                                        height: 40,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryColor,
+                                                        textStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .subtitle2
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .subtitle2Family,
+                                                                  color: Colors
+                                                                      .white,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .subtitle2Family),
+                                                                ),
+                                                        borderSide: BorderSide(
+                                                          color: Colors
+                                                              .transparent,
+                                                          width: 1,
+                                                        ),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(0),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
                                             ),
                                           ],
                                         ),
