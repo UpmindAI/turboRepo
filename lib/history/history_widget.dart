@@ -3,6 +3,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class HistoryWidget extends StatefulWidget {
   const HistoryWidget({Key? key}) : super(key: key);
@@ -30,12 +31,24 @@ class _HistoryWidgetState extends State<HistoryWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       appBar: AppBar(
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         automaticallyImplyLeading: false,
+        leading: InkWell(
+          onTap: () async {
+            context.pop();
+          },
+          child: Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+            size: 36,
+          ),
+        ),
         title: Text(
           'History',
           style: FlutterFlowTheme.of(context).title2.override(
@@ -47,7 +60,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
               ),
         ),
         actions: [],
-        centerTitle: false,
+        centerTitle: true,
         elevation: 0,
       ),
       body: SafeArea(
