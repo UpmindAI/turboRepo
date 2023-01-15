@@ -9,6 +9,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class HomeWidget extends StatefulWidget {
   const HomeWidget({Key? key}) : super(key: key);
@@ -47,6 +48,8 @@ class _HomeWidgetState extends State<HomeWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -65,7 +68,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.10',
+                'v0.11',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -493,11 +496,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                                   borderRadius: BorderRadius.circular(0),
                                                                                 ),
                                                                               ),
-                                                                              unselectedWidgetColor: Color(0xFFF5F5F5),
+                                                                              unselectedWidgetColor: FlutterFlowTheme.of(context).secondaryColor,
                                                                             ),
                                                                             child:
                                                                                 Checkbox(
-                                                                              value: checkboxValueMap[listViewUserDatasetsRecord] ??= true,
+                                                                              value: checkboxValueMap[listViewUserDatasetsRecord] ??= false,
                                                                               onChanged: (newValue) async {
                                                                                 setState(() => checkboxValueMap[listViewUserDatasetsRecord] = newValue!);
                                                                               },
