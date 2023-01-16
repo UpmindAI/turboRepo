@@ -68,7 +68,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.18',
+                'v0.19',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -561,12 +561,19 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                               5,
                                                                               0),
                                                                           child:
-                                                                              Icon(
-                                                                            Icons.settings_outlined,
-                                                                            color:
-                                                                                Colors.black,
-                                                                            size:
-                                                                                24,
+                                                                              InkWell(
+                                                                            onTap:
+                                                                                () async {
+                                                                              FFAppState().activeDataset = listViewUserDatasetsRecord.reference;
+
+                                                                              context.pushNamed('Datasets');
+                                                                            },
+                                                                            child:
+                                                                                Icon(
+                                                                              Icons.settings_outlined,
+                                                                              color: Colors.black,
+                                                                              size: 24,
+                                                                            ),
                                                                           ),
                                                                         ),
                                                                       ),
