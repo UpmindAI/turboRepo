@@ -285,7 +285,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                               'active_docs':
                                                                   checkboxCheckedItems
                                                                       .map((e) =>
-                                                                          e.datasetId)
+                                                                          e.documentId)
                                                                       .withoutNulls
                                                                       .toList(),
                                                             };
@@ -485,6 +485,17 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                       value: checkboxValueMap[listViewUserDocsRecord] ??= listViewUserDocsRecord.isActive!,
                                                                                       onChanged: (newValue) async {
                                                                                         setState(() => checkboxValueMap[listViewUserDocsRecord] = newValue!);
+                                                                                        if (newValue!) {
+                                                                                          final userDatasetsUpdateData = {
+                                                                                            'active_docs': checkboxCheckedItems.map((e) => e.documentId).withoutNulls.toList(),
+                                                                                          };
+                                                                                          await columnUserDatasetsRecord.reference.update(userDatasetsUpdateData);
+                                                                                        } else {
+                                                                                          final userDatasetsUpdateData = {
+                                                                                            'active_docs': checkboxCheckedItems.map((e) => e.documentId).withoutNulls.toList(),
+                                                                                          };
+                                                                                          await columnUserDatasetsRecord.reference.update(userDatasetsUpdateData);
+                                                                                        }
                                                                                       },
                                                                                       activeColor: FlutterFlowTheme.of(context).alternate,
                                                                                     ),
@@ -512,17 +523,19 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                   style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                         fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
                                                                                         color: FlutterFlowTheme.of(context).tertiaryColor,
+                                                                                        fontWeight: FontWeight.normal,
                                                                                         useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
                                                                                       ),
                                                                                 ),
                                                                               ),
                                                                               Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
                                                                                 child: Text(
                                                                                   dateTimeFormat('MMMMEEEEd', listViewUserDocsRecord.createdOn!),
                                                                                   style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                         fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
                                                                                         color: FlutterFlowTheme.of(context).tertiaryColor,
+                                                                                        fontWeight: FontWeight.normal,
                                                                                         useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
                                                                                       ),
                                                                                 ),
@@ -551,6 +564,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                     style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                           fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
                                                                                           color: FlutterFlowTheme.of(context).tertiaryColor,
+                                                                                          fontWeight: FontWeight.normal,
                                                                                           useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
                                                                                         ),
                                                                                   ),
