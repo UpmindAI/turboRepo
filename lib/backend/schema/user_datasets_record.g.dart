@@ -57,6 +57,14 @@ class _$UserDatasetsRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(DateTime)));
     }
+    value = object.activeDocs;
+    if (value != null) {
+      result
+        ..add('active_docs')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -100,6 +108,12 @@ class _$UserDatasetsRecordSerializer
           result.createdOn = serializers.deserialize(value,
               specifiedType: const FullType(DateTime)) as DateTime?;
           break;
+        case 'active_docs':
+          result.activeDocs.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -125,6 +139,8 @@ class _$UserDatasetsRecord extends UserDatasetsRecord {
   @override
   final DateTime? createdOn;
   @override
+  final BuiltList<String>? activeDocs;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$UserDatasetsRecord(
@@ -137,6 +153,7 @@ class _$UserDatasetsRecord extends UserDatasetsRecord {
       this.description,
       this.pictureUrl,
       this.createdOn,
+      this.activeDocs,
       this.ffRef})
       : super._();
 
@@ -158,6 +175,7 @@ class _$UserDatasetsRecord extends UserDatasetsRecord {
         description == other.description &&
         pictureUrl == other.pictureUrl &&
         createdOn == other.createdOn &&
+        activeDocs == other.activeDocs &&
         ffRef == other.ffRef;
   }
 
@@ -166,10 +184,12 @@ class _$UserDatasetsRecord extends UserDatasetsRecord {
     return $jf($jc(
         $jc(
             $jc(
-                $jc($jc($jc(0, datasetId.hashCode), datasetName.hashCode),
-                    description.hashCode),
-                pictureUrl.hashCode),
-            createdOn.hashCode),
+                $jc(
+                    $jc($jc($jc(0, datasetId.hashCode), datasetName.hashCode),
+                        description.hashCode),
+                    pictureUrl.hashCode),
+                createdOn.hashCode),
+            activeDocs.hashCode),
         ffRef.hashCode));
   }
 
@@ -181,6 +201,7 @@ class _$UserDatasetsRecord extends UserDatasetsRecord {
           ..add('description', description)
           ..add('pictureUrl', pictureUrl)
           ..add('createdOn', createdOn)
+          ..add('activeDocs', activeDocs)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -210,6 +231,12 @@ class UserDatasetsRecordBuilder
   DateTime? get createdOn => _$this._createdOn;
   set createdOn(DateTime? createdOn) => _$this._createdOn = createdOn;
 
+  ListBuilder<String>? _activeDocs;
+  ListBuilder<String> get activeDocs =>
+      _$this._activeDocs ??= new ListBuilder<String>();
+  set activeDocs(ListBuilder<String>? activeDocs) =>
+      _$this._activeDocs = activeDocs;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -226,6 +253,7 @@ class UserDatasetsRecordBuilder
       _description = $v.description;
       _pictureUrl = $v.pictureUrl;
       _createdOn = $v.createdOn;
+      _activeDocs = $v.activeDocs?.toBuilder();
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -247,14 +275,28 @@ class UserDatasetsRecordBuilder
   UserDatasetsRecord build() => _build();
 
   _$UserDatasetsRecord _build() {
-    final _$result = _$v ??
-        new _$UserDatasetsRecord._(
-            datasetId: datasetId,
-            datasetName: datasetName,
-            description: description,
-            pictureUrl: pictureUrl,
-            createdOn: createdOn,
-            ffRef: ffRef);
+    _$UserDatasetsRecord _$result;
+    try {
+      _$result = _$v ??
+          new _$UserDatasetsRecord._(
+              datasetId: datasetId,
+              datasetName: datasetName,
+              description: description,
+              pictureUrl: pictureUrl,
+              createdOn: createdOn,
+              activeDocs: _activeDocs?.build(),
+              ffRef: ffRef);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'activeDocs';
+        _activeDocs?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'UserDatasetsRecord', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

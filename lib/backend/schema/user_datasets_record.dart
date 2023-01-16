@@ -25,6 +25,9 @@ abstract class UserDatasetsRecord
   @BuiltValueField(wireName: 'created_on')
   DateTime? get createdOn;
 
+  @BuiltValueField(wireName: 'active_docs')
+  BuiltList<String>? get activeDocs;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -35,7 +38,8 @@ abstract class UserDatasetsRecord
     ..datasetId = ''
     ..datasetName = ''
     ..description = ''
-    ..pictureUrl = '';
+    ..pictureUrl = ''
+    ..activeDocs = ListBuilder();
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
       parent != null
@@ -79,7 +83,8 @@ Map<String, dynamic> createUserDatasetsRecordData({
         ..datasetName = datasetName
         ..description = description
         ..pictureUrl = pictureUrl
-        ..createdOn = createdOn,
+        ..createdOn = createdOn
+        ..activeDocs = null,
     ),
   );
 
