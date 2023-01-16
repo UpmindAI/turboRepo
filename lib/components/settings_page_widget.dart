@@ -43,7 +43,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 1, 0, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(16, 1, 16, 0),
                 child: Container(
                   width: double.infinity,
                   decoration: BoxDecoration(

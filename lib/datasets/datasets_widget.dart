@@ -10,6 +10,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -352,58 +353,83 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                         20,
                                                                         10,
                                                                         0),
-                                                            child: Container(
-                                                              width:
-                                                                  MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .width,
-                                                              height: 50,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color: FlutterFlowTheme.of(
+                                                            child: Material(
+                                                              color: Colors
+                                                                  .transparent,
+                                                              elevation: 1,
+                                                              child: Container(
+                                                                width: MediaQuery.of(
                                                                         context)
-                                                                    .secondaryBackground,
-                                                                border:
-                                                                    Border.all(
+                                                                    .size
+                                                                    .width,
+                                                                height: 65,
+                                                                decoration:
+                                                                    BoxDecoration(
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .primaryColor,
-                                                                  width: 1,
-                                                                ),
-                                                              ),
-                                                              child: Column(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                children: [
-                                                                  Row(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    children: [
-                                                                      Align(
-                                                                        alignment: AlignmentDirectional(
-                                                                            -1,
-                                                                            0),
-                                                                        child:
-                                                                            Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              10,
-                                                                              10,
+                                                                      .secondaryBackground,
+                                                                  boxShadow: [
+                                                                    BoxShadow(
+                                                                      blurRadius:
+                                                                          4,
+                                                                      color: Color(
+                                                                          0x33000000),
+                                                                      offset:
+                                                                          Offset(
                                                                               0,
+                                                                              2),
+                                                                    )
+                                                                  ],
+                                                                ),
+                                                                child: Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  children: [
+                                                                    Row(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .max,
+                                                                      children: [
+                                                                        Align(
+                                                                          alignment: AlignmentDirectional(
+                                                                              -1,
                                                                               0),
                                                                           child:
-                                                                              Text(
-                                                                            listViewUserDocsRecord.documentName!,
-                                                                            style:
-                                                                                FlutterFlowTheme.of(context).bodyText1,
+                                                                              Padding(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                                10,
+                                                                                0,
+                                                                                0,
+                                                                                0),
+                                                                            child:
+                                                                                Text(
+                                                                              listViewUserDocsRecord.documentName!,
+                                                                              style: FlutterFlowTheme.of(context).bodyText1,
+                                                                            ),
                                                                           ),
                                                                         ),
-                                                                      ),
-                                                                      Expanded(
-                                                                        child:
-                                                                            Align(
+                                                                        Expanded(
+                                                                          child:
+                                                                              Align(
+                                                                            alignment:
+                                                                                AlignmentDirectional(1, 0),
+                                                                            child:
+                                                                                Padding(
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                                                                              child: Text(
+                                                                                'Active',
+                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                      fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                      color: FlutterFlowTheme.of(context).alternate,
+                                                                                      fontWeight: FontWeight.normal,
+                                                                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                    ),
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                        Align(
                                                                           alignment: AlignmentDirectional(
                                                                               1,
                                                                               0),
@@ -412,57 +438,131 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                             padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0,
                                                                                 8,
-                                                                                0,
+                                                                                5,
                                                                                 0),
                                                                             child:
+                                                                                Theme(
+                                                                              data: ThemeData(
+                                                                                checkboxTheme: CheckboxThemeData(
+                                                                                  shape: RoundedRectangleBorder(
+                                                                                    borderRadius: BorderRadius.circular(0),
+                                                                                  ),
+                                                                                ),
+                                                                                unselectedWidgetColor: FlutterFlowTheme.of(context).secondaryColor,
+                                                                              ),
+                                                                              child: Checkbox(
+                                                                                value: checkboxValueMap[listViewUserDocsRecord] ??= listViewUserDocsRecord.isActive!,
+                                                                                onChanged: (newValue) async {
+                                                                                  setState(() => checkboxValueMap[listViewUserDocsRecord] = newValue!);
+                                                                                },
+                                                                                activeColor: FlutterFlowTheme.of(context).alternate,
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                    Row(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .max,
+                                                                      children: [
+                                                                        Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              10,
+                                                                              0,
+                                                                              0,
+                                                                              5),
+                                                                          child:
+                                                                              Icon(
+                                                                            Icons.calendar_today_outlined,
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).tertiaryColor,
+                                                                            size:
+                                                                                20,
+                                                                          ),
+                                                                        ),
+                                                                        Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              10,
+                                                                              0,
+                                                                              0,
+                                                                              0),
+                                                                          child:
+                                                                              Text(
+                                                                            dateTimeFormat('jm',
+                                                                                listViewUserDocsRecord.createdOn!),
+                                                                            style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                  fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                  color: FlutterFlowTheme.of(context).tertiaryColor,
+                                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                ),
+                                                                          ),
+                                                                        ),
+                                                                        Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              10,
+                                                                              0,
+                                                                              0,
+                                                                              0),
+                                                                          child:
+                                                                              Text(
+                                                                            dateTimeFormat('MMMMEEEEd',
+                                                                                listViewUserDocsRecord.createdOn!),
+                                                                            style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                  fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                  color: FlutterFlowTheme.of(context).tertiaryColor,
+                                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                ),
+                                                                          ),
+                                                                        ),
+                                                                        Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              10,
+                                                                              0,
+                                                                              0,
+                                                                              0),
+                                                                          child:
+                                                                              InkWell(
+                                                                            onTap:
+                                                                                () async {
+                                                                              await listViewUserDocsRecord.reference.delete();
+                                                                            },
+                                                                            child:
+                                                                                FaIcon(
+                                                                              FontAwesomeIcons.trashAlt,
+                                                                              color: FlutterFlowTheme.of(context).tertiaryColor,
+                                                                              size: 20,
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                        Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              5,
+                                                                              0,
+                                                                              0,
+                                                                              0),
+                                                                          child:
+                                                                              InkWell(
+                                                                            onTap:
+                                                                                () async {
+                                                                              await listViewUserDocsRecord.reference.delete();
+                                                                            },
+                                                                            child:
                                                                                 Text(
-                                                                              'Active',
+                                                                              'Remove Document',
                                                                               style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                     fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                    color: FlutterFlowTheme.of(context).alternate,
-                                                                                    fontWeight: FontWeight.normal,
+                                                                                    color: FlutterFlowTheme.of(context).tertiaryColor,
                                                                                     useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
                                                                                   ),
                                                                             ),
                                                                           ),
                                                                         ),
-                                                                      ),
-                                                                      Align(
-                                                                        alignment: AlignmentDirectional(
-                                                                            1,
-                                                                            0),
-                                                                        child:
-                                                                            Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              0,
-                                                                              8,
-                                                                              5,
-                                                                              0),
-                                                                          child:
-                                                                              Theme(
-                                                                            data:
-                                                                                ThemeData(
-                                                                              checkboxTheme: CheckboxThemeData(
-                                                                                shape: RoundedRectangleBorder(
-                                                                                  borderRadius: BorderRadius.circular(0),
-                                                                                ),
-                                                                              ),
-                                                                              unselectedWidgetColor: FlutterFlowTheme.of(context).secondaryColor,
-                                                                            ),
-                                                                            child:
-                                                                                Checkbox(
-                                                                              value: checkboxValueMap[listViewUserDocsRecord] ??= listViewUserDocsRecord.isActive!,
-                                                                              onChanged: (newValue) async {
-                                                                                setState(() => checkboxValueMap[listViewUserDocsRecord] = newValue!);
-                                                                              },
-                                                                              activeColor: FlutterFlowTheme.of(context).alternate,
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ],
+                                                                      ],
+                                                                    ),
+                                                                  ],
+                                                                ),
                                                               ),
                                                             ),
                                                           );
@@ -530,7 +630,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                     BorderSide(
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .secondaryColor,
+                                                                      .alternate,
                                                                   width: 1,
                                                                 ),
                                                                 borderRadius:
@@ -550,7 +650,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                     BorderSide(
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .secondaryColor,
+                                                                      .alternate,
                                                                   width: 1,
                                                                 ),
                                                                 borderRadius:
@@ -635,7 +735,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                     BorderSide(
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .secondaryColor,
+                                                                      .alternate,
                                                                   width: 1,
                                                                 ),
                                                                 borderRadius:
@@ -655,7 +755,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                     BorderSide(
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .secondaryColor,
+                                                                      .alternate,
                                                                   width: 1,
                                                                 ),
                                                                 borderRadius:

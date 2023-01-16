@@ -85,7 +85,7 @@ class _MainMenuWidgetState extends State<MainMenuWidget> {
                                   height: 60,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
-                                        .primaryColor,
+                                        .primaryBackground,
                                     borderRadius: BorderRadius.circular(4),
                                   ),
                                 ),
@@ -93,7 +93,7 @@ class _MainMenuWidgetState extends State<MainMenuWidget> {
                               Icon(
                                 Icons.home_filled,
                                 color:
-                                    FlutterFlowTheme.of(context).primaryColor,
+                                    FlutterFlowTheme.of(context).secondaryText,
                                 size: 28,
                               ),
                               Padding(
@@ -107,7 +107,7 @@ class _MainMenuWidgetState extends State<MainMenuWidget> {
                                         fontFamily: FlutterFlowTheme.of(context)
                                             .subtitle2Family,
                                         color: FlutterFlowTheme.of(context)
-                                            .primaryColor,
+                                            .secondaryText,
                                         useGoogleFonts: GoogleFonts.asMap()
                                             .containsKey(
                                                 FlutterFlowTheme.of(context)
@@ -318,17 +318,35 @@ class _MainMenuWidgetState extends State<MainMenuWidget> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        AuthUserStreamWidget(
-                                          builder: (context) => Text(
-                                            currentUserDisplayName,
-                                            style: FlutterFlowTheme.of(context)
-                                                .subtitle1,
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 0, 10),
+                                          child: AuthUserStreamWidget(
+                                            builder: (context) => Text(
+                                              currentUserDisplayName,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .subtitle1,
+                                            ),
                                           ),
                                         ),
                                         Text(
                                           currentUserEmail,
                                           style: FlutterFlowTheme.of(context)
-                                              .bodyText2,
+                                              .bodyText2
+                                              .override(
+                                                fontFamily:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText2Family,
+                                                fontSize: 11,
+                                                useGoogleFonts: GoogleFonts
+                                                        .asMap()
+                                                    .containsKey(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyText2Family),
+                                              ),
                                         ),
                                       ],
                                     ),
