@@ -26,7 +26,8 @@ class FFAppState extends ChangeNotifier {
 
   late SharedPreferences prefs;
 
-  DocumentReference? _activeDataset;
+  DocumentReference? _activeDataset =
+      FirebaseFirestore.instance.doc('/user_datasets/KCEtVI9Ex4Ku2CsvXDjz');
   DocumentReference? get activeDataset => _activeDataset;
   set activeDataset(DocumentReference? _value) {
     _activeDataset = _value;
