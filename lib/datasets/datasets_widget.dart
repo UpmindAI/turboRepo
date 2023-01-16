@@ -736,6 +736,15 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                         datasetId:
                                                             columnUserDatasetsRecord
                                                                 .datasetId,
+                                                        documentName:
+                                                            textController1!
+                                                                .text,
+                                                        createdOn:
+                                                            getCurrentTimestamp,
+                                                        datasetRef:
+                                                            columnUserDatasetsRecord
+                                                                .reference,
+                                                        isActive: true,
                                                       );
                                                       var userDocsRecordReference =
                                                           UserDocsRecord.createDoc(
@@ -747,6 +756,10 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                           .getDocumentFromData(
                                                               userDocsCreateData,
                                                               userDocsRecordReference);
+                                                      await Future.delayed(
+                                                          const Duration(
+                                                              milliseconds:
+                                                                  500));
 
                                                       final userDatasetsUpdateData =
                                                           {
@@ -760,6 +773,16 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                           .reference
                                                           .update(
                                                               userDatasetsUpdateData);
+                                                      await Future.delayed(
+                                                          const Duration(
+                                                              milliseconds:
+                                                                  500));
+                                                      setState(() {
+                                                        textController1
+                                                            ?.clear();
+                                                        textController2
+                                                            ?.clear();
+                                                      });
 
                                                       setState(() {});
                                                     },
