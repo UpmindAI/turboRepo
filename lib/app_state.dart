@@ -32,6 +32,13 @@ class FFAppState extends ChangeNotifier {
   set activeDataset(DocumentReference? _value) {
     _activeDataset = _value;
   }
+
+  DocumentReference? _unsetDataset =
+      FirebaseFirestore.instance.doc('/user_datasets/unset');
+  DocumentReference? get unsetDataset => _unsetDataset;
+  set unsetDataset(DocumentReference? _value) {
+    _unsetDataset = _value;
+  }
 }
 
 LatLng? _latLngFromString(String? val) {
