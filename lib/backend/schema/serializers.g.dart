@@ -7,8 +7,10 @@ part of 'serializers.dart';
 // **************************************************************************
 
 Serializers _$serializers = (new Serializers().toBuilder()
+      ..add(UserCompletionsRecord.serializer)
       ..add(UserDatasetsRecord.serializer)
       ..add(UserDocsRecord.serializer)
+      ..add(UserPromptsRecord.serializer)
       ..add(UsersRecord.serializer)
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
