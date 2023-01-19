@@ -6,10 +6,12 @@ import '../components/main_menu_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../flutter_flow/upload_media.dart';
 import '../flutter_flow/random_data_util.dart' as random_data;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -27,20 +29,25 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
   List<UserDocsRecord> get checkboxCheckedItems =>
       checkboxValueMap.entries.where((e) => e.value).map((e) => e.key).toList();
 
-  UserDocsRecord? docSet;
+  bool isMediaUploading = false;
+  FFLocalFile uploadedLocalFile = FFLocalFile(bytes: Uint8List.fromList([]));
+
+  UserTempUploadsRecord? docSet;
+  TextEditingController? textController;
   final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-
+    textController = TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
   void dispose() {
     _unfocusNode.dispose();
+    textController?.dispose();
     super.dispose();
   }
 
@@ -322,7 +329,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                             ),
                                                             options:
                                                                 FFButtonOptions(
-                                                              width: 140,
+                                                              width: 160,
                                                               height: 30,
                                                               color: FlutterFlowTheme
                                                                       .of(context)
@@ -358,6 +365,37 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                     ),
                                                   ],
                                                 ),
+                                              ),
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                10, 10, 0, 5),
+                                                    child: Text(
+                                                      'Documents in this dataset:',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyText1Family,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyText1Family),
+                                                              ),
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                               Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -441,9 +479,9 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                       padding: EdgeInsetsDirectional
                                                                           .fromSTEB(
                                                                               10,
-                                                                              20,
+                                                                              0,
                                                                               10,
-                                                                              0),
+                                                                              20),
                                                                       child:
                                                                           Material(
                                                                         color: Colors
@@ -631,92 +669,267 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                       mainAxisSize:
                                                           MainAxisSize.max,
                                                       children: [
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(0,
-                                                                      20, 0, 0),
-                                                          child: FFButtonWidget(
-                                                            onPressed:
-                                                                () async {
-                                                              final userDocsCreateData =
-                                                                  createUserDocsRecordData(
-                                                                datasetId:
-                                                                    columnUserDatasetsRecord
-                                                                        .datasetId,
-                                                                documentName:
-                                                                    '${columnUserDatasetsRecord.datasetName}- Document - ${random_data.randomString(
-                                                                  4,
-                                                                  4,
-                                                                  true,
-                                                                  true,
-                                                                  true,
-                                                                )}',
-                                                                createdOn:
-                                                                    getCurrentTimestamp,
-                                                                datasetRef:
-                                                                    columnUserDatasetsRecord
-                                                                        .reference,
-                                                                isActive: true,
-                                                                docId: random_data
-                                                                    .randomString(
-                                                                  9,
-                                                                  9,
-                                                                  true,
-                                                                  true,
-                                                                  true,
+                                                        Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          children: [
+                                                            Expanded(
+                                                              child: Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            30,
+                                                                            0,
+                                                                            30,
+                                                                            0),
+                                                                child:
+                                                                    TextFormField(
+                                                                  controller:
+                                                                      textController,
+                                                                  autofocus:
+                                                                      true,
+                                                                  obscureText:
+                                                                      false,
+                                                                  decoration:
+                                                                      InputDecoration(
+                                                                    isDense:
+                                                                        true,
+                                                                    labelText:
+                                                                        'Chunk Size',
+                                                                    hintStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyText2,
+                                                                    enabledBorder:
+                                                                        OutlineInputBorder(
+                                                                      borderSide:
+                                                                          BorderSide(
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .secondaryColor,
+                                                                        width:
+                                                                            1,
+                                                                      ),
+                                                                      borderRadius:
+                                                                          const BorderRadius
+                                                                              .only(
+                                                                        topLeft:
+                                                                            Radius.circular(4.0),
+                                                                        topRight:
+                                                                            Radius.circular(4.0),
+                                                                      ),
+                                                                    ),
+                                                                    focusedBorder:
+                                                                        OutlineInputBorder(
+                                                                      borderSide:
+                                                                          BorderSide(
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .secondaryColor,
+                                                                        width:
+                                                                            1,
+                                                                      ),
+                                                                      borderRadius:
+                                                                          const BorderRadius
+                                                                              .only(
+                                                                        topLeft:
+                                                                            Radius.circular(4.0),
+                                                                        topRight:
+                                                                            Radius.circular(4.0),
+                                                                      ),
+                                                                    ),
+                                                                    errorBorder:
+                                                                        OutlineInputBorder(
+                                                                      borderSide:
+                                                                          BorderSide(
+                                                                        color: Color(
+                                                                            0x00000000),
+                                                                        width:
+                                                                            1,
+                                                                      ),
+                                                                      borderRadius:
+                                                                          const BorderRadius
+                                                                              .only(
+                                                                        topLeft:
+                                                                            Radius.circular(4.0),
+                                                                        topRight:
+                                                                            Radius.circular(4.0),
+                                                                      ),
+                                                                    ),
+                                                                    focusedErrorBorder:
+                                                                        OutlineInputBorder(
+                                                                      borderSide:
+                                                                          BorderSide(
+                                                                        color: Color(
+                                                                            0x00000000),
+                                                                        width:
+                                                                            1,
+                                                                      ),
+                                                                      borderRadius:
+                                                                          const BorderRadius
+                                                                              .only(
+                                                                        topLeft:
+                                                                            Radius.circular(4.0),
+                                                                        topRight:
+                                                                            Radius.circular(4.0),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyText1,
+                                                                  inputFormatters: [
+                                                                    FilteringTextInputFormatter
+                                                                        .allow(RegExp(
+                                                                            '[0-9]'))
+                                                                  ],
                                                                 ),
-                                                              );
-                                                              var userDocsRecordReference =
-                                                                  UserDocsRecord
-                                                                      .createDoc(
-                                                                          currentUserReference!);
-                                                              await userDocsRecordReference
-                                                                  .set(
-                                                                      userDocsCreateData);
-                                                              docSet = UserDocsRecord
-                                                                  .getDocumentFromData(
-                                                                      userDocsCreateData,
-                                                                      userDocsRecordReference);
-                                                              await Future.delayed(
-                                                                  const Duration(
-                                                                      milliseconds:
-                                                                          500));
-
-                                                              final userDatasetsUpdateData =
-                                                                  {
-                                                                'active_docs':
-                                                                    FieldValue
-                                                                        .arrayUnion([
-                                                                  docSet!.docId
-                                                                ]),
-                                                              };
-                                                              await columnUserDatasetsRecord
-                                                                  .reference
-                                                                  .update(
-                                                                      userDatasetsUpdateData);
-                                                              await Future.delayed(
-                                                                  const Duration(
-                                                                      milliseconds:
-                                                                          500));
-
-                                                              setState(() {});
-                                                            },
-                                                            text:
-                                                                'Append Documents to this Dataset',
-                                                            icon: Icon(
-                                                              Icons.upload_file,
-                                                              size: 15,
+                                                              ),
                                                             ),
-                                                            options:
-                                                                FFButtonOptions(
-                                                              width: 350,
-                                                              height: 40,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primaryColor,
-                                                              textStyle:
-                                                                  FlutterFlowTheme.of(
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0,
+                                                                          0,
+                                                                          30,
+                                                                          0),
+                                                              child:
+                                                                  FFButtonWidget(
+                                                                onPressed:
+                                                                    () async {
+                                                                  final selectedFile =
+                                                                      await selectFile(
+                                                                          allowedExtensions: [
+                                                                        'pdf'
+                                                                      ]);
+                                                                  if (selectedFile !=
+                                                                      null) {
+                                                                    setState(() =>
+                                                                        isMediaUploading =
+                                                                            true);
+                                                                    FFLocalFile?
+                                                                        selectedLocalFile;
+                                                                    try {
+                                                                      showUploadMessage(
+                                                                        context,
+                                                                        'Uploading file...',
+                                                                        showLoading:
+                                                                            true,
+                                                                      );
+                                                                      selectedLocalFile =
+                                                                          FFLocalFile(
+                                                                        name: selectedFile
+                                                                            .storagePath
+                                                                            .split('/')
+                                                                            .last,
+                                                                        bytes: selectedFile
+                                                                            .bytes,
+                                                                      );
+                                                                    } finally {
+                                                                      ScaffoldMessenger.of(
+                                                                              context)
+                                                                          .hideCurrentSnackBar();
+                                                                      isMediaUploading =
+                                                                          false;
+                                                                    }
+                                                                    if (selectedLocalFile !=
+                                                                        null) {
+                                                                      setState(() =>
+                                                                          uploadedLocalFile =
+                                                                              selectedLocalFile!);
+                                                                      showUploadMessage(
+                                                                        context,
+                                                                        'Success!',
+                                                                      );
+                                                                    } else {
+                                                                      setState(
+                                                                          () {});
+                                                                      showUploadMessage(
+                                                                        context,
+                                                                        'Failed to upload file',
+                                                                      );
+                                                                      return;
+                                                                    }
+                                                                  }
+
+                                                                  final userTempUploadsCreateData =
+                                                                      createUserTempUploadsRecordData(
+                                                                    docId: random_data
+                                                                        .randomString(
+                                                                      9,
+                                                                      9,
+                                                                      true,
+                                                                      true,
+                                                                      true,
+                                                                    ),
+                                                                    docTitle:
+                                                                        '${columnUserDatasetsRecord.datasetName} (${random_data.randomString(
+                                                                      5,
+                                                                      5,
+                                                                      true,
+                                                                      true,
+                                                                      true,
+                                                                    )})',
+                                                                    chunkSize: int.tryParse(
+                                                                        textController!
+                                                                            .text),
+                                                                    datasetName:
+                                                                        columnUserDatasetsRecord
+                                                                            .datasetName,
+                                                                    datasetId:
+                                                                        columnUserDatasetsRecord
+                                                                            .datasetId,
+                                                                  );
+                                                                  var userTempUploadsRecordReference =
+                                                                      UserTempUploadsRecord
+                                                                          .createDoc(
+                                                                              currentUserReference!);
+                                                                  await userTempUploadsRecordReference
+                                                                      .set(
+                                                                          userTempUploadsCreateData);
+                                                                  docSet = UserTempUploadsRecord
+                                                                      .getDocumentFromData(
+                                                                          userTempUploadsCreateData,
+                                                                          userTempUploadsRecordReference);
+                                                                  await Future.delayed(
+                                                                      const Duration(
+                                                                          milliseconds:
+                                                                              500));
+
+                                                                  final userDatasetsUpdateData =
+                                                                      {
+                                                                    'active_docs':
+                                                                        FieldValue
+                                                                            .arrayUnion([
+                                                                      docSet!
+                                                                          .docId
+                                                                    ]),
+                                                                  };
+                                                                  await columnUserDatasetsRecord
+                                                                      .reference
+                                                                      .update(
+                                                                          userDatasetsUpdateData);
+                                                                  await Future.delayed(
+                                                                      const Duration(
+                                                                          milliseconds:
+                                                                              500));
+
+                                                                  setState(
+                                                                      () {});
+                                                                },
+                                                                text:
+                                                                    'Append Documents to this Dataset',
+                                                                icon: Icon(
+                                                                  Icons
+                                                                      .upload_file,
+                                                                  size: 15,
+                                                                ),
+                                                                options:
+                                                                    FFButtonOptions(
+                                                                  width: 350,
+                                                                  height: 40,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryColor,
+                                                                  textStyle: FlutterFlowTheme.of(
                                                                           context)
                                                                       .subtitle2
                                                                       .override(
@@ -727,18 +940,20 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                         useGoogleFonts:
                                                                             GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).subtitle2Family),
                                                                       ),
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: Colors
-                                                                    .transparent,
-                                                                width: 1,
+                                                                  borderSide:
+                                                                      BorderSide(
+                                                                    color: Colors
+                                                                        .transparent,
+                                                                    width: 1,
+                                                                  ),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              0),
+                                                                ),
                                                               ),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          0),
                                                             ),
-                                                          ),
+                                                          ],
                                                         ),
                                                       ],
                                                     ),
