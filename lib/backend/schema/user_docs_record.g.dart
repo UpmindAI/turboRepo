@@ -21,13 +21,6 @@ class _$UserDocsRecordSerializer
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[];
     Object? value;
-    value = object.documentId;
-    if (value != null) {
-      result
-        ..add('document_id')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     value = object.datasetId;
     if (value != null) {
       result
@@ -64,6 +57,13 @@ class _$UserDocsRecordSerializer
         ..add(
             serializers.serialize(value, specifiedType: const FullType(bool)));
     }
+    value = object.docId;
+    if (value != null) {
+      result
+        ..add('doc_id')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -87,10 +87,6 @@ class _$UserDocsRecordSerializer
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
-        case 'document_id':
-          result.documentId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
         case 'dataset_id':
           result.datasetId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
@@ -113,6 +109,10 @@ class _$UserDocsRecordSerializer
           result.isActive = serializers.deserialize(value,
               specifiedType: const FullType(bool)) as bool?;
           break;
+        case 'doc_id':
+          result.docId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -128,8 +128,6 @@ class _$UserDocsRecordSerializer
 
 class _$UserDocsRecord extends UserDocsRecord {
   @override
-  final String? documentId;
-  @override
   final String? datasetId;
   @override
   final String? documentName;
@@ -140,18 +138,20 @@ class _$UserDocsRecord extends UserDocsRecord {
   @override
   final bool? isActive;
   @override
+  final String? docId;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$UserDocsRecord([void Function(UserDocsRecordBuilder)? updates]) =>
       (new UserDocsRecordBuilder()..update(updates))._build();
 
   _$UserDocsRecord._(
-      {this.documentId,
-      this.datasetId,
+      {this.datasetId,
       this.documentName,
       this.createdOn,
       this.datasetRef,
       this.isActive,
+      this.docId,
       this.ffRef})
       : super._();
 
@@ -167,12 +167,12 @@ class _$UserDocsRecord extends UserDocsRecord {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is UserDocsRecord &&
-        documentId == other.documentId &&
         datasetId == other.datasetId &&
         documentName == other.documentName &&
         createdOn == other.createdOn &&
         datasetRef == other.datasetRef &&
         isActive == other.isActive &&
+        docId == other.docId &&
         ffRef == other.ffRef;
   }
 
@@ -182,23 +182,23 @@ class _$UserDocsRecord extends UserDocsRecord {
         $jc(
             $jc(
                 $jc(
-                    $jc($jc($jc(0, documentId.hashCode), datasetId.hashCode),
-                        documentName.hashCode),
-                    createdOn.hashCode),
-                datasetRef.hashCode),
-            isActive.hashCode),
+                    $jc($jc($jc(0, datasetId.hashCode), documentName.hashCode),
+                        createdOn.hashCode),
+                    datasetRef.hashCode),
+                isActive.hashCode),
+            docId.hashCode),
         ffRef.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'UserDocsRecord')
-          ..add('documentId', documentId)
           ..add('datasetId', datasetId)
           ..add('documentName', documentName)
           ..add('createdOn', createdOn)
           ..add('datasetRef', datasetRef)
           ..add('isActive', isActive)
+          ..add('docId', docId)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -207,10 +207,6 @@ class _$UserDocsRecord extends UserDocsRecord {
 class UserDocsRecordBuilder
     implements Builder<UserDocsRecord, UserDocsRecordBuilder> {
   _$UserDocsRecord? _$v;
-
-  String? _documentId;
-  String? get documentId => _$this._documentId;
-  set documentId(String? documentId) => _$this._documentId = documentId;
 
   String? _datasetId;
   String? get datasetId => _$this._datasetId;
@@ -233,6 +229,10 @@ class UserDocsRecordBuilder
   bool? get isActive => _$this._isActive;
   set isActive(bool? isActive) => _$this._isActive = isActive;
 
+  String? _docId;
+  String? get docId => _$this._docId;
+  set docId(String? docId) => _$this._docId = docId;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -244,12 +244,12 @@ class UserDocsRecordBuilder
   UserDocsRecordBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _documentId = $v.documentId;
       _datasetId = $v.datasetId;
       _documentName = $v.documentName;
       _createdOn = $v.createdOn;
       _datasetRef = $v.datasetRef;
       _isActive = $v.isActive;
+      _docId = $v.docId;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -273,12 +273,12 @@ class UserDocsRecordBuilder
   _$UserDocsRecord _build() {
     final _$result = _$v ??
         new _$UserDocsRecord._(
-            documentId: documentId,
             datasetId: datasetId,
             documentName: documentName,
             createdOn: createdOn,
             datasetRef: datasetRef,
             isActive: isActive,
+            docId: docId,
             ffRef: ffRef);
     replace(_$result);
     return _$result;

@@ -23,8 +23,7 @@ class _HomeWidgetState extends State<HomeWidget> {
   List<UserDatasetsRecord> get checkboxCheckedItems =>
       checkboxValueMap.entries.where((e) => e.value).map((e) => e.key).toList();
 
-  double? sliderValue1;
-  double? sliderValue2;
+  double? sliderValue;
   String? dropDownValue;
   TextEditingController? textController;
   final _unfocusNode = FocusNode();
@@ -68,7 +67,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.20',
+                'v0.21',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -285,55 +284,209 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                     ),
                                                   ),
                                                 ),
-                                                Align(
-                                                  alignment:
-                                                      AlignmentDirectional(
-                                                          1, -1),
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 0, 20, 0),
-                                                    child: FFButtonWidget(
-                                                      onPressed: () {
-                                                        print(
-                                                            'Button pressed ...');
-                                                      },
-                                                      text: 'Send',
-                                                      options: FFButtonOptions(
-                                                        width: 130,
-                                                        height: 40,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryColor,
-                                                        textStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .subtitle2
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
+                                                Stack(
+                                                  children: [
+                                                    if (dropDownValue !=
+                                                        'Please select an Engine...')
+                                                      Align(
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                1, -1),
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      0, 20, 0),
+                                                          child: FFButtonWidget(
+                                                            onPressed: () {
+                                                              print(
+                                                                  'ButtonOff pressed ...');
+                                                            },
+                                                            text: 'Send',
+                                                            options:
+                                                                FFButtonOptions(
+                                                              width: 130,
+                                                              height: 40,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryColor,
+                                                              textStyle:
+                                                                  FlutterFlowTheme.of(
                                                                           context)
-                                                                      .subtitle2Family,
-                                                                  color: Colors
-                                                                      .white,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .subtitle2Family),
-                                                                ),
-                                                        borderSide: BorderSide(
-                                                          color: Colors
-                                                              .transparent,
-                                                          width: 1,
+                                                                      .subtitle2
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            FlutterFlowTheme.of(context).subtitle2Family,
+                                                                        color: Colors
+                                                                            .white,
+                                                                        useGoogleFonts:
+                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).subtitle2Family),
+                                                                      ),
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: Colors
+                                                                    .transparent,
+                                                                width: 1,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          0),
+                                                            ),
+                                                          ),
                                                         ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(0),
                                                       ),
-                                                    ),
-                                                  ),
+                                                    if (dropDownValue ==
+                                                        'Please select an Engine...')
+                                                      Align(
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                1, -1),
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      0, 20, 0),
+                                                          child: FFButtonWidget(
+                                                            onPressed: () {
+                                                              print(
+                                                                  'ButtonGPT pressed ...');
+                                                            },
+                                                            text: 'Send',
+                                                            options:
+                                                                FFButtonOptions(
+                                                              width: 130,
+                                                              height: 40,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .alternate,
+                                                              textStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .subtitle2
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            FlutterFlowTheme.of(context).subtitle2Family,
+                                                                        color: Colors
+                                                                            .white,
+                                                                        useGoogleFonts:
+                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).subtitle2Family),
+                                                                      ),
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: Colors
+                                                                    .transparent,
+                                                                width: 1,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          0),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    if (dropDownValue ==
+                                                        'Please select an Engine...')
+                                                      Align(
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                1, -1),
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      0, 20, 0),
+                                                          child: FFButtonWidget(
+                                                            onPressed: () {
+                                                              print(
+                                                                  'ButtonCostum pressed ...');
+                                                            },
+                                                            text: 'Send',
+                                                            options:
+                                                                FFButtonOptions(
+                                                              width: 130,
+                                                              height: 40,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .alternate,
+                                                              textStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .subtitle2
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            FlutterFlowTheme.of(context).subtitle2Family,
+                                                                        color: Colors
+                                                                            .white,
+                                                                        useGoogleFonts:
+                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).subtitle2Family),
+                                                                      ),
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: Colors
+                                                                    .transparent,
+                                                                width: 1,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          0),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    if (dropDownValue ==
+                                                        'Please select an Engine...')
+                                                      Align(
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                1, -1),
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      0, 20, 0),
+                                                          child: FFButtonWidget(
+                                                            onPressed: () {
+                                                              print(
+                                                                  'ButtonPinecone pressed ...');
+                                                            },
+                                                            text: 'Send',
+                                                            options:
+                                                                FFButtonOptions(
+                                                              width: 130,
+                                                              height: 40,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .alternate,
+                                                              textStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .subtitle2
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            FlutterFlowTheme.of(context).subtitle2Family,
+                                                                        color: Colors
+                                                                            .white,
+                                                                        useGoogleFonts:
+                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).subtitle2Family),
+                                                                      ),
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: Colors
+                                                                    .transparent,
+                                                                width: 1,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          0),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                  ],
                                                 ),
                                               ],
                                             ),
@@ -376,16 +529,61 @@ class _HomeWidgetState extends State<HomeWidget> {
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0, 20, 0, 10),
-                                            child: Text(
-                                              'Select Datasets',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(20, 20, 0, 10),
+                                                child: StreamBuilder<
+                                                    List<UserDatasetsRecord>>(
+                                                  stream:
+                                                      queryUserDatasetsRecord(
+                                                    parent:
+                                                        currentUserReference,
+                                                  ),
+                                                  builder: (context, snapshot) {
+                                                    // Customize what your widget looks like when it's loading.
+                                                    if (!snapshot.hasData) {
+                                                      return Center(
+                                                        child: SizedBox(
+                                                          width: 50,
+                                                          height: 50,
+                                                          child: SpinKitRipple(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryColor,
+                                                            size: 50,
+                                                          ),
+                                                        ),
+                                                      );
+                                                    }
+                                                    List<UserDatasetsRecord>
+                                                        nrDatasetsUserDatasetsRecordList =
+                                                        snapshot.data!;
+                                                    return Text(
+                                                      nrDatasetsUserDatasetsRecordList
+                                                          .length
+                                                          .toString(),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1,
+                                                    );
+                                                  },
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(10, 10, 0, 0),
+                                                child: Text(
+                                                  'Datasets',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
                                                       .bodyText1,
-                                            ),
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                           Container(
                                             width: MediaQuery.of(context)
@@ -609,55 +807,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                     padding:
                                                         EdgeInsetsDirectional
                                                             .fromSTEB(
-                                                                0, 10, 0, 0),
-                                                    child: Text(
-                                                      'Chunks',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyText1,
-                                                    ),
-                                                  ),
-                                                  Slider(
-                                                    activeColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primaryColor,
-                                                    inactiveColor:
-                                                        Color(0xFF9E9E9E),
-                                                    min: 0,
-                                                    max: 25,
-                                                    value: sliderValue1 ??= 0,
-                                                    divisions: 25,
-                                                    onChanged: (newValue) {
-                                                      newValue = double.parse(
-                                                          newValue
-                                                              .toStringAsFixed(
-                                                                  4));
-                                                      setState(() =>
-                                                          sliderValue1 =
-                                                              newValue);
-                                                    },
-                                                  ),
-                                                  Text(
-                                                    valueOrDefault<String>(
-                                                      formatNumber(
-                                                        sliderValue1,
-                                                        formatType:
-                                                            FormatType.custom,
-                                                        format: '#',
-                                                        locale: '',
-                                                      ),
-                                                      '1',
-                                                    ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyText1,
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
                                                                 0, 20, 0, 0),
                                                     child: Text(
                                                       'Top K',
@@ -676,7 +825,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                         Color(0xFF9E9E9E),
                                                     min: 0,
                                                     max: 10,
-                                                    value: sliderValue2 ??= 0,
+                                                    value: sliderValue ??= 0,
                                                     divisions: 10,
                                                     onChanged: (newValue) {
                                                       newValue = double.parse(
@@ -684,14 +833,14 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                               .toStringAsFixed(
                                                                   4));
                                                       setState(() =>
-                                                          sliderValue2 =
+                                                          sliderValue =
                                                               newValue);
                                                     },
                                                   ),
                                                   Text(
                                                     valueOrDefault<String>(
                                                       formatNumber(
-                                                        sliderValue2,
+                                                        sliderValue,
                                                         formatType:
                                                             FormatType.custom,
                                                         format: '#',

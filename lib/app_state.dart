@@ -39,6 +39,12 @@ class FFAppState extends ChangeNotifier {
   set unsetDataset(DocumentReference? _value) {
     _unsetDataset = _value;
   }
+
+  int _setEngine = 0;
+  int get setEngine => _setEngine;
+  set setEngine(int _value) {
+    _setEngine = _value;
+  }
 }
 
 LatLng? _latLngFromString(String? val) {

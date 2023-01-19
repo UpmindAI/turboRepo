@@ -11,9 +11,6 @@ abstract class UserDocsRecord
   static Serializer<UserDocsRecord> get serializer =>
       _$userDocsRecordSerializer;
 
-  @BuiltValueField(wireName: 'document_id')
-  String? get documentId;
-
   @BuiltValueField(wireName: 'dataset_id')
   String? get datasetId;
 
@@ -29,6 +26,9 @@ abstract class UserDocsRecord
   @BuiltValueField(wireName: 'is_active')
   bool? get isActive;
 
+  @BuiltValueField(wireName: 'doc_id')
+  String? get docId;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -36,10 +36,10 @@ abstract class UserDocsRecord
   DocumentReference get parentReference => reference.parent.parent!;
 
   static void _initializeBuilder(UserDocsRecordBuilder builder) => builder
-    ..documentId = ''
     ..datasetId = ''
     ..documentName = ''
-    ..isActive = false;
+    ..isActive = false
+    ..docId = '';
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
       parent != null
@@ -68,23 +68,23 @@ abstract class UserDocsRecord
 }
 
 Map<String, dynamic> createUserDocsRecordData({
-  String? documentId,
   String? datasetId,
   String? documentName,
   DateTime? createdOn,
   DocumentReference? datasetRef,
   bool? isActive,
+  String? docId,
 }) {
   final firestoreData = serializers.toFirestore(
     UserDocsRecord.serializer,
     UserDocsRecord(
       (u) => u
-        ..documentId = documentId
         ..datasetId = datasetId
         ..documentName = documentName
         ..createdOn = createdOn
         ..datasetRef = datasetRef
-        ..isActive = isActive,
+        ..isActive = isActive
+        ..docId = docId,
     ),
   );
 

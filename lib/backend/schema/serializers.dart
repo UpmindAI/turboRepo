@@ -6,6 +6,7 @@ import 'user_datasets_record.dart';
 import 'user_docs_record.dart';
 import 'user_completions_record.dart';
 import 'user_prompts_record.dart';
+import 'user_temp_uploads_record.dart';
 
 import 'index.dart';
 
@@ -21,6 +22,7 @@ const kDocumentReferenceField = 'Document__Reference__Field';
   UserDocsRecord,
   UserCompletionsRecord,
   UserPromptsRecord,
+  UserTempUploadsRecord,
 ])
 final Serializers serializers = (_$serializers.toBuilder()
       ..add(DocumentReferenceSerializer())

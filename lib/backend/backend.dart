@@ -10,6 +10,7 @@ import 'schema/user_datasets_record.dart';
 import 'schema/user_docs_record.dart';
 import 'schema/user_completions_record.dart';
 import 'schema/user_prompts_record.dart';
+import 'schema/user_temp_uploads_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -22,6 +23,7 @@ export 'schema/user_datasets_record.dart';
 export 'schema/user_docs_record.dart';
 export 'schema/user_completions_record.dart';
 export 'schema/user_prompts_record.dart';
+export 'schema/user_temp_uploads_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -293,6 +295,62 @@ Future<FFFirestorePage<UserPromptsRecord>> queryUserPromptsRecordPage({
     queryCollectionPage(
       UserPromptsRecord.collection(parent),
       UserPromptsRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query UserTempUploadsRecords (as a Stream and as a Future).
+Future<int> queryUserTempUploadsRecordCount({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      UserTempUploadsRecord.collection(parent),
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<UserTempUploadsRecord>> queryUserTempUploadsRecord({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      UserTempUploadsRecord.collection(parent),
+      UserTempUploadsRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<UserTempUploadsRecord>> queryUserTempUploadsRecordOnce({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      UserTempUploadsRecord.collection(parent),
+      UserTempUploadsRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<UserTempUploadsRecord>> queryUserTempUploadsRecordPage({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+}) =>
+    queryCollectionPage(
+      UserTempUploadsRecord.collection(parent),
+      UserTempUploadsRecord.serializer,
       queryBuilder: queryBuilder,
       nextPageMarker: nextPageMarker,
       pageSize: pageSize,
