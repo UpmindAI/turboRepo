@@ -39,17 +39,17 @@ class _$UserTempUploadsRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.collectionName;
+    value = object.datasetName;
     if (value != null) {
       result
-        ..add('collection_name')
+        ..add('dataset_name')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.collectionId;
+    value = object.datasetId;
     if (value != null) {
       result
-        ..add('collection_id')
+        ..add('dataset_id')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -57,8 +57,7 @@ class _$UserTempUploadsRecordSerializer
     if (value != null) {
       result
         ..add('chunk_size')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
     value = object.ffRef;
     if (value != null) {
@@ -91,17 +90,17 @@ class _$UserTempUploadsRecordSerializer
           result.docId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'collection_name':
-          result.collectionName = serializers.deserialize(value,
+        case 'dataset_name':
+          result.datasetName = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'collection_id':
-          result.collectionId = serializers.deserialize(value,
+        case 'dataset_id':
+          result.datasetId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
         case 'chunk_size':
           result.chunkSize = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+              specifiedType: const FullType(int)) as int?;
           break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
@@ -122,11 +121,11 @@ class _$UserTempUploadsRecord extends UserTempUploadsRecord {
   @override
   final String? docId;
   @override
-  final String? collectionName;
+  final String? datasetName;
   @override
-  final String? collectionId;
+  final String? datasetId;
   @override
-  final String? chunkSize;
+  final int? chunkSize;
   @override
   final DocumentReference<Object?>? ffRef;
 
@@ -137,8 +136,8 @@ class _$UserTempUploadsRecord extends UserTempUploadsRecord {
   _$UserTempUploadsRecord._(
       {this.docTitle,
       this.docId,
-      this.collectionName,
-      this.collectionId,
+      this.datasetName,
+      this.datasetId,
       this.chunkSize,
       this.ffRef})
       : super._();
@@ -158,8 +157,8 @@ class _$UserTempUploadsRecord extends UserTempUploadsRecord {
     return other is UserTempUploadsRecord &&
         docTitle == other.docTitle &&
         docId == other.docId &&
-        collectionName == other.collectionName &&
-        collectionId == other.collectionId &&
+        datasetName == other.datasetName &&
+        datasetId == other.datasetId &&
         chunkSize == other.chunkSize &&
         ffRef == other.ffRef;
   }
@@ -170,8 +169,8 @@ class _$UserTempUploadsRecord extends UserTempUploadsRecord {
         $jc(
             $jc(
                 $jc($jc($jc(0, docTitle.hashCode), docId.hashCode),
-                    collectionName.hashCode),
-                collectionId.hashCode),
+                    datasetName.hashCode),
+                datasetId.hashCode),
             chunkSize.hashCode),
         ffRef.hashCode));
   }
@@ -181,8 +180,8 @@ class _$UserTempUploadsRecord extends UserTempUploadsRecord {
     return (newBuiltValueToStringHelper(r'UserTempUploadsRecord')
           ..add('docTitle', docTitle)
           ..add('docId', docId)
-          ..add('collectionName', collectionName)
-          ..add('collectionId', collectionId)
+          ..add('datasetName', datasetName)
+          ..add('datasetId', datasetId)
           ..add('chunkSize', chunkSize)
           ..add('ffRef', ffRef))
         .toString();
@@ -201,18 +200,17 @@ class UserTempUploadsRecordBuilder
   String? get docId => _$this._docId;
   set docId(String? docId) => _$this._docId = docId;
 
-  String? _collectionName;
-  String? get collectionName => _$this._collectionName;
-  set collectionName(String? collectionName) =>
-      _$this._collectionName = collectionName;
+  String? _datasetName;
+  String? get datasetName => _$this._datasetName;
+  set datasetName(String? datasetName) => _$this._datasetName = datasetName;
 
-  String? _collectionId;
-  String? get collectionId => _$this._collectionId;
-  set collectionId(String? collectionId) => _$this._collectionId = collectionId;
+  String? _datasetId;
+  String? get datasetId => _$this._datasetId;
+  set datasetId(String? datasetId) => _$this._datasetId = datasetId;
 
-  String? _chunkSize;
-  String? get chunkSize => _$this._chunkSize;
-  set chunkSize(String? chunkSize) => _$this._chunkSize = chunkSize;
+  int? _chunkSize;
+  int? get chunkSize => _$this._chunkSize;
+  set chunkSize(int? chunkSize) => _$this._chunkSize = chunkSize;
 
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
@@ -227,8 +225,8 @@ class UserTempUploadsRecordBuilder
     if ($v != null) {
       _docTitle = $v.docTitle;
       _docId = $v.docId;
-      _collectionName = $v.collectionName;
-      _collectionId = $v.collectionId;
+      _datasetName = $v.datasetName;
+      _datasetId = $v.datasetId;
       _chunkSize = $v.chunkSize;
       _ffRef = $v.ffRef;
       _$v = null;
@@ -255,8 +253,8 @@ class UserTempUploadsRecordBuilder
         new _$UserTempUploadsRecord._(
             docTitle: docTitle,
             docId: docId,
-            collectionName: collectionName,
-            collectionId: collectionId,
+            datasetName: datasetName,
+            datasetId: datasetId,
             chunkSize: chunkSize,
             ffRef: ffRef);
     replace(_$result);
