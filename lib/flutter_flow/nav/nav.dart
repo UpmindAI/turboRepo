@@ -107,6 +107,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'History',
               path: 'history',
               builder: (context, params) => HistoryWidget(),
+            ),
+            FFRoute(
+              name: 'retreiving',
+              path: 'retreiving',
+              builder: (context, params) => RetreivingWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),
