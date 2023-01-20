@@ -13,14 +13,17 @@ abstract class UserPromptsRecord
 
   String? get qid;
 
+  String? get prompt;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
 
   DocumentReference get parentReference => reference.parent.parent!;
 
-  static void _initializeBuilder(UserPromptsRecordBuilder builder) =>
-      builder..qid = '';
+  static void _initializeBuilder(UserPromptsRecordBuilder builder) => builder
+    ..qid = ''
+    ..prompt = '';
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
       parent != null
@@ -50,11 +53,14 @@ abstract class UserPromptsRecord
 
 Map<String, dynamic> createUserPromptsRecordData({
   String? qid,
+  String? prompt,
 }) {
   final firestoreData = serializers.toFirestore(
     UserPromptsRecord.serializer,
     UserPromptsRecord(
-      (u) => u..qid = qid,
+      (u) => u
+        ..qid = qid
+        ..prompt = prompt,
     ),
   );
 

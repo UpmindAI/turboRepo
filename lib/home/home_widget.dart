@@ -5,7 +5,9 @@ import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../flutter_flow/random_data_util.dart' as random_data;
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -25,6 +27,7 @@ class _HomeWidgetState extends State<HomeWidget> {
 
   double? sliderValue;
   String? dropDownValue;
+  UserPromptsRecord? setPrompt;
   TextEditingController? textController;
   final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -67,7 +70,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.23',
+                'v0.25',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -239,9 +242,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                           FlutterFlowDropDown<
                                                               String>(
                                                         options: [
-                                                          'Costum Engine based on selected Datasets',
-                                                          'Plain GPT-3',
-                                                          'Pinecone Only'
+                                                          'Datasets',
+                                                          'GPT-3',
+                                                          'Pinecone'
                                                         ],
                                                         onChanged: (val) =>
                                                             setState(() =>
@@ -298,9 +301,45 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                   .fromSTEB(0,
                                                                       0, 20, 0),
                                                           child: FFButtonWidget(
-                                                            onPressed: () {
-                                                              print(
-                                                                  'ButtonOff pressed ...');
+                                                            onPressed:
+                                                                () async {
+                                                              final userPromptsCreateData =
+                                                                  createUserPromptsRecordData(
+                                                                qid: random_data
+                                                                    .randomString(
+                                                                  7,
+                                                                  7,
+                                                                  true,
+                                                                  true,
+                                                                  true,
+                                                                ),
+                                                                prompt:
+                                                                    textController!
+                                                                        .text,
+                                                              );
+                                                              var userPromptsRecordReference =
+                                                                  UserPromptsRecord
+                                                                      .createDoc(
+                                                                          currentUserReference!);
+                                                              await userPromptsRecordReference
+                                                                  .set(
+                                                                      userPromptsCreateData);
+                                                              setPrompt = UserPromptsRecord
+                                                                  .getDocumentFromData(
+                                                                      userPromptsCreateData,
+                                                                      userPromptsRecordReference);
+                                                              FFAppState()
+                                                                  .update(() {
+                                                                FFAppState()
+                                                                        .setQid =
+                                                                    setPrompt!
+                                                                        .qid!;
+                                                                FFAppState()
+                                                                        .setTopk =
+                                                                    sliderValue!;
+                                                              });
+
+                                                              setState(() {});
                                                             },
                                                             text: 'Send',
                                                             options:
@@ -350,7 +389,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                           child: FFButtonWidget(
                                                             onPressed: () {
                                                               print(
-                                                                  'ButtonGPT pressed ...');
+                                                                  'ButtonOff pressed ...');
                                                             },
                                                             text: 'Send',
                                                             options:
@@ -359,107 +398,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                               height: 40,
                                                               color: FlutterFlowTheme
                                                                       .of(context)
-                                                                  .alternate,
-                                                              textStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .subtitle2
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            FlutterFlowTheme.of(context).subtitle2Family,
-                                                                        color: Colors
-                                                                            .white,
-                                                                        useGoogleFonts:
-                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).subtitle2Family),
-                                                                      ),
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: Colors
-                                                                    .transparent,
-                                                                width: 1,
-                                                              ),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          0),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    if (dropDownValue ==
-                                                        'Please select an Engine...')
-                                                      Align(
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                1, -1),
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(0,
-                                                                      0, 20, 0),
-                                                          child: FFButtonWidget(
-                                                            onPressed: () {
-                                                              print(
-                                                                  'ButtonCostum pressed ...');
-                                                            },
-                                                            text: 'Send',
-                                                            options:
-                                                                FFButtonOptions(
-                                                              width: 130,
-                                                              height: 40,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .alternate,
-                                                              textStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .subtitle2
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            FlutterFlowTheme.of(context).subtitle2Family,
-                                                                        color: Colors
-                                                                            .white,
-                                                                        useGoogleFonts:
-                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).subtitle2Family),
-                                                                      ),
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: Colors
-                                                                    .transparent,
-                                                                width: 1,
-                                                              ),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          0),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    if (dropDownValue ==
-                                                        'Please select an Engine...')
-                                                      Align(
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                1, -1),
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(0,
-                                                                      0, 20, 0),
-                                                          child: FFButtonWidget(
-                                                            onPressed: () {
-                                                              print(
-                                                                  'ButtonPinecone pressed ...');
-                                                            },
-                                                            text: 'Send',
-                                                            options:
-                                                                FFButtonOptions(
-                                                              width: 130,
-                                                              height: 40,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .alternate,
+                                                                  .primaryColor,
                                                               textStyle:
                                                                   FlutterFlowTheme.of(
                                                                           context)
@@ -701,6 +640,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                               value: checkboxValueMap[listViewUserDatasetsRecord] ??= false,
                                                                               onChanged: (newValue) async {
                                                                                 setState(() => checkboxValueMap[listViewUserDatasetsRecord] = newValue!);
+                                                                                if (newValue!) {
+                                                                                  FFAppState().selectedDataset = checkboxCheckedItems.map((e) => e.datasetId).withoutNulls.toList();
+                                                                                }
                                                                               },
                                                                               activeColor: FlutterFlowTheme.of(context).primaryColor,
                                                                             ),
@@ -826,15 +768,20 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                     min: 0,
                                                     max: 10,
                                                     value: sliderValue ??= 0,
+                                                    label:
+                                                        sliderValue.toString(),
                                                     divisions: 10,
-                                                    onChanged: (newValue) {
+                                                    onChanged:
+                                                        (newValue) async {
                                                       newValue = double.parse(
                                                           newValue
                                                               .toStringAsFixed(
-                                                                  4));
+                                                                  0));
                                                       setState(() =>
                                                           sliderValue =
                                                               newValue);
+                                                      FFAppState().setTopk =
+                                                          sliderValue!;
                                                     },
                                                   ),
                                                   Text(

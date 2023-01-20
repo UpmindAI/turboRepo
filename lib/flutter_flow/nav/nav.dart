@@ -112,6 +112,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'retreiving',
               path: 'retreiving',
               builder: (context, params) => RetreivingWidget(),
+            ),
+            FFRoute(
+              name: 'Result',
+              path: 'result',
+              builder: (context, params) => ResultWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

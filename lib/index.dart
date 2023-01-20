@@ -6,3 +6,4 @@ export 'datasets/datasets_widget.dart' show DatasetsWidget;
 export 'settings/settings_widget.dart' show SettingsWidget;
 export 'history/history_widget.dart' show HistoryWidget;
 export 'retreiving/retreiving_widget.dart' show RetreivingWidget;
+export 'result/result_widget.dart' show ResultWidget;

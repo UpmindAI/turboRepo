@@ -1,6 +1,9 @@
+import '../auth/auth_util.dart';
+import '../backend/api_requests/api_calls.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -13,12 +16,52 @@ class RetreivingWidget extends StatefulWidget {
 }
 
 class _RetreivingWidgetState extends State<RetreivingWidget> {
+  ApiCallResponse? apiResult49s;
   final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      apiResult49s = await PromptsGroup.gptCall.call(
+        qid: FFAppState().setQid,
+        datasetIdsList: FFAppState().selectedDataset,
+        topK: FFAppState().setTopk,
+        idToken: currentJwtToken,
+      );
+      if ((apiResult49s?.succeeded ?? true)) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              (apiResult49s?.statusCode ?? 200).toString(),
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
+            ),
+            duration: Duration(milliseconds: 4000),
+            backgroundColor: Color(0x00000000),
+          ),
+        );
+
+        context.pushNamed('Result');
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              (apiResult49s?.statusCode ?? 200).toString(),
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
+            ),
+            duration: Duration(milliseconds: 4000),
+            backgroundColor: Color(0x00000000),
+          ),
+        );
+        context.pop();
+      }
+    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -42,20 +85,6 @@ class _RetreivingWidgetState extends State<RetreivingWidget> {
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
           actions: [],
-          flexibleSpace: FlexibleSpaceBar(
-            title: Text(
-              'Page Title',
-              style: FlutterFlowTheme.of(context).title2.override(
-                    fontFamily: FlutterFlowTheme.of(context).title2Family,
-                    color: FlutterFlowTheme.of(context).primaryText,
-                    fontSize: 22,
-                    useGoogleFonts: GoogleFonts.asMap()
-                        .containsKey(FlutterFlowTheme.of(context).title2Family),
-                  ),
-            ),
-            centerTitle: false,
-            expandedTitleScale: 1.0,
-          ),
           elevation: 0,
         ),
       ),
@@ -64,7 +93,22 @@ class _RetreivingWidgetState extends State<RetreivingWidget> {
           onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
           child: Column(
             mainAxisSize: MainAxisSize.max,
-            children: [],
+            children: [
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height * 1,
+                decoration: BoxDecoration(),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Text(
+                      'Retrieving Results',
+                      style: FlutterFlowTheme.of(context).bodyText1,
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
       ),

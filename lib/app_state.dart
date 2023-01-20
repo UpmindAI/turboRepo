@@ -17,6 +17,8 @@ class FFAppState extends ChangeNotifier {
 
   Future initializePersistedState() async {
     prefs = await SharedPreferences.getInstance();
+    _selectedDataset =
+        prefs.getStringList('ff_selectedDataset') ?? _selectedDataset;
   }
 
   void update(VoidCallback callback) {
@@ -44,6 +46,35 @@ class FFAppState extends ChangeNotifier {
   int get setEngine => _setEngine;
   set setEngine(int _value) {
     _setEngine = _value;
+  }
+
+  List<String> _selectedDataset = [];
+  List<String> get selectedDataset => _selectedDataset;
+  set selectedDataset(List<String> _value) {
+    _selectedDataset = _value;
+    prefs.setStringList('ff_selectedDataset', _value);
+  }
+
+  void addToSelectedDataset(String _value) {
+    _selectedDataset.add(_value);
+    prefs.setStringList('ff_selectedDataset', _selectedDataset);
+  }
+
+  void removeFromSelectedDataset(String _value) {
+    _selectedDataset.remove(_value);
+    prefs.setStringList('ff_selectedDataset', _selectedDataset);
+  }
+
+  String _setQid = '';
+  String get setQid => _setQid;
+  set setQid(String _value) {
+    _setQid = _value;
+  }
+
+  double _setTopk = 0.0;
+  double get setTopk => _setTopk;
+  set setTopk(double _value) {
+    _setTopk = _value;
   }
 }
 
