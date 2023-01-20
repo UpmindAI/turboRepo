@@ -1,5 +1,6 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../backend/firebase_storage/storage.dart';
 import '../components/add_dataset_widget.dart';
 import '../components/confirm_delete_widget.dart';
 import '../components/main_menu_widget.dart';
@@ -30,7 +31,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
       checkboxValueMap.entries.where((e) => e.value).map((e) => e.key).toList();
 
   bool isMediaUploading = false;
-  FFLocalFile uploadedLocalFile = FFLocalFile(bytes: Uint8List.fromList([]));
+  String uploadedFileUrl = '';
 
   UserTempUploadsRecord? docSet;
   TextEditingController? textController;
@@ -622,7 +623,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                       child: FaIcon(
                                                                                         FontAwesomeIcons.trashAlt,
                                                                                         color: FlutterFlowTheme.of(context).tertiaryColor,
-                                                                                        size: 20,
+                                                                                        size: 18,
                                                                                       ),
                                                                                     ),
                                                                                   ),
@@ -633,7 +634,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                         await listViewUserDocsRecord.reference.delete();
                                                                                       },
                                                                                       child: Text(
-                                                                                        'Remove Document',
+                                                                                        'Remove',
                                                                                         style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                               fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
                                                                                               color: FlutterFlowTheme.of(context).tertiaryColor,
@@ -805,8 +806,8 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                     setState(() =>
                                                                         isMediaUploading =
                                                                             true);
-                                                                    FFLocalFile?
-                                                                        selectedLocalFile;
+                                                                    String?
+                                                                        downloadUrl;
                                                                     try {
                                                                       showUploadMessage(
                                                                         context,
@@ -814,15 +815,11 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                         showLoading:
                                                                             true,
                                                                       );
-                                                                      selectedLocalFile =
-                                                                          FFLocalFile(
-                                                                        name: selectedFile
-                                                                            .storagePath
-                                                                            .split('/')
-                                                                            .last,
-                                                                        bytes: selectedFile
-                                                                            .bytes,
-                                                                      );
+                                                                      downloadUrl = await uploadData(
+                                                                          selectedFile
+                                                                              .storagePath,
+                                                                          selectedFile
+                                                                              .bytes);
                                                                     } finally {
                                                                       ScaffoldMessenger.of(
                                                                               context)
@@ -830,11 +827,11 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                       isMediaUploading =
                                                                           false;
                                                                     }
-                                                                    if (selectedLocalFile !=
+                                                                    if (downloadUrl !=
                                                                         null) {
                                                                       setState(() =>
-                                                                          uploadedLocalFile =
-                                                                              selectedLocalFile!);
+                                                                          uploadedFileUrl =
+                                                                              downloadUrl!);
                                                                       showUploadMessage(
                                                                         context,
                                                                         'Success!',

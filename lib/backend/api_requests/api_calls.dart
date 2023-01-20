@@ -22,18 +22,19 @@ class PineconeCall {
   Future<ApiCallResponse> call({
     String? qid = '',
     String? datasetName = '',
-    String? datasetId = '',
+    String? datasetIds = '',
     List<String>? activeDocsList,
     int? topK,
+    String? idToken = '',
   }) {
     final activeDocs = _serializeList(activeDocsList);
 
     final body = '''
 {
   "qid": "${qid}",
-  "dataset_name": "${datasetName}",
-  "dataset_id": "${datasetId}",
-  "top_k": ${topK}
+  "dataset_ids": "${datasetIds}",
+  "top_k": ${topK},
+  "id_token": "${idToken}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Pinecone',
@@ -54,7 +55,24 @@ class PineconeCall {
 }
 
 class GptCall {
-  Future<ApiCallResponse> call() {
+  Future<ApiCallResponse> call({
+    String? qid = '',
+    String? datasetName = '',
+    List<String>? datasetIdsList,
+    List<String>? activeDocsList,
+    double? topK,
+    String? idToken = '',
+  }) {
+    final datasetIds = _serializeList(datasetIdsList);
+    final activeDocs = _serializeList(activeDocsList);
+
+    final body = '''
+{
+  "qid": "${qid}",
+  "dataset_ids": "${datasetIds}",
+  "top_k": ${topK},
+  "id_token": "${idToken}"
+}''';
     return ApiManager.instance.makeApiCall(
       callName: 'GPT',
       apiUrl: '${PromptsGroup.baseUrl}/gpt3',
@@ -63,6 +81,7 @@ class GptCall {
         ...PromptsGroup.headers,
       },
       params: {},
+      body: body,
       bodyType: BodyType.JSON,
       returnBody: true,
       encodeBodyUtf8: false,
