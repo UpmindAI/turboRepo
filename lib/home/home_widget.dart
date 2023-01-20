@@ -70,7 +70,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.25',
+                'v0.26',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -289,142 +289,92 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 ),
                                                 Stack(
                                                   children: [
-                                                    if (dropDownValue !=
-                                                        'Please select an Engine...')
-                                                      Align(
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                1, -1),
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(0,
-                                                                      0, 20, 0),
-                                                          child: FFButtonWidget(
-                                                            onPressed:
-                                                                () async {
-                                                              final userPromptsCreateData =
-                                                                  createUserPromptsRecordData(
-                                                                qid: random_data
-                                                                    .randomString(
-                                                                  7,
-                                                                  7,
-                                                                  true,
-                                                                  true,
-                                                                  true,
-                                                                ),
-                                                                prompt:
-                                                                    textController!
-                                                                        .text,
-                                                              );
-                                                              var userPromptsRecordReference =
-                                                                  UserPromptsRecord
-                                                                      .createDoc(
-                                                                          currentUserReference!);
-                                                              await userPromptsRecordReference
-                                                                  .set(
-                                                                      userPromptsCreateData);
-                                                              setPrompt = UserPromptsRecord
-                                                                  .getDocumentFromData(
-                                                                      userPromptsCreateData,
-                                                                      userPromptsRecordReference);
+                                                    Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              1, -1),
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(0, 0,
+                                                                    20, 0),
+                                                        child: FFButtonWidget(
+                                                          onPressed: () async {
+                                                            final userPromptsCreateData =
+                                                                createUserPromptsRecordData(
+                                                              qid: random_data
+                                                                  .randomString(
+                                                                7,
+                                                                7,
+                                                                true,
+                                                                true,
+                                                                true,
+                                                              ),
+                                                              prompt:
+                                                                  textController!
+                                                                      .text,
+                                                            );
+                                                            var userPromptsRecordReference =
+                                                                UserPromptsRecord
+                                                                    .createDoc(
+                                                                        currentUserReference!);
+                                                            await userPromptsRecordReference
+                                                                .set(
+                                                                    userPromptsCreateData);
+                                                            setPrompt = UserPromptsRecord
+                                                                .getDocumentFromData(
+                                                                    userPromptsCreateData,
+                                                                    userPromptsRecordReference);
+                                                            FFAppState()
+                                                                .update(() {
                                                               FFAppState()
-                                                                  .update(() {
-                                                                FFAppState()
-                                                                        .setQid =
-                                                                    setPrompt!
-                                                                        .qid!;
-                                                                FFAppState()
-                                                                        .setTopk =
-                                                                    sliderValue!;
-                                                              });
+                                                                      .setQid =
+                                                                  setPrompt!
+                                                                      .qid!;
+                                                              FFAppState()
+                                                                      .setTopk =
+                                                                  sliderValue!;
+                                                            });
 
-                                                              setState(() {});
-                                                            },
-                                                            text: 'Send',
-                                                            options:
-                                                                FFButtonOptions(
-                                                              width: 130,
-                                                              height: 40,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primaryColor,
-                                                              textStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .subtitle2
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            FlutterFlowTheme.of(context).subtitle2Family,
-                                                                        color: Colors
-                                                                            .white,
-                                                                        useGoogleFonts:
-                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).subtitle2Family),
-                                                                      ),
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: Colors
-                                                                    .transparent,
-                                                                width: 1,
-                                                              ),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          0),
+                                                            setState(() {});
+                                                          },
+                                                          text: 'Send',
+                                                          options:
+                                                              FFButtonOptions(
+                                                            width: 130,
+                                                            height: 40,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryColor,
+                                                            textStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .subtitle2
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .subtitle2Family,
+                                                                      color: Colors
+                                                                          .white,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).subtitle2Family),
+                                                                    ),
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: Colors
+                                                                  .transparent,
+                                                              width: 1,
                                                             ),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        0),
                                                           ),
                                                         ),
                                                       ),
-                                                    if (dropDownValue ==
-                                                        'Please select an Engine...')
-                                                      Align(
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                1, -1),
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(0,
-                                                                      0, 20, 0),
-                                                          child: FFButtonWidget(
-                                                            onPressed: () {
-                                                              print(
-                                                                  'ButtonOff pressed ...');
-                                                            },
-                                                            text: 'Send',
-                                                            options:
-                                                                FFButtonOptions(
-                                                              width: 130,
-                                                              height: 40,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primaryColor,
-                                                              textStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .subtitle2
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            FlutterFlowTheme.of(context).subtitle2Family,
-                                                                        color: Colors
-                                                                            .white,
-                                                                        useGoogleFonts:
-                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).subtitle2Family),
-                                                                      ),
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: Colors
-                                                                    .transparent,
-                                                                width: 1,
-                                                              ),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          0),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
+                                                    ),
                                                   ],
                                                 ),
                                               ],
