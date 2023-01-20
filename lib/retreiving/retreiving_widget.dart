@@ -101,9 +101,33 @@ class _RetreivingWidgetState extends State<RetreivingWidget> {
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Text(
-                      'Retrieving Results',
-                      style: FlutterFlowTheme.of(context).bodyText1,
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+                      child: Text(
+                        'Retrieving Results from Datasets:',
+                        style: FlutterFlowTheme.of(context).bodyText1,
+                      ),
+                    ),
+                    Builder(
+                      builder: (context) {
+                        final selectedDatasets =
+                            FFAppState().selectedDataset.map((e) => e).toList();
+                        return ListView.builder(
+                          padding: EdgeInsets.zero,
+                          shrinkWrap: true,
+                          scrollDirection: Axis.vertical,
+                          itemCount: selectedDatasets.length,
+                          itemBuilder: (context, selectedDatasetsIndex) {
+                            final selectedDatasetsItem =
+                                selectedDatasets[selectedDatasetsIndex];
+                            return Text(
+                              selectedDatasetsItem,
+                              textAlign: TextAlign.center,
+                              style: FlutterFlowTheme.of(context).bodyText1,
+                            );
+                          },
+                        );
+                      },
                     ),
                   ],
                 ),
