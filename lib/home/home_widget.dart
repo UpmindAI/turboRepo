@@ -70,7 +70,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.34',
+                'v0.35',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -299,16 +299,34 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                     20, 0),
                                                         child: FFButtonWidget(
                                                           onPressed: () async {
+                                                            FFAppState()
+                                                                .update(() {
+                                                              FFAppState()
+                                                                      .setQid =
+                                                                  random_data
+                                                                      .randomString(
+                                                                7,
+                                                                7,
+                                                                true,
+                                                                true,
+                                                                true,
+                                                              );
+                                                              FFAppState()
+                                                                      .setTopk =
+                                                                  sliderValue!;
+                                                              FFAppState()
+                                                                      .setEngine =
+                                                                  dropDownValue!;
+                                                            });
+                                                            await Future.delayed(
+                                                                const Duration(
+                                                                    milliseconds:
+                                                                        500));
+
                                                             final userPromptsCreateData =
                                                                 createUserPromptsRecordData(
-                                                              qid: random_data
-                                                                  .randomString(
-                                                                7,
-                                                                7,
-                                                                true,
-                                                                true,
-                                                                true,
-                                                              ),
+                                                              qid: FFAppState()
+                                                                  .setQid,
                                                               prompt:
                                                                   textController!
                                                                       .text,
@@ -324,23 +342,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                 .getDocumentFromData(
                                                                     userPromptsCreateData,
                                                                     userPromptsRecordReference);
-                                                            await Future.delayed(
-                                                                const Duration(
-                                                                    milliseconds:
-                                                                        500));
-                                                            FFAppState()
-                                                                .update(() {
-                                                              FFAppState()
-                                                                      .setQid =
-                                                                  setPrompt!
-                                                                      .qid!;
-                                                              FFAppState()
-                                                                      .setTopk =
-                                                                  sliderValue!;
-                                                              FFAppState()
-                                                                      .setEngine =
-                                                                  dropDownValue!;
-                                                            });
                                                             setState(() {
                                                               textController
                                                                   ?.clear();
