@@ -76,6 +76,12 @@ class FFAppState extends ChangeNotifier {
   set setEngine(String _value) {
     _setEngine = _value;
   }
+
+  DocumentReference? _setCompletion;
+  DocumentReference? get setCompletion => _setCompletion;
+  set setCompletion(DocumentReference? _value) {
+    _setCompletion = _value;
+  }
 }
 
 LatLng? _latLngFromString(String? val) {
