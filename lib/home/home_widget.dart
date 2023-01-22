@@ -70,7 +70,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.36',
+                'v0.37',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -601,7 +601,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                             ),
                                                                             child:
                                                                                 Checkbox(
-                                                                              value: checkboxValueMap[listViewUserDatasetsRecord] ??= false,
+                                                                              value: checkboxValueMap[listViewUserDatasetsRecord] ??= FFAppState().selectedDataset.contains(listViewUserDatasetsRecord.datasetId),
                                                                               onChanged: (newValue) async {
                                                                                 setState(() => checkboxValueMap[listViewUserDatasetsRecord] = newValue!);
                                                                                 if (newValue!) {
