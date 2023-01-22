@@ -21,14 +21,11 @@ class PromptsGroup {
 class PineconeCall {
   Future<ApiCallResponse> call({
     String? qid = '',
-    String? datasetName = '',
     List<String>? datasetIdsList,
-    List<String>? activeDocsList,
     double? topK,
     String? idToken = '',
   }) {
     final datasetIds = _serializeList(datasetIdsList);
-    final activeDocs = _serializeList(activeDocsList);
 
     final body = '''
 {
@@ -58,20 +55,15 @@ class PineconeCall {
 class GptCall {
   Future<ApiCallResponse> call({
     String? qid = '',
-    String? datasetName = '',
     List<String>? datasetIdsList,
-    List<String>? activeDocsList,
-    double? topK,
     String? idToken = '',
   }) {
     final datasetIds = _serializeList(datasetIdsList);
-    final activeDocs = _serializeList(activeDocsList);
 
     final body = '''
 {
   "qid": "${qid}",
   "dataset_ids": "${datasetIds}",
-  "top_k": ${topK},
   "id_token": "${idToken}"
 }''';
     return ApiManager.instance.makeApiCall(
