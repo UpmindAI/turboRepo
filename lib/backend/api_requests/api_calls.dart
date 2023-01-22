@@ -82,6 +82,64 @@ class GptCall {
 
 /// End Prompts Group Code
 
+class GPTqueryCall {
+  static Future<ApiCallResponse> call({
+    String? qid = '',
+    String? idToken = '',
+  }) {
+    final body = '''
+{
+  "qid": "${qid}",
+  "id_token": "${idToken}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'GPTquery',
+      apiUrl: 'https://turbogpt3query-p67td2b2aq-uc.a.run.app',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
+class PineconeQueryCall {
+  static Future<ApiCallResponse> call({
+    String? idToken = '',
+    String? qid = '',
+    List<String>? datasetIdsList,
+    double? topK,
+  }) {
+    final datasetIds = _serializeList(datasetIdsList);
+
+    final body = '''
+{
+  "qid": "${qid}",
+  "dataset_ids": "${datasetIds}",
+  "top_k": ${topK},
+  "id_token": "${idToken}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'PineconeQuery',
+      apiUrl: 'https://turbopineconequery-p67td2b2aq-uc.a.run.app',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;
