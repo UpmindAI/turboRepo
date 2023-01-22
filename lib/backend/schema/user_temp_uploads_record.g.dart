@@ -59,6 +59,13 @@ class _$UserTempUploadsRecordSerializer
         ..add('chunk_size')
         ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
+    value = object.timestamp;
+    if (value != null) {
+      result
+        ..add('timestamp')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DateTime)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -102,6 +109,10 @@ class _$UserTempUploadsRecordSerializer
           result.chunkSize = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int?;
           break;
+        case 'timestamp':
+          result.timestamp = serializers.deserialize(value,
+              specifiedType: const FullType(DateTime)) as DateTime?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -127,6 +138,8 @@ class _$UserTempUploadsRecord extends UserTempUploadsRecord {
   @override
   final int? chunkSize;
   @override
+  final DateTime? timestamp;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$UserTempUploadsRecord(
@@ -139,6 +152,7 @@ class _$UserTempUploadsRecord extends UserTempUploadsRecord {
       this.datasetName,
       this.datasetId,
       this.chunkSize,
+      this.timestamp,
       this.ffRef})
       : super._();
 
@@ -160,6 +174,7 @@ class _$UserTempUploadsRecord extends UserTempUploadsRecord {
         datasetName == other.datasetName &&
         datasetId == other.datasetId &&
         chunkSize == other.chunkSize &&
+        timestamp == other.timestamp &&
         ffRef == other.ffRef;
   }
 
@@ -168,10 +183,12 @@ class _$UserTempUploadsRecord extends UserTempUploadsRecord {
     return $jf($jc(
         $jc(
             $jc(
-                $jc($jc($jc(0, docTitle.hashCode), docId.hashCode),
-                    datasetName.hashCode),
-                datasetId.hashCode),
-            chunkSize.hashCode),
+                $jc(
+                    $jc($jc($jc(0, docTitle.hashCode), docId.hashCode),
+                        datasetName.hashCode),
+                    datasetId.hashCode),
+                chunkSize.hashCode),
+            timestamp.hashCode),
         ffRef.hashCode));
   }
 
@@ -183,6 +200,7 @@ class _$UserTempUploadsRecord extends UserTempUploadsRecord {
           ..add('datasetName', datasetName)
           ..add('datasetId', datasetId)
           ..add('chunkSize', chunkSize)
+          ..add('timestamp', timestamp)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -212,6 +230,10 @@ class UserTempUploadsRecordBuilder
   int? get chunkSize => _$this._chunkSize;
   set chunkSize(int? chunkSize) => _$this._chunkSize = chunkSize;
 
+  DateTime? _timestamp;
+  DateTime? get timestamp => _$this._timestamp;
+  set timestamp(DateTime? timestamp) => _$this._timestamp = timestamp;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -228,6 +250,7 @@ class UserTempUploadsRecordBuilder
       _datasetName = $v.datasetName;
       _datasetId = $v.datasetId;
       _chunkSize = $v.chunkSize;
+      _timestamp = $v.timestamp;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -256,6 +279,7 @@ class UserTempUploadsRecordBuilder
             datasetName: datasetName,
             datasetId: datasetId,
             chunkSize: chunkSize,
+            timestamp: timestamp,
             ffRef: ffRef);
     replace(_$result);
     return _$result;
