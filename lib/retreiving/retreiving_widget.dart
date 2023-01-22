@@ -27,17 +27,17 @@ class _RetreivingWidgetState extends State<RetreivingWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       if (FFAppState().setEngine == 'GPT-3') {
-        apiResultGPT = await PromptsGroup.gptCall.call(
+        apiResultGPT = await GPTqueryCall.call(
           qid: FFAppState().setQid,
           idToken: currentJwtToken,
         );
       } else {
         if (FFAppState().setEngine == 'Pinecone') {
-          apiResultPC = await PromptsGroup.pineconeCall.call(
+          apiResultPC = await PineconeQueryCall.call(
+            idToken: currentJwtToken,
             qid: FFAppState().setQid,
             datasetIdsList: FFAppState().selectedDataset,
             topK: FFAppState().setTopk,
-            idToken: currentJwtToken,
           );
           if ((apiResultPC?.succeeded ?? true)) {
             ScaffoldMessenger.of(context).showSnackBar(
