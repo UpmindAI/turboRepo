@@ -42,12 +42,6 @@ class FFAppState extends ChangeNotifier {
     _unsetDataset = _value;
   }
 
-  int _setEngine = 0;
-  int get setEngine => _setEngine;
-  set setEngine(int _value) {
-    _setEngine = _value;
-  }
-
   List<String> _selectedDataset = [];
   List<String> get selectedDataset => _selectedDataset;
   set selectedDataset(List<String> _value) {
@@ -75,6 +69,12 @@ class FFAppState extends ChangeNotifier {
   double get setTopk => _setTopk;
   set setTopk(double _value) {
     _setTopk = _value;
+  }
+
+  String _setEngine = '';
+  String get setEngine => _setEngine;
+  set setEngine(String _value) {
+    _setEngine = _value;
   }
 }
 

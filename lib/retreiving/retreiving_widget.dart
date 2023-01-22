@@ -16,7 +16,8 @@ class RetreivingWidget extends StatefulWidget {
 }
 
 class _RetreivingWidgetState extends State<RetreivingWidget> {
-  ApiCallResponse? apiResult49s;
+  ApiCallResponse? apiResultGPT;
+  ApiCallResponse? apiResultPC;
   final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -25,17 +26,61 @@ class _RetreivingWidgetState extends State<RetreivingWidget> {
     super.initState();
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      apiResult49s = await PromptsGroup.gptCall.call(
-        qid: FFAppState().setQid,
-        datasetIdsList: FFAppState().selectedDataset,
-        topK: FFAppState().setTopk,
-        idToken: currentJwtToken,
-      );
-      if ((apiResult49s?.succeeded ?? true)) {
+      if (FFAppState().setEngine == 'GPT-3') {
+        apiResultGPT = await PromptsGroup.gptCall.call(
+          qid: FFAppState().setQid,
+          idToken: currentJwtToken,
+        );
+      } else {
+        if (FFAppState().setEngine == 'Pinecone') {
+          apiResultPC = await PromptsGroup.pineconeCall.call(
+            qid: FFAppState().setQid,
+            datasetIdsList: FFAppState().selectedDataset,
+            topK: FFAppState().setTopk,
+            idToken: currentJwtToken,
+          );
+          if ((apiResultPC?.succeeded ?? true)) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(
+                  (apiResultPC?.statusCode ?? 200).toString(),
+                  style: TextStyle(
+                    color: FlutterFlowTheme.of(context).primaryText,
+                  ),
+                ),
+                duration: Duration(milliseconds: 4000),
+                backgroundColor: Color(0x00000000),
+              ),
+            );
+
+            context.pushNamed('Result');
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(
+                  (apiResultPC?.statusCode ?? 200).toString(),
+                  style: TextStyle(
+                    color: FlutterFlowTheme.of(context).primaryText,
+                  ),
+                ),
+                duration: Duration(milliseconds: 4000),
+                backgroundColor: Color(0x00000000),
+              ),
+            );
+            context.pop();
+          }
+        } else {
+          context.pop();
+        }
+
+        return;
+      }
+
+      if ((apiResultGPT?.succeeded ?? true)) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              (apiResult49s?.statusCode ?? 200).toString(),
+              (apiResultGPT?.statusCode ?? 200).toString(),
               style: TextStyle(
                 color: FlutterFlowTheme.of(context).primaryText,
               ),
@@ -50,7 +95,7 @@ class _RetreivingWidgetState extends State<RetreivingWidget> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              (apiResult49s?.statusCode ?? 200).toString(),
+              (apiResultGPT?.statusCode ?? 200).toString(),
               style: TextStyle(
                 color: FlutterFlowTheme.of(context).primaryText,
               ),
@@ -128,6 +173,17 @@ class _RetreivingWidgetState extends State<RetreivingWidget> {
                           },
                         );
                       },
+                    ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
+                      child: Text(
+                        'Using engine:',
+                        style: FlutterFlowTheme.of(context).bodyText1,
+                      ),
+                    ),
+                    Text(
+                      FFAppState().setEngine,
+                      style: FlutterFlowTheme.of(context).bodyText1,
                     ),
                   ],
                 ),

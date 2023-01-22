@@ -22,11 +22,12 @@ class PineconeCall {
   Future<ApiCallResponse> call({
     String? qid = '',
     String? datasetName = '',
-    String? datasetIds = '',
+    List<String>? datasetIdsList,
     List<String>? activeDocsList,
-    int? topK,
+    double? topK,
     String? idToken = '',
   }) {
+    final datasetIds = _serializeList(datasetIdsList);
     final activeDocs = _serializeList(activeDocsList);
 
     final body = '''
