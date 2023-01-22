@@ -70,7 +70,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.27',
+                'v0.28',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -242,7 +242,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                           FlutterFlowDropDown<
                                                               String>(
                                                         options: [
-                                                          'Datasets',
                                                           'GPT-3',
                                                           'Pinecone'
                                                         ],
@@ -334,6 +333,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                               FFAppState()
                                                                       .setTopk =
                                                                   sliderValue!;
+                                                              FFAppState()
+                                                                      .setEngine =
+                                                                  dropDownValue!;
                                                             });
 
                                                             context.pushNamed(
