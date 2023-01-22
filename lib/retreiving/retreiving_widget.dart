@@ -31,6 +31,18 @@ class _RetreivingWidgetState extends State<RetreivingWidget> {
           qid: FFAppState().setQid,
           idToken: currentJwtToken,
         );
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              (apiResultGPT?.statusCode ?? 200).toString(),
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
+            ),
+            duration: Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+          ),
+        );
       } else {
         if (FFAppState().setEngine == 'Pinecone') {
           apiResultPC = await PineconeQueryCall.call(
@@ -183,6 +195,28 @@ class _RetreivingWidgetState extends State<RetreivingWidget> {
                     ),
                     Text(
                       FFAppState().setEngine,
+                      style: FlutterFlowTheme.of(context).bodyText1,
+                    ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
+                      child: Text(
+                        'qid:',
+                        style: FlutterFlowTheme.of(context).bodyText1,
+                      ),
+                    ),
+                    Text(
+                      FFAppState().setQid,
+                      style: FlutterFlowTheme.of(context).bodyText1,
+                    ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
+                      child: Text(
+                        'Top K',
+                        style: FlutterFlowTheme.of(context).bodyText1,
+                      ),
+                    ),
+                    Text(
+                      FFAppState().setTopk.toString(),
                       style: FlutterFlowTheme.of(context).bodyText1,
                     ),
                   ],
