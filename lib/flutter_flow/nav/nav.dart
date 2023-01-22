@@ -89,14 +89,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => LoginWidget(),
             ),
             FFRoute(
-              name: 'Home',
-              path: 'home',
-              builder: (context, params) => HomeWidget(),
-            ),
-            FFRoute(
               name: 'Datasets',
               path: 'datasets',
               builder: (context, params) => DatasetsWidget(),
+            ),
+            FFRoute(
+              name: 'Home',
+              path: 'home',
+              builder: (context, params) => HomeWidget(),
             ),
             FFRoute(
               name: 'Settings',

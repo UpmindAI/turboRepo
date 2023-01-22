@@ -86,7 +86,7 @@ class _RetreivingWidgetState extends State<RetreivingWidget> {
               ),
             ),
             duration: Duration(milliseconds: 4000),
-            backgroundColor: Color(0x00000000),
+            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
           ),
         );
 
@@ -101,7 +101,7 @@ class _RetreivingWidgetState extends State<RetreivingWidget> {
               ),
             ),
             duration: Duration(milliseconds: 4000),
-            backgroundColor: Color(0x00000000),
+            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
           ),
         );
         context.pop();
