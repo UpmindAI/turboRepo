@@ -70,7 +70,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.33',
+                'v0.34',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -324,6 +324,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                 .getDocumentFromData(
                                                                     userPromptsCreateData,
                                                                     userPromptsRecordReference);
+                                                            await Future.delayed(
+                                                                const Duration(
+                                                                    milliseconds:
+                                                                        500));
                                                             FFAppState()
                                                                 .update(() {
                                                               FFAppState()
@@ -336,6 +340,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                               FFAppState()
                                                                       .setEngine =
                                                                   dropDownValue!;
+                                                            });
+                                                            setState(() {
+                                                              textController
+                                                                  ?.clear();
                                                             });
 
                                                             context.pushNamed(
