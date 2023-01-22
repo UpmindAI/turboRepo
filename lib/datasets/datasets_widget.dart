@@ -41,7 +41,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
   @override
   void initState() {
     super.initState();
-    textController = TextEditingController();
+    textController = TextEditingController(text: '100');
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -874,6 +874,8 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                     datasetId:
                                                                         columnUserDatasetsRecord
                                                                             .datasetId,
+                                                                    timestamp:
+                                                                        getCurrentTimestamp,
                                                                   );
                                                                   var userTempUploadsRecordReference =
                                                                       UserTempUploadsRecord
