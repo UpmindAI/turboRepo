@@ -70,7 +70,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.35',
+                'v0.36',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -729,12 +729,12 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                             .primaryColor,
                                                     inactiveColor:
                                                         Color(0xFF9E9E9E),
-                                                    min: 0,
-                                                    max: 10,
-                                                    value: sliderValue ??= 0,
+                                                    min: 100,
+                                                    max: 8000,
+                                                    value: sliderValue ??= 100,
                                                     label:
                                                         sliderValue.toString(),
-                                                    divisions: 10,
+                                                    divisions: 79,
                                                     onChanged:
                                                         (newValue) async {
                                                       newValue = double.parse(
