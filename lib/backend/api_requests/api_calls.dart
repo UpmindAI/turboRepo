@@ -55,15 +55,11 @@ class PineconeCall {
 class GptCall {
   Future<ApiCallResponse> call({
     String? qid = '',
-    List<String>? datasetIdsList,
     String? idToken = '',
   }) {
-    final datasetIds = _serializeList(datasetIdsList);
-
     final body = '''
 {
   "qid": "${qid}",
-  "dataset_ids": "${datasetIds}",
   "id_token": "${idToken}"
 }''';
     return ApiManager.instance.makeApiCall(
