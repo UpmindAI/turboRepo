@@ -14,7 +14,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class HomeWidget extends StatefulWidget {
-  const HomeWidget({Key? key}) : super(key: key);
+  const HomeWidget({
+    Key? key,
+    this.userCompletion,
+  }) : super(key: key);
+
+  final UserCompletionsRecord? userCompletion;
 
   @override
   _HomeWidgetState createState() => _HomeWidgetState();
@@ -37,7 +42,9 @@ class _HomeWidgetState extends State<HomeWidget> {
   @override
   void initState() {
     super.initState();
-    textController = TextEditingController();
+    textController = TextEditingController(
+        text:
+            '${widget.userCompletion!.prompt}${''}${widget.userCompletion!.completion}');
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -70,7 +77,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.37',
+                'v0.38',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -144,7 +151,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 autofocus: true,
                                                 obscureText: false,
                                                 decoration: InputDecoration(
-                                                  hintText:
+                                                  labelText:
                                                       'Prompt goes here...',
                                                   hintStyle:
                                                       FlutterFlowTheme.of(

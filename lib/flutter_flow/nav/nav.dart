@@ -94,14 +94,21 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => DatasetsWidget(),
             ),
             FFRoute(
-              name: 'Home',
-              path: 'home',
-              builder: (context, params) => HomeWidget(),
-            ),
-            FFRoute(
               name: 'Settings',
               path: 'settings',
               builder: (context, params) => SettingsWidget(),
+            ),
+            FFRoute(
+              name: 'Home',
+              path: 'home',
+              asyncParams: {
+                'userCompletion': getDoc(['users', 'user_completions'],
+                    UserCompletionsRecord.serializer),
+              },
+              builder: (context, params) => HomeWidget(
+                userCompletion:
+                    params.getParam('userCompletion', ParamType.Document),
+              ),
             ),
             FFRoute(
               name: 'History',
