@@ -49,7 +49,7 @@ class _RetreivingWidgetState extends State<RetreivingWidget> {
             idToken: currentJwtToken,
             qid: FFAppState().setQid,
             datasetIdsList: FFAppState().selectedDataset,
-            topK: FFAppState().setTopk,
+            topK: FFAppState().setTopK,
           );
           if ((apiResultPC?.succeeded ?? true)) {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -216,7 +216,7 @@ class _RetreivingWidgetState extends State<RetreivingWidget> {
                       ),
                     ),
                     Text(
-                      FFAppState().setTopk.toString(),
+                      FFAppState().setTopK.toString(),
                       style: FlutterFlowTheme.of(context).bodyText1,
                     ),
                   ],

@@ -8,6 +8,7 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/random_data_util.dart' as random_data;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -78,7 +79,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.40',
+                'v0.41',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -149,6 +150,12 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                   .fromSTEB(20, 20, 20, 20),
                                               child: TextFormField(
                                                 controller: textController,
+                                                onChanged: (_) =>
+                                                    EasyDebounce.debounce(
+                                                  'textController',
+                                                  Duration(milliseconds: 2000),
+                                                  () => setState(() {}),
+                                                ),
                                                 autofocus: true,
                                                 obscureText: false,
                                                 decoration: InputDecoration(
@@ -225,6 +232,22 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                       FlutterFlowTheme.of(
                                                               context)
                                                           .secondaryBackground,
+                                                  suffixIcon: textController!
+                                                          .text.isNotEmpty
+                                                      ? InkWell(
+                                                          onTap: () async {
+                                                            textController
+                                                                ?.clear();
+                                                            setState(() {});
+                                                          },
+                                                          child: Icon(
+                                                            Icons.clear,
+                                                            color: Color(
+                                                                0xFF757575),
+                                                            size: 22,
+                                                          ),
+                                                        )
+                                                      : null,
                                                 ),
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -319,9 +342,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                 true,
                                                                 true,
                                                               );
-                                                              FFAppState()
-                                                                      .setTopk =
-                                                                  sliderValue!;
                                                               FFAppState()
                                                                       .setEngine =
                                                                   dropDownValue!;
@@ -737,14 +757,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                             .primaryColor,
                                                     inactiveColor:
                                                         Color(0xFF9E9E9E),
-                                                    min: 100,
-                                                    max: 8000,
-                                                    value: sliderValue ??= 100,
+                                                    min: 1,
+                                                    max: 100,
+                                                    value: sliderValue ??= 1,
                                                     label:
                                                         sliderValue.toString(),
-                                                    divisions: 79,
-                                                    onChanged:
-                                                        (newValue) async {
+                                                    divisions: 99,
+                                                    onChanged: (newValue) {
                                                       newValue = double.parse(
                                                           newValue
                                                               .toStringAsFixed(
@@ -752,8 +771,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                       setState(() =>
                                                           sliderValue =
                                                               newValue);
-                                                      FFAppState().setTopk =
-                                                          sliderValue!;
                                                     },
                                                   ),
                                                   Text(
