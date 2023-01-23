@@ -65,12 +65,6 @@ class FFAppState extends ChangeNotifier {
     _setQid = _value;
   }
 
-  double _setTopk = 0.0;
-  double get setTopk => _setTopk;
-  set setTopk(double _value) {
-    _setTopk = _value;
-  }
-
   String _setEngine = '';
   String get setEngine => _setEngine;
   set setEngine(String _value) {
@@ -81,6 +75,12 @@ class FFAppState extends ChangeNotifier {
   DocumentReference? get setCompletion => _setCompletion;
   set setCompletion(DocumentReference? _value) {
     _setCompletion = _value;
+  }
+
+  int _setTopK = 5;
+  int get setTopK => _setTopK;
+  set setTopK(int _value) {
+    _setTopK = _value;
   }
 }
 

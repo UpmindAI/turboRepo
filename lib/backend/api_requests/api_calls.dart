@@ -113,7 +113,7 @@ class PineconeQueryCall {
     String? idToken = '',
     String? qid = '',
     List<String>? datasetIdsList,
-    double? topK,
+    int? topK,
   }) {
     final datasetIds = _serializeList(datasetIdsList);
 
