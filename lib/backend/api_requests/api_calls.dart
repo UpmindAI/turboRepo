@@ -120,7 +120,7 @@ class PineconeQueryCall {
     final body = '''
 {
   "qid": "${qid}",
-  "dataset_ids": "${datasetIds}",
+  "dataset_ids": ${datasetIds},
   "top_k": ${topK},
   "id_token": "${idToken}"
 }''';
