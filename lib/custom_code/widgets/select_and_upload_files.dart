@@ -44,11 +44,13 @@ class _SelectAndUploadFilesState extends State<SelectAndUploadFiles> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: Text(filesSelected == null
-            ? 'Select Files'
-            : ((fileTobeUploaded + 1).toString() +
-                " / " +
-                filesSelected!.length.toString())));
+    return GestureDetector(
+        onTap: () => selectFiles(),
+        child: Container(
+            child: Text(filesSelected == null
+                ? 'Select Files'
+                : ((fileTobeUploaded + 1).toString() +
+                    " / " +
+                    filesSelected!.length.toString()))));
   }
 }
