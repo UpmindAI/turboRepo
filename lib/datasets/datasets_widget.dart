@@ -915,7 +915,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                       () {});
                                                                 },
                                                                 text:
-                                                                    'Append Documents to this Dataset',
+                                                                    'Add Documents to this Dataset',
                                                                 icon: Icon(
                                                                   Icons
                                                                       .upload_file,
