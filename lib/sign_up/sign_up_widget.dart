@@ -324,7 +324,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                   if (!RegExp(
                                           '^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}\$')
                                       .hasMatch(val)) {
-                                    return 'Invalid text';
+                                    return 'Password needs to be at least 6 characters, and inlcude lowercase, uppercase and numbers. ';
                                   }
                                   return null;
                                 },
@@ -412,6 +412,22 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                 ),
                                 style: FlutterFlowTheme.of(context).bodyText1,
                                 minLines: 1,
+                                validator: (val) {
+                                  if (val == null || val.isEmpty) {
+                                    return 'Field is required';
+                                  }
+
+                                  if (val.length < 6) {
+                                    return 'Requires at least 6 characters.';
+                                  }
+
+                                  if (!RegExp(
+                                          '^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}\$')
+                                      .hasMatch(val)) {
+                                    return 'Password needs to be at least 6 characters, and inlcude lowercase, uppercase and numbers. ';
+                                  }
+                                  return null;
+                                },
                               ),
                             ),
                           ),
