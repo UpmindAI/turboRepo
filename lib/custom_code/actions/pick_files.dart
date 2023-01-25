@@ -11,11 +11,16 @@ import 'package:file_picker/file_picker.dart';
 
 Future<List<String>?> pickFiles() async {
   FilePickerResult? result = await FilePicker.platform.pickFiles(
+    allowMultiple: true,
     type: FileType.custom,
     allowedExtensions: ['epub', 'pdf', 'docx', 'txt'],
   );
   if (result != null) {
-    return result.files.map((e) => e!.path!).toList();
+    List<String> list = [];
+    for (int i = 0; i < result.paths.length; i++) {
+      list.add(result.paths[i]!);
+    }
+    return list;
   } else {
     return null;
   }
