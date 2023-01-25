@@ -1,12 +1,15 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../backend/firebase_storage/storage.dart';
 import '../components/add_dataset_widget.dart';
 import '../components/confirm_delete_widget.dart';
 import '../components/main_menu_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../flutter_flow/upload_media.dart';
 import '../custom_code/widgets/index.dart' as custom_widgets;
+import '../flutter_flow/random_data_util.dart' as random_data;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +30,10 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
   List<UserDocsRecord> get checkboxCheckedItems =>
       checkboxValueMap.entries.where((e) => e.value).map((e) => e.key).toList();
 
+  bool isMediaUploading = false;
+  String uploadedFileUrl = '';
+
+  bool mouseRegionHovered = false;
   final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -661,31 +668,165 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                       mainAxisSize:
                                                           MainAxisSize.max,
                                                       children: [
-                                                        Align(
-                                                          alignment:
-                                                              AlignmentDirectional(
-                                                                  0, 0),
-                                                          child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        20,
-                                                                        0,
-                                                                        20,
-                                                                        0),
-                                                            child: Container(
-                                                              width: 300,
-                                                              height: 50,
-                                                              child: custom_widgets
-                                                                  .SelectAndUploadFiles(
+                                                        Container(
+                                                          width: 300,
+                                                          height: 37,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryBackground,
+                                                          ),
+                                                          child: MouseRegion(
+                                                            opaque: false,
+                                                            cursor:
+                                                                SystemMouseCursors
+                                                                        .click ??
+                                                                    MouseCursor
+                                                                        .defer,
+                                                            child: Align(
+                                                              alignment:
+                                                                  AlignmentDirectional(
+                                                                      0, 0),
+                                                              child: Container(
                                                                 width: 300,
-                                                                height: 50,
-                                                                userId:
-                                                                    currentUserUid,
-                                                                datasetId:
-                                                                    columnUserDatasetsRecord
-                                                                        .datasetId,
+                                                                height: 37,
+                                                                child: custom_widgets
+                                                                    .SelectAndUploadFiles(
+                                                                  width: 300,
+                                                                  height: 37,
+                                                                  userId:
+                                                                      currentUserUid,
+                                                                  datasetId:
+                                                                      columnUserDatasetsRecord
+                                                                          .datasetId,
+                                                                ),
                                                               ),
+                                                            ),
+                                                            onEnter:
+                                                                ((event) async {
+                                                              setState(() =>
+                                                                  mouseRegionHovered =
+                                                                      true);
+                                                            }),
+                                                            onExit:
+                                                                ((event) async {
+                                                              setState(() =>
+                                                                  mouseRegionHovered =
+                                                                      false);
+                                                            }),
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      25, 0, 0),
+                                                          child: FFButtonWidget(
+                                                            onPressed:
+                                                                () async {
+                                                              final selectedFile =
+                                                                  await selectFile(
+                                                                      allowedExtensions: [
+                                                                    'pdf'
+                                                                  ]);
+                                                              if (selectedFile !=
+                                                                  null) {
+                                                                setState(() =>
+                                                                    isMediaUploading =
+                                                                        true);
+                                                                String?
+                                                                    downloadUrl;
+                                                                try {
+                                                                  downloadUrl = await uploadData(
+                                                                      selectedFile
+                                                                          .storagePath,
+                                                                      selectedFile
+                                                                          .bytes);
+                                                                } finally {
+                                                                  isMediaUploading =
+                                                                      false;
+                                                                }
+                                                                if (downloadUrl !=
+                                                                    null) {
+                                                                  setState(() =>
+                                                                      uploadedFileUrl =
+                                                                          downloadUrl!);
+                                                                } else {
+                                                                  setState(
+                                                                      () {});
+                                                                  return;
+                                                                }
+                                                              }
+
+                                                              final userTempUploadsCreateData =
+                                                                  {
+                                                                ...createUserTempUploadsRecordData(
+                                                                  docTitle:
+                                                                      '${columnUserDatasetsRecord.datasetName} - ${random_data.randomString(
+                                                                    5,
+                                                                    5,
+                                                                    true,
+                                                                    true,
+                                                                    true,
+                                                                  )}',
+                                                                  docId: random_data
+                                                                      .randomString(
+                                                                    6,
+                                                                    6,
+                                                                    true,
+                                                                    true,
+                                                                    true,
+                                                                  ),
+                                                                  datasetName:
+                                                                      columnUserDatasetsRecord
+                                                                          .datasetName,
+                                                                  datasetId:
+                                                                      columnUserDatasetsRecord
+                                                                          .datasetName,
+                                                                  chunkSize: 0,
+                                                                ),
+                                                                'timestamp':
+                                                                    FieldValue
+                                                                        .serverTimestamp(),
+                                                              };
+                                                              await UserTempUploadsRecord
+                                                                      .createDoc(
+                                                                          currentUserReference!)
+                                                                  .set(
+                                                                      userTempUploadsCreateData);
+                                                            },
+                                                            text:
+                                                                'Single Upload (Test)',
+                                                            options:
+                                                                FFButtonOptions(
+                                                              width: 300,
+                                                              height: 40,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .alternate,
+                                                              textStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .subtitle2
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            FlutterFlowTheme.of(context).subtitle2Family,
+                                                                        color: Colors
+                                                                            .white,
+                                                                        useGoogleFonts:
+                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).subtitle2Family),
+                                                                      ),
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: Colors
+                                                                    .transparent,
+                                                                width: 1,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          8),
                                                             ),
                                                           ),
                                                         ),
