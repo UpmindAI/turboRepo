@@ -760,36 +760,33 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                               }
 
                                                               final userTempUploadsCreateData =
-                                                                  {
-                                                                ...createUserTempUploadsRecordData(
-                                                                  docTitle:
-                                                                      '${columnUserDatasetsRecord.datasetName} - ${random_data.randomString(
-                                                                    5,
-                                                                    5,
-                                                                    true,
-                                                                    true,
-                                                                    true,
-                                                                  )}',
-                                                                  docId: random_data
-                                                                      .randomString(
-                                                                    6,
-                                                                    6,
-                                                                    true,
-                                                                    true,
-                                                                    true,
-                                                                  ),
-                                                                  datasetName:
-                                                                      columnUserDatasetsRecord
-                                                                          .datasetName,
-                                                                  datasetId:
-                                                                      columnUserDatasetsRecord
-                                                                          .datasetName,
-                                                                  chunkSize: 0,
+                                                                  createUserTempUploadsRecordData(
+                                                                docTitle:
+                                                                    '${columnUserDatasetsRecord.datasetName} - ${random_data.randomString(
+                                                                  5,
+                                                                  5,
+                                                                  true,
+                                                                  true,
+                                                                  true,
+                                                                )}',
+                                                                docId: random_data
+                                                                    .randomString(
+                                                                  6,
+                                                                  6,
+                                                                  true,
+                                                                  true,
+                                                                  true,
                                                                 ),
-                                                                'timestamp':
-                                                                    FieldValue
-                                                                        .serverTimestamp(),
-                                                              };
+                                                                datasetName:
+                                                                    columnUserDatasetsRecord
+                                                                        .datasetName,
+                                                                datasetId:
+                                                                    columnUserDatasetsRecord
+                                                                        .datasetName,
+                                                                chunkSize: 0,
+                                                                timestamp:
+                                                                    getCurrentTimestamp,
+                                                              );
                                                               await UserTempUploadsRecord
                                                                       .createDoc(
                                                                           currentUserReference!)
