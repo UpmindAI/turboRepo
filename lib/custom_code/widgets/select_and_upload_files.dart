@@ -69,7 +69,7 @@ class _SelectAndUploadFilesState extends State<SelectAndUploadFiles> {
     CollectionReference userRefrence = FirebaseFirestore.instance
         .collection('users')
         .doc(widget.userId)
-        .collection('user_datasets');
+        .collection('user_temp_uploads');
     DocumentReference doc = await userRefrence.doc();
     DataSetModel datasetDoc = DataSetModel(
         id: doc.id,
@@ -77,7 +77,7 @@ class _SelectAndUploadFilesState extends State<SelectAndUploadFiles> {
         fileNames: filesSelected!.files.map((e) => e.name).toList(),
         fileTypes: filesSelected!.files.map((e) => e.extension!).toList(),
         downloadUrls: downloadUrls);
-    await userRefrence.doc().set(datasetDoc.toMap());
+    await userRefrence.doc(doc.id).set(datasetDoc.toMap());
   }
 
   @override
@@ -85,20 +85,26 @@ class _SelectAndUploadFilesState extends State<SelectAndUploadFiles> {
     return GestureDetector(
         onTap: () => selectFiles(),
         child: Container(
+            color: Colors.black,
+            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 5),
             child: Row(
-          children: [
-            if (filesSelected != null)
-              Padding(
-                padding: const EdgeInsets.only(right: 6),
-                child: CircularProgressIndicator(),
-              ),
-            Text(filesSelected == null
-                ? 'Select Files'
-                : ((fileTobeUploaded + 1).toString() +
-                    " / " +
-                    filesSelected!.files.length.toString())),
-          ],
-        )));
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 5),
+                  child: Icon(Icons.file_copy, color: Colors.white, size: 23),
+                ),
+                Text(
+                  filesSelected == null
+                      ? 'Add Documents to this Dataset'
+                      : ("Uploading file " +
+                          (fileTobeUploaded + 1).toString() +
+                          " of " +
+                          filesSelected!.files.length.toString()),
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
+                ),
+              ],
+            )));
   }
 
   Future<String?> uploadFile(PlatformFile file, String storagePath) async {
@@ -113,7 +119,7 @@ class _SelectAndUploadFilesState extends State<SelectAndUploadFiles> {
       late String downloadUrl;
 
       final Reference firebaseStorageRef =
-          storage.ref().child("/users/$storagePath/$fileName");
+          storage.ref().child("/users/$storagePath/uploads/$fileName");
       if (kIsWeb) {
         await firebaseStorageRef.putData(file.bytes!).then((snapshot) async {
           downloadUrl = await snapshot.ref.getDownloadURL();

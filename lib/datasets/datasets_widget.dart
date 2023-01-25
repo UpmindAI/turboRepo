@@ -398,7 +398,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                           MediaQuery.of(context)
                                                               .size
                                                               .width,
-                                                      height: 550,
+                                                      height: 500,
                                                       constraints:
                                                           BoxConstraints(
                                                         maxHeight: 550,
@@ -661,52 +661,31 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                       mainAxisSize:
                                                           MainAxisSize.max,
                                                       children: [
-                                                        Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          children: [
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          20,
-                                                                          0,
-                                                                          0,
-                                                                          10),
-                                                              child: Text(
-                                                                'Add Documents to this Dataset',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyText1,
+                                                        Align(
+                                                          alignment:
+                                                              AlignmentDirectional(
+                                                                  0, 0),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        20,
+                                                                        0,
+                                                                        20,
+                                                                        0),
+                                                            child: Container(
+                                                              width: 300,
+                                                              height: 50,
+                                                              child: custom_widgets
+                                                                  .SelectAndUploadFiles(
+                                                                width: 300,
+                                                                height: 50,
+                                                                userId:
+                                                                    currentUserUid,
+                                                                datasetId:
+                                                                    columnUserDatasetsRecord
+                                                                        .datasetId,
                                                               ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(20,
-                                                                      0, 20, 0),
-                                                          child: Container(
-                                                            width:
-                                                                MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .width,
-                                                            height: 100,
-                                                            child: custom_widgets
-                                                                .SelectAndUploadFiles(
-                                                              width:
-                                                                  MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .width,
-                                                              height: 100,
-                                                              userId:
-                                                                  currentUserUid,
-                                                              datasetId:
-                                                                  columnUserDatasetsRecord
-                                                                      .datasetId,
                                                             ),
                                                           ),
                                                         ),
