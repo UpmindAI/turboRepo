@@ -140,6 +140,32 @@ class PineconeQueryCall {
   }
 }
 
+class DowloadServerCall {
+  static Future<ApiCallResponse> call({
+    String? qid = '',
+    String? idToken = '',
+  }) {
+    final body = '''
+{
+  "id": "${qid}",
+  "id_token": "${idToken}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'dowloadServer',
+      apiUrl: 'https://dvdownloads-p67td2b2aq-uc.a.run.app',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;

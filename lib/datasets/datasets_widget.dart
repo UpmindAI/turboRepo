@@ -782,7 +782,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                         .datasetName,
                                                                 datasetId:
                                                                     columnUserDatasetsRecord
-                                                                        .datasetName,
+                                                                        .datasetId,
                                                                 chunkSize: 0,
                                                                 timestamp:
                                                                     getCurrentTimestamp,

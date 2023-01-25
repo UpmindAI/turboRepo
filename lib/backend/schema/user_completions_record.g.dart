@@ -46,6 +46,13 @@ class _$UserCompletionsRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.url;
+    if (value != null) {
+      result
+        ..add('url')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -81,6 +88,10 @@ class _$UserCompletionsRecordSerializer
           result.completion = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'url':
+          result.url = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -102,6 +113,8 @@ class _$UserCompletionsRecord extends UserCompletionsRecord {
   @override
   final String? completion;
   @override
+  final String? url;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$UserCompletionsRecord(
@@ -109,7 +122,7 @@ class _$UserCompletionsRecord extends UserCompletionsRecord {
       (new UserCompletionsRecordBuilder()..update(updates))._build();
 
   _$UserCompletionsRecord._(
-      {this.qid, this.prompt, this.completion, this.ffRef})
+      {this.qid, this.prompt, this.completion, this.url, this.ffRef})
       : super._();
 
   @override
@@ -128,13 +141,17 @@ class _$UserCompletionsRecord extends UserCompletionsRecord {
         qid == other.qid &&
         prompt == other.prompt &&
         completion == other.completion &&
+        url == other.url &&
         ffRef == other.ffRef;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc(0, qid.hashCode), prompt.hashCode), completion.hashCode),
+        $jc(
+            $jc($jc($jc(0, qid.hashCode), prompt.hashCode),
+                completion.hashCode),
+            url.hashCode),
         ffRef.hashCode));
   }
 
@@ -144,6 +161,7 @@ class _$UserCompletionsRecord extends UserCompletionsRecord {
           ..add('qid', qid)
           ..add('prompt', prompt)
           ..add('completion', completion)
+          ..add('url', url)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -165,6 +183,10 @@ class UserCompletionsRecordBuilder
   String? get completion => _$this._completion;
   set completion(String? completion) => _$this._completion = completion;
 
+  String? _url;
+  String? get url => _$this._url;
+  set url(String? url) => _$this._url = url;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -179,6 +201,7 @@ class UserCompletionsRecordBuilder
       _qid = $v.qid;
       _prompt = $v.prompt;
       _completion = $v.completion;
+      _url = $v.url;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -202,7 +225,11 @@ class UserCompletionsRecordBuilder
   _$UserCompletionsRecord _build() {
     final _$result = _$v ??
         new _$UserCompletionsRecord._(
-            qid: qid, prompt: prompt, completion: completion, ffRef: ffRef);
+            qid: qid,
+            prompt: prompt,
+            completion: completion,
+            url: url,
+            ffRef: ffRef);
     replace(_$result);
     return _$result;
   }

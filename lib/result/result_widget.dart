@@ -1,4 +1,5 @@
 import '../auth/auth_util.dart';
+import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../components/main_menu_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -17,6 +18,7 @@ class ResultWidget extends StatefulWidget {
 }
 
 class _ResultWidgetState extends State<ResultWidget> {
+  ApiCallResponse? apiResultf11;
   final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -295,7 +297,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                           Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    0, 10, 0, 0),
+                                                    0, 10, 20, 0),
                                             child: FFButtonWidget(
                                               onPressed: () async {
                                                 context.pushNamed('Home');
@@ -330,6 +332,179 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                 borderRadius:
                                                     BorderRadius.circular(0),
                                               ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Stack(
+                                              children: [
+                                                Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          1, 0),
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                0, 10, 20, 0),
+                                                    child: FFButtonWidget(
+                                                      onPressed: () async {
+                                                        apiResultf11 =
+                                                            await DowloadServerCall
+                                                                .call(
+                                                          qid:
+                                                              resultUserCompletionsRecord!
+                                                                  .qid,
+                                                          idToken:
+                                                              currentJwtToken,
+                                                        );
+                                                        if ((apiResultf11
+                                                                ?.succeeded ??
+                                                            true)) {
+                                                          ScaffoldMessenger.of(
+                                                                  context)
+                                                              .showSnackBar(
+                                                            SnackBar(
+                                                              content: Text(
+                                                                'Generating. Your document will be ready on a moment!',
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                ),
+                                                              ),
+                                                              duration: Duration(
+                                                                  milliseconds:
+                                                                      4000),
+                                                              backgroundColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryBackground,
+                                                            ),
+                                                          );
+                                                        } else {
+                                                          ScaffoldMessenger.of(
+                                                                  context)
+                                                              .showSnackBar(
+                                                            SnackBar(
+                                                              content: Text(
+                                                                (apiResultf11
+                                                                            ?.statusCode ??
+                                                                        200)
+                                                                    .toString(),
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                ),
+                                                              ),
+                                                              duration: Duration(
+                                                                  milliseconds:
+                                                                      4000),
+                                                              backgroundColor:
+                                                                  Color(
+                                                                      0x00000000),
+                                                            ),
+                                                          );
+                                                        }
+
+                                                        setState(() {});
+                                                      },
+                                                      text: 'Generate .docx',
+                                                      options: FFButtonOptions(
+                                                        width: 200,
+                                                        height: 40,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryColor,
+                                                        textStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .subtitle2
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .subtitle2Family,
+                                                                  color: Colors
+                                                                      .white,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .subtitle2Family),
+                                                                ),
+                                                        borderSide: BorderSide(
+                                                          color: Colors
+                                                              .transparent,
+                                                          width: 1,
+                                                        ),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(0),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                if (resultUserCompletionsRecord!
+                                                            .url !=
+                                                        null &&
+                                                    resultUserCompletionsRecord!
+                                                            .url !=
+                                                        '')
+                                                  Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            1, 0),
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0, 10, 20, 0),
+                                                      child: FFButtonWidget(
+                                                        onPressed: () async {
+                                                          await launchURL(
+                                                              resultUserCompletionsRecord!
+                                                                  .url!);
+                                                        },
+                                                        text: 'Download .docx',
+                                                        options:
+                                                            FFButtonOptions(
+                                                          width: 200,
+                                                          height: 40,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryColor,
+                                                          textStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .subtitle2
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .subtitle2Family,
+                                                                    color: Colors
+                                                                        .white,
+                                                                    useGoogleFonts: GoogleFonts
+                                                                            .asMap()
+                                                                        .containsKey(
+                                                                            FlutterFlowTheme.of(context).subtitle2Family),
+                                                                  ),
+                                                          borderSide:
+                                                              BorderSide(
+                                                            color: Colors
+                                                                .transparent,
+                                                            width: 1,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(0),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                              ],
                                             ),
                                           ),
                                         ],
