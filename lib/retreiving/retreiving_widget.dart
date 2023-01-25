@@ -44,7 +44,7 @@ class _RetreivingWidgetState extends State<RetreivingWidget> {
           ),
         );
       } else {
-        if (FFAppState().setEngine == 'Pinecone') {
+        if (FFAppState().setEngine == 'My Datasets') {
           apiResultPC = await PineconeQueryCall.call(
             idToken: currentJwtToken,
             qid: FFAppState().setQid,
