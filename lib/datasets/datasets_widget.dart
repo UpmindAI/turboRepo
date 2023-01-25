@@ -704,6 +704,9 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                               height: 100,
                                                               userId:
                                                                   currentUserUid,
+                                                              datasetId:
+                                                                  columnUserDatasetsRecord
+                                                                      .datasetId,
                                                             ),
                                                           ),
                                                         ),

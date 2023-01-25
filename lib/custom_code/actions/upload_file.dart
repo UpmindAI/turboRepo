@@ -18,7 +18,7 @@ Future<List<String>?> uploadFile(String filePath, String storagePath) async {
     late String downloadUrl;
 
     final Reference firebaseStorageRef =
-        storage.ref().child("/${storagePath}/$fileName");
+        storage.ref().child("/users/${storagePath}/$fileName");
 
     await firebaseStorageRef.putFile(file).then((snapshot) async {
       downloadUrl = await snapshot.ref.getDownloadURL();
