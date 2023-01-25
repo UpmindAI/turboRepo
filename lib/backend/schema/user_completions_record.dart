@@ -17,6 +17,8 @@ abstract class UserCompletionsRecord
 
   String? get completion;
 
+  String? get url;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -27,7 +29,8 @@ abstract class UserCompletionsRecord
       builder
         ..qid = ''
         ..prompt = ''
-        ..completion = '';
+        ..completion = ''
+        ..url = '';
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
       parent != null
@@ -60,6 +63,7 @@ Map<String, dynamic> createUserCompletionsRecordData({
   String? qid,
   String? prompt,
   String? completion,
+  String? url,
 }) {
   final firestoreData = serializers.toFirestore(
     UserCompletionsRecord.serializer,
@@ -67,7 +71,8 @@ Map<String, dynamic> createUserCompletionsRecordData({
       (u) => u
         ..qid = qid
         ..prompt = prompt
-        ..completion = completion,
+        ..completion = completion
+        ..url = url,
     ),
   );
 
