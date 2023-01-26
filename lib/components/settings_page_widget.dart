@@ -173,7 +173,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
                 child: InkWell(
                   onTap: () async {
-                    context.pushNamed('Settings');
+                    context.pushNamed('editProfile');
                   },
                   child: Container(
                     width: double.infinity,

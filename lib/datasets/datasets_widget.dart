@@ -36,7 +36,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
 
   bool mouseRegionHovered = false;
   ApiCallResponse? apiResult8oi;
-  TextEditingController? textController;
+  TextEditingController? scrapeURLController;
   final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final formKey = GlobalKey<FormState>();
@@ -44,14 +44,14 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
   @override
   void initState() {
     super.initState();
-    textController = TextEditingController();
+    scrapeURLController = TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
   void dispose() {
     _unfocusNode.dispose();
-    textController?.dispose();
+    scrapeURLController?.dispose();
     super.dispose();
   }
 
@@ -568,6 +568,11 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                                 'active_docs': checkboxCheckedItems.map((e) => e.docId).withoutNulls.toList(),
                                                                                               };
                                                                                               await columnUserDatasetsRecord.reference.update(userDatasetsUpdateData);
+
+                                                                                              final userDocsUpdateData = createUserDocsRecordData(
+                                                                                                isActive: checkboxValueMap[listViewUserDocsRecord],
+                                                                                              );
+                                                                                              await listViewUserDocsRecord.reference.update(userDocsUpdateData);
                                                                                             } else {
                                                                                               final userDatasetsUpdateData = {
                                                                                                 'active_docs': checkboxCheckedItems.map((e) => e.docId).withoutNulls.toList(),
@@ -879,7 +884,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                   child:
                                                                       TextFormField(
                                                                     controller:
-                                                                        textController,
+                                                                        scrapeURLController,
                                                                     autofocus:
                                                                         true,
                                                                     obscureText:
@@ -987,7 +992,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                           await ScrapeServerCall
                                                                               .call(
                                                                         sourceUrl:
-                                                                            textController!.text,
+                                                                            scrapeURLController!.text,
                                                                         idToken:
                                                                             currentJwtToken,
                                                                         datasetId:
@@ -1016,7 +1021,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                         );
                                                                         setState(
                                                                             () {
-                                                                          textController
+                                                                          scrapeURLController
                                                                               ?.clear();
                                                                         });
                                                                       } else {
