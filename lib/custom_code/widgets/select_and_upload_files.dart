@@ -21,12 +21,16 @@ class SelectAndUploadFiles extends StatefulWidget {
     this.width,
     this.height,
     this.datasetId,
+    this.chunkSize,
+    this.datasetName,
   }) : super(key: key);
 
   final double? width;
   final double? height;
   final String? userId;
   final String? datasetId;
+  final String? datasetName;
+  final double? chunkSize;
 
   @override
   _SelectAndUploadFilesState createState() => _SelectAndUploadFilesState();
@@ -74,6 +78,8 @@ class _SelectAndUploadFilesState extends State<SelectAndUploadFiles> {
     DataSetModel datasetDoc = DataSetModel(
         id: doc.id,
         datasetId: widget.datasetId!,
+        datasetName: widget.datasetName!,
+        timestamp: DateTime.now().toIso8601String(),
         fileNames: filesSelected!.files.map((e) => e.name).toList(),
         fileTypes: filesSelected!.files.map((e) => e.extension!).toList(),
         downloadUrls: downloadUrls);
@@ -155,6 +161,8 @@ class _SelectAndUploadFilesState extends State<SelectAndUploadFiles> {
 class DataSetModel {
   final String id;
   final String datasetId;
+  final String timestamp;
+  final String datasetName;
   final List<String> downloadUrls;
   final List<String> fileNames;
   final List<String> fileTypes;
@@ -164,29 +172,20 @@ class DataSetModel {
     required this.downloadUrls,
     required this.fileNames,
     required this.fileTypes,
+    required this.datasetName,
+    required this.timestamp,
   });
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
-      'datasetId': datasetId,
-      'downloadUrls': downloadUrls,
-      'fileNames': fileNames,
-      'fileTypes': fileTypes,
+      'document_id': id,
+      'dataset_id': datasetId,
+      'download_url': downloadUrls,
+      'file_name': fileNames,
+      'file_type': fileTypes,
+      'timestamp': timestamp,
+      'dataset_name': datasetName,
     };
   }
 
-  factory DataSetModel.fromMap(Map<String, dynamic> map) {
-    return DataSetModel(
-      id: map['id'] ?? '',
-      datasetId: map['datasetId'] ?? '',
-      downloadUrls: List<String>.from(map['downloadUrls']),
-      fileNames: List<String>.from(map['fileNames']),
-      fileTypes: List<String>.from(map['fileTypes']),
-    );
-  }
-
   String toJson() => json.encode(toMap());
-
-  factory DataSetModel.fromJson(String source) =>
-      DataSetModel.fromMap(json.decode(source));
 }
