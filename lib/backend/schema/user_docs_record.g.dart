@@ -28,13 +28,6 @@ class _$UserDocsRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.createdOn;
-    if (value != null) {
-      result
-        ..add('created_on')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(DateTime)));
-    }
     value = object.isActive;
     if (value != null) {
       result
@@ -97,10 +90,6 @@ class _$UserDocsRecordSerializer
           result.datasetId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'created_on':
-          result.createdOn = serializers.deserialize(value,
-              specifiedType: const FullType(DateTime)) as DateTime?;
-          break;
         case 'is_active':
           result.isActive = serializers.deserialize(value,
               specifiedType: const FullType(bool)) as bool?;
@@ -138,8 +127,6 @@ class _$UserDocsRecord extends UserDocsRecord {
   @override
   final String? datasetId;
   @override
-  final DateTime? createdOn;
-  @override
   final bool? isActive;
   @override
   final String? docId;
@@ -157,7 +144,6 @@ class _$UserDocsRecord extends UserDocsRecord {
 
   _$UserDocsRecord._(
       {this.datasetId,
-      this.createdOn,
       this.isActive,
       this.docId,
       this.docTitle,
@@ -179,7 +165,6 @@ class _$UserDocsRecord extends UserDocsRecord {
     if (identical(other, this)) return true;
     return other is UserDocsRecord &&
         datasetId == other.datasetId &&
-        createdOn == other.createdOn &&
         isActive == other.isActive &&
         docId == other.docId &&
         docTitle == other.docTitle &&
@@ -194,9 +179,7 @@ class _$UserDocsRecord extends UserDocsRecord {
         $jc(
             $jc(
                 $jc(
-                    $jc(
-                        $jc($jc($jc(0, datasetId.hashCode), createdOn.hashCode),
-                            isActive.hashCode),
+                    $jc($jc($jc(0, datasetId.hashCode), isActive.hashCode),
                         docId.hashCode),
                     docTitle.hashCode),
                 timestamp.hashCode),
@@ -208,7 +191,6 @@ class _$UserDocsRecord extends UserDocsRecord {
   String toString() {
     return (newBuiltValueToStringHelper(r'UserDocsRecord')
           ..add('datasetId', datasetId)
-          ..add('createdOn', createdOn)
           ..add('isActive', isActive)
           ..add('docId', docId)
           ..add('docTitle', docTitle)
@@ -226,10 +208,6 @@ class UserDocsRecordBuilder
   String? _datasetId;
   String? get datasetId => _$this._datasetId;
   set datasetId(String? datasetId) => _$this._datasetId = datasetId;
-
-  DateTime? _createdOn;
-  DateTime? get createdOn => _$this._createdOn;
-  set createdOn(DateTime? createdOn) => _$this._createdOn = createdOn;
 
   bool? _isActive;
   bool? get isActive => _$this._isActive;
@@ -263,7 +241,6 @@ class UserDocsRecordBuilder
     final $v = _$v;
     if ($v != null) {
       _datasetId = $v.datasetId;
-      _createdOn = $v.createdOn;
       _isActive = $v.isActive;
       _docId = $v.docId;
       _docTitle = $v.docTitle;
@@ -293,7 +270,6 @@ class UserDocsRecordBuilder
     final _$result = _$v ??
         new _$UserDocsRecord._(
             datasetId: datasetId,
-            createdOn: createdOn,
             isActive: isActive,
             docId: docId,
             docTitle: docTitle,
