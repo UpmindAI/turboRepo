@@ -1,7 +1,6 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/main_menu_widget.dart';
-import '../components/profile_edit_widget.dart';
 import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -11,7 +10,6 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -49,29 +47,6 @@ class _HomeWidgetState extends State<HomeWidget> {
   @override
   void initState() {
     super.initState();
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (FFAppState().firstLogin) {
-        await showModalBottomSheet(
-          isScrollControlled: true,
-          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-          enableDrag: false,
-          context: context,
-          builder: (context) {
-            return Padding(
-              padding: MediaQuery.of(context).viewInsets,
-              child: Container(
-                height: 600,
-                child: ProfileEditWidget(),
-              ),
-            );
-          },
-        ).then((value) => setState(() {}));
-      } else {
-        Navigator.pop(context);
-      }
-    });
-
     textController = TextEditingController(
         text: widget.userCompletion != null
             ? '${widget.userCompletion!.prompt}${''}${widget.userCompletion!.completion}'
@@ -108,7 +83,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.58',
+                'v0.59',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -482,47 +457,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           Row(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(20, 20, 0, 10),
-                                                child: StreamBuilder<
-                                                    List<UserDatasetsRecord>>(
-                                                  stream:
-                                                      queryUserDatasetsRecord(
-                                                    parent:
-                                                        currentUserReference,
-                                                  ),
-                                                  builder: (context, snapshot) {
-                                                    // Customize what your widget looks like when it's loading.
-                                                    if (!snapshot.hasData) {
-                                                      return Center(
-                                                        child: SizedBox(
-                                                          width: 50,
-                                                          height: 50,
-                                                          child: SpinKitRipple(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryColor,
-                                                            size: 50,
-                                                          ),
-                                                        ),
-                                                      );
-                                                    }
-                                                    List<UserDatasetsRecord>
-                                                        nrDatasetsUserDatasetsRecordList =
-                                                        snapshot.data!;
-                                                    return Text(
-                                                      nrDatasetsUserDatasetsRecordList
-                                                          .length
-                                                          .toString(),
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyText1,
-                                                    );
-                                                  },
-                                                ),
-                                              ),
                                               Padding(
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(10, 10, 0, 0),
