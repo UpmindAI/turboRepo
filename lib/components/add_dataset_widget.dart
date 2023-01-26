@@ -41,96 +41,47 @@ class _AddDatasetWidgetState extends State<AddDatasetWidget> {
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      constraints: BoxConstraints(
-        maxWidth: 1240,
-        maxHeight: 600,
-      ),
-      decoration: BoxDecoration(
-        color: FlutterFlowTheme.of(context).secondaryBackground,
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Expanded(
-            child: Align(
-              alignment: AlignmentDirectional(0, 0),
-              child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  child: Form(
-                    key: formKey,
-                    autovalidateMode: AutovalidateMode.disabled,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
-                          child: Text(
-                            'Add a new Dataset',
-                            style: FlutterFlowTheme.of(context).bodyText1,
-                          ),
-                        ),
-                        TextFormField(
-                          controller: textController1,
-                          autofocus: true,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            labelText: 'Dataset Name',
-                            hintStyle: FlutterFlowTheme.of(context).bodyText2,
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).alternate,
-                                width: 1,
-                              ),
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(4.0),
-                                topRight: Radius.circular(4.0),
-                              ),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).alternate,
-                                width: 1,
-                              ),
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(4.0),
-                                topRight: Radius.circular(4.0),
-                              ),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 1,
-                              ),
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(4.0),
-                                topRight: Radius.circular(4.0),
-                              ),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 1,
-                              ),
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(4.0),
-                                topRight: Radius.circular(4.0),
-                              ),
+    return Align(
+      alignment: AlignmentDirectional(0, 0),
+      child: Container(
+        width: 500,
+        constraints: BoxConstraints(
+          maxWidth: 1240,
+          maxHeight: 600,
+        ),
+        decoration: BoxDecoration(
+          color: FlutterFlowTheme.of(context).secondaryBackground,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Expanded(
+              child: Align(
+                alignment: AlignmentDirectional(0, 0),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    child: Form(
+                      key: formKey,
+                      autovalidateMode: AutovalidateMode.disabled,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+                            child: Text(
+                              'Add a new Dataset',
+                              style: FlutterFlowTheme.of(context).bodyText1,
                             ),
                           ),
-                          style: FlutterFlowTheme.of(context).bodyText1,
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                          child: TextFormField(
-                            controller: textController2,
+                          TextFormField(
+                            controller: textController1,
                             autofocus: true,
                             obscureText: false,
                             decoration: InputDecoration(
-                              labelText: 'Description',
+                              labelText: 'Dataset Name',
                               hintStyle: FlutterFlowTheme.of(context).bodyText2,
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
@@ -174,67 +125,124 @@ class _AddDatasetWidgetState extends State<AddDatasetWidget> {
                               ),
                             ),
                             style: FlutterFlowTheme.of(context).bodyText1,
-                            maxLines: 3,
                           ),
-                        ),
-                        Align(
-                          alignment: AlignmentDirectional(1, 0),
-                          child: Padding(
+                          Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                            child: FFButtonWidget(
-                              onPressed: () async {
-                                final userDatasetsCreateData =
-                                    createUserDatasetsRecordData(
-                                  datasetId: random_data.randomString(
-                                    8,
-                                    8,
-                                    true,
-                                    true,
-                                    true,
+                            child: TextFormField(
+                              controller: textController2,
+                              autofocus: true,
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                labelText: 'Description',
+                                hintStyle:
+                                    FlutterFlowTheme.of(context).bodyText2,
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    width: 1,
                                   ),
-                                  datasetName: textController1!.text,
-                                  description: textController2!.text,
-                                  createdOn: getCurrentTimestamp,
-                                );
-                                await UserDatasetsRecord.createDoc(
-                                        currentUserReference!)
-                                    .set(userDatasetsCreateData);
-                              },
-                              text: 'Save',
-                              options: FFButtonOptions(
-                                width: 130,
-                                height: 40,
-                                color:
-                                    FlutterFlowTheme.of(context).primaryColor,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .subtitle2
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .subtitle2Family,
-                                      color: Colors.white,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
-                                              FlutterFlowTheme.of(context)
-                                                  .subtitle2Family),
-                                    ),
-                                borderSide: BorderSide(
-                                  color: Colors.transparent,
-                                  width: 1,
+                                  borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(4.0),
+                                    topRight: Radius.circular(4.0),
+                                  ),
                                 ),
-                                borderRadius: BorderRadius.circular(8),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    width: 1,
+                                  ),
+                                  borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(4.0),
+                                    topRight: Radius.circular(4.0),
+                                  ),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0x00000000),
+                                    width: 1,
+                                  ),
+                                  borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(4.0),
+                                    topRight: Radius.circular(4.0),
+                                  ),
+                                ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0x00000000),
+                                    width: 1,
+                                  ),
+                                  borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(4.0),
+                                    topRight: Radius.circular(4.0),
+                                  ),
+                                ),
+                              ),
+                              style: FlutterFlowTheme.of(context).bodyText1,
+                              maxLines: 3,
+                            ),
+                          ),
+                          Align(
+                            alignment: AlignmentDirectional(1, 0),
+                            child: Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                              child: FFButtonWidget(
+                                onPressed: () async {
+                                  final userDatasetsCreateData =
+                                      createUserDatasetsRecordData(
+                                    datasetId: random_data.randomString(
+                                      8,
+                                      8,
+                                      true,
+                                      true,
+                                      true,
+                                    ),
+                                    datasetName: textController1!.text,
+                                    description: textController2!.text,
+                                    createdOn: getCurrentTimestamp,
+                                  );
+                                  await UserDatasetsRecord.createDoc(
+                                          currentUserReference!)
+                                      .set(userDatasetsCreateData);
+                                },
+                                text: 'Save',
+                                options: FFButtonOptions(
+                                  width: 130,
+                                  height: 40,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryColor,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .subtitle2
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .subtitle2Family,
+                                        color: Colors.white,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .subtitle2Family),
+                                      ),
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
