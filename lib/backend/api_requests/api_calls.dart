@@ -166,6 +166,36 @@ class DowloadServerCall {
   }
 }
 
+class ScrapeServerCall {
+  static Future<ApiCallResponse> call({
+    String? sourceUrl = '',
+    String? idToken = '',
+    String? datasetId = '',
+    String? datasetName = '',
+  }) {
+    final body = '''
+{
+  "source_url": "<url>",
+  "dataset_id": "${datasetId}",
+  "id_token": "${idToken}",
+  "dataset_name": "${datasetName}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'scrapeServer',
+      apiUrl: 'https://dvscrapeserver-p67td2b2aq-uc.a.run.app',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;
