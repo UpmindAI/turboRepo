@@ -42,14 +42,6 @@ class _$UserDocsRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(DateTime)));
     }
-    value = object.datasetRef;
-    if (value != null) {
-      result
-        ..add('dataset_ref')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(
-                DocumentReference, const [const FullType.nullable(Object)])));
-    }
     value = object.isActive;
     if (value != null) {
       result
@@ -99,12 +91,6 @@ class _$UserDocsRecordSerializer
           result.createdOn = serializers.deserialize(value,
               specifiedType: const FullType(DateTime)) as DateTime?;
           break;
-        case 'dataset_ref':
-          result.datasetRef = serializers.deserialize(value,
-              specifiedType: const FullType(DocumentReference, const [
-                const FullType.nullable(Object)
-              ])) as DocumentReference<Object?>?;
-          break;
         case 'is_active':
           result.isActive = serializers.deserialize(value,
               specifiedType: const FullType(bool)) as bool?;
@@ -134,8 +120,6 @@ class _$UserDocsRecord extends UserDocsRecord {
   @override
   final DateTime? createdOn;
   @override
-  final DocumentReference<Object?>? datasetRef;
-  @override
   final bool? isActive;
   @override
   final String? docId;
@@ -149,7 +133,6 @@ class _$UserDocsRecord extends UserDocsRecord {
       {this.datasetId,
       this.documentName,
       this.createdOn,
-      this.datasetRef,
       this.isActive,
       this.docId,
       this.ffRef})
@@ -170,7 +153,6 @@ class _$UserDocsRecord extends UserDocsRecord {
         datasetId == other.datasetId &&
         documentName == other.documentName &&
         createdOn == other.createdOn &&
-        datasetRef == other.datasetRef &&
         isActive == other.isActive &&
         docId == other.docId &&
         ffRef == other.ffRef;
@@ -181,10 +163,8 @@ class _$UserDocsRecord extends UserDocsRecord {
     return $jf($jc(
         $jc(
             $jc(
-                $jc(
-                    $jc($jc($jc(0, datasetId.hashCode), documentName.hashCode),
-                        createdOn.hashCode),
-                    datasetRef.hashCode),
+                $jc($jc($jc(0, datasetId.hashCode), documentName.hashCode),
+                    createdOn.hashCode),
                 isActive.hashCode),
             docId.hashCode),
         ffRef.hashCode));
@@ -196,7 +176,6 @@ class _$UserDocsRecord extends UserDocsRecord {
           ..add('datasetId', datasetId)
           ..add('documentName', documentName)
           ..add('createdOn', createdOn)
-          ..add('datasetRef', datasetRef)
           ..add('isActive', isActive)
           ..add('docId', docId)
           ..add('ffRef', ffRef))
@@ -220,11 +199,6 @@ class UserDocsRecordBuilder
   DateTime? get createdOn => _$this._createdOn;
   set createdOn(DateTime? createdOn) => _$this._createdOn = createdOn;
 
-  DocumentReference<Object?>? _datasetRef;
-  DocumentReference<Object?>? get datasetRef => _$this._datasetRef;
-  set datasetRef(DocumentReference<Object?>? datasetRef) =>
-      _$this._datasetRef = datasetRef;
-
   bool? _isActive;
   bool? get isActive => _$this._isActive;
   set isActive(bool? isActive) => _$this._isActive = isActive;
@@ -247,7 +221,6 @@ class UserDocsRecordBuilder
       _datasetId = $v.datasetId;
       _documentName = $v.documentName;
       _createdOn = $v.createdOn;
-      _datasetRef = $v.datasetRef;
       _isActive = $v.isActive;
       _docId = $v.docId;
       _ffRef = $v.ffRef;
@@ -276,7 +249,6 @@ class UserDocsRecordBuilder
             datasetId: datasetId,
             documentName: documentName,
             createdOn: createdOn,
-            datasetRef: datasetRef,
             isActive: isActive,
             docId: docId,
             ffRef: ffRef);

@@ -20,9 +20,6 @@ abstract class UserDocsRecord
   @BuiltValueField(wireName: 'created_on')
   DateTime? get createdOn;
 
-  @BuiltValueField(wireName: 'dataset_ref')
-  DocumentReference? get datasetRef;
-
   @BuiltValueField(wireName: 'is_active')
   bool? get isActive;
 
@@ -71,7 +68,6 @@ Map<String, dynamic> createUserDocsRecordData({
   String? datasetId,
   String? documentName,
   DateTime? createdOn,
-  DocumentReference? datasetRef,
   bool? isActive,
   String? docId,
 }) {
@@ -82,7 +78,6 @@ Map<String, dynamic> createUserDocsRecordData({
         ..datasetId = datasetId
         ..documentName = documentName
         ..createdOn = createdOn
-        ..datasetRef = datasetRef
         ..isActive = isActive
         ..docId = docId,
     ),

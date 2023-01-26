@@ -431,10 +431,10 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                 parent:
                                                                     currentUserReference,
                                                                 queryBuilder: (userDocsRecord) => userDocsRecord.where(
-                                                                    'dataset_ref',
+                                                                    'dataset_id',
                                                                     isEqualTo:
-                                                                        FFAppState()
-                                                                            .activeDataset),
+                                                                        columnUserDatasetsRecord
+                                                                            .datasetId),
                                                               ),
                                                               builder: (context,
                                                                   snapshot) {
