@@ -11,6 +11,7 @@ import 'schema/user_docs_record.dart';
 import 'schema/user_completions_record.dart';
 import 'schema/user_prompts_record.dart';
 import 'schema/user_temp_uploads_record.dart';
+import 'schema/feature_request_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -24,6 +25,7 @@ export 'schema/user_docs_record.dart';
 export 'schema/user_completions_record.dart';
 export 'schema/user_prompts_record.dart';
 export 'schema/user_temp_uploads_record.dart';
+export 'schema/feature_request_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -351,6 +353,58 @@ Future<FFFirestorePage<UserTempUploadsRecord>> queryUserTempUploadsRecordPage({
     queryCollectionPage(
       UserTempUploadsRecord.collection(parent),
       UserTempUploadsRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query FeatureRequestRecords (as a Stream and as a Future).
+Future<int> queryFeatureRequestRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      FeatureRequestRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<FeatureRequestRecord>> queryFeatureRequestRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      FeatureRequestRecord.collection,
+      FeatureRequestRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<FeatureRequestRecord>> queryFeatureRequestRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      FeatureRequestRecord.collection,
+      FeatureRequestRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<FeatureRequestRecord>> queryFeatureRequestRecordPage({
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+}) =>
+    queryCollectionPage(
+      FeatureRequestRecord.collection,
+      FeatureRequestRecord.serializer,
       queryBuilder: queryBuilder,
       nextPageMarker: nextPageMarker,
       pageSize: pageSize,
