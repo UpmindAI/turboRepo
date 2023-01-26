@@ -524,7 +524,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                     child: Padding(
                                                                                       padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                                                                       child: Text(
-                                                                                        listViewUserDocsRecord.documentName!,
+                                                                                        listViewUserDocsRecord.docTitle!,
                                                                                         style: FlutterFlowTheme.of(context).bodyText1,
                                                                                       ),
                                                                                     ),

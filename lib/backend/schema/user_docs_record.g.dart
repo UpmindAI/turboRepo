@@ -28,13 +28,6 @@ class _$UserDocsRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.documentName;
-    if (value != null) {
-      result
-        ..add('document_name')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     value = object.createdOn;
     if (value != null) {
       result
@@ -53,6 +46,27 @@ class _$UserDocsRecordSerializer
     if (value != null) {
       result
         ..add('doc_id')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.docTitle;
+    if (value != null) {
+      result
+        ..add('doc_title')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.timestamp;
+    if (value != null) {
+      result
+        ..add('timestamp')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DateTime)));
+    }
+    value = object.url;
+    if (value != null) {
+      result
+        ..add('url')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -83,10 +97,6 @@ class _$UserDocsRecordSerializer
           result.datasetId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'document_name':
-          result.documentName = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
         case 'created_on':
           result.createdOn = serializers.deserialize(value,
               specifiedType: const FullType(DateTime)) as DateTime?;
@@ -97,6 +107,18 @@ class _$UserDocsRecordSerializer
           break;
         case 'doc_id':
           result.docId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'doc_title':
+          result.docTitle = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'timestamp':
+          result.timestamp = serializers.deserialize(value,
+              specifiedType: const FullType(DateTime)) as DateTime?;
+          break;
+        case 'url':
+          result.url = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
         case 'Document__Reference__Field':
@@ -116,13 +138,17 @@ class _$UserDocsRecord extends UserDocsRecord {
   @override
   final String? datasetId;
   @override
-  final String? documentName;
-  @override
   final DateTime? createdOn;
   @override
   final bool? isActive;
   @override
   final String? docId;
+  @override
+  final String? docTitle;
+  @override
+  final DateTime? timestamp;
+  @override
+  final String? url;
   @override
   final DocumentReference<Object?>? ffRef;
 
@@ -131,10 +157,12 @@ class _$UserDocsRecord extends UserDocsRecord {
 
   _$UserDocsRecord._(
       {this.datasetId,
-      this.documentName,
       this.createdOn,
       this.isActive,
       this.docId,
+      this.docTitle,
+      this.timestamp,
+      this.url,
       this.ffRef})
       : super._();
 
@@ -151,10 +179,12 @@ class _$UserDocsRecord extends UserDocsRecord {
     if (identical(other, this)) return true;
     return other is UserDocsRecord &&
         datasetId == other.datasetId &&
-        documentName == other.documentName &&
         createdOn == other.createdOn &&
         isActive == other.isActive &&
         docId == other.docId &&
+        docTitle == other.docTitle &&
+        timestamp == other.timestamp &&
+        url == other.url &&
         ffRef == other.ffRef;
   }
 
@@ -163,10 +193,14 @@ class _$UserDocsRecord extends UserDocsRecord {
     return $jf($jc(
         $jc(
             $jc(
-                $jc($jc($jc(0, datasetId.hashCode), documentName.hashCode),
-                    createdOn.hashCode),
-                isActive.hashCode),
-            docId.hashCode),
+                $jc(
+                    $jc(
+                        $jc($jc($jc(0, datasetId.hashCode), createdOn.hashCode),
+                            isActive.hashCode),
+                        docId.hashCode),
+                    docTitle.hashCode),
+                timestamp.hashCode),
+            url.hashCode),
         ffRef.hashCode));
   }
 
@@ -174,10 +208,12 @@ class _$UserDocsRecord extends UserDocsRecord {
   String toString() {
     return (newBuiltValueToStringHelper(r'UserDocsRecord')
           ..add('datasetId', datasetId)
-          ..add('documentName', documentName)
           ..add('createdOn', createdOn)
           ..add('isActive', isActive)
           ..add('docId', docId)
+          ..add('docTitle', docTitle)
+          ..add('timestamp', timestamp)
+          ..add('url', url)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -191,10 +227,6 @@ class UserDocsRecordBuilder
   String? get datasetId => _$this._datasetId;
   set datasetId(String? datasetId) => _$this._datasetId = datasetId;
 
-  String? _documentName;
-  String? get documentName => _$this._documentName;
-  set documentName(String? documentName) => _$this._documentName = documentName;
-
   DateTime? _createdOn;
   DateTime? get createdOn => _$this._createdOn;
   set createdOn(DateTime? createdOn) => _$this._createdOn = createdOn;
@@ -206,6 +238,18 @@ class UserDocsRecordBuilder
   String? _docId;
   String? get docId => _$this._docId;
   set docId(String? docId) => _$this._docId = docId;
+
+  String? _docTitle;
+  String? get docTitle => _$this._docTitle;
+  set docTitle(String? docTitle) => _$this._docTitle = docTitle;
+
+  DateTime? _timestamp;
+  DateTime? get timestamp => _$this._timestamp;
+  set timestamp(DateTime? timestamp) => _$this._timestamp = timestamp;
+
+  String? _url;
+  String? get url => _$this._url;
+  set url(String? url) => _$this._url = url;
 
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
@@ -219,10 +263,12 @@ class UserDocsRecordBuilder
     final $v = _$v;
     if ($v != null) {
       _datasetId = $v.datasetId;
-      _documentName = $v.documentName;
       _createdOn = $v.createdOn;
       _isActive = $v.isActive;
       _docId = $v.docId;
+      _docTitle = $v.docTitle;
+      _timestamp = $v.timestamp;
+      _url = $v.url;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -247,10 +293,12 @@ class UserDocsRecordBuilder
     final _$result = _$v ??
         new _$UserDocsRecord._(
             datasetId: datasetId,
-            documentName: documentName,
             createdOn: createdOn,
             isActive: isActive,
             docId: docId,
+            docTitle: docTitle,
+            timestamp: timestamp,
+            url: url,
             ffRef: ffRef);
     replace(_$result);
     return _$result;
