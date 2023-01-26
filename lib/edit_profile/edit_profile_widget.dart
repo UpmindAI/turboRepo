@@ -1,5 +1,5 @@
+import '../components/main_menu_widget.dart';
 import '../components/profile_edit_widget.dart';
-import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -30,60 +30,12 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
 
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(100),
+        preferredSize: Size.fromHeight(50),
         child: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
-          title: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 14),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                        child: FlutterFlowIconButton(
-                          borderColor: Colors.transparent,
-                          borderRadius: 30,
-                          borderWidth: 1,
-                          buttonSize: 50,
-                          icon: Icon(
-                            Icons.arrow_back_rounded,
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            size: 30,
-                          ),
-                          onPressed: () async {
-                            context.pop();
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(24, 0, 0, 0),
-                  child: Text(
-                    'Edit Profile',
-                    style: FlutterFlowTheme.of(context).title2.override(
-                          fontFamily: FlutterFlowTheme.of(context).title2Family,
-                          color: FlutterFlowTheme.of(context).primaryText,
-                          fontSize: 22,
-                          useGoogleFonts: GoogleFonts.asMap().containsKey(
-                              FlutterFlowTheme.of(context).title2Family),
-                        ),
-                  ),
-                ),
-              ],
-            ),
-          ),
           actions: [],
           centerTitle: true,
           elevation: 0,
@@ -96,7 +48,58 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
           ),
-          child: ProfileEditWidget(),
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Expanded(
+                flex: 1,
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    MainMenuWidget(),
+                  ],
+                ),
+              ),
+              Expanded(
+                flex: 5,
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                      child: Material(
+                        color: Colors.transparent,
+                        elevation: 1,
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: 800,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            boxShadow: [
+                              BoxShadow(
+                                blurRadius: 4,
+                                color: Color(0x33000000),
+                                offset: Offset(0, 2),
+                              )
+                            ],
+                          ),
+                          child: ProfileEditWidget(),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                flex: 2,
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

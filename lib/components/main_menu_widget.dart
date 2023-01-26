@@ -1,6 +1,7 @@
 import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -291,28 +292,34 @@ class _MainMenuWidgetState extends State<MainMenuWidget> {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
-                                child: InkWell(
-                                  onTap: () async {
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0, 10, 0, 10),
+                                child: FFButtonWidget(
+                                  onPressed: () async {
                                     context.pushNamed('requestFeature');
                                   },
-                                  child: Text(
-                                    'I wish it could...',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyText1
+                                  text: 'I wish it could...',
+                                  options: FFButtonOptions(
+                                    width: 200,
+                                    height: 40,
+                                    color: Color(0xFF4EABF5),
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .subtitle2
                                         .override(
                                           fontFamily:
                                               FlutterFlowTheme.of(context)
-                                                  .bodyText1Family,
-                                          color: Color(0xFF4EABF5),
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.w900,
+                                                  .subtitle2Family,
+                                          color: Colors.white,
                                           useGoogleFonts: GoogleFonts.asMap()
                                               .containsKey(
                                                   FlutterFlowTheme.of(context)
-                                                      .bodyText1Family),
+                                                      .subtitle2Family),
                                         ),
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1,
+                                    ),
+                                    borderRadius: BorderRadius.circular(0),
                                   ),
                                 ),
                               ),
