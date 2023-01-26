@@ -351,9 +351,8 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                         apiResultf11 =
                                                             await DowloadServerCall
                                                                 .call(
-                                                          qid:
-                                                              resultUserCompletionsRecord!
-                                                                  .qid,
+                                                          qid: FFAppState()
+                                                              .setQid,
                                                           idToken:
                                                               currentJwtToken,
                                                         );
