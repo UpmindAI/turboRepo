@@ -51,7 +51,7 @@ class _HomeWidgetState extends State<HomeWidget> {
     super.initState();
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (FFAppState().firstLogin == true) {
+      if (FFAppState().firstLogin) {
         await showModalBottomSheet(
           isScrollControlled: true,
           backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -68,9 +68,7 @@ class _HomeWidgetState extends State<HomeWidget> {
           },
         ).then((value) => setState(() {}));
       } else {
-        if (!FFAppState().firstLogin) {
-          Navigator.pop(context);
-        }
+        Navigator.pop(context);
       }
     });
 
@@ -110,7 +108,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.56',
+                'v0.57',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),

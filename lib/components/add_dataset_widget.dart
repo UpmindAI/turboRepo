@@ -207,6 +207,7 @@ class _AddDatasetWidgetState extends State<AddDatasetWidget> {
                                   await UserDatasetsRecord.createDoc(
                                           currentUserReference!)
                                       .set(userDatasetsCreateData);
+                                  Navigator.pop(context);
                                 },
                                 text: 'Save',
                                 options: FFButtonOptions(
