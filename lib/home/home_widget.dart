@@ -55,7 +55,6 @@ class _HomeWidgetState extends State<HomeWidget> {
         await showModalBottomSheet(
           isScrollControlled: true,
           backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-          isDismissible: false,
           enableDrag: false,
           context: context,
           builder: (context) {
@@ -68,6 +67,10 @@ class _HomeWidgetState extends State<HomeWidget> {
             );
           },
         ).then((value) => setState(() {}));
+      } else {
+        if (!FFAppState().firstLogin) {
+          Navigator.pop(context);
+        }
       }
     });
 
@@ -107,7 +110,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.55',
+                'v0.56',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
