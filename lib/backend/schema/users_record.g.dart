@@ -61,6 +61,34 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.industry;
+    if (value != null) {
+      result
+        ..add('industry')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.role;
+    if (value != null) {
+      result
+        ..add('role')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.firstName;
+    if (value != null) {
+      result
+        ..add('first_name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.lastName;
+    if (value != null) {
+      result
+        ..add('last_name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -107,6 +135,22 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
           result.phoneNumber = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'industry':
+          result.industry = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'role':
+          result.role = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'first_name':
+          result.firstName = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'last_name':
+          result.lastName = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -134,6 +178,14 @@ class _$UsersRecord extends UsersRecord {
   @override
   final String? phoneNumber;
   @override
+  final String? industry;
+  @override
+  final String? role;
+  @override
+  final String? firstName;
+  @override
+  final String? lastName;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$UsersRecord([void Function(UsersRecordBuilder)? updates]) =>
@@ -146,6 +198,10 @@ class _$UsersRecord extends UsersRecord {
       this.uid,
       this.createdTime,
       this.phoneNumber,
+      this.industry,
+      this.role,
+      this.firstName,
+      this.lastName,
       this.ffRef})
       : super._();
 
@@ -166,6 +222,10 @@ class _$UsersRecord extends UsersRecord {
         uid == other.uid &&
         createdTime == other.createdTime &&
         phoneNumber == other.phoneNumber &&
+        industry == other.industry &&
+        role == other.role &&
+        firstName == other.firstName &&
+        lastName == other.lastName &&
         ffRef == other.ffRef;
   }
 
@@ -175,11 +235,21 @@ class _$UsersRecord extends UsersRecord {
         $jc(
             $jc(
                 $jc(
-                    $jc($jc($jc(0, email.hashCode), displayName.hashCode),
-                        photoUrl.hashCode),
-                    uid.hashCode),
-                createdTime.hashCode),
-            phoneNumber.hashCode),
+                    $jc(
+                        $jc(
+                            $jc(
+                                $jc(
+                                    $jc(
+                                        $jc($jc(0, email.hashCode),
+                                            displayName.hashCode),
+                                        photoUrl.hashCode),
+                                    uid.hashCode),
+                                createdTime.hashCode),
+                            phoneNumber.hashCode),
+                        industry.hashCode),
+                    role.hashCode),
+                firstName.hashCode),
+            lastName.hashCode),
         ffRef.hashCode));
   }
 
@@ -192,6 +262,10 @@ class _$UsersRecord extends UsersRecord {
           ..add('uid', uid)
           ..add('createdTime', createdTime)
           ..add('phoneNumber', phoneNumber)
+          ..add('industry', industry)
+          ..add('role', role)
+          ..add('firstName', firstName)
+          ..add('lastName', lastName)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -224,6 +298,22 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   String? get phoneNumber => _$this._phoneNumber;
   set phoneNumber(String? phoneNumber) => _$this._phoneNumber = phoneNumber;
 
+  String? _industry;
+  String? get industry => _$this._industry;
+  set industry(String? industry) => _$this._industry = industry;
+
+  String? _role;
+  String? get role => _$this._role;
+  set role(String? role) => _$this._role = role;
+
+  String? _firstName;
+  String? get firstName => _$this._firstName;
+  set firstName(String? firstName) => _$this._firstName = firstName;
+
+  String? _lastName;
+  String? get lastName => _$this._lastName;
+  set lastName(String? lastName) => _$this._lastName = lastName;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -241,6 +331,10 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
       _uid = $v.uid;
       _createdTime = $v.createdTime;
       _phoneNumber = $v.phoneNumber;
+      _industry = $v.industry;
+      _role = $v.role;
+      _firstName = $v.firstName;
+      _lastName = $v.lastName;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -270,6 +364,10 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
             uid: uid,
             createdTime: createdTime,
             phoneNumber: phoneNumber,
+            industry: industry,
+            role: role,
+            firstName: firstName,
+            lastName: lastName,
             ffRef: ffRef);
     replace(_$result);
     return _$result;

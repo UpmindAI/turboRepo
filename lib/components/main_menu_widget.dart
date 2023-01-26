@@ -287,6 +287,37 @@ class _MainMenuWidgetState extends State<MainMenuWidget> {
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+                                child: InkWell(
+                                  onTap: () async {
+                                    context.pushNamed('requestFeature');
+                                  },
+                                  child: Text(
+                                    'I wish it could...',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyText1
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyText1Family,
+                                          color: Color(0xFF4EABF5),
+                                          fontSize: 19,
+                                          fontWeight: FontWeight.w900,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText1Family),
+                                        ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                           Divider(
                             height: 12,
                             thickness: 2,

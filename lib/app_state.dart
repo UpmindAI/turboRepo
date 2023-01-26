@@ -19,6 +19,7 @@ class FFAppState extends ChangeNotifier {
     prefs = await SharedPreferences.getInstance();
     _selectedDataset =
         prefs.getStringList('ff_selectedDataset') ?? _selectedDataset;
+    _firstLogin = prefs.getBool('ff_firstLogin') ?? _firstLogin;
   }
 
   void update(VoidCallback callback) {
@@ -81,6 +82,13 @@ class FFAppState extends ChangeNotifier {
   int get setTopK => _setTopK;
   set setTopK(int _value) {
     _setTopK = _value;
+  }
+
+  bool _firstLogin = true;
+  bool get firstLogin => _firstLogin;
+  set firstLogin(bool _value) {
+    _firstLogin = _value;
+    prefs.setBool('ff_firstLogin', _value);
   }
 }
 
