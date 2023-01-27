@@ -32,9 +32,9 @@ class _HomeWidgetState extends State<HomeWidget> {
   List<UserDatasetsRecord> get checkboxCheckedItems =>
       checkboxValueMap.entries.where((e) => e.value).map((e) => e.key).toList();
 
+  double? topKValue;
   double? sliderValue1;
   double? sliderValue2;
-  double? sliderValue3;
   String? dropDownValue;
   UserPromptsRecord? setPrompt;
   TextEditingController? textController;
@@ -105,7 +105,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.64',
+                'v0.65',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -262,7 +262,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                     AlignmentDirectional(1, -1),
                                                 child: Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(20, 0, 0, 0),
+                                                      .fromSTEB(20, 20, 0, 0),
                                                   child: FFButtonWidget(
                                                     onPressed: () async {
                                                       FFAppState().update(() {
@@ -346,57 +346,96 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                   ),
                                                 ),
                                               ),
-                                              Align(
-                                                alignment:
-                                                    AlignmentDirectional(-1, 0),
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(20, 0, 0, 0),
-                                                  child: FlutterFlowDropDown<
-                                                      String>(
-                                                    options: [
-                                                      'GPT-3',
-                                                      'My Datasets'
-                                                    ],
-                                                    onChanged: (val) =>
-                                                        setState(() =>
-                                                            dropDownValue =
-                                                                val),
-                                                    width: 280,
-                                                    height: 50,
-                                                    textStyle: FlutterFlowTheme
-                                                            .of(context)
-                                                        .bodyText1
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyText1Family,
-                                                          color: Colors.black,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyText1Family),
-                                                        ),
-                                                    hintText:
-                                                        'Select Prompt Target...',
-                                                    fillColor: Colors.white,
-                                                    elevation: 2,
-                                                    borderColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .alternate,
-                                                    borderWidth: 1,
-                                                    borderRadius: 0,
-                                                    margin:
+                                              Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Padding(
+                                                    padding:
                                                         EdgeInsetsDirectional
                                                             .fromSTEB(
-                                                                12, 4, 12, 4),
-                                                    hidesUnderline: true,
+                                                                0, 0, 0, 5),
+                                                    child: Text(
+                                                      'Select Target:',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyText1Family,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .tertiaryColor,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyText1Family),
+                                                              ),
+                                                    ),
                                                   ),
-                                                ),
+                                                  Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            -1, 0),
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  20, 0, 0, 0),
+                                                      child:
+                                                          FlutterFlowDropDown<
+                                                              String>(
+                                                        initialOption:
+                                                            dropDownValue ??=
+                                                                'My Data + GPT',
+                                                        options: [
+                                                          'My Data + GPT',
+                                                          'GPT Only',
+                                                          'My Data Only'
+                                                        ],
+                                                        onChanged: (val) =>
+                                                            setState(() =>
+                                                                dropDownValue =
+                                                                    val),
+                                                        width: 280,
+                                                        height: 50,
+                                                        textStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyText1Family,
+                                                                  color: Colors
+                                                                      .black,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyText1Family),
+                                                                ),
+                                                        hintText:
+                                                            'Select Prompt Target...',
+                                                        fillColor: Colors.white,
+                                                        elevation: 2,
+                                                        borderColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
+                                                        borderWidth: 1,
+                                                        borderRadius: 0,
+                                                        margin:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(12, 4,
+                                                                    12, 4),
+                                                        hidesUnderline: true,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                             ],
                                           ),
@@ -706,7 +745,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                           valueOrDefault<
                                                               String>(
                                                             formatNumber(
-                                                              sliderValue1,
+                                                              topKValue,
                                                               formatType:
                                                                   FormatType
                                                                       .custom,
@@ -732,18 +771,19 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                       Color(0xFF9E9E9E),
                                                   min: 1,
                                                   max: 100,
-                                                  value: sliderValue1 ??= 1,
-                                                  label:
-                                                      sliderValue1.toString(),
+                                                  value: topKValue ??=
+                                                      FFAppState().setTopK,
+                                                  label: topKValue.toString(),
                                                   divisions: 99,
-                                                  onChanged: (newValue) {
+                                                  onChanged: (newValue) async {
                                                     newValue = double.parse(
                                                         newValue
                                                             .toStringAsFixed(
                                                                 0));
                                                     setState(() =>
-                                                        sliderValue1 =
-                                                            newValue);
+                                                        topKValue = newValue);
+                                                    FFAppState().setTopK =
+                                                        topKValue!;
                                                   },
                                                 ),
                                               ],
@@ -783,7 +823,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                           valueOrDefault<
                                                               String>(
                                                             formatNumber(
-                                                              sliderValue2,
+                                                              sliderValue1,
                                                               formatType:
                                                                   FormatType
                                                                       .custom,
@@ -809,9 +849,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                       Color(0xFF9E9E9E),
                                                   min: 1,
                                                   max: 4000,
-                                                  value: sliderValue2 ??= 1,
+                                                  value: sliderValue1 ??= 1,
                                                   label:
-                                                      sliderValue2.toString(),
+                                                      sliderValue1.toString(),
                                                   divisions: 3999,
                                                   onChanged: (newValue) {
                                                     newValue = double.parse(
@@ -819,7 +859,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                             .toStringAsFixed(
                                                                 0));
                                                     setState(() =>
-                                                        sliderValue2 =
+                                                        sliderValue1 =
                                                             newValue);
                                                   },
                                                 ),
@@ -860,7 +900,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                           valueOrDefault<
                                                               String>(
                                                             formatNumber(
-                                                              sliderValue3,
+                                                              sliderValue2,
                                                               formatType:
                                                                   FormatType
                                                                       .custom,
@@ -886,9 +926,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                       Color(0xFF9E9E9E),
                                                   min: 0,
                                                   max: 1,
-                                                  value: sliderValue3 ??= 0.7,
+                                                  value: sliderValue2 ??= 0.7,
                                                   label:
-                                                      sliderValue3.toString(),
+                                                      sliderValue2.toString(),
                                                   divisions: 1,
                                                   onChanged: (newValue) {
                                                     newValue = double.parse(
@@ -896,7 +936,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                             .toStringAsFixed(
                                                                 1));
                                                     setState(() =>
-                                                        sliderValue3 =
+                                                        sliderValue2 =
                                                             newValue);
                                                   },
                                                 ),

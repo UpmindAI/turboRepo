@@ -140,7 +140,7 @@ class PineconeQueryCall {
   }
 }
 
-class DowloadServerCall {
+class DownloadServerCall {
   static Future<ApiCallResponse> call({
     String? qid = '',
     String? idToken = '',
@@ -151,7 +151,7 @@ class DowloadServerCall {
   "id_token": "${idToken}"
 }''';
     return ApiManager.instance.makeApiCall(
-      callName: 'dowloadServer',
+      callName: 'downloadServer',
       apiUrl: 'https://dvdownloads-p67td2b2aq-uc.a.run.app',
       callType: ApiCallType.POST,
       headers: {},
@@ -183,6 +183,38 @@ class ScrapeServerCall {
     return ApiManager.instance.makeApiCall(
       callName: 'scrapeServer',
       apiUrl: 'https://dvscrapeserver-p67td2b2aq-uc.a.run.app',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
+class DatasetGPTserverCall {
+  static Future<ApiCallResponse> call({
+    String? qid = '',
+    List<String>? datasetIdsList,
+    int? topK,
+    String? idToken = '',
+  }) {
+    final datasetIds = _serializeList(datasetIdsList);
+
+    final body = '''
+{
+  "qid": "${qid}",
+  "dataset_ids": ${datasetIds},
+  "top_k": ${topK},
+  "id_token": "${idToken}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'datasetGPTserver',
+      apiUrl: 'https://turbomixedquery-p67td2b2aq-uc.a.run.app',
       callType: ApiCallType.POST,
       headers: {},
       params: {},

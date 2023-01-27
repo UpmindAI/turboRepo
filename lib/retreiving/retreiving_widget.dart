@@ -18,6 +18,7 @@ class RetreivingWidget extends StatefulWidget {
 class _RetreivingWidgetState extends State<RetreivingWidget> {
   ApiCallResponse? apiResultGPT;
   ApiCallResponse? apiResultPC;
+  ApiCallResponse? apiResultdataGPT;
   final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -26,7 +27,7 @@ class _RetreivingWidgetState extends State<RetreivingWidget> {
     super.initState();
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (FFAppState().setEngine == 'GPT-3') {
+      if (FFAppState().setEngine == 'GPT Only') {
         apiResultGPT = await GPTqueryCall.call(
           qid: FFAppState().setQid,
           idToken: currentJwtToken,
@@ -44,12 +45,12 @@ class _RetreivingWidgetState extends State<RetreivingWidget> {
           ),
         );
       } else {
-        if (FFAppState().setEngine == 'My Datasets') {
+        if (FFAppState().setEngine == 'My Data Only') {
           apiResultPC = await PineconeQueryCall.call(
             idToken: currentJwtToken,
             qid: FFAppState().setQid,
             datasetIdsList: FFAppState().selectedDataset,
-            topK: FFAppState().setTopK,
+            topK: FFAppState().setTopK.round(),
           );
           if ((apiResultPC?.succeeded ?? true)) {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -82,7 +83,42 @@ class _RetreivingWidgetState extends State<RetreivingWidget> {
             context.pop();
           }
         } else {
-          context.pop();
+          if (FFAppState().setEngine == 'My Data + GPT') {
+            apiResultdataGPT = await DatasetGPTserverCall.call(
+              qid: FFAppState().setQid,
+              datasetIdsList: FFAppState().selectedDataset,
+              topK: FFAppState().setTopK.round(),
+              idToken: currentJwtToken,
+            );
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(
+                  (apiResultdataGPT?.statusCode ?? 200).toString(),
+                  style: TextStyle(
+                    color: FlutterFlowTheme.of(context).primaryText,
+                  ),
+                ),
+                duration: Duration(milliseconds: 4000),
+                backgroundColor: Color(0x00000000),
+              ),
+            );
+
+            context.pushNamed('Result');
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(
+                  (apiResultdataGPT?.statusCode ?? 200).toString(),
+                  style: TextStyle(
+                    color: FlutterFlowTheme.of(context).primaryText,
+                  ),
+                ),
+                duration: Duration(milliseconds: 4000),
+                backgroundColor: Color(0x00000000),
+              ),
+            );
+            context.pop();
+          }
         }
 
         return;

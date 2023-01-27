@@ -78,17 +78,17 @@ class FFAppState extends ChangeNotifier {
     _setCompletion = _value;
   }
 
-  int _setTopK = 5;
-  int get setTopK => _setTopK;
-  set setTopK(int _value) {
-    _setTopK = _value;
-  }
-
   bool _firstLogin = false;
   bool get firstLogin => _firstLogin;
   set firstLogin(bool _value) {
     _firstLogin = _value;
     prefs.setBool('ff_firstLogin', _value);
+  }
+
+  double _setTopK = 5;
+  double get setTopK => _setTopK;
+  set setTopK(double _value) {
+    _setTopK = _value;
   }
 }
 
