@@ -349,7 +349,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                     child: FFButtonWidget(
                                                       onPressed: () async {
                                                         apiResultf11 =
-                                                            await DowloadServerCall
+                                                            await DownloadServerCall
                                                                 .call(
                                                           qid: FFAppState()
                                                               .setQid,
