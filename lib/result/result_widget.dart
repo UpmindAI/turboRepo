@@ -18,7 +18,7 @@ class ResultWidget extends StatefulWidget {
 }
 
 class _ResultWidgetState extends State<ResultWidget> {
-  ApiCallResponse? apiResultf11;
+  ApiCallResponse? apiResult4sp;
   final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -348,7 +348,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                                 0, 10, 20, 0),
                                                     child: FFButtonWidget(
                                                       onPressed: () async {
-                                                        apiResultf11 =
+                                                        apiResult4sp =
                                                             await DownloadServerCall
                                                                 .call(
                                                           qid: FFAppState()
@@ -356,7 +356,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                           idToken:
                                                               currentJwtToken,
                                                         );
-                                                        if ((apiResultf11
+                                                        if ((apiResult4sp
                                                                 ?.succeeded ??
                                                             true)) {
                                                           ScaffoldMessenger.of(
@@ -364,7 +364,10 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                               .showSnackBar(
                                                             SnackBar(
                                                               content: Text(
-                                                                'Generating. Your document will be ready on a moment!',
+                                                                (apiResult4sp
+                                                                            ?.statusCode ??
+                                                                        200)
+                                                                    .toString(),
                                                                 style:
                                                                     TextStyle(
                                                                   color: FlutterFlowTheme.of(
@@ -376,9 +379,8 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                                   milliseconds:
                                                                       4000),
                                                               backgroundColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryBackground,
+                                                                  Color(
+                                                                      0x00000000),
                                                             ),
                                                           );
                                                         } else {
@@ -387,7 +389,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                               .showSnackBar(
                                                             SnackBar(
                                                               content: Text(
-                                                                (apiResultf11
+                                                                (apiResult4sp
                                                                             ?.statusCode ??
                                                                         200)
                                                                     .toString(),
@@ -520,7 +522,45 @@ class _ResultWidgetState extends State<ResultWidget> {
                         flex: 2,
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
-                          children: [],
+                          children: [
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(10, 0, 20, 0),
+                              child: Material(
+                                color: Colors.transparent,
+                                elevation: 1,
+                                child: Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  height: 800,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        blurRadius: 4,
+                                        color: Color(0x33000000),
+                                        offset: Offset(0, 2),
+                                      )
+                                    ],
+                                  ),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 20, 0, 0),
+                                        child: Text(
+                                          FFAppState().setQid,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText1,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],

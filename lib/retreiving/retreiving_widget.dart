@@ -50,7 +50,7 @@ class _RetreivingWidgetState extends State<RetreivingWidget> {
             idToken: currentJwtToken,
             qid: FFAppState().setQid,
             datasetIdsList: FFAppState().selectedDataset,
-            topK: FFAppState().setTopK.round(),
+            topK: FFAppState().setTopK,
           );
           if ((apiResultPC?.succeeded ?? true)) {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -87,9 +87,40 @@ class _RetreivingWidgetState extends State<RetreivingWidget> {
             apiResultdataGPT = await DatasetGPTserverCall.call(
               qid: FFAppState().setQid,
               datasetIdsList: FFAppState().selectedDataset,
-              topK: FFAppState().setTopK.round(),
+              topK: FFAppState().setTopK,
               idToken: currentJwtToken,
             );
+            if ((apiResultdataGPT?.succeeded ?? true)) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    (apiResultdataGPT?.statusCode ?? 200).toString(),
+                    style: TextStyle(
+                      color: FlutterFlowTheme.of(context).primaryText,
+                    ),
+                  ),
+                  duration: Duration(milliseconds: 4000),
+                  backgroundColor: Color(0x00000000),
+                ),
+              );
+
+              context.pushNamed('Result');
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    (apiResultdataGPT?.statusCode ?? 200).toString(),
+                    style: TextStyle(
+                      color: FlutterFlowTheme.of(context).primaryText,
+                    ),
+                  ),
+                  duration: Duration(milliseconds: 4000),
+                  backgroundColor: Color(0x00000000),
+                ),
+              );
+              context.pop();
+            }
+
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(
@@ -105,18 +136,6 @@ class _RetreivingWidgetState extends State<RetreivingWidget> {
 
             context.pushNamed('Result');
           } else {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(
-                  (apiResultdataGPT?.statusCode ?? 200).toString(),
-                  style: TextStyle(
-                    color: FlutterFlowTheme.of(context).primaryText,
-                  ),
-                ),
-                duration: Duration(milliseconds: 4000),
-                backgroundColor: Color(0x00000000),
-              ),
-            );
             context.pop();
           }
         }

@@ -14,70 +14,6 @@ const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 class PromptsGroup {
   static String baseUrl = 'https://turboqueries-p67td2b2aq-uc.a.run.app';
   static Map<String, String> headers = {};
-  static PineconeCall pineconeCall = PineconeCall();
-  static GptCall gptCall = GptCall();
-}
-
-class PineconeCall {
-  Future<ApiCallResponse> call({
-    String? qid = '',
-    List<String>? datasetIdsList,
-    double? topK,
-    String? idToken = '',
-  }) {
-    final datasetIds = _serializeList(datasetIdsList);
-
-    final body = '''
-{
-  "qid": "${qid}",
-  "dataset_ids": "${datasetIds}",
-  "top_k": ${topK},
-  "id_token": "${idToken}"
-}''';
-    return ApiManager.instance.makeApiCall(
-      callName: 'Pinecone',
-      apiUrl: '${PromptsGroup.baseUrl}/pinecone',
-      callType: ApiCallType.POST,
-      headers: {
-        ...PromptsGroup.headers,
-      },
-      params: {},
-      body: body,
-      bodyType: BodyType.JSON,
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-    );
-  }
-}
-
-class GptCall {
-  Future<ApiCallResponse> call({
-    String? qid = '',
-    String? idToken = '',
-  }) {
-    final body = '''
-{
-  "qid": "${qid}",
-  "id_token": "${idToken}"
-}''';
-    return ApiManager.instance.makeApiCall(
-      callName: 'GPT',
-      apiUrl: '${PromptsGroup.baseUrl}/gpt3',
-      callType: ApiCallType.POST,
-      headers: {
-        ...PromptsGroup.headers,
-      },
-      params: {},
-      body: body,
-      bodyType: BodyType.JSON,
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-    );
-  }
 }
 
 /// End Prompts Group Code
@@ -113,7 +49,7 @@ class PineconeQueryCall {
     String? idToken = '',
     String? qid = '',
     List<String>? datasetIdsList,
-    int? topK,
+    double? topK,
   }) {
     final datasetIds = _serializeList(datasetIdsList);
 
@@ -127,32 +63,6 @@ class PineconeQueryCall {
     return ApiManager.instance.makeApiCall(
       callName: 'PineconeQuery',
       apiUrl: 'https://turbopineconequery-p67td2b2aq-uc.a.run.app',
-      callType: ApiCallType.POST,
-      headers: {},
-      params: {},
-      body: body,
-      bodyType: BodyType.JSON,
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-    );
-  }
-}
-
-class DownloadServerCall {
-  static Future<ApiCallResponse> call({
-    String? qid = '',
-    String? idToken = '',
-  }) {
-    final body = '''
-{
-  "qid": "${qid}",
-  "id_token": "${idToken}"
-}''';
-    return ApiManager.instance.makeApiCall(
-      callName: 'downloadServer',
-      apiUrl: 'https://dvdownloads-p67td2b2aq-uc.a.run.app',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -200,7 +110,7 @@ class DatasetGPTserverCall {
   static Future<ApiCallResponse> call({
     String? qid = '',
     List<String>? datasetIdsList,
-    int? topK,
+    double? topK,
     String? idToken = '',
   }) {
     final datasetIds = _serializeList(datasetIdsList);
@@ -215,6 +125,32 @@ class DatasetGPTserverCall {
     return ApiManager.instance.makeApiCall(
       callName: 'datasetGPTserver',
       apiUrl: 'https://turbomixedquery-p67td2b2aq-uc.a.run.app',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
+class DownloadServerCall {
+  static Future<ApiCallResponse> call({
+    String? qid = '',
+    String? idToken = '',
+  }) {
+    final body = '''
+{
+  "qid": "${qid}",
+  "id_token": "${idToken}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'downloadServer',
+      apiUrl: 'https://dvdownloads-p67td2b2aq-uc.a.run.app',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
