@@ -175,7 +175,7 @@ class ScrapeServerCall {
   }) {
     final body = '''
 {
-  "source_url": "<url>",
+  "source_url": "${sourceUrl}",
   "dataset_id": "${datasetId}",
   "id_token": "${idToken}",
   "dataset_name": "${datasetName}"
