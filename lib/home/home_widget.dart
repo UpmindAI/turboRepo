@@ -61,8 +61,6 @@ class _HomeWidgetState extends State<HomeWidget> {
             );
           },
         ).then((value) => setState(() {}));
-      } else {
-        return;
       }
     });
 
@@ -101,7 +99,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.67',
+                'v0.68',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),

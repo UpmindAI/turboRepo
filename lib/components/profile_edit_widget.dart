@@ -370,9 +370,11 @@ class _ProfileEditWidgetState extends State<ProfileEditWidget> {
                         industryController?.clear();
                         roleController?.clear();
                       });
+                      await Future.delayed(const Duration(milliseconds: 500));
                       FFAppState().update(() {
                         FFAppState().firstLogin = false;
                       });
+                      await Future.delayed(const Duration(milliseconds: 500));
                       Navigator.pop(context);
                     },
                     text: 'Save Changes',

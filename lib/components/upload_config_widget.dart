@@ -30,6 +30,9 @@ class _UploadConfigWidgetState extends State<UploadConfigWidget> {
     return Container(
       width: 500,
       height: 500,
+      constraints: BoxConstraints(
+        maxWidth: 600,
+      ),
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
       ),

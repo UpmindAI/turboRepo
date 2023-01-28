@@ -79,7 +79,7 @@ class FFAppState extends ChangeNotifier {
     _setCompletion = _value;
   }
 
-  bool _firstLogin = false;
+  bool _firstLogin = true;
   bool get firstLogin => _firstLogin;
   set firstLogin(bool _value) {
     _firstLogin = _value;
