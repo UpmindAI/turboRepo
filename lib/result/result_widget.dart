@@ -348,6 +348,26 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                                 0, 10, 20, 0),
                                                     child: FFButtonWidget(
                                                       onPressed: () async {
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(
+                                                          SnackBar(
+                                                            content: Text(
+                                                              'Generating .docx document.',
+                                                              style: TextStyle(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryBackground,
+                                                              ),
+                                                            ),
+                                                            duration: Duration(
+                                                                milliseconds:
+                                                                    4000),
+                                                            backgroundColor:
+                                                                Color(
+                                                                    0x00000000),
+                                                          ),
+                                                        );
                                                         apiResult4sp =
                                                             await DownloadServerCall
                                                                 .call(
@@ -361,26 +381,30 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                             true)) {
                                                           ScaffoldMessenger.of(
                                                                   context)
+                                                              .clearSnackBars();
+                                                          ScaffoldMessenger.of(
+                                                                  context)
                                                               .showSnackBar(
                                                             SnackBar(
                                                               content: Text(
-                                                                (apiResult4sp
-                                                                            ?.statusCode ??
-                                                                        200)
-                                                                    .toString(),
+                                                                'Your docx have been generated! Click Download .docx to download your document.',
                                                                 style:
                                                                     TextStyle(
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .primaryText,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
                                                                 ),
                                                               ),
                                                               duration: Duration(
                                                                   milliseconds:
                                                                       4000),
                                                               backgroundColor:
-                                                                  Color(
-                                                                      0x00000000),
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryBackground,
                                                             ),
                                                           );
                                                         } else {
@@ -474,9 +498,8 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                             FFButtonOptions(
                                                           width: 200,
                                                           height: 40,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryColor,
+                                                          color:
+                                                              Color(0xFF4EABF5),
                                                           textStyle:
                                                               FlutterFlowTheme.of(
                                                                       context)
