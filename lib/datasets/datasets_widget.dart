@@ -5,6 +5,7 @@ import '../backend/firebase_storage/storage.dart';
 import '../components/add_dataset_widget.dart';
 import '../components/confirm_delete_widget.dart';
 import '../components/main_menu_widget.dart';
+import '../components/upload_config_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -672,6 +673,67 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                     mainAxisSize:
                                                         MainAxisSize.max,
                                                     children: [
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Expanded(
+                                                            child: Align(
+                                                              alignment:
+                                                                  AlignmentDirectional(
+                                                                      1, 0),
+                                                              child: Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0,
+                                                                            0,
+                                                                            20,
+                                                                            0),
+                                                                child: InkWell(
+                                                                  onTap:
+                                                                      () async {
+                                                                    await showModalBottomSheet(
+                                                                      isScrollControlled:
+                                                                          true,
+                                                                      backgroundColor:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .secondaryBackground,
+                                                                      enableDrag:
+                                                                          false,
+                                                                      context:
+                                                                          context,
+                                                                      builder:
+                                                                          (context) {
+                                                                        return Padding(
+                                                                          padding:
+                                                                              MediaQuery.of(context).viewInsets,
+                                                                          child:
+                                                                              Container(
+                                                                            height:
+                                                                                500,
+                                                                            child:
+                                                                                UploadConfigWidget(),
+                                                                          ),
+                                                                        );
+                                                                      },
+                                                                    ).then((value) =>
+                                                                        setState(
+                                                                            () {}));
+                                                                  },
+                                                                  child: Icon(
+                                                                    Icons
+                                                                        .settings_outlined,
+                                                                    color: Colors
+                                                                        .black,
+                                                                    size: 24,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
                                                       Container(
                                                         width: 300,
                                                         height: 37,
@@ -704,6 +766,12 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                 datasetId:
                                                                     columnUserDatasetsRecord
                                                                         .datasetId,
+                                                                chunkSize:
+                                                                    FFAppState()
+                                                                        .setChunkSize,
+                                                                datasetName:
+                                                                    columnUserDatasetsRecord
+                                                                        .datasetName,
                                                               ),
                                                             ),
                                                           ),
@@ -835,8 +903,8 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                       Padding(
                                                         padding:
                                                             EdgeInsetsDirectional
-                                                                .fromSTEB(0, 20,
-                                                                    0, 20),
+                                                                .fromSTEB(0, 10,
+                                                                    0, 10),
                                                         child: Text(
                                                           'or',
                                                           style: FlutterFlowTheme
