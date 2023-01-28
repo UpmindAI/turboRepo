@@ -98,7 +98,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.69',
+                'v0.70',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -303,7 +303,7 @@ class _HomeWidgetState extends State<HomeWidget> {
 
                                                       setState(() {});
                                                     },
-                                                    text: 'Send',
+                                                    text: 'OMP!',
                                                     options: FFButtonOptions(
                                                       width: 130,
                                                       height: 40,
@@ -321,6 +321,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                     .subtitle2Family,
                                                                 color: Colors
                                                                     .white,
+                                                                fontSize: 20,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
                                                                 useGoogleFonts: GoogleFonts
                                                                         .asMap()
                                                                     .containsKey(
@@ -432,7 +436,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                               ),
                                               Padding(
                                                 padding: EdgeInsetsDirectional
-                                                    .fromSTEB(20, 15, 0, 0),
+                                                    .fromSTEB(20, 18, 0, 0),
                                                 child: InkWell(
                                                   onTap: () async {
                                                     await showModalBottomSheet(
