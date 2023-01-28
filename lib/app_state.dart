@@ -20,6 +20,7 @@ class FFAppState extends ChangeNotifier {
     _selectedDataset =
         prefs.getStringList('ff_selectedDataset') ?? _selectedDataset;
     _firstLogin = prefs.getBool('ff_firstLogin') ?? _firstLogin;
+    _setChunkSize = prefs.getDouble('ff_setChunkSize') ?? _setChunkSize;
   }
 
   void update(VoidCallback callback) {
@@ -89,6 +90,13 @@ class FFAppState extends ChangeNotifier {
   double get setTopK => _setTopK;
   set setTopK(double _value) {
     _setTopK = _value;
+  }
+
+  double _setChunkSize = 0.0;
+  double get setChunkSize => _setChunkSize;
+  set setChunkSize(double _value) {
+    _setChunkSize = _value;
+    prefs.setDouble('ff_setChunkSize', _value);
   }
 }
 

@@ -33,16 +33,12 @@ class _HomeWidgetState extends State<HomeWidget> {
       checkboxValueMap.entries.where((e) => e.value).map((e) => e.key).toList();
 
   double? topKValue;
-  double? sliderValue1;
-  double? sliderValue2;
   String? dropDownValue;
   UserPromptsRecord? setPrompt;
   TextEditingController? textController;
   final formKey1 = GlobalKey<FormState>();
-  final formKey2 = GlobalKey<FormState>();
-  final formKey3 = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final formKey4 = GlobalKey<FormState>();
+  final formKey2 = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -105,7 +101,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.66',
+                'v0.67',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -163,7 +159,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                       ],
                                     ),
                                     child: Form(
-                                      key: formKey3,
+                                      key: formKey1,
                                       autovalidateMode:
                                           AutovalidateMode.disabled,
                                       child: Column(
@@ -719,7 +715,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 .secondaryBackground,
                                           ),
                                           child: Form(
-                                            key: formKey4,
+                                            key: formKey2,
                                             autovalidateMode:
                                                 AutovalidateMode.disabled,
                                             child: Column(
@@ -795,153 +791,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
-                                          ),
-                                          child: Form(
-                                            key: formKey2,
-                                            autovalidateMode:
-                                                AutovalidateMode.disabled,
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Text(
-                                                      'Maximum length',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyText1,
-                                                    ),
-                                                    Expanded(
-                                                      child: Align(
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                1, 0),
-                                                        child: Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            formatNumber(
-                                                              sliderValue1,
-                                                              formatType:
-                                                                  FormatType
-                                                                      .custom,
-                                                              format: '#',
-                                                              locale: '',
-                                                            ),
-                                                            '1',
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText1,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Slider(
-                                                  activeColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primaryColor,
-                                                  inactiveColor:
-                                                      Color(0xFF9E9E9E),
-                                                  min: 1,
-                                                  max: 4000,
-                                                  value: sliderValue1 ??= 1,
-                                                  label:
-                                                      sliderValue1.toString(),
-                                                  divisions: 3999,
-                                                  onChanged: (newValue) {
-                                                    newValue = double.parse(
-                                                        newValue
-                                                            .toStringAsFixed(
-                                                                0));
-                                                    setState(() =>
-                                                        sliderValue1 =
-                                                            newValue);
-                                                  },
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        Container(
-                                          width: 260,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                          ),
-                                          child: Form(
-                                            key: formKey1,
-                                            autovalidateMode:
-                                                AutovalidateMode.disabled,
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Text(
-                                                      'Temperature',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyText1,
-                                                    ),
-                                                    Expanded(
-                                                      child: Align(
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                1, 0),
-                                                        child: Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            formatNumber(
-                                                              sliderValue2,
-                                                              formatType:
-                                                                  FormatType
-                                                                      .custom,
-                                                              format: '#',
-                                                              locale: '',
-                                                            ),
-                                                            '1',
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText1,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Slider(
-                                                  activeColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primaryColor,
-                                                  inactiveColor:
-                                                      Color(0xFF9E9E9E),
-                                                  min: 0,
-                                                  max: 1,
-                                                  value: sliderValue2 ??= 0.7,
-                                                  label:
-                                                      sliderValue2.toString(),
-                                                  divisions: 1,
-                                                  onChanged: (newValue) {
-                                                    newValue = double.parse(
-                                                        newValue
-                                                            .toStringAsFixed(
-                                                                1));
-                                                    setState(() =>
-                                                        sliderValue2 =
-                                                            newValue);
-                                                  },
-                                                ),
-                                              ],
-                                            ),
                                           ),
                                         ),
                                       ],
