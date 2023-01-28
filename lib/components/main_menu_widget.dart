@@ -1,8 +1,11 @@
 import '../auth/auth_util.dart';
+import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,7 +18,24 @@ class MainMenuWidget extends StatefulWidget {
   _MainMenuWidgetState createState() => _MainMenuWidgetState();
 }
 
-class _MainMenuWidgetState extends State<MainMenuWidget> {
+class _MainMenuWidgetState extends State<MainMenuWidget>
+    with TickerProviderStateMixin {
+  final animationsMap = {
+    'imageOnPageLoadAnimation': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        ShakeEffect(
+          curve: Curves.easeInOut,
+          delay: 1000.ms,
+          duration: 1000.ms,
+          hz: 10,
+          offset: Offset(0, 0),
+          rotation: 0.087,
+        ),
+      ],
+    ),
+  };
+
   @override
   void initState() {
     super.initState();
@@ -178,59 +198,6 @@ class _MainMenuWidgetState extends State<MainMenuWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
                     child: InkWell(
                       onTap: () async {
-                        context.pushNamed('History');
-                      },
-                      child: Container(
-                        width: double.infinity,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                          borderRadius: BorderRadius.circular(12),
-                          shape: BoxShape.rectangle,
-                        ),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
-                                child: Container(
-                                  width: 4,
-                                  height: 60,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryBackground,
-                                    borderRadius: BorderRadius.circular(4),
-                                  ),
-                                ),
-                              ),
-                              FaIcon(
-                                FontAwesomeIcons.clock,
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                size: 28,
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                                child: Text(
-                                  'History',
-                                  style: FlutterFlowTheme.of(context).subtitle2,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
-                    child: InkWell(
-                      onTap: () async {
                         context.pushNamed('Settings');
                       },
                       child: Container(
@@ -280,6 +247,79 @@ class _MainMenuWidgetState extends State<MainMenuWidget> {
                       ),
                     ),
                   ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+                    child: InkWell(
+                      onTap: () async {
+                        context.pushNamed('History');
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          borderRadius: BorderRadius.circular(12),
+                          shape: BoxShape.rectangle,
+                        ),
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                                child: Container(
+                                  width: 4,
+                                  height: 60,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                    borderRadius: BorderRadius.circular(4),
+                                  ),
+                                ),
+                              ),
+                              FaIcon(
+                                FontAwesomeIcons.clock,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                size: 28,
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                                child: Text(
+                                  'History',
+                                  style: FlutterFlowTheme.of(context).subtitle2,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(30, 0, 0, 0),
+                        child: InkWell(
+                          onTap: () async {
+                            context.pushNamed('requestFeature');
+                          },
+                          child: Image.asset(
+                            'assets/images/I-wish.png',
+                            width: 98,
+                            height: 63,
+                            fit: BoxFit.cover,
+                          ),
+                        ).animateOnPageLoad(
+                            animationsMap['imageOnPageLoadAnimation']!),
+                      ),
+                    ],
+                  ),
                   Expanded(
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
@@ -287,22 +327,6 @@ class _MainMenuWidgetState extends State<MainMenuWidget> {
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              InkWell(
-                                onTap: () async {
-                                  context.pushNamed('requestFeature');
-                                },
-                                child: Image.asset(
-                                  'assets/images/I-wish.png',
-                                  width: 196,
-                                  height: 126,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ],
-                          ),
                           Divider(
                             height: 12,
                             thickness: 2,
