@@ -2,6 +2,7 @@ import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/main_menu_widget.dart';
 import '../components/profile_edit_widget.dart';
+import '../components/prompt_config_widget.dart';
 import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -32,13 +33,11 @@ class _HomeWidgetState extends State<HomeWidget> {
   List<UserDatasetsRecord> get checkboxCheckedItems =>
       checkboxValueMap.entries.where((e) => e.value).map((e) => e.key).toList();
 
-  double? topKValue;
   String? dropDownValue;
   UserPromptsRecord? setPrompt;
   TextEditingController? textController;
-  final formKey1 = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final formKey2 = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -99,7 +98,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.68',
+                'v0.70',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -157,7 +156,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                       ],
                                     ),
                                     child: Form(
-                                      key: formKey1,
+                                      key: formKey,
                                       autovalidateMode:
                                           AutovalidateMode.disabled,
                                       child: Column(
@@ -304,7 +303,7 @@ class _HomeWidgetState extends State<HomeWidget> {
 
                                                       setState(() {});
                                                     },
-                                                    text: 'Send',
+                                                    text: 'OMP!',
                                                     options: FFButtonOptions(
                                                       width: 130,
                                                       height: 40,
@@ -322,6 +321,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                     .subtitle2Family,
                                                                 color: Colors
                                                                     .white,
+                                                                fontSize: 20,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
                                                                 useGoogleFonts: GoogleFonts
                                                                         .asMap()
                                                                     .containsKey(
@@ -430,6 +433,44 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                     ),
                                                   ),
                                                 ],
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(20, 18, 0, 0),
+                                                child: InkWell(
+                                                  onTap: () async {
+                                                    await showModalBottomSheet(
+                                                      isScrollControlled: true,
+                                                      backgroundColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryBackground,
+                                                      enableDrag: false,
+                                                      context: context,
+                                                      builder: (context) {
+                                                        return Padding(
+                                                          padding:
+                                                              MediaQuery.of(
+                                                                      context)
+                                                                  .viewInsets,
+                                                          child: Container(
+                                                            height: 600,
+                                                            child:
+                                                                PromptConfigWidget(),
+                                                          ),
+                                                        );
+                                                      },
+                                                    ).then((value) =>
+                                                        setState(() {}));
+                                                  },
+                                                  child: Icon(
+                                                    Icons.settings_outlined,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryColor,
+                                                    size: 36,
+                                                  ),
+                                                ),
                                               ),
                                             ],
                                           ),
@@ -703,84 +744,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                   },
                                                 );
                                               },
-                                            ),
-                                          ),
-                                        ),
-                                        Container(
-                                          width: 260,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                          ),
-                                          child: Form(
-                                            key: formKey2,
-                                            autovalidateMode:
-                                                AutovalidateMode.disabled,
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Text(
-                                                      'Top K',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyText1,
-                                                    ),
-                                                    Expanded(
-                                                      child: Align(
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                1, 0),
-                                                        child: Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            formatNumber(
-                                                              topKValue,
-                                                              formatType:
-                                                                  FormatType
-                                                                      .custom,
-                                                              format: '#',
-                                                              locale: '',
-                                                            ),
-                                                            '1',
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText1,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Slider(
-                                                  activeColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primaryColor,
-                                                  inactiveColor:
-                                                      Color(0xFF9E9E9E),
-                                                  min: 1,
-                                                  max: 100,
-                                                  value: topKValue ??=
-                                                      FFAppState().setTopK,
-                                                  label: topKValue.toString(),
-                                                  divisions: 99,
-                                                  onChanged: (newValue) async {
-                                                    newValue = double.parse(
-                                                        newValue
-                                                            .toStringAsFixed(
-                                                                0));
-                                                    setState(() =>
-                                                        topKValue = newValue);
-                                                    FFAppState().setTopK =
-                                                        topKValue!;
-                                                  },
-                                                ),
-                                              ],
                                             ),
                                           ),
                                         ),
