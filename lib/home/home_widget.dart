@@ -88,20 +88,17 @@ class _HomeWidgetState extends State<HomeWidget> {
         child: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
-          title: Text(
-            'There it is…',
-            style: FlutterFlowTheme.of(context).bodyText1.override(
-                  fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                  fontSize: 16,
-                  useGoogleFonts: GoogleFonts.asMap().containsKey(
-                      FlutterFlowTheme.of(context).bodyText1Family),
-                ),
+          title: Image.asset(
+            'assets/images/OMP-here-it-is-LOGO-214-44.png',
+            width: 214,
+            height: 44,
+            fit: BoxFit.cover,
           ),
           actions: [
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.72',
+                'v0.73',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),

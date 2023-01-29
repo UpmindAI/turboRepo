@@ -1,7 +1,9 @@
 import '../auth/auth_util.dart';
 import '../backend/api_requests/api_calls.dart';
+import '../flutter_flow/flutter_flow_rive_controller.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import 'package:rive/rive.dart' hide LinearGradient;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -21,6 +23,10 @@ class _RetreivingWidgetState extends State<RetreivingWidget> {
   ApiCallResponse? apiResultdataGPT;
   final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final riveAnimationAnimationsList = [
+    'load',
+  ];
+  List<FlutterFlowRiveController> riveAnimationControllers = [];
 
   @override
   void initState() {
@@ -175,6 +181,13 @@ class _RetreivingWidgetState extends State<RetreivingWidget> {
       }
     });
 
+    riveAnimationAnimationsList.forEach((name) {
+      riveAnimationControllers.add(FlutterFlowRiveController(
+        name,
+        shouldLoop: true,
+      ));
+    });
+
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -213,6 +226,16 @@ class _RetreivingWidgetState extends State<RetreivingWidget> {
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
+                    Container(
+                      width: 200,
+                      height: 130,
+                      child: RiveAnimation.asset(
+                        'assets/rive_animations/511-976-dot-loading-loaders_(1).riv',
+                        artboard: 'New Artboard',
+                        fit: BoxFit.cover,
+                        controllers: riveAnimationControllers,
+                      ),
+                    ),
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
                       child: Text(
