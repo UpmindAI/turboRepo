@@ -622,6 +622,13 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                   child: InkWell(
                                                                                     onTap: () async {
                                                                                       await listViewUserDocsRecord.reference.delete();
+
+                                                                                      final userDatasetsUpdateData = {
+                                                                                        'active_docs': FieldValue.arrayRemove([
+                                                                                          listViewUserDocsRecord.docId
+                                                                                        ]),
+                                                                                      };
+                                                                                      await columnUserDatasetsRecord.reference.update(userDatasetsUpdateData);
                                                                                     },
                                                                                     child: FaIcon(
                                                                                       FontAwesomeIcons.trashAlt,
@@ -635,6 +642,13 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                   child: InkWell(
                                                                                     onTap: () async {
                                                                                       await listViewUserDocsRecord.reference.delete();
+
+                                                                                      final userDatasetsUpdateData = {
+                                                                                        'active_docs': FieldValue.arrayRemove([
+                                                                                          listViewUserDocsRecord.docId
+                                                                                        ]),
+                                                                                      };
+                                                                                      await columnUserDatasetsRecord.reference.update(userDatasetsUpdateData);
                                                                                     },
                                                                                     child: Text(
                                                                                       'Remove',
