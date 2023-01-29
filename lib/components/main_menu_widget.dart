@@ -198,59 +198,6 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
                     child: InkWell(
                       onTap: () async {
-                        context.pushNamed('Settings');
-                      },
-                      child: Container(
-                        width: double.infinity,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                          borderRadius: BorderRadius.circular(12),
-                          shape: BoxShape.rectangle,
-                        ),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
-                                child: Container(
-                                  width: 4,
-                                  height: 60,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryBackground,
-                                    borderRadius: BorderRadius.circular(4),
-                                  ),
-                                ),
-                              ),
-                              Icon(
-                                Icons.settings_outlined,
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                size: 28,
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                                child: Text(
-                                  'Settings',
-                                  style: FlutterFlowTheme.of(context).subtitle2,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
-                    child: InkWell(
-                      onTap: () async {
                         context.pushNamed('History');
                       },
                       child: Container(
@@ -339,13 +286,18 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 AuthUserStreamWidget(
-                                  builder: (context) => ClipRRect(
-                                    borderRadius: BorderRadius.circular(50),
-                                    child: CachedNetworkImage(
-                                      imageUrl: currentUserPhoto,
-                                      width: 44,
-                                      height: 44,
-                                      fit: BoxFit.cover,
+                                  builder: (context) => InkWell(
+                                    onTap: () async {
+                                      context.pushNamed('Settings');
+                                    },
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(50),
+                                      child: CachedNetworkImage(
+                                        imageUrl: currentUserPhoto,
+                                        width: 44,
+                                        height: 44,
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -363,30 +315,41 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0, 0, 0, 10),
                                           child: AuthUserStreamWidget(
-                                            builder: (context) => Text(
-                                              currentUserDisplayName,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .subtitle1,
+                                            builder: (context) => InkWell(
+                                              onTap: () async {
+                                                context.pushNamed('Settings');
+                                              },
+                                              child: Text(
+                                                currentUserDisplayName,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .subtitle1,
+                                              ),
                                             ),
                                           ),
                                         ),
-                                        Text(
-                                          currentUserEmail,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyText2
-                                              .override(
-                                                fontFamily:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyText2Family,
-                                                fontSize: 11,
-                                                useGoogleFonts: GoogleFonts
-                                                        .asMap()
-                                                    .containsKey(
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyText2Family),
-                                              ),
+                                        InkWell(
+                                          onTap: () async {
+                                            context.pushNamed('Settings');
+                                          },
+                                          child: Text(
+                                            currentUserEmail,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText2
+                                                .override(
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyText2Family,
+                                                  fontSize: 11,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText2Family),
+                                                ),
+                                          ),
                                         ),
                                       ],
                                     ),
