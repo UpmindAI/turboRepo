@@ -44,26 +44,6 @@ class _HistoryWidgetState extends State<HistoryWidget> {
         child: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
-          leading: InkWell(
-            onTap: () async {
-              context.pop();
-            },
-            child: Icon(
-              Icons.arrow_back,
-              color: Colors.black,
-              size: 36,
-            ),
-          ),
-          title: Text(
-            'History',
-            style: FlutterFlowTheme.of(context).title2.override(
-                  fontFamily: FlutterFlowTheme.of(context).title2Family,
-                  color: FlutterFlowTheme.of(context).primaryText,
-                  fontSize: 22,
-                  useGoogleFonts: GoogleFonts.asMap()
-                      .containsKey(FlutterFlowTheme.of(context).title2Family),
-                ),
-          ),
           actions: [],
           centerTitle: true,
           elevation: 0,
@@ -153,7 +133,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                             children: [
                                               Padding(
                                                 padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 10, 0, 10),
+                                                    .fromSTEB(0, 10, 0, 5),
                                                 child: Text(
                                                   listViewUserCompletionsRecord
                                                       .prompt!,
@@ -177,7 +157,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                               ),
                                               Padding(
                                                 padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 0, 0, 20),
+                                                    .fromSTEB(20, 0, 20, 20),
                                                 child: Text(
                                                   listViewUserCompletionsRecord
                                                       .completion!,
