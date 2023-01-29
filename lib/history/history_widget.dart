@@ -133,10 +133,14 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                             children: [
                                               Padding(
                                                 padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 10, 0, 5),
+                                                    .fromSTEB(20, 10, 20, 5),
                                                 child: Text(
                                                   listViewUserCompletionsRecord
-                                                      .prompt!,
+                                                      .prompt!
+                                                      .maybeHandleOverflow(
+                                                    maxChars: 250,
+                                                    replacement: '…',
+                                                  ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .title1
@@ -192,13 +196,6 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                           ),
                         ],
                       ),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [],
                     ),
                   ),
                 ],
