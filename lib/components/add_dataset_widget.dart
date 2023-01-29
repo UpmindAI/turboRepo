@@ -44,7 +44,7 @@ class _AddDatasetWidgetState extends State<AddDatasetWidget> {
     return Align(
       alignment: AlignmentDirectional(0, 0),
       child: Container(
-        width: 500,
+        width: 600,
         constraints: BoxConstraints(
           maxWidth: 1240,
           maxHeight: 600,
