@@ -1,7 +1,6 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/main_menu_widget.dart';
-import '../components/profile_edit_widget.dart';
 import '../components/prompt_config_widget.dart';
 import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -11,7 +10,6 @@ import '../flutter_flow/random_data_util.dart' as random_data;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -42,27 +40,6 @@ class _HomeWidgetState extends State<HomeWidget> {
   @override
   void initState() {
     super.initState();
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (FFAppState().firstLogin) {
-        await showModalBottomSheet(
-          isScrollControlled: true,
-          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-          enableDrag: false,
-          context: context,
-          builder: (context) {
-            return Padding(
-              padding: MediaQuery.of(context).viewInsets,
-              child: Container(
-                height: 600,
-                child: ProfileEditWidget(),
-              ),
-            );
-          },
-        ).then((value) => setState(() {}));
-      }
-    });
-
     textController = TextEditingController(
         text: widget.userCompletion != null
             ? '${widget.userCompletion!.prompt}${''}${widget.userCompletion!.completion}'
@@ -98,7 +75,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.73',
+                'v0.74',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
