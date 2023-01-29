@@ -89,73 +89,76 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                   ),
                   Expanded(
                     flex: 5,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        StreamBuilder<List<UserCompletionsRecord>>(
-                          stream: queryUserCompletionsRecord(
-                            parent: currentUserReference,
-                          ),
-                          builder: (context, snapshot) {
-                            // Customize what your widget looks like when it's loading.
-                            if (!snapshot.hasData) {
-                              return Center(
-                                child: SizedBox(
-                                  width: 50,
-                                  height: 50,
-                                  child: SpinKitRipple(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryColor,
-                                    size: 50,
-                                  ),
-                                ),
-                              );
-                            }
-                            List<UserCompletionsRecord>
-                                listViewUserCompletionsRecordList =
-                                snapshot.data!;
-                            return ListView.builder(
-                              padding: EdgeInsets.zero,
-                              shrinkWrap: true,
-                              scrollDirection: Axis.vertical,
-                              itemCount:
-                                  listViewUserCompletionsRecordList.length,
-                              itemBuilder: (context, listViewIndex) {
-                                final listViewUserCompletionsRecord =
-                                    listViewUserCompletionsRecordList[
-                                        listViewIndex];
-                                return Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      10, 0, 10, 10),
-                                  child: Material(
-                                    color: Colors.transparent,
-                                    elevation: 1,
-                                    child: Container(
-                                      width: 100,
-                                      height: 100,
-                                      decoration: BoxDecoration(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: 800,
+                            decoration: BoxDecoration(),
+                            child: StreamBuilder<List<UserCompletionsRecord>>(
+                              stream: queryUserCompletionsRecord(
+                                parent: currentUserReference,
+                              ),
+                              builder: (context, snapshot) {
+                                // Customize what your widget looks like when it's loading.
+                                if (!snapshot.hasData) {
+                                  return Center(
+                                    child: SizedBox(
+                                      width: 50,
+                                      height: 50,
+                                      child: SpinKitRipple(
                                         color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        boxShadow: [
-                                          BoxShadow(
-                                            blurRadius: 4,
-                                            color: Color(0x33000000),
-                                            offset: Offset(0, 2),
-                                          )
-                                        ],
+                                            .primaryColor,
+                                        size: 50,
                                       ),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0, 10, 0, 10),
-                                            child: Text(
-                                              listViewUserCompletionsRecord
-                                                  .prompt!,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
+                                    ),
+                                  );
+                                }
+                                List<UserCompletionsRecord>
+                                    listViewUserCompletionsRecordList =
+                                    snapshot.data!;
+                                return ListView.builder(
+                                  padding: EdgeInsets.zero,
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.vertical,
+                                  itemCount:
+                                      listViewUserCompletionsRecordList.length,
+                                  itemBuilder: (context, listViewIndex) {
+                                    final listViewUserCompletionsRecord =
+                                        listViewUserCompletionsRecordList[
+                                            listViewIndex];
+                                    return Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          10, 0, 10, 10),
+                                      child: Material(
+                                        color: Colors.transparent,
+                                        elevation: 1,
+                                        child: Container(
+                                          width: 100,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            boxShadow: [
+                                              BoxShadow(
+                                                blurRadius: 4,
+                                                color: Color(0x33000000),
+                                                offset: Offset(0, 2),
+                                              )
+                                            ],
+                                          ),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 10, 0, 10),
+                                                child: Text(
+                                                  listViewUserCompletionsRecord
+                                                      .prompt!,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
                                                       .title1
                                                       .override(
                                                         fontFamily:
@@ -170,24 +173,45 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                                         context)
                                                                     .title1Family),
                                                       ),
-                                            ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 0, 0, 20),
+                                                child: Text(
+                                                  listViewUserCompletionsRecord
+                                                      .completion!,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyText1
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyText1Family,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyText1Family),
+                                                      ),
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                          Text(
-                                            listViewUserCompletionsRecord
-                                                .completion!,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyText1,
-                                          ),
-                                        ],
+                                        ),
                                       ),
-                                    ),
-                                  ),
+                                    );
+                                  },
                                 );
                               },
-                            );
-                          },
-                        ),
-                      ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   Expanded(
