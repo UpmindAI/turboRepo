@@ -75,7 +75,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.74',
+                'v0.75',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -145,7 +145,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                     20, 20, 20, 20),
                                             child: TextFormField(
                                               controller: textController,
-                                              autofocus: true,
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 labelText:
