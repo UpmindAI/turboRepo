@@ -79,6 +79,7 @@ class _SelectAndUploadFilesState extends State<SelectAndUploadFiles> {
         id: doc.id,
         datasetId: widget.datasetId!,
         datasetName: widget.datasetName!,
+        chunkSize: widget.chunkSize!,
         timestamp: DateTime.now().toIso8601String(),
         fileNames: filesSelected!.files.map((e) => e.name).toList(),
         fileTypes: filesSelected!.files.map((e) => e.extension!).toList(),
@@ -163,6 +164,7 @@ class DataSetModel {
   final String datasetId;
   final String timestamp;
   final String datasetName;
+  final double chunkSize;
   final List<String> downloadUrls;
   final List<String> fileNames;
   final List<String> fileTypes;
@@ -174,6 +176,7 @@ class DataSetModel {
     required this.fileTypes,
     required this.datasetName,
     required this.timestamp,
+    required this.chunkSize,
   });
   Map<String, dynamic> toMap() {
     return {
@@ -184,6 +187,7 @@ class DataSetModel {
       'file_type': fileTypes,
       'timestamp': timestamp,
       'dataset_name': datasetName,
+      'chunk_size': chunkSize,
     };
   }
 

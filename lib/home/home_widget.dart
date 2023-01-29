@@ -88,17 +88,20 @@ class _HomeWidgetState extends State<HomeWidget> {
         child: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
-          title: Image.asset(
-            'assets/images/OMP-188-60.png',
-            width: 99,
-            height: 30,
-            fit: BoxFit.cover,
+          title: Text(
+            'There it is…',
+            style: FlutterFlowTheme.of(context).bodyText1.override(
+                  fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                  fontSize: 16,
+                  useGoogleFonts: GoogleFonts.asMap().containsKey(
+                      FlutterFlowTheme.of(context).bodyText1Family),
+                ),
           ),
           actions: [
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.70',
+                'v0.71',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
