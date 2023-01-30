@@ -78,10 +78,10 @@ class _UploadConfigWidgetState extends State<UploadConfigWidget> {
             activeColor: FlutterFlowTheme.of(context).primaryColor,
             inactiveColor: Color(0xFF9E9E9E),
             min: 0,
-            max: 10,
+            max: 4000,
             value: sliderValue ??= FFAppState().setChunkSize,
             label: sliderValue.toString(),
-            divisions: 10,
+            divisions: 80,
             onChanged: (newValue) {
               newValue = double.parse(newValue.toStringAsFixed(0));
               setState(() => sliderValue = newValue);
