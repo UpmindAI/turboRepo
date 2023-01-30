@@ -177,14 +177,15 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                 child: Padding(
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(20, 0, 20, 10),
-                                                  child: Text(
+                                                  child: SelectionArea(
+                                                      child: Text(
                                                     resultUserCompletionsRecord!
                                                         .prompt!,
                                                     textAlign: TextAlign.start,
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyText1,
-                                                  ),
+                                                  )),
                                                 ),
                                               ),
                                               Align(
@@ -221,13 +222,14 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                 child: Padding(
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(20, 0, 20, 0),
-                                                  child: Text(
+                                                  child: SelectionArea(
+                                                      child: Text(
                                                     resultUserCompletionsRecord!
                                                         .completion!,
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyText1,
-                                                  ),
+                                                  )),
                                                 ),
                                               ),
                                             ],

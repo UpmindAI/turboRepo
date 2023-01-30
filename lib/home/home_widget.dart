@@ -76,7 +76,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.85',
+                'v0.86',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -487,169 +487,118 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         )
                                       ],
                                     ),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(10, 10, 0, 0),
-                                              child: Text(
-                                                'Datasets',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyText1,
+                                    child: SingleChildScrollView(
+                                      primary: false,
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(10, 10, 0, 0),
+                                                child: Text(
+                                                  'Datasets',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyText1,
+                                                ),
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                        Container(
-                                          width:
-                                              MediaQuery.of(context).size.width,
-                                          height: 350,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
+                                            ],
                                           ),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10, 0, 10, 0),
-                                            child: StreamBuilder<
-                                                List<UserDatasetsRecord>>(
-                                              stream: queryUserDatasetsRecord(
-                                                parent: currentUserReference,
-                                                queryBuilder:
-                                                    (userDatasetsRecord) =>
-                                                        userDatasetsRecord
-                                                            .orderBy(
-                                                                'created_on'),
-                                              ),
-                                              builder: (context, snapshot) {
-                                                // Customize what your widget looks like when it's loading.
-                                                if (!snapshot.hasData) {
-                                                  return Center(
-                                                    child: SizedBox(
-                                                      width: 50,
-                                                      height: 50,
-                                                      child: SpinKitRipple(
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryColor,
-                                                        size: 50,
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: 350,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                            ),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(10, 0, 10, 0),
+                                              child: StreamBuilder<
+                                                  List<UserDatasetsRecord>>(
+                                                stream: queryUserDatasetsRecord(
+                                                  parent: currentUserReference,
+                                                  queryBuilder:
+                                                      (userDatasetsRecord) =>
+                                                          userDatasetsRecord
+                                                              .orderBy(
+                                                                  'created_on'),
+                                                ),
+                                                builder: (context, snapshot) {
+                                                  // Customize what your widget looks like when it's loading.
+                                                  if (!snapshot.hasData) {
+                                                    return Center(
+                                                      child: SizedBox(
+                                                        width: 50,
+                                                        height: 50,
+                                                        child: SpinKitRipple(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryColor,
+                                                          size: 50,
+                                                        ),
                                                       ),
-                                                    ),
-                                                  );
-                                                }
-                                                List<UserDatasetsRecord>
-                                                    listViewUserDatasetsRecordList =
-                                                    snapshot.data!;
-                                                if (listViewUserDatasetsRecordList
-                                                    .isEmpty) {
-                                                  return Container(
-                                                    width: 300,
-                                                    height: 300,
-                                                    child:
-                                                        NewDatasetButtonWidget(),
-                                                  );
-                                                }
-                                                return ListView.builder(
-                                                  padding: EdgeInsets.zero,
-                                                  primary: false,
-                                                  scrollDirection:
-                                                      Axis.vertical,
-                                                  itemCount:
-                                                      listViewUserDatasetsRecordList
-                                                          .length,
-                                                  itemBuilder:
-                                                      (context, listViewIndex) {
-                                                    final listViewUserDatasetsRecord =
-                                                        listViewUserDatasetsRecordList[
-                                                            listViewIndex];
-                                                    return Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0, 0, 0, 10),
-                                                      child: Material(
-                                                        color:
-                                                            Colors.transparent,
-                                                        elevation: 2,
-                                                        child: Container(
-                                                          width: MediaQuery.of(
-                                                                  context)
-                                                              .size
-                                                              .width,
-                                                          height: 40,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryBackground,
-                                                          ),
-                                                          child: Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            children: [
-                                                              Column(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                children: [
-                                                                  Expanded(
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          AlignmentDirectional(
-                                                                              0,
-                                                                              0),
-                                                                      child:
-                                                                          Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            5,
-                                                                            0,
-                                                                            5,
-                                                                            0),
-                                                                        child:
-                                                                            Theme(
-                                                                          data:
-                                                                              ThemeData(
-                                                                            checkboxTheme:
-                                                                                CheckboxThemeData(
-                                                                              shape: RoundedRectangleBorder(
-                                                                                borderRadius: BorderRadius.circular(0),
-                                                                              ),
-                                                                            ),
-                                                                            unselectedWidgetColor:
-                                                                                FlutterFlowTheme.of(context).secondaryColor,
-                                                                          ),
-                                                                          child:
-                                                                              Checkbox(
-                                                                            value: checkboxValueMap[listViewUserDatasetsRecord] ??=
-                                                                                FFAppState().selectedDataset.contains(listViewUserDatasetsRecord.datasetId),
-                                                                            onChanged:
-                                                                                (newValue) async {
-                                                                              setState(() => checkboxValueMap[listViewUserDatasetsRecord] = newValue!);
-                                                                              if (newValue!) {
-                                                                                FFAppState().selectedDataset = checkboxCheckedItems.map((e) => e.datasetId).withoutNulls.toList();
-                                                                              }
-                                                                            },
-                                                                            activeColor:
-                                                                                FlutterFlowTheme.of(context).primaryColor,
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                              Expanded(
-                                                                flex: 7,
-                                                                child: Column(
+                                                    );
+                                                  }
+                                                  List<UserDatasetsRecord>
+                                                      listViewUserDatasetsRecordList =
+                                                      snapshot.data!;
+                                                  if (listViewUserDatasetsRecordList
+                                                      .isEmpty) {
+                                                    return Container(
+                                                      width: 300,
+                                                      height: 300,
+                                                      child:
+                                                          NewDatasetButtonWidget(),
+                                                    );
+                                                  }
+                                                  return ListView.builder(
+                                                    padding: EdgeInsets.zero,
+                                                    primary: false,
+                                                    scrollDirection:
+                                                        Axis.vertical,
+                                                    itemCount:
+                                                        listViewUserDatasetsRecordList
+                                                            .length,
+                                                    itemBuilder: (context,
+                                                        listViewIndex) {
+                                                      final listViewUserDatasetsRecord =
+                                                          listViewUserDatasetsRecordList[
+                                                              listViewIndex];
+                                                      return Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(0, 0,
+                                                                    0, 10),
+                                                        child: Material(
+                                                          color: Colors
+                                                              .transparent,
+                                                          elevation: 2,
+                                                          child: Container(
+                                                            width:
+                                                                MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width,
+                                                            height: 40,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryBackground,
+                                                            ),
+                                                            child: Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              children: [
+                                                                Column(
                                                                   mainAxisSize:
                                                                       MainAxisSize
                                                                           .max,
@@ -661,97 +610,140 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                             0,
                                                                             0),
                                                                         child:
-                                                                            AutoSizeText(
-                                                                          listViewUserDatasetsRecord
-                                                                              .datasetName!,
-                                                                          maxLines:
-                                                                              1,
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .bodyText1
-                                                                              .override(
-                                                                                fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                fontSize: 14,
-                                                                                fontWeight: FontWeight.normal,
-                                                                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                            Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              5,
+                                                                              0,
+                                                                              5,
+                                                                              0),
+                                                                          child:
+                                                                              Theme(
+                                                                            data:
+                                                                                ThemeData(
+                                                                              checkboxTheme: CheckboxThemeData(
+                                                                                shape: RoundedRectangleBorder(
+                                                                                  borderRadius: BorderRadius.circular(0),
+                                                                                ),
                                                                               ),
+                                                                              unselectedWidgetColor: FlutterFlowTheme.of(context).secondaryColor,
+                                                                            ),
+                                                                            child:
+                                                                                Checkbox(
+                                                                              value: checkboxValueMap[listViewUserDatasetsRecord] ??= FFAppState().selectedDataset.contains(listViewUserDatasetsRecord.datasetId),
+                                                                              onChanged: (newValue) async {
+                                                                                setState(() => checkboxValueMap[listViewUserDatasetsRecord] = newValue!);
+                                                                                if (newValue!) {
+                                                                                  FFAppState().selectedDataset = checkboxCheckedItems.map((e) => e.datasetId).withoutNulls.toList();
+                                                                                }
+                                                                              },
+                                                                              activeColor: FlutterFlowTheme.of(context).primaryColor,
+                                                                            ),
+                                                                          ),
                                                                         ),
                                                                       ),
                                                                     ),
                                                                   ],
                                                                 ),
-                                                              ),
-                                                              Column(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                children: [
-                                                                  Expanded(
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          AlignmentDirectional(
+                                                                Expanded(
+                                                                  flex: 7,
+                                                                  child: Column(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    children: [
+                                                                      Expanded(
+                                                                        child:
+                                                                            Align(
+                                                                          alignment: AlignmentDirectional(
                                                                               0,
                                                                               0),
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            listViewUserDatasetsRecord.datasetName!,
+                                                                            maxLines:
+                                                                                1,
+                                                                            style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                  fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                  fontSize: 14,
+                                                                                  fontWeight: FontWeight.normal,
+                                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                ),
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                                Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  children: [
+                                                                    Expanded(
                                                                       child:
-                                                                          Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            5,
+                                                                          Align(
+                                                                        alignment: AlignmentDirectional(
                                                                             0,
-                                                                            5,
                                                                             0),
                                                                         child:
-                                                                            InkWell(
-                                                                          onTap:
-                                                                              () async {
-                                                                            FFAppState().activeDataset =
-                                                                                listViewUserDatasetsRecord.reference;
-
-                                                                            context.pushNamed(
-                                                                              'Datasets',
-                                                                              queryParams: {
-                                                                                'activeDataset': serializeParam(
-                                                                                  listViewUserDatasetsRecord,
-                                                                                  ParamType.Document,
-                                                                                ),
-                                                                              }.withoutNulls,
-                                                                              extra: <String, dynamic>{
-                                                                                'activeDataset': listViewUserDatasetsRecord,
-                                                                              },
-                                                                            );
-                                                                          },
+                                                                            Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              5,
+                                                                              0,
+                                                                              5,
+                                                                              0),
                                                                           child:
-                                                                              Icon(
-                                                                            Icons.settings_outlined,
-                                                                            color:
-                                                                                Colors.black,
-                                                                            size:
-                                                                                24,
+                                                                              InkWell(
+                                                                            onTap:
+                                                                                () async {
+                                                                              FFAppState().activeDataset = listViewUserDatasetsRecord.reference;
+
+                                                                              context.pushNamed(
+                                                                                'Datasets',
+                                                                                queryParams: {
+                                                                                  'activeDataset': serializeParam(
+                                                                                    listViewUserDatasetsRecord,
+                                                                                    ParamType.Document,
+                                                                                  ),
+                                                                                }.withoutNulls,
+                                                                                extra: <String, dynamic>{
+                                                                                  'activeDataset': listViewUserDatasetsRecord,
+                                                                                },
+                                                                              );
+                                                                            },
+                                                                            child:
+                                                                                Icon(
+                                                                              Icons.settings_outlined,
+                                                                              color: Colors.black,
+                                                                              size: 24,
+                                                                            ),
                                                                           ),
                                                                         ),
                                                                       ),
                                                                     ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ],
+                                                                  ],
+                                                                ),
+                                                              ],
+                                                            ),
                                                           ),
                                                         ),
-                                                      ),
-                                                    );
-                                                  },
-                                                );
-                                              },
+                                                      );
+                                                    },
+                                                  );
+                                                },
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        Container(
-                                          width: 260,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
+                                          Container(
+                                            width: 260,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                            ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
