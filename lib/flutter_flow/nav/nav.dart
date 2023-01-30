@@ -91,7 +91,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'Datasets',
               path: 'datasets',
-              builder: (context, params) => DatasetsWidget(),
+              asyncParams: {
+                'activeDataset': getDoc(
+                    ['users', 'user_datasets'], UserDatasetsRecord.serializer),
+              },
+              builder: (context, params) => DatasetsWidget(
+                activeDataset:
+                    params.getParam('activeDataset', ParamType.Document),
+              ),
             ),
             FFRoute(
               name: 'Settings',
