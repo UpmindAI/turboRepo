@@ -21,6 +21,8 @@ class FFAppState extends ChangeNotifier {
         prefs.getStringList('ff_selectedDataset') ?? _selectedDataset;
     _firstLogin = prefs.getBool('ff_firstLogin') ?? _firstLogin;
     _setChunkSize = prefs.getDouble('ff_setChunkSize') ?? _setChunkSize;
+    _selectedDocuments =
+        prefs.getStringList('ff_selectedDocuments') ?? _selectedDocuments;
   }
 
   void update(VoidCallback callback) {
@@ -97,6 +99,23 @@ class FFAppState extends ChangeNotifier {
   set setChunkSize(double _value) {
     _setChunkSize = _value;
     prefs.setDouble('ff_setChunkSize', _value);
+  }
+
+  List<String> _selectedDocuments = [];
+  List<String> get selectedDocuments => _selectedDocuments;
+  set selectedDocuments(List<String> _value) {
+    _selectedDocuments = _value;
+    prefs.setStringList('ff_selectedDocuments', _value);
+  }
+
+  void addToSelectedDocuments(String _value) {
+    _selectedDocuments.add(_value);
+    prefs.setStringList('ff_selectedDocuments', _selectedDocuments);
+  }
+
+  void removeFromSelectedDocuments(String _value) {
+    _selectedDocuments.remove(_value);
+    prefs.setStringList('ff_selectedDocuments', _selectedDocuments);
   }
 }
 

@@ -75,7 +75,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.81',
+                'v0.82',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -696,7 +696,18 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                             FFAppState().activeDataset =
                                                                                 listViewUserDatasetsRecord.reference;
 
-                                                                            context.pushNamed('Datasets');
+                                                                            context.pushNamed(
+                                                                              'Datasets',
+                                                                              queryParams: {
+                                                                                'activeDataset': serializeParam(
+                                                                                  listViewUserDatasetsRecord,
+                                                                                  ParamType.Document,
+                                                                                ),
+                                                                              }.withoutNulls,
+                                                                              extra: <String, dynamic>{
+                                                                                'activeDataset': listViewUserDatasetsRecord,
+                                                                              },
+                                                                            );
                                                                           },
                                                                           child:
                                                                               Icon(

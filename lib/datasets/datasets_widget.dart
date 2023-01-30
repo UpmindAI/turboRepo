@@ -15,13 +15,19 @@ import '../flutter_flow/random_data_util.dart' as random_data;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class DatasetsWidget extends StatefulWidget {
-  const DatasetsWidget({Key? key}) : super(key: key);
+  const DatasetsWidget({
+    Key? key,
+    this.activeDataset,
+  }) : super(key: key);
+
+  final UserDatasetsRecord? activeDataset;
 
   @override
   _DatasetsWidgetState createState() => _DatasetsWidgetState();
@@ -45,6 +51,14 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
   @override
   void initState() {
     super.initState();
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      FFAppState().update(() {
+        FFAppState().selectedDocuments =
+            widget.activeDataset!.activeDocs!.toList().toList();
+      });
+    });
+
     scrapeURLController = TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -556,7 +570,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                         unselectedWidgetColor: FlutterFlowTheme.of(context).secondaryColor,
                                                                                       ),
                                                                                       child: Checkbox(
-                                                                                        value: checkboxValueMap[listViewUserDocsRecord] ??= listViewUserDocsRecord.isActive!,
+                                                                                        value: checkboxValueMap[listViewUserDocsRecord] ??= FFAppState().selectedDocuments.contains(listViewUserDocsRecord.docId),
                                                                                         onChanged: (newValue) async {
                                                                                           setState(() => checkboxValueMap[listViewUserDocsRecord] = newValue!);
                                                                                           if (newValue!) {
