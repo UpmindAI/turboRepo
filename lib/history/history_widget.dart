@@ -134,7 +134,8 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                               Padding(
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(20, 10, 20, 5),
-                                                child: Text(
+                                                child: SelectionArea(
+                                                    child: Text(
                                                   listViewUserCompletionsRecord
                                                       .prompt!
                                                       .maybeHandleOverflow(
@@ -149,7 +150,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .title1Family,
-                                                        fontSize: 19,
+                                                        fontSize: 16,
                                                         useGoogleFonts: GoogleFonts
                                                                 .asMap()
                                                             .containsKey(
@@ -157,12 +158,13 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                                         context)
                                                                     .title1Family),
                                                       ),
-                                                ),
+                                                )),
                                               ),
                                               Padding(
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(20, 0, 20, 20),
-                                                child: Text(
+                                                child: SelectionArea(
+                                                    child: Text(
                                                   listViewUserCompletionsRecord
                                                       .completion!,
                                                   style: FlutterFlowTheme.of(
@@ -182,7 +184,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                                         context)
                                                                     .bodyText1Family),
                                                       ),
-                                                ),
+                                                )),
                                               ),
                                             ],
                                           ),

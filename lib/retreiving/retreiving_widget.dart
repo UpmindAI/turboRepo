@@ -1,11 +1,13 @@
 import '../auth/auth_util.dart';
 import '../backend/api_requests/api_calls.dart';
-import '../flutter_flow/flutter_flow_rive_controller.dart';
+import '../components/main_menu_widget.dart';
+import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
-import 'package:rive/rive.dart' hide LinearGradient;
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -17,23 +19,50 @@ class RetreivingWidget extends StatefulWidget {
   _RetreivingWidgetState createState() => _RetreivingWidgetState();
 }
 
-class _RetreivingWidgetState extends State<RetreivingWidget> {
+class _RetreivingWidgetState extends State<RetreivingWidget>
+    with TickerProviderStateMixin {
+  final animationsMap = {
+    'imageOnPageLoadAnimation': AnimationInfo(
+      loop: true,
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 1550.ms,
+          begin: Offset(0, 700),
+          end: Offset(0, -700),
+        ),
+      ],
+    ),
+  };
   ApiCallResponse? apiResultGPT;
   ApiCallResponse? apiResultPC;
   ApiCallResponse? apiResultdataGPT;
   final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final riveAnimationAnimationsList = [
-    'load',
-  ];
-  List<FlutterFlowRiveController> riveAnimationControllers = [];
 
   @override
   void initState() {
     super.initState();
+
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       if (FFAppState().setEngine == 'GPT Only') {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'Please hold on while we are retreiving your results.',
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).primaryText,
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
+            ),
+            duration: Duration(milliseconds: 4000),
+            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+          ),
+        );
         apiResultGPT = await GPTqueryCall.call(
           qid: FFAppState().setQid,
           idToken: currentJwtToken,
@@ -52,6 +81,20 @@ class _RetreivingWidgetState extends State<RetreivingWidget> {
         );
       } else {
         if (FFAppState().setEngine == 'My Data Only') {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                'Please hold on while we are retreiving your results.',
+                style: TextStyle(
+                  color: FlutterFlowTheme.of(context).primaryText,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+              ),
+              duration: Duration(milliseconds: 4000),
+              backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+            ),
+          );
           apiResultPC = await PineconeQueryCall.call(
             idToken: currentJwtToken,
             qid: FFAppState().setQid,
@@ -90,6 +133,21 @@ class _RetreivingWidgetState extends State<RetreivingWidget> {
           }
         } else {
           if (FFAppState().setEngine == 'My Data + GPT') {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(
+                  'Please hold on while we are retreiving your results.',
+                  style: TextStyle(
+                    color: FlutterFlowTheme.of(context).primaryText,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
+                ),
+                duration: Duration(milliseconds: 7000),
+                backgroundColor:
+                    FlutterFlowTheme.of(context).secondaryBackground,
+              ),
+            );
             apiResultdataGPT = await DatasetGPTserverCall.call(
               qid: FFAppState().setQid,
               datasetIdsList: FFAppState().selectedDataset,
@@ -181,13 +239,6 @@ class _RetreivingWidgetState extends State<RetreivingWidget> {
       }
     });
 
-    riveAnimationAnimationsList.forEach((name) {
-      riveAnimationControllers.add(FlutterFlowRiveController(
-        name,
-        shouldLoop: true,
-      ));
-    });
-
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -216,91 +267,227 @@ class _RetreivingWidgetState extends State<RetreivingWidget> {
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height * 1,
-                decoration: BoxDecoration(),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Container(
-                      width: 200,
-                      height: 130,
-                      child: RiveAnimation.asset(
-                        'assets/rive_animations/511-976-dot-loading-loaders_(1).riv',
-                        artboard: 'New Artboard',
-                        fit: BoxFit.cover,
-                        controllers: riveAnimationControllers,
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Expanded(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            MainMenuWidget(),
+                          ],
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
-                      child: Text(
-                        'Retrieving Results from Datasets:',
-                        style: FlutterFlowTheme.of(context).bodyText1,
+                      Expanded(
+                        flex: 5,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Expanded(
+                              child: Align(
+                                alignment: AlignmentDirectional(0, -1),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      5, 0, 5, 0),
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.98,
+                                    height: 800,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          blurRadius: 4,
+                                          color: Color(0x33000000),
+                                          offset: Offset(0, 2),
+                                        )
+                                      ],
+                                    ),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  20, 20, 20, 0),
+                                          child: Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: 650,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .gray200,
+                                            ),
+                                            child: ClipRect(
+                                              child: ImageFiltered(
+                                                imageFilter: ImageFilter.blur(
+                                                  sigmaX: 50,
+                                                  sigmaY: 50,
+                                                ),
+                                                child: Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          -0.15, 0),
+                                                  child: Transform.rotate(
+                                                    angle: 2.1118,
+                                                    child: Image.asset(
+                                                      'assets/images/Rectangle_1.jpg',
+                                                      width: 1000,
+                                                      height: 200,
+                                                      fit: BoxFit.cover,
+                                                    ).animateOnPageLoad(
+                                                        animationsMap[
+                                                            'imageOnPageLoadAnimation']!),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  20, 10, 20, 0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 0, 20, 0),
+                                                child: Container(
+                                                  width: 220,
+                                                  height: 40,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .gray200,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 0, 20, 0),
+                                                child: Container(
+                                                  width: 220,
+                                                  height: 40,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .gray200,
+                                                  ),
+                                                ),
+                                              ),
+                                              Expanded(
+                                                child: Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          1, 0),
+                                                  child: Container(
+                                                    width: 220,
+                                                    height: 40,
+                                                    decoration: BoxDecoration(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .gray200,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    Builder(
-                      builder: (context) {
-                        final selectedDatasets =
-                            FFAppState().selectedDataset.map((e) => e).toList();
-                        return ListView.builder(
-                          padding: EdgeInsets.zero,
-                          shrinkWrap: true,
-                          scrollDirection: Axis.vertical,
-                          itemCount: selectedDatasets.length,
-                          itemBuilder: (context, selectedDatasetsIndex) {
-                            final selectedDatasetsItem =
-                                selectedDatasets[selectedDatasetsIndex];
-                            return Text(
-                              selectedDatasetsItem,
-                              textAlign: TextAlign.center,
-                              style: FlutterFlowTheme.of(context).bodyText1,
-                            );
-                          },
-                        );
-                      },
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
-                      child: Text(
-                        'Using engine:',
-                        style: FlutterFlowTheme.of(context).bodyText1,
+                      Expanded(
+                        flex: 2,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Expanded(
+                              child: Align(
+                                alignment: AlignmentDirectional(0, -1),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      5, 0, 10, 0),
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.98,
+                                    height: 800,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          blurRadius: 4,
+                                          color: Color(0x33000000),
+                                          offset: Offset(0, 2),
+                                        )
+                                      ],
+                                    ),
+                                    child: SingleChildScrollView(
+                                      primary: false,
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [],
+                                          ),
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: 350,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                            ),
+                                          ),
+                                          Container(
+                                            width: 260,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    Text(
-                      FFAppState().setEngine,
-                      style: FlutterFlowTheme.of(context).bodyText1,
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
-                      child: Text(
-                        'qid:',
-                        style: FlutterFlowTheme.of(context).bodyText1,
-                      ),
-                    ),
-                    Text(
-                      FFAppState().setQid,
-                      style: FlutterFlowTheme.of(context).bodyText1,
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
-                      child: Text(
-                        'Top K',
-                        style: FlutterFlowTheme.of(context).bodyText1,
-                      ),
-                    ),
-                    Text(
-                      FFAppState().setTopK.toString(),
-                      style: FlutterFlowTheme.of(context).bodyText1,
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
