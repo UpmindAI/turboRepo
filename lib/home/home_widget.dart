@@ -1,6 +1,7 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/main_menu_widget.dart';
+import '../components/new_dataset_button_widget.dart';
 import '../components/prompt_config_widget.dart';
 import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -75,7 +76,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.83',
+                'v0.84',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -546,6 +547,15 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 List<UserDatasetsRecord>
                                                     listViewUserDatasetsRecordList =
                                                     snapshot.data!;
+                                                if (listViewUserDatasetsRecordList
+                                                    .isEmpty) {
+                                                  return Container(
+                                                    width: 300,
+                                                    height: 300,
+                                                    child:
+                                                        NewDatasetButtonWidget(),
+                                                  );
+                                                }
                                                 return ListView.builder(
                                                   padding: EdgeInsets.zero,
                                                   primary: false,
