@@ -164,6 +164,30 @@ class DownloadServerCall {
   }
 }
 
+class MultiUploadserverCall {
+  static Future<ApiCallResponse> call({
+    String? idToken = '',
+  }) {
+    final body = '''
+{
+  "id_token": "${idToken}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'multiUploadserver',
+      apiUrl: 'https://dvmultipleuploads-p67td2b2aq-uc.a.run.app',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;
