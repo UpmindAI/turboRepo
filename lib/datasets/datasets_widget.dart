@@ -1331,6 +1331,11 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                 .activeDataset =
                                                             listViewUserDatasetsRecord
                                                                 .reference;
+                                                        FFAppState()
+                                                                .selectedDocuments =
+                                                            listViewUserDatasetsRecord
+                                                                .activeDocs!
+                                                                .toList();
                                                       });
                                                     },
                                                     child: Material(
