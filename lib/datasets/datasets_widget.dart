@@ -564,15 +564,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                             };
                                                                                             await columnUserDatasetsRecord.reference.update(userDatasetsUpdateData);
 
-                                                                                            final userDocsUpdateData = createUserDocsRecordData(
-                                                                                              isActive: checkboxValueMap[listViewUserDocsRecord],
-                                                                                            );
-                                                                                            await listViewUserDocsRecord.reference.update(userDocsUpdateData);
-                                                                                          } else {
-                                                                                            final userDatasetsUpdateData = {
-                                                                                              'active_docs': checkboxCheckedItems.map((e) => e.docId).withoutNulls.toList(),
-                                                                                            };
-                                                                                            await columnUserDatasetsRecord.reference.update(userDatasetsUpdateData);
+                                                                                            setState(() {});
                                                                                           }
                                                                                         },
                                                                                         activeColor: FlutterFlowTheme.of(context).alternate,
