@@ -35,6 +35,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
   bool isMediaUploading = false;
   String uploadedFileUrl = '';
 
+  ApiCallResponse? apiResults8b;
   bool mouseRegionHovered = false;
   ApiCallResponse? apiResult8oi;
   TextEditingController? scrapeURLController;
@@ -565,6 +566,13 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                             await columnUserDatasetsRecord.reference.update(userDatasetsUpdateData);
 
                                                                                             setState(() {});
+                                                                                          } else {
+                                                                                            final userDatasetsUpdateData = {
+                                                                                              'active_docs': FieldValue.arrayRemove([
+                                                                                                listViewUserDocsRecord.docId
+                                                                                              ]),
+                                                                                            };
+                                                                                            await columnUserDatasetsRecord.reference.update(userDatasetsUpdateData);
                                                                                           }
                                                                                         },
                                                                                         activeColor: FlutterFlowTheme.of(context).alternate,
@@ -786,6 +794,41 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                             setState(() =>
                                                                 mouseRegionHovered =
                                                                     true);
+                                                            apiResults8b =
+                                                                await MultiUploadserverCall
+                                                                    .call(
+                                                              idToken:
+                                                                  currentJwtToken,
+                                                            );
+                                                            if (!(apiResults8b
+                                                                    ?.succeeded ??
+                                                                true)) {
+                                                              ScaffoldMessenger
+                                                                      .of(context)
+                                                                  .showSnackBar(
+                                                                SnackBar(
+                                                                  content: Text(
+                                                                    (apiResults8b?.statusCode ??
+                                                                            200)
+                                                                        .toString(),
+                                                                    style:
+                                                                        TextStyle(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryText,
+                                                                    ),
+                                                                  ),
+                                                                  duration: Duration(
+                                                                      milliseconds:
+                                                                          4000),
+                                                                  backgroundColor:
+                                                                      Color(
+                                                                          0x00000000),
+                                                                ),
+                                                              );
+                                                            }
+
+                                                            setState(() {});
                                                           }),
                                                           onExit:
                                                               ((event) async {
