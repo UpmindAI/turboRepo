@@ -561,7 +561,9 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                           setState(() => checkboxValueMap[listViewUserDocsRecord] = newValue!);
                                                                                           if (newValue!) {
                                                                                             final userDatasetsUpdateData = {
-                                                                                              'active_docs': checkboxCheckedItems.map((e) => e.docId).withoutNulls.toList(),
+                                                                                              'active_docs': FieldValue.arrayUnion([
+                                                                                                listViewUserDocsRecord.docId
+                                                                                              ]),
                                                                                             };
                                                                                             await columnUserDatasetsRecord.reference.update(userDatasetsUpdateData);
 
