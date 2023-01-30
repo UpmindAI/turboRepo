@@ -1,7 +1,6 @@
 import '../auth/auth_util.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
-import '../backend/firebase_storage/storage.dart';
 import '../components/add_dataset_widget.dart';
 import '../components/confirm_delete_widget.dart';
 import '../components/main_menu_widget.dart';
@@ -9,9 +8,7 @@ import '../components/upload_config_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../flutter_flow/upload_media.dart';
 import '../custom_code/widgets/index.dart' as custom_widgets;
-import '../flutter_flow/random_data_util.dart' as random_data;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -38,13 +35,9 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
   List<UserDocsRecord> get checkboxCheckedItems =>
       checkboxValueMap.entries.where((e) => e.value).map((e) => e.key).toList();
 
-  bool isMediaUploading = false;
-  String uploadedFileUrl = '';
-
-  ApiCallResponse? apiResults8b;
-  bool mouseRegionHovered = false;
   ApiCallResponse? apiResult8oi;
   TextEditingController? scrapeURLController;
+  bool mouseRegionHovered = false;
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -422,7 +415,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                         MediaQuery.of(context)
                                                             .size
                                                             .width,
-                                                    height: 500,
+                                                    height: 600,
                                                     constraints: BoxConstraints(
                                                       maxHeight: 550,
                                                     ),
@@ -810,41 +803,6 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                             setState(() =>
                                                                 mouseRegionHovered =
                                                                     true);
-                                                            apiResults8b =
-                                                                await MultiUploadserverCall
-                                                                    .call(
-                                                              idToken:
-                                                                  currentJwtToken,
-                                                            );
-                                                            if (!(apiResults8b
-                                                                    ?.succeeded ??
-                                                                true)) {
-                                                              ScaffoldMessenger
-                                                                      .of(context)
-                                                                  .showSnackBar(
-                                                                SnackBar(
-                                                                  content: Text(
-                                                                    (apiResults8b?.statusCode ??
-                                                                            200)
-                                                                        .toString(),
-                                                                    style:
-                                                                        TextStyle(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryText,
-                                                                    ),
-                                                                  ),
-                                                                  duration: Duration(
-                                                                      milliseconds:
-                                                                          4000),
-                                                                  backgroundColor:
-                                                                      Color(
-                                                                          0x00000000),
-                                                                ),
-                                                              );
-                                                            }
-
-                                                            setState(() {});
                                                           }),
                                                           onExit:
                                                               ((event) async {
@@ -852,117 +810,6 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                 mouseRegionHovered =
                                                                     false);
                                                           }),
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(0, 25,
-                                                                    0, 0),
-                                                        child: FFButtonWidget(
-                                                          onPressed: () async {
-                                                            final selectedFile =
-                                                                await selectFile(
-                                                                    allowedExtensions: [
-                                                                  'pdf'
-                                                                ]);
-                                                            if (selectedFile !=
-                                                                null) {
-                                                              setState(() =>
-                                                                  isMediaUploading =
-                                                                      true);
-                                                              String?
-                                                                  downloadUrl;
-                                                              try {
-                                                                downloadUrl = await uploadData(
-                                                                    selectedFile
-                                                                        .storagePath,
-                                                                    selectedFile
-                                                                        .bytes);
-                                                              } finally {
-                                                                isMediaUploading =
-                                                                    false;
-                                                              }
-                                                              if (downloadUrl !=
-                                                                  null) {
-                                                                setState(() =>
-                                                                    uploadedFileUrl =
-                                                                        downloadUrl!);
-                                                              } else {
-                                                                setState(() {});
-                                                                return;
-                                                              }
-                                                            }
-
-                                                            final userTempUploadsCreateData =
-                                                                createUserTempUploadsRecordData(
-                                                              docTitle:
-                                                                  '${columnUserDatasetsRecord.datasetName} - ${random_data.randomString(
-                                                                5,
-                                                                5,
-                                                                true,
-                                                                true,
-                                                                true,
-                                                              )}',
-                                                              docId: random_data
-                                                                  .randomString(
-                                                                6,
-                                                                6,
-                                                                true,
-                                                                true,
-                                                                true,
-                                                              ),
-                                                              datasetName:
-                                                                  columnUserDatasetsRecord
-                                                                      .datasetName,
-                                                              datasetId:
-                                                                  columnUserDatasetsRecord
-                                                                      .datasetId,
-                                                              chunkSize: 0,
-                                                              timestamp:
-                                                                  getCurrentTimestamp,
-                                                            );
-                                                            await UserTempUploadsRecord
-                                                                    .createDoc(
-                                                                        currentUserReference!)
-                                                                .set(
-                                                                    userTempUploadsCreateData);
-                                                          },
-                                                          text:
-                                                              'Single Upload (Test)',
-                                                          options:
-                                                              FFButtonOptions(
-                                                            width: 300,
-                                                            height: 40,
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .alternate,
-                                                            textStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .subtitle2
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .subtitle2Family,
-                                                                      color: Colors
-                                                                          .white,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).subtitle2Family),
-                                                                    ),
-                                                            borderSide:
-                                                                BorderSide(
-                                                              color: Colors
-                                                                  .transparent,
-                                                              width: 1,
-                                                            ),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        8),
-                                                          ),
                                                         ),
                                                       ),
                                                       Padding(
