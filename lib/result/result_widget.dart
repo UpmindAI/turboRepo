@@ -149,7 +149,8 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                 child: Padding(
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(20, 20, 0, 0),
-                                                  child: Text(
+                                                  child: SelectionArea(
+                                                      child: Text(
                                                     'Prompt:',
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -168,7 +169,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                                           context)
                                                                       .bodyText1Family),
                                                         ),
-                                                  ),
+                                                  )),
                                                 ),
                                               ),
                                               Align(
@@ -194,7 +195,8 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                 child: Padding(
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(20, 0, 0, 0),
-                                                  child: Text(
+                                                  child: SelectionArea(
+                                                      child: Text(
                                                     'Completion:',
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -213,7 +215,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                                           context)
                                                                       .bodyText1Family),
                                                         ),
-                                                  ),
+                                                  )),
                                                 ),
                                               ),
                                               Align(
@@ -570,17 +572,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                   ),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 20, 0, 0),
-                                        child: Text(
-                                          FFAppState().setQid,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyText1,
-                                        ),
-                                      ),
-                                    ],
+                                    children: [],
                                   ),
                                 ),
                               ),
