@@ -9,3 +9,4 @@ export 'retreiving/retreiving_widget.dart' show RetreivingWidget;
 export 'result/result_widget.dart' show ResultWidget;
 export 'edit_profile/edit_profile_widget.dart' show EditProfileWidget;
 export 'request_feature/request_feature_widget.dart' show RequestFeatureWidget;
+export 'support/support_widget.dart' show SupportWidget;

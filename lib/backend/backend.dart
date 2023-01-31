@@ -12,6 +12,7 @@ import 'schema/user_completions_record.dart';
 import 'schema/user_prompts_record.dart';
 import 'schema/user_temp_uploads_record.dart';
 import 'schema/feature_request_record.dart';
+import 'schema/support_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -26,6 +27,7 @@ export 'schema/user_completions_record.dart';
 export 'schema/user_prompts_record.dart';
 export 'schema/user_temp_uploads_record.dart';
 export 'schema/feature_request_record.dart';
+export 'schema/support_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -405,6 +407,58 @@ Future<FFFirestorePage<FeatureRequestRecord>> queryFeatureRequestRecordPage({
     queryCollectionPage(
       FeatureRequestRecord.collection,
       FeatureRequestRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query SupportRecords (as a Stream and as a Future).
+Future<int> querySupportRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      SupportRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<SupportRecord>> querySupportRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      SupportRecord.collection,
+      SupportRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<SupportRecord>> querySupportRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      SupportRecord.collection,
+      SupportRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<SupportRecord>> querySupportRecordPage({
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+}) =>
+    queryCollectionPage(
+      SupportRecord.collection,
+      SupportRecord.serializer,
       queryBuilder: queryBuilder,
       nextPageMarker: nextPageMarker,
       pageSize: pageSize,

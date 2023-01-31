@@ -141,6 +141,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'requestFeature',
               path: 'requestFeature',
               builder: (context, params) => RequestFeatureWidget(),
+            ),
+            FFRoute(
+              name: 'support',
+              path: 'support',
+              builder: (context, params) => SupportWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),
