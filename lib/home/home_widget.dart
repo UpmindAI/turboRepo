@@ -44,7 +44,7 @@ class _HomeWidgetState extends State<HomeWidget> {
     super.initState();
     textController = TextEditingController(
         text: widget.userCompletion != null
-            ? 'Prompt: ${widget.userCompletion!.prompt}Completion:${widget.userCompletion!.completion}'
+            ? 'Prompt:      ${widget.userCompletion!.prompt}Completion:      ${widget.userCompletion!.completion}'
             : '');
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -77,7 +77,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.87',
+                'v0.88',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -676,22 +676,24 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                     children: [
                                                                       Expanded(
                                                                         child:
+                                                                            Row(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          children: [
                                                                             Align(
-                                                                          alignment: AlignmentDirectional(
-                                                                              0,
-                                                                              0),
-                                                                          child:
-                                                                              AutoSizeText(
-                                                                            listViewUserDatasetsRecord.datasetName!,
-                                                                            maxLines:
-                                                                                1,
-                                                                            style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                  fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                  fontSize: 14,
-                                                                                  fontWeight: FontWeight.normal,
-                                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                                ),
-                                                                          ),
+                                                                              alignment: AlignmentDirectional(0, 0),
+                                                                              child: AutoSizeText(
+                                                                                listViewUserDatasetsRecord.datasetName!,
+                                                                                maxLines: 1,
+                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                      fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                      fontSize: 14,
+                                                                                      fontWeight: FontWeight.normal,
+                                                                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                    ),
+                                                                              ),
+                                                                            ),
+                                                                          ],
                                                                         ),
                                                                       ),
                                                                     ],

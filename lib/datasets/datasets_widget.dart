@@ -944,6 +944,8 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyText1,
+                                                                  maxLines: 2,
+                                                                  minLines: 1,
                                                                 ),
                                                               ),
                                                             ),
@@ -1109,11 +1111,35 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                 children: [
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 10, 0, 10),
-                                    child: Text(
-                                      'Your Datasets',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyText1,
+                                        10, 0, 0, 0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 10, 0, 10),
+                                          child: Text(
+                                            'Your Datasets',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1
+                                                .override(
+                                                  fontFamily:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyText1Family,
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.bold,
+                                                  useGoogleFonts: GoogleFonts
+                                                          .asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1Family),
+                                                ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                   Expanded(
@@ -1209,16 +1235,30 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                             )
                                                           ],
                                                         ),
-                                                        child: Align(
-                                                          alignment:
-                                                              AlignmentDirectional(
-                                                                  0, 0),
-                                                          child: AutoSizeText(
-                                                            listViewUserDatasetsRecord
-                                                                .datasetName!,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1,
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(20,
+                                                                      0, 0, 0),
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              Align(
+                                                                alignment:
+                                                                    AlignmentDirectional(
+                                                                        0, 0),
+                                                                child:
+                                                                    AutoSizeText(
+                                                                  listViewUserDatasetsRecord
+                                                                      .datasetName!,
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyText1,
+                                                                ),
+                                                              ),
+                                                            ],
                                                           ),
                                                         ),
                                                       ),
