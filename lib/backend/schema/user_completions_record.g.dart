@@ -53,6 +53,13 @@ class _$UserCompletionsRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.timestamp;
+    if (value != null) {
+      result
+        ..add('timestamp')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DateTime)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -92,6 +99,10 @@ class _$UserCompletionsRecordSerializer
           result.url = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'timestamp':
+          result.timestamp = serializers.deserialize(value,
+              specifiedType: const FullType(DateTime)) as DateTime?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -115,6 +126,8 @@ class _$UserCompletionsRecord extends UserCompletionsRecord {
   @override
   final String? url;
   @override
+  final DateTime? timestamp;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$UserCompletionsRecord(
@@ -122,7 +135,12 @@ class _$UserCompletionsRecord extends UserCompletionsRecord {
       (new UserCompletionsRecordBuilder()..update(updates))._build();
 
   _$UserCompletionsRecord._(
-      {this.qid, this.prompt, this.completion, this.url, this.ffRef})
+      {this.qid,
+      this.prompt,
+      this.completion,
+      this.url,
+      this.timestamp,
+      this.ffRef})
       : super._();
 
   @override
@@ -142,6 +160,7 @@ class _$UserCompletionsRecord extends UserCompletionsRecord {
         prompt == other.prompt &&
         completion == other.completion &&
         url == other.url &&
+        timestamp == other.timestamp &&
         ffRef == other.ffRef;
   }
 
@@ -149,9 +168,11 @@ class _$UserCompletionsRecord extends UserCompletionsRecord {
   int get hashCode {
     return $jf($jc(
         $jc(
-            $jc($jc($jc(0, qid.hashCode), prompt.hashCode),
-                completion.hashCode),
-            url.hashCode),
+            $jc(
+                $jc($jc($jc(0, qid.hashCode), prompt.hashCode),
+                    completion.hashCode),
+                url.hashCode),
+            timestamp.hashCode),
         ffRef.hashCode));
   }
 
@@ -162,6 +183,7 @@ class _$UserCompletionsRecord extends UserCompletionsRecord {
           ..add('prompt', prompt)
           ..add('completion', completion)
           ..add('url', url)
+          ..add('timestamp', timestamp)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -187,6 +209,10 @@ class UserCompletionsRecordBuilder
   String? get url => _$this._url;
   set url(String? url) => _$this._url = url;
 
+  DateTime? _timestamp;
+  DateTime? get timestamp => _$this._timestamp;
+  set timestamp(DateTime? timestamp) => _$this._timestamp = timestamp;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -202,6 +228,7 @@ class UserCompletionsRecordBuilder
       _prompt = $v.prompt;
       _completion = $v.completion;
       _url = $v.url;
+      _timestamp = $v.timestamp;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -229,6 +256,7 @@ class UserCompletionsRecordBuilder
             prompt: prompt,
             completion: completion,
             url: url,
+            timestamp: timestamp,
             ffRef: ffRef);
     replace(_$result);
     return _$result;

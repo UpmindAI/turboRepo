@@ -30,8 +30,8 @@ class _RetreivingWidgetState extends State<RetreivingWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 1550.ms,
-          begin: Offset(0, 700),
-          end: Offset(0, -700),
+          begin: Offset(0, 900),
+          end: Offset(0, -900),
         ),
       ],
     ),
@@ -56,28 +56,16 @@ class _RetreivingWidgetState extends State<RetreivingWidget>
               style: TextStyle(
                 color: FlutterFlowTheme.of(context).primaryText,
                 fontWeight: FontWeight.bold,
-                fontSize: 18,
+                fontSize: 16,
               ),
             ),
-            duration: Duration(milliseconds: 4000),
+            duration: Duration(milliseconds: 6000),
             backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
           ),
         );
         apiResultGPT = await GPTqueryCall.call(
           qid: FFAppState().setQid,
           idToken: currentJwtToken,
-        );
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              (apiResultGPT?.statusCode ?? 200).toString(),
-              style: TextStyle(
-                color: FlutterFlowTheme.of(context).primaryText,
-              ),
-            ),
-            duration: Duration(milliseconds: 4000),
-            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-          ),
         );
       } else {
         if (FFAppState().setEngine == 'My Data Only') {
@@ -88,7 +76,7 @@ class _RetreivingWidgetState extends State<RetreivingWidget>
                 style: TextStyle(
                   color: FlutterFlowTheme.of(context).primaryText,
                   fontWeight: FontWeight.bold,
-                  fontSize: 18,
+                  fontSize: 16,
                 ),
               ),
               duration: Duration(milliseconds: 4000),
@@ -102,19 +90,6 @@ class _RetreivingWidgetState extends State<RetreivingWidget>
             topK: FFAppState().setTopK,
           );
           if ((apiResultPC?.succeeded ?? true)) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(
-                  (apiResultPC?.statusCode ?? 200).toString(),
-                  style: TextStyle(
-                    color: FlutterFlowTheme.of(context).primaryText,
-                  ),
-                ),
-                duration: Duration(milliseconds: 4000),
-                backgroundColor: Color(0x00000000),
-              ),
-            );
-
             context.pushNamed('Result');
           } else {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -140,7 +115,7 @@ class _RetreivingWidgetState extends State<RetreivingWidget>
                   style: TextStyle(
                     color: FlutterFlowTheme.of(context).primaryText,
                     fontWeight: FontWeight.bold,
-                    fontSize: 18,
+                    fontSize: 16,
                   ),
                 ),
                 duration: Duration(milliseconds: 7000),
@@ -155,19 +130,6 @@ class _RetreivingWidgetState extends State<RetreivingWidget>
               idToken: currentJwtToken,
             );
             if ((apiResultdataGPT?.succeeded ?? true)) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    (apiResultdataGPT?.statusCode ?? 200).toString(),
-                    style: TextStyle(
-                      color: FlutterFlowTheme.of(context).primaryText,
-                    ),
-                  ),
-                  duration: Duration(milliseconds: 4000),
-                  backgroundColor: Color(0x00000000),
-                ),
-              );
-
               context.pushNamed('Result');
             } else {
               ScaffoldMessenger.of(context).showSnackBar(
@@ -332,7 +294,7 @@ class _RetreivingWidgetState extends State<RetreivingWidget>
                                             child: ClipRect(
                                               child: ImageFiltered(
                                                 imageFilter: ImageFilter.blur(
-                                                  sigmaX: 50,
+                                                  sigmaX: 75,
                                                   sigmaY: 50,
                                                 ),
                                                 child: Align(
