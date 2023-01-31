@@ -139,36 +139,6 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                   mainAxisSize:
                                                       MainAxisSize.max,
                                                   children: [
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(20, 10,
-                                                                  20, 5),
-                                                      child: SelectionArea(
-                                                          child: Text(
-                                                        listViewUserCompletionsRecord
-                                                            .prompt!
-                                                            .maybeHandleOverflow(
-                                                          maxChars: 250,
-                                                          replacement: '…',
-                                                        ),
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .title1
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .title1Family,
-                                                                  fontSize: 16,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .title1Family),
-                                                                ),
-                                                      )),
-                                                    ),
                                                     Expanded(
                                                       child: Align(
                                                         alignment:
@@ -208,7 +178,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                       padding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
-                                                                  0, 0, 20, 0),
+                                                                  0, 5, 20, 0),
                                                       child: InkWell(
                                                         onTap: () async {
                                                           await listViewUserCompletionsRecord
@@ -227,6 +197,41 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                     ),
                                                   ],
                                                 ),
+                                              ),
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                20, 10, 20, 5),
+                                                    child: SelectionArea(
+                                                        child: Text(
+                                                      listViewUserCompletionsRecord
+                                                          .prompt!
+                                                          .maybeHandleOverflow(
+                                                        maxChars: 250,
+                                                        replacement: '…',
+                                                      ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .title1
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .title1Family,
+                                                                fontSize: 16,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .title1Family),
+                                                              ),
+                                                    )),
+                                                  ),
+                                                ],
                                               ),
                                               Row(
                                                 mainAxisSize: MainAxisSize.max,
