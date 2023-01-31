@@ -1,11 +1,14 @@
 import '../auth/auth_util.dart';
+import '../backend/backend.dart';
 import '../components/main_menu_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
 
 class EditProfileWidget extends StatefulWidget {
@@ -20,6 +23,9 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
   TextEditingController? textController2;
   TextEditingController? textController3;
   TextEditingController? textController4;
+  TextEditingController? textController5;
+  TextEditingController? textController6;
+  final textFieldMask6 = MaskTextInputFormatter(mask: '(###) ###-##-##');
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -31,9 +37,12 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
     textController2 = TextEditingController(
         text: valueOrDefault(currentUserDocument?.lastName, ''));
     textController3 = TextEditingController(
-        text: valueOrDefault(currentUserDocument?.industry, ''));
+        text: valueOrDefault(currentUserDocument?.company, ''));
     textController4 = TextEditingController(
+        text: valueOrDefault(currentUserDocument?.industry, ''));
+    textController5 = TextEditingController(
         text: valueOrDefault(currentUserDocument?.role, ''));
+    textController6 = TextEditingController(text: currentPhoneNumber);
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -43,6 +52,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
     textController2?.dispose();
     textController3?.dispose();
     textController4?.dispose();
+    textController5?.dispose();
+    textController6?.dispose();
     super.dispose();
   }
 
@@ -280,7 +291,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                             autofocus: true,
                                             obscureText: false,
                                             decoration: InputDecoration(
-                                              labelText: 'Industry',
+                                              labelText: 'Company Name',
                                               hintStyle:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyText2,
@@ -352,6 +363,78 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                             autofocus: true,
                                             obscureText: false,
                                             decoration: InputDecoration(
+                                              labelText: 'Industry',
+                                              hintStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText2,
+                                              enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryColor,
+                                                  width: 1,
+                                                ),
+                                                borderRadius:
+                                                    const BorderRadius.only(
+                                                  topLeft: Radius.circular(4.0),
+                                                  topRight:
+                                                      Radius.circular(4.0),
+                                                ),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryColor,
+                                                  width: 1,
+                                                ),
+                                                borderRadius:
+                                                    const BorderRadius.only(
+                                                  topLeft: Radius.circular(4.0),
+                                                  topRight:
+                                                      Radius.circular(4.0),
+                                                ),
+                                              ),
+                                              errorBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: Color(0x00000000),
+                                                  width: 1,
+                                                ),
+                                                borderRadius:
+                                                    const BorderRadius.only(
+                                                  topLeft: Radius.circular(4.0),
+                                                  topRight:
+                                                      Radius.circular(4.0),
+                                                ),
+                                              ),
+                                              focusedErrorBorder:
+                                                  OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: Color(0x00000000),
+                                                  width: 1,
+                                                ),
+                                                borderRadius:
+                                                    const BorderRadius.only(
+                                                  topLeft: Radius.circular(4.0),
+                                                  topRight:
+                                                      Radius.circular(4.0),
+                                                ),
+                                              ),
+                                            ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1,
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 0, 0, 20),
+                                        child: AuthUserStreamWidget(
+                                          builder: (context) => TextFormField(
+                                            controller: textController5,
+                                            autofocus: true,
+                                            obscureText: false,
+                                            decoration: InputDecoration(
                                               labelText: 'Role',
                                               hintStyle:
                                                   FlutterFlowTheme.of(context)
@@ -415,9 +498,115 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                           ),
                                         ),
                                       ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 0, 0, 20),
+                                        child: AuthUserStreamWidget(
+                                          builder: (context) => TextFormField(
+                                            controller: textController6,
+                                            autofocus: true,
+                                            obscureText: false,
+                                            decoration: InputDecoration(
+                                              labelText: 'Phone Number',
+                                              hintStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText2,
+                                              enabledBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryColor,
+                                                  width: 1,
+                                                ),
+                                                borderRadius:
+                                                    const BorderRadius.only(
+                                                  topLeft: Radius.circular(4.0),
+                                                  topRight:
+                                                      Radius.circular(4.0),
+                                                ),
+                                              ),
+                                              focusedBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryColor,
+                                                  width: 1,
+                                                ),
+                                                borderRadius:
+                                                    const BorderRadius.only(
+                                                  topLeft: Radius.circular(4.0),
+                                                  topRight:
+                                                      Radius.circular(4.0),
+                                                ),
+                                              ),
+                                              errorBorder: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: Color(0x00000000),
+                                                  width: 1,
+                                                ),
+                                                borderRadius:
+                                                    const BorderRadius.only(
+                                                  topLeft: Radius.circular(4.0),
+                                                  topRight:
+                                                      Radius.circular(4.0),
+                                                ),
+                                              ),
+                                              focusedErrorBorder:
+                                                  OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                  color: Color(0x00000000),
+                                                  width: 1,
+                                                ),
+                                                borderRadius:
+                                                    const BorderRadius.only(
+                                                  topLeft: Radius.circular(4.0),
+                                                  topRight:
+                                                      Radius.circular(4.0),
+                                                ),
+                                              ),
+                                            ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyText1,
+                                            inputFormatters: [textFieldMask6],
+                                          ),
+                                        ),
+                                      ),
                                       FFButtonWidget(
-                                        onPressed: () {
-                                          print('Button pressed ...');
+                                        onPressed: () async {
+                                          final usersUpdateData =
+                                              createUsersRecordData(
+                                            firstName: valueOrDefault(
+                                                currentUserDocument?.firstName,
+                                                ''),
+                                            lastName: valueOrDefault(
+                                                currentUserDocument?.lastName,
+                                                ''),
+                                            company: textController3!.text,
+                                            phoneNumber: textController6!.text,
+                                            industry: textController4!.text,
+                                            role: textController5!.text,
+                                          );
+                                          await currentUserReference!
+                                              .update(usersUpdateData);
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            SnackBar(
+                                              content: Text(
+                                                'Saved!',
+                                                style: TextStyle(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                              duration:
+                                                  Duration(milliseconds: 4000),
+                                              backgroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
+                                            ),
+                                          );
                                         },
                                         text: 'Save',
                                         options: FFButtonOptions(

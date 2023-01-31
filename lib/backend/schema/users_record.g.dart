@@ -89,6 +89,13 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.company;
+    if (value != null) {
+      result
+        ..add('company')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -151,6 +158,10 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
           result.lastName = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'company':
+          result.company = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -186,6 +197,8 @@ class _$UsersRecord extends UsersRecord {
   @override
   final String? lastName;
   @override
+  final String? company;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$UsersRecord([void Function(UsersRecordBuilder)? updates]) =>
@@ -202,6 +215,7 @@ class _$UsersRecord extends UsersRecord {
       this.role,
       this.firstName,
       this.lastName,
+      this.company,
       this.ffRef})
       : super._();
 
@@ -226,6 +240,7 @@ class _$UsersRecord extends UsersRecord {
         role == other.role &&
         firstName == other.firstName &&
         lastName == other.lastName &&
+        company == other.company &&
         ffRef == other.ffRef;
   }
 
@@ -240,16 +255,18 @@ class _$UsersRecord extends UsersRecord {
                             $jc(
                                 $jc(
                                     $jc(
-                                        $jc($jc(0, email.hashCode),
-                                            displayName.hashCode),
-                                        photoUrl.hashCode),
-                                    uid.hashCode),
-                                createdTime.hashCode),
-                            phoneNumber.hashCode),
-                        industry.hashCode),
-                    role.hashCode),
-                firstName.hashCode),
-            lastName.hashCode),
+                                        $jc(
+                                            $jc($jc(0, email.hashCode),
+                                                displayName.hashCode),
+                                            photoUrl.hashCode),
+                                        uid.hashCode),
+                                    createdTime.hashCode),
+                                phoneNumber.hashCode),
+                            industry.hashCode),
+                        role.hashCode),
+                    firstName.hashCode),
+                lastName.hashCode),
+            company.hashCode),
         ffRef.hashCode));
   }
 
@@ -266,6 +283,7 @@ class _$UsersRecord extends UsersRecord {
           ..add('role', role)
           ..add('firstName', firstName)
           ..add('lastName', lastName)
+          ..add('company', company)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -314,6 +332,10 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   String? get lastName => _$this._lastName;
   set lastName(String? lastName) => _$this._lastName = lastName;
 
+  String? _company;
+  String? get company => _$this._company;
+  set company(String? company) => _$this._company = company;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -335,6 +357,7 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
       _role = $v.role;
       _firstName = $v.firstName;
       _lastName = $v.lastName;
+      _company = $v.company;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -368,6 +391,7 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
             role: role,
             firstName: firstName,
             lastName: lastName,
+            company: company,
             ffRef: ffRef);
     replace(_$result);
     return _$result;
