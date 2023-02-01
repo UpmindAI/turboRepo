@@ -105,6 +105,7 @@ class _RetreivingWidgetState extends State<RetreivingWidget>
               ),
             );
             context.pop();
+            return;
           }
         } else {
           if (FFAppState().setEngine == 'My Data + GPT') {
@@ -145,20 +146,8 @@ class _RetreivingWidgetState extends State<RetreivingWidget>
                 ),
               );
               context.pop();
+              return;
             }
-
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(
-                  (apiResultdataGPT?.statusCode ?? 200).toString(),
-                  style: TextStyle(
-                    color: FlutterFlowTheme.of(context).primaryText,
-                  ),
-                ),
-                duration: Duration(milliseconds: 4000),
-                backgroundColor: Color(0x00000000),
-              ),
-            );
 
             context.pushNamed('Result');
           } else {
@@ -170,19 +159,6 @@ class _RetreivingWidgetState extends State<RetreivingWidget>
       }
 
       if ((apiResultGPT?.succeeded ?? true)) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              (apiResultGPT?.statusCode ?? 200).toString(),
-              style: TextStyle(
-                color: FlutterFlowTheme.of(context).primaryText,
-              ),
-            ),
-            duration: Duration(milliseconds: 4000),
-            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-          ),
-        );
-
         context.pushNamed('Result');
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -198,6 +174,7 @@ class _RetreivingWidgetState extends State<RetreivingWidget>
           ),
         );
         context.pop();
+        return;
       }
     });
 

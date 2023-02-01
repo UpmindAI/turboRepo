@@ -215,6 +215,8 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                         maxChars: 500,
                                                         replacement: '…',
                                                       ),
+                                                      textAlign:
+                                                          TextAlign.start,
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -237,46 +239,53 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                               Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
-                                                  Container(
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                            .size
-                                                            .width,
-                                                    constraints: BoxConstraints(
-                                                      maxWidth: 1000,
-                                                    ),
-                                                    decoration: BoxDecoration(
-                                                      color: FlutterFlowTheme
-                                                              .of(context)
-                                                          .secondaryBackground,
-                                                    ),
-                                                    child: Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(20, 0,
-                                                                  20, 20),
-                                                      child: SelectionArea(
-                                                          child: Text(
-                                                        listViewUserCompletionsRecord
-                                                            .completion!,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyText1Family,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyText1Family),
-                                                                ),
-                                                      )),
+                                                  Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            -1, 0),
+                                                    child: Container(
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .width,
+                                                      constraints:
+                                                          BoxConstraints(
+                                                        maxWidth: 1000,
+                                                      ),
+                                                      decoration: BoxDecoration(
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
+                                                      ),
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(20, 0,
+                                                                    20, 20),
+                                                        child: SelectionArea(
+                                                            child: Text(
+                                                          listViewUserCompletionsRecord
+                                                              .completion!,
+                                                          textAlign:
+                                                              TextAlign.start,
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyText1Family,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyText1Family),
+                                                              ),
+                                                        )),
+                                                      ),
                                                     ),
                                                   ),
                                                 ],

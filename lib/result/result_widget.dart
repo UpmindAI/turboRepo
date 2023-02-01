@@ -474,15 +474,16 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                               style: TextStyle(
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .secondaryBackground,
+                                                                    .primaryColor,
                                                               ),
                                                             ),
                                                             duration: Duration(
                                                                 milliseconds:
                                                                     4000),
                                                             backgroundColor:
-                                                                Color(
-                                                                    0x00000000),
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryBackground,
                                                           ),
                                                         );
                                                         apiResult4sp =
