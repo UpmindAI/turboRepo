@@ -138,6 +138,8 @@ class _ResultWidgetState extends State<ResultWidget> {
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
                                           border: Border.all(
+                                            color: FlutterFlowTheme.of(context)
+                                                .alternate,
                                             width: 1,
                                           ),
                                         ),

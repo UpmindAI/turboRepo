@@ -143,6 +143,15 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                 borderRadius: BorderRadius.circular(0),
               ),
             ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+              child: Image.asset(
+                'assets/images/secure-stripe-payment-logo.png',
+                width: 300,
+                height: 43,
+                fit: BoxFit.cover,
+              ),
+            ),
           ],
         ),
       ),

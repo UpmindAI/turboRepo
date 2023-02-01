@@ -339,6 +339,28 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                             .bodyText1,
                                       ),
                                     ),
+                                    Expanded(
+                                      child: Align(
+                                        alignment: AlignmentDirectional(1, 0),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 10, 0),
+                                          child: InkWell(
+                                            onTap: () async {
+                                              context.pushNamed('Settings');
+                                            },
+                                            child: Icon(
+                                              Icons.settings_outlined,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .alternate,
+                                              size: 24,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
@@ -426,41 +448,6 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                   ),
                                 ),
                               ],
-                            ),
-                          ),
-                          Align(
-                            alignment: AlignmentDirectional(-1, 0),
-                            child: Container(
-                              width: 300,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                              ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Expanded(
-                                    child: Align(
-                                      alignment: AlignmentDirectional(1, 0),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 0, 10, 0),
-                                        child: InkWell(
-                                          onTap: () async {
-                                            context.pushNamed('Settings');
-                                          },
-                                          child: Icon(
-                                            Icons.settings_outlined,
-                                            color: FlutterFlowTheme.of(context)
-                                                .alternate,
-                                            size: 24,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
                             ),
                           ),
                         ],
