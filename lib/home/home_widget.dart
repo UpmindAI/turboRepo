@@ -77,7 +77,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.96',
+                'v0.98',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
