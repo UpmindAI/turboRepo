@@ -1,4 +1,5 @@
 import '../auth/auth_util.dart';
+import '../components/payment_widget.dart';
 import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -274,6 +275,75 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
+                          Align(
+                            alignment: AlignmentDirectional(-1, 0),
+                            child: InkWell(
+                              onTap: () async {
+                                await showModalBottomSheet(
+                                  isScrollControlled: true,
+                                  backgroundColor: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  enableDrag: false,
+                                  context: context,
+                                  builder: (context) {
+                                    return Padding(
+                                      padding:
+                                          MediaQuery.of(context).viewInsets,
+                                      child: Container(
+                                        height: 700,
+                                        child: PaymentWidget(),
+                                      ),
+                                    );
+                                  },
+                                ).then((value) => setState(() {}));
+                              },
+                              child: Container(
+                                width: 300,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          10, 0, 0, 0),
+                                      child: FaIcon(
+                                        FontAwesomeIcons.coins,
+                                        color: FlutterFlowTheme.of(context)
+                                            .alternate,
+                                        size: 24,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          5, 0, 5, 0),
+                                      child: Text(
+                                        'credits:',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1,
+                                      ),
+                                    ),
+                                    AuthUserStreamWidget(
+                                      builder: (context) => Text(
+                                        formatNumber(
+                                          valueOrDefault(
+                                              currentUserDocument?.totalCredits,
+                                              0.0),
+                                          formatType: FormatType.custom,
+                                          format: '##',
+                                          locale: '',
+                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
                           Divider(
                             height: 12,
                             thickness: 2,
@@ -356,6 +426,41 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                   ),
                                 ),
                               ],
+                            ),
+                          ),
+                          Align(
+                            alignment: AlignmentDirectional(-1, 0),
+                            child: Container(
+                              width: 300,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Expanded(
+                                    child: Align(
+                                      alignment: AlignmentDirectional(1, 0),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 0, 10, 0),
+                                        child: InkWell(
+                                          onTap: () async {
+                                            context.pushNamed('Settings');
+                                          },
+                                          child: Icon(
+                                            Icons.settings_outlined,
+                                            color: FlutterFlowTheme.of(context)
+                                                .alternate,
+                                            size: 24,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ],
