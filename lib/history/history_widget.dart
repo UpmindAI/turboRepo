@@ -289,25 +289,54 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                       alignment:
                                                           AlignmentDirectional(
                                                               1, 0),
-                                                      child: Text(
-                                                        'Copy to Clipboard',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyText1Family,
+                                                      child: InkWell(
+                                                        onTap: () async {
+                                                          await Clipboard.setData(
+                                                              ClipboardData(
+                                                                  text:
+                                                                      'Prompt:     ${listViewUserCompletionsRecord.prompt}Completion:     ${listViewUserCompletionsRecord.completion}'));
+                                                          ScaffoldMessenger.of(
+                                                                  context)
+                                                              .showSnackBar(
+                                                            SnackBar(
+                                                              content: Text(
+                                                                'Copied to Clipboard!',
+                                                                style:
+                                                                    TextStyle(
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .grayIcon,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyText1Family),
+                                                                      .primaryColor,
                                                                 ),
+                                                              ),
+                                                              duration: Duration(
+                                                                  milliseconds:
+                                                                      4000),
+                                                              backgroundColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryBackground,
+                                                            ),
+                                                          );
+                                                        },
+                                                        child: Text(
+                                                          'Copy to Clipboard',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyText1Family,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .grayIcon,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyText1Family),
+                                                              ),
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
@@ -322,6 +351,27 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                             ClipboardData(
                                                                 text:
                                                                     'Prompt:     ${listViewUserCompletionsRecord.prompt}Completion:     ${listViewUserCompletionsRecord.completion}'));
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(
+                                                          SnackBar(
+                                                            content: Text(
+                                                              'Copied to Clipboard!',
+                                                              style: TextStyle(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryColor,
+                                                              ),
+                                                            ),
+                                                            duration: Duration(
+                                                                milliseconds:
+                                                                    4000),
+                                                            backgroundColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryBackground,
+                                                          ),
+                                                        );
                                                       },
                                                       child: FaIcon(
                                                         FontAwesomeIcons

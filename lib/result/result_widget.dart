@@ -164,6 +164,28 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                                 ClipboardData(
                                                                     text:
                                                                         'Prompt:     ${resultUserCompletionsRecord!.prompt}Completion:     ${resultUserCompletionsRecord!.completion}'));
+                                                            ScaffoldMessenger
+                                                                    .of(context)
+                                                                .showSnackBar(
+                                                              SnackBar(
+                                                                content: Text(
+                                                                  'Copied to Clipboard!',
+                                                                  style:
+                                                                      TextStyle(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryText,
+                                                                  ),
+                                                                ),
+                                                                duration: Duration(
+                                                                    milliseconds:
+                                                                        4000),
+                                                                backgroundColor:
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryBackground,
+                                                              ),
+                                                            );
                                                           },
                                                           child: Text(
                                                             'Copy to Clipboard',
@@ -199,6 +221,27 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                             ClipboardData(
                                                                 text:
                                                                     'Prompt:     ${resultUserCompletionsRecord!.prompt}Completion:     ${resultUserCompletionsRecord!.completion}'));
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(
+                                                          SnackBar(
+                                                            content: Text(
+                                                              'Copied to Clipboard!',
+                                                              style: TextStyle(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryText,
+                                                              ),
+                                                            ),
+                                                            duration: Duration(
+                                                                milliseconds:
+                                                                    4000),
+                                                            backgroundColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryBackground,
+                                                          ),
+                                                        );
                                                       },
                                                       child: FaIcon(
                                                         FontAwesomeIcons
