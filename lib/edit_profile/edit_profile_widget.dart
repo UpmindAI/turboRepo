@@ -575,12 +575,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                         onPressed: () async {
                                           final usersUpdateData =
                                               createUsersRecordData(
-                                            firstName: valueOrDefault(
-                                                currentUserDocument?.firstName,
-                                                ''),
-                                            lastName: valueOrDefault(
-                                                currentUserDocument?.lastName,
-                                                ''),
+                                            firstName: textController1!.text,
+                                            lastName: textController2!.text,
                                             company: textController3!.text,
                                             phoneNumber: textController6!.text,
                                             industry: textController4!.text,

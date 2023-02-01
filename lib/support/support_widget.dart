@@ -643,8 +643,6 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                   obscureText: false,
                                                   decoration: InputDecoration(
                                                     labelText: 'Industry',
-                                                    hintText:
-                                                        '[Some hint text...]',
                                                     hintStyle:
                                                         FlutterFlowTheme.of(
                                                                 context)

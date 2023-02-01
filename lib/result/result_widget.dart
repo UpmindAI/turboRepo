@@ -275,6 +275,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                               FlutterFlowTheme.of(
                                                                       context)
                                                                   .bodyText1Family,
+                                                          fontSize: 18,
                                                           fontWeight:
                                                               FontWeight.bold,
                                                           useGoogleFonts: GoogleFonts
@@ -300,7 +301,20 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                     textAlign: TextAlign.start,
                                                     style: FlutterFlowTheme.of(
                                                             context)
-                                                        .bodyText1,
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyText1Family,
+                                                          fontSize: 18,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyText1Family),
+                                                        ),
                                                   )),
                                                 ),
                                               ),
@@ -321,6 +335,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                               FlutterFlowTheme.of(
                                                                       context)
                                                                   .bodyText1Family,
+                                                          fontSize: 18,
                                                           fontWeight:
                                                               FontWeight.bold,
                                                           useGoogleFonts: GoogleFonts
@@ -345,7 +360,20 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                         .completion!,
                                                     style: FlutterFlowTheme.of(
                                                             context)
-                                                        .bodyText1,
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyText1Family,
+                                                          fontSize: 18,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyText1Family),
+                                                        ),
                                                   )),
                                                 ),
                                               ),

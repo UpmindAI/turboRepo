@@ -332,7 +332,7 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                               currentUserDocument?.totalCredits,
                                               0.0),
                                           formatType: FormatType.custom,
-                                          format: '##',
+                                          format: '#.##',
                                           locale: '',
                                         ),
                                         style: FlutterFlowTheme.of(context)
