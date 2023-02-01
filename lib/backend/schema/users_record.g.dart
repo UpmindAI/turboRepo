@@ -96,6 +96,13 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.totalCredits;
+    if (value != null) {
+      result
+        ..add('total_credits')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(double)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -162,6 +169,10 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
           result.company = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'total_credits':
+          result.totalCredits = serializers.deserialize(value,
+              specifiedType: const FullType(double)) as double?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -199,6 +210,8 @@ class _$UsersRecord extends UsersRecord {
   @override
   final String? company;
   @override
+  final double? totalCredits;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$UsersRecord([void Function(UsersRecordBuilder)? updates]) =>
@@ -216,6 +229,7 @@ class _$UsersRecord extends UsersRecord {
       this.firstName,
       this.lastName,
       this.company,
+      this.totalCredits,
       this.ffRef})
       : super._();
 
@@ -241,6 +255,7 @@ class _$UsersRecord extends UsersRecord {
         firstName == other.firstName &&
         lastName == other.lastName &&
         company == other.company &&
+        totalCredits == other.totalCredits &&
         ffRef == other.ffRef;
   }
 
@@ -256,17 +271,19 @@ class _$UsersRecord extends UsersRecord {
                                 $jc(
                                     $jc(
                                         $jc(
-                                            $jc($jc(0, email.hashCode),
-                                                displayName.hashCode),
-                                            photoUrl.hashCode),
-                                        uid.hashCode),
-                                    createdTime.hashCode),
-                                phoneNumber.hashCode),
-                            industry.hashCode),
-                        role.hashCode),
-                    firstName.hashCode),
-                lastName.hashCode),
-            company.hashCode),
+                                            $jc(
+                                                $jc($jc(0, email.hashCode),
+                                                    displayName.hashCode),
+                                                photoUrl.hashCode),
+                                            uid.hashCode),
+                                        createdTime.hashCode),
+                                    phoneNumber.hashCode),
+                                industry.hashCode),
+                            role.hashCode),
+                        firstName.hashCode),
+                    lastName.hashCode),
+                company.hashCode),
+            totalCredits.hashCode),
         ffRef.hashCode));
   }
 
@@ -284,6 +301,7 @@ class _$UsersRecord extends UsersRecord {
           ..add('firstName', firstName)
           ..add('lastName', lastName)
           ..add('company', company)
+          ..add('totalCredits', totalCredits)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -336,6 +354,10 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   String? get company => _$this._company;
   set company(String? company) => _$this._company = company;
 
+  double? _totalCredits;
+  double? get totalCredits => _$this._totalCredits;
+  set totalCredits(double? totalCredits) => _$this._totalCredits = totalCredits;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -358,6 +380,7 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
       _firstName = $v.firstName;
       _lastName = $v.lastName;
       _company = $v.company;
+      _totalCredits = $v.totalCredits;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -392,6 +415,7 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
             firstName: firstName,
             lastName: lastName,
             company: company,
+            totalCredits: totalCredits,
             ffRef: ffRef);
     replace(_$result);
     return _$result;
