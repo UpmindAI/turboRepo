@@ -500,8 +500,6 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                         width: MediaQuery.of(context)
                                                                             .size
                                                                             .width,
-                                                                        height:
-                                                                            65,
                                                                         decoration:
                                                                             BoxDecoration(
                                                                           color:
@@ -527,7 +525,8 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                   child: Padding(
                                                                                     padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                                                                     child: Text(
-                                                                                      listViewUserDocsRecord.docTitle!,
+                                                                                      listViewUserDocsRecord.docTitle!.maybeHandleOverflow(maxChars: 250),
+                                                                                      maxLines: 2,
                                                                                       style: FlutterFlowTheme.of(context).bodyText1,
                                                                                     ),
                                                                                   ),
@@ -536,16 +535,46 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                   child: Align(
                                                                                     alignment: AlignmentDirectional(1, 0),
                                                                                     child: Padding(
-                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0, 8, 5, 0),
+                                                                                      child: Icon(
+                                                                                        Icons.open_in_new,
+                                                                                        color: FlutterFlowTheme.of(context).alternate,
+                                                                                        size: 24,
+                                                                                      ),
+                                                                                    ),
+                                                                                  ),
+                                                                                ),
+                                                                                Align(
+                                                                                  alignment: AlignmentDirectional(1, 0),
+                                                                                  child: Padding(
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0, 8, 20, 0),
+                                                                                    child: InkWell(
+                                                                                      onTap: () async {
+                                                                                        await launchURL(listViewUserDocsRecord.url!);
+                                                                                      },
                                                                                       child: Text(
-                                                                                        'Active',
+                                                                                        'Open',
                                                                                         style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                               fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
                                                                                               color: FlutterFlowTheme.of(context).alternate,
-                                                                                              fontWeight: FontWeight.normal,
                                                                                               useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
                                                                                             ),
                                                                                       ),
+                                                                                    ),
+                                                                                  ),
+                                                                                ),
+                                                                                Align(
+                                                                                  alignment: AlignmentDirectional(1, 0),
+                                                                                  child: Padding(
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                                                                                    child: Text(
+                                                                                      'Active',
+                                                                                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                            fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                            color: FlutterFlowTheme.of(context).alternate,
+                                                                                            fontWeight: FontWeight.normal,
+                                                                                            useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                          ),
                                                                                     ),
                                                                                   ),
                                                                                 ),
@@ -591,76 +620,23 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                 ),
                                                                               ],
                                                                             ),
-                                                                            Row(
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              children: [
-                                                                                Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 5),
-                                                                                  child: Icon(
-                                                                                    Icons.calendar_today_outlined,
-                                                                                    color: FlutterFlowTheme.of(context).tertiaryColor,
-                                                                                    size: 20,
-                                                                                  ),
-                                                                                ),
-                                                                                Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                                                                                  child: Text(
-                                                                                    dateTimeFormat('jm', listViewUserDocsRecord.timestamp!),
-                                                                                    style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                          fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                          color: FlutterFlowTheme.of(context).tertiaryColor,
-                                                                                          fontWeight: FontWeight.normal,
-                                                                                          useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                                        ),
-                                                                                  ),
-                                                                                ),
-                                                                                Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
-                                                                                  child: Text(
-                                                                                    dateTimeFormat('yMMMd', listViewUserDocsRecord.timestamp!),
-                                                                                    style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                          fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                          color: FlutterFlowTheme.of(context).tertiaryColor,
-                                                                                          fontWeight: FontWeight.normal,
-                                                                                          useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                                        ),
-                                                                                  ),
-                                                                                ),
-                                                                                Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                                                                                  child: InkWell(
-                                                                                    onTap: () async {
-                                                                                      await listViewUserDocsRecord.reference.delete();
-
-                                                                                      final userDatasetsUpdateData = {
-                                                                                        'active_docs': FieldValue.arrayRemove([
-                                                                                          listViewUserDocsRecord.docId
-                                                                                        ]),
-                                                                                      };
-                                                                                      await columnUserDatasetsRecord.reference.update(userDatasetsUpdateData);
-                                                                                    },
-                                                                                    child: FaIcon(
-                                                                                      FontAwesomeIcons.trashAlt,
+                                                                            Padding(
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
+                                                                              child: Row(
+                                                                                mainAxisSize: MainAxisSize.max,
+                                                                                children: [
+                                                                                  Padding(
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 5),
+                                                                                    child: Icon(
+                                                                                      Icons.calendar_today_outlined,
                                                                                       color: FlutterFlowTheme.of(context).tertiaryColor,
-                                                                                      size: 18,
+                                                                                      size: 20,
                                                                                     ),
                                                                                   ),
-                                                                                ),
-                                                                                Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
-                                                                                  child: InkWell(
-                                                                                    onTap: () async {
-                                                                                      await listViewUserDocsRecord.reference.delete();
-
-                                                                                      final userDatasetsUpdateData = {
-                                                                                        'active_docs': FieldValue.arrayRemove([
-                                                                                          listViewUserDocsRecord.docId
-                                                                                        ]),
-                                                                                      };
-                                                                                      await columnUserDatasetsRecord.reference.update(userDatasetsUpdateData);
-                                                                                    },
+                                                                                  Padding(
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                                                                     child: Text(
-                                                                                      'Remove',
+                                                                                      dateTimeFormat('jm', listViewUserDocsRecord.timestamp!),
                                                                                       style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                             fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
                                                                                             color: FlutterFlowTheme.of(context).tertiaryColor,
@@ -669,8 +645,64 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                           ),
                                                                                     ),
                                                                                   ),
-                                                                                ),
-                                                                              ],
+                                                                                  Padding(
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                                                                                    child: Text(
+                                                                                      dateTimeFormat('yMMMd', listViewUserDocsRecord.timestamp!),
+                                                                                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                            fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                            color: FlutterFlowTheme.of(context).tertiaryColor,
+                                                                                            fontWeight: FontWeight.normal,
+                                                                                            useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                          ),
+                                                                                    ),
+                                                                                  ),
+                                                                                  Padding(
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                                                                    child: InkWell(
+                                                                                      onTap: () async {
+                                                                                        await listViewUserDocsRecord.reference.delete();
+
+                                                                                        final userDatasetsUpdateData = {
+                                                                                          'active_docs': FieldValue.arrayRemove([
+                                                                                            listViewUserDocsRecord.docId
+                                                                                          ]),
+                                                                                        };
+                                                                                        await columnUserDatasetsRecord.reference.update(userDatasetsUpdateData);
+                                                                                      },
+                                                                                      child: FaIcon(
+                                                                                        FontAwesomeIcons.trashAlt,
+                                                                                        color: FlutterFlowTheme.of(context).tertiaryColor,
+                                                                                        size: 18,
+                                                                                      ),
+                                                                                    ),
+                                                                                  ),
+                                                                                  Padding(
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                                                                                    child: InkWell(
+                                                                                      onTap: () async {
+                                                                                        await listViewUserDocsRecord.reference.delete();
+
+                                                                                        final userDatasetsUpdateData = {
+                                                                                          'active_docs': FieldValue.arrayRemove([
+                                                                                            listViewUserDocsRecord.docId
+                                                                                          ]),
+                                                                                        };
+                                                                                        await columnUserDatasetsRecord.reference.update(userDatasetsUpdateData);
+                                                                                      },
+                                                                                      child: Text(
+                                                                                        'Remove',
+                                                                                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                              fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                              color: FlutterFlowTheme.of(context).tertiaryColor,
+                                                                                              fontWeight: FontWeight.normal,
+                                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                            ),
+                                                                                      ),
+                                                                                    ),
+                                                                                  ),
+                                                                                ],
+                                                                              ),
                                                                             ),
                                                                           ],
                                                                         ),
@@ -747,8 +779,9 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                   child: Icon(
                                                                     Icons
                                                                         .settings_outlined,
-                                                                    color: Colors
-                                                                        .black,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .alternate,
                                                                     size: 24,
                                                                   ),
                                                                 ),
