@@ -536,10 +536,15 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                     alignment: AlignmentDirectional(1, 0),
                                                                                     child: Padding(
                                                                                       padding: EdgeInsetsDirectional.fromSTEB(0, 8, 5, 0),
-                                                                                      child: Icon(
-                                                                                        Icons.open_in_new,
-                                                                                        color: FlutterFlowTheme.of(context).alternate,
-                                                                                        size: 24,
+                                                                                      child: InkWell(
+                                                                                        onTap: () async {
+                                                                                          await launchURL(listViewUserDocsRecord.url!);
+                                                                                        },
+                                                                                        child: Icon(
+                                                                                          Icons.open_in_new,
+                                                                                          color: FlutterFlowTheme.of(context).alternate,
+                                                                                          size: 24,
+                                                                                        ),
                                                                                       ),
                                                                                     ),
                                                                                   ),
@@ -1227,75 +1232,95 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                 final listViewUserDatasetsRecord =
                                                     listViewUserDatasetsRecordList[
                                                         listViewIndex];
-                                                return Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(0, 5, 0, 15),
-                                                  child: InkWell(
-                                                    onTap: () async {
-                                                      FFAppState().update(() {
-                                                        FFAppState()
-                                                                .activeDataset =
-                                                            listViewUserDatasetsRecord
-                                                                .reference;
-                                                        FFAppState()
-                                                                .selectedDocuments =
-                                                            listViewUserDatasetsRecord
-                                                                .activeDocs!
-                                                                .toList();
-                                                      });
-                                                    },
-                                                    child: Material(
-                                                      color: Colors.transparent,
-                                                      elevation: 2,
-                                                      child: Container(
-                                                        width: MediaQuery.of(
-                                                                context)
-                                                            .size
-                                                            .width,
-                                                        height: 50,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryBackground,
-                                                          boxShadow: [
-                                                            BoxShadow(
-                                                              blurRadius: 4,
-                                                              color: Color(
-                                                                  0x33000000),
-                                                              offset:
-                                                                  Offset(0, 2),
-                                                            )
-                                                          ],
-                                                        ),
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(20,
-                                                                      0, 0, 0),
-                                                          child: Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            children: [
-                                                              Align(
-                                                                alignment:
-                                                                    AlignmentDirectional(
-                                                                        0, 0),
-                                                                child:
-                                                                    AutoSizeText(
+                                                return SingleChildScrollView(
+                                                  primary: false,
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(0, 5,
+                                                                    0, 15),
+                                                        child: InkWell(
+                                                          onTap: () async {
+                                                            FFAppState()
+                                                                .update(() {
+                                                              FFAppState()
+                                                                      .activeDataset =
                                                                   listViewUserDatasetsRecord
-                                                                      .datasetName!,
-                                                                  style: FlutterFlowTheme.of(
+                                                                      .reference;
+                                                              FFAppState()
+                                                                      .selectedDocuments =
+                                                                  listViewUserDatasetsRecord
+                                                                      .activeDocs!
+                                                                      .toList();
+                                                            });
+                                                          },
+                                                          child: Material(
+                                                            color: Colors
+                                                                .transparent,
+                                                            elevation: 2,
+                                                            child: Container(
+                                                              width:
+                                                                  MediaQuery.of(
                                                                           context)
-                                                                      .bodyText1,
+                                                                      .size
+                                                                      .width,
+                                                              height: 50,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryBackground,
+                                                                boxShadow: [
+                                                                  BoxShadow(
+                                                                    blurRadius:
+                                                                        4,
+                                                                    color: Color(
+                                                                        0x33000000),
+                                                                    offset:
+                                                                        Offset(
+                                                                            0,
+                                                                            2),
+                                                                  )
+                                                                ],
+                                                              ),
+                                                              child: Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            20,
+                                                                            0,
+                                                                            0,
+                                                                            0),
+                                                                child: Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  children: [
+                                                                    Align(
+                                                                      alignment:
+                                                                          AlignmentDirectional(
+                                                                              0,
+                                                                              0),
+                                                                      child:
+                                                                          AutoSizeText(
+                                                                        listViewUserDatasetsRecord
+                                                                            .datasetName!,
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyText1,
+                                                                      ),
+                                                                    ),
+                                                                  ],
                                                                 ),
                                                               ),
-                                                            ],
+                                                            ),
                                                           ),
                                                         ),
                                                       ),
-                                                    ),
+                                                    ],
                                                   ),
                                                 );
                                               },
