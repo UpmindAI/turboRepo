@@ -136,7 +136,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                         return Padding(
                           padding: MediaQuery.of(context).viewInsets,
                           child: Container(
-                            height: 7000,
+                            height: 700,
                             child: PaymentWidget(),
                           ),
                         );
