@@ -1193,8 +1193,8 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                             parent: currentUserReference,
                                             queryBuilder:
                                                 (userDatasetsRecord) =>
-                                                    userDatasetsRecord
-                                                        .orderBy('created_on'),
+                                                    userDatasetsRecord.orderBy(
+                                                        'dataset_name'),
                                           ),
                                           builder: (context, snapshot) {
                                             // Customize what your widget looks like when it's loading.

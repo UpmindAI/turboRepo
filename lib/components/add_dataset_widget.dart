@@ -207,7 +207,11 @@ class _AddDatasetWidgetState extends State<AddDatasetWidget> {
                                   await UserDatasetsRecord.createDoc(
                                           currentUserReference!)
                                       .set(userDatasetsCreateData);
+                                  await Future.delayed(
+                                      const Duration(milliseconds: 500));
                                   Navigator.pop(context);
+
+                                  context.pushNamed('Datasets');
                                 },
                                 text: 'Save',
                                 options: FFButtonOptions(

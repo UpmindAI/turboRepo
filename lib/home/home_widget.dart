@@ -77,7 +77,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.94',
+                'v0.95',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -520,7 +520,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                             children: [
                                               Padding(
                                                 padding: EdgeInsetsDirectional
-                                                    .fromSTEB(10, 10, 0, 0),
+                                                    .fromSTEB(10, 10, 0, 10),
                                                 child: Text(
                                                   'Datasets',
                                                   style: FlutterFlowTheme.of(
@@ -551,7 +551,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                       (userDatasetsRecord) =>
                                                           userDatasetsRecord
                                                               .orderBy(
-                                                                  'created_on'),
+                                                                  'dataset_name'),
                                                 ),
                                                 builder: (context, snapshot) {
                                                   // Customize what your widget looks like when it's loading.
