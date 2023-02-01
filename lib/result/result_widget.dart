@@ -6,7 +6,9 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -143,12 +145,80 @@ class _ResultWidgetState extends State<ResultWidget> {
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Expanded(
+                                                    child: Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              1, 0),
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0, 8, 5, 0),
+                                                        child: InkWell(
+                                                          onTap: () async {
+                                                            await Clipboard.setData(
+                                                                ClipboardData(
+                                                                    text:
+                                                                        'Prompt:     ${resultUserCompletionsRecord!.prompt}Completion:     ${resultUserCompletionsRecord!.completion}'));
+                                                          },
+                                                          child: Text(
+                                                            'Copy to Clipboard',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyText1Family,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .tertiaryColor,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyText1Family),
+                                                                ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                0, 8, 8, 0),
+                                                    child: InkWell(
+                                                      onTap: () async {
+                                                        await Clipboard.setData(
+                                                            ClipboardData(
+                                                                text:
+                                                                    'Prompt:     ${resultUserCompletionsRecord!.prompt}Completion:     ${resultUserCompletionsRecord!.completion}'));
+                                                      },
+                                                      child: FaIcon(
+                                                        FontAwesomeIcons
+                                                            .solidCopy,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .tertiaryColor,
+                                                        size: 24,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
                                               Align(
                                                 alignment:
                                                     AlignmentDirectional(-1, 0),
                                                 child: Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(20, 20, 0, 0),
+                                                      .fromSTEB(20, 0, 0, 0),
                                                   child: SelectionArea(
                                                       child: Text(
                                                     'Prompt:',

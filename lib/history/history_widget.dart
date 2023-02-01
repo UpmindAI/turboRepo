@@ -4,6 +4,7 @@ import '../components/main_menu_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -148,7 +149,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                           padding:
                                                               EdgeInsetsDirectional
                                                                   .fromSTEB(0,
-                                                                      0, 20, 0),
+                                                                      0, 10, 0),
                                                           child: Text(
                                                             dateTimeFormat(
                                                                 'MMMMEEEEd',
@@ -163,7 +164,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                                       .bodyText1Family,
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .gray200,
+                                                                      .grayIcon,
                                                                   useGoogleFonts: GoogleFonts
                                                                           .asMap()
                                                                       .containsKey(
@@ -178,7 +179,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                       padding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
-                                                                  0, 5, 20, 0),
+                                                                  0, 3, 8, 0),
                                                       child: InkWell(
                                                         onTap: () async {
                                                           await listViewUserCompletionsRecord
@@ -276,6 +277,61 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                                               .bodyText1Family),
                                                                 ),
                                                       )),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Expanded(
+                                                    child: Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              1, 0),
+                                                      child: Text(
+                                                        'Copy to Clipboard',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyText1Family,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .grayIcon,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyText1Family),
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                5, 0, 8, 5),
+                                                    child: InkWell(
+                                                      onTap: () async {
+                                                        await Clipboard.setData(
+                                                            ClipboardData(
+                                                                text:
+                                                                    'Prompt:     ${listViewUserCompletionsRecord.prompt}Completion:     ${listViewUserCompletionsRecord.completion}'));
+                                                      },
+                                                      child: FaIcon(
+                                                        FontAwesomeIcons
+                                                            .solidCopy,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .grayIcon,
+                                                        size: 24,
+                                                      ),
                                                     ),
                                                   ),
                                                 ],
