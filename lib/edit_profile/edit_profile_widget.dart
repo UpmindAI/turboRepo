@@ -19,41 +19,41 @@ class EditProfileWidget extends StatefulWidget {
 }
 
 class _EditProfileWidgetState extends State<EditProfileWidget> {
-  TextEditingController? textController1;
-  TextEditingController? textController2;
-  TextEditingController? textController3;
-  TextEditingController? textController4;
-  TextEditingController? textController5;
-  TextEditingController? textController6;
-  final textFieldMask6 = MaskTextInputFormatter(mask: '(###) ###-##-##');
+  TextEditingController? companyEditController;
+  TextEditingController? firstNameEditController;
+  TextEditingController? lastNameEditController;
+  TextEditingController? industryEditController;
+  TextEditingController? roleEditController;
+  TextEditingController? phoneEditController;
+  final phoneEditMask = MaskTextInputFormatter(mask: '(###) ###-##-##');
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    textController1 = TextEditingController(
-        text: valueOrDefault(currentUserDocument?.firstName, ''));
-    textController2 = TextEditingController(
-        text: valueOrDefault(currentUserDocument?.lastName, ''));
-    textController3 = TextEditingController(
+    companyEditController = TextEditingController(
         text: valueOrDefault(currentUserDocument?.company, ''));
-    textController4 = TextEditingController(
+    firstNameEditController = TextEditingController(
+        text: valueOrDefault(currentUserDocument?.firstName, ''));
+    lastNameEditController = TextEditingController(
+        text: valueOrDefault(currentUserDocument?.lastName, ''));
+    industryEditController = TextEditingController(
         text: valueOrDefault(currentUserDocument?.industry, ''));
-    textController5 = TextEditingController(
+    roleEditController = TextEditingController(
         text: valueOrDefault(currentUserDocument?.role, ''));
-    textController6 = TextEditingController(text: currentPhoneNumber);
+    phoneEditController = TextEditingController(text: currentPhoneNumber);
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
   void dispose() {
-    textController1?.dispose();
-    textController2?.dispose();
-    textController3?.dispose();
-    textController4?.dispose();
-    textController5?.dispose();
-    textController6?.dispose();
+    companyEditController?.dispose();
+    firstNameEditController?.dispose();
+    lastNameEditController?.dispose();
+    industryEditController?.dispose();
+    roleEditController?.dispose();
+    phoneEditController?.dispose();
     super.dispose();
   }
 
@@ -143,7 +143,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                             0, 20, 0, 0),
                                         child: AuthUserStreamWidget(
                                           builder: (context) => TextFormField(
-                                            controller: textController1,
+                                            controller: firstNameEditController,
                                             autofocus: true,
                                             obscureText: false,
                                             decoration: InputDecoration(
@@ -215,7 +215,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                             0, 20, 0, 20),
                                         child: AuthUserStreamWidget(
                                           builder: (context) => TextFormField(
-                                            controller: textController2,
+                                            controller: lastNameEditController,
                                             autofocus: true,
                                             obscureText: false,
                                             decoration: InputDecoration(
@@ -287,7 +287,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                             0, 0, 0, 20),
                                         child: AuthUserStreamWidget(
                                           builder: (context) => TextFormField(
-                                            controller: textController3,
+                                            controller: companyEditController,
                                             autofocus: true,
                                             obscureText: false,
                                             decoration: InputDecoration(
@@ -359,7 +359,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                             0, 0, 0, 20),
                                         child: AuthUserStreamWidget(
                                           builder: (context) => TextFormField(
-                                            controller: textController4,
+                                            controller: industryEditController,
                                             autofocus: true,
                                             obscureText: false,
                                             decoration: InputDecoration(
@@ -431,7 +431,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                             0, 0, 0, 20),
                                         child: AuthUserStreamWidget(
                                           builder: (context) => TextFormField(
-                                            controller: textController5,
+                                            controller: roleEditController,
                                             autofocus: true,
                                             obscureText: false,
                                             decoration: InputDecoration(
@@ -503,7 +503,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                             0, 0, 0, 20),
                                         child: AuthUserStreamWidget(
                                           builder: (context) => TextFormField(
-                                            controller: textController6,
+                                            controller: phoneEditController,
                                             autofocus: true,
                                             obscureText: false,
                                             decoration: InputDecoration(
@@ -567,7 +567,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText1,
-                                            inputFormatters: [textFieldMask6],
+                                            inputFormatters: [phoneEditMask],
                                           ),
                                         ),
                                       ),
@@ -575,12 +575,17 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                         onPressed: () async {
                                           final usersUpdateData =
                                               createUsersRecordData(
-                                            firstName: textController1!.text,
-                                            lastName: textController2!.text,
-                                            company: textController3!.text,
-                                            phoneNumber: textController6!.text,
-                                            industry: textController4!.text,
-                                            role: textController5!.text,
+                                            firstName:
+                                                firstNameEditController!.text,
+                                            lastName:
+                                                lastNameEditController!.text,
+                                            company:
+                                                companyEditController!.text,
+                                            phoneNumber:
+                                                phoneEditController!.text,
+                                            industry:
+                                                industryEditController!.text,
+                                            role: roleEditController!.text,
                                           );
                                           await currentUserReference!
                                               .update(usersUpdateData);
@@ -603,6 +608,8 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                                       .primaryBackground,
                                             ),
                                           );
+
+                                          setState(() {});
                                         },
                                         text: 'Save',
                                         options: FFButtonOptions(
