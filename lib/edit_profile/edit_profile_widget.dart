@@ -155,7 +155,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                                 borderSide: BorderSide(
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .primaryColor,
+                                                      .alternate,
                                                   width: 1,
                                                 ),
                                                 borderRadius:
@@ -169,7 +169,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                                 borderSide: BorderSide(
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .primaryColor,
+                                                      .alternate,
                                                   width: 1,
                                                 ),
                                                 borderRadius:
@@ -227,7 +227,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                                 borderSide: BorderSide(
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .primaryColor,
+                                                      .alternate,
                                                   width: 1,
                                                 ),
                                                 borderRadius:
@@ -241,7 +241,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                                 borderSide: BorderSide(
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .primaryColor,
+                                                      .alternate,
                                                   width: 1,
                                                 ),
                                                 borderRadius:
@@ -299,7 +299,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                                 borderSide: BorderSide(
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .primaryColor,
+                                                      .alternate,
                                                   width: 1,
                                                 ),
                                                 borderRadius:
@@ -313,7 +313,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                                 borderSide: BorderSide(
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .primaryColor,
+                                                      .alternate,
                                                   width: 1,
                                                 ),
                                                 borderRadius:
@@ -371,7 +371,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                                 borderSide: BorderSide(
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .primaryColor,
+                                                      .alternate,
                                                   width: 1,
                                                 ),
                                                 borderRadius:
@@ -385,7 +385,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                                 borderSide: BorderSide(
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .primaryColor,
+                                                      .alternate,
                                                   width: 1,
                                                 ),
                                                 borderRadius:
@@ -443,7 +443,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                                 borderSide: BorderSide(
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .primaryColor,
+                                                      .alternate,
                                                   width: 1,
                                                 ),
                                                 borderRadius:
@@ -457,7 +457,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                                 borderSide: BorderSide(
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .primaryColor,
+                                                      .alternate,
                                                   width: 1,
                                                 ),
                                                 borderRadius:
@@ -515,7 +515,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                                 borderSide: BorderSide(
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .primaryColor,
+                                                      .alternate,
                                                   width: 1,
                                                 ),
                                                 borderRadius:
@@ -529,7 +529,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                                 borderSide: BorderSide(
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .primaryColor,
+                                                      .alternate,
                                                   width: 1,
                                                 ),
                                                 borderRadius:

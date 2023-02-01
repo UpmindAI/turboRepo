@@ -77,7 +77,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.100',
+                'v0.101',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -243,9 +243,22 @@ class _HomeWidgetState extends State<HomeWidget> {
                                               ),
                                               style:
                                                   FlutterFlowTheme.of(context)
-                                                      .bodyText1,
+                                                      .bodyText1
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyText1Family,
+                                                        fontSize: 18,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyText1Family),
+                                                      ),
                                               maxLines: 36,
-                                              minLines: 30,
+                                              minLines: 28,
                                             ),
                                           ),
                                           Row(
