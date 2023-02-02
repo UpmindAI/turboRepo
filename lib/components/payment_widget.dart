@@ -140,7 +140,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                   color: Colors.transparent,
                   width: 1,
                 ),
-                borderRadius: BorderRadius.circular(0),
+                borderRadius: BorderRadius.circular(20),
               ),
             ),
             Padding(

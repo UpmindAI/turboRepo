@@ -109,7 +109,7 @@ class _UploadConfigWidgetState extends State<UploadConfigWidget> {
                 color: Colors.transparent,
                 width: 1,
               ),
-              borderRadius: BorderRadius.circular(0),
+              borderRadius: BorderRadius.circular(20),
             ),
           ),
         ],

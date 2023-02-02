@@ -1079,8 +1079,8 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                       width: 1,
                                                                     ),
                                                                     borderRadius:
-                                                                        BorderRadius
-                                                                            .circular(0),
+                                                                        BorderRadius.circular(
+                                                                            20),
                                                                   ),
                                                                 ),
                                                               ),
@@ -1371,7 +1371,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                             width: 1,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(0),
+                                              BorderRadius.circular(20),
                                         ),
                                       ),
                                     ),
