@@ -437,7 +437,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                   width: 1,
                                                 ),
                                                 borderRadius:
-                                                    BorderRadius.circular(0),
+                                                    BorderRadius.circular(20),
                                               ),
                                             ),
                                           ),
@@ -477,7 +477,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                   width: 1,
                                                 ),
                                                 borderRadius:
-                                                    BorderRadius.circular(0),
+                                                    BorderRadius.circular(20),
                                               ),
                                             ),
                                           ),
@@ -615,7 +615,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                         ),
                                                         borderRadius:
                                                             BorderRadius
-                                                                .circular(0),
+                                                                .circular(20),
                                                       ),
                                                     ),
                                                   ),
@@ -671,7 +671,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                           ),
                                                           borderRadius:
                                                               BorderRadius
-                                                                  .circular(0),
+                                                                  .circular(20),
                                                         ),
                                                       ),
                                                     ),

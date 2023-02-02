@@ -120,7 +120,7 @@ class _PromptConfigWidgetState extends State<PromptConfigWidget> {
                   color: Colors.transparent,
                   width: 1,
                 ),
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(20),
               ),
             ),
           ],

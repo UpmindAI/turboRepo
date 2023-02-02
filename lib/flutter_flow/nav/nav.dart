@@ -106,6 +106,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => SettingsWidget(),
             ),
             FFRoute(
+              name: 'History',
+              path: 'history',
+              builder: (context, params) => HistoryWidget(),
+            ),
+            FFRoute(
               name: 'Home',
               path: 'home',
               asyncParams: {
@@ -116,11 +121,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 userCompletion:
                     params.getParam('userCompletion', ParamType.Document),
               ),
-            ),
-            FFRoute(
-              name: 'History',
-              path: 'history',
-              builder: (context, params) => HistoryWidget(),
             ),
             FFRoute(
               name: 'retreiving',

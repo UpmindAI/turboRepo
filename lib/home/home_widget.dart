@@ -78,7 +78,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.106',
+                'v0.107',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -435,7 +435,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                         ),
                                                         borderRadius:
                                                             BorderRadius
-                                                                .circular(0),
+                                                                .circular(20),
                                                         disabledColor:
                                                             FlutterFlowTheme.of(
                                                                     context)
