@@ -40,6 +40,9 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
   @BuiltValueField(wireName: 'total_credits')
   double? get totalCredits;
 
+  @BuiltValueField(wireName: 'first_login')
+  bool? get firstLogin;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -55,7 +58,8 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
     ..firstName = ''
     ..lastName = ''
     ..company = ''
-    ..totalCredits = 0.0;
+    ..totalCredits = 0.0
+    ..firstLogin = false;
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('users');
@@ -91,6 +95,7 @@ Map<String, dynamic> createUsersRecordData({
   String? lastName,
   String? company,
   double? totalCredits,
+  bool? firstLogin,
 }) {
   final firestoreData = serializers.toFirestore(
     UsersRecord.serializer,
@@ -107,7 +112,8 @@ Map<String, dynamic> createUsersRecordData({
         ..firstName = firstName
         ..lastName = lastName
         ..company = company
-        ..totalCredits = totalCredits,
+        ..totalCredits = totalCredits
+        ..firstLogin = firstLogin,
     ),
   );
 

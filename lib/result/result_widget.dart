@@ -190,7 +190,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                             );
                                                           },
                                                           child: Text(
-                                                            'Copy to Clipboard',
+                                                            'Copy',
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyText1
