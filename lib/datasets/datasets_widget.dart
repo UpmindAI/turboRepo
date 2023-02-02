@@ -35,9 +35,9 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
   List<UserDocsRecord> get checkboxCheckedItems =>
       checkboxValueMap.entries.where((e) => e.value).map((e) => e.key).toList();
 
+  bool mouseRegionHovered = false;
   ApiCallResponse? apiResult8oi;
   TextEditingController? scrapeURLController;
-  bool mouseRegionHovered = false;
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -281,6 +281,103 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                         FlutterFlowTheme.of(context)
                                                                             .bodyText1Family),
                                                               ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(10, 10, 0, 10),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  MouseRegion(
+                                                    opaque: false,
+                                                    cursor: SystemMouseCursors
+                                                            .click ??
+                                                        MouseCursor.defer,
+                                                    child: Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              0, 0),
+                                                      child: Container(
+                                                        width: 300,
+                                                        height: 37,
+                                                        child: custom_widgets
+                                                            .SelectAndUploadFiles(
+                                                          width: 300,
+                                                          height: 37,
+                                                          userId:
+                                                              currentUserUid,
+                                                          datasetId:
+                                                              columnUserDatasetsRecord
+                                                                  .datasetId,
+                                                          chunkSize:
+                                                              FFAppState()
+                                                                  .setChunkSize,
+                                                          datasetName:
+                                                              columnUserDatasetsRecord
+                                                                  .datasetName,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    onEnter: ((event) async {
+                                                      setState(() =>
+                                                          mouseRegionHovered =
+                                                              true);
+                                                    }),
+                                                    onExit: ((event) async {
+                                                      setState(() =>
+                                                          mouseRegionHovered =
+                                                              false);
+                                                    }),
+                                                  ),
+                                                  Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            1, 0),
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  10, 0, 20, 0),
+                                                      child: InkWell(
+                                                        onTap: () async {
+                                                          await showModalBottomSheet(
+                                                            isScrollControlled:
+                                                                true,
+                                                            backgroundColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryBackground,
+                                                            enableDrag: false,
+                                                            context: context,
+                                                            builder: (context) {
+                                                              return Padding(
+                                                                padding: MediaQuery.of(
+                                                                        context)
+                                                                    .viewInsets,
+                                                                child:
+                                                                    Container(
+                                                                  height: 500,
+                                                                  child:
+                                                                      UploadConfigWidget(),
+                                                                ),
+                                                              );
+                                                            },
+                                                          ).then((value) =>
+                                                              setState(() {}));
+                                                        },
+                                                        child: Icon(
+                                                          Icons
+                                                              .settings_outlined,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .alternate,
+                                                          size: 24,
+                                                        ),
+                                                      ),
                                                     ),
                                                   ),
                                                   Expanded(
@@ -736,119 +833,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                       Row(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
-                                                        children: [
-                                                          Expanded(
-                                                            child: Align(
-                                                              alignment:
-                                                                  AlignmentDirectional(
-                                                                      1, 0),
-                                                              child: Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0,
-                                                                            0,
-                                                                            20,
-                                                                            0),
-                                                                child: InkWell(
-                                                                  onTap:
-                                                                      () async {
-                                                                    await showModalBottomSheet(
-                                                                      isScrollControlled:
-                                                                          true,
-                                                                      backgroundColor:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .secondaryBackground,
-                                                                      enableDrag:
-                                                                          false,
-                                                                      context:
-                                                                          context,
-                                                                      builder:
-                                                                          (context) {
-                                                                        return Padding(
-                                                                          padding:
-                                                                              MediaQuery.of(context).viewInsets,
-                                                                          child:
-                                                                              Container(
-                                                                            height:
-                                                                                500,
-                                                                            child:
-                                                                                UploadConfigWidget(),
-                                                                          ),
-                                                                        );
-                                                                      },
-                                                                    ).then((value) =>
-                                                                        setState(
-                                                                            () {}));
-                                                                  },
-                                                                  child: Icon(
-                                                                    Icons
-                                                                        .settings_outlined,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .alternate,
-                                                                    size: 24,
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      Container(
-                                                        width: 300,
-                                                        height: 37,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryBackground,
-                                                        ),
-                                                        child: MouseRegion(
-                                                          opaque: false,
-                                                          cursor:
-                                                              SystemMouseCursors
-                                                                      .click ??
-                                                                  MouseCursor
-                                                                      .defer,
-                                                          child: Align(
-                                                            alignment:
-                                                                AlignmentDirectional(
-                                                                    0, 0),
-                                                            child: Container(
-                                                              width: 300,
-                                                              height: 37,
-                                                              child: custom_widgets
-                                                                  .SelectAndUploadFiles(
-                                                                width: 300,
-                                                                height: 37,
-                                                                userId:
-                                                                    currentUserUid,
-                                                                datasetId:
-                                                                    columnUserDatasetsRecord
-                                                                        .datasetId,
-                                                                chunkSize:
-                                                                    FFAppState()
-                                                                        .setChunkSize,
-                                                                datasetName:
-                                                                    columnUserDatasetsRecord
-                                                                        .datasetName,
-                                                              ),
-                                                            ),
-                                                          ),
-                                                          onEnter:
-                                                              ((event) async {
-                                                            setState(() =>
-                                                                mouseRegionHovered =
-                                                                    true);
-                                                          }),
-                                                          onExit:
-                                                              ((event) async {
-                                                            setState(() =>
-                                                                mouseRegionHovered =
-                                                                    false);
-                                                          }),
-                                                        ),
+                                                        children: [],
                                                       ),
                                                       Padding(
                                                         padding:
@@ -902,7 +887,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                     isDense:
                                                                         true,
                                                                     labelText:
-                                                                        'Add a URL or YouTube video URL as Source',
+                                                                        'Add a URL to scrape or YouTube video URL to transribe and add as Source.',
                                                                     hintStyle: FlutterFlowTheme.of(
                                                                             context)
                                                                         .bodyText2,
@@ -1158,7 +1143,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0, 10, 0, 10),
                                           child: Text(
-                                            'Your Datasets',
+                                            'Datasets',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText1
                                                 .override(

@@ -78,7 +78,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.105',
+                'v0.106',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -458,7 +458,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                             .fromSTEB(
                                                                 0, 0, 0, 5),
                                                     child: Text(
-                                                      'Select Target:',
+                                                      'Select Chain:',
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -628,7 +628,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(10, 10, 0, 10),
                                                 child: Text(
-                                                  'Datasets',
+                                                  'My Datasets',
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyText1,

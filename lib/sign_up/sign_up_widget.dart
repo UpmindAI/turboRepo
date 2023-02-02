@@ -16,7 +16,7 @@ class SignUpWidget extends StatefulWidget {
 }
 
 class _SignUpWidgetState extends State<SignUpWidget> {
-  TextEditingController? emailTextController;
+  TextEditingController? emailSignupController;
   TextEditingController? passwordController;
   late bool passwordVisibility;
   TextEditingController? passwordRepeatController;
@@ -27,7 +27,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
   @override
   void initState() {
     super.initState();
-    emailTextController = TextEditingController();
+    emailSignupController = TextEditingController();
     passwordController = TextEditingController();
     passwordVisibility = false;
     passwordRepeatController = TextEditingController();
@@ -37,7 +37,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
 
   @override
   void dispose() {
-    emailTextController?.dispose();
+    emailSignupController?.dispose();
     passwordController?.dispose();
     passwordRepeatController?.dispose();
     super.dispose();
@@ -184,7 +184,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
                               child: TextFormField(
-                                controller: emailTextController,
+                                controller: emailSignupController,
                                 obscureText: false,
                                 decoration: InputDecoration(
                                   labelText: 'Your email address',
@@ -229,6 +229,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                 ),
                                 style: FlutterFlowTheme.of(context).bodyText1,
                                 maxLines: null,
+                                keyboardType: TextInputType.emailAddress,
                               ),
                             ),
                           ),
@@ -530,7 +531,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
 
                                 final user = await createAccountWithEmail(
                                   context,
-                                  emailTextController!.text,
+                                  emailSignupController!.text,
                                   passwordController!.text,
                                 );
                                 if (user == null) {
@@ -538,7 +539,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                 }
 
                                 final usersCreateData = createUsersRecordData(
-                                  email: '',
+                                  totalCredits: 10.0,
+                                  firstLogin: true,
                                 );
                                 await UsersRecord.collection
                                     .doc(user.uid)
