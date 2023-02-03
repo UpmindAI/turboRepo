@@ -78,7 +78,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.109',
+                'v0.110',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -586,7 +586,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                               if (valueOrDefault(
                                                       currentUserDocument
                                                           ?.totalCredits,
-                                                      0.0) >
+                                                      0.0) <=
                                                   0.0)
                                                 Padding(
                                                   padding: EdgeInsetsDirectional
