@@ -82,6 +82,9 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                             child: StreamBuilder<List<UserCompletionsRecord>>(
                               stream: queryUserCompletionsRecord(
                                 parent: currentUserReference,
+                                queryBuilder: (userCompletionsRecord) =>
+                                    userCompletionsRecord.orderBy('timestamp',
+                                        descending: true),
                               ),
                               builder: (context, snapshot) {
                                 // Customize what your widget looks like when it's loading.
