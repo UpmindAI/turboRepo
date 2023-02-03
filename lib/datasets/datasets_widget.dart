@@ -830,11 +830,6 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                     mainAxisSize:
                                                         MainAxisSize.max,
                                                     children: [
-                                                      Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [],
-                                                      ),
                                                       Padding(
                                                         padding:
                                                             EdgeInsetsDirectional
@@ -1079,8 +1074,8 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                       width: 1,
                                                                     ),
                                                                     borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            20),
+                                                                        BorderRadius
+                                                                            .circular(0),
                                                                   ),
                                                                 ),
                                                               ),
@@ -1371,7 +1366,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                             width: 1,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(20),
+                                              BorderRadius.circular(0),
                                         ),
                                       ),
                                     ),
