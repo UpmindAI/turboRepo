@@ -122,77 +122,83 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                   style: FlutterFlowTheme.of(context).subtitle2,
                 ),
               ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
-                child: InkWell(
-                  onTap: () async {
-                    await showModalBottomSheet(
-                      isScrollControlled: true,
-                      backgroundColor:
-                          FlutterFlowTheme.of(context).primaryBackground,
-                      enableDrag: false,
-                      context: context,
-                      builder: (context) {
-                        return Padding(
-                          padding: MediaQuery.of(context).viewInsets,
-                          child: Container(
-                            height: 700,
-                            child: PaymentWidget(),
-                          ),
-                        );
-                      },
-                    ).then((value) => setState(() {}));
-                  },
-                  child: Container(
-                    width: double.infinity,
-                    height: 60,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 5,
-                          color: Color(0x3416202A),
-                          offset: Offset(0, 2),
-                        )
-                      ],
-                      borderRadius: BorderRadius.circular(12),
-                      shape: BoxShape.rectangle,
-                    ),
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Icon(
-                            Icons.attach_money_rounded,
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            size: 24,
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                            child: Text(
-                              'Add Credits',
-                              style: FlutterFlowTheme.of(context).bodyText2,
+              if (responsiveVisibility(
+                context: context,
+                phone: false,
+                tablet: false,
+                desktop: false,
+              ))
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
+                  child: InkWell(
+                    onTap: () async {
+                      await showModalBottomSheet(
+                        isScrollControlled: true,
+                        backgroundColor:
+                            FlutterFlowTheme.of(context).primaryBackground,
+                        enableDrag: false,
+                        context: context,
+                        builder: (context) {
+                          return Padding(
+                            padding: MediaQuery.of(context).viewInsets,
+                            child: Container(
+                              height: 700,
+                              child: PaymentWidget(),
                             ),
-                          ),
-                          Expanded(
-                            child: Align(
-                              alignment: AlignmentDirectional(0.9, 0),
-                              child: Icon(
-                                Icons.arrow_forward_ios,
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                size: 18,
+                          );
+                        },
+                      ).then((value) => setState(() {}));
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      height: 60,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 5,
+                            color: Color(0x3416202A),
+                            offset: Offset(0, 2),
+                          )
+                        ],
+                        borderRadius: BorderRadius.circular(12),
+                        shape: BoxShape.rectangle,
+                      ),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Icon(
+                              Icons.attach_money_rounded,
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              size: 24,
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                              child: Text(
+                                'Add Credits',
+                                style: FlutterFlowTheme.of(context).bodyText2,
                               ),
                             ),
-                          ),
-                        ],
+                            Expanded(
+                              child: Align(
+                                alignment: AlignmentDirectional(0.9, 0),
+                                child: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                  size: 18,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
                 child: InkWell(
