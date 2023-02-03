@@ -331,7 +331,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                           );
                                                         },
                                                         child: Text(
-                                                          'Copy to Clipboard',
+                                                          'Copy',
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyText1

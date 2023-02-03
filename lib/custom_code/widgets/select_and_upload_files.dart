@@ -103,7 +103,7 @@ class _SelectAndUploadFilesState extends State<SelectAndUploadFiles> {
                 ),
                 Text(
                   filesSelected == null
-                      ? 'Add Documents to this Dataset'
+                      ? 'Add Documents'
                       : ("Uploading file " +
                           (fileTobeUploaded + 1).toString() +
                           " of " +

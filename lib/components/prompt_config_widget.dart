@@ -82,11 +82,11 @@ class _PromptConfigWidgetState extends State<PromptConfigWidget> {
                     Slider(
                       activeColor: FlutterFlowTheme.of(context).primaryColor,
                       inactiveColor: Color(0xFF9E9E9E),
-                      min: 1,
-                      max: 100,
+                      min: 5,
+                      max: 25,
                       value: topKValue ??= FFAppState().setTopK,
                       label: topKValue.toString(),
-                      divisions: 99,
+                      divisions: 20,
                       onChanged: (newValue) async {
                         newValue = double.parse(newValue.toStringAsFixed(0));
                         setState(() => topKValue = newValue);

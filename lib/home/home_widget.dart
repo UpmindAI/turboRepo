@@ -1,7 +1,7 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../components/add_dataset_widget.dart';
 import '../components/main_menu_widget.dart';
-import '../components/new_dataset_button_widget.dart';
 import '../components/payment_widget.dart';
 import '../components/prompt_config_widget.dart';
 import '../flutter_flow/flutter_flow_drop_down.dart';
@@ -79,7 +79,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.115',
+                'v0.116',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -363,8 +363,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                   20, 20, 0, 0),
                                                       child: FFButtonWidget(
                                                         onPressed: () async {
-                                                          var _shouldSetState =
-                                                              false;
                                                           FFAppState()
                                                               .update(() {
                                                             FFAppState()
@@ -381,75 +379,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                     .setEngine =
                                                                 dropDownValue!;
                                                           });
-                                                          if (valueOrDefault(
-                                                                  currentUserDocument
-                                                                      ?.totalCredits,
-                                                                  0.0) <
-                                                              0.0) {
-                                                            ScaffoldMessenger
-                                                                    .of(context)
-                                                                .showSnackBar(
-                                                              SnackBar(
-                                                                content: Text(
-                                                                  'Need need credits to complete this action...',
-                                                                  style:
-                                                                      TextStyle(
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryText,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                  ),
-                                                                ),
-                                                                duration: Duration(
-                                                                    milliseconds:
-                                                                        12000),
-                                                                backgroundColor:
-                                                                    FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryBackground,
-                                                                action:
-                                                                    SnackBarAction(
-                                                                  label:
-                                                                      'Add Credits',
-                                                                  textColor: Color(
-                                                                      0xFF4EABF5),
-                                                                  onPressed:
-                                                                      () async {
-                                                                    await showModalBottomSheet(
-                                                                      isScrollControlled:
-                                                                          true,
-                                                                      backgroundColor:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .secondaryBackground,
-                                                                      context:
-                                                                          context,
-                                                                      builder:
-                                                                          (context) {
-                                                                        return Padding(
-                                                                          padding:
-                                                                              MediaQuery.of(context).viewInsets,
-                                                                          child:
-                                                                              Container(
-                                                                            height:
-                                                                                700,
-                                                                            child:
-                                                                                PaymentWidget(),
-                                                                          ),
-                                                                        );
-                                                                      },
-                                                                    ).then((value) =>
-                                                                        setState(
-                                                                            () {}));
-                                                                  },
-                                                                ),
-                                                              ),
-                                                            );
-                                                            if (_shouldSetState)
-                                                              setState(() {});
-                                                            return;
-                                                          }
                                                           await Future.delayed(
                                                               const Duration(
                                                                   milliseconds:
@@ -474,8 +403,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                               .getDocumentFromData(
                                                                   userPromptsCreateData,
                                                                   userPromptsRecordReference);
-                                                          _shouldSetState =
-                                                              true;
                                                           setState(() {
                                                             textController
                                                                 ?.clear();
@@ -484,8 +411,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                           context.pushNamed(
                                                               'retreiving');
 
-                                                          if (_shouldSetState)
-                                                            setState(() {});
+                                                          setState(() {});
                                                         },
                                                         text: 'OMP!',
                                                         options:
@@ -574,8 +500,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                     'My Data + GPT',
                                                             options: [
                                                               'My Data + GPT',
-                                                              'GPT Only',
-                                                              'My Data Only'
+                                                              'GPT Only'
                                                             ],
                                                             onChanged: (val) =>
                                                                 setState(() =>
@@ -820,20 +745,163 @@ class _HomeWidgetState extends State<HomeWidget> {
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
-                                          Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(10, 10, 0, 10),
-                                                child: Text(
-                                                  'My Datasets',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1,
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 0, 5),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          -1, 0),
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                10, 10, 0, 10),
+                                                    child: Text(
+                                                      'Datasets',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1,
+                                                    ),
+                                                  ),
                                                 ),
-                                              ),
-                                            ],
+                                                Expanded(
+                                                  child: Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            -1, 0),
+                                                    child: Container(
+                                                      decoration: BoxDecoration(
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
+                                                      ),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        55,
+                                                                        0,
+                                                                        0,
+                                                                        0),
+                                                            child: InkWell(
+                                                              onTap: () async {
+                                                                await showModalBottomSheet(
+                                                                  isScrollControlled:
+                                                                      true,
+                                                                  backgroundColor:
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryBackground,
+                                                                  enableDrag:
+                                                                      false,
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (context) {
+                                                                    return Padding(
+                                                                      padding: MediaQuery.of(
+                                                                              context)
+                                                                          .viewInsets,
+                                                                      child:
+                                                                          Container(
+                                                                        height:
+                                                                            400,
+                                                                        child:
+                                                                            AddDatasetWidget(),
+                                                                      ),
+                                                                    );
+                                                                  },
+                                                                ).then((value) =>
+                                                                    setState(
+                                                                        () {}));
+                                                              },
+                                                              child: FaIcon(
+                                                                FontAwesomeIcons
+                                                                    .archive,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .tertiaryColor,
+                                                                size: 24,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        5,
+                                                                        0,
+                                                                        0,
+                                                                        0),
+                                                            child: InkWell(
+                                                              onTap: () async {
+                                                                await showModalBottomSheet(
+                                                                  isScrollControlled:
+                                                                      true,
+                                                                  backgroundColor:
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryBackground,
+                                                                  enableDrag:
+                                                                      false,
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (context) {
+                                                                    return Padding(
+                                                                      padding: MediaQuery.of(
+                                                                              context)
+                                                                          .viewInsets,
+                                                                      child:
+                                                                          Container(
+                                                                        height:
+                                                                            400,
+                                                                        child:
+                                                                            AddDatasetWidget(),
+                                                                      ),
+                                                                    );
+                                                                  },
+                                                                ).then((value) =>
+                                                                    setState(
+                                                                        () {}));
+                                                              },
+                                                              child: Text(
+                                                                'New',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyText1
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyText1Family,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .tertiaryColor,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).bodyText1Family),
+                                                                    ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                           Container(
                                             width: MediaQuery.of(context)
@@ -877,15 +945,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                   List<UserDatasetsRecord>
                                                       listViewUserDatasetsRecordList =
                                                       snapshot.data!;
-                                                  if (listViewUserDatasetsRecordList
-                                                      .isEmpty) {
-                                                    return Container(
-                                                      width: 300,
-                                                      height: 300,
-                                                      child:
-                                                          NewDatasetButtonWidget(),
-                                                    );
-                                                  }
                                                   return ListView.builder(
                                                     padding: EdgeInsets.zero,
                                                     primary: false,
