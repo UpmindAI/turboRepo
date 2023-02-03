@@ -484,6 +484,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                           color: Colors.transparent,
                                           width: 0,
                                         ),
+                                        borderRadius: BorderRadius.circular(0),
                                       ),
                                     ),
                                   ),
@@ -551,7 +552,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                               text: 'Sign up',
                               options: FFButtonOptions(
                                 width: 150,
-                                height: 50,
+                                height: 40,
                                 color:
                                     FlutterFlowTheme.of(context).primaryColor,
                                 textStyle: FlutterFlowTheme.of(context)
@@ -567,11 +568,11 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                               FlutterFlowTheme.of(context)
                                                   .subtitle2Family),
                                     ),
-                                elevation: 3,
                                 borderSide: BorderSide(
                                   color: Colors.transparent,
                                   width: 1,
                                 ),
+                                borderRadius: BorderRadius.circular(0),
                               ),
                             ),
                           ],

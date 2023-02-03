@@ -437,7 +437,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                   width: 1,
                                                 ),
                                                 borderRadius:
-                                                    BorderRadius.circular(20),
+                                                    BorderRadius.circular(0),
                                               ),
                                             ),
                                           ),
@@ -477,7 +477,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                   width: 1,
                                                 ),
                                                 borderRadius:
-                                                    BorderRadius.circular(20),
+                                                    BorderRadius.circular(0),
                                               ),
                                             ),
                                           ),
@@ -671,7 +671,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                           ),
                                                           borderRadius:
                                                               BorderRadius
-                                                                  .circular(20),
+                                                                  .circular(0),
                                                         ),
                                                       ),
                                                     ),
