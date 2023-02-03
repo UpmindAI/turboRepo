@@ -11,9 +11,10 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import '../flutter_flow/random_data_util.dart' as random_data;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -78,7 +79,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.112',
+                'v0.113',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -114,6 +115,87 @@ class _HomeWidgetState extends State<HomeWidget> {
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Expanded(
+                                  child: Align(
+                                    alignment: AlignmentDirectional(1, 0),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                      ),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Expanded(
+                                            child: Align(
+                                              alignment:
+                                                  AlignmentDirectional(1, 0),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 0, 5, 0),
+                                                child: InkWell(
+                                                  onTap: () async {
+                                                    await Clipboard.setData(
+                                                        ClipboardData(
+                                                            text:
+                                                                textController!
+                                                                    .text));
+                                                  },
+                                                  child: Text(
+                                                    'Copy',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyText1Family,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .tertiaryColor,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyText1Family),
+                                                        ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 5, 20, 5),
+                                            child: InkWell(
+                                              onTap: () async {
+                                                await Clipboard.setData(
+                                                    ClipboardData(
+                                                        text: textController!
+                                                            .text));
+                                              },
+                                              child: FaIcon(
+                                                FontAwesomeIcons.solidCopy,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .tertiaryColor,
+                                                size: 24,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                             Expanded(
                               child: Align(
                                 alignment: AlignmentDirectional(0, -1),
@@ -145,15 +227,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    20, 20, 20, 20),
+                                                    20, 0, 20, 10),
                                             child: TextFormField(
                                               controller: textController,
-                                              onChanged: (_) =>
-                                                  EasyDebounce.debounce(
-                                                'textController',
-                                                Duration(milliseconds: 2000),
-                                                () => setState(() {}),
-                                              ),
                                               autofocus: true,
                                               obscureText: false,
                                               decoration: InputDecoration(
@@ -225,22 +301,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 fillColor:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                suffixIcon: textController!
-                                                        .text.isNotEmpty
-                                                    ? InkWell(
-                                                        onTap: () async {
-                                                          textController
-                                                              ?.clear();
-                                                          setState(() {});
-                                                        },
-                                                        child: Icon(
-                                                          Icons.clear,
-                                                          color:
-                                                              Color(0xFF757575),
-                                                          size: 22,
-                                                        ),
-                                                      )
-                                                    : null,
                                               ),
                                               style:
                                                   FlutterFlowTheme.of(context)
@@ -271,180 +331,163 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                 child: Padding(
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(20, 20, 0, 0),
-                                                  child: AuthUserStreamWidget(
-                                                    builder: (context) =>
-                                                        FFButtonWidget(
-                                                      onPressed: valueOrDefault(
-                                                                  currentUserDocument
-                                                                      ?.totalCredits,
-                                                                  0.0) <=
-                                                              0.0
-                                                          ? null
-                                                          : () async {
-                                                              var _shouldSetState =
-                                                                  false;
-                                                              FFAppState()
-                                                                  .update(() {
-                                                                FFAppState()
-                                                                        .setQid =
-                                                                    random_data
-                                                                        .randomString(
-                                                                  7,
-                                                                  7,
-                                                                  true,
-                                                                  true,
-                                                                  true,
-                                                                );
-                                                                FFAppState()
-                                                                        .setEngine =
-                                                                    dropDownValue!;
-                                                              });
-                                                              if (valueOrDefault(
-                                                                      currentUserDocument
-                                                                          ?.totalCredits,
-                                                                      0.0) <
-                                                                  0.0) {
-                                                                ScaffoldMessenger.of(
+                                                  child: FFButtonWidget(
+                                                    onPressed: () async {
+                                                      var _shouldSetState =
+                                                          false;
+                                                      FFAppState().update(() {
+                                                        FFAppState().setQid =
+                                                            random_data
+                                                                .randomString(
+                                                          7,
+                                                          7,
+                                                          true,
+                                                          true,
+                                                          true,
+                                                        );
+                                                        FFAppState().setEngine =
+                                                            dropDownValue!;
+                                                      });
+                                                      if (valueOrDefault(
+                                                              currentUserDocument
+                                                                  ?.totalCredits,
+                                                              0.0) <
+                                                          0.0) {
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(
+                                                          SnackBar(
+                                                            content: Text(
+                                                              'Need need credits to complete this action...',
+                                                              style: TextStyle(
+                                                                color: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .showSnackBar(
-                                                                  SnackBar(
-                                                                    content:
-                                                                        Text(
-                                                                      'Need need credits to complete this action...',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primaryText,
-                                                                        fontWeight:
-                                                                            FontWeight.bold,
+                                                                    .primaryText,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                              ),
+                                                            ),
+                                                            duration: Duration(
+                                                                milliseconds:
+                                                                    12000),
+                                                            backgroundColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryBackground,
+                                                            action:
+                                                                SnackBarAction(
+                                                              label:
+                                                                  'Add Credits',
+                                                              textColor: Color(
+                                                                  0xFF4EABF5),
+                                                              onPressed:
+                                                                  () async {
+                                                                await showModalBottomSheet(
+                                                                  isScrollControlled:
+                                                                      true,
+                                                                  backgroundColor:
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryBackground,
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (context) {
+                                                                    return Padding(
+                                                                      padding: MediaQuery.of(
+                                                                              context)
+                                                                          .viewInsets,
+                                                                      child:
+                                                                          Container(
+                                                                        height:
+                                                                            700,
+                                                                        child:
+                                                                            PaymentWidget(),
                                                                       ),
-                                                                    ),
-                                                                    duration: Duration(
-                                                                        milliseconds:
-                                                                            12000),
-                                                                    backgroundColor:
+                                                                    );
+                                                                  },
+                                                                ).then((value) =>
+                                                                    setState(
+                                                                        () {}));
+                                                              },
+                                                            ),
+                                                          ),
+                                                        );
+                                                        if (_shouldSetState)
+                                                          setState(() {});
+                                                        return;
+                                                      }
+                                                      await Future.delayed(
+                                                          const Duration(
+                                                              milliseconds:
+                                                                  500));
+
+                                                      final userPromptsCreateData =
+                                                          createUserPromptsRecordData(
+                                                        qid:
+                                                            FFAppState().setQid,
+                                                        prompt: textController!
+                                                            .text,
+                                                      );
+                                                      var userPromptsRecordReference =
+                                                          UserPromptsRecord
+                                                              .createDoc(
+                                                                  currentUserReference!);
+                                                      await userPromptsRecordReference
+                                                          .set(
+                                                              userPromptsCreateData);
+                                                      setPrompt = UserPromptsRecord
+                                                          .getDocumentFromData(
+                                                              userPromptsCreateData,
+                                                              userPromptsRecordReference);
+                                                      _shouldSetState = true;
+                                                      setState(() {
+                                                        textController?.clear();
+                                                      });
+
+                                                      context.pushNamed(
+                                                          'retreiving');
+
+                                                      if (_shouldSetState)
+                                                        setState(() {});
+                                                    },
+                                                    text: 'OMP!',
+                                                    options: FFButtonOptions(
+                                                      width: 130,
+                                                      height: 40,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryColor,
+                                                      textStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .subtitle2
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .subtitle2Family,
+                                                                color: Colors
+                                                                    .white,
+                                                                fontSize: 20,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
                                                                         FlutterFlowTheme.of(context)
-                                                                            .secondaryBackground,
-                                                                    action:
-                                                                        SnackBarAction(
-                                                                      label:
-                                                                          'Add Credits',
-                                                                      textColor:
-                                                                          Color(
-                                                                              0xFF4EABF5),
-                                                                      onPressed:
-                                                                          () async {
-                                                                        await showModalBottomSheet(
-                                                                          isScrollControlled:
-                                                                              true,
-                                                                          backgroundColor:
-                                                                              FlutterFlowTheme.of(context).secondaryBackground,
-                                                                          context:
-                                                                              context,
-                                                                          builder:
-                                                                              (context) {
-                                                                            return Padding(
-                                                                              padding: MediaQuery.of(context).viewInsets,
-                                                                              child: Container(
-                                                                                height: 700,
-                                                                                child: PaymentWidget(),
-                                                                              ),
-                                                                            );
-                                                                          },
-                                                                        ).then((value) =>
-                                                                            setState(() {}));
-                                                                      },
-                                                                    ),
-                                                                  ),
-                                                                );
-                                                                if (_shouldSetState)
-                                                                  setState(
-                                                                      () {});
-                                                                return;
-                                                              }
-                                                              await Future.delayed(
-                                                                  const Duration(
-                                                                      milliseconds:
-                                                                          500));
-
-                                                              final userPromptsCreateData =
-                                                                  createUserPromptsRecordData(
-                                                                qid:
-                                                                    FFAppState()
-                                                                        .setQid,
-                                                                prompt:
-                                                                    textController!
-                                                                        .text,
-                                                              );
-                                                              var userPromptsRecordReference =
-                                                                  UserPromptsRecord
-                                                                      .createDoc(
-                                                                          currentUserReference!);
-                                                              await userPromptsRecordReference
-                                                                  .set(
-                                                                      userPromptsCreateData);
-                                                              setPrompt = UserPromptsRecord
-                                                                  .getDocumentFromData(
-                                                                      userPromptsCreateData,
-                                                                      userPromptsRecordReference);
-                                                              _shouldSetState =
-                                                                  true;
-                                                              setState(() {
-                                                                textController
-                                                                    ?.clear();
-                                                              });
-
-                                                              context.pushNamed(
-                                                                  'retreiving');
-
-                                                              if (_shouldSetState)
-                                                                setState(() {});
-                                                            },
-                                                      text: 'OMP!',
-                                                      options: FFButtonOptions(
-                                                        width: 130,
-                                                        height: 40,
+                                                                            .subtitle2Family),
+                                                              ),
+                                                      borderSide: BorderSide(
                                                         color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryColor,
-                                                        textStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .subtitle2
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .subtitle2Family,
-                                                                  color: Colors
-                                                                      .white,
-                                                                  fontSize: 20,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .subtitle2Family),
-                                                                ),
-                                                        borderSide: BorderSide(
-                                                          color: Colors
-                                                              .transparent,
-                                                          width: 1,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(0),
-                                                        disabledColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .tertiaryColor,
-                                                        disabledTextColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
+                                                            Colors.transparent,
+                                                        width: 1,
                                                       ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              0),
                                                     ),
                                                   ),
                                                 ),

@@ -507,293 +507,245 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Expanded(
-                                                  child: Container(
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                            .size
-                                                            .width,
-                                                    height: 600,
-                                                    constraints: BoxConstraints(
-                                                      maxHeight: 550,
-                                                    ),
-                                                    decoration: BoxDecoration(),
-                                                    child:
-                                                        SingleChildScrollView(
-                                                      child: Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          StreamBuilder<
-                                                              List<
-                                                                  UserDocsRecord>>(
-                                                            stream:
-                                                                queryUserDocsRecord(
-                                                              parent:
-                                                                  currentUserReference,
-                                                              queryBuilder: (userDocsRecord) =>
-                                                                  userDocsRecord.where(
-                                                                      'dataset_id',
-                                                                      isEqualTo:
-                                                                          columnUserDatasetsRecord
-                                                                              .datasetId),
-                                                            ),
-                                                            builder: (context,
-                                                                snapshot) {
-                                                              // Customize what your widget looks like when it's loading.
-                                                              if (!snapshot
-                                                                  .hasData) {
-                                                                return Center(
-                                                                  child:
-                                                                      SizedBox(
-                                                                    width: 50,
-                                                                    height: 50,
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                0, 0, 0, 20),
+                                                    child: Container(
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .width,
+                                                      height: 700,
+                                                      constraints:
+                                                          BoxConstraints(
+                                                        maxHeight: 550,
+                                                      ),
+                                                      decoration:
+                                                          BoxDecoration(),
+                                                      child:
+                                                          SingleChildScrollView(
+                                                        child: Column(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          children: [
+                                                            StreamBuilder<
+                                                                List<
+                                                                    UserDocsRecord>>(
+                                                              stream:
+                                                                  queryUserDocsRecord(
+                                                                parent:
+                                                                    currentUserReference,
+                                                                queryBuilder: (userDocsRecord) => userDocsRecord.where(
+                                                                    'dataset_id',
+                                                                    isEqualTo:
+                                                                        columnUserDatasetsRecord
+                                                                            .datasetId),
+                                                              ),
+                                                              builder: (context,
+                                                                  snapshot) {
+                                                                // Customize what your widget looks like when it's loading.
+                                                                if (!snapshot
+                                                                    .hasData) {
+                                                                  return Center(
                                                                     child:
-                                                                        SpinKitRipple(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryColor,
-                                                                      size: 50,
-                                                                    ),
-                                                                  ),
-                                                                );
-                                                              }
-                                                              List<UserDocsRecord>
-                                                                  listViewUserDocsRecordList =
-                                                                  snapshot
-                                                                      .data!;
-                                                              return ListView
-                                                                  .builder(
-                                                                padding:
-                                                                    EdgeInsets
-                                                                        .zero,
-                                                                shrinkWrap:
-                                                                    true,
-                                                                scrollDirection:
-                                                                    Axis.vertical,
-                                                                itemCount:
-                                                                    listViewUserDocsRecordList
-                                                                        .length,
-                                                                itemBuilder:
-                                                                    (context,
-                                                                        listViewIndex) {
-                                                                  final listViewUserDocsRecord =
-                                                                      listViewUserDocsRecordList[
-                                                                          listViewIndex];
-                                                                  return Padding(
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            10,
-                                                                            0,
-                                                                            10,
-                                                                            20),
-                                                                    child:
-                                                                        Material(
-                                                                      color: Colors
-                                                                          .transparent,
-                                                                      elevation:
-                                                                          1,
+                                                                        SizedBox(
+                                                                      width: 50,
+                                                                      height:
+                                                                          50,
                                                                       child:
-                                                                          Container(
-                                                                        width: MediaQuery.of(context)
-                                                                            .size
-                                                                            .width,
-                                                                        decoration:
-                                                                            BoxDecoration(
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).secondaryBackground,
-                                                                          boxShadow: [
-                                                                            BoxShadow(
-                                                                              blurRadius: 4,
-                                                                              color: Color(0x33000000),
-                                                                              offset: Offset(0, 2),
-                                                                            )
-                                                                          ],
-                                                                        ),
+                                                                          SpinKitRipple(
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryColor,
+                                                                        size:
+                                                                            50,
+                                                                      ),
+                                                                    ),
+                                                                  );
+                                                                }
+                                                                List<UserDocsRecord>
+                                                                    listViewUserDocsRecordList =
+                                                                    snapshot
+                                                                        .data!;
+                                                                return ListView
+                                                                    .builder(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .zero,
+                                                                  shrinkWrap:
+                                                                      true,
+                                                                  scrollDirection:
+                                                                      Axis.vertical,
+                                                                  itemCount:
+                                                                      listViewUserDocsRecordList
+                                                                          .length,
+                                                                  itemBuilder:
+                                                                      (context,
+                                                                          listViewIndex) {
+                                                                    final listViewUserDocsRecord =
+                                                                        listViewUserDocsRecordList[
+                                                                            listViewIndex];
+                                                                    return Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              10,
+                                                                              0,
+                                                                              10,
+                                                                              20),
+                                                                      child:
+                                                                          Material(
+                                                                        color: Colors
+                                                                            .transparent,
+                                                                        elevation:
+                                                                            1,
                                                                         child:
-                                                                            Column(
-                                                                          mainAxisSize:
-                                                                              MainAxisSize.max,
-                                                                          children: [
-                                                                            Row(
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              children: [
-                                                                                Align(
-                                                                                  alignment: AlignmentDirectional(-1, 0),
-                                                                                  child: Padding(
-                                                                                    padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                                                                                    child: Text(
-                                                                                      listViewUserDocsRecord.docTitle!.maybeHandleOverflow(maxChars: 250),
-                                                                                      maxLines: 2,
-                                                                                      style: FlutterFlowTheme.of(context).bodyText1,
+                                                                            Container(
+                                                                          width: MediaQuery.of(context)
+                                                                              .size
+                                                                              .width,
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).secondaryBackground,
+                                                                            boxShadow: [
+                                                                              BoxShadow(
+                                                                                blurRadius: 4,
+                                                                                color: Color(0x33000000),
+                                                                                offset: Offset(0, 2),
+                                                                              )
+                                                                            ],
+                                                                          ),
+                                                                          child:
+                                                                              Column(
+                                                                            mainAxisSize:
+                                                                                MainAxisSize.max,
+                                                                            children: [
+                                                                              Row(
+                                                                                mainAxisSize: MainAxisSize.max,
+                                                                                children: [
+                                                                                  Align(
+                                                                                    alignment: AlignmentDirectional(-1, 0),
+                                                                                    child: Padding(
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                                                                      child: Text(
+                                                                                        listViewUserDocsRecord.docTitle!.maybeHandleOverflow(maxChars: 250),
+                                                                                        maxLines: 2,
+                                                                                        style: FlutterFlowTheme.of(context).bodyText1,
+                                                                                      ),
                                                                                     ),
                                                                                   ),
-                                                                                ),
-                                                                                Expanded(
-                                                                                  child: Align(
-                                                                                    alignment: AlignmentDirectional(1, 0),
-                                                                                    child: Padding(
-                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0, 8, 5, 0),
-                                                                                      child: InkWell(
-                                                                                        onTap: () async {
-                                                                                          await launchURL(listViewUserDocsRecord.url!);
-                                                                                        },
-                                                                                        child: Icon(
-                                                                                          Icons.open_in_new,
-                                                                                          color: FlutterFlowTheme.of(context).alternate,
-                                                                                          size: 24,
+                                                                                  Expanded(
+                                                                                    child: Align(
+                                                                                      alignment: AlignmentDirectional(1, 0),
+                                                                                      child: Padding(
+                                                                                        padding: EdgeInsetsDirectional.fromSTEB(0, 8, 5, 0),
+                                                                                        child: InkWell(
+                                                                                          onTap: () async {
+                                                                                            await launchURL(listViewUserDocsRecord.url!);
+                                                                                          },
+                                                                                          child: Icon(
+                                                                                            Icons.open_in_new,
+                                                                                            color: FlutterFlowTheme.of(context).alternate,
+                                                                                            size: 24,
+                                                                                          ),
                                                                                         ),
                                                                                       ),
                                                                                     ),
                                                                                   ),
-                                                                                ),
-                                                                                Align(
-                                                                                  alignment: AlignmentDirectional(1, 0),
-                                                                                  child: Padding(
-                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0, 8, 20, 0),
-                                                                                    child: InkWell(
-                                                                                      onTap: () async {
-                                                                                        await launchURL(listViewUserDocsRecord.url!);
-                                                                                      },
+                                                                                  Align(
+                                                                                    alignment: AlignmentDirectional(1, 0),
+                                                                                    child: Padding(
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0, 8, 20, 0),
+                                                                                      child: InkWell(
+                                                                                        onTap: () async {
+                                                                                          await launchURL(listViewUserDocsRecord.url!);
+                                                                                        },
+                                                                                        child: Text(
+                                                                                          'Open',
+                                                                                          style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                                color: FlutterFlowTheme.of(context).alternate,
+                                                                                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                              ),
+                                                                                        ),
+                                                                                      ),
+                                                                                    ),
+                                                                                  ),
+                                                                                  Align(
+                                                                                    alignment: AlignmentDirectional(1, 0),
+                                                                                    child: Padding(
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
                                                                                       child: Text(
-                                                                                        'Open',
+                                                                                        'Active',
                                                                                         style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                               fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
                                                                                               color: FlutterFlowTheme.of(context).alternate,
+                                                                                              fontWeight: FontWeight.normal,
                                                                                               useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
                                                                                             ),
                                                                                       ),
                                                                                     ),
                                                                                   ),
-                                                                                ),
-                                                                                Align(
-                                                                                  alignment: AlignmentDirectional(1, 0),
-                                                                                  child: Padding(
-                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                                                                                    child: Text(
-                                                                                      'Active',
-                                                                                      style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                            fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                            color: FlutterFlowTheme.of(context).alternate,
-                                                                                            fontWeight: FontWeight.normal,
-                                                                                            useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                  Align(
+                                                                                    alignment: AlignmentDirectional(1, 0),
+                                                                                    child: Padding(
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0, 8, 5, 0),
+                                                                                      child: Theme(
+                                                                                        data: ThemeData(
+                                                                                          checkboxTheme: CheckboxThemeData(
+                                                                                            shape: RoundedRectangleBorder(
+                                                                                              borderRadius: BorderRadius.circular(0),
+                                                                                            ),
                                                                                           ),
-                                                                                    ),
-                                                                                  ),
-                                                                                ),
-                                                                                Align(
-                                                                                  alignment: AlignmentDirectional(1, 0),
-                                                                                  child: Padding(
-                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0, 8, 5, 0),
-                                                                                    child: Theme(
-                                                                                      data: ThemeData(
-                                                                                        checkboxTheme: CheckboxThemeData(
-                                                                                          shape: RoundedRectangleBorder(
-                                                                                            borderRadius: BorderRadius.circular(0),
-                                                                                          ),
+                                                                                          unselectedWidgetColor: FlutterFlowTheme.of(context).secondaryColor,
                                                                                         ),
-                                                                                        unselectedWidgetColor: FlutterFlowTheme.of(context).secondaryColor,
-                                                                                      ),
-                                                                                      child: Checkbox(
-                                                                                        value: checkboxValueMap[listViewUserDocsRecord] ??= FFAppState().selectedDocuments.contains(listViewUserDocsRecord.docId),
-                                                                                        onChanged: (newValue) async {
-                                                                                          setState(() => checkboxValueMap[listViewUserDocsRecord] = newValue!);
-                                                                                          if (newValue!) {
-                                                                                            final userDatasetsUpdateData = {
-                                                                                              'active_docs': FieldValue.arrayUnion([
-                                                                                                listViewUserDocsRecord.docId
-                                                                                              ]),
-                                                                                            };
-                                                                                            await columnUserDatasetsRecord.reference.update(userDatasetsUpdateData);
+                                                                                        child: Checkbox(
+                                                                                          value: checkboxValueMap[listViewUserDocsRecord] ??= FFAppState().selectedDocuments.contains(listViewUserDocsRecord.docId),
+                                                                                          onChanged: (newValue) async {
+                                                                                            setState(() => checkboxValueMap[listViewUserDocsRecord] = newValue!);
+                                                                                            if (newValue!) {
+                                                                                              final userDatasetsUpdateData = {
+                                                                                                'active_docs': FieldValue.arrayUnion([
+                                                                                                  listViewUserDocsRecord.docId
+                                                                                                ]),
+                                                                                              };
+                                                                                              await columnUserDatasetsRecord.reference.update(userDatasetsUpdateData);
 
-                                                                                            setState(() {});
-                                                                                          } else {
-                                                                                            final userDatasetsUpdateData = {
-                                                                                              'active_docs': FieldValue.arrayRemove([
-                                                                                                listViewUserDocsRecord.docId
-                                                                                              ]),
-                                                                                            };
-                                                                                            await columnUserDatasetsRecord.reference.update(userDatasetsUpdateData);
-                                                                                          }
-                                                                                        },
-                                                                                        activeColor: FlutterFlowTheme.of(context).alternate,
+                                                                                              setState(() {});
+                                                                                            } else {
+                                                                                              final userDatasetsUpdateData = {
+                                                                                                'active_docs': FieldValue.arrayRemove([
+                                                                                                  listViewUserDocsRecord.docId
+                                                                                                ]),
+                                                                                              };
+                                                                                              await columnUserDatasetsRecord.reference.update(userDatasetsUpdateData);
+                                                                                            }
+                                                                                          },
+                                                                                          activeColor: FlutterFlowTheme.of(context).alternate,
+                                                                                        ),
                                                                                       ),
                                                                                     ),
                                                                                   ),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                            Padding(
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
-                                                                              child: Row(
-                                                                                mainAxisSize: MainAxisSize.max,
-                                                                                children: [
-                                                                                  Padding(
-                                                                                    padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 5),
-                                                                                    child: Icon(
-                                                                                      Icons.calendar_today_outlined,
-                                                                                      color: FlutterFlowTheme.of(context).tertiaryColor,
-                                                                                      size: 20,
-                                                                                    ),
-                                                                                  ),
-                                                                                  Padding(
-                                                                                    padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                                                                                    child: Text(
-                                                                                      dateTimeFormat('jm', listViewUserDocsRecord.timestamp!),
-                                                                                      style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                            fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                            color: FlutterFlowTheme.of(context).tertiaryColor,
-                                                                                            fontWeight: FontWeight.normal,
-                                                                                            useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                                          ),
-                                                                                    ),
-                                                                                  ),
-                                                                                  Padding(
-                                                                                    padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
-                                                                                    child: Text(
-                                                                                      dateTimeFormat('yMMMd', listViewUserDocsRecord.timestamp!),
-                                                                                      style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                            fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                            color: FlutterFlowTheme.of(context).tertiaryColor,
-                                                                                            fontWeight: FontWeight.normal,
-                                                                                            useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                                          ),
-                                                                                    ),
-                                                                                  ),
-                                                                                  Padding(
-                                                                                    padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                                                                                    child: InkWell(
-                                                                                      onTap: () async {
-                                                                                        await listViewUserDocsRecord.reference.delete();
-
-                                                                                        final userDatasetsUpdateData = {
-                                                                                          'active_docs': FieldValue.arrayRemove([
-                                                                                            listViewUserDocsRecord.docId
-                                                                                          ]),
-                                                                                        };
-                                                                                        await columnUserDatasetsRecord.reference.update(userDatasetsUpdateData);
-                                                                                      },
-                                                                                      child: FaIcon(
-                                                                                        FontAwesomeIcons.trashAlt,
+                                                                                ],
+                                                                              ),
+                                                                              Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
+                                                                                child: Row(
+                                                                                  mainAxisSize: MainAxisSize.max,
+                                                                                  children: [
+                                                                                    Padding(
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 5),
+                                                                                      child: Icon(
+                                                                                        Icons.calendar_today_outlined,
                                                                                         color: FlutterFlowTheme.of(context).tertiaryColor,
-                                                                                        size: 18,
+                                                                                        size: 20,
                                                                                       ),
                                                                                     ),
-                                                                                  ),
-                                                                                  Padding(
-                                                                                    padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
-                                                                                    child: InkWell(
-                                                                                      onTap: () async {
-                                                                                        await listViewUserDocsRecord.reference.delete();
-
-                                                                                        final userDatasetsUpdateData = {
-                                                                                          'active_docs': FieldValue.arrayRemove([
-                                                                                            listViewUserDocsRecord.docId
-                                                                                          ]),
-                                                                                        };
-                                                                                        await columnUserDatasetsRecord.reference.update(userDatasetsUpdateData);
-                                                                                      },
+                                                                                    Padding(
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                                                                       child: Text(
-                                                                                        'Remove',
+                                                                                        dateTimeFormat('jm', listViewUserDocsRecord.timestamp!),
                                                                                         style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                               fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
                                                                                               color: FlutterFlowTheme.of(context).tertiaryColor,
@@ -802,20 +754,76 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                             ),
                                                                                       ),
                                                                                     ),
-                                                                                  ),
-                                                                                ],
+                                                                                    Padding(
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                                                                                      child: Text(
+                                                                                        dateTimeFormat('yMMMd', listViewUserDocsRecord.timestamp!),
+                                                                                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                              fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                              color: FlutterFlowTheme.of(context).tertiaryColor,
+                                                                                              fontWeight: FontWeight.normal,
+                                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                            ),
+                                                                                      ),
+                                                                                    ),
+                                                                                    Padding(
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                                                                      child: InkWell(
+                                                                                        onTap: () async {
+                                                                                          await listViewUserDocsRecord.reference.delete();
+
+                                                                                          final userDatasetsUpdateData = {
+                                                                                            'active_docs': FieldValue.arrayRemove([
+                                                                                              listViewUserDocsRecord.docId
+                                                                                            ]),
+                                                                                          };
+                                                                                          await columnUserDatasetsRecord.reference.update(userDatasetsUpdateData);
+                                                                                        },
+                                                                                        child: FaIcon(
+                                                                                          FontAwesomeIcons.trashAlt,
+                                                                                          color: FlutterFlowTheme.of(context).tertiaryColor,
+                                                                                          size: 18,
+                                                                                        ),
+                                                                                      ),
+                                                                                    ),
+                                                                                    Padding(
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                                                                                      child: InkWell(
+                                                                                        onTap: () async {
+                                                                                          await listViewUserDocsRecord.reference.delete();
+
+                                                                                          final userDatasetsUpdateData = {
+                                                                                            'active_docs': FieldValue.arrayRemove([
+                                                                                              listViewUserDocsRecord.docId
+                                                                                            ]),
+                                                                                          };
+                                                                                          await columnUserDatasetsRecord.reference.update(userDatasetsUpdateData);
+                                                                                        },
+                                                                                        child: Text(
+                                                                                          'Remove',
+                                                                                          style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                                color: FlutterFlowTheme.of(context).tertiaryColor,
+                                                                                                fontWeight: FontWeight.normal,
+                                                                                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                              ),
+                                                                                        ),
+                                                                                      ),
+                                                                                    ),
+                                                                                  ],
+                                                                                ),
                                                                               ),
-                                                                            ),
-                                                                          ],
+                                                                            ],
+                                                                          ),
                                                                         ),
                                                                       ),
-                                                                    ),
-                                                                  );
-                                                                },
-                                                              );
-                                                            },
-                                                          ),
-                                                        ],
+                                                                    );
+                                                                  },
+                                                                );
+                                                              },
+                                                            ),
+                                                          ],
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
@@ -825,269 +833,244 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                             Row(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
-                                                if (responsiveVisibility(
-                                                  context: context,
-                                                  phone: false,
-                                                  tablet: false,
-                                                  tabletLandscape: false,
-                                                  desktop: false,
-                                                ))
-                                                  Expanded(
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0,
-                                                                      10,
-                                                                      0,
-                                                                      10),
-                                                          child: Text(
-                                                            'or',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyText1Family,
-                                                                  fontSize: 16,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyText1Family),
-                                                                ),
-                                                          ),
-                                                        ),
-                                                        Form(
-                                                          key: formKey,
-                                                          autovalidateMode:
-                                                              AutovalidateMode
-                                                                  .disabled,
-                                                          child: Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            children: [
-                                                              Expanded(
-                                                                child: Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          20,
-                                                                          0,
-                                                                          20,
-                                                                          0),
-                                                                  child:
-                                                                      TextFormField(
-                                                                    controller:
-                                                                        scrapeURLController,
-                                                                    obscureText:
-                                                                        false,
-                                                                    decoration:
-                                                                        InputDecoration(
-                                                                      isDense:
-                                                                          true,
-                                                                      labelText:
-                                                                          'Add a URL to scrape or YouTube video URL to transribe and add as Source.',
-                                                                      hintStyle:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyText2,
-                                                                      enabledBorder:
-                                                                          OutlineInputBorder(
-                                                                        borderSide:
-                                                                            BorderSide(
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).primaryColor,
-                                                                          width:
-                                                                              1,
-                                                                        ),
-                                                                        borderRadius:
-                                                                            const BorderRadius.only(
-                                                                          topLeft:
-                                                                              Radius.circular(4.0),
-                                                                          topRight:
-                                                                              Radius.circular(4.0),
-                                                                        ),
-                                                                      ),
-                                                                      focusedBorder:
-                                                                          OutlineInputBorder(
-                                                                        borderSide:
-                                                                            BorderSide(
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).primaryColor,
-                                                                          width:
-                                                                              1,
-                                                                        ),
-                                                                        borderRadius:
-                                                                            const BorderRadius.only(
-                                                                          topLeft:
-                                                                              Radius.circular(4.0),
-                                                                          topRight:
-                                                                              Radius.circular(4.0),
-                                                                        ),
-                                                                      ),
-                                                                      errorBorder:
-                                                                          OutlineInputBorder(
-                                                                        borderSide:
-                                                                            BorderSide(
-                                                                          color:
-                                                                              Color(0x00000000),
-                                                                          width:
-                                                                              1,
-                                                                        ),
-                                                                        borderRadius:
-                                                                            const BorderRadius.only(
-                                                                          topLeft:
-                                                                              Radius.circular(4.0),
-                                                                          topRight:
-                                                                              Radius.circular(4.0),
-                                                                        ),
-                                                                      ),
-                                                                      focusedErrorBorder:
-                                                                          OutlineInputBorder(
-                                                                        borderSide:
-                                                                            BorderSide(
-                                                                          color:
-                                                                              Color(0x00000000),
-                                                                          width:
-                                                                              1,
-                                                                        ),
-                                                                        borderRadius:
-                                                                            const BorderRadius.only(
-                                                                          topLeft:
-                                                                              Radius.circular(4.0),
-                                                                          topRight:
-                                                                              Radius.circular(4.0),
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                    style: FlutterFlowTheme.of(
+                                                Expanded(
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Form(
+                                                        key: formKey,
+                                                        autovalidateMode:
+                                                            AutovalidateMode
+                                                                .disabled,
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          children: [
+                                                            Expanded(
+                                                              child: Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            20,
+                                                                            0,
+                                                                            20,
+                                                                            0),
+                                                                child:
+                                                                    TextFormField(
+                                                                  controller:
+                                                                      scrapeURLController,
+                                                                  obscureText:
+                                                                      false,
+                                                                  decoration:
+                                                                      InputDecoration(
+                                                                    isDense:
+                                                                        true,
+                                                                    labelText:
+                                                                        'Add a URL to scrape or YouTube video URL to transribe and add as Source.',
+                                                                    hintStyle: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .bodyText1,
-                                                                    maxLines: 2,
-                                                                    minLines: 1,
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              Align(
-                                                                alignment:
-                                                                    AlignmentDirectional(
-                                                                        1, 0),
-                                                                child: Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0,
-                                                                          0,
-                                                                          20,
-                                                                          0),
-                                                                  child:
-                                                                      FFButtonWidget(
-                                                                    onPressed:
-                                                                        () async {
-                                                                      apiResult8oi =
-                                                                          await ScrapeServerCall
-                                                                              .call(
-                                                                        sourceUrl:
-                                                                            scrapeURLController!.text,
-                                                                        idToken:
-                                                                            currentJwtToken,
-                                                                        datasetId:
-                                                                            columnUserDatasetsRecord.datasetId,
-                                                                        datasetName:
-                                                                            columnUserDatasetsRecord.datasetName,
-                                                                      );
-                                                                      if ((apiResult8oi
-                                                                              ?.succeeded ??
-                                                                          true)) {
-                                                                        ScaffoldMessenger.of(context)
-                                                                            .showSnackBar(
-                                                                          SnackBar(
-                                                                            content:
-                                                                                Text(
-                                                                              'Your URL was added as a source and is being processed.',
-                                                                              style: TextStyle(
-                                                                                color: FlutterFlowTheme.of(context).primaryText,
-                                                                              ),
-                                                                            ),
-                                                                            duration:
-                                                                                Duration(milliseconds: 4000),
-                                                                            backgroundColor:
-                                                                                Color(0x00000000),
-                                                                          ),
-                                                                        );
-                                                                        setState(
-                                                                            () {
-                                                                          scrapeURLController
-                                                                              ?.clear();
-                                                                        });
-                                                                      } else {
-                                                                        ScaffoldMessenger.of(context)
-                                                                            .showSnackBar(
-                                                                          SnackBar(
-                                                                            content:
-                                                                                Text(
-                                                                              (apiResult8oi?.statusCode ?? 200).toString(),
-                                                                              style: TextStyle(
-                                                                                color: FlutterFlowTheme.of(context).primaryText,
-                                                                              ),
-                                                                            ),
-                                                                            duration:
-                                                                                Duration(milliseconds: 4000),
-                                                                            backgroundColor:
-                                                                                Color(0x00000000),
-                                                                          ),
-                                                                        );
-                                                                      }
-
-                                                                      setState(
-                                                                          () {});
-                                                                    },
-                                                                    text:
-                                                                        'Send',
-                                                                    options:
-                                                                        FFButtonOptions(
-                                                                      width:
-                                                                          140,
-                                                                      height:
-                                                                          40,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primaryColor,
-                                                                      textStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .subtitle2
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                FlutterFlowTheme.of(context).subtitle2Family,
-                                                                            color:
-                                                                                Colors.white,
-                                                                            useGoogleFonts:
-                                                                                GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).subtitle2Family),
-                                                                          ),
+                                                                        .bodyText2,
+                                                                    enabledBorder:
+                                                                        OutlineInputBorder(
                                                                       borderSide:
                                                                           BorderSide(
-                                                                        color: Colors
-                                                                            .transparent,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryColor,
                                                                         width:
                                                                             1,
                                                                       ),
                                                                       borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              0),
+                                                                          const BorderRadius
+                                                                              .only(
+                                                                        topLeft:
+                                                                            Radius.circular(4.0),
+                                                                        topRight:
+                                                                            Radius.circular(4.0),
+                                                                      ),
                                                                     ),
+                                                                    focusedBorder:
+                                                                        OutlineInputBorder(
+                                                                      borderSide:
+                                                                          BorderSide(
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryColor,
+                                                                        width:
+                                                                            1,
+                                                                      ),
+                                                                      borderRadius:
+                                                                          const BorderRadius
+                                                                              .only(
+                                                                        topLeft:
+                                                                            Radius.circular(4.0),
+                                                                        topRight:
+                                                                            Radius.circular(4.0),
+                                                                      ),
+                                                                    ),
+                                                                    errorBorder:
+                                                                        OutlineInputBorder(
+                                                                      borderSide:
+                                                                          BorderSide(
+                                                                        color: Color(
+                                                                            0x00000000),
+                                                                        width:
+                                                                            1,
+                                                                      ),
+                                                                      borderRadius:
+                                                                          const BorderRadius
+                                                                              .only(
+                                                                        topLeft:
+                                                                            Radius.circular(4.0),
+                                                                        topRight:
+                                                                            Radius.circular(4.0),
+                                                                      ),
+                                                                    ),
+                                                                    focusedErrorBorder:
+                                                                        OutlineInputBorder(
+                                                                      borderSide:
+                                                                          BorderSide(
+                                                                        color: Color(
+                                                                            0x00000000),
+                                                                        width:
+                                                                            1,
+                                                                      ),
+                                                                      borderRadius:
+                                                                          const BorderRadius
+                                                                              .only(
+                                                                        topLeft:
+                                                                            Radius.circular(4.0),
+                                                                        topRight:
+                                                                            Radius.circular(4.0),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyText1,
+                                                                  maxLines: 2,
+                                                                  minLines: 1,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            Align(
+                                                              alignment:
+                                                                  AlignmentDirectional(
+                                                                      1, 0),
+                                                              child: Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0,
+                                                                            0,
+                                                                            20,
+                                                                            0),
+                                                                child:
+                                                                    FFButtonWidget(
+                                                                  onPressed:
+                                                                      () async {
+                                                                    apiResult8oi =
+                                                                        await ScrapeServerCall
+                                                                            .call(
+                                                                      sourceUrl:
+                                                                          scrapeURLController!
+                                                                              .text,
+                                                                      idToken:
+                                                                          currentJwtToken,
+                                                                      datasetId:
+                                                                          columnUserDatasetsRecord
+                                                                              .datasetId,
+                                                                      datasetName:
+                                                                          columnUserDatasetsRecord
+                                                                              .datasetName,
+                                                                    );
+                                                                    if ((apiResult8oi
+                                                                            ?.succeeded ??
+                                                                        true)) {
+                                                                      ScaffoldMessenger.of(
+                                                                              context)
+                                                                          .showSnackBar(
+                                                                        SnackBar(
+                                                                          content:
+                                                                              Text(
+                                                                            'Your URL was added as a source and is being processed.',
+                                                                            style:
+                                                                                TextStyle(
+                                                                              color: FlutterFlowTheme.of(context).primaryText,
+                                                                            ),
+                                                                          ),
+                                                                          duration:
+                                                                              Duration(milliseconds: 4000),
+                                                                          backgroundColor:
+                                                                              Color(0x00000000),
+                                                                        ),
+                                                                      );
+                                                                      setState(
+                                                                          () {
+                                                                        scrapeURLController
+                                                                            ?.clear();
+                                                                      });
+                                                                    } else {
+                                                                      ScaffoldMessenger.of(
+                                                                              context)
+                                                                          .showSnackBar(
+                                                                        SnackBar(
+                                                                          content:
+                                                                              Text(
+                                                                            (apiResult8oi?.statusCode ?? 200).toString(),
+                                                                            style:
+                                                                                TextStyle(
+                                                                              color: FlutterFlowTheme.of(context).primaryText,
+                                                                            ),
+                                                                          ),
+                                                                          duration:
+                                                                              Duration(milliseconds: 4000),
+                                                                          backgroundColor:
+                                                                              Color(0x00000000),
+                                                                        ),
+                                                                      );
+                                                                    }
+
+                                                                    setState(
+                                                                        () {});
+                                                                  },
+                                                                  text: 'Send',
+                                                                  options:
+                                                                      FFButtonOptions(
+                                                                    width: 140,
+                                                                    height: 40,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryColor,
+                                                                    textStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .subtitle2
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              FlutterFlowTheme.of(context).subtitle2Family,
+                                                                          color:
+                                                                              Colors.white,
+                                                                          useGoogleFonts:
+                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).subtitle2Family),
+                                                                        ),
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                      color: Colors
+                                                                          .transparent,
+                                                                      width: 1,
+                                                                    ),
+                                                                    borderRadius:
+                                                                        BorderRadius
+                                                                            .circular(0),
                                                                   ),
                                                                 ),
                                                               ),
-                                                            ],
-                                                          ),
+                                                            ),
+                                                          ],
                                                         ),
-                                                      ],
-                                                    ),
+                                                      ),
+                                                    ],
                                                   ),
+                                                ),
                                               ],
                                             ),
                                           ],
