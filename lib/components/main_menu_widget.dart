@@ -306,46 +306,68 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          10, 0, 0, 0),
-                                      child: FaIcon(
-                                        FontAwesomeIcons.coins,
-                                        color: FlutterFlowTheme.of(context)
-                                            .alternate,
-                                        size: 24,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          5, 0, 5, 0),
-                                      child: Text(
-                                        'credits:',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1,
-                                      ),
-                                    ),
-                                    AuthUserStreamWidget(
-                                      builder: (context) => Text(
-                                        formatNumber(
-                                          valueOrDefault(
-                                              currentUserDocument?.totalCredits,
-                                              0.0),
-                                          formatType: FormatType.custom,
-                                          format: '#.##',
-                                          locale: '',
+                                    if (responsiveVisibility(
+                                      context: context,
+                                      phone: false,
+                                      tablet: false,
+                                      tabletLandscape: false,
+                                      desktop: false,
+                                    ))
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
                                         ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1,
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(10, 0, 0, 0),
+                                              child: FaIcon(
+                                                FontAwesomeIcons.coins,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .alternate,
+                                                size: 24,
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(5, 0, 5, 0),
+                                              child: Text(
+                                                'credits:',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1,
+                                              ),
+                                            ),
+                                            AuthUserStreamWidget(
+                                              builder: (context) => Text(
+                                                formatNumber(
+                                                  valueOrDefault(
+                                                      currentUserDocument
+                                                          ?.totalCredits,
+                                                      0.0),
+                                                  formatType: FormatType.custom,
+                                                  format: '#.##',
+                                                  locale: '',
+                                                ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                    ),
                                     Expanded(
                                       child: Align(
-                                        alignment: AlignmentDirectional(1, 0),
+                                        alignment: AlignmentDirectional(-1, 0),
                                         child: Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 10, 0),
+                                                  10, 0, 10, 0),
                                           child: InkWell(
                                             onTap: () async {
                                               context.pushNamed('Settings');
