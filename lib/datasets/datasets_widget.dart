@@ -825,267 +825,269 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                             Row(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
-                                                Expanded(
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(0, 10,
-                                                                    0, 10),
-                                                        child: Text(
-                                                          'or',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText1
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyText1Family,
-                                                                fontSize: 16,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyText1Family),
-                                                              ),
-                                                        ),
-                                                      ),
-                                                      Form(
-                                                        key: formKey,
-                                                        autovalidateMode:
-                                                            AutovalidateMode
-                                                                .disabled,
-                                                        child: Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          children: [
-                                                            Expanded(
-                                                              child: Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            20,
-                                                                            0,
-                                                                            20,
-                                                                            0),
-                                                                child:
-                                                                    TextFormField(
-                                                                  controller:
-                                                                      scrapeURLController,
-                                                                  obscureText:
-                                                                      false,
-                                                                  decoration:
-                                                                      InputDecoration(
-                                                                    isDense:
-                                                                        true,
-                                                                    labelText:
-                                                                        'Add a URL to scrape or YouTube video URL to transribe and add as Source.',
-                                                                    hintStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyText2,
-                                                                    enabledBorder:
-                                                                        OutlineInputBorder(
-                                                                      borderSide:
-                                                                          BorderSide(
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primaryColor,
-                                                                        width:
-                                                                            1,
-                                                                      ),
-                                                                      borderRadius:
-                                                                          const BorderRadius
-                                                                              .only(
-                                                                        topLeft:
-                                                                            Radius.circular(4.0),
-                                                                        topRight:
-                                                                            Radius.circular(4.0),
-                                                                      ),
-                                                                    ),
-                                                                    focusedBorder:
-                                                                        OutlineInputBorder(
-                                                                      borderSide:
-                                                                          BorderSide(
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primaryColor,
-                                                                        width:
-                                                                            1,
-                                                                      ),
-                                                                      borderRadius:
-                                                                          const BorderRadius
-                                                                              .only(
-                                                                        topLeft:
-                                                                            Radius.circular(4.0),
-                                                                        topRight:
-                                                                            Radius.circular(4.0),
-                                                                      ),
-                                                                    ),
-                                                                    errorBorder:
-                                                                        OutlineInputBorder(
-                                                                      borderSide:
-                                                                          BorderSide(
-                                                                        color: Color(
-                                                                            0x00000000),
-                                                                        width:
-                                                                            1,
-                                                                      ),
-                                                                      borderRadius:
-                                                                          const BorderRadius
-                                                                              .only(
-                                                                        topLeft:
-                                                                            Radius.circular(4.0),
-                                                                        topRight:
-                                                                            Radius.circular(4.0),
-                                                                      ),
-                                                                    ),
-                                                                    focusedErrorBorder:
-                                                                        OutlineInputBorder(
-                                                                      borderSide:
-                                                                          BorderSide(
-                                                                        color: Color(
-                                                                            0x00000000),
-                                                                        width:
-                                                                            1,
-                                                                      ),
-                                                                      borderRadius:
-                                                                          const BorderRadius
-                                                                              .only(
-                                                                        topLeft:
-                                                                            Radius.circular(4.0),
-                                                                        topRight:
-                                                                            Radius.circular(4.0),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  style: FlutterFlowTheme.of(
+                                                if (responsiveVisibility(
+                                                  context: context,
+                                                  phone: false,
+                                                  tablet: false,
+                                                  tabletLandscape: false,
+                                                  desktop: false,
+                                                ))
+                                                  Expanded(
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0,
+                                                                      10,
+                                                                      0,
+                                                                      10),
+                                                          child: Text(
+                                                            'or',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .bodyText1,
-                                                                  maxLines: 2,
-                                                                  minLines: 1,
+                                                                      .bodyText1Family,
+                                                                  fontSize: 16,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyText1Family),
                                                                 ),
-                                                              ),
-                                                            ),
-                                                            Align(
-                                                              alignment:
-                                                                  AlignmentDirectional(
-                                                                      1, 0),
-                                                              child: Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0,
-                                                                            0,
-                                                                            20,
-                                                                            0),
-                                                                child:
-                                                                    FFButtonWidget(
-                                                                  onPressed:
-                                                                      () async {
-                                                                    apiResult8oi =
-                                                                        await ScrapeServerCall
-                                                                            .call(
-                                                                      sourceUrl:
-                                                                          scrapeURLController!
-                                                                              .text,
-                                                                      idToken:
-                                                                          currentJwtToken,
-                                                                      datasetId:
-                                                                          columnUserDatasetsRecord
-                                                                              .datasetId,
-                                                                      datasetName:
-                                                                          columnUserDatasetsRecord
-                                                                              .datasetName,
-                                                                    );
-                                                                    if ((apiResult8oi
-                                                                            ?.succeeded ??
-                                                                        true)) {
-                                                                      ScaffoldMessenger.of(
-                                                                              context)
-                                                                          .showSnackBar(
-                                                                        SnackBar(
-                                                                          content:
-                                                                              Text(
-                                                                            'Your URL was added as a source and is being processed.',
-                                                                            style:
-                                                                                TextStyle(
-                                                                              color: FlutterFlowTheme.of(context).primaryText,
-                                                                            ),
-                                                                          ),
-                                                                          duration:
-                                                                              Duration(milliseconds: 4000),
-                                                                          backgroundColor:
-                                                                              Color(0x00000000),
-                                                                        ),
-                                                                      );
-                                                                      setState(
-                                                                          () {
-                                                                        scrapeURLController
-                                                                            ?.clear();
-                                                                      });
-                                                                    } else {
-                                                                      ScaffoldMessenger.of(
-                                                                              context)
-                                                                          .showSnackBar(
-                                                                        SnackBar(
-                                                                          content:
-                                                                              Text(
-                                                                            (apiResult8oi?.statusCode ?? 200).toString(),
-                                                                            style:
-                                                                                TextStyle(
-                                                                              color: FlutterFlowTheme.of(context).primaryText,
-                                                                            ),
-                                                                          ),
-                                                                          duration:
-                                                                              Duration(milliseconds: 4000),
-                                                                          backgroundColor:
-                                                                              Color(0x00000000),
-                                                                        ),
-                                                                      );
-                                                                    }
-
-                                                                    setState(
-                                                                        () {});
-                                                                  },
-                                                                  text: 'Send',
-                                                                  options:
-                                                                      FFButtonOptions(
-                                                                    width: 140,
-                                                                    height: 40,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryColor,
-                                                                    textStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .subtitle2
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              FlutterFlowTheme.of(context).subtitle2Family,
+                                                          ),
+                                                        ),
+                                                        Form(
+                                                          key: formKey,
+                                                          autovalidateMode:
+                                                              AutovalidateMode
+                                                                  .disabled,
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              Expanded(
+                                                                child: Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          20,
+                                                                          0,
+                                                                          20,
+                                                                          0),
+                                                                  child:
+                                                                      TextFormField(
+                                                                    controller:
+                                                                        scrapeURLController,
+                                                                    obscureText:
+                                                                        false,
+                                                                    decoration:
+                                                                        InputDecoration(
+                                                                      isDense:
+                                                                          true,
+                                                                      labelText:
+                                                                          'Add a URL to scrape or YouTube video URL to transribe and add as Source.',
+                                                                      hintStyle:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyText2,
+                                                                      enabledBorder:
+                                                                          OutlineInputBorder(
+                                                                        borderSide:
+                                                                            BorderSide(
                                                                           color:
-                                                                              Colors.white,
-                                                                          useGoogleFonts:
-                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).subtitle2Family),
+                                                                              FlutterFlowTheme.of(context).primaryColor,
+                                                                          width:
+                                                                              1,
                                                                         ),
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: Colors
-                                                                          .transparent,
-                                                                      width: 1,
+                                                                        borderRadius:
+                                                                            const BorderRadius.only(
+                                                                          topLeft:
+                                                                              Radius.circular(4.0),
+                                                                          topRight:
+                                                                              Radius.circular(4.0),
+                                                                        ),
+                                                                      ),
+                                                                      focusedBorder:
+                                                                          OutlineInputBorder(
+                                                                        borderSide:
+                                                                            BorderSide(
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).primaryColor,
+                                                                          width:
+                                                                              1,
+                                                                        ),
+                                                                        borderRadius:
+                                                                            const BorderRadius.only(
+                                                                          topLeft:
+                                                                              Radius.circular(4.0),
+                                                                          topRight:
+                                                                              Radius.circular(4.0),
+                                                                        ),
+                                                                      ),
+                                                                      errorBorder:
+                                                                          OutlineInputBorder(
+                                                                        borderSide:
+                                                                            BorderSide(
+                                                                          color:
+                                                                              Color(0x00000000),
+                                                                          width:
+                                                                              1,
+                                                                        ),
+                                                                        borderRadius:
+                                                                            const BorderRadius.only(
+                                                                          topLeft:
+                                                                              Radius.circular(4.0),
+                                                                          topRight:
+                                                                              Radius.circular(4.0),
+                                                                        ),
+                                                                      ),
+                                                                      focusedErrorBorder:
+                                                                          OutlineInputBorder(
+                                                                        borderSide:
+                                                                            BorderSide(
+                                                                          color:
+                                                                              Color(0x00000000),
+                                                                          width:
+                                                                              1,
+                                                                        ),
+                                                                        borderRadius:
+                                                                            const BorderRadius.only(
+                                                                          topLeft:
+                                                                              Radius.circular(4.0),
+                                                                          topRight:
+                                                                              Radius.circular(4.0),
+                                                                        ),
+                                                                      ),
                                                                     ),
-                                                                    borderRadius:
-                                                                        BorderRadius
-                                                                            .circular(0),
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyText1,
+                                                                    maxLines: 2,
+                                                                    minLines: 1,
                                                                   ),
                                                                 ),
                                                               ),
-                                                            ),
-                                                          ],
+                                                              Align(
+                                                                alignment:
+                                                                    AlignmentDirectional(
+                                                                        1, 0),
+                                                                child: Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0,
+                                                                          0,
+                                                                          20,
+                                                                          0),
+                                                                  child:
+                                                                      FFButtonWidget(
+                                                                    onPressed:
+                                                                        () async {
+                                                                      apiResult8oi =
+                                                                          await ScrapeServerCall
+                                                                              .call(
+                                                                        sourceUrl:
+                                                                            scrapeURLController!.text,
+                                                                        idToken:
+                                                                            currentJwtToken,
+                                                                        datasetId:
+                                                                            columnUserDatasetsRecord.datasetId,
+                                                                        datasetName:
+                                                                            columnUserDatasetsRecord.datasetName,
+                                                                      );
+                                                                      if ((apiResult8oi
+                                                                              ?.succeeded ??
+                                                                          true)) {
+                                                                        ScaffoldMessenger.of(context)
+                                                                            .showSnackBar(
+                                                                          SnackBar(
+                                                                            content:
+                                                                                Text(
+                                                                              'Your URL was added as a source and is being processed.',
+                                                                              style: TextStyle(
+                                                                                color: FlutterFlowTheme.of(context).primaryText,
+                                                                              ),
+                                                                            ),
+                                                                            duration:
+                                                                                Duration(milliseconds: 4000),
+                                                                            backgroundColor:
+                                                                                Color(0x00000000),
+                                                                          ),
+                                                                        );
+                                                                        setState(
+                                                                            () {
+                                                                          scrapeURLController
+                                                                              ?.clear();
+                                                                        });
+                                                                      } else {
+                                                                        ScaffoldMessenger.of(context)
+                                                                            .showSnackBar(
+                                                                          SnackBar(
+                                                                            content:
+                                                                                Text(
+                                                                              (apiResult8oi?.statusCode ?? 200).toString(),
+                                                                              style: TextStyle(
+                                                                                color: FlutterFlowTheme.of(context).primaryText,
+                                                                              ),
+                                                                            ),
+                                                                            duration:
+                                                                                Duration(milliseconds: 4000),
+                                                                            backgroundColor:
+                                                                                Color(0x00000000),
+                                                                          ),
+                                                                        );
+                                                                      }
+
+                                                                      setState(
+                                                                          () {});
+                                                                    },
+                                                                    text:
+                                                                        'Send',
+                                                                    options:
+                                                                        FFButtonOptions(
+                                                                      width:
+                                                                          140,
+                                                                      height:
+                                                                          40,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryColor,
+                                                                      textStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .subtitle2
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                FlutterFlowTheme.of(context).subtitle2Family,
+                                                                            color:
+                                                                                Colors.white,
+                                                                            useGoogleFonts:
+                                                                                GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).subtitle2Family),
+                                                                          ),
+                                                                      borderSide:
+                                                                          BorderSide(
+                                                                        color: Colors
+                                                                            .transparent,
+                                                                        width:
+                                                                            1,
+                                                                      ),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              0),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
                                                         ),
-                                                      ),
-                                                    ],
+                                                      ],
+                                                    ),
                                                   ),
-                                                ),
                                               ],
                                             ),
                                           ],
