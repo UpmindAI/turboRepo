@@ -21,6 +21,8 @@ abstract class UserCompletionsRecord
 
   DateTime? get timestamp;
 
+  BuiltList<String>? get chunks;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -32,7 +34,8 @@ abstract class UserCompletionsRecord
         ..qid = ''
         ..prompt = ''
         ..completion = ''
-        ..url = '';
+        ..url = ''
+        ..chunks = ListBuilder();
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
       parent != null
@@ -76,7 +79,8 @@ Map<String, dynamic> createUserCompletionsRecordData({
         ..prompt = prompt
         ..completion = completion
         ..url = url
-        ..timestamp = timestamp,
+        ..timestamp = timestamp
+        ..chunks = null,
     ),
   );
 
