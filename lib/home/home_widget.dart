@@ -79,7 +79,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.116',
+                'v0.117',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -345,8 +345,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                         context)
                                                                     .bodyText1Family),
                                                       ),
-                                                  maxLines: 36,
-                                                  minLines: 28,
+                                                  maxLines: 30,
+                                                  minLines: 30,
                                                 ),
                                               ),
                                               Row(
@@ -789,7 +789,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                             padding:
                                                                 EdgeInsetsDirectional
                                                                     .fromSTEB(
-                                                                        55,
+                                                                        20,
                                                                         0,
                                                                         0,
                                                                         0),
@@ -831,7 +831,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .tertiaryColor,
-                                                                size: 24,
+                                                                size: 18,
                                                               ),
                                                             ),
                                                           ),

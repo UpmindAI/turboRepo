@@ -60,6 +60,14 @@ class _$UserCompletionsRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(DateTime)));
     }
+    value = object.chunks;
+    if (value != null) {
+      result
+        ..add('chunks')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -103,6 +111,12 @@ class _$UserCompletionsRecordSerializer
           result.timestamp = serializers.deserialize(value,
               specifiedType: const FullType(DateTime)) as DateTime?;
           break;
+        case 'chunks':
+          result.chunks.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -128,6 +142,8 @@ class _$UserCompletionsRecord extends UserCompletionsRecord {
   @override
   final DateTime? timestamp;
   @override
+  final BuiltList<String>? chunks;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$UserCompletionsRecord(
@@ -140,6 +156,7 @@ class _$UserCompletionsRecord extends UserCompletionsRecord {
       this.completion,
       this.url,
       this.timestamp,
+      this.chunks,
       this.ffRef})
       : super._();
 
@@ -161,6 +178,7 @@ class _$UserCompletionsRecord extends UserCompletionsRecord {
         completion == other.completion &&
         url == other.url &&
         timestamp == other.timestamp &&
+        chunks == other.chunks &&
         ffRef == other.ffRef;
   }
 
@@ -169,10 +187,12 @@ class _$UserCompletionsRecord extends UserCompletionsRecord {
     return $jf($jc(
         $jc(
             $jc(
-                $jc($jc($jc(0, qid.hashCode), prompt.hashCode),
-                    completion.hashCode),
-                url.hashCode),
-            timestamp.hashCode),
+                $jc(
+                    $jc($jc($jc(0, qid.hashCode), prompt.hashCode),
+                        completion.hashCode),
+                    url.hashCode),
+                timestamp.hashCode),
+            chunks.hashCode),
         ffRef.hashCode));
   }
 
@@ -184,6 +204,7 @@ class _$UserCompletionsRecord extends UserCompletionsRecord {
           ..add('completion', completion)
           ..add('url', url)
           ..add('timestamp', timestamp)
+          ..add('chunks', chunks)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -213,6 +234,11 @@ class UserCompletionsRecordBuilder
   DateTime? get timestamp => _$this._timestamp;
   set timestamp(DateTime? timestamp) => _$this._timestamp = timestamp;
 
+  ListBuilder<String>? _chunks;
+  ListBuilder<String> get chunks =>
+      _$this._chunks ??= new ListBuilder<String>();
+  set chunks(ListBuilder<String>? chunks) => _$this._chunks = chunks;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -229,6 +255,7 @@ class UserCompletionsRecordBuilder
       _completion = $v.completion;
       _url = $v.url;
       _timestamp = $v.timestamp;
+      _chunks = $v.chunks?.toBuilder();
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -250,14 +277,28 @@ class UserCompletionsRecordBuilder
   UserCompletionsRecord build() => _build();
 
   _$UserCompletionsRecord _build() {
-    final _$result = _$v ??
-        new _$UserCompletionsRecord._(
-            qid: qid,
-            prompt: prompt,
-            completion: completion,
-            url: url,
-            timestamp: timestamp,
-            ffRef: ffRef);
+    _$UserCompletionsRecord _$result;
+    try {
+      _$result = _$v ??
+          new _$UserCompletionsRecord._(
+              qid: qid,
+              prompt: prompt,
+              completion: completion,
+              url: url,
+              timestamp: timestamp,
+              chunks: _chunks?.build(),
+              ffRef: ffRef);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'chunks';
+        _chunks?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'UserCompletionsRecord', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }
