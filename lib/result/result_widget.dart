@@ -762,46 +762,64 @@ class _ResultWidgetState extends State<ResultWidget> {
                                       Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
-                                          Builder(
-                                            builder: (context) {
-                                              final chunks =
-                                                  resultUserCompletionsRecord!
-                                                      .chunks!
-                                                      .toList();
-                                              return Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children:
-                                                    List.generate(chunks.length,
-                                                        (chunksIndex) {
-                                                  final chunksItem =
-                                                      chunks[chunksIndex];
-                                                  return Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                20, 5, 20, 5),
-                                                    child: Container(
-                                                      width:
-                                                          MediaQuery.of(context)
-                                                              .size
-                                                              .width,
-                                                      decoration: BoxDecoration(
-                                                        color: FlutterFlowTheme
-                                                                .of(context)
-                                                            .secondaryBackground,
-                                                      ),
-                                                      child: Text(
-                                                        chunksItem,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyText1,
-                                                      ),
+                                          Expanded(
+                                            child: Container(
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              height: 700,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                              ),
+                                              child: Builder(
+                                                builder: (context) {
+                                                  final chunks =
+                                                      resultUserCompletionsRecord!
+                                                          .chunks!
+                                                          .toList();
+                                                  return SingleChildScrollView(
+                                                    primary: false,
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: List.generate(
+                                                          chunks.length,
+                                                          (chunksIndex) {
+                                                        final chunksItem =
+                                                            chunks[chunksIndex];
+                                                        return Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      10, 0, 0),
+                                                          child: Text(
+                                                            chunksItem,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyText1Family,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyText1Family),
+                                                                ),
+                                                          ),
+                                                        );
+                                                      }),
                                                     ),
                                                   );
-                                                }),
-                                              );
-                                            },
+                                                },
+                                              ),
+                                            ),
                                           ),
                                         ],
                                       ),
