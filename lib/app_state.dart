@@ -19,7 +19,6 @@ class FFAppState extends ChangeNotifier {
     prefs = await SharedPreferences.getInstance();
     _selectedDataset =
         prefs.getStringList('ff_selectedDataset') ?? _selectedDataset;
-    _firstLogin = prefs.getBool('ff_firstLogin') ?? _firstLogin;
     _setChunkSize = prefs.getDouble('ff_setChunkSize') ?? _setChunkSize;
     _selectedDocuments =
         prefs.getStringList('ff_selectedDocuments') ?? _selectedDocuments;
@@ -79,13 +78,6 @@ class FFAppState extends ChangeNotifier {
   DocumentReference? get setCompletion => _setCompletion;
   set setCompletion(DocumentReference? _value) {
     _setCompletion = _value;
-  }
-
-  bool _firstLogin = true;
-  bool get firstLogin => _firstLogin;
-  set firstLogin(bool _value) {
-    _firstLogin = _value;
-    prefs.setBool('ff_firstLogin', _value);
   }
 
   double _setTopK = 5;
