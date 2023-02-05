@@ -44,10 +44,7 @@ class _HomeWidgetState extends State<HomeWidget> {
   @override
   void initState() {
     super.initState();
-    textController = TextEditingController(
-        text: widget.userCompletion != null
-            ? 'Prompt:      ${widget.userCompletion!.prompt}Completion:      ${widget.userCompletion!.completion}'
-            : null);
+    textController = TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -79,7 +76,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.120',
+                'v0.121',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
