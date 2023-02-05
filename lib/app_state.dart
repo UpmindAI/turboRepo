@@ -117,6 +117,12 @@ class FFAppState extends ChangeNotifier {
     _selectedDocuments.remove(_value);
     prefs.setStringList('ff_selectedDocuments', _selectedDocuments);
   }
+
+  bool _sourcesOn = false;
+  bool get sourcesOn => _sourcesOn;
+  set sourcesOn(bool _value) {
+    _sourcesOn = _value;
+  }
 }
 
 LatLng? _latLngFromString(String? val) {
