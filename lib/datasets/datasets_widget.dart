@@ -101,7 +101,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                     ),
                   ),
                   Expanded(
-                    flex: 4,
+                    flex: 5,
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -1086,7 +1086,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                     ),
                   ),
                   Expanded(
-                    flex: 3,
+                    flex: 2,
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
