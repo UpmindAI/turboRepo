@@ -726,36 +726,81 @@ class _ResultWidgetState extends State<ResultWidget> {
                                             Padding(
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(20, 0, 5, 0),
-                                              child: Icon(
-                                                Icons.format_list_bulleted,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .tertiaryColor,
-                                                size: 24,
+                                              child: InkWell(
+                                                onTap: () async {
+                                                  FFAppState().update(() {
+                                                    FFAppState().sourcesOn =
+                                                        true;
+                                                  });
+                                                },
+                                                child: Icon(
+                                                  Icons.format_list_bulleted,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .tertiaryColor,
+                                                  size: 24,
+                                                ),
                                               ),
                                             ),
-                                            Text(
-                                              'Sources',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyText1Family,
+                                            InkWell(
+                                              onTap: () async {
+                                                FFAppState().update(() {
+                                                  FFAppState().sourcesOn = true;
+                                                });
+                                              },
+                                              child: Text(
+                                                'Sources',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyText1Family,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .tertiaryColor,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyText1Family),
+                                                        ),
+                                              ),
+                                            ),
+                                            if (FFAppState().sourcesOn)
+                                              Expanded(
+                                                child: Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          1, 0),
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                0, 0, 10, 0),
+                                                    child: InkWell(
+                                                      onTap: () async {
+                                                        setState(() {
+                                                          FFAppState()
+                                                                  .sourcesOn =
+                                                              false;
+                                                        });
+                                                      },
+                                                      child: Icon(
+                                                        Icons.close,
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .tertiaryColor,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyText1Family),
+                                                        size: 24,
                                                       ),
-                                            ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
                                           ],
                                         ),
                                       ),
@@ -773,51 +818,57 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
                                               ),
-                                              child: Builder(
-                                                builder: (context) {
-                                                  final chunks =
-                                                      resultUserCompletionsRecord!
-                                                          .chunks!
-                                                          .toList();
-                                                  return SingleChildScrollView(
-                                                    primary: false,
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: List.generate(
-                                                          chunks.length,
-                                                          (chunksIndex) {
-                                                        final chunksItem =
-                                                            chunks[chunksIndex];
-                                                        return Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(0,
-                                                                      10, 0, 0),
-                                                          child: Text(
-                                                            chunksItem,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyText1Family,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyText1Family),
-                                                                ),
-                                                          ),
-                                                        );
-                                                      }),
-                                                    ),
-                                                  );
-                                                },
+                                              child: Visibility(
+                                                visible: FFAppState().sourcesOn,
+                                                child: Builder(
+                                                  builder: (context) {
+                                                    final chunks =
+                                                        resultUserCompletionsRecord!
+                                                            .chunks!
+                                                            .toList();
+                                                    return SingleChildScrollView(
+                                                      primary: false,
+                                                      child: Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: List.generate(
+                                                            chunks.length,
+                                                            (chunksIndex) {
+                                                          final chunksItem =
+                                                              chunks[
+                                                                  chunksIndex];
+                                                          return Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        15,
+                                                                        10,
+                                                                        15,
+                                                                        5),
+                                                            child: Text(
+                                                              chunksItem,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyText1
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyText1Family,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .normal,
+                                                                    useGoogleFonts: GoogleFonts
+                                                                            .asMap()
+                                                                        .containsKey(
+                                                                            FlutterFlowTheme.of(context).bodyText1Family),
+                                                                  ),
+                                                            ),
+                                                          );
+                                                        }),
+                                                      ),
+                                                    );
+                                                  },
+                                                ),
                                               ),
                                             ),
                                           ),
