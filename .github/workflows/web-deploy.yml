@@ -24,7 +24,7 @@ jobs:
       - name: Enable flutter web
         run: flutter config --enable-web
       - name: 'Build Web App'
-        run: flutter build web --web-renderer html --release
+        run: flutter build web
       - name: Archive Production Artifact
         uses: actions/upload-artifact@master
         with:
