@@ -79,7 +79,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.137',
+                'v0.138',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -895,6 +895,53 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                               ),
                                                             ),
                                                           ),
+                                                          if (FFAppState()
+                                                                  .selectedDataset
+                                                                  .length >=
+                                                              1)
+                                                            Expanded(
+                                                              child: Align(
+                                                                alignment:
+                                                                    AlignmentDirectional(
+                                                                        1, 0),
+                                                                child: Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0,
+                                                                          0,
+                                                                          10,
+                                                                          0),
+                                                                  child:
+                                                                      InkWell(
+                                                                    onTap:
+                                                                        () async {
+                                                                      FFAppState()
+                                                                          .update(
+                                                                              () {
+                                                                        FFAppState().selectedDataset =
+                                                                            [];
+                                                                      });
+                                                                    },
+                                                                    child: Text(
+                                                                      'Clear',
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyText1
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                FlutterFlowTheme.of(context).bodyText1Family,
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).tertiaryColor,
+                                                                            fontSize:
+                                                                                11,
+                                                                            useGoogleFonts:
+                                                                                GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                          ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
                                                         ],
                                                       ),
                                                     ),
@@ -1129,12 +1176,44 @@ class _HomeWidgetState extends State<HomeWidget> {
                                               ),
                                             ),
                                           ),
-                                          Container(
-                                            width: 260,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
+                                          Align(
+                                            alignment:
+                                                AlignmentDirectional(0, 1),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Builder(
+                                                  builder: (context) {
+                                                    final selectedSets =
+                                                        FFAppState()
+                                                            .selectedDataset
+                                                            .toList();
+                                                    return Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: List.generate(
+                                                          selectedSets.length,
+                                                          (selectedSetsIndex) {
+                                                        final selectedSetsItem =
+                                                            selectedSets[
+                                                                selectedSetsIndex];
+                                                        return Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(10,
+                                                                      0, 0, 10),
+                                                          child: Text(
+                                                            selectedSetsItem,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText1,
+                                                          ),
+                                                        );
+                                                      }),
+                                                    );
+                                                  },
+                                                ),
+                                              ],
                                             ),
                                           ),
                                         ],
