@@ -42,6 +42,13 @@ class _$SupportRecordSerializer implements StructuredSerializer<SupportRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.timestamp;
+    if (value != null) {
+      result
+        ..add('timestamp')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DateTime)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -79,6 +86,10 @@ class _$SupportRecordSerializer implements StructuredSerializer<SupportRecord> {
           result.question = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'timestamp':
+          result.timestamp = serializers.deserialize(value,
+              specifiedType: const FullType(DateTime)) as DateTime?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -100,12 +111,15 @@ class _$SupportRecord extends SupportRecord {
   @override
   final String? question;
   @override
+  final DateTime? timestamp;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$SupportRecord([void Function(SupportRecordBuilder)? updates]) =>
       (new SupportRecordBuilder()..update(updates))._build();
 
-  _$SupportRecord._({this.uid, this.userRef, this.question, this.ffRef})
+  _$SupportRecord._(
+      {this.uid, this.userRef, this.question, this.timestamp, this.ffRef})
       : super._();
 
   @override
@@ -122,13 +136,15 @@ class _$SupportRecord extends SupportRecord {
         uid == other.uid &&
         userRef == other.userRef &&
         question == other.question &&
+        timestamp == other.timestamp &&
         ffRef == other.ffRef;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc(0, uid.hashCode), userRef.hashCode), question.hashCode),
+        $jc($jc($jc($jc(0, uid.hashCode), userRef.hashCode), question.hashCode),
+            timestamp.hashCode),
         ffRef.hashCode));
   }
 
@@ -138,6 +154,7 @@ class _$SupportRecord extends SupportRecord {
           ..add('uid', uid)
           ..add('userRef', userRef)
           ..add('question', question)
+          ..add('timestamp', timestamp)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -159,6 +176,10 @@ class SupportRecordBuilder
   String? get question => _$this._question;
   set question(String? question) => _$this._question = question;
 
+  DateTime? _timestamp;
+  DateTime? get timestamp => _$this._timestamp;
+  set timestamp(DateTime? timestamp) => _$this._timestamp = timestamp;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -173,6 +194,7 @@ class SupportRecordBuilder
       _uid = $v.uid;
       _userRef = $v.userRef;
       _question = $v.question;
+      _timestamp = $v.timestamp;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -196,7 +218,11 @@ class SupportRecordBuilder
   _$SupportRecord _build() {
     final _$result = _$v ??
         new _$SupportRecord._(
-            uid: uid, userRef: userRef, question: question, ffRef: ffRef);
+            uid: uid,
+            userRef: userRef,
+            question: question,
+            timestamp: timestamp,
+            ffRef: ffRef);
     replace(_$result);
     return _$result;
   }

@@ -905,6 +905,8 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                                           textController7!.text,
                                                       userRef:
                                                           currentUserReference,
+                                                      timestamp:
+                                                          getCurrentTimestamp,
                                                     );
                                                     await FeatureRequestRecord
                                                         .collection

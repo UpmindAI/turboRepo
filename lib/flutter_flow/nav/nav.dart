@@ -146,6 +146,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'support',
               path: 'support',
               builder: (context, params) => SupportWidget(),
+            ),
+            FFRoute(
+              name: 'feedbackPrivate',
+              path: 'feedbackPrivate',
+              builder: (context, params) => FeedbackPrivateWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

@@ -17,6 +17,8 @@ abstract class SupportRecord
 
   String? get question;
 
+  DateTime? get timestamp;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -50,6 +52,7 @@ Map<String, dynamic> createSupportRecordData({
   String? uid,
   DocumentReference? userRef,
   String? question,
+  DateTime? timestamp,
 }) {
   final firestoreData = serializers.toFirestore(
     SupportRecord.serializer,
@@ -57,7 +60,8 @@ Map<String, dynamic> createSupportRecordData({
       (s) => s
         ..uid = uid
         ..userRef = userRef
-        ..question = question,
+        ..question = question
+        ..timestamp = timestamp,
     ),
   );
 
