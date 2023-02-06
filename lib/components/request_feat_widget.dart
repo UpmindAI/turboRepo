@@ -66,7 +66,7 @@ class _RequestFeatWidgetState extends State<RequestFeatWidget> {
       ),
       child: Form(
         key: formKey,
-        autovalidateMode: AutovalidateMode.always,
+        autovalidateMode: AutovalidateMode.disabled,
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
