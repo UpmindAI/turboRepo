@@ -132,7 +132,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                         child: AuthUserStreamWidget(
                           builder: (context) => FFButtonWidget(
                             onPressed: () async {
-                              context.pushNamed('requestFeature');
+                              context.pushNamed('feedbackPrivate');
                             },
                             text: 'Feedback (Admin)',
                             options: FFButtonOptions(

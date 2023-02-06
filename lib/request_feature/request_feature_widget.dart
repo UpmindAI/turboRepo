@@ -887,104 +887,134 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                                 ),
                                               ),
                                             ),
-                                            Align(
-                                              alignment:
-                                                  AlignmentDirectional(-1, 0),
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(40, 20, 0, 0),
-                                                child: FFButtonWidget(
-                                                  onPressed: () async {
-                                                    final featureRequestCreateData =
-                                                        createFeatureRequestRecordData(
-                                                      iWant:
-                                                          textController5!.text,
-                                                      because:
-                                                          textController6!.text,
-                                                      additional:
-                                                          textController7!.text,
-                                                      userRef:
-                                                          currentUserReference,
-                                                      timestamp:
-                                                          getCurrentTimestamp,
-                                                    );
-                                                    await FeatureRequestRecord
-                                                        .collection
-                                                        .doc()
-                                                        .set(
-                                                            featureRequestCreateData);
-                                                    await Future.delayed(
-                                                        const Duration(
-                                                            milliseconds: 500));
-                                                    setState(() {
-                                                      textController5?.clear();
-                                                      textController7?.clear();
-                                                      textController6?.clear();
-                                                      textController2?.clear();
-                                                      textController1?.clear();
-                                                      textController3?.clear();
-                                                      textController4?.clear();
-                                                    });
-                                                    ScaffoldMessenger.of(
-                                                            context)
-                                                        .showSnackBar(
-                                                      SnackBar(
-                                                        content: Text(
-                                                          'Thanks for your request. We will get in contact with you as soons as possible!',
-                                                          style: TextStyle(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryText,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            fontSize: 20,
-                                                          ),
-                                                        ),
-                                                        duration: Duration(
-                                                            milliseconds: 6000),
-                                                        backgroundColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryBackground,
-                                                      ),
-                                                    );
-                                                    await Future.delayed(
-                                                        const Duration(
-                                                            milliseconds:
-                                                                3000));
+                                            Expanded(
+                                              child: Align(
+                                                alignment:
+                                                    AlignmentDirectional(0, -1),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(40, 20, 0, 0),
+                                                  child: FFButtonWidget(
+                                                    onPressed:
+                                                        textController7!.text ==
+                                                                    null ||
+                                                                textController7!
+                                                                        .text ==
+                                                                    ''
+                                                            ? null
+                                                            : () async {
+                                                                final featureRequestCreateData =
+                                                                    createFeatureRequestRecordData(
+                                                                  iWant:
+                                                                      textController5!
+                                                                          .text,
+                                                                  because:
+                                                                      textController6!
+                                                                          .text,
+                                                                  additional:
+                                                                      textController7!
+                                                                          .text,
+                                                                  userRef:
+                                                                      currentUserReference,
+                                                                  timestamp:
+                                                                      getCurrentTimestamp,
+                                                                );
+                                                                await FeatureRequestRecord
+                                                                    .collection
+                                                                    .doc()
+                                                                    .set(
+                                                                        featureRequestCreateData);
+                                                                await Future.delayed(
+                                                                    const Duration(
+                                                                        milliseconds:
+                                                                            500));
+                                                                setState(() {
+                                                                  textController5
+                                                                      ?.clear();
+                                                                  textController7
+                                                                      ?.clear();
+                                                                  textController6
+                                                                      ?.clear();
+                                                                  textController2
+                                                                      ?.clear();
+                                                                  textController1
+                                                                      ?.clear();
+                                                                  textController3
+                                                                      ?.clear();
+                                                                  textController4
+                                                                      ?.clear();
+                                                                });
+                                                                ScaffoldMessenger.of(
+                                                                        context)
+                                                                    .showSnackBar(
+                                                                  SnackBar(
+                                                                    content:
+                                                                        Text(
+                                                                      'Thanks for your request. We will get in contact with you as soons as possible!',
+                                                                      style:
+                                                                          TextStyle(
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryText,
+                                                                        fontWeight:
+                                                                            FontWeight.bold,
+                                                                        fontSize:
+                                                                            20,
+                                                                      ),
+                                                                    ),
+                                                                    duration: Duration(
+                                                                        milliseconds:
+                                                                            6000),
+                                                                    backgroundColor:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .secondaryBackground,
+                                                                  ),
+                                                                );
+                                                                await Future.delayed(
+                                                                    const Duration(
+                                                                        milliseconds:
+                                                                            3000));
 
-                                                    context.pushNamed('Home');
-                                                  },
-                                                  text: 'Send',
-                                                  options: FFButtonOptions(
-                                                    width: 130,
-                                                    height: 40,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryColor,
-                                                    textStyle: FlutterFlowTheme
-                                                            .of(context)
-                                                        .subtitle2
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .subtitle2Family,
-                                                          color: Colors.white,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .subtitle2Family),
-                                                        ),
-                                                    borderSide: BorderSide(
-                                                      color: Colors.transparent,
-                                                      width: 1,
+                                                                context
+                                                                    .pushNamed(
+                                                                        'Home');
+                                                              },
+                                                    text: 'Send',
+                                                    options: FFButtonOptions(
+                                                      width: 130,
+                                                      height: 40,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryColor,
+                                                      textStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .subtitle2
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .subtitle2Family,
+                                                                color: Colors
+                                                                    .white,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .subtitle2Family),
+                                                              ),
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            Colors.transparent,
+                                                        width: 1,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              0),
+                                                      disabledColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .tertiaryColor,
                                                     ),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            0),
                                                   ),
                                                 ),
                                               ),
