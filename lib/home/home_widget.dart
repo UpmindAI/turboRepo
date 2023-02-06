@@ -79,7 +79,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.139',
+                'v0.140',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -1177,46 +1177,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                   );
                                                 },
                                               ),
-                                            ),
-                                          ),
-                                          Align(
-                                            alignment:
-                                                AlignmentDirectional(0, 1),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Builder(
-                                                  builder: (context) {
-                                                    final selectedSets =
-                                                        FFAppState()
-                                                            .selectedDataset
-                                                            .toList();
-                                                    return Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: List.generate(
-                                                          selectedSets.length,
-                                                          (selectedSetsIndex) {
-                                                        final selectedSetsItem =
-                                                            selectedSets[
-                                                                selectedSetsIndex];
-                                                        return Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(10,
-                                                                      0, 0, 10),
-                                                          child: Text(
-                                                            selectedSetsItem,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1,
-                                                          ),
-                                                        );
-                                                      }),
-                                                    );
-                                                  },
-                                                ),
-                                              ],
                                             ),
                                           ),
                                         ],
