@@ -205,14 +205,6 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyText1,
-                                                validator: (val) {
-                                                  if (val == null ||
-                                                      val.isEmpty) {
-                                                    return 'Field is required';
-                                                  }
-
-                                                  return null;
-                                                },
                                               ),
                                             ),
                                             Padding(
@@ -294,14 +286,6 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyText1,
-                                                validator: (val) {
-                                                  if (val == null ||
-                                                      val.isEmpty) {
-                                                    return 'Field is required';
-                                                  }
-
-                                                  return null;
-                                                },
                                               ),
                                             ),
                                             Padding(
@@ -384,25 +368,10 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyText1,
-                                                validator: (val) {
-                                                  if (val == null ||
-                                                      val.isEmpty) {
-                                                    return 'Field is required';
-                                                  }
-
-                                                  return null;
-                                                },
                                               ),
                                             ),
                                             FFButtonWidget(
                                               onPressed: () async {
-                                                if (formKey.currentState ==
-                                                        null ||
-                                                    !formKey.currentState!
-                                                        .validate()) {
-                                                  return;
-                                                }
-
                                                 final featureRequestCreateData =
                                                     createFeatureRequestRecordData(
                                                   iWant: textController1!.text,
