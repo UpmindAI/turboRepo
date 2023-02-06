@@ -79,7 +79,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.138',
+                'v0.139',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -921,6 +921,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                         FFAppState().selectedDataset =
                                                                             [];
                                                                       });
+
+                                                                      context.pushNamed(
+                                                                          'Home');
                                                                     },
                                                                     child: Text(
                                                                       'Clear',
