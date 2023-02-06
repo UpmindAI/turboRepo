@@ -27,92 +27,95 @@ class _UploadConfigWidgetState extends State<UploadConfigWidget> {
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return Container(
-      width: 500,
-      height: 500,
-      constraints: BoxConstraints(
-        maxWidth: 600,
-      ),
-      decoration: BoxDecoration(
-        color: FlutterFlowTheme.of(context).secondaryBackground,
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                  child: Text(
-                    'Chunk Size',
-                    style: FlutterFlowTheme.of(context).bodyText1,
+    return Align(
+      alignment: AlignmentDirectional(0, 0),
+      child: Container(
+        width: 500,
+        height: 500,
+        constraints: BoxConstraints(
+          maxWidth: 500,
+        ),
+        decoration: BoxDecoration(
+          color: FlutterFlowTheme.of(context).secondaryBackground,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                    child: Text(
+                      'Chunk Size',
+                      style: FlutterFlowTheme.of(context).bodyText1,
+                    ),
                   ),
-                ),
-                Expanded(
-                  child: Align(
-                    alignment: AlignmentDirectional(1, 0),
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                      child: Text(
-                        valueOrDefault<String>(
-                          formatNumber(
-                            sliderValue,
-                            formatType: FormatType.custom,
-                            format: '##',
-                            locale: '',
+                  Expanded(
+                    child: Align(
+                      alignment: AlignmentDirectional(1, 0),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                        child: Text(
+                          valueOrDefault<String>(
+                            formatNumber(
+                              sliderValue,
+                              formatType: FormatType.custom,
+                              format: '##',
+                              locale: '',
+                            ),
+                            '##',
                           ),
-                          '##',
+                          style: FlutterFlowTheme.of(context).bodyText1,
                         ),
-                        style: FlutterFlowTheme.of(context).bodyText1,
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ),
-          Slider(
-            activeColor: FlutterFlowTheme.of(context).primaryColor,
-            inactiveColor: Color(0xFF9E9E9E),
-            min: 0,
-            max: 4000,
-            value: sliderValue ??= FFAppState().setChunkSize,
-            label: sliderValue.toString(),
-            divisions: 80,
-            onChanged: (newValue) {
-              newValue = double.parse(newValue.toStringAsFixed(0));
-              setState(() => sliderValue = newValue);
-            },
-          ),
-          FFButtonWidget(
-            onPressed: () async {
-              FFAppState().update(() {
-                FFAppState().setChunkSize = sliderValue!;
-              });
-              Navigator.pop(context);
-            },
-            text: 'Save',
-            options: FFButtonOptions(
-              width: 130,
-              height: 40,
-              color: FlutterFlowTheme.of(context).primaryColor,
-              textStyle: FlutterFlowTheme.of(context).subtitle2.override(
-                    fontFamily: FlutterFlowTheme.of(context).subtitle2Family,
-                    color: Colors.white,
-                    useGoogleFonts: GoogleFonts.asMap().containsKey(
-                        FlutterFlowTheme.of(context).subtitle2Family),
-                  ),
-              borderSide: BorderSide(
-                color: Colors.transparent,
-                width: 1,
+                ],
               ),
-              borderRadius: BorderRadius.circular(20),
             ),
-          ),
-        ],
+            Slider(
+              activeColor: FlutterFlowTheme.of(context).primaryColor,
+              inactiveColor: Color(0xFF9E9E9E),
+              min: 0,
+              max: 4000,
+              value: sliderValue ??= FFAppState().setChunkSize,
+              label: sliderValue.toString(),
+              divisions: 80,
+              onChanged: (newValue) {
+                newValue = double.parse(newValue.toStringAsFixed(0));
+                setState(() => sliderValue = newValue);
+              },
+            ),
+            FFButtonWidget(
+              onPressed: () async {
+                FFAppState().update(() {
+                  FFAppState().setChunkSize = sliderValue!;
+                });
+                Navigator.pop(context);
+              },
+              text: 'Save',
+              options: FFButtonOptions(
+                width: 130,
+                height: 40,
+                color: FlutterFlowTheme.of(context).primaryColor,
+                textStyle: FlutterFlowTheme.of(context).subtitle2.override(
+                      fontFamily: FlutterFlowTheme.of(context).subtitle2Family,
+                      color: Colors.white,
+                      useGoogleFonts: GoogleFonts.asMap().containsKey(
+                          FlutterFlowTheme.of(context).subtitle2Family),
+                    ),
+                borderSide: BorderSide(
+                  color: Colors.transparent,
+                  width: 1,
+                ),
+                borderRadius: BorderRadius.circular(20),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
