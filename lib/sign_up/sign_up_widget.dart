@@ -146,6 +146,71 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                       ],
                     ),
                   ),
+                  Align(
+                    alignment: AlignmentDirectional(-1, 0),
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 15, 20, 15),
+                      child: Container(
+                        width: 300,
+                        height: 50,
+                        child: Stack(
+                          children: [
+                            Align(
+                              alignment: AlignmentDirectional(0, 0),
+                              child: FFButtonWidget(
+                                onPressed: () async {
+                                  GoRouter.of(context).prepareAuthEvent();
+                                  final user = await signInWithGoogle(context);
+                                  if (user == null) {
+                                    return;
+                                  }
+
+                                  context.goNamedAuth('Home', mounted);
+                                },
+                                text: 'Sign up with Google',
+                                icon: Icon(
+                                  Icons.add,
+                                  color: Colors.transparent,
+                                  size: 20,
+                                ),
+                                options: FFButtonOptions(
+                                  width: 400,
+                                  height: 50,
+                                  color: Colors.white,
+                                  textStyle: GoogleFonts.getFont(
+                                    'Roboto',
+                                    color: Color(0xFF606060),
+                                    fontSize: 17,
+                                  ),
+                                  elevation: 4,
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(0),
+                                ),
+                              ),
+                            ),
+                            Align(
+                              alignment: AlignmentDirectional(-0.83, 0),
+                              child: Container(
+                                width: 22,
+                                height: 22,
+                                clipBehavior: Clip.antiAlias,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Image.network(
+                                  'https://i0.wp.com/nanophorm.com/wp-content/uploads/2018/04/google-logo-icon-PNG-Transparent-Background.png?w=1000&ssl=1',
+                                  fit: BoxFit.contain,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                     child: Row(
@@ -440,75 +505,6 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                   Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Expanded(
-                        child: Align(
-                          alignment: AlignmentDirectional(0, 0),
-                          child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 40, 20, 0),
-                            child: Container(
-                              width: 230,
-                              height: 44,
-                              child: Stack(
-                                children: [
-                                  Align(
-                                    alignment: AlignmentDirectional(0, 0),
-                                    child: FFButtonWidget(
-                                      onPressed: () async {
-                                        GoRouter.of(context).prepareAuthEvent();
-                                        final user =
-                                            await signInWithGoogle(context);
-                                        if (user == null) {
-                                          return;
-                                        }
-
-                                        context.goNamedAuth('Home', mounted);
-                                      },
-                                      text: 'Sign up with Google',
-                                      icon: Icon(
-                                        Icons.add,
-                                        color: Colors.transparent,
-                                        size: 20,
-                                      ),
-                                      options: FFButtonOptions(
-                                        width: 230,
-                                        height: 44,
-                                        color: Colors.white,
-                                        textStyle: GoogleFonts.getFont(
-                                          'Roboto',
-                                          color: Color(0xFF606060),
-                                          fontSize: 17,
-                                        ),
-                                        elevation: 4,
-                                        borderSide: BorderSide(
-                                          color: Colors.transparent,
-                                          width: 0,
-                                        ),
-                                        borderRadius: BorderRadius.circular(0),
-                                      ),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: AlignmentDirectional(-0.83, 0),
-                                    child: Container(
-                                      width: 22,
-                                      height: 22,
-                                      clipBehavior: Clip.antiAlias,
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: Image.network(
-                                        'https://i0.wp.com/nanophorm.com/wp-content/uploads/2018/04/google-logo-icon-PNG-Transparent-Background.png?w=1000&ssl=1',
-                                        fit: BoxFit.contain,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                         child: Row(

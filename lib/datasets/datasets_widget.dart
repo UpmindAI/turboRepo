@@ -302,11 +302,11 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                           AlignmentDirectional(
                                                               0, 0),
                                                       child: Container(
-                                                        width: 200,
+                                                        width: 170,
                                                         height: 37,
                                                         child: custom_widgets
                                                             .SelectAndUploadFiles(
-                                                          width: 200,
+                                                          width: 170,
                                                           height: 37,
                                                           userId:
                                                               currentUserUid,
@@ -477,48 +477,14 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                     padding:
                                                         EdgeInsetsDirectional
                                                             .fromSTEB(
-                                                                0, 0, 10, 0),
-                                                    child: FFButtonWidget(
-                                                      onPressed: () {
-                                                        print(
-                                                            'Button pressed ...');
-                                                      },
-                                                      text: 'OMP!',
-                                                      options: FFButtonOptions(
-                                                        width: 110,
-                                                        height: 40,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryColor,
-                                                        textStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .subtitle2
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .subtitle2Family,
-                                                                  color: Colors
-                                                                      .white,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .subtitle2Family),
-                                                                ),
-                                                        borderSide: BorderSide(
-                                                          color: Colors
-                                                              .transparent,
-                                                          width: 1,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(0),
-                                                      ),
+                                                                0, 0, 20, 0),
+                                                    child: Icon(
+                                                      Icons.home_rounded,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .alternate,
+                                                      size: 36,
                                                     ),
                                                   ),
                                                 ],
@@ -898,12 +864,46 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                           mainAxisSize:
                                                               MainAxisSize.max,
                                                           children: [
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          10,
+                                                                          0,
+                                                                          0,
+                                                                          0),
+                                                              child: FaIcon(
+                                                                FontAwesomeIcons
+                                                                    .youtube,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                                size: 36,
+                                                              ),
+                                                            ),
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          10,
+                                                                          0,
+                                                                          0,
+                                                                          0),
+                                                              child: FaIcon(
+                                                                FontAwesomeIcons
+                                                                    .globe,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                                size: 30,
+                                                              ),
+                                                            ),
                                                             Expanded(
                                                               child: Padding(
                                                                 padding:
                                                                     EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            20,
+                                                                            10,
                                                                             0,
                                                                             20,
                                                                             0),
@@ -918,7 +918,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                     isDense:
                                                                         true,
                                                                     labelText:
-                                                                        'Add a YouTube video URL to add as a source',
+                                                                        'Add YouTube or Website URL as a data source',
                                                                     hintStyle: FlutterFlowTheme.of(
                                                                             context)
                                                                         .bodyText2,
