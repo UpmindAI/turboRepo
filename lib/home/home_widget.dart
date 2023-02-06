@@ -79,7 +79,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.134',
+                'v0.135',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -1021,7 +1021,11 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                                 setState(() => checkboxValueMap[listViewUserDatasetsRecord] = newValue!);
                                                                                 if (newValue!) {
                                                                                   setState(() {
-                                                                                    FFAppState().selectedDataset = checkboxCheckedItems.map((e) => e.datasetId).withoutNulls.toList();
+                                                                                    FFAppState().addToSelectedDataset(listViewUserDatasetsRecord.datasetId!);
+                                                                                  });
+                                                                                } else {
+                                                                                  setState(() {
+                                                                                    FFAppState().removeFromSelectedDataset(listViewUserDatasetsRecord.datasetId!);
                                                                                   });
                                                                                 }
                                                                               },
