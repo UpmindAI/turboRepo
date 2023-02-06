@@ -150,49 +150,64 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                       mainAxisSize:
                                                           MainAxisSize.max,
                                                       children: [
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      10,
-                                                                      10,
-                                                                      10,
-                                                                      10),
-                                                          child: Text(
-                                                            'I want: ${columnFeatureRecord.iwant}',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1,
+                                                        Align(
+                                                          alignment:
+                                                              AlignmentDirectional(
+                                                                  -1, 0),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        10,
+                                                                        10,
+                                                                        10,
+                                                                        10),
+                                                            child: Text(
+                                                              'I want: ${columnFeatureRecord.iwant}',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyText1,
+                                                            ),
                                                           ),
                                                         ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      10,
-                                                                      10,
-                                                                      10,
-                                                                      10),
-                                                          child: Text(
-                                                            'Because: ${columnFeatureRecord.because}',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1,
+                                                        Align(
+                                                          alignment:
+                                                              AlignmentDirectional(
+                                                                  -1, 0),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        10,
+                                                                        10,
+                                                                        10,
+                                                                        10),
+                                                            child: Text(
+                                                              'Because: ${columnFeatureRecord.because}',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyText1,
+                                                            ),
                                                           ),
                                                         ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      10,
-                                                                      10,
-                                                                      10,
-                                                                      10),
-                                                          child: Text(
-                                                            'Additional:${columnFeatureRecord.additional}',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1,
+                                                        Align(
+                                                          alignment:
+                                                              AlignmentDirectional(
+                                                                  -1, 0),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        10,
+                                                                        10,
+                                                                        10,
+                                                                        10),
+                                                            child: Text(
+                                                              'Additional:${columnFeatureRecord.additional}',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyText1,
+                                                            ),
                                                           ),
                                                         ),
                                                         Padding(
