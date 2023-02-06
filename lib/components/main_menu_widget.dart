@@ -121,7 +121,7 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                                 child: Text(
-                                  'Home',
+                                  'OMP!',
                                   style: FlutterFlowTheme.of(context)
                                       .subtitle2
                                       .override(
@@ -129,6 +129,7 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                             .subtitle2Family,
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryText,
+                                        fontWeight: FontWeight.bold,
                                         useGoogleFonts: GoogleFonts.asMap()
                                             .containsKey(
                                                 FlutterFlowTheme.of(context)
