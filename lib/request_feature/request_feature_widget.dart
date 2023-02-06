@@ -372,22 +372,20 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                             ),
                                             FFButtonWidget(
                                               onPressed: () async {
-                                                final featureRequestCreateData =
-                                                    createFeatureRequestRecordData(
-                                                  iWant: textController1!.text,
+                                                final featureCreateData =
+                                                    createFeatureRecordData(
+                                                  userRef: currentUserReference,
+                                                  iwant: textController1!.text,
                                                   because:
                                                       textController2!.text,
                                                   additional:
                                                       textController3!.text,
-                                                  userRef: currentUserReference,
                                                   timestamp:
                                                       getCurrentTimestamp,
                                                 );
-                                                await FeatureRequestRecord
-                                                    .collection
+                                                await FeatureRecord.collection
                                                     .doc()
-                                                    .set(
-                                                        featureRequestCreateData);
+                                                    .set(featureCreateData);
                                                 await Future.delayed(
                                                     const Duration(
                                                         milliseconds: 500));

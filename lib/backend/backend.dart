@@ -11,8 +11,8 @@ import 'schema/user_docs_record.dart';
 import 'schema/user_completions_record.dart';
 import 'schema/user_prompts_record.dart';
 import 'schema/user_temp_uploads_record.dart';
-import 'schema/feature_request_record.dart';
 import 'schema/support_record.dart';
+import 'schema/feature_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -26,8 +26,8 @@ export 'schema/user_docs_record.dart';
 export 'schema/user_completions_record.dart';
 export 'schema/user_prompts_record.dart';
 export 'schema/user_temp_uploads_record.dart';
-export 'schema/feature_request_record.dart';
 export 'schema/support_record.dart';
+export 'schema/feature_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -361,58 +361,6 @@ Future<FFFirestorePage<UserTempUploadsRecord>> queryUserTempUploadsRecordPage({
       isStream: isStream,
     );
 
-/// Functions to query FeatureRequestRecords (as a Stream and as a Future).
-Future<int> queryFeatureRequestRecordCount({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-}) =>
-    queryCollectionCount(
-      FeatureRequestRecord.collection,
-      queryBuilder: queryBuilder,
-      limit: limit,
-    );
-
-Stream<List<FeatureRequestRecord>> queryFeatureRequestRecord({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      FeatureRequestRecord.collection,
-      FeatureRequestRecord.serializer,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<FeatureRequestRecord>> queryFeatureRequestRecordOnce({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      FeatureRequestRecord.collection,
-      FeatureRequestRecord.serializer,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<FFFirestorePage<FeatureRequestRecord>> queryFeatureRequestRecordPage({
-  Query Function(Query)? queryBuilder,
-  DocumentSnapshot? nextPageMarker,
-  required int pageSize,
-  required bool isStream,
-}) =>
-    queryCollectionPage(
-      FeatureRequestRecord.collection,
-      FeatureRequestRecord.serializer,
-      queryBuilder: queryBuilder,
-      nextPageMarker: nextPageMarker,
-      pageSize: pageSize,
-      isStream: isStream,
-    );
-
 /// Functions to query SupportRecords (as a Stream and as a Future).
 Future<int> querySupportRecordCount({
   Query Function(Query)? queryBuilder,
@@ -459,6 +407,58 @@ Future<FFFirestorePage<SupportRecord>> querySupportRecordPage({
     queryCollectionPage(
       SupportRecord.collection,
       SupportRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query FeatureRecords (as a Stream and as a Future).
+Future<int> queryFeatureRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      FeatureRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<FeatureRecord>> queryFeatureRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      FeatureRecord.collection,
+      FeatureRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<FeatureRecord>> queryFeatureRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      FeatureRecord.collection,
+      FeatureRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<FeatureRecord>> queryFeatureRecordPage({
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+}) =>
+    queryCollectionPage(
+      FeatureRecord.collection,
+      FeatureRecord.serializer,
       queryBuilder: queryBuilder,
       nextPageMarker: nextPageMarker,
       pageSize: pageSize,

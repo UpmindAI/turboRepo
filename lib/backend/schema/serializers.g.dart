@@ -7,7 +7,7 @@ part of 'serializers.dart';
 // **************************************************************************
 
 Serializers _$serializers = (new Serializers().toBuilder()
-      ..add(FeatureRequestRecord.serializer)
+      ..add(FeatureRecord.serializer)
       ..add(SupportRecord.serializer)
       ..add(UserCompletionsRecord.serializer)
       ..add(UserDatasetsRecord.serializer)
