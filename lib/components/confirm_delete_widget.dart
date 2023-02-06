@@ -11,9 +11,11 @@ class ConfirmDeleteWidget extends StatefulWidget {
   const ConfirmDeleteWidget({
     Key? key,
     this.datasetRef,
+    this.datasetID,
   }) : super(key: key);
 
   final DocumentReference? datasetRef;
+  final String? datasetID;
 
   @override
   _ConfirmDeleteWidgetState createState() => _ConfirmDeleteWidgetState();
@@ -101,6 +103,10 @@ class _ConfirmDeleteWidgetState extends State<ConfirmDeleteWidget> {
                           child: FFButtonWidget(
                             onPressed: () async {
                               await widget.datasetRef!.delete();
+                              FFAppState().update(() {
+                                FFAppState().removeFromSelectedDataset(
+                                    widget.datasetID!);
+                              });
                             },
                             text: 'Yes',
                             options: FFButtonOptions(

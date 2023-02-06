@@ -415,6 +415,9 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                       datasetRef:
                                                                           columnUserDatasetsRecord
                                                                               .reference,
+                                                                      datasetID:
+                                                                          columnUserDatasetsRecord
+                                                                              .datasetId,
                                                                     ),
                                                                   ),
                                                                 );
