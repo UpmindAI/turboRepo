@@ -302,11 +302,11 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                           AlignmentDirectional(
                                                               0, 0),
                                                       child: Container(
-                                                        width: 170,
+                                                        width: 160,
                                                         height: 37,
                                                         child: custom_widgets
                                                             .SelectAndUploadFiles(
-                                                          width: 170,
+                                                          width: 160,
                                                           height: 37,
                                                           userId:
                                                               currentUserUid,
@@ -435,7 +435,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                           ),
                                                           options:
                                                               FFButtonOptions(
-                                                            width: 130,
+                                                            width: 160,
                                                             height: 30,
                                                             color: FlutterFlowTheme
                                                                     .of(context)
@@ -477,14 +477,20 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                     padding:
                                                         EdgeInsetsDirectional
                                                             .fromSTEB(
-                                                                0, 0, 20, 0),
-                                                    child: Icon(
-                                                      Icons.home_rounded,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .alternate,
-                                                      size: 36,
+                                                                0, 0, 10, 0),
+                                                    child: InkWell(
+                                                      onTap: () async {
+                                                        context
+                                                            .pushNamed('Home');
+                                                      },
+                                                      child: Icon(
+                                                        Icons.home_rounded,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .tertiaryColor,
+                                                        size: 36,
+                                                      ),
                                                     ),
                                                   ),
                                                 ],
