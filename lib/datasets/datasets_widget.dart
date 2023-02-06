@@ -302,11 +302,11 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                           AlignmentDirectional(
                                                               0, 0),
                                                       child: Container(
-                                                        width: 200,
+                                                        width: 170,
                                                         height: 37,
                                                         child: custom_widgets
                                                             .SelectAndUploadFiles(
-                                                          width: 200,
+                                                          width: 170,
                                                           height: 37,
                                                           userId:
                                                               currentUserUid,
@@ -479,9 +479,9 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                             .fromSTEB(
                                                                 0, 0, 10, 0),
                                                     child: FFButtonWidget(
-                                                      onPressed: () {
-                                                        print(
-                                                            'Button pressed ...');
+                                                      onPressed: () async {
+                                                        context
+                                                            .pushNamed('Home');
                                                       },
                                                       text: 'OMP!',
                                                       options: FFButtonOptions(
@@ -898,12 +898,46 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                           mainAxisSize:
                                                               MainAxisSize.max,
                                                           children: [
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          10,
+                                                                          0,
+                                                                          0,
+                                                                          0),
+                                                              child: FaIcon(
+                                                                FontAwesomeIcons
+                                                                    .youtube,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                                size: 36,
+                                                              ),
+                                                            ),
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          10,
+                                                                          0,
+                                                                          0,
+                                                                          0),
+                                                              child: FaIcon(
+                                                                FontAwesomeIcons
+                                                                    .globe,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .alternate,
+                                                                size: 30,
+                                                              ),
+                                                            ),
                                                             Expanded(
                                                               child: Padding(
                                                                 padding:
                                                                     EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            20,
+                                                                            10,
                                                                             0,
                                                                             20,
                                                                             0),
@@ -918,7 +952,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                     isDense:
                                                                         true,
                                                                     labelText:
-                                                                        'Add a YouTube video URL to add as a source',
+                                                                        'Add YouTube or Website URL as a data source',
                                                                     hintStyle: FlutterFlowTheme.of(
                                                                             context)
                                                                         .bodyText2,
