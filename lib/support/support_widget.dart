@@ -777,10 +777,46 @@ class _SupportWidgetState extends State<SupportWidget> {
                                               uid: currentUserUid,
                                               userRef: currentUserReference,
                                               question: textController7!.text,
+                                              timestamp: getCurrentTimestamp,
                                             );
                                             await SupportRecord.collection
                                                 .doc()
                                                 .set(supportCreateData);
+                                            await Future.delayed(const Duration(
+                                                milliseconds: 500));
+                                            setState(() {
+                                              textController1?.clear();
+                                              textController2?.clear();
+                                              textController3?.clear();
+                                              textController4?.clear();
+                                              textController5?.clear();
+                                              textController6?.clear();
+                                              textController7?.clear();
+                                            });
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  'Thank you for your message. We will contact you as soon as possible!',
+                                                  style: TextStyle(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryText,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 20,
+                                                  ),
+                                                ),
+                                                duration: Duration(
+                                                    milliseconds: 4000),
+                                                backgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                              ),
+                                            );
+                                            await Future.delayed(const Duration(
+                                                milliseconds: 4000));
+
+                                            context.pushNamed('Home');
                                           },
                                           text: 'Send',
                                           options: FFButtonOptions(

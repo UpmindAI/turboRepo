@@ -22,6 +22,8 @@ abstract class FeatureRequestRecord
   @BuiltValueField(wireName: 'user_ref')
   DocumentReference? get userRef;
 
+  DateTime? get timestamp;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -58,6 +60,7 @@ Map<String, dynamic> createFeatureRequestRecordData({
   String? because,
   String? additional,
   DocumentReference? userRef,
+  DateTime? timestamp,
 }) {
   final firestoreData = serializers.toFirestore(
     FeatureRequestRecord.serializer,
@@ -66,7 +69,8 @@ Map<String, dynamic> createFeatureRequestRecordData({
         ..iWant = iWant
         ..because = because
         ..additional = additional
-        ..userRef = userRef,
+        ..userRef = userRef
+        ..timestamp = timestamp,
     ),
   );
 

@@ -46,6 +46,21 @@ class _$FeatureRequestRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.userRef;
+    if (value != null) {
+      result
+        ..add('user_ref')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                DocumentReference, const [const FullType.nullable(Object)])));
+    }
+    value = object.timestamp;
+    if (value != null) {
+      result
+        ..add('timestamp')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DateTime)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -81,6 +96,16 @@ class _$FeatureRequestRecordSerializer
           result.additional = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'user_ref':
+          result.userRef = serializers.deserialize(value,
+              specifiedType: const FullType(DocumentReference, const [
+                const FullType.nullable(Object)
+              ])) as DocumentReference<Object?>?;
+          break;
+        case 'timestamp':
+          result.timestamp = serializers.deserialize(value,
+              specifiedType: const FullType(DateTime)) as DateTime?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -102,6 +127,10 @@ class _$FeatureRequestRecord extends FeatureRequestRecord {
   @override
   final String? additional;
   @override
+  final DocumentReference<Object?>? userRef;
+  @override
+  final DateTime? timestamp;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$FeatureRequestRecord(
@@ -109,7 +138,12 @@ class _$FeatureRequestRecord extends FeatureRequestRecord {
       (new FeatureRequestRecordBuilder()..update(updates))._build();
 
   _$FeatureRequestRecord._(
-      {this.iWant, this.because, this.additional, this.ffRef})
+      {this.iWant,
+      this.because,
+      this.additional,
+      this.userRef,
+      this.timestamp,
+      this.ffRef})
       : super._();
 
   @override
@@ -128,13 +162,20 @@ class _$FeatureRequestRecord extends FeatureRequestRecord {
         iWant == other.iWant &&
         because == other.because &&
         additional == other.additional &&
+        userRef == other.userRef &&
+        timestamp == other.timestamp &&
         ffRef == other.ffRef;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc(0, iWant.hashCode), because.hashCode), additional.hashCode),
+        $jc(
+            $jc(
+                $jc($jc($jc(0, iWant.hashCode), because.hashCode),
+                    additional.hashCode),
+                userRef.hashCode),
+            timestamp.hashCode),
         ffRef.hashCode));
   }
 
@@ -144,6 +185,8 @@ class _$FeatureRequestRecord extends FeatureRequestRecord {
           ..add('iWant', iWant)
           ..add('because', because)
           ..add('additional', additional)
+          ..add('userRef', userRef)
+          ..add('timestamp', timestamp)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -165,6 +208,14 @@ class FeatureRequestRecordBuilder
   String? get additional => _$this._additional;
   set additional(String? additional) => _$this._additional = additional;
 
+  DocumentReference<Object?>? _userRef;
+  DocumentReference<Object?>? get userRef => _$this._userRef;
+  set userRef(DocumentReference<Object?>? userRef) => _$this._userRef = userRef;
+
+  DateTime? _timestamp;
+  DateTime? get timestamp => _$this._timestamp;
+  set timestamp(DateTime? timestamp) => _$this._timestamp = timestamp;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -179,6 +230,8 @@ class FeatureRequestRecordBuilder
       _iWant = $v.iWant;
       _because = $v.because;
       _additional = $v.additional;
+      _userRef = $v.userRef;
+      _timestamp = $v.timestamp;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -205,6 +258,8 @@ class FeatureRequestRecordBuilder
             iWant: iWant,
             because: because,
             additional: additional,
+            userRef: userRef,
+            timestamp: timestamp,
             ffRef: ffRef);
     replace(_$result);
     return _$result;
