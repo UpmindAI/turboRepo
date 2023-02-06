@@ -3,7 +3,9 @@ import '../components/main_menu_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -312,10 +314,10 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                                         padding: EdgeInsetsDirectional.fromSTEB(
                                                                             0,
                                                                             0,
-                                                                            10,
+                                                                            2,
                                                                             0),
-                                                                        child:
-                                                                            Text(
+                                                                        child: SelectionArea(
+                                                                            child: Text(
                                                                           rowUsersRecord
                                                                               .email!,
                                                                           style: FlutterFlowTheme.of(context)
@@ -325,6 +327,28 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                                                 fontWeight: FontWeight.normal,
                                                                                 useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
                                                                               ),
+                                                                        )),
+                                                                      ),
+                                                                      Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0,
+                                                                            0,
+                                                                            10,
+                                                                            0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          onTap:
+                                                                              () async {
+                                                                            await Clipboard.setData(ClipboardData(text: rowUsersRecord.email!));
+                                                                          },
+                                                                          child:
+                                                                              FaIcon(
+                                                                            FontAwesomeIcons.solidCopy,
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).alternate,
+                                                                            size:
+                                                                                14,
+                                                                          ),
                                                                         ),
                                                                       ),
                                                                       Padding(
