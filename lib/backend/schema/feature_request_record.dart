@@ -19,6 +19,9 @@ abstract class FeatureRequestRecord
   @BuiltValueField(wireName: 'Additional')
   String? get additional;
 
+  @BuiltValueField(wireName: 'user_ref')
+  DocumentReference? get userRef;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -54,6 +57,7 @@ Map<String, dynamic> createFeatureRequestRecordData({
   String? iWant,
   String? because,
   String? additional,
+  DocumentReference? userRef,
 }) {
   final firestoreData = serializers.toFirestore(
     FeatureRequestRecord.serializer,
@@ -61,7 +65,8 @@ Map<String, dynamic> createFeatureRequestRecordData({
       (f) => f
         ..iWant = iWant
         ..because = because
-        ..additional = additional,
+        ..additional = additional
+        ..userRef = userRef,
     ),
   );
 
