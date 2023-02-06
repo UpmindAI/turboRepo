@@ -1,48 +1,43 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'feature_request_record.dart';
+part of 'feature_record.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<FeatureRequestRecord> _$featureRequestRecordSerializer =
-    new _$FeatureRequestRecordSerializer();
+Serializer<FeatureRecord> _$featureRecordSerializer =
+    new _$FeatureRecordSerializer();
 
-class _$FeatureRequestRecordSerializer
-    implements StructuredSerializer<FeatureRequestRecord> {
+class _$FeatureRecordSerializer implements StructuredSerializer<FeatureRecord> {
   @override
-  final Iterable<Type> types = const [
-    FeatureRequestRecord,
-    _$FeatureRequestRecord
-  ];
+  final Iterable<Type> types = const [FeatureRecord, _$FeatureRecord];
   @override
-  final String wireName = 'FeatureRequestRecord';
+  final String wireName = 'FeatureRecord';
 
   @override
-  Iterable<Object?> serialize(
-      Serializers serializers, FeatureRequestRecord object,
+  Iterable<Object?> serialize(Serializers serializers, FeatureRecord object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[];
     Object? value;
-    value = object.iWant;
+    value = object.iwant;
     if (value != null) {
       result
-        ..add('iWant')
+        ..add('iwant')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
     value = object.because;
     if (value != null) {
       result
-        ..add('Because')
+        ..add('because')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
     value = object.additional;
     if (value != null) {
       result
-        ..add('Additional')
+        ..add('additional')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
@@ -73,10 +68,10 @@ class _$FeatureRequestRecordSerializer
   }
 
   @override
-  FeatureRequestRecord deserialize(
+  FeatureRecord deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new FeatureRequestRecordBuilder();
+    final result = new FeatureRecordBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -84,15 +79,15 @@ class _$FeatureRequestRecordSerializer
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
-        case 'iWant':
-          result.iWant = serializers.deserialize(value,
+        case 'iwant':
+          result.iwant = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'Because':
+        case 'because':
           result.because = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'Additional':
+        case 'additional':
           result.additional = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
@@ -119,9 +114,9 @@ class _$FeatureRequestRecordSerializer
   }
 }
 
-class _$FeatureRequestRecord extends FeatureRequestRecord {
+class _$FeatureRecord extends FeatureRecord {
   @override
-  final String? iWant;
+  final String? iwant;
   @override
   final String? because;
   @override
@@ -133,12 +128,11 @@ class _$FeatureRequestRecord extends FeatureRequestRecord {
   @override
   final DocumentReference<Object?>? ffRef;
 
-  factory _$FeatureRequestRecord(
-          [void Function(FeatureRequestRecordBuilder)? updates]) =>
-      (new FeatureRequestRecordBuilder()..update(updates))._build();
+  factory _$FeatureRecord([void Function(FeatureRecordBuilder)? updates]) =>
+      (new FeatureRecordBuilder()..update(updates))._build();
 
-  _$FeatureRequestRecord._(
-      {this.iWant,
+  _$FeatureRecord._(
+      {this.iwant,
       this.because,
       this.additional,
       this.userRef,
@@ -147,19 +141,17 @@ class _$FeatureRequestRecord extends FeatureRequestRecord {
       : super._();
 
   @override
-  FeatureRequestRecord rebuild(
-          void Function(FeatureRequestRecordBuilder) updates) =>
+  FeatureRecord rebuild(void Function(FeatureRecordBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  FeatureRequestRecordBuilder toBuilder() =>
-      new FeatureRequestRecordBuilder()..replace(this);
+  FeatureRecordBuilder toBuilder() => new FeatureRecordBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is FeatureRequestRecord &&
-        iWant == other.iWant &&
+    return other is FeatureRecord &&
+        iwant == other.iwant &&
         because == other.because &&
         additional == other.additional &&
         userRef == other.userRef &&
@@ -172,7 +164,7 @@ class _$FeatureRequestRecord extends FeatureRequestRecord {
     return $jf($jc(
         $jc(
             $jc(
-                $jc($jc($jc(0, iWant.hashCode), because.hashCode),
+                $jc($jc($jc(0, iwant.hashCode), because.hashCode),
                     additional.hashCode),
                 userRef.hashCode),
             timestamp.hashCode),
@@ -181,8 +173,8 @@ class _$FeatureRequestRecord extends FeatureRequestRecord {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'FeatureRequestRecord')
-          ..add('iWant', iWant)
+    return (newBuiltValueToStringHelper(r'FeatureRecord')
+          ..add('iwant', iwant)
           ..add('because', because)
           ..add('additional', additional)
           ..add('userRef', userRef)
@@ -192,13 +184,13 @@ class _$FeatureRequestRecord extends FeatureRequestRecord {
   }
 }
 
-class FeatureRequestRecordBuilder
-    implements Builder<FeatureRequestRecord, FeatureRequestRecordBuilder> {
-  _$FeatureRequestRecord? _$v;
+class FeatureRecordBuilder
+    implements Builder<FeatureRecord, FeatureRecordBuilder> {
+  _$FeatureRecord? _$v;
 
-  String? _iWant;
-  String? get iWant => _$this._iWant;
-  set iWant(String? iWant) => _$this._iWant = iWant;
+  String? _iwant;
+  String? get iwant => _$this._iwant;
+  set iwant(String? iwant) => _$this._iwant = iwant;
 
   String? _because;
   String? get because => _$this._because;
@@ -220,14 +212,14 @@ class FeatureRequestRecordBuilder
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
 
-  FeatureRequestRecordBuilder() {
-    FeatureRequestRecord._initializeBuilder(this);
+  FeatureRecordBuilder() {
+    FeatureRecord._initializeBuilder(this);
   }
 
-  FeatureRequestRecordBuilder get _$this {
+  FeatureRecordBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _iWant = $v.iWant;
+      _iwant = $v.iwant;
       _because = $v.because;
       _additional = $v.additional;
       _userRef = $v.userRef;
@@ -239,23 +231,23 @@ class FeatureRequestRecordBuilder
   }
 
   @override
-  void replace(FeatureRequestRecord other) {
+  void replace(FeatureRecord other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$FeatureRequestRecord;
+    _$v = other as _$FeatureRecord;
   }
 
   @override
-  void update(void Function(FeatureRequestRecordBuilder)? updates) {
+  void update(void Function(FeatureRecordBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  FeatureRequestRecord build() => _build();
+  FeatureRecord build() => _build();
 
-  _$FeatureRequestRecord _build() {
+  _$FeatureRecord _build() {
     final _$result = _$v ??
-        new _$FeatureRequestRecord._(
-            iWant: iWant,
+        new _$FeatureRecord._(
+            iwant: iwant,
             because: because,
             additional: additional,
             userRef: userRef,

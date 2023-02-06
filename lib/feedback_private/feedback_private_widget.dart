@@ -97,13 +97,11 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                           )
                                         ],
                                       ),
-                                      child: StreamBuilder<
-                                          List<FeatureRequestRecord>>(
-                                        stream: queryFeatureRequestRecord(
-                                          queryBuilder:
-                                              (featureRequestRecord) =>
-                                                  featureRequestRecord
-                                                      .orderBy('timestamp'),
+                                      child: StreamBuilder<List<FeatureRecord>>(
+                                        stream: queryFeatureRecord(
+                                          queryBuilder: (featureRecord) =>
+                                              featureRecord
+                                                  .orderBy('timestamp'),
                                         ),
                                         builder: (context, snapshot) {
                                           // Customize what your widget looks like when it's loading.
@@ -121,16 +119,16 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                               ),
                                             );
                                           }
-                                          List<FeatureRequestRecord>
-                                              columnFeatureRequestRecordList =
+                                          List<FeatureRecord>
+                                              columnFeatureRecordList =
                                               snapshot.data!;
                                           return Column(
                                             mainAxisSize: MainAxisSize.max,
                                             children: List.generate(
-                                                columnFeatureRequestRecordList
-                                                    .length, (columnIndex) {
-                                              final columnFeatureRequestRecord =
-                                                  columnFeatureRequestRecordList[
+                                                columnFeatureRecordList.length,
+                                                (columnIndex) {
+                                              final columnFeatureRecord =
+                                                  columnFeatureRecordList[
                                                       columnIndex];
                                               return Padding(
                                                 padding: EdgeInsetsDirectional
@@ -148,90 +146,90 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                               .of(context)
                                                           .primaryBackground,
                                                     ),
-                                                    child: StreamBuilder<
-                                                        UsersRecord>(
-                                                      stream: UsersRecord
-                                                          .getDocument(
-                                                              columnFeatureRequestRecord
-                                                                  .userRef!),
-                                                      builder:
-                                                          (context, snapshot) {
-                                                        // Customize what your widget looks like when it's loading.
-                                                        if (!snapshot.hasData) {
-                                                          return Center(
-                                                            child: SizedBox(
-                                                              width: 50,
-                                                              height: 50,
-                                                              child:
-                                                                  SpinKitRipple(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryColor,
-                                                                size: 50,
-                                                              ),
-                                                            ),
-                                                          );
-                                                        }
-                                                        final columnUsersRecord =
-                                                            snapshot.data!;
-                                                        return Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          children: [
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          10,
-                                                                          10,
-                                                                          10,
-                                                                          10),
-                                                              child: Text(
-                                                                'I want: ${columnFeatureRequestRecord.iWant}',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyText1,
-                                                              ),
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          10,
-                                                                          10,
-                                                                          10,
-                                                                          10),
-                                                              child: Text(
-                                                                'Because: ${columnFeatureRequestRecord.because}',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyText1,
-                                                              ),
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          10,
-                                                                          10,
-                                                                          10,
-                                                                          10),
-                                                              child: Text(
-                                                                'Additional:${columnFeatureRequestRecord.additional}',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyText1,
-                                                              ),
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0,
-                                                                          0,
-                                                                          0,
-                                                                          10),
-                                                              child: Row(
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      10,
+                                                                      10,
+                                                                      10,
+                                                                      10),
+                                                          child: Text(
+                                                            'I want: ${columnFeatureRecord.iwant}',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText1,
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      10,
+                                                                      10,
+                                                                      10,
+                                                                      10),
+                                                          child: Text(
+                                                            'Because: ${columnFeatureRecord.because}',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText1,
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      10,
+                                                                      10,
+                                                                      10,
+                                                                      10),
+                                                          child: Text(
+                                                            'Additional:${columnFeatureRecord.additional}',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText1,
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      0, 0, 10),
+                                                          child: StreamBuilder<
+                                                              UsersRecord>(
+                                                            stream: UsersRecord
+                                                                .getDocument(
+                                                                    columnFeatureRecord
+                                                                        .userRef!),
+                                                            builder: (context,
+                                                                snapshot) {
+                                                              // Customize what your widget looks like when it's loading.
+                                                              if (!snapshot
+                                                                  .hasData) {
+                                                                return Center(
+                                                                  child:
+                                                                      SizedBox(
+                                                                    width: 50,
+                                                                    height: 50,
+                                                                    child:
+                                                                        SpinKitRipple(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryColor,
+                                                                      size: 50,
+                                                                    ),
+                                                                  ),
+                                                                );
+                                                              }
+                                                              final rowUsersRecord =
+                                                                  snapshot
+                                                                      .data!;
+                                                              return Row(
                                                                 mainAxisSize:
                                                                     MainAxisSize
                                                                         .max,
@@ -265,7 +263,7 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                                             0),
                                                                         child:
                                                                             Text(
-                                                                          columnUsersRecord
+                                                                          rowUsersRecord
                                                                               .firstName!,
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodyText1
@@ -284,7 +282,7 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                                             0),
                                                                         child:
                                                                             Text(
-                                                                          columnUsersRecord
+                                                                          rowUsersRecord
                                                                               .lastName!,
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodyText1
@@ -303,7 +301,7 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                                             0),
                                                                         child:
                                                                             Text(
-                                                                          columnUsersRecord
+                                                                          rowUsersRecord
                                                                               .email!,
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodyText1
@@ -322,7 +320,7 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                                             0),
                                                                         child:
                                                                             Text(
-                                                                          columnUsersRecord
+                                                                          rowUsersRecord
                                                                               .phoneNumber!,
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodyText1
@@ -336,11 +334,11 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                                     ],
                                                                   ),
                                                                 ],
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        );
-                                                      },
+                                                              );
+                                                            },
+                                                          ),
+                                                        ),
+                                                      ],
                                                     ),
                                                   ),
                                                 ),
