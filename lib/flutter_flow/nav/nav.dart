@@ -138,14 +138,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => EditProfileWidget(),
             ),
             FFRoute(
-              name: 'requestFeature',
-              path: 'requestFeature',
-              builder: (context, params) => RequestFeatureWidget(),
-            ),
-            FFRoute(
               name: 'support',
               path: 'support',
               builder: (context, params) => SupportWidget(),
+            ),
+            FFRoute(
+              name: 'requestFeature',
+              path: 'requestFeature',
+              builder: (context, params) => RequestFeatureWidget(),
             ),
             FFRoute(
               name: 'feedbackPrivate',
