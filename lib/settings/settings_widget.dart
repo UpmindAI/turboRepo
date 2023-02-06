@@ -1,5 +1,6 @@
 import '../auth/auth_util.dart';
 import '../components/main_menu_widget.dart';
+import '../components/payment_widget.dart';
 import '../components/settings_page_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -125,40 +126,114 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                         ),
                       ),
                     ),
-                    if (valueOrDefault<bool>(
-                        currentUserDocument?.isAdmin, false))
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
-                        child: AuthUserStreamWidget(
-                          builder: (context) => FFButtonWidget(
-                            onPressed: () async {
-                              context.pushNamed('feedbackPrivate');
-                            },
-                            text: 'Feedback (Admin)',
-                            options: FFButtonOptions(
-                              width: 200,
-                              height: 40,
-                              color: FlutterFlowTheme.of(context).primaryColor,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .subtitle2
-                                  .override(
-                                    fontFamily: FlutterFlowTheme.of(context)
-                                        .subtitle2Family,
-                                    color: Colors.white,
-                                    useGoogleFonts: GoogleFonts.asMap()
-                                        .containsKey(
-                                            FlutterFlowTheme.of(context)
-                                                .subtitle2Family),
+                    Align(
+                      alignment: AlignmentDirectional(0.15, 0),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            if (valueOrDefault<bool>(
+                                currentUserDocument?.isAdmin, false))
+                              Expanded(
+                                child: Align(
+                                  alignment: AlignmentDirectional(0, 0),
+                                  child: AuthUserStreamWidget(
+                                    builder: (context) => FFButtonWidget(
+                                      onPressed: () async {
+                                        context.pushNamed('feedbackPrivate');
+                                      },
+                                      text: 'Feedback (Admin)',
+                                      options: FFButtonOptions(
+                                        width: 200,
+                                        height: 40,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryColor,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .subtitle2
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .subtitle2Family,
+                                              color: Colors.white,
+                                              useGoogleFonts:
+                                                  GoogleFonts.asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .subtitle2Family),
+                                            ),
+                                        borderSide: BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1,
+                                        ),
+                                        borderRadius: BorderRadius.circular(0),
+                                      ),
+                                    ),
                                   ),
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1,
+                                ),
                               ),
-                              borderRadius: BorderRadius.circular(0),
-                            ),
-                          ),
+                            if (valueOrDefault<bool>(
+                                currentUserDocument?.isAdmin, false))
+                              Expanded(
+                                child: Align(
+                                  alignment: AlignmentDirectional(0, 0),
+                                  child: AuthUserStreamWidget(
+                                    builder: (context) => FFButtonWidget(
+                                      onPressed: () async {
+                                        await showModalBottomSheet(
+                                          isScrollControlled: true,
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .secondaryBackground,
+                                          enableDrag: false,
+                                          context: context,
+                                          builder: (context) {
+                                            return Padding(
+                                              padding: MediaQuery.of(context)
+                                                  .viewInsets,
+                                              child: Container(
+                                                height: 700,
+                                                child: PaymentWidget(),
+                                              ),
+                                            );
+                                          },
+                                        ).then((value) => setState(() {}));
+                                      },
+                                      text: 'Test Stripe (Admin)',
+                                      options: FFButtonOptions(
+                                        width: 200,
+                                        height: 40,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryColor,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .subtitle2
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .subtitle2Family,
+                                              color: Colors.white,
+                                              useGoogleFonts:
+                                                  GoogleFonts.asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .subtitle2Family),
+                                            ),
+                                        borderSide: BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1,
+                                        ),
+                                        borderRadius: BorderRadius.circular(0),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                          ],
                         ),
                       ),
+                    ),
                   ],
                 ),
               ),
