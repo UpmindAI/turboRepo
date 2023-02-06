@@ -236,27 +236,104 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                                     MainAxisSize
                                                                         .max,
                                                                 children: [
-                                                                  Padding(
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
+                                                                  Wrap(
+                                                                    spacing: 0,
+                                                                    runSpacing:
+                                                                        0,
+                                                                    alignment:
+                                                                        WrapAlignment
+                                                                            .start,
+                                                                    crossAxisAlignment:
+                                                                        WrapCrossAlignment
+                                                                            .start,
+                                                                    direction: Axis
+                                                                        .horizontal,
+                                                                    runAlignment:
+                                                                        WrapAlignment
+                                                                            .start,
+                                                                    verticalDirection:
+                                                                        VerticalDirection
+                                                                            .down,
+                                                                    clipBehavior:
+                                                                        Clip.none,
+                                                                    children: [
+                                                                      Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             10,
                                                                             0,
                                                                             10,
                                                                             0),
-                                                                    child: Text(
-                                                                      columnUsersRecord
-                                                                          .firstName!,
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyText1,
-                                                                    ),
-                                                                  ),
-                                                                  Text(
-                                                                    columnUsersRecord
-                                                                        .lastName!,
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyText1,
+                                                                        child:
+                                                                            Text(
+                                                                          columnUsersRecord
+                                                                              .firstName!,
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodyText1
+                                                                              .override(
+                                                                                fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                fontWeight: FontWeight.normal,
+                                                                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                              ),
+                                                                        ),
+                                                                      ),
+                                                                      Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0,
+                                                                            0,
+                                                                            10,
+                                                                            0),
+                                                                        child:
+                                                                            Text(
+                                                                          columnUsersRecord
+                                                                              .lastName!,
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodyText1
+                                                                              .override(
+                                                                                fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                fontWeight: FontWeight.normal,
+                                                                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                              ),
+                                                                        ),
+                                                                      ),
+                                                                      Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0,
+                                                                            0,
+                                                                            10,
+                                                                            0),
+                                                                        child:
+                                                                            Text(
+                                                                          columnUsersRecord
+                                                                              .email!,
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodyText1
+                                                                              .override(
+                                                                                fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                fontWeight: FontWeight.normal,
+                                                                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                              ),
+                                                                        ),
+                                                                      ),
+                                                                      Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0,
+                                                                            0,
+                                                                            10,
+                                                                            0),
+                                                                        child:
+                                                                            Text(
+                                                                          columnUsersRecord
+                                                                              .phoneNumber!,
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodyText1
+                                                                              .override(
+                                                                                fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                fontWeight: FontWeight.normal,
+                                                                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                              ),
+                                                                        ),
+                                                                      ),
+                                                                    ],
                                                                   ),
                                                                 ],
                                                               ),
