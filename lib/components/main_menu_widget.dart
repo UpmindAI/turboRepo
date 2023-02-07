@@ -440,13 +440,20 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                                         EdgeInsetsDirectional
                                                             .fromSTEB(
                                                                 10, 0, 0, 0),
-                                                    child: Icon(
-                                                      Icons.check_box_outlined,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .alternate,
-                                                      size: 24,
+                                                    child: InkWell(
+                                                      onTap: () async {
+                                                        context.pushNamed(
+                                                            'Settings');
+                                                      },
+                                                      child: Icon(
+                                                        Icons
+                                                            .check_box_outlined,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
+                                                        size: 24,
+                                                      ),
                                                     ),
                                                   ),
                                                   Padding(
@@ -454,25 +461,31 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                                         EdgeInsetsDirectional
                                                             .fromSTEB(
                                                                 5, 0, 5, 0),
-                                                    child: Text(
-                                                      'Access',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyText1
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyText1Family,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyText1Family),
-                                                              ),
+                                                    child: InkWell(
+                                                      onTap: () async {
+                                                        context.pushNamed(
+                                                            'Settings');
+                                                      },
+                                                      child: Text(
+                                                        'Access',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyText1Family,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyText1Family),
+                                                                ),
+                                                      ),
                                                     ),
                                                   ),
                                                 ],
