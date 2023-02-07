@@ -125,8 +125,6 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
               if (responsiveVisibility(
                 context: context,
                 phone: false,
-                tablet: false,
-                desktop: false,
               ))
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
@@ -174,11 +172,28 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                               color: FlutterFlowTheme.of(context).secondaryText,
                               size: 24,
                             ),
+                            Text(
+                              '5',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyText1Family,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.w600,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyText1Family),
+                                  ),
+                            ),
                             Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                               child: Text(
-                                'Add Credits',
+                                '30 day Beta Access',
                                 style: FlutterFlowTheme.of(context).bodyText2,
                               ),
                             ),

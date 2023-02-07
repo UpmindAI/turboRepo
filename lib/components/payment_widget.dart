@@ -18,7 +18,6 @@ class PaymentWidget extends StatefulWidget {
 
 class _PaymentWidgetState extends State<PaymentWidget> {
   String? paymentId;
-  double? sliderValue;
 
   @override
   void initState() {
@@ -48,14 +47,14 @@ class _PaymentWidgetState extends State<PaymentWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
               child: Text(
-                'Buy Credits',
+                'Buy Access',
                 style: FlutterFlowTheme.of(context).title3,
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
               child: Text(
-                'One USD  =  10 credits',
+                '\$5.00 for 30 days',
                 style: FlutterFlowTheme.of(context).bodyText1.override(
                       fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
                       fontSize: 16,
@@ -65,38 +64,17 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                     ),
               ),
             ),
-            Text(
-              '${valueOrDefault<String>(
-                formatNumber(
-                  sliderValue,
-                  formatType: FormatType.custom,
-                  format: '##',
-                  locale: '',
-                ),
-                '##',
-              )}0 credits',
-              style: FlutterFlowTheme.of(context).bodyText1,
-            ),
-            Slider(
-              activeColor: FlutterFlowTheme.of(context).primaryColor,
-              inactiveColor: Color(0xFF9E9E9E),
-              min: 5,
-              max: 100,
-              value: sliderValue ??= 5,
-              onChanged: (newValue) {
-                newValue = double.parse(newValue.toStringAsFixed(4));
-                setState(() => sliderValue = newValue);
-              },
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
+              child: Text(
+                'for beta access for unlimited uploads & prompts/queries',
+                style: FlutterFlowTheme.of(context).bodyText1,
+              ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+              padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
               child: Text(
-                'Total:  \$${formatNumber(
-                  sliderValue,
-                  formatType: FormatType.custom,
-                  format: '##',
-                  locale: '',
-                )}',
+                'Total:  \$ 5',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -104,7 +82,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
               onPressed: () async {
                 final paymentResponse = await processStripePayment(
                   context,
-                  amount: functions.getPrice(sliderValue),
+                  amount: functions.getPrice(5.0),
                   currency: 'USD',
                   customerEmail: currentUserEmail,
                   customerName: currentUserDisplayName,
