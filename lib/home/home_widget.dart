@@ -79,7 +79,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.146',
+                'v0.147',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -212,7 +212,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                           },
                                                           child: FaIcon(
                                                             FontAwesomeIcons
-                                                                .solidCopy,
+                                                                .copy,
                                                             color: FlutterFlowTheme
                                                                     .of(context)
                                                                 .tertiaryColor,

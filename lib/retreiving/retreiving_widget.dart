@@ -48,7 +48,8 @@ class _RetreivingWidgetState extends State<RetreivingWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (valueOrDefault(currentUserDocument?.totalCredits, 0.0) <= 0.0) {
+      if ((valueOrDefault(currentUserDocument?.totalCredits, 0.0) <= 0.0) ||
+          (valueOrDefault(currentUserDocument?.totalCredits, 0.0) == null)) {
         await showModalBottomSheet(
           isScrollControlled: true,
           backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
