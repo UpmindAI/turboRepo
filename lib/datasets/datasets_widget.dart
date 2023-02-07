@@ -753,20 +753,20 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                 ],
                                                                               ),
                                                                               Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
                                                                                 child: Row(
                                                                                   mainAxisSize: MainAxisSize.max,
                                                                                   children: [
                                                                                     Padding(
-                                                                                      padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 5),
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                                                                       child: Icon(
                                                                                         Icons.calendar_today_outlined,
                                                                                         color: FlutterFlowTheme.of(context).tertiaryColor,
-                                                                                        size: 20,
+                                                                                        size: 16,
                                                                                       ),
                                                                                     ),
                                                                                     Padding(
-                                                                                      padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
                                                                                       child: Text(
                                                                                         dateTimeFormat('jm', listViewUserDocsRecord.timestamp!),
                                                                                         style: FlutterFlowTheme.of(context).bodyText1.override(
@@ -805,7 +805,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                         child: FaIcon(
                                                                                           FontAwesomeIcons.trashAlt,
                                                                                           color: FlutterFlowTheme.of(context).tertiaryColor,
-                                                                                          size: 18,
+                                                                                          size: 16,
                                                                                         ),
                                                                                       ),
                                                                                     ),

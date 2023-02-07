@@ -246,8 +246,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                         );
                                                       },
                                                       child: FaIcon(
-                                                        FontAwesomeIcons
-                                                            .solidCopy,
+                                                        FontAwesomeIcons.copy,
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
