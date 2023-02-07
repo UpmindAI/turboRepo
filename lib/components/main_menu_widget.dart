@@ -3,6 +3,7 @@ import '../components/payment_widget.dart';
 import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -324,7 +325,9 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                                 await showModalBottomSheet(
                                                   isScrollControlled: true,
                                                   backgroundColor:
-                                                      Colors.transparent,
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .secondaryBackground,
                                                   enableDrag: false,
                                                   context: context,
                                                   builder: (context) {
@@ -359,7 +362,9 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                                 await showModalBottomSheet(
                                                   isScrollControlled: true,
                                                   backgroundColor:
-                                                      Colors.transparent,
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .secondaryBackground,
                                                   enableDrag: false,
                                                   context: context,
                                                   builder: (context) {
@@ -475,7 +480,7 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                               onTap: () async {
                                                 context.pushNamed('Settings');
                                               },
-                                              child: Text(
+                                              child: AutoSizeText(
                                                 currentUserDisplayName,
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -488,7 +493,7 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                           onTap: () async {
                                             context.pushNamed('Settings');
                                           },
-                                          child: Text(
+                                          child: AutoSizeText(
                                             currentUserEmail,
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText2
