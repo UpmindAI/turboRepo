@@ -152,7 +152,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                           padding:
                                                               EdgeInsetsDirectional
                                                                   .fromSTEB(0,
-                                                                      5, 10, 0),
+                                                                      2, 15, 0),
                                                           child: Text(
                                                             dateTimeFormat(
                                                                 'MMMMEEEEd',
@@ -198,7 +198,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .grayIcon,
-                                                          size: 24,
+                                                          size: 18,
                                                         ),
                                                       ),
                                                     ),
@@ -319,53 +319,59 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                       alignment:
                                                           AlignmentDirectional(
                                                               1, 0),
-                                                      child: InkWell(
-                                                        onTap: () async {
-                                                          await Clipboard.setData(
-                                                              ClipboardData(
-                                                                  text:
-                                                                      'Prompt:     ${listViewUserCompletionsRecord.prompt}Completion:     ${listViewUserCompletionsRecord.completion}'));
-                                                          ScaffoldMessenger.of(
-                                                                  context)
-                                                              .showSnackBar(
-                                                            SnackBar(
-                                                              content: Text(
-                                                                'Copied to Clipboard!',
-                                                                style:
-                                                                    TextStyle(
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0, 0, 0, 5),
+                                                        child: InkWell(
+                                                          onTap: () async {
+                                                            await Clipboard.setData(
+                                                                ClipboardData(
+                                                                    text:
+                                                                        'Prompt:     ${listViewUserCompletionsRecord.prompt}Completion:     ${listViewUserCompletionsRecord.completion}'));
+                                                            ScaffoldMessenger
+                                                                    .of(context)
+                                                                .showSnackBar(
+                                                              SnackBar(
+                                                                content: Text(
+                                                                  'Copied to Clipboard!',
+                                                                  style:
+                                                                      TextStyle(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryColor,
+                                                                  ),
+                                                                ),
+                                                                duration: Duration(
+                                                                    milliseconds:
+                                                                        4000),
+                                                                backgroundColor:
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryBackground,
+                                                              ),
+                                                            );
+                                                          },
+                                                          child: Text(
+                                                            'Copy',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyText1Family,
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .primaryColor,
+                                                                      .grayIcon,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyText1Family),
                                                                 ),
-                                                              ),
-                                                              duration: Duration(
-                                                                  milliseconds:
-                                                                      4000),
-                                                              backgroundColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryBackground,
-                                                            ),
-                                                          );
-                                                        },
-                                                        child: Text(
-                                                          'Copy',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText1
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyText1Family,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .grayIcon,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyText1Family),
-                                                              ),
+                                                          ),
                                                         ),
                                                       ),
                                                     ),
@@ -409,7 +415,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .grayIcon,
-                                                        size: 24,
+                                                        size: 18,
                                                       ),
                                                     ),
                                                   ),
