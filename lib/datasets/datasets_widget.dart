@@ -302,11 +302,11 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                           AlignmentDirectional(
                                                               0, 0),
                                                       child: Container(
-                                                        width: 160,
+                                                        width: 190,
                                                         height: 37,
                                                         child: custom_widgets
                                                             .SelectAndUploadFiles(
-                                                          width: 160,
+                                                          width: 190,
                                                           height: 37,
                                                           userId:
                                                               currentUserUid,

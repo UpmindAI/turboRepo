@@ -94,7 +94,7 @@ class _SelectAndUploadFilesState extends State<SelectAndUploadFiles> {
         onTap: () => selectFiles(),
         child: Container(
             color: Colors.black,
-            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 5),
             child: Row(
               children: [
                 Padding(
