@@ -313,97 +313,171 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
                                       ),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
+                                      child: Stack(
                                         children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10, 0, 0, 0),
-                                            child: InkWell(
-                                              onTap: () async {
-                                                await showModalBottomSheet(
-                                                  isScrollControlled: true,
-                                                  backgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .secondaryBackground,
-                                                  enableDrag: false,
-                                                  context: context,
-                                                  builder: (context) {
-                                                    return Padding(
-                                                      padding:
-                                                          MediaQuery.of(context)
-                                                              .viewInsets,
-                                                      child: Container(
-                                                        height: 700,
-                                                        child: PaymentWidget(),
-                                                      ),
-                                                    );
-                                                  },
-                                                ).then(
-                                                    (value) => setState(() {}));
-                                              },
-                                              child: FaIcon(
-                                                FontAwesomeIcons.coins,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .alternate,
-                                                size: 24,
-                                              ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    5, 0, 5, 0),
-                                            child: InkWell(
-                                              onTap: () async {
-                                                await showModalBottomSheet(
-                                                  isScrollControlled: true,
-                                                  backgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .secondaryBackground,
-                                                  enableDrag: false,
-                                                  context: context,
-                                                  builder: (context) {
-                                                    return Padding(
-                                                      padding:
-                                                          MediaQuery.of(context)
-                                                              .viewInsets,
-                                                      child: Container(
-                                                        height: 700,
-                                                        child: PaymentWidget(),
-                                                      ),
-                                                    );
-                                                  },
-                                                ).then(
-                                                    (value) => setState(() {}));
-                                              },
-                                              child: Text(
-                                                'Access',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyText1
-                                                        .override(
-                                                          fontFamily:
+                                          if ((valueOrDefault(
+                                                      currentUserDocument
+                                                          ?.totalCredits,
+                                                      0.0) <=
+                                                  0.0) ||
+                                              (valueOrDefault(
+                                                      currentUserDocument
+                                                          ?.totalCredits,
+                                                      0.0) ==
+                                                  null))
+                                            AuthUserStreamWidget(
+                                              builder: (context) => Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                10, 0, 0, 0),
+                                                    child: InkWell(
+                                                      onTap: () async {
+                                                        await showModalBottomSheet(
+                                                          isScrollControlled:
+                                                              true,
+                                                          backgroundColor:
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .bodyText1Family,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
+                                                                  .secondaryBackground,
+                                                          enableDrag: false,
+                                                          context: context,
+                                                          builder: (context) {
+                                                            return Padding(
+                                                              padding: MediaQuery
+                                                                      .of(context)
+                                                                  .viewInsets,
+                                                              child: Container(
+                                                                height: 700,
+                                                                child:
+                                                                    PaymentWidget(),
+                                                              ),
+                                                            );
+                                                          },
+                                                        ).then((value) =>
+                                                            setState(() {}));
+                                                      },
+                                                      child: FaIcon(
+                                                        FontAwesomeIcons.coins,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .alternate,
+                                                        size: 24,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                5, 0, 5, 0),
+                                                    child: InkWell(
+                                                      onTap: () async {
+                                                        await showModalBottomSheet(
+                                                          isScrollControlled:
+                                                              true,
+                                                          backgroundColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .secondaryBackground,
+                                                          enableDrag: false,
+                                                          context: context,
+                                                          builder: (context) {
+                                                            return Padding(
+                                                              padding: MediaQuery
+                                                                      .of(context)
+                                                                  .viewInsets,
+                                                              child: Container(
+                                                                height: 700,
+                                                                child:
+                                                                    PaymentWidget(),
+                                                              ),
+                                                            );
+                                                          },
+                                                        ).then((value) =>
+                                                            setState(() {}));
+                                                      },
+                                                      child: Text(
+                                                        'Access',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyText1
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .bodyText1Family),
-                                                        ),
+                                                                      .bodyText1Family,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyText1Family),
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                             ),
-                                          ),
+                                          if (valueOrDefault(
+                                                  currentUserDocument
+                                                      ?.totalCredits,
+                                                  0.0) >=
+                                              1.0)
+                                            AuthUserStreamWidget(
+                                              builder: (context) => Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                10, 0, 0, 0),
+                                                    child: Icon(
+                                                      Icons.check_box_outlined,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .alternate,
+                                                      size: 24,
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                5, 0, 5, 0),
+                                                    child: Text(
+                                                      'Access',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyText1Family,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyText1Family),
+                                                              ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
                                         ],
                                       ),
                                     ),
