@@ -122,7 +122,7 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                                 child: Text(
-                                  'Prompt',
+                                  'Play',
                                   style: FlutterFlowTheme.of(context)
                                       .subtitle2
                                       .override(
