@@ -200,6 +200,47 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                               .title3,
                                                     ),
                                                   ),
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                5, 0, 0, 0),
+                                                    child: InkWell(
+                                                      onTap: () async {
+                                                        await showModalBottomSheet(
+                                                          isScrollControlled:
+                                                              true,
+                                                          backgroundColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .secondaryBackground,
+                                                          enableDrag: false,
+                                                          context: context,
+                                                          builder: (context) {
+                                                            return Padding(
+                                                              padding: MediaQuery
+                                                                      .of(context)
+                                                                  .viewInsets,
+                                                              child: Container(
+                                                                height: 700,
+                                                                child:
+                                                                    EditDatasetTitleWidget(
+                                                                  activeDatasetT:
+                                                                      columnUserDatasetsRecord,
+                                                                ),
+                                                              ),
+                                                            );
+                                                          },
+                                                        ).then((value) =>
+                                                            setState(() {}));
+                                                      },
+                                                      child: FaIcon(
+                                                        FontAwesomeIcons.edit,
+                                                        color: Colors.black,
+                                                        size: 12,
+                                                      ),
+                                                    ),
+                                                  ),
                                                   Align(
                                                     alignment:
                                                         AlignmentDirectional(
@@ -1618,49 +1659,6 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                             .datasetName!,
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyText1,
-                                                                      ),
-                                                                    ),
-                                                                    Padding(
-                                                                      padding: EdgeInsetsDirectional
-                                                                          .fromSTEB(
-                                                                              5,
-                                                                              0,
-                                                                              0,
-                                                                              0),
-                                                                      child:
-                                                                          InkWell(
-                                                                        onTap:
-                                                                            () async {
-                                                                          await showModalBottomSheet(
-                                                                            isScrollControlled:
-                                                                                true,
-                                                                            backgroundColor:
-                                                                                Colors.transparent,
-                                                                            enableDrag:
-                                                                                false,
-                                                                            context:
-                                                                                context,
-                                                                            builder:
-                                                                                (context) {
-                                                                              return Padding(
-                                                                                padding: MediaQuery.of(context).viewInsets,
-                                                                                child: EditDatasetTitleWidget(
-                                                                                  activeDatasetT: listViewUserDatasetsRecord,
-                                                                                ),
-                                                                              );
-                                                                            },
-                                                                          ).then((value) =>
-                                                                              setState(() {}));
-                                                                        },
-                                                                        child:
-                                                                            FaIcon(
-                                                                          FontAwesomeIcons
-                                                                              .edit,
-                                                                          color:
-                                                                              Colors.black,
-                                                                          size:
-                                                                              12,
-                                                                        ),
                                                                       ),
                                                                     ),
                                                                   ],
