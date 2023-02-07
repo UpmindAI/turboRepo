@@ -249,7 +249,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                       padding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
-                                                                  15, 10, 2, 0),
+                                                                  25, 10, 2, 0),
                                                       child: Icon(
                                                         Icons
                                                             .calendar_today_outlined,
@@ -265,7 +265,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                     padding:
                                                         EdgeInsetsDirectional
                                                             .fromSTEB(
-                                                                10, 10, 5, 0),
+                                                                5, 10, 5, 0),
                                                     child: Text(
                                                       dateTimeFormat(
                                                           'jm',
