@@ -17,7 +17,7 @@ class PaymentWidget extends StatefulWidget {
 }
 
 class _PaymentWidgetState extends State<PaymentWidget> {
-  String? paymentId;
+  String? paymentStripe;
 
   @override
   void initState() {
@@ -67,7 +67,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
               child: Text(
-                'for beta access for unlimited uploads & prompts/queries',
+                'beta access for unlimited uploads & prompts/queries',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -99,7 +99,29 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                   }
                   return;
                 }
-                paymentId = paymentResponse.paymentId!;
+                paymentStripe = paymentResponse.paymentId!;
+
+                await Future.delayed(const Duration(milliseconds: 3000));
+                if (valueOrDefault(currentUserDocument?.totalCredits, 0.0) >=
+                    1.0) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        'You´ve succesfully gained access to our beta for 30 days!',
+                        style: TextStyle(
+                          color: FlutterFlowTheme.of(context).primaryText,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24,
+                        ),
+                      ),
+                      duration: Duration(milliseconds: 7000),
+                      backgroundColor:
+                          FlutterFlowTheme.of(context).secondaryBackground,
+                    ),
+                  );
+
+                  context.pushNamed('Home');
+                }
 
                 setState(() {});
               },
@@ -118,7 +140,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                   color: Colors.transparent,
                   width: 1,
                 ),
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(0),
               ),
             ),
             Padding(
