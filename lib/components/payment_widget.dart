@@ -78,70 +78,130 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
-            FFButtonWidget(
-              onPressed: () async {
-                final paymentResponse = await processStripePayment(
-                  context,
-                  amount: functions.getPrice(5.0),
-                  currency: 'USD',
-                  customerEmail: currentUserEmail,
-                  customerName: currentUserDisplayName,
-                  description: currentUserUid,
-                  allowGooglePay: false,
-                  allowApplePay: false,
-                );
-                if (paymentResponse.paymentId == null) {
-                  if (paymentResponse.errorMessage != null) {
-                    showSnackbar(
-                      context,
-                      'Error: ${paymentResponse.errorMessage}',
-                    );
-                  }
-                  return;
-                }
-                paymentStripe = paymentResponse.paymentId!;
+            Stack(
+              children: [
+                if ((valueOrDefault(currentUserDocument?.totalCredits, 0.0) <=
+                        0.0) ||
+                    (valueOrDefault(currentUserDocument?.totalCredits, 0.0) ==
+                        null))
+                  AuthUserStreamWidget(
+                    builder: (context) => FFButtonWidget(
+                      onPressed: () async {
+                        final paymentResponse = await processStripePayment(
+                          context,
+                          amount: functions.getPrice(5.0),
+                          currency: 'USD',
+                          customerEmail: currentUserEmail,
+                          customerName: currentUserDisplayName,
+                          description: currentUserUid,
+                          allowGooglePay: false,
+                          allowApplePay: false,
+                        );
+                        if (paymentResponse.paymentId == null) {
+                          if (paymentResponse.errorMessage != null) {
+                            showSnackbar(
+                              context,
+                              'Error: ${paymentResponse.errorMessage}',
+                            );
+                          }
+                          return;
+                        }
+                        paymentStripe = paymentResponse.paymentId!;
 
-                await Future.delayed(const Duration(milliseconds: 3000));
-                if (valueOrDefault(currentUserDocument?.totalCredits, 0.0) >=
-                    1.0) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(
-                        'You´ve succesfully gained access to our beta for 30 days!',
-                        style: TextStyle(
-                          color: FlutterFlowTheme.of(context).primaryText,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24,
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'Processing your payment. One moment please.',
+                              style: TextStyle(
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 22,
+                              ),
+                            ),
+                            duration: Duration(milliseconds: 4000),
+                            backgroundColor: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                          ),
+                        );
+                        await Future.delayed(
+                            const Duration(milliseconds: 6000));
+                        if (valueOrDefault(
+                                currentUserDocument?.totalCredits, 0.0) >=
+                            1.0) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                'You´ve succesfully gained access to our beta for 30 days!',
+                                style: TextStyle(
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 24,
+                                ),
+                              ),
+                              duration: Duration(milliseconds: 7000),
+                              backgroundColor: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                            ),
+                          );
+
+                          context.pushNamed('Home');
+                        }
+
+                        setState(() {});
+                      },
+                      text: 'Buy Now',
+                      options: FFButtonOptions(
+                        width: 130,
+                        height: 40,
+                        color: FlutterFlowTheme.of(context).primaryColor,
+                        textStyle: FlutterFlowTheme.of(context)
+                            .subtitle2
+                            .override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).subtitle2Family,
+                              color: Colors.white,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context).subtitle2Family),
+                            ),
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                          width: 1,
                         ),
+                        borderRadius: BorderRadius.circular(0),
                       ),
-                      duration: Duration(milliseconds: 7000),
-                      backgroundColor:
-                          FlutterFlowTheme.of(context).secondaryBackground,
                     ),
-                  );
-
-                  context.pushNamed('Home');
-                }
-
-                setState(() {});
-              },
-              text: 'Buy Now',
-              options: FFButtonOptions(
-                width: 130,
-                height: 40,
-                color: FlutterFlowTheme.of(context).primaryColor,
-                textStyle: FlutterFlowTheme.of(context).subtitle2.override(
-                      fontFamily: FlutterFlowTheme.of(context).subtitle2Family,
-                      color: Colors.white,
-                      useGoogleFonts: GoogleFonts.asMap().containsKey(
-                          FlutterFlowTheme.of(context).subtitle2Family),
+                  ),
+                if (valueOrDefault(currentUserDocument?.totalCredits, 0.0) >=
+                    1.0)
+                  AuthUserStreamWidget(
+                    builder: (context) => FFButtonWidget(
+                      onPressed: () {
+                        print('Button pressed ...');
+                      },
+                      text: 'Beta Access Granted!',
+                      options: FFButtonOptions(
+                        width: 250,
+                        height: 40,
+                        color: FlutterFlowTheme.of(context).tertiary400,
+                        textStyle: FlutterFlowTheme.of(context)
+                            .subtitle2
+                            .override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).subtitle2Family,
+                              color: Colors.white,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context).subtitle2Family),
+                            ),
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                          width: 1,
+                        ),
+                        borderRadius: BorderRadius.circular(0),
+                      ),
                     ),
-                borderSide: BorderSide(
-                  color: Colors.transparent,
-                  width: 1,
-                ),
-                borderRadius: BorderRadius.circular(0),
-              ),
+                  ),
+              ],
             ),
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
