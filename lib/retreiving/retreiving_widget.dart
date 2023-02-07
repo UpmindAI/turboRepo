@@ -1,6 +1,7 @@
 import '../auth/auth_util.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../components/main_menu_widget.dart';
+import '../components/payment_widget.dart';
 import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -37,7 +38,6 @@ class _RetreivingWidgetState extends State<RetreivingWidget>
     ),
   };
   ApiCallResponse? apiResultGPT;
-  ApiCallResponse? apiResultPC;
   ApiCallResponse? apiResultdataGPT;
   final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -48,27 +48,24 @@ class _RetreivingWidgetState extends State<RetreivingWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (FFAppState().setEngine == 'GPT Only') {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              'Please hold on while we are retreiving your results.',
-              style: TextStyle(
-                color: FlutterFlowTheme.of(context).primaryText,
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
+      if (valueOrDefault(currentUserDocument?.totalCredits, 0.0) <= 0.0) {
+        await showModalBottomSheet(
+          isScrollControlled: true,
+          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+          enableDrag: false,
+          context: context,
+          builder: (context) {
+            return Padding(
+              padding: MediaQuery.of(context).viewInsets,
+              child: Container(
+                height: 700,
+                child: PaymentWidget(),
               ),
-            ),
-            duration: Duration(milliseconds: 6000),
-            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-          ),
-        );
-        apiResultGPT = await GPTqueryCall.call(
-          qid: FFAppState().setQid,
-          idToken: currentJwtToken,
-        );
+            );
+          },
+        ).then((value) => setState(() {}));
       } else {
-        if (FFAppState().setEngine == 'My Data Only') {
+        if (FFAppState().setEngine == 'GPT Only') {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
@@ -83,19 +80,17 @@ class _RetreivingWidgetState extends State<RetreivingWidget>
               backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
             ),
           );
-          apiResultPC = await PineconeQueryCall.call(
-            idToken: currentJwtToken,
+          apiResultGPT = await GPTqueryCall.call(
             qid: FFAppState().setQid,
-            datasetIdsList: FFAppState().selectedDataset,
-            topK: FFAppState().setTopK,
+            idToken: currentJwtToken,
           );
-          if ((apiResultPC?.succeeded ?? true)) {
+          if ((apiResultGPT?.succeeded ?? true)) {
             context.pushNamed('Result');
           } else {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(
-                  (apiResultPC?.statusCode ?? 200).toString(),
+                  (apiResultGPT?.statusCode ?? 200).toString(),
                   style: TextStyle(
                     color: FlutterFlowTheme.of(context).primaryText,
                   ),
@@ -155,25 +150,6 @@ class _RetreivingWidgetState extends State<RetreivingWidget>
           }
         }
 
-        return;
-      }
-
-      if ((apiResultGPT?.succeeded ?? true)) {
-        context.pushNamed('Result');
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              (apiResultGPT?.statusCode ?? 200).toString(),
-              style: TextStyle(
-                color: FlutterFlowTheme.of(context).primaryText,
-              ),
-            ),
-            duration: Duration(milliseconds: 4000),
-            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-          ),
-        );
-        context.pop();
         return;
       }
     });
