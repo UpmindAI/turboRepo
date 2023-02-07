@@ -4,6 +4,7 @@ import '../backend/backend.dart';
 import '../components/add_dataset_widget.dart';
 import '../components/confirm_delete_widget.dart';
 import '../components/main_menu_widget.dart';
+import '../components/payment_widget.dart';
 import '../components/upload_config_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -297,30 +298,122 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                     cursor: SystemMouseCursors
                                                             .click ??
                                                         MouseCursor.defer,
-                                                    child: Align(
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              0, 0),
-                                                      child: Container(
-                                                        width: 190,
-                                                        height: 37,
-                                                        child: custom_widgets
-                                                            .SelectAndUploadFiles(
-                                                          width: 190,
-                                                          height: 37,
-                                                          userId:
-                                                              currentUserUid,
-                                                          datasetId:
-                                                              columnUserDatasetsRecord
-                                                                  .datasetId,
-                                                          chunkSize:
-                                                              FFAppState()
-                                                                  .setChunkSize,
-                                                          datasetName:
-                                                              columnUserDatasetsRecord
-                                                                  .datasetName,
+                                                    child: Stack(
+                                                      children: [
+                                                        Align(
+                                                          alignment:
+                                                              AlignmentDirectional(
+                                                                  0, 0),
+                                                          child: Container(
+                                                            width: 190,
+                                                            height: 37,
+                                                            child: custom_widgets
+                                                                .SelectAndUploadFiles(
+                                                              width: 190,
+                                                              height: 37,
+                                                              userId:
+                                                                  currentUserUid,
+                                                              datasetId:
+                                                                  columnUserDatasetsRecord
+                                                                      .datasetId,
+                                                              chunkSize:
+                                                                  FFAppState()
+                                                                      .setChunkSize,
+                                                              datasetName:
+                                                                  columnUserDatasetsRecord
+                                                                      .datasetName,
+                                                            ),
+                                                          ),
                                                         ),
-                                                      ),
+                                                        if ((valueOrDefault(
+                                                                    currentUserDocument
+                                                                        ?.totalCredits,
+                                                                    0.0) <=
+                                                                0.0) ||
+                                                            (valueOrDefault(
+                                                                    currentUserDocument
+                                                                        ?.totalCredits,
+                                                                    0.0) ==
+                                                                null))
+                                                          AuthUserStreamWidget(
+                                                            builder: (context) =>
+                                                                FFButtonWidget(
+                                                              onPressed:
+                                                                  () async {
+                                                                await showModalBottomSheet(
+                                                                  isScrollControlled:
+                                                                      true,
+                                                                  backgroundColor:
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryBackground,
+                                                                  enableDrag:
+                                                                      false,
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (context) {
+                                                                    return Padding(
+                                                                      padding: MediaQuery.of(
+                                                                              context)
+                                                                          .viewInsets,
+                                                                      child:
+                                                                          Container(
+                                                                        height:
+                                                                            700,
+                                                                        child:
+                                                                            PaymentWidget(),
+                                                                      ),
+                                                                    );
+                                                                  },
+                                                                ).then((value) =>
+                                                                    setState(
+                                                                        () {}));
+                                                              },
+                                                              text:
+                                                                  'Add documents ',
+                                                              icon: Icon(
+                                                                Icons
+                                                                    .file_copy_outlined,
+                                                                size: 15,
+                                                              ),
+                                                              options:
+                                                                  FFButtonOptions(
+                                                                width: 190,
+                                                                height: 39,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryColor,
+                                                                textStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .subtitle2
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .subtitle2Family,
+                                                                      color: Colors
+                                                                          .white,
+                                                                      fontSize:
+                                                                          16,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).subtitle2Family),
+                                                                    ),
+                                                                borderSide:
+                                                                    BorderSide(
+                                                                  color: Colors
+                                                                      .transparent,
+                                                                  width: 1,
+                                                                ),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            0),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                      ],
                                                     ),
                                                     onEnter: ((event) async {
                                                       setState(() =>
@@ -1009,118 +1102,177 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                 ),
                                                               ),
                                                             ),
-                                                            Align(
-                                                              alignment:
-                                                                  AlignmentDirectional(
-                                                                      1, 0),
-                                                              child: Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
+                                                            Stack(
+                                                              children: [
+                                                                Align(
+                                                                  alignment:
+                                                                      AlignmentDirectional(
+                                                                          1, 0),
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0,
                                                                             0,
                                                                             20,
                                                                             0),
-                                                                child:
-                                                                    FFButtonWidget(
-                                                                  onPressed:
-                                                                      () async {
-                                                                    apiResult8oi =
-                                                                        await ScrapeServerCall
-                                                                            .call(
-                                                                      sourceUrl:
-                                                                          scrapeURLController!
-                                                                              .text,
-                                                                      idToken:
-                                                                          currentJwtToken,
-                                                                      datasetId:
-                                                                          columnUserDatasetsRecord
-                                                                              .datasetId,
-                                                                      datasetName:
-                                                                          columnUserDatasetsRecord
-                                                                              .datasetName,
-                                                                    );
-                                                                    if ((apiResult8oi
-                                                                            ?.succeeded ??
-                                                                        true)) {
-                                                                      ScaffoldMessenger.of(
-                                                                              context)
-                                                                          .showSnackBar(
-                                                                        SnackBar(
-                                                                          content:
-                                                                              Text(
-                                                                            'Your URL was added as a source and is being processed.',
-                                                                            style:
-                                                                                TextStyle(
-                                                                              color: FlutterFlowTheme.of(context).primaryText,
+                                                                    child:
+                                                                        FFButtonWidget(
+                                                                      onPressed:
+                                                                          () async {
+                                                                        apiResult8oi =
+                                                                            await ScrapeServerCall.call(
+                                                                          sourceUrl:
+                                                                              scrapeURLController!.text,
+                                                                          idToken:
+                                                                              currentJwtToken,
+                                                                          datasetId:
+                                                                              columnUserDatasetsRecord.datasetId,
+                                                                          datasetName:
+                                                                              columnUserDatasetsRecord.datasetName,
+                                                                        );
+                                                                        if ((apiResult8oi?.succeeded ??
+                                                                            true)) {
+                                                                          ScaffoldMessenger.of(context)
+                                                                              .showSnackBar(
+                                                                            SnackBar(
+                                                                              content: Text(
+                                                                                'Your URL was added as a source and is being processed.',
+                                                                                style: TextStyle(
+                                                                                  color: FlutterFlowTheme.of(context).primaryText,
+                                                                                ),
+                                                                              ),
+                                                                              duration: Duration(milliseconds: 4000),
+                                                                              backgroundColor: Color(0x00000000),
                                                                             ),
-                                                                          ),
-                                                                          duration:
-                                                                              Duration(milliseconds: 4000),
-                                                                          backgroundColor:
-                                                                              Color(0x00000000),
-                                                                        ),
-                                                                      );
-                                                                      setState(
-                                                                          () {
-                                                                        scrapeURLController
-                                                                            ?.clear();
-                                                                      });
-                                                                    } else {
-                                                                      ScaffoldMessenger.of(
-                                                                              context)
-                                                                          .showSnackBar(
-                                                                        SnackBar(
-                                                                          content:
-                                                                              Text(
-                                                                            (apiResult8oi?.statusCode ?? 200).toString(),
-                                                                            style:
-                                                                                TextStyle(
-                                                                              color: FlutterFlowTheme.of(context).primaryText,
+                                                                          );
+                                                                          setState(
+                                                                              () {
+                                                                            scrapeURLController?.clear();
+                                                                          });
+                                                                        } else {
+                                                                          ScaffoldMessenger.of(context)
+                                                                              .showSnackBar(
+                                                                            SnackBar(
+                                                                              content: Text(
+                                                                                (apiResult8oi?.statusCode ?? 200).toString(),
+                                                                                style: TextStyle(
+                                                                                  color: FlutterFlowTheme.of(context).primaryText,
+                                                                                ),
+                                                                              ),
+                                                                              duration: Duration(milliseconds: 4000),
+                                                                              backgroundColor: Color(0x00000000),
                                                                             ),
-                                                                          ),
-                                                                          duration:
-                                                                              Duration(milliseconds: 4000),
-                                                                          backgroundColor:
-                                                                              Color(0x00000000),
-                                                                        ),
-                                                                      );
-                                                                    }
+                                                                          );
+                                                                        }
 
-                                                                    setState(
-                                                                        () {});
-                                                                  },
-                                                                  text: 'Add',
-                                                                  options:
-                                                                      FFButtonOptions(
-                                                                    width: 140,
-                                                                    height: 40,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryColor,
-                                                                    textStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .subtitle2
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              FlutterFlowTheme.of(context).subtitle2Family,
+                                                                        setState(
+                                                                            () {});
+                                                                      },
+                                                                      text:
+                                                                          'Add',
+                                                                      options:
+                                                                          FFButtonOptions(
+                                                                        width:
+                                                                            140,
+                                                                        height:
+                                                                            40,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryColor,
+                                                                        textStyle: FlutterFlowTheme.of(context)
+                                                                            .subtitle2
+                                                                            .override(
+                                                                              fontFamily: FlutterFlowTheme.of(context).subtitle2Family,
+                                                                              color: Colors.white,
+                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).subtitle2Family),
+                                                                            ),
+                                                                        borderSide:
+                                                                            BorderSide(
                                                                           color:
-                                                                              Colors.white,
-                                                                          useGoogleFonts:
-                                                                              GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).subtitle2Family),
+                                                                              Colors.transparent,
+                                                                          width:
+                                                                              1,
                                                                         ),
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: Colors
-                                                                          .transparent,
-                                                                      width: 1,
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(0),
+                                                                      ),
                                                                     ),
-                                                                    borderRadius:
-                                                                        BorderRadius
-                                                                            .circular(0),
                                                                   ),
                                                                 ),
-                                                              ),
+                                                                if ((valueOrDefault(
+                                                                            currentUserDocument
+                                                                                ?.totalCredits,
+                                                                            0.0) <=
+                                                                        0.0) ||
+                                                                    (valueOrDefault(
+                                                                            currentUserDocument?.totalCredits,
+                                                                            0.0) ==
+                                                                        null))
+                                                                  Align(
+                                                                    alignment:
+                                                                        AlignmentDirectional(
+                                                                            1,
+                                                                            0),
+                                                                    child:
+                                                                        Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              0,
+                                                                              0,
+                                                                              20,
+                                                                              0),
+                                                                      child:
+                                                                          AuthUserStreamWidget(
+                                                                        builder:
+                                                                            (context) =>
+                                                                                FFButtonWidget(
+                                                                          onPressed:
+                                                                              () async {
+                                                                            await showModalBottomSheet(
+                                                                              isScrollControlled: true,
+                                                                              backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                              enableDrag: false,
+                                                                              context: context,
+                                                                              builder: (context) {
+                                                                                return Padding(
+                                                                                  padding: MediaQuery.of(context).viewInsets,
+                                                                                  child: Container(
+                                                                                    height: 700,
+                                                                                    child: PaymentWidget(),
+                                                                                  ),
+                                                                                );
+                                                                              },
+                                                                            ).then((value) =>
+                                                                                setState(() {}));
+                                                                          },
+                                                                          text:
+                                                                              'Add',
+                                                                          options:
+                                                                              FFButtonOptions(
+                                                                            width:
+                                                                                140,
+                                                                            height:
+                                                                                40,
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).primaryColor,
+                                                                            textStyle: FlutterFlowTheme.of(context).subtitle2.override(
+                                                                                  fontFamily: FlutterFlowTheme.of(context).subtitle2Family,
+                                                                                  color: Colors.white,
+                                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).subtitle2Family),
+                                                                                ),
+                                                                            borderSide:
+                                                                                BorderSide(
+                                                                              color: Colors.transparent,
+                                                                              width: 1,
+                                                                            ),
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(0),
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                              ],
                                                             ),
                                                           ],
                                                         ),
