@@ -1246,7 +1246,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                 setState(() {}));
                                                                           },
                                                                           text:
-                                                                              'Add',
+                                                                              'Add URL',
                                                                           options:
                                                                               FFButtonOptions(
                                                                             width:
