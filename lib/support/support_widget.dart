@@ -137,7 +137,7 @@ class _SupportWidgetState extends State<SupportWidget> {
                                   ),
                                   Form(
                                     key: formKey,
-                                    autovalidateMode: AutovalidateMode.always,
+                                    autovalidateMode: AutovalidateMode.disabled,
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
@@ -251,14 +251,6 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyText1,
-                                                          validator: (val) {
-                                                            if (val == null ||
-                                                                val.isEmpty) {
-                                                              return 'Field is required';
-                                                            }
-
-                                                            return null;
-                                                          },
                                                         ),
                                                       ),
                                                     ),
@@ -350,14 +342,6 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyText1,
-                                                          validator: (val) {
-                                                            if (val == null ||
-                                                                val.isEmpty) {
-                                                              return 'Field is required';
-                                                            }
-
-                                                            return null;
-                                                          },
                                                         ),
                                                       ),
                                                     ),
@@ -476,14 +460,6 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .bodyText1,
-                                                        validator: (val) {
-                                                          if (val == null ||
-                                                              val.isEmpty) {
-                                                            return 'Field is required';
-                                                          }
-
-                                                          return null;
-                                                        },
                                                       ),
                                                     ),
                                                     Container(
@@ -574,14 +550,6 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyText1,
-                                                          validator: (val) {
-                                                            if (val == null ||
-                                                                val.isEmpty) {
-                                                              return 'Field is required';
-                                                            }
-
-                                                            return null;
-                                                          },
                                                         ),
                                                       ),
                                                     ),
@@ -697,14 +665,6 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .bodyText1,
-                                                        validator: (val) {
-                                                          if (val == null ||
-                                                              val.isEmpty) {
-                                                            return 'Field is required';
-                                                          }
-
-                                                          return null;
-                                                        },
                                                       ),
                                                     ),
                                                   ),
@@ -808,14 +768,6 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                                           FlutterFlowTheme.of(context)
                                                                               .bodyText1Family),
                                                                 ),
-                                                        validator: (val) {
-                                                          if (val == null ||
-                                                              val.isEmpty) {
-                                                            return 'Field is required';
-                                                          }
-
-                                                          return null;
-                                                        },
                                                       ),
                                                     ),
                                                   ),
@@ -909,14 +861,6 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                       .bodyText1,
                                                   maxLines: 5,
                                                   minLines: 1,
-                                                  validator: (val) {
-                                                    if (val == null ||
-                                                        val.isEmpty) {
-                                                      return 'Field is required';
-                                                    }
-
-                                                    return null;
-                                                  },
                                                 ),
                                               ),
                                             ],

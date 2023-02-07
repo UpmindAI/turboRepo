@@ -215,13 +215,8 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Icon(
-                            Icons.attach_money_rounded,
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            size: 24,
-                          ),
                           Text(
-                            '5',
+                            '\$5',
                             style: FlutterFlowTheme.of(context)
                                 .bodyText1
                                 .override(
