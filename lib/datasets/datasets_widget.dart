@@ -3,6 +3,8 @@ import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../components/add_dataset_widget.dart';
 import '../components/confirm_delete_widget.dart';
+import '../components/edit_dataset_title_widget.dart';
+import '../components/edit_title_widget.dart';
 import '../components/main_menu_widget.dart';
 import '../components/payment_widget.dart';
 import '../components/upload_config_widget.dart';
@@ -748,6 +750,35 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                         listViewUserDocsRecord.docTitle!.maybeHandleOverflow(maxChars: 250),
                                                                                         maxLines: 2,
                                                                                         style: FlutterFlowTheme.of(context).bodyText1,
+                                                                                      ),
+                                                                                    ),
+                                                                                  ),
+                                                                                  Padding(
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
+                                                                                    child: InkWell(
+                                                                                      onTap: () async {
+                                                                                        await showModalBottomSheet(
+                                                                                          isScrollControlled: true,
+                                                                                          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                          enableDrag: false,
+                                                                                          context: context,
+                                                                                          builder: (context) {
+                                                                                            return Padding(
+                                                                                              padding: MediaQuery.of(context).viewInsets,
+                                                                                              child: Container(
+                                                                                                height: 700,
+                                                                                                child: EditTitleWidget(
+                                                                                                  activeDoc: listViewUserDocsRecord,
+                                                                                                ),
+                                                                                              ),
+                                                                                            );
+                                                                                          },
+                                                                                        ).then((value) => setState(() {}));
+                                                                                      },
+                                                                                      child: FaIcon(
+                                                                                        FontAwesomeIcons.edit,
+                                                                                        color: FlutterFlowTheme.of(context).tertiaryColor,
+                                                                                        size: 12,
                                                                                       ),
                                                                                     ),
                                                                                   ),
@@ -1587,6 +1618,49 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                             .datasetName!,
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyText1,
+                                                                      ),
+                                                                    ),
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              5,
+                                                                              0,
+                                                                              0,
+                                                                              0),
+                                                                      child:
+                                                                          InkWell(
+                                                                        onTap:
+                                                                            () async {
+                                                                          await showModalBottomSheet(
+                                                                            isScrollControlled:
+                                                                                true,
+                                                                            backgroundColor:
+                                                                                Colors.transparent,
+                                                                            enableDrag:
+                                                                                false,
+                                                                            context:
+                                                                                context,
+                                                                            builder:
+                                                                                (context) {
+                                                                              return Padding(
+                                                                                padding: MediaQuery.of(context).viewInsets,
+                                                                                child: EditDatasetTitleWidget(
+                                                                                  activeDatasetT: listViewUserDatasetsRecord,
+                                                                                ),
+                                                                              );
+                                                                            },
+                                                                          ).then((value) =>
+                                                                              setState(() {}));
+                                                                        },
+                                                                        child:
+                                                                            FaIcon(
+                                                                          FontAwesomeIcons
+                                                                              .edit,
+                                                                          color:
+                                                                              Colors.black,
+                                                                          size:
+                                                                              12,
+                                                                        ),
                                                                       ),
                                                                     ),
                                                                   ],
