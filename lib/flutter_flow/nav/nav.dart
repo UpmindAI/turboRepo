@@ -151,6 +151,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'feedbackPrivate',
               path: 'feedbackPrivate',
               builder: (context, params) => FeedbackPrivateWidget(),
+            ),
+            FFRoute(
+              name: 'forgotPassword',
+              path: 'forgotPassword',
+              builder: (context, params) => ForgotPasswordWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

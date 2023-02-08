@@ -783,16 +783,21 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                               Row(
                                                                                 mainAxisSize: MainAxisSize.max,
                                                                                 children: [
-                                                                                  Align(
-                                                                                    alignment: AlignmentDirectional(-1, 0),
-                                                                                    child: Padding(
-                                                                                      padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                                                                                      child: Text(
-                                                                                        listViewUserDocsRecord.docTitle!.maybeHandleOverflow(maxChars: 250),
-                                                                                        maxLines: 2,
-                                                                                        style: FlutterFlowTheme.of(context).bodyText1,
+                                                                                  Column(
+                                                                                    mainAxisSize: MainAxisSize.max,
+                                                                                    children: [
+                                                                                      Align(
+                                                                                        alignment: AlignmentDirectional(-1, 0),
+                                                                                        child: Padding(
+                                                                                          padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                                                                          child: Text(
+                                                                                            listViewUserDocsRecord.docTitle!.maybeHandleOverflow(maxChars: 250),
+                                                                                            maxLines: 2,
+                                                                                            style: FlutterFlowTheme.of(context).bodyText1,
+                                                                                          ),
+                                                                                        ),
                                                                                       ),
-                                                                                    ),
+                                                                                    ],
                                                                                   ),
                                                                                   Padding(
                                                                                     padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
