@@ -70,16 +70,16 @@ class _HomeWidgetState extends State<HomeWidget> {
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
           title: Image.asset(
-            'assets/images/OMP-here-it-is-LOGO-214-44.png',
-            width: 214,
-            height: 44,
+            'assets/images/OMP-188-60.png',
+            width: 99,
+            height: 30,
             fit: BoxFit.cover,
           ),
           actions: [
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.161',
+                'v0.162',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),

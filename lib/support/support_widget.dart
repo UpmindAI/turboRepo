@@ -18,13 +18,13 @@ class SupportWidget extends StatefulWidget {
 }
 
 class _SupportWidgetState extends State<SupportWidget> {
+  TextEditingController? questionController;
   TextEditingController? textController1;
   TextEditingController? textController2;
   TextEditingController? textController3;
   TextEditingController? textController4;
   TextEditingController? textController5;
   TextEditingController? textController6;
-  TextEditingController? textController7;
   final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final formKey = GlobalKey<FormState>();
@@ -32,6 +32,7 @@ class _SupportWidgetState extends State<SupportWidget> {
   @override
   void initState() {
     super.initState();
+    questionController = TextEditingController();
     textController1 = TextEditingController(
         text: valueOrDefault(currentUserDocument?.firstName, ''));
     textController2 = TextEditingController(
@@ -43,20 +44,19 @@ class _SupportWidgetState extends State<SupportWidget> {
         text: valueOrDefault(currentUserDocument?.industry, ''));
     textController6 = TextEditingController(
         text: valueOrDefault(currentUserDocument?.role, ''));
-    textController7 = TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
   void dispose() {
     _unfocusNode.dispose();
+    questionController?.dispose();
     textController1?.dispose();
     textController2?.dispose();
     textController3?.dispose();
     textController4?.dispose();
     textController5?.dispose();
     textController6?.dispose();
-    textController7?.dispose();
     super.dispose();
   }
 
@@ -124,13 +124,44 @@ class _SupportWidgetState extends State<SupportWidget> {
                                   Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            25, 20, 0, 20),
-                                        child: Text(
-                                          'Support',
-                                          style: FlutterFlowTheme.of(context)
-                                              .title3,
+                                      Expanded(
+                                        child: Align(
+                                          alignment:
+                                              AlignmentDirectional(-1, 0),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Align(
+                                                alignment:
+                                                    AlignmentDirectional(-1, 0),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(25, 20, 0, 0),
+                                                  child: Text(
+                                                    'Support',
+                                                    textAlign: TextAlign.start,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .title3,
+                                                  ),
+                                                ),
+                                              ),
+                                              Align(
+                                                alignment:
+                                                    AlignmentDirectional(-1, 0),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(25, 10, 0, 20),
+                                                  child: Text(
+                                                    'First, please make sure your personal information is up to date!',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyText1,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ],
@@ -776,6 +807,62 @@ class _SupportWidgetState extends State<SupportWidget> {
                                             ],
                                           ),
                                         ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(-1, 0),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    20, 10, 0, 0),
+                                            child: FFButtonWidget(
+                                              onPressed: () async {
+                                                final usersUpdateData =
+                                                    createUsersRecordData(
+                                                  firstName:
+                                                      textController1!.text,
+                                                  lastName:
+                                                      textController2!.text,
+                                                  industry:
+                                                      textController5!.text,
+                                                  role: textController6!.text,
+                                                  email: '',
+                                                );
+                                                await currentUserReference!
+                                                    .update(usersUpdateData);
+                                              },
+                                              text: 'Save',
+                                              options: FFButtonOptions(
+                                                width: 100,
+                                                height: 40,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryColor,
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .subtitle2
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .subtitle2Family,
+                                                          color: Colors.white,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .subtitle2Family),
+                                                        ),
+                                                borderSide: BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 1,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(0),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
@@ -795,14 +882,37 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                           context)
                                                       .secondaryBackground,
                                                 ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    20, 0, 0, 0),
+                                            child: Container(
+                                              width: 820,
+                                              decoration: BoxDecoration(),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 40, 0, 0),
                                                 child: TextFormField(
-                                                  controller: textController7,
+                                                  controller:
+                                                      questionController,
                                                   autofocus: true,
                                                   obscureText: false,
                                                   decoration: InputDecoration(
-                                                    labelText: 'Question',
-                                                    hintText:
-                                                        'What do you need help with?',
+                                                    labelText:
+                                                        'What can we help you with?',
                                                     hintStyle:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -817,8 +927,15 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                         width: 1,
                                                       ),
                                                       borderRadius:
-                                                          BorderRadius.circular(
-                                                              0),
+                                                          const BorderRadius
+                                                              .only(
+                                                        topLeft:
+                                                            Radius.circular(
+                                                                4.0),
+                                                        topRight:
+                                                            Radius.circular(
+                                                                4.0),
+                                                      ),
                                                     ),
                                                     focusedBorder:
                                                         OutlineInputBorder(
@@ -830,8 +947,15 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                         width: 1,
                                                       ),
                                                       borderRadius:
-                                                          BorderRadius.circular(
-                                                              0),
+                                                          const BorderRadius
+                                                              .only(
+                                                        topLeft:
+                                                            Radius.circular(
+                                                                4.0),
+                                                        topRight:
+                                                            Radius.circular(
+                                                                4.0),
+                                                      ),
                                                     ),
                                                     errorBorder:
                                                         OutlineInputBorder(
@@ -841,8 +965,15 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                         width: 1,
                                                       ),
                                                       borderRadius:
-                                                          BorderRadius.circular(
-                                                              0),
+                                                          const BorderRadius
+                                                              .only(
+                                                        topLeft:
+                                                            Radius.circular(
+                                                                4.0),
+                                                        topRight:
+                                                            Radius.circular(
+                                                                4.0),
+                                                      ),
                                                     ),
                                                     focusedErrorBorder:
                                                         OutlineInputBorder(
@@ -852,126 +983,118 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                         width: 1,
                                                       ),
                                                       borderRadius:
-                                                          BorderRadius.circular(
-                                                              0),
+                                                          const BorderRadius
+                                                              .only(
+                                                        topLeft:
+                                                            Radius.circular(
+                                                                4.0),
+                                                        topRight:
+                                                            Radius.circular(
+                                                                4.0),
+                                                      ),
                                                     ),
                                                   ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyText1,
-                                                  maxLines: 5,
-                                                  minLines: 1,
                                                 ),
                                               ),
-                                            ],
+                                            ),
                                           ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  20, 20, 0, 0),
-                                          child: Row(
+                                          Row(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
-                                              FFButtonWidget(
-                                                onPressed: () async {
-                                                  if (formKey.currentState ==
-                                                          null ||
-                                                      !formKey.currentState!
-                                                          .validate()) {
-                                                    return;
-                                                  }
-
-                                                  final supportCreateData =
-                                                      createSupportRecordData(
-                                                    uid: currentUserUid,
-                                                    userRef:
-                                                        currentUserReference,
-                                                    question:
-                                                        textController7!.text,
-                                                    timestamp:
-                                                        getCurrentTimestamp,
-                                                  );
-                                                  await SupportRecord.collection
-                                                      .doc()
-                                                      .set(supportCreateData);
-                                                  await Future.delayed(
-                                                      const Duration(
-                                                          milliseconds: 500));
-                                                  setState(() {
-                                                    textController1?.clear();
-                                                    textController2?.clear();
-                                                    textController3?.clear();
-                                                    textController4?.clear();
-                                                    textController5?.clear();
-                                                    textController6?.clear();
-                                                    textController7?.clear();
-                                                  });
-                                                  ScaffoldMessenger.of(context)
-                                                      .showSnackBar(
-                                                    SnackBar(
-                                                      content: Text(
-                                                        'Thank you for your message. We will contact you as soon as possible!',
-                                                        style: TextStyle(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontSize: 20,
-                                                        ),
-                                                      ),
-                                                      duration: Duration(
-                                                          milliseconds: 4000),
-                                                      backgroundColor:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryBackground,
-                                                    ),
-                                                  );
-                                                  await Future.delayed(
-                                                      const Duration(
-                                                          milliseconds: 4000));
-
-                                                  context.pushNamed('Home');
-                                                },
-                                                text: 'Send',
-                                                options: FFButtonOptions(
-                                                  width: 100,
-                                                  height: 40,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryColor,
-                                                  textStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .subtitle2
-                                                          .override(
-                                                            fontFamily:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .subtitle2Family,
-                                                            color: Colors.white,
-                                                            useGoogleFonts: GoogleFonts
-                                                                    .asMap()
-                                                                .containsKey(
-                                                                    FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .subtitle2Family),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 20, 0, 0),
+                                                child: FFButtonWidget(
+                                                  onPressed: () async {
+                                                    final supportCreateData =
+                                                        createSupportRecordData(
+                                                      question:
+                                                          questionController!
+                                                              .text,
+                                                      userRef:
+                                                          currentUserReference,
+                                                      timestamp:
+                                                          getCurrentTimestamp,
+                                                    );
+                                                    await SupportRecord
+                                                        .collection
+                                                        .doc()
+                                                        .set(supportCreateData);
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(
+                                                      SnackBar(
+                                                        content: Text(
+                                                          'Thank you! We will contact you as soon as possible.',
+                                                          style: TextStyle(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primaryText,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            fontSize: 20,
                                                           ),
-                                                  borderSide: BorderSide(
-                                                    color: Colors.transparent,
-                                                    width: 1,
+                                                        ),
+                                                        duration: Duration(
+                                                            milliseconds: 4000),
+                                                        backgroundColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryBackground,
+                                                      ),
+                                                    );
+                                                    setState(() {
+                                                      questionController
+                                                          ?.clear();
+                                                    });
+                                                    await Future.delayed(
+                                                        const Duration(
+                                                            milliseconds:
+                                                                1000));
+
+                                                    context.pushNamed('Home');
+                                                  },
+                                                  text: 'Submit Question',
+                                                  options: FFButtonOptions(
+                                                    width: 180,
+                                                    height: 40,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryColor,
+                                                    textStyle: FlutterFlowTheme
+                                                            .of(context)
+                                                        .subtitle2
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .subtitle2Family,
+                                                          color: Colors.white,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .subtitle2Family),
+                                                        ),
+                                                    borderSide: BorderSide(
+                                                      color: Colors.transparent,
+                                                      width: 1,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            0),
                                                   ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(0),
                                                 ),
                                               ),
                                             ],
                                           ),
-                                        ),
-                                      ],
-                                    ),
+                                        ],
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),
