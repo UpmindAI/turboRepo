@@ -12,3 +12,4 @@ export 'support/support_widget.dart' show SupportWidget;
 export 'request_feature/request_feature_widget.dart' show RequestFeatureWidget;
 export 'feedback_private/feedback_private_widget.dart'
     show FeedbackPrivateWidget;
+export 'forgot_password/forgot_password_widget.dart' show ForgotPasswordWidget;
