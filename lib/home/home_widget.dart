@@ -78,7 +78,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.165',
+                'v0.166',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -1304,7 +1304,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                           padding:
                               EdgeInsetsDirectional.fromSTEB(10, 40, 10, 0),
                           child: Text(
-                            'Only available on desktop for now. Mobile version comming soon!',
+                            'Only available on desktop for now. Mobile version coming soon!',
                             textAlign: TextAlign.center,
                             style: FlutterFlowTheme.of(context).bodyText1,
                           ),
