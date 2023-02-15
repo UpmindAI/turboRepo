@@ -12,6 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'settings_page_model.dart';
+export 'settings_page_model.dart';
 
 class SettingsPageWidget extends StatefulWidget {
   const SettingsPageWidget({Key? key}) : super(key: key);
@@ -21,14 +23,27 @@ class SettingsPageWidget extends StatefulWidget {
 }
 
 class _SettingsPageWidgetState extends State<SettingsPageWidget> {
-  bool isMediaUploading = false;
-  String uploadedFileUrl = '';
+  late SettingsPageModel _model;
+
+  @override
+  void setState(VoidCallback callback) {
+    super.setState(callback);
+    _model.onUpdate();
+  }
 
   @override
   void initState() {
     super.initState();
+    _model = createModel(context, () => SettingsPageModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    _model.dispose();
+
+    super.dispose();
   }
 
   @override
@@ -94,9 +109,23 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                       selectedMedia.every((m) =>
                                           validateFileFormat(
                                               m.storagePath, context))) {
-                                    setState(() => isMediaUploading = true);
+                                    setState(
+                                        () => _model.isMediaUploading = true);
+                                    var selectedUploadedFiles =
+                                        <FFUploadedFile>[];
                                     var downloadUrls = <String>[];
                                     try {
+                                      selectedUploadedFiles = selectedMedia
+                                          .map((m) => FFUploadedFile(
+                                                name: m.storagePath
+                                                    .split('/')
+                                                    .last,
+                                                bytes: m.bytes,
+                                                height: m.dimensions?.height,
+                                                width: m.dimensions?.width,
+                                              ))
+                                          .toList();
+
                                       downloadUrls = (await Future.wait(
                                         selectedMedia.map(
                                           (m) async => await uploadData(
@@ -107,12 +136,18 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                           .map((u) => u!)
                                           .toList();
                                     } finally {
-                                      isMediaUploading = false;
+                                      _model.isMediaUploading = false;
                                     }
-                                    if (downloadUrls.length ==
-                                        selectedMedia.length) {
-                                      setState(() =>
-                                          uploadedFileUrl = downloadUrls.first);
+                                    if (selectedUploadedFiles.length ==
+                                            selectedMedia.length &&
+                                        downloadUrls.length ==
+                                            selectedMedia.length) {
+                                      setState(() {
+                                        _model.uploadedLocalFile =
+                                            selectedUploadedFiles.first;
+                                        _model.uploadedFileUrl =
+                                            downloadUrls.first;
+                                      });
                                     } else {
                                       setState(() {});
                                       return;
@@ -120,7 +155,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                   }
 
                                   final usersUpdateData = createUsersRecordData(
-                                    photoUrl: uploadedFileUrl,
+                                    photoUrl: _model.uploadedFileUrl,
                                   );
                                   await currentUserReference!
                                       .update(usersUpdateData);

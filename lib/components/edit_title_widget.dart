@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'edit_title_model.dart';
+export 'edit_title_model.dart';
 
 class EditTitleWidget extends StatefulWidget {
   const EditTitleWidget({
@@ -22,18 +24,28 @@ class EditTitleWidget extends StatefulWidget {
 }
 
 class _EditTitleWidgetState extends State<EditTitleWidget> {
-  TextEditingController? textController;
+  late EditTitleModel _model;
+
+  @override
+  void setState(VoidCallback callback) {
+    super.setState(callback);
+    _model.onUpdate();
+  }
 
   @override
   void initState() {
     super.initState();
-    textController = TextEditingController(text: widget.activeDoc!.docTitle);
+    _model = createModel(context, () => EditTitleModel());
+
+    _model.textController =
+        TextEditingController(text: widget.activeDoc!.docTitle);
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
   void dispose() {
-    textController?.dispose();
+    _model.dispose();
+
     super.dispose();
   }
 
@@ -66,7 +78,7 @@ class _EditTitleWidgetState extends State<EditTitleWidget> {
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
                 child: TextFormField(
-                  controller: textController,
+                  controller: _model.textController,
                   autofocus: true,
                   obscureText: false,
                   decoration: InputDecoration(
@@ -113,6 +125,8 @@ class _EditTitleWidgetState extends State<EditTitleWidget> {
                     ),
                   ),
                   style: FlutterFlowTheme.of(context).bodyText1,
+                  validator:
+                      _model.textControllerValidator.asValidator(context),
                 ),
               ),
               Padding(
@@ -120,7 +134,7 @@ class _EditTitleWidgetState extends State<EditTitleWidget> {
                 child: FFButtonWidget(
                   onPressed: () async {
                     final userDocsUpdateData = createUserDocsRecordData(
-                      docTitle: textController!.text,
+                      docTitle: _model.textController.text,
                     );
                     await widget.activeDoc!.reference
                         .update(userDocsUpdateData);

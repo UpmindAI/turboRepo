@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'upload_config_model.dart';
+export 'upload_config_model.dart';
 
 class UploadConfigWidget extends StatefulWidget {
   const UploadConfigWidget({Key? key}) : super(key: key);
@@ -14,13 +16,27 @@ class UploadConfigWidget extends StatefulWidget {
 }
 
 class _UploadConfigWidgetState extends State<UploadConfigWidget> {
-  double? sliderValue;
+  late UploadConfigModel _model;
+
+  @override
+  void setState(VoidCallback callback) {
+    super.setState(callback);
+    _model.onUpdate();
+  }
 
   @override
   void initState() {
     super.initState();
+    _model = createModel(context, () => UploadConfigModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    _model.dispose();
+
+    super.dispose();
   }
 
   @override
@@ -61,7 +77,7 @@ class _UploadConfigWidgetState extends State<UploadConfigWidget> {
                         child: Text(
                           valueOrDefault<String>(
                             formatNumber(
-                              sliderValue,
+                              _model.sliderValue,
                               formatType: FormatType.custom,
                               format: '##',
                               locale: '',
@@ -81,18 +97,18 @@ class _UploadConfigWidgetState extends State<UploadConfigWidget> {
               inactiveColor: Color(0xFF9E9E9E),
               min: 0,
               max: 4000,
-              value: sliderValue ??= FFAppState().setChunkSize,
-              label: sliderValue.toString(),
+              value: _model.sliderValue ??= FFAppState().setChunkSize,
+              label: _model.sliderValue.toString(),
               divisions: 80,
               onChanged: (newValue) {
                 newValue = double.parse(newValue.toStringAsFixed(0));
-                setState(() => sliderValue = newValue);
+                setState(() => _model.sliderValue = newValue);
               },
             ),
             FFButtonWidget(
               onPressed: () async {
                 FFAppState().update(() {
-                  FFAppState().setChunkSize = sliderValue!;
+                  FFAppState().setChunkSize = _model.sliderValue!;
                 });
                 Navigator.pop(context);
               },

@@ -11,6 +11,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'result_model.dart';
+export 'result_model.dart';
 
 class ResultWidget extends StatefulWidget {
   const ResultWidget({Key? key}) : super(key: key);
@@ -20,19 +22,23 @@ class ResultWidget extends StatefulWidget {
 }
 
 class _ResultWidgetState extends State<ResultWidget> {
-  ApiCallResponse? apiResult4sp;
-  final _unfocusNode = FocusNode();
+  late ResultModel _model;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _unfocusNode = FocusNode();
 
   @override
   void initState() {
     super.initState();
+    _model = createModel(context, () => ResultModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
   void dispose() {
+    _model.dispose();
+
     _unfocusNode.dispose();
     super.dispose();
   }
@@ -98,7 +104,11 @@ class _ResultWidgetState extends State<ResultWidget> {
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            MainMenuWidget(),
+                            wrapWithModel(
+                              model: _model.mainMenuModel,
+                              updateCallback: () => setState(() {}),
+                              child: MainMenuWidget(),
+                            ),
                           ],
                         ),
                       ),
@@ -515,7 +525,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                                     .secondaryBackground,
                                                           ),
                                                         );
-                                                        apiResult4sp =
+                                                        _model.apiResult4sp =
                                                             await DownloadServerCall
                                                                 .call(
                                                           qid: FFAppState()
@@ -523,7 +533,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                           idToken:
                                                               currentJwtToken,
                                                         );
-                                                        if ((apiResult4sp
+                                                        if ((_model.apiResult4sp
                                                                 ?.succeeded ??
                                                             true)) {
                                                           ScaffoldMessenger.of(
@@ -560,7 +570,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                               .showSnackBar(
                                                             SnackBar(
                                                               content: Text(
-                                                                (apiResult4sp
+                                                                (_model.apiResult4sp
                                                                             ?.statusCode ??
                                                                         200)
                                                                     .toString(),

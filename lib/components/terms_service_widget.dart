@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'terms_service_model.dart';
+export 'terms_service_model.dart';
 
 class TermsServiceWidget extends StatefulWidget {
   const TermsServiceWidget({Key? key}) : super(key: key);
@@ -13,11 +15,27 @@ class TermsServiceWidget extends StatefulWidget {
 }
 
 class _TermsServiceWidgetState extends State<TermsServiceWidget> {
+  late TermsServiceModel _model;
+
+  @override
+  void setState(VoidCallback callback) {
+    super.setState(callback);
+    _model.onUpdate();
+  }
+
   @override
   void initState() {
     super.initState();
+    _model = createModel(context, () => TermsServiceModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    _model.dispose();
+
+    super.dispose();
   }
 
   @override

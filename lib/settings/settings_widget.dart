@@ -10,6 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'settings_model.dart';
+export 'settings_model.dart';
 
 class SettingsWidget extends StatefulWidget {
   const SettingsWidget({Key? key}) : super(key: key);
@@ -19,18 +21,23 @@ class SettingsWidget extends StatefulWidget {
 }
 
 class _SettingsWidgetState extends State<SettingsWidget> {
-  final _unfocusNode = FocusNode();
+  late SettingsModel _model;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _unfocusNode = FocusNode();
 
   @override
   void initState() {
     super.initState();
+    _model = createModel(context, () => SettingsModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
   void dispose() {
+    _model.dispose();
+
     _unfocusNode.dispose();
     super.dispose();
   }
@@ -81,7 +88,11 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    MainMenuWidget(),
+                    wrapWithModel(
+                      model: _model.mainMenuModel,
+                      updateCallback: () => setState(() {}),
+                      child: MainMenuWidget(),
+                    ),
                   ],
                 ),
               ),
@@ -92,7 +103,11 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                   children: [
                     Align(
                       alignment: AlignmentDirectional(0, -1),
-                      child: SettingsPageWidget(),
+                      child: wrapWithModel(
+                        model: _model.settingsPageModel,
+                        updateCallback: () => setState(() {}),
+                        child: SettingsPageWidget(),
+                      ),
                     ),
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),

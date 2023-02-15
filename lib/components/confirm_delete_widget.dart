@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'confirm_delete_model.dart';
+export 'confirm_delete_model.dart';
 
 class ConfirmDeleteWidget extends StatefulWidget {
   const ConfirmDeleteWidget({
@@ -22,11 +24,27 @@ class ConfirmDeleteWidget extends StatefulWidget {
 }
 
 class _ConfirmDeleteWidgetState extends State<ConfirmDeleteWidget> {
+  late ConfirmDeleteModel _model;
+
+  @override
+  void setState(VoidCallback callback) {
+    super.setState(callback);
+    _model.onUpdate();
+  }
+
   @override
   void initState() {
     super.initState();
+    _model = createModel(context, () => ConfirmDeleteModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    _model.dispose();
+
+    super.dispose();
   }
 
   @override

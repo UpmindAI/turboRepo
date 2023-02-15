@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'add_dataset_model.dart';
+export 'add_dataset_model.dart';
 
 class AddDatasetWidget extends StatefulWidget {
   const AddDatasetWidget({Key? key}) : super(key: key);
@@ -18,22 +20,28 @@ class AddDatasetWidget extends StatefulWidget {
 }
 
 class _AddDatasetWidgetState extends State<AddDatasetWidget> {
-  TextEditingController? textController1;
-  TextEditingController? textController2;
-  final formKey = GlobalKey<FormState>();
+  late AddDatasetModel _model;
+
+  @override
+  void setState(VoidCallback callback) {
+    super.setState(callback);
+    _model.onUpdate();
+  }
 
   @override
   void initState() {
     super.initState();
-    textController1 = TextEditingController();
-    textController2 = TextEditingController();
+    _model = createModel(context, () => AddDatasetModel());
+
+    _model.textController1 = TextEditingController();
+    _model.textController2 = TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
   void dispose() {
-    textController1?.dispose();
-    textController2?.dispose();
+    _model.dispose();
+
     super.dispose();
   }
 
@@ -63,7 +71,7 @@ class _AddDatasetWidgetState extends State<AddDatasetWidget> {
                   child: Container(
                     width: MediaQuery.of(context).size.width,
                     child: Form(
-                      key: formKey,
+                      key: _model.formKey,
                       autovalidateMode: AutovalidateMode.disabled,
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
@@ -77,7 +85,7 @@ class _AddDatasetWidgetState extends State<AddDatasetWidget> {
                             ),
                           ),
                           TextFormField(
-                            controller: textController1,
+                            controller: _model.textController1,
                             autofocus: true,
                             obscureText: false,
                             decoration: InputDecoration(
@@ -125,12 +133,14 @@ class _AddDatasetWidgetState extends State<AddDatasetWidget> {
                               ),
                             ),
                             style: FlutterFlowTheme.of(context).bodyText1,
+                            validator: _model.textController1Validator
+                                .asValidator(context),
                           ),
                           Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                             child: TextFormField(
-                              controller: textController2,
+                              controller: _model.textController2,
                               autofocus: true,
                               obscureText: false,
                               decoration: InputDecoration(
@@ -182,6 +192,8 @@ class _AddDatasetWidgetState extends State<AddDatasetWidget> {
                               ),
                               style: FlutterFlowTheme.of(context).bodyText1,
                               maxLines: 3,
+                              validator: _model.textController2Validator
+                                  .asValidator(context),
                             ),
                           ),
                           Align(
@@ -200,8 +212,8 @@ class _AddDatasetWidgetState extends State<AddDatasetWidget> {
                                       true,
                                       true,
                                     ),
-                                    datasetName: textController1!.text,
-                                    description: textController2!.text,
+                                    datasetName: _model.textController1.text,
+                                    description: _model.textController2.text,
                                     createdOn: getCurrentTimestamp,
                                   );
                                   await UserDatasetsRecord.createDoc(

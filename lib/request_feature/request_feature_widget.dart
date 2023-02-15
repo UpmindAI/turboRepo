@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'request_feature_model.dart';
+export 'request_feature_model.dart';
 
 class RequestFeatureWidget extends StatefulWidget {
   const RequestFeatureWidget({Key? key}) : super(key: key);
@@ -18,28 +20,27 @@ class RequestFeatureWidget extends StatefulWidget {
 }
 
 class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
-  TextEditingController? textController1;
-  TextEditingController? textController2;
-  TextEditingController? textController3;
-  final _unfocusNode = FocusNode();
+  late RequestFeatureModel _model;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final formKey = GlobalKey<FormState>();
+  final _unfocusNode = FocusNode();
 
   @override
   void initState() {
     super.initState();
-    textController1 = TextEditingController();
-    textController2 = TextEditingController();
-    textController3 = TextEditingController();
+    _model = createModel(context, () => RequestFeatureModel());
+
+    _model.textController1 = TextEditingController();
+    _model.textController2 = TextEditingController();
+    _model.textController3 = TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
   void dispose() {
+    _model.dispose();
+
     _unfocusNode.dispose();
-    textController1?.dispose();
-    textController2?.dispose();
-    textController3?.dispose();
     super.dispose();
   }
 
@@ -79,7 +80,11 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              MainMenuWidget(),
+                              wrapWithModel(
+                                model: _model.mainMenuModel,
+                                updateCallback: () => setState(() {}),
+                                child: MainMenuWidget(),
+                              ),
                             ],
                           ),
                         ),
@@ -110,7 +115,7 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                         ],
                                       ),
                                       child: Form(
-                                        key: formKey,
+                                        key: _model.formKey,
                                         autovalidateMode:
                                             AutovalidateMode.disabled,
                                         child: Column(
@@ -130,7 +135,8 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(20, 20, 20, 20),
                                               child: TextFormField(
-                                                controller: textController1,
+                                                controller:
+                                                    _model.textController1,
                                                 autofocus: true,
                                                 obscureText: false,
                                                 decoration: InputDecoration(
@@ -205,13 +211,17 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyText1,
+                                                validator: _model
+                                                    .textController1Validator
+                                                    .asValidator(context),
                                               ),
                                             ),
                                             Padding(
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(20, 0, 20, 20),
                                               child: TextFormField(
-                                                controller: textController2,
+                                                controller:
+                                                    _model.textController2,
                                                 autofocus: true,
                                                 obscureText: false,
                                                 decoration: InputDecoration(
@@ -286,13 +296,17 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyText1,
+                                                validator: _model
+                                                    .textController2Validator
+                                                    .asValidator(context),
                                               ),
                                             ),
                                             Padding(
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(20, 0, 20, 20),
                                               child: TextFormField(
-                                                controller: textController3,
+                                                controller:
+                                                    _model.textController3,
                                                 autofocus: true,
                                                 obscureText: false,
                                                 decoration: InputDecoration(
@@ -368,6 +382,9 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyText1,
+                                                validator: _model
+                                                    .textController3Validator
+                                                    .asValidator(context),
                                               ),
                                             ),
                                             FFButtonWidget(
@@ -375,11 +392,12 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                                 final featureCreateData =
                                                     createFeatureRecordData(
                                                   userRef: currentUserReference,
-                                                  iwant: textController1!.text,
-                                                  because:
-                                                      textController2!.text,
-                                                  additional:
-                                                      textController3!.text,
+                                                  iwant: _model
+                                                      .textController1.text,
+                                                  because: _model
+                                                      .textController2.text,
+                                                  additional: _model
+                                                      .textController3.text,
                                                   timestamp:
                                                       getCurrentTimestamp,
                                                 );
@@ -413,9 +431,12 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                                   ),
                                                 );
                                                 setState(() {
-                                                  textController1?.clear();
-                                                  textController2?.clear();
-                                                  textController3?.clear();
+                                                  _model.textController1
+                                                      ?.clear();
+                                                  _model.textController2
+                                                      ?.clear();
+                                                  _model.textController3
+                                                      ?.clear();
                                                 });
                                               },
                                               text: 'Send',

@@ -12,6 +12,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'retreiving_model.dart';
+export 'retreiving_model.dart';
 
 class RetreivingWidget extends StatefulWidget {
   const RetreivingWidget({Key? key}) : super(key: key);
@@ -22,6 +24,11 @@ class RetreivingWidget extends StatefulWidget {
 
 class _RetreivingWidgetState extends State<RetreivingWidget>
     with TickerProviderStateMixin {
+  late RetreivingModel _model;
+
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _unfocusNode = FocusNode();
+
   final animationsMap = {
     'imageOnPageLoadAnimation': AnimationInfo(
       loop: true,
@@ -37,14 +44,11 @@ class _RetreivingWidgetState extends State<RetreivingWidget>
       ],
     ),
   };
-  ApiCallResponse? apiResultGPT;
-  ApiCallResponse? apiResultdataGPT;
-  final _unfocusNode = FocusNode();
-  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
+    _model = createModel(context, () => RetreivingModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
@@ -81,17 +85,17 @@ class _RetreivingWidgetState extends State<RetreivingWidget>
               backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
             ),
           );
-          apiResultGPT = await GPTqueryCall.call(
+          _model.apiResultGPT = await GPTqueryCall.call(
             qid: FFAppState().setQid,
             idToken: currentJwtToken,
           );
-          if ((apiResultGPT?.succeeded ?? true)) {
+          if ((_model.apiResultGPT?.succeeded ?? true)) {
             context.pushNamed('Result');
           } else {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(
-                  (apiResultGPT?.statusCode ?? 200).toString(),
+                  (_model.apiResultGPT?.statusCode ?? 200).toString(),
                   style: TextStyle(
                     color: FlutterFlowTheme.of(context).primaryText,
                   ),
@@ -120,19 +124,19 @@ class _RetreivingWidgetState extends State<RetreivingWidget>
                     FlutterFlowTheme.of(context).secondaryBackground,
               ),
             );
-            apiResultdataGPT = await DatasetGPTserverCall.call(
+            _model.apiResultdataGPT = await DatasetGPTserverCall.call(
               qid: FFAppState().setQid,
               datasetIdsList: FFAppState().selectedDataset,
               topK: FFAppState().setTopK,
               idToken: currentJwtToken,
             );
-            if ((apiResultdataGPT?.succeeded ?? true)) {
+            if ((_model.apiResultdataGPT?.succeeded ?? true)) {
               context.pushNamed('Result');
             } else {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(
-                    (apiResultdataGPT?.statusCode ?? 200).toString(),
+                    (_model.apiResultdataGPT?.statusCode ?? 200).toString(),
                     style: TextStyle(
                       color: FlutterFlowTheme.of(context).primaryText,
                     ),
@@ -160,6 +164,8 @@ class _RetreivingWidgetState extends State<RetreivingWidget>
 
   @override
   void dispose() {
+    _model.dispose();
+
     _unfocusNode.dispose();
     super.dispose();
   }
@@ -198,7 +204,11 @@ class _RetreivingWidgetState extends State<RetreivingWidget>
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            MainMenuWidget(),
+                            wrapWithModel(
+                              model: _model.mainMenuModel,
+                              updateCallback: () => setState(() {}),
+                              child: MainMenuWidget(),
+                            ),
                           ],
                         ),
                       ),

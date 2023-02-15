@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'edit_dataset_title_model.dart';
+export 'edit_dataset_title_model.dart';
 
 class EditDatasetTitleWidget extends StatefulWidget {
   const EditDatasetTitleWidget({
@@ -22,19 +24,28 @@ class EditDatasetTitleWidget extends StatefulWidget {
 }
 
 class _EditDatasetTitleWidgetState extends State<EditDatasetTitleWidget> {
-  TextEditingController? textController;
+  late EditDatasetTitleModel _model;
+
+  @override
+  void setState(VoidCallback callback) {
+    super.setState(callback);
+    _model.onUpdate();
+  }
 
   @override
   void initState() {
     super.initState();
-    textController =
+    _model = createModel(context, () => EditDatasetTitleModel());
+
+    _model.textController =
         TextEditingController(text: widget.activeDatasetT!.datasetName);
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
   void dispose() {
-    textController?.dispose();
+    _model.dispose();
+
     super.dispose();
   }
 
@@ -67,7 +78,7 @@ class _EditDatasetTitleWidgetState extends State<EditDatasetTitleWidget> {
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
                 child: TextFormField(
-                  controller: textController,
+                  controller: _model.textController,
                   autofocus: true,
                   obscureText: false,
                   decoration: InputDecoration(
@@ -114,6 +125,8 @@ class _EditDatasetTitleWidgetState extends State<EditDatasetTitleWidget> {
                     ),
                   ),
                   style: FlutterFlowTheme.of(context).bodyText1,
+                  validator:
+                      _model.textControllerValidator.asValidator(context),
                 ),
               ),
               Padding(
@@ -121,7 +134,7 @@ class _EditDatasetTitleWidgetState extends State<EditDatasetTitleWidget> {
                 child: FFButtonWidget(
                   onPressed: () async {
                     final userDatasetsUpdateData = createUserDatasetsRecordData(
-                      datasetName: textController!.text,
+                      datasetName: _model.textController.text,
                     );
                     await widget.activeDatasetT!.reference
                         .update(userDatasetsUpdateData);

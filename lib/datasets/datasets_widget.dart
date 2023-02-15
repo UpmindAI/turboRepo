@@ -20,6 +20,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'datasets_model.dart';
+export 'datasets_model.dart';
 
 class DatasetsWidget extends StatefulWidget {
   const DatasetsWidget({
@@ -34,19 +36,15 @@ class DatasetsWidget extends StatefulWidget {
 }
 
 class _DatasetsWidgetState extends State<DatasetsWidget> {
-  Map<UserDocsRecord, bool> checkboxValueMap = {};
-  List<UserDocsRecord> get checkboxCheckedItems =>
-      checkboxValueMap.entries.where((e) => e.value).map((e) => e.key).toList();
+  late DatasetsModel _model;
 
-  bool mouseRegionHovered = false;
-  ApiCallResponse? apiResult8oi;
-  TextEditingController? scrapeURLController;
-  final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
+    _model = createModel(context, () => DatasetsModel());
+
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       FFAppState().update(() {
@@ -55,13 +53,14 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
       });
     });
 
-    scrapeURLController = TextEditingController();
+    _model.scrapeURLController = TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
   void dispose() {
-    scrapeURLController?.dispose();
+    _model.dispose();
+
     super.dispose();
   }
 
@@ -99,7 +98,11 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        MainMenuWidget(),
+                        wrapWithModel(
+                          model: _model.mainMenuModel,
+                          updateCallback: () => setState(() {}),
+                          child: MainMenuWidget(),
+                        ),
                       ],
                     ),
                   ),
@@ -459,14 +462,14 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                       ],
                                                     ),
                                                     onEnter: ((event) async {
-                                                      setState(() =>
-                                                          mouseRegionHovered =
-                                                              true);
+                                                      setState(() => _model
+                                                              .mouseRegionHovered =
+                                                          true);
                                                     }),
                                                     onExit: ((event) async {
-                                                      setState(() =>
-                                                          mouseRegionHovered =
-                                                              false);
+                                                      setState(() => _model
+                                                              .mouseRegionHovered =
+                                                          false);
                                                     }),
                                                   ),
                                                   Align(
@@ -894,9 +897,9 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                           unselectedWidgetColor: FlutterFlowTheme.of(context).secondaryColor,
                                                                                         ),
                                                                                         child: Checkbox(
-                                                                                          value: checkboxValueMap[listViewUserDocsRecord] ??= FFAppState().selectedDocuments.contains(listViewUserDocsRecord.docId),
+                                                                                          value: _model.checkboxValueMap[listViewUserDocsRecord] ??= FFAppState().selectedDocuments.contains(listViewUserDocsRecord.docId),
                                                                                           onChanged: (newValue) async {
-                                                                                            setState(() => checkboxValueMap[listViewUserDocsRecord] = newValue!);
+                                                                                            setState(() => _model.checkboxValueMap[listViewUserDocsRecord] = newValue!);
                                                                                             if (newValue!) {
                                                                                               final userDatasetsUpdateData = {
                                                                                                 'active_docs': FieldValue.arrayUnion([
@@ -1003,6 +1006,18 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                         ),
                                                                                       ),
                                                                                     ),
+                                                                                    if (listViewUserDocsRecord.processing ?? true)
+                                                                                      Padding(
+                                                                                        padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
+                                                                                        child: Text(
+                                                                                          'Processing',
+                                                                                          style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                                color: Color(0xFF980000),
+                                                                                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                              ),
+                                                                                        ),
+                                                                                      ),
                                                                                   ],
                                                                                 ),
                                                                               ),
@@ -1032,7 +1047,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                         MainAxisSize.max,
                                                     children: [
                                                       Form(
-                                                        key: formKey,
+                                                        key: _model.formKey,
                                                         autovalidateMode:
                                                             AutovalidateMode
                                                                 .disabled,
@@ -1085,8 +1100,8 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                             0),
                                                                 child:
                                                                     TextFormField(
-                                                                  controller:
-                                                                      scrapeURLController,
+                                                                  controller: _model
+                                                                      .scrapeURLController,
                                                                   obscureText:
                                                                       false,
                                                                   decoration:
@@ -1176,6 +1191,10 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                       .bodyText1,
                                                                   maxLines: 2,
                                                                   minLines: 1,
+                                                                  validator: _model
+                                                                      .scrapeURLControllerValidator
+                                                                      .asValidator(
+                                                                          context),
                                                                 ),
                                                               ),
                                                             ),
@@ -1197,10 +1216,11 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                         FFButtonWidget(
                                                                       onPressed:
                                                                           () async {
-                                                                        apiResult8oi =
+                                                                        _model.apiResult8oi =
                                                                             await ScrapeServerCall.call(
-                                                                          sourceUrl:
-                                                                              scrapeURLController!.text,
+                                                                          sourceUrl: _model
+                                                                              .scrapeURLController
+                                                                              .text,
                                                                           idToken:
                                                                               currentJwtToken,
                                                                           datasetId:
@@ -1208,7 +1228,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                           datasetName:
                                                                               columnUserDatasetsRecord.datasetName,
                                                                         );
-                                                                        if ((apiResult8oi?.succeeded ??
+                                                                        if ((_model.apiResult8oi?.succeeded ??
                                                                             true)) {
                                                                           ScaffoldMessenger.of(context)
                                                                               .showSnackBar(
@@ -1225,14 +1245,14 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                           );
                                                                           setState(
                                                                               () {
-                                                                            scrapeURLController?.clear();
+                                                                            _model.scrapeURLController?.clear();
                                                                           });
                                                                         } else {
                                                                           ScaffoldMessenger.of(context)
                                                                               .showSnackBar(
                                                                             SnackBar(
                                                                               content: Text(
-                                                                                (apiResult8oi?.statusCode ?? 200).toString(),
+                                                                                (_model.apiResult8oi?.statusCode ?? 200).toString(),
                                                                                 style: TextStyle(
                                                                                   color: FlutterFlowTheme.of(context).primaryText,
                                                                                 ),
