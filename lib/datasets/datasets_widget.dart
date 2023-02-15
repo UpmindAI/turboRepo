@@ -663,6 +663,51 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                         ),
                                                   ),
                                                 ),
+                                                Expanded(
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                0, 0, 10, 0),
+                                                    child: Stack(
+                                                      children: [
+                                                        Align(
+                                                          alignment:
+                                                              AlignmentDirectional(
+                                                                  1, 0),
+                                                          child: InkWell(
+                                                            onTap: () async {
+                                                              setState(() {
+                                                                FFAppState()
+                                                                    .selectedDocuments = [];
+                                                              });
+                                                            },
+                                                            child: Text(
+                                                              'Clear',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyText1
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyText1Family,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .tertiaryColor,
+                                                                    fontSize:
+                                                                        11,
+                                                                    useGoogleFonts: GoogleFonts
+                                                                            .asMap()
+                                                                        .containsKey(
+                                                                            FlutterFlowTheme.of(context).bodyText1Family),
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
                                               ],
                                             ),
                                             Row(
