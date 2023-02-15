@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'payment_model.dart';
+export 'payment_model.dart';
 
 class PaymentWidget extends StatefulWidget {
   const PaymentWidget({Key? key}) : super(key: key);
@@ -17,13 +19,27 @@ class PaymentWidget extends StatefulWidget {
 }
 
 class _PaymentWidgetState extends State<PaymentWidget> {
-  String? paymentStripe;
+  late PaymentModel _model;
+
+  @override
+  void setState(VoidCallback callback) {
+    super.setState(callback);
+    _model.onUpdate();
+  }
 
   @override
   void initState() {
     super.initState();
+    _model = createModel(context, () => PaymentModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    _model.dispose();
+
+    super.dispose();
   }
 
   @override
@@ -106,7 +122,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                           }
                           return;
                         }
-                        paymentStripe = paymentResponse.paymentId!;
+                        _model.paymentStripe = paymentResponse.paymentId!;
 
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(

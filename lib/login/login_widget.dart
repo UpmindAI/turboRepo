@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'login_model.dart';
+export 'login_model.dart';
 
 class LoginWidget extends StatefulWidget {
   const LoginWidget({Key? key}) : super(key: key);
@@ -15,24 +17,24 @@ class LoginWidget extends StatefulWidget {
 }
 
 class _LoginWidgetState extends State<LoginWidget> {
-  TextEditingController? emailTextController;
-  TextEditingController? passwordTextController;
-  late bool passwordVisibility;
+  late LoginModel _model;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    emailTextController = TextEditingController();
-    passwordTextController = TextEditingController();
-    passwordVisibility = false;
+    _model = createModel(context, () => LoginModel());
+
+    _model.emailTextController = TextEditingController();
+    _model.passwordTextController = TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
   void dispose() {
-    emailTextController?.dispose();
-    passwordTextController?.dispose();
+    _model.dispose();
+
     super.dispose();
   }
 
@@ -245,7 +247,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
                         child: TextFormField(
-                          controller: emailTextController,
+                          controller: _model.emailTextController,
                           obscureText: false,
                           decoration: InputDecoration(
                             labelText: 'Your email address',
@@ -287,6 +289,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                           ),
                           style: FlutterFlowTheme.of(context).bodyText1,
                           maxLines: null,
+                          validator: _model.emailTextControllerValidator
+                              .asValidator(context),
                         ),
                       ),
                     ),
@@ -309,8 +313,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
                         child: TextFormField(
-                          controller: passwordTextController,
-                          obscureText: !passwordVisibility,
+                          controller: _model.passwordTextController,
+                          obscureText: !_model.passwordVisibility,
                           decoration: InputDecoration(
                             labelText: 'Password',
                             labelStyle: FlutterFlowTheme.of(context).bodyText2,
@@ -350,11 +354,12 @@ class _LoginWidgetState extends State<LoginWidget> {
                                 EdgeInsetsDirectional.fromSTEB(20, 24, 20, 24),
                             suffixIcon: InkWell(
                               onTap: () => setState(
-                                () => passwordVisibility = !passwordVisibility,
+                                () => _model.passwordVisibility =
+                                    !_model.passwordVisibility,
                               ),
                               focusNode: FocusNode(skipTraversal: true),
                               child: Icon(
-                                passwordVisibility
+                                _model.passwordVisibility
                                     ? Icons.visibility_outlined
                                     : Icons.visibility_off_outlined,
                                 color: Color(0xFF757575),
@@ -364,6 +369,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                           ),
                           style: FlutterFlowTheme.of(context).bodyText1,
                           minLines: 1,
+                          validator: _model.passwordTextControllerValidator
+                              .asValidator(context),
                         ),
                       ),
                     ),
@@ -380,8 +387,8 @@ class _LoginWidgetState extends State<LoginWidget> {
 
                             final user = await signInWithEmail(
                               context,
-                              emailTextController!.text,
-                              passwordTextController!.text,
+                              _model.emailTextController.text,
+                              _model.passwordTextController.text,
                             );
                             if (user == null) {
                               return;

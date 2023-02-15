@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'prompt_config_model.dart';
+export 'prompt_config_model.dart';
 
 class PromptConfigWidget extends StatefulWidget {
   const PromptConfigWidget({Key? key}) : super(key: key);
@@ -14,14 +16,27 @@ class PromptConfigWidget extends StatefulWidget {
 }
 
 class _PromptConfigWidgetState extends State<PromptConfigWidget> {
-  double? topKValue;
-  final formKey = GlobalKey<FormState>();
+  late PromptConfigModel _model;
+
+  @override
+  void setState(VoidCallback callback) {
+    super.setState(callback);
+    _model.onUpdate();
+  }
 
   @override
   void initState() {
     super.initState();
+    _model = createModel(context, () => PromptConfigModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    _model.dispose();
+
+    super.dispose();
   }
 
   @override
@@ -48,7 +63,7 @@ class _PromptConfigWidgetState extends State<PromptConfigWidget> {
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
               child: Form(
-                key: formKey,
+                key: _model.formKey,
                 autovalidateMode: AutovalidateMode.disabled,
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
@@ -66,7 +81,7 @@ class _PromptConfigWidgetState extends State<PromptConfigWidget> {
                             child: Text(
                               valueOrDefault<String>(
                                 formatNumber(
-                                  topKValue,
+                                  _model.topKValue,
                                   formatType: FormatType.custom,
                                   format: '#',
                                   locale: '',
@@ -84,13 +99,13 @@ class _PromptConfigWidgetState extends State<PromptConfigWidget> {
                       inactiveColor: Color(0xFF9E9E9E),
                       min: 5,
                       max: 25,
-                      value: topKValue ??= FFAppState().setTopK,
-                      label: topKValue.toString(),
+                      value: _model.topKValue ??= FFAppState().setTopK,
+                      label: _model.topKValue.toString(),
                       divisions: 20,
                       onChanged: (newValue) async {
                         newValue = double.parse(newValue.toStringAsFixed(0));
-                        setState(() => topKValue = newValue);
-                        FFAppState().setTopK = topKValue!;
+                        setState(() => _model.topKValue = newValue);
+                        FFAppState().setTopK = _model.topKValue!;
                       },
                     ),
                   ],
@@ -100,7 +115,7 @@ class _PromptConfigWidgetState extends State<PromptConfigWidget> {
             FFButtonWidget(
               onPressed: () async {
                 FFAppState().update(() {
-                  FFAppState().setTopK = topKValue!;
+                  FFAppState().setTopK = _model.topKValue!;
                 });
                 await Future.delayed(const Duration(milliseconds: 500));
                 Navigator.pop(context);

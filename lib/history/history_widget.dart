@@ -9,6 +9,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'history_model.dart';
+export 'history_model.dart';
 
 class HistoryWidget extends StatefulWidget {
   const HistoryWidget({Key? key}) : super(key: key);
@@ -18,18 +20,23 @@ class HistoryWidget extends StatefulWidget {
 }
 
 class _HistoryWidgetState extends State<HistoryWidget> {
-  final _unfocusNode = FocusNode();
+  late HistoryModel _model;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _unfocusNode = FocusNode();
 
   @override
   void initState() {
     super.initState();
+    _model = createModel(context, () => HistoryModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
   void dispose() {
+    _model.dispose();
+
     _unfocusNode.dispose();
     super.dispose();
   }
@@ -65,7 +72,11 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        MainMenuWidget(),
+                        wrapWithModel(
+                          model: _model.mainMenuModel,
+                          updateCallback: () => setState(() {}),
+                          child: MainMenuWidget(),
+                        ),
                       ],
                     ),
                   ),

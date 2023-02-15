@@ -27,6 +27,8 @@ abstract class UserDocsRecord
 
   String? get url;
 
+  bool? get processing;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -38,7 +40,8 @@ abstract class UserDocsRecord
     ..isActive = false
     ..docId = ''
     ..docTitle = ''
-    ..url = '';
+    ..url = ''
+    ..processing = false;
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
       parent != null
@@ -73,6 +76,7 @@ Map<String, dynamic> createUserDocsRecordData({
   String? docTitle,
   DateTime? timestamp,
   String? url,
+  bool? processing,
 }) {
   final firestoreData = serializers.toFirestore(
     UserDocsRecord.serializer,
@@ -83,7 +87,8 @@ Map<String, dynamic> createUserDocsRecordData({
         ..docId = docId
         ..docTitle = docTitle
         ..timestamp = timestamp
-        ..url = url,
+        ..url = url
+        ..processing = processing,
     ),
   );
 

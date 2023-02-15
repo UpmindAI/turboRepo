@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'sign_up_model.dart';
+export 'sign_up_model.dart';
 
 class SignUpWidget extends StatefulWidget {
   const SignUpWidget({Key? key}) : super(key: key);
@@ -15,30 +17,25 @@ class SignUpWidget extends StatefulWidget {
 }
 
 class _SignUpWidgetState extends State<SignUpWidget> {
-  TextEditingController? emailSignupController;
-  TextEditingController? passwordController;
-  late bool passwordVisibility;
-  TextEditingController? passwordRepeatController;
-  late bool passwordRepeatVisibility;
-  final formKey = GlobalKey<FormState>();
+  late SignUpModel _model;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    emailSignupController = TextEditingController();
-    passwordController = TextEditingController();
-    passwordVisibility = false;
-    passwordRepeatController = TextEditingController();
-    passwordRepeatVisibility = false;
+    _model = createModel(context, () => SignUpModel());
+
+    _model.emailSignupController = TextEditingController();
+    _model.passwordController = TextEditingController();
+    _model.passwordRepeatController = TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
   void dispose() {
-    emailSignupController?.dispose();
-    passwordController?.dispose();
-    passwordRepeatController?.dispose();
+    _model.dispose();
+
     super.dispose();
   }
 
@@ -223,7 +220,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                     ),
                   ),
                   Form(
-                    key: formKey,
+                    key: _model.formKey,
                     autovalidateMode: AutovalidateMode.disabled,
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
@@ -248,7 +245,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
                               child: TextFormField(
-                                controller: emailSignupController,
+                                controller: _model.emailSignupController,
                                 obscureText: false,
                                 decoration: InputDecoration(
                                   labelText: 'Your email address',
@@ -294,6 +291,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                 style: FlutterFlowTheme.of(context).bodyText1,
                                 maxLines: null,
                                 keyboardType: TextInputType.emailAddress,
+                                validator: _model.emailSignupControllerValidator
+                                    .asValidator(context),
                               ),
                             ),
                           ),
@@ -318,8 +317,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
                               child: TextFormField(
-                                controller: passwordController,
-                                obscureText: !passwordVisibility,
+                                controller: _model.passwordController,
+                                obscureText: !_model.passwordVisibility,
                                 decoration: InputDecoration(
                                   labelText: 'Password',
                                   labelStyle:
@@ -362,12 +361,12 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                           20, 24, 20, 24),
                                   suffixIcon: InkWell(
                                     onTap: () => setState(
-                                      () => passwordVisibility =
-                                          !passwordVisibility,
+                                      () => _model.passwordVisibility =
+                                          !_model.passwordVisibility,
                                     ),
                                     focusNode: FocusNode(skipTraversal: true),
                                     child: Icon(
-                                      passwordVisibility
+                                      _model.passwordVisibility
                                           ? Icons.visibility_outlined
                                           : Icons.visibility_off_outlined,
                                       color: FlutterFlowTheme.of(context)
@@ -378,22 +377,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                 ),
                                 style: FlutterFlowTheme.of(context).bodyText1,
                                 minLines: 1,
-                                validator: (val) {
-                                  if (val == null || val.isEmpty) {
-                                    return 'Field is required';
-                                  }
-
-                                  if (val.length < 6) {
-                                    return 'Requires at least 6 characters.';
-                                  }
-
-                                  if (!RegExp(
-                                          '^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}\$')
-                                      .hasMatch(val)) {
-                                    return 'Password needs to be at least 6 characters, and inlcude lowercase, uppercase and numbers. ';
-                                  }
-                                  return null;
-                                },
+                                validator: _model.passwordControllerValidator
+                                    .asValidator(context),
                               ),
                             ),
                           ),
@@ -418,8 +403,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
                               child: TextFormField(
-                                controller: passwordRepeatController,
-                                obscureText: !passwordRepeatVisibility,
+                                controller: _model.passwordRepeatController,
+                                obscureText: !_model.passwordRepeatVisibility,
                                 decoration: InputDecoration(
                                   labelText: 'Repeat Password',
                                   labelStyle:
@@ -462,12 +447,12 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                           20, 24, 20, 24),
                                   suffixIcon: InkWell(
                                     onTap: () => setState(
-                                      () => passwordRepeatVisibility =
-                                          !passwordRepeatVisibility,
+                                      () => _model.passwordRepeatVisibility =
+                                          !_model.passwordRepeatVisibility,
                                     ),
                                     focusNode: FocusNode(skipTraversal: true),
                                     child: Icon(
-                                      passwordRepeatVisibility
+                                      _model.passwordRepeatVisibility
                                           ? Icons.visibility_outlined
                                           : Icons.visibility_off_outlined,
                                       color: FlutterFlowTheme.of(context)
@@ -478,22 +463,9 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                                 ),
                                 style: FlutterFlowTheme.of(context).bodyText1,
                                 minLines: 1,
-                                validator: (val) {
-                                  if (val == null || val.isEmpty) {
-                                    return 'Field is required';
-                                  }
-
-                                  if (val.length < 6) {
-                                    return 'Requires at least 6 characters.';
-                                  }
-
-                                  if (!RegExp(
-                                          '^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}\$')
-                                      .hasMatch(val)) {
-                                    return 'Password needs to be at least 6 characters, and inlcude lowercase, uppercase and numbers. ';
-                                  }
-                                  return null;
-                                },
+                                validator: _model
+                                    .passwordRepeatControllerValidator
+                                    .asValidator(context),
                               ),
                             ),
                           ),
@@ -513,8 +485,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                             FFButtonWidget(
                               onPressed: () async {
                                 GoRouter.of(context).prepareAuthEvent();
-                                if (passwordController?.text !=
-                                    passwordRepeatController?.text) {
+                                if (_model.passwordController.text !=
+                                    _model.passwordRepeatController.text) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
@@ -527,8 +499,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
 
                                 final user = await createAccountWithEmail(
                                   context,
-                                  emailSignupController!.text,
-                                  passwordController!.text,
+                                  _model.emailSignupController.text,
+                                  _model.passwordController.text,
                                 );
                                 if (user == null) {
                                   return;

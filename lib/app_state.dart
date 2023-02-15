@@ -62,6 +62,11 @@ class FFAppState extends ChangeNotifier {
     prefs.setStringList('ff_selectedDataset', _selectedDataset);
   }
 
+  void removeAtIndexFromSelectedDataset(int _index) {
+    _selectedDataset.removeAt(_index);
+    prefs.setStringList('ff_selectedDataset', _selectedDataset);
+  }
+
   String _setQid = '';
   String get setQid => _setQid;
   set setQid(String _value) {
@@ -107,6 +112,11 @@ class FFAppState extends ChangeNotifier {
 
   void removeFromSelectedDocuments(String _value) {
     _selectedDocuments.remove(_value);
+    prefs.setStringList('ff_selectedDocuments', _selectedDocuments);
+  }
+
+  void removeAtIndexFromSelectedDocuments(int _index) {
+    _selectedDocuments.removeAt(_index);
     prefs.setStringList('ff_selectedDocuments', _selectedDocuments);
   }
 

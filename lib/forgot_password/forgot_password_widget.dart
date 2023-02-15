@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'forgot_password_model.dart';
+export 'forgot_password_model.dart';
 
 class ForgotPasswordWidget extends StatefulWidget {
   const ForgotPasswordWidget({Key? key}) : super(key: key);
@@ -16,19 +18,23 @@ class ForgotPasswordWidget extends StatefulWidget {
 }
 
 class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
-  TextEditingController? emailAddressController;
+  late ForgotPasswordModel _model;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    emailAddressController = TextEditingController();
+    _model = createModel(context, () => ForgotPasswordModel());
+
+    _model.emailAddressController = TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
   void dispose() {
-    emailAddressController?.dispose();
+    _model.dispose();
+
     super.dispose();
   }
 
@@ -159,7 +165,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: TextFormField(
-                    controller: emailAddressController,
+                    controller: _model.emailAddressController,
                     obscureText: false,
                     decoration: InputDecoration(
                       labelText: 'Your email address...',
@@ -210,6 +216,8 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                     ),
                     style: FlutterFlowTheme.of(context).bodyText1,
                     maxLines: null,
+                    validator: _model.emailAddressControllerValidator
+                        .asValidator(context),
                   ),
                 ),
               ),
@@ -217,7 +225,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    if (emailAddressController!.text.isEmpty) {
+                    if (_model.emailAddressController.text.isEmpty) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text(
@@ -228,7 +236,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                       return;
                     }
                     await resetPassword(
-                      email: emailAddressController!.text,
+                      email: _model.emailAddressController.text,
                       context: context,
                     );
                   },

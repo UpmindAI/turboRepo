@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'support_model.dart';
+export 'support_model.dart';
 
 class SupportWidget extends StatefulWidget {
   const SupportWidget({Key? key}) : super(key: key);
@@ -18,45 +20,36 @@ class SupportWidget extends StatefulWidget {
 }
 
 class _SupportWidgetState extends State<SupportWidget> {
-  TextEditingController? questionController;
-  TextEditingController? textController1;
-  TextEditingController? textController2;
-  TextEditingController? textController3;
-  TextEditingController? textController4;
-  TextEditingController? textController5;
-  TextEditingController? textController6;
-  final _unfocusNode = FocusNode();
+  late SupportModel _model;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final formKey = GlobalKey<FormState>();
+  final _unfocusNode = FocusNode();
 
   @override
   void initState() {
     super.initState();
-    questionController = TextEditingController();
-    textController1 = TextEditingController(
+    _model = createModel(context, () => SupportModel());
+
+    _model.textController1 = TextEditingController(
         text: valueOrDefault(currentUserDocument?.firstName, ''));
-    textController2 = TextEditingController(
+    _model.textController2 = TextEditingController(
         text: valueOrDefault(currentUserDocument?.lastName, ''));
-    textController3 = TextEditingController(text: currentUserEmail);
-    textController4 = TextEditingController(
+    _model.textController3 = TextEditingController(text: currentUserEmail);
+    _model.textController4 = TextEditingController(
         text: valueOrDefault(currentUserDocument?.company, ''));
-    textController5 = TextEditingController(
+    _model.textController5 = TextEditingController(
         text: valueOrDefault(currentUserDocument?.industry, ''));
-    textController6 = TextEditingController(
+    _model.textController6 = TextEditingController(
         text: valueOrDefault(currentUserDocument?.role, ''));
+    _model.questionController = TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
   void dispose() {
+    _model.dispose();
+
     _unfocusNode.dispose();
-    questionController?.dispose();
-    textController1?.dispose();
-    textController2?.dispose();
-    textController3?.dispose();
-    textController4?.dispose();
-    textController5?.dispose();
-    textController6?.dispose();
     super.dispose();
   }
 
@@ -90,7 +83,11 @@ class _SupportWidgetState extends State<SupportWidget> {
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        MainMenuWidget(),
+                        wrapWithModel(
+                          model: _model.mainMenuModel,
+                          updateCallback: () => setState(() {}),
+                          child: MainMenuWidget(),
+                        ),
                       ],
                     ),
                   ),
@@ -167,7 +164,7 @@ class _SupportWidgetState extends State<SupportWidget> {
                                     ],
                                   ),
                                   Form(
-                                    key: formKey,
+                                    key: _model.formKey,
                                     autovalidateMode: AutovalidateMode.disabled,
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
@@ -212,8 +209,8 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                           AuthUserStreamWidget(
                                                         builder: (context) =>
                                                             TextFormField(
-                                                          controller:
-                                                              textController1,
+                                                          controller: _model
+                                                              .textController1,
                                                           autofocus: true,
                                                           obscureText: false,
                                                           decoration:
@@ -282,6 +279,10 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyText1,
+                                                          validator: _model
+                                                              .textController1Validator
+                                                              .asValidator(
+                                                                  context),
                                                         ),
                                                       ),
                                                     ),
@@ -303,8 +304,8 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                           AuthUserStreamWidget(
                                                         builder: (context) =>
                                                             TextFormField(
-                                                          controller:
-                                                              textController2,
+                                                          controller: _model
+                                                              .textController2,
                                                           autofocus: true,
                                                           obscureText: false,
                                                           decoration:
@@ -373,6 +374,10 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyText1,
+                                                          validator: _model
+                                                              .textController2Validator
+                                                              .asValidator(
+                                                                  context),
                                                         ),
                                                       ),
                                                     ),
@@ -419,8 +424,8 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                             .secondaryBackground,
                                                       ),
                                                       child: TextFormField(
-                                                        controller:
-                                                            textController3,
+                                                        controller: _model
+                                                            .textController3,
                                                         autofocus: true,
                                                         obscureText: false,
                                                         decoration:
@@ -491,6 +496,10 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .bodyText1,
+                                                        validator: _model
+                                                            .textController3Validator
+                                                            .asValidator(
+                                                                context),
                                                       ),
                                                     ),
                                                     Container(
@@ -511,8 +520,8 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                           AuthUserStreamWidget(
                                                         builder: (context) =>
                                                             TextFormField(
-                                                          controller:
-                                                              textController4,
+                                                          controller: _model
+                                                              .textController4,
                                                           autofocus: true,
                                                           obscureText: false,
                                                           decoration:
@@ -581,6 +590,10 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyText1,
+                                                          validator: _model
+                                                              .textController4Validator
+                                                              .asValidator(
+                                                                  context),
                                                         ),
                                                       ),
                                                     ),
@@ -626,8 +639,8 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                     child: AuthUserStreamWidget(
                                                       builder: (context) =>
                                                           TextFormField(
-                                                        controller:
-                                                            textController5,
+                                                        controller: _model
+                                                            .textController5,
                                                         autofocus: true,
                                                         obscureText: false,
                                                         decoration:
@@ -696,6 +709,10 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .bodyText1,
+                                                        validator: _model
+                                                            .textController5Validator
+                                                            .asValidator(
+                                                                context),
                                                       ),
                                                     ),
                                                   ),
@@ -715,8 +732,8 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                     child: AuthUserStreamWidget(
                                                       builder: (context) =>
                                                           TextFormField(
-                                                        controller:
-                                                            textController6,
+                                                        controller: _model
+                                                            .textController6,
                                                         autofocus: true,
                                                         obscureText: false,
                                                         decoration:
@@ -799,6 +816,10 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                                           FlutterFlowTheme.of(context)
                                                                               .bodyText1Family),
                                                                 ),
+                                                        validator: _model
+                                                            .textController6Validator
+                                                            .asValidator(
+                                                                context),
                                                       ),
                                                     ),
                                                   ),
@@ -818,13 +839,14 @@ class _SupportWidgetState extends State<SupportWidget> {
                                               onPressed: () async {
                                                 final usersUpdateData =
                                                     createUsersRecordData(
-                                                  firstName:
-                                                      textController1!.text,
-                                                  lastName:
-                                                      textController2!.text,
-                                                  industry:
-                                                      textController5!.text,
-                                                  role: textController6!.text,
+                                                  firstName: _model
+                                                      .textController1.text,
+                                                  lastName: _model
+                                                      .textController2.text,
+                                                  industry: _model
+                                                      .textController5.text,
+                                                  role: _model
+                                                      .textController6.text,
                                                   email: '',
                                                 );
                                                 await currentUserReference!
@@ -907,7 +929,7 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                     .fromSTEB(0, 40, 0, 0),
                                                 child: TextFormField(
                                                   controller:
-                                                      questionController,
+                                                      _model.questionController,
                                                   autofocus: true,
                                                   obscureText: false,
                                                   decoration: InputDecoration(
@@ -997,6 +1019,9 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyText1,
+                                                  validator: _model
+                                                      .questionControllerValidator
+                                                      .asValidator(context),
                                                 ),
                                               ),
                                             ),
@@ -1011,9 +1036,9 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                   onPressed: () async {
                                                     final supportCreateData =
                                                         createSupportRecordData(
-                                                      question:
-                                                          questionController!
-                                                              .text,
+                                                      question: _model
+                                                          .questionController
+                                                          .text,
                                                       userRef:
                                                           currentUserReference,
                                                       timestamp:
@@ -1047,7 +1072,7 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                       ),
                                                     );
                                                     setState(() {
-                                                      questionController
+                                                      _model.questionController
                                                           ?.clear();
                                                     });
                                                     await Future.delayed(
