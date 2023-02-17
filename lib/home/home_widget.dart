@@ -42,7 +42,7 @@ class _HomeWidgetState extends State<HomeWidget> {
     super.initState();
     _model = createModel(context, () => HomeModel());
 
-    _model.textController = TextEditingController(
+    _model.textController ??= TextEditingController(
         text: widget.userCompletion != null
             ? '${widget.userCompletion!.prompt}${widget.userCompletion!.completion}'
             : '');
@@ -69,16 +69,16 @@ class _HomeWidgetState extends State<HomeWidget> {
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
           title: Image.asset(
-            'assets/images/OMP-188-60.png',
-            width: 99,
-            height: 30,
+            'assets/images/Logo-OMP-122-40.png',
+            width: 122,
+            height: 40,
             fit: BoxFit.cover,
           ),
           actions: [
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.166',
+                'v0.167',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -299,9 +299,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                 OutlineInputBorder(
                                                               borderSide:
                                                                   BorderSide(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .lineColor,
+                                                                color: Color(
+                                                                    0x00000000),
                                                                 width: 2,
                                                               ),
                                                               borderRadius:

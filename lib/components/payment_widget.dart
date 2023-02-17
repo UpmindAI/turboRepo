@@ -37,7 +37,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
 
   @override
   void dispose() {
-    _model.dispose();
+    _model.maybeDispose();
 
     super.dispose();
   }

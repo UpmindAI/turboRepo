@@ -58,7 +58,7 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
 
   @override
   void dispose() {
-    _model.dispose();
+    _model.maybeDispose();
 
     super.dispose();
   }

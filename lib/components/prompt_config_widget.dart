@@ -34,7 +34,7 @@ class _PromptConfigWidgetState extends State<PromptConfigWidget> {
 
   @override
   void dispose() {
-    _model.dispose();
+    _model.maybeDispose();
 
     super.dispose();
   }

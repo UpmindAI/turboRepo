@@ -42,7 +42,7 @@ class _ConfirmDeleteWidgetState extends State<ConfirmDeleteWidget> {
 
   @override
   void dispose() {
-    _model.dispose();
+    _model.maybeDispose();
 
     super.dispose();
   }

@@ -33,7 +33,7 @@ class _AppendDocumentsWidgetState extends State<AppendDocumentsWidget> {
 
   @override
   void dispose() {
-    _model.dispose();
+    _model.maybeDispose();
 
     super.dispose();
   }

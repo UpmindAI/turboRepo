@@ -89,6 +89,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => LoginWidget(),
             ),
             FFRoute(
+              name: 'Settings',
+              path: 'settings',
+              builder: (context, params) => SettingsWidget(),
+            ),
+            FFRoute(
               name: 'Datasets',
               path: 'datasets',
               asyncParams: {
@@ -101,11 +106,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ),
             ),
             FFRoute(
-              name: 'Settings',
-              path: 'settings',
-              builder: (context, params) => SettingsWidget(),
-            ),
-            FFRoute(
               name: 'History',
               path: 'history',
               builder: (context, params) => HistoryWidget(),
@@ -114,6 +114,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'retreiving',
               path: 'retreiving',
               builder: (context, params) => RetreivingWidget(),
+            ),
+            FFRoute(
+              name: 'Result',
+              path: 'result',
+              builder: (context, params) => ResultWidget(),
             ),
             FFRoute(
               name: 'Home',
@@ -126,11 +131,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 userCompletion:
                     params.getParam('userCompletion', ParamType.Document),
               ),
-            ),
-            FFRoute(
-              name: 'Result',
-              path: 'result',
-              builder: (context, params) => ResultWidget(),
             ),
             FFRoute(
               name: 'editProfile',
@@ -156,6 +156,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'forgotPassword',
               path: 'forgotPassword',
               builder: (context, params) => ForgotPasswordWidget(),
+            ),
+            FFRoute(
+              name: 'Chat',
+              path: 'chat',
+              builder: (context, params) => ChatWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),
@@ -332,9 +337,9 @@ class FFRoute {
                   color: Colors.transparent,
                   child: Center(
                     child: Image.asset(
-                      'assets/images/OMP-188-60.png',
-                      width: 188,
-                      height: 60,
+                      'assets/images/Logo-OMP-122-40.png',
+                      width: 122,
+                      height: 40,
                       fit: BoxFit.contain,
                     ),
                   ),

@@ -33,6 +33,7 @@ class RequestFeatureModel extends FlutterFlowModel {
   }
 
   void dispose() {
+    mainMenuModel.dispose();
     textController1?.dispose();
     textController2?.dispose();
     textController3?.dispose();

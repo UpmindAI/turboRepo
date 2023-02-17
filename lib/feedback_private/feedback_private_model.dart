@@ -21,7 +21,9 @@ class FeedbackPrivateModel extends FlutterFlowModel {
     mainMenuModel = createModel(context, () => MainMenuModel());
   }
 
-  void dispose() {}
+  void dispose() {
+    mainMenuModel.dispose();
+  }
 
   /// Additional helper methods are added here.
 

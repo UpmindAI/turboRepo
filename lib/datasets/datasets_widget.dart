@@ -53,7 +53,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
       });
     });
 
-    _model.scrapeURLController = TextEditingController();
+    _model.scrapeURLController ??= TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -425,7 +425,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                               ),
                                                               options:
                                                                   FFButtonOptions(
-                                                                width: 190,
+                                                                width: 210,
                                                                 height: 39,
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
@@ -661,51 +661,6 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                           context)
                                                                       .bodyText1Family),
                                                         ),
-                                                  ),
-                                                ),
-                                                Expanded(
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 0, 10, 0),
-                                                    child: Stack(
-                                                      children: [
-                                                        Align(
-                                                          alignment:
-                                                              AlignmentDirectional(
-                                                                  1, 0),
-                                                          child: InkWell(
-                                                            onTap: () async {
-                                                              setState(() {
-                                                                FFAppState()
-                                                                    .selectedDocuments = [];
-                                                              });
-                                                            },
-                                                            child: Text(
-                                                              'Clear',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyText1
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyText1Family,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .tertiaryColor,
-                                                                    fontSize:
-                                                                        11,
-                                                                    useGoogleFonts: GoogleFonts
-                                                                            .asMap()
-                                                                        .containsKey(
-                                                                            FlutterFlowTheme.of(context).bodyText1Family),
-                                                                  ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
                                                   ),
                                                 ),
                                               ],
@@ -952,8 +907,6 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                                 ]),
                                                                                               };
                                                                                               await columnUserDatasetsRecord.reference.update(userDatasetsUpdateData);
-
-                                                                                              setState(() {});
                                                                                             } else {
                                                                                               final userDatasetsUpdateData = {
                                                                                                 'active_docs': FieldValue.arrayRemove([
@@ -1180,8 +1133,8 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                         OutlineInputBorder(
                                                                       borderSide:
                                                                           BorderSide(
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primaryColor,
+                                                                        color: Color(
+                                                                            0x00000000),
                                                                         width:
                                                                             1,
                                                                       ),

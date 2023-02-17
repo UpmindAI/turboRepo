@@ -26,9 +26,9 @@ class _SignUpWidgetState extends State<SignUpWidget> {
     super.initState();
     _model = createModel(context, () => SignUpModel());
 
-    _model.emailSignupController = TextEditingController();
-    _model.passwordController = TextEditingController();
-    _model.passwordRepeatController = TextEditingController();
+    _model.emailSignupController ??= TextEditingController();
+    _model.passwordController ??= TextEditingController();
+    _model.passwordRepeatController ??= TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 

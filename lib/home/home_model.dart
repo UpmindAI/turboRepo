@@ -44,6 +44,7 @@ class HomeModel extends FlutterFlowModel {
   }
 
   void dispose() {
+    mainMenuModel.dispose();
     textController?.dispose();
   }
 

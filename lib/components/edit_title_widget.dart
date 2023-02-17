@@ -37,14 +37,14 @@ class _EditTitleWidgetState extends State<EditTitleWidget> {
     super.initState();
     _model = createModel(context, () => EditTitleModel());
 
-    _model.textController =
+    _model.textController ??=
         TextEditingController(text: widget.activeDoc!.docTitle);
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
   void dispose() {
-    _model.dispose();
+    _model.maybeDispose();
 
     super.dispose();
   }
@@ -95,7 +95,7 @@ class _EditTitleWidgetState extends State<EditTitleWidget> {
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).alternate,
+                        color: Color(0x00000000),
                         width: 1,
                       ),
                       borderRadius: const BorderRadius.only(

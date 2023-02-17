@@ -26,7 +26,10 @@ class SettingsModel extends FlutterFlowModel {
     settingsPageModel = createModel(context, () => SettingsPageModel());
   }
 
-  void dispose() {}
+  void dispose() {
+    mainMenuModel.dispose();
+    settingsPageModel.dispose();
+  }
 
   /// Additional helper methods are added here.
 
