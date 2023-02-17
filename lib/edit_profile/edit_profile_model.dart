@@ -44,6 +44,7 @@ class EditProfileModel extends FlutterFlowModel {
   }
 
   void dispose() {
+    mainMenuModel.dispose();
     firstNameEditController?.dispose();
     lastNameEditController?.dispose();
     companyEditController?.dispose();

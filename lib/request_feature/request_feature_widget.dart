@@ -30,9 +30,9 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
     super.initState();
     _model = createModel(context, () => RequestFeatureModel());
 
-    _model.textController1 = TextEditingController();
-    _model.textController2 = TextEditingController();
-    _model.textController3 = TextEditingController();
+    _model.textController1 ??= TextEditingController();
+    _model.textController2 ??= TextEditingController();
+    _model.textController3 ??= TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -165,10 +165,7 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                                   focusedBorder:
                                                       OutlineInputBorder(
                                                     borderSide: BorderSide(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .tertiaryColor,
+                                                      color: Color(0x00000000),
                                                       width: 1,
                                                     ),
                                                     borderRadius:
@@ -250,10 +247,7 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                                   focusedBorder:
                                                       OutlineInputBorder(
                                                     borderSide: BorderSide(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .tertiaryColor,
+                                                      color: Color(0x00000000),
                                                       width: 1,
                                                     ),
                                                     borderRadius:
@@ -336,10 +330,7 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                                   focusedBorder:
                                                       OutlineInputBorder(
                                                     borderSide: BorderSide(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .tertiaryColor,
+                                                      color: Color(0x00000000),
                                                       width: 1,
                                                     ),
                                                     borderRadius:

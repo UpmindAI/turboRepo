@@ -34,7 +34,7 @@ class _UploadConfigWidgetState extends State<UploadConfigWidget> {
 
   @override
   void dispose() {
-    _model.dispose();
+    _model.maybeDispose();
 
     super.dispose();
   }

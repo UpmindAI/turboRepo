@@ -30,17 +30,17 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
     super.initState();
     _model = createModel(context, () => EditProfileModel());
 
-    _model.firstNameEditController = TextEditingController(
+    _model.firstNameEditController ??= TextEditingController(
         text: valueOrDefault(currentUserDocument?.firstName, ''));
-    _model.lastNameEditController = TextEditingController(
+    _model.lastNameEditController ??= TextEditingController(
         text: valueOrDefault(currentUserDocument?.lastName, ''));
-    _model.companyEditController = TextEditingController(
+    _model.companyEditController ??= TextEditingController(
         text: valueOrDefault(currentUserDocument?.company, ''));
-    _model.industryEditController = TextEditingController(
+    _model.industryEditController ??= TextEditingController(
         text: valueOrDefault(currentUserDocument?.industry, ''));
-    _model.roleEditController = TextEditingController(
+    _model.roleEditController ??= TextEditingController(
         text: valueOrDefault(currentUserDocument?.role, ''));
-    _model.phoneEditController =
+    _model.phoneEditController ??=
         TextEditingController(text: currentPhoneNumber);
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -167,9 +167,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                               ),
                                               focusedBorder: OutlineInputBorder(
                                                 borderSide: BorderSide(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .alternate,
+                                                  color: Color(0x00000000),
                                                   width: 1,
                                                 ),
                                                 borderRadius:
@@ -243,9 +241,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                               ),
                                               focusedBorder: OutlineInputBorder(
                                                 borderSide: BorderSide(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .alternate,
+                                                  color: Color(0x00000000),
                                                   width: 1,
                                                 ),
                                                 borderRadius:
@@ -319,9 +315,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                               ),
                                               focusedBorder: OutlineInputBorder(
                                                 borderSide: BorderSide(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .alternate,
+                                                  color: Color(0x00000000),
                                                   width: 1,
                                                 ),
                                                 borderRadius:
@@ -395,9 +389,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                               ),
                                               focusedBorder: OutlineInputBorder(
                                                 borderSide: BorderSide(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .alternate,
+                                                  color: Color(0x00000000),
                                                   width: 1,
                                                 ),
                                                 borderRadius:
@@ -471,9 +463,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                               ),
                                               focusedBorder: OutlineInputBorder(
                                                 borderSide: BorderSide(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .alternate,
+                                                  color: Color(0x00000000),
                                                   width: 1,
                                                 ),
                                                 borderRadius:
@@ -547,9 +537,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                               ),
                                               focusedBorder: OutlineInputBorder(
                                                 borderSide: BorderSide(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .alternate,
+                                                  color: Color(0x00000000),
                                                   width: 1,
                                                 ),
                                                 borderRadius:
@@ -634,8 +622,6 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                                       .primaryBackground,
                                             ),
                                           );
-
-                                          setState(() {});
                                         },
                                         text: 'Save',
                                         options: FFButtonOptions(
