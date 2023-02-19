@@ -78,7 +78,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.171',
+                'v0.172',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -308,8 +308,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                       OutlineInputBorder(
                                                                     borderSide:
                                                                         BorderSide(
-                                                                      color: Color(
-                                                                          0x00000000),
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .alternate,
                                                                       width: 2,
                                                                     ),
                                                                     borderRadius:

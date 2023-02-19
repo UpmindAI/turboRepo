@@ -103,7 +103,7 @@ class _AddDatasetWidgetState extends State<AddDatasetWidget> {
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: Color(0x00000000),
+                                  color: FlutterFlowTheme.of(context).alternate,
                                   width: 1,
                                 ),
                                 borderRadius: const BorderRadius.only(
@@ -113,7 +113,7 @@ class _AddDatasetWidgetState extends State<AddDatasetWidget> {
                               ),
                               errorBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: Color(0x00000000),
+                                  color: Color(0xFF980000),
                                   width: 1,
                                 ),
                                 borderRadius: const BorderRadius.only(
@@ -123,7 +123,7 @@ class _AddDatasetWidgetState extends State<AddDatasetWidget> {
                               ),
                               focusedErrorBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: Color(0x00000000),
+                                  color: Color(0xFF980000),
                                   width: 1,
                                 ),
                                 borderRadius: const BorderRadius.only(
@@ -160,7 +160,8 @@ class _AddDatasetWidgetState extends State<AddDatasetWidget> {
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Color(0x00000000),
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
                                     width: 1,
                                   ),
                                   borderRadius: const BorderRadius.only(
@@ -170,7 +171,7 @@ class _AddDatasetWidgetState extends State<AddDatasetWidget> {
                                 ),
                                 errorBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Color(0x00000000),
+                                    color: Color(0xFF980000),
                                     width: 1,
                                   ),
                                   borderRadius: const BorderRadius.only(
@@ -180,7 +181,7 @@ class _AddDatasetWidgetState extends State<AddDatasetWidget> {
                                 ),
                                 focusedErrorBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Color(0x00000000),
+                                    color: Color(0xFF980000),
                                     width: 1,
                                   ),
                                   borderRadius: const BorderRadius.only(

@@ -95,7 +95,8 @@ class _EditDatasetTitleWidgetState extends State<EditDatasetTitleWidget> {
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                        color: Color(0x00000000),
+                        color:
+                            FlutterFlowTheme.of(context).backgroundComponents,
                         width: 1,
                       ),
                       borderRadius: const BorderRadius.only(
