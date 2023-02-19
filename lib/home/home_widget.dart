@@ -78,7 +78,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.170',
+                'v0.171',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -235,7 +235,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
                                                                         .tertiaryColor,
-                                                                    size: 24,
+                                                                    size: 22,
                                                                   ),
                                                                 ),
                                                               ),
@@ -1023,157 +1023,106 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                       .of(context)
                                                                   .secondaryBackground,
                                                             ),
-                                                            child: Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              children: [
-                                                                Padding(
-                                                                  padding: EdgeInsetsDirectional
+                                                            child: Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          15,
+                                                                          20,
                                                                           0,
                                                                           0,
                                                                           0),
-                                                                  child:
-                                                                      InkWell(
-                                                                    onTap:
-                                                                        () async {
-                                                                      await showModalBottomSheet(
-                                                                        isScrollControlled:
-                                                                            true,
-                                                                        backgroundColor:
-                                                                            FlutterFlowTheme.of(context).secondaryBackground,
-                                                                        enableDrag:
-                                                                            false,
-                                                                        context:
-                                                                            context,
-                                                                        builder:
-                                                                            (context) {
-                                                                          return Padding(
-                                                                            padding:
-                                                                                MediaQuery.of(context).viewInsets,
-                                                                            child:
-                                                                                Container(
-                                                                              height: 400,
-                                                                              child: AddDatasetWidget(),
-                                                                            ),
-                                                                          );
-                                                                        },
-                                                                      ).then((value) =>
-                                                                          setState(
-                                                                              () {}));
-                                                                    },
-                                                                    child: Text(
-                                                                      '+',
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyText1
-                                                                          .override(
-                                                                            fontFamily:
-                                                                                FlutterFlowTheme.of(context).bodyText1Family,
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).tertiaryColor,
-                                                                            fontSize:
-                                                                                18,
-                                                                            fontWeight:
-                                                                                FontWeight.w900,
-                                                                            useGoogleFonts:
-                                                                                GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                          ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          2,
-                                                                          0,
-                                                                          0,
-                                                                          0),
-                                                                  child:
-                                                                      InkWell(
-                                                                    onTap:
-                                                                        () async {
-                                                                      await showModalBottomSheet(
-                                                                        isScrollControlled:
-                                                                            true,
-                                                                        backgroundColor:
-                                                                            FlutterFlowTheme.of(context).secondaryBackground,
-                                                                        enableDrag:
-                                                                            false,
-                                                                        context:
-                                                                            context,
-                                                                        builder:
-                                                                            (context) {
-                                                                          return Padding(
-                                                                            padding:
-                                                                                MediaQuery.of(context).viewInsets,
-                                                                            child:
-                                                                                Container(
-                                                                              height: 400,
-                                                                              child: AddDatasetWidget(),
-                                                                            ),
-                                                                          );
-                                                                        },
-                                                                      ).then((value) =>
-                                                                          setState(
-                                                                              () {}));
-                                                                    },
+                                                              child: Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                children: [
+                                                                  Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            2,
+                                                                            0,
+                                                                            0,
+                                                                            0),
                                                                     child:
-                                                                        FaIcon(
-                                                                      FontAwesomeIcons
-                                                                          .archive,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .tertiaryColor,
-                                                                      size: 18,
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                if (FFAppState()
-                                                                        .selectedDataset
-                                                                        .length >=
-                                                                    1)
-                                                                  Expanded(
-                                                                    child:
-                                                                        Align(
-                                                                      alignment:
-                                                                          AlignmentDirectional(
-                                                                              1,
-                                                                              0),
+                                                                        InkWell(
+                                                                      onTap:
+                                                                          () async {
+                                                                        await showModalBottomSheet(
+                                                                          isScrollControlled:
+                                                                              true,
+                                                                          backgroundColor:
+                                                                              FlutterFlowTheme.of(context).secondaryBackground,
+                                                                          enableDrag:
+                                                                              false,
+                                                                          context:
+                                                                              context,
+                                                                          builder:
+                                                                              (context) {
+                                                                            return Padding(
+                                                                              padding: MediaQuery.of(context).viewInsets,
+                                                                              child: Container(
+                                                                                height: 400,
+                                                                                child: AddDatasetWidget(),
+                                                                              ),
+                                                                            );
+                                                                          },
+                                                                        ).then((value) =>
+                                                                            setState(() {}));
+                                                                      },
                                                                       child:
-                                                                          Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            0,
-                                                                            0,
-                                                                            10,
+                                                                          Icon(
+                                                                        Icons
+                                                                            .create_new_folder_outlined,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .tertiaryColor,
+                                                                        size:
+                                                                            24,
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                  if (FFAppState()
+                                                                          .selectedDataset
+                                                                          .length >=
+                                                                      1)
+                                                                    Expanded(
+                                                                      child:
+                                                                          Align(
+                                                                        alignment: AlignmentDirectional(
+                                                                            1,
                                                                             0),
                                                                         child:
-                                                                            InkWell(
-                                                                          onTap:
-                                                                              () async {
-                                                                            FFAppState().update(() {
-                                                                              FFAppState().selectedDataset = [];
-                                                                            });
-
-                                                                            context.pushNamed('Home');
-                                                                          },
+                                                                            Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              0,
+                                                                              0,
+                                                                              10,
+                                                                              0),
                                                                           child:
-                                                                              Text(
-                                                                            'Clear',
-                                                                            style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                  fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                  color: FlutterFlowTheme.of(context).tertiaryColor,
-                                                                                  fontSize: 11,
-                                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                                ),
+                                                                              InkWell(
+                                                                            onTap:
+                                                                                () async {
+                                                                              FFAppState().update(() {
+                                                                                FFAppState().selectedDataset = [];
+                                                                              });
+
+                                                                              context.pushNamed('Home');
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              'Clear',
+                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                    fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                    color: FlutterFlowTheme.of(context).tertiaryColor,
+                                                                                    fontSize: 11,
+                                                                                    useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                  ),
+                                                                            ),
                                                                           ),
                                                                         ),
                                                                       ),
                                                                     ),
-                                                                  ),
-                                                              ],
+                                                                ],
+                                                              ),
                                                             ),
                                                           ),
                                                         ),
@@ -1392,7 +1341,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                                   },
                                                                                   child: Icon(
                                                                                     Icons.settings_outlined,
-                                                                                    color: Colors.black,
+                                                                                    color: FlutterFlowTheme.of(context).secondaryColor,
                                                                                     size: 24,
                                                                                   ),
                                                                                 ),
