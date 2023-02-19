@@ -66,18 +66,18 @@ class _RetreivingSummarizeWidgetState extends State<RetreivingSummarizeWidget>
           backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         ),
       );
-      _model.apiResultdataGPT = await RecursiveSummarizerCall.call(
+      _model.apiResultdataSummarize = await RecursiveSummarizerCall.call(
         idToken: currentJwtToken,
         datasetIdsList: FFAppState().selectedDataset,
         qid: FFAppState().setQid,
       );
-      if ((_model.apiResultdataGPT?.succeeded ?? true)) {
+      if ((_model.apiResultdataSummarize?.succeeded ?? true)) {
         context.pushNamed('Result');
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              (_model.apiResultdataGPT?.statusCode ?? 200).toString(),
+              (_model.apiResultdataSummarize?.statusCode ?? 200).toString(),
               style: TextStyle(
                 color: FlutterFlowTheme.of(context).primaryText,
               ),
@@ -312,7 +312,41 @@ class _RetreivingSummarizeWidgetState extends State<RetreivingSummarizeWidget>
                                         children: [
                                           Row(
                                             mainAxisSize: MainAxisSize.max,
-                                            children: [],
+                                            children: [
+                                              Expanded(
+                                                child: Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          0, 0),
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                0, 20, 0, 0),
+                                                    child: Text(
+                                                      'Creating your Summary. Please hold on.',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyText1Family,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .grayIcon,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyText1Family),
+                                                              ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                           Container(
                                             width: MediaQuery.of(context)

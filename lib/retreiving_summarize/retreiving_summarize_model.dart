@@ -16,7 +16,7 @@ class RetreivingSummarizeModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Backend Call - API (recursiveSummarizer)] action in retreivingSummarize widget.
-  ApiCallResponse? apiResultdataGPT;
+  ApiCallResponse? apiResultdataSummarize;
   // Model for mainMenu component.
   late MainMenuModel mainMenuModel;
 

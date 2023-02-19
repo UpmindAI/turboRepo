@@ -16,7 +16,7 @@ class RetreivingMIXModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Backend Call - API (datasetGPTserver)] action in retreivingMIX widget.
-  ApiCallResponse? apiResultdataGPT;
+  ApiCallResponse? apiResultMIX;
   // Model for mainMenu component.
   late MainMenuModel mainMenuModel;
 
