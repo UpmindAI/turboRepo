@@ -111,11 +111,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => HistoryWidget(),
             ),
             FFRoute(
-              name: 'retreiving',
-              path: 'retreiving',
-              builder: (context, params) => RetreivingWidget(),
-            ),
-            FFRoute(
               name: 'Result',
               path: 'result',
               builder: (context, params) => ResultWidget(),
@@ -161,6 +156,21 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'Chat',
               path: 'chat',
               builder: (context, params) => ChatWidget(),
+            ),
+            FFRoute(
+              name: 'retreivingMIX',
+              path: 'retreivingMIX',
+              builder: (context, params) => RetreivingMIXWidget(),
+            ),
+            FFRoute(
+              name: 'retreivingGPT',
+              path: 'retreivingGPT',
+              builder: (context, params) => RetreivingGPTWidget(),
+            ),
+            FFRoute(
+              name: 'retreivingSummarize',
+              path: 'retreivingSummarize',
+              builder: (context, params) => RetreivingSummarizeWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

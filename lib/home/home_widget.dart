@@ -42,7 +42,7 @@ class _HomeWidgetState extends State<HomeWidget> {
     super.initState();
     _model = createModel(context, () => HomeModel());
 
-    _model.textController ??= TextEditingController(
+    _model.promptFieldController ??= TextEditingController(
         text: widget.userCompletion != null
             ? '${widget.userCompletion!.prompt}${widget.userCompletion!.completion}'
             : '');
@@ -78,7 +78,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.167',
+                'v0.168',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -196,7 +196,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                           () async {
                                                                         await Clipboard.setData(ClipboardData(
                                                                             text:
-                                                                                _model.textController.text));
+                                                                                _model.promptFieldController.text));
                                                                       },
                                                                       child:
                                                                           Text(
@@ -226,7 +226,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                       () async {
                                                                     await Clipboard.setData(ClipboardData(
                                                                         text: _model
-                                                                            .textController
+                                                                            .promptFieldController
                                                                             .text));
                                                                   },
                                                                   child: FaIcon(
@@ -256,128 +256,175 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                     mainAxisAlignment:
                                                         MainAxisAlignment.start,
                                                     children: [
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(20, 0,
-                                                                    20, 10),
-                                                        child: TextFormField(
-                                                          controller: _model
-                                                              .textController,
-                                                          autofocus: true,
-                                                          obscureText: false,
-                                                          decoration:
-                                                              InputDecoration(
-                                                            isDense: true,
-                                                            labelText:
-                                                                'Prompt goes here...',
-                                                            hintStyle:
-                                                                FlutterFlowTheme.of(
+                                                      Stack(
+                                                        children: [
+                                                          if (_model
+                                                                  .dropDownValue !=
+                                                              'Summarize')
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          20,
+                                                                          0,
+                                                                          20,
+                                                                          10),
+                                                              child:
+                                                                  TextFormField(
+                                                                controller: _model
+                                                                    .promptFieldController,
+                                                                autofocus: true,
+                                                                obscureText:
+                                                                    false,
+                                                                decoration:
+                                                                    InputDecoration(
+                                                                  isDense: true,
+                                                                  labelText:
+                                                                      'Prompt goes here...',
+                                                                  hintStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyText2,
+                                                                  enabledBorder:
+                                                                      OutlineInputBorder(
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .lineColor,
+                                                                      width: 2,
+                                                                    ),
+                                                                    borderRadius:
+                                                                        const BorderRadius
+                                                                            .only(
+                                                                      topLeft: Radius
+                                                                          .circular(
+                                                                              4.0),
+                                                                      topRight:
+                                                                          Radius.circular(
+                                                                              4.0),
+                                                                    ),
+                                                                  ),
+                                                                  focusedBorder:
+                                                                      OutlineInputBorder(
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                      color: Color(
+                                                                          0x00000000),
+                                                                      width: 2,
+                                                                    ),
+                                                                    borderRadius:
+                                                                        const BorderRadius
+                                                                            .only(
+                                                                      topLeft: Radius
+                                                                          .circular(
+                                                                              4.0),
+                                                                      topRight:
+                                                                          Radius.circular(
+                                                                              4.0),
+                                                                    ),
+                                                                  ),
+                                                                  errorBorder:
+                                                                      OutlineInputBorder(
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                      color: Color(
+                                                                          0x00000000),
+                                                                      width: 2,
+                                                                    ),
+                                                                    borderRadius:
+                                                                        const BorderRadius
+                                                                            .only(
+                                                                      topLeft: Radius
+                                                                          .circular(
+                                                                              4.0),
+                                                                      topRight:
+                                                                          Radius.circular(
+                                                                              4.0),
+                                                                    ),
+                                                                  ),
+                                                                  focusedErrorBorder:
+                                                                      OutlineInputBorder(
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                      color: Color(
+                                                                          0x00000000),
+                                                                      width: 2,
+                                                                    ),
+                                                                    borderRadius:
+                                                                        const BorderRadius
+                                                                            .only(
+                                                                      topLeft: Radius
+                                                                          .circular(
+                                                                              4.0),
+                                                                      topRight:
+                                                                          Radius.circular(
+                                                                              4.0),
+                                                                    ),
+                                                                  ),
+                                                                  filled: true,
+                                                                  fillColor: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryBackground,
+                                                                ),
+                                                                style: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .bodyText2,
-                                                            enabledBorder:
-                                                                OutlineInputBorder(
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: FlutterFlowTheme.of(
+                                                                    .bodyText1
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyText1Family,
+                                                                      fontSize:
+                                                                          18,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).bodyText1Family),
+                                                                    ),
+                                                                maxLines: 30,
+                                                                minLines: 30,
+                                                                validator: _model
+                                                                    .promptFieldControllerValidator
+                                                                    .asValidator(
+                                                                        context),
+                                                              ),
+                                                            ),
+                                                          if (_model
+                                                                  .dropDownValue ==
+                                                              'Summarize')
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          20,
+                                                                          0,
+                                                                          20,
+                                                                          0),
+                                                              child: Container(
+                                                                width: MediaQuery.of(
                                                                         context)
-                                                                    .lineColor,
-                                                                width: 2,
-                                                              ),
-                                                              borderRadius:
-                                                                  const BorderRadius
-                                                                      .only(
-                                                                topLeft: Radius
-                                                                    .circular(
-                                                                        4.0),
-                                                                topRight: Radius
-                                                                    .circular(
-                                                                        4.0),
-                                                              ),
-                                                            ),
-                                                            focusedBorder:
-                                                                OutlineInputBorder(
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: Color(
-                                                                    0x00000000),
-                                                                width: 2,
-                                                              ),
-                                                              borderRadius:
-                                                                  const BorderRadius
-                                                                      .only(
-                                                                topLeft: Radius
-                                                                    .circular(
-                                                                        4.0),
-                                                                topRight: Radius
-                                                                    .circular(
-                                                                        4.0),
+                                                                    .size
+                                                                    .width,
+                                                                height: 652,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryBackground,
+                                                                ),
+                                                                child: Align(
+                                                                  alignment:
+                                                                      AlignmentDirectional(
+                                                                          0, 0),
+                                                                  child: Text(
+                                                                    'Select one or multiple Datasets and create a full summary or its contents.',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyText1,
+                                                                  ),
+                                                                ),
                                                               ),
                                                             ),
-                                                            errorBorder:
-                                                                OutlineInputBorder(
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: Color(
-                                                                    0x00000000),
-                                                                width: 2,
-                                                              ),
-                                                              borderRadius:
-                                                                  const BorderRadius
-                                                                      .only(
-                                                                topLeft: Radius
-                                                                    .circular(
-                                                                        4.0),
-                                                                topRight: Radius
-                                                                    .circular(
-                                                                        4.0),
-                                                              ),
-                                                            ),
-                                                            focusedErrorBorder:
-                                                                OutlineInputBorder(
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: Color(
-                                                                    0x00000000),
-                                                                width: 2,
-                                                              ),
-                                                              borderRadius:
-                                                                  const BorderRadius
-                                                                      .only(
-                                                                topLeft: Radius
-                                                                    .circular(
-                                                                        4.0),
-                                                                topRight: Radius
-                                                                    .circular(
-                                                                        4.0),
-                                                              ),
-                                                            ),
-                                                            filled: true,
-                                                            fillColor: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondaryBackground,
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText1
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyText1Family,
-                                                                fontSize: 18,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyText1Family),
-                                                              ),
-                                                          maxLines: 30,
-                                                          minLines: 30,
-                                                          validator: _model
-                                                              .textControllerValidator
-                                                              .asValidator(
-                                                                  context),
-                                                        ),
+                                                        ],
                                                       ),
                                                       Column(
                                                         mainAxisSize:
@@ -390,96 +437,187 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                             children: [
                                                               Stack(
                                                                 children: [
-                                                                  Align(
-                                                                    alignment:
-                                                                        AlignmentDirectional(
-                                                                            1,
-                                                                            -1),
-                                                                    child:
-                                                                        Padding(
-                                                                      padding: EdgeInsetsDirectional
-                                                                          .fromSTEB(
-                                                                              20,
-                                                                              20,
-                                                                              0,
-                                                                              0),
-                                                                      child:
-                                                                          FFButtonWidget(
-                                                                        onPressed:
-                                                                            () async {
-                                                                          FFAppState()
-                                                                              .update(() {
-                                                                            FFAppState().setQid =
-                                                                                random_data.randomString(
-                                                                              7,
-                                                                              7,
-                                                                              true,
-                                                                              true,
-                                                                              true,
-                                                                            );
-                                                                            FFAppState().setEngine =
-                                                                                _model.dropDownValue!;
-                                                                          });
-                                                                          await Future.delayed(
-                                                                              const Duration(milliseconds: 500));
+                                                                  if (valueOrDefault(
+                                                                          currentUserDocument
+                                                                              ?.totalCredits,
+                                                                          0.0) >=
+                                                                      1.0)
+                                                                    AuthUserStreamWidget(
+                                                                      builder:
+                                                                          (context) =>
+                                                                              Stack(
+                                                                        children: [
+                                                                          if (_model.dropDownValue ==
+                                                                              'My Data + GPT')
+                                                                            Align(
+                                                                              alignment: AlignmentDirectional(1, -1),
+                                                                              child: Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(20, 20, 0, 0),
+                                                                                child: FFButtonWidget(
+                                                                                  onPressed: () async {
+                                                                                    FFAppState().update(() {
+                                                                                      FFAppState().setQid = random_data.randomString(
+                                                                                        7,
+                                                                                        7,
+                                                                                        true,
+                                                                                        true,
+                                                                                        true,
+                                                                                      );
+                                                                                      FFAppState().setEngine = _model.dropDownValue!;
+                                                                                    });
+                                                                                    await Future.delayed(const Duration(milliseconds: 500));
 
-                                                                          final userPromptsCreateData =
-                                                                              createUserPromptsRecordData(
-                                                                            qid:
-                                                                                FFAppState().setQid,
-                                                                            prompt:
-                                                                                _model.textController.text,
-                                                                          );
-                                                                          var userPromptsRecordReference =
-                                                                              UserPromptsRecord.createDoc(currentUserReference!);
-                                                                          await userPromptsRecordReference
-                                                                              .set(userPromptsCreateData);
-                                                                          _model.setPrompt = UserPromptsRecord.getDocumentFromData(
-                                                                              userPromptsCreateData,
-                                                                              userPromptsRecordReference);
-                                                                          setState(
-                                                                              () {
-                                                                            _model.textController?.clear();
-                                                                          });
+                                                                                    final userPromptsCreateData = createUserPromptsRecordData(
+                                                                                      qid: FFAppState().setQid,
+                                                                                      prompt: _model.promptFieldController.text,
+                                                                                    );
+                                                                                    var userPromptsRecordReference = UserPromptsRecord.createDoc(currentUserReference!);
+                                                                                    await userPromptsRecordReference.set(userPromptsCreateData);
+                                                                                    _model.setPrompt = UserPromptsRecord.getDocumentFromData(userPromptsCreateData, userPromptsRecordReference);
+                                                                                    setState(() {
+                                                                                      _model.promptFieldController?.clear();
+                                                                                    });
 
-                                                                          context
-                                                                              .pushNamed('retreiving');
+                                                                                    context.pushNamed('retreivingMIX');
 
-                                                                          setState(
-                                                                              () {});
-                                                                        },
-                                                                        text:
-                                                                            'OMP!',
-                                                                        options:
-                                                                            FFButtonOptions(
-                                                                          width:
-                                                                              130,
-                                                                          height:
-                                                                              40,
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).primaryColor,
-                                                                          textStyle: FlutterFlowTheme.of(context)
-                                                                              .subtitle2
-                                                                              .override(
-                                                                                fontFamily: FlutterFlowTheme.of(context).subtitle2Family,
-                                                                                color: Colors.white,
-                                                                                fontSize: 20,
-                                                                                fontWeight: FontWeight.bold,
-                                                                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).subtitle2Family),
+                                                                                    setState(() {});
+                                                                                  },
+                                                                                  text: 'OMP!',
+                                                                                  options: FFButtonOptions(
+                                                                                    width: 130,
+                                                                                    height: 40,
+                                                                                    color: FlutterFlowTheme.of(context).primaryColor,
+                                                                                    textStyle: FlutterFlowTheme.of(context).subtitle2.override(
+                                                                                          fontFamily: FlutterFlowTheme.of(context).subtitle2Family,
+                                                                                          color: Colors.white,
+                                                                                          fontSize: 20,
+                                                                                          fontWeight: FontWeight.bold,
+                                                                                          useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).subtitle2Family),
+                                                                                        ),
+                                                                                    borderSide: BorderSide(
+                                                                                      color: Colors.transparent,
+                                                                                      width: 1,
+                                                                                    ),
+                                                                                    borderRadius: BorderRadius.circular(0),
+                                                                                  ),
+                                                                                ),
                                                                               ),
-                                                                          borderSide:
-                                                                              BorderSide(
-                                                                            color:
-                                                                                Colors.transparent,
-                                                                            width:
-                                                                                1,
-                                                                          ),
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(0),
-                                                                        ),
+                                                                            ),
+                                                                          if (_model.dropDownValue ==
+                                                                              'Summarize')
+                                                                            Align(
+                                                                              alignment: AlignmentDirectional(1, -1),
+                                                                              child: Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(20, 20, 0, 0),
+                                                                                child: FFButtonWidget(
+                                                                                  onPressed: () async {
+                                                                                    FFAppState().update(() {
+                                                                                      FFAppState().setQid = random_data.randomString(
+                                                                                        7,
+                                                                                        7,
+                                                                                        true,
+                                                                                        true,
+                                                                                        true,
+                                                                                      );
+                                                                                      FFAppState().setEngine = _model.dropDownValue!;
+                                                                                    });
+                                                                                    await Future.delayed(const Duration(milliseconds: 500));
+
+                                                                                    final userPromptsCreateData = createUserPromptsRecordData(
+                                                                                      qid: FFAppState().setQid,
+                                                                                      prompt: _model.promptFieldController.text,
+                                                                                    );
+                                                                                    var userPromptsRecordReference = UserPromptsRecord.createDoc(currentUserReference!);
+                                                                                    await userPromptsRecordReference.set(userPromptsCreateData);
+                                                                                    _model.setPromptSummarize = UserPromptsRecord.getDocumentFromData(userPromptsCreateData, userPromptsRecordReference);
+                                                                                    setState(() {
+                                                                                      _model.promptFieldController?.clear();
+                                                                                    });
+
+                                                                                    context.pushNamed('retreivingSummarize');
+
+                                                                                    setState(() {});
+                                                                                  },
+                                                                                  text: 'OMP!',
+                                                                                  options: FFButtonOptions(
+                                                                                    width: 130,
+                                                                                    height: 40,
+                                                                                    color: FlutterFlowTheme.of(context).primaryColor,
+                                                                                    textStyle: FlutterFlowTheme.of(context).subtitle2.override(
+                                                                                          fontFamily: FlutterFlowTheme.of(context).subtitle2Family,
+                                                                                          color: Colors.white,
+                                                                                          fontSize: 20,
+                                                                                          fontWeight: FontWeight.bold,
+                                                                                          useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).subtitle2Family),
+                                                                                        ),
+                                                                                    borderSide: BorderSide(
+                                                                                      color: Colors.transparent,
+                                                                                      width: 1,
+                                                                                    ),
+                                                                                    borderRadius: BorderRadius.circular(0),
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                          if (_model.dropDownValue ==
+                                                                              'GPT Only')
+                                                                            Align(
+                                                                              alignment: AlignmentDirectional(1, -1),
+                                                                              child: Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(20, 20, 0, 0),
+                                                                                child: FFButtonWidget(
+                                                                                  onPressed: () async {
+                                                                                    FFAppState().update(() {
+                                                                                      FFAppState().setQid = random_data.randomString(
+                                                                                        7,
+                                                                                        7,
+                                                                                        true,
+                                                                                        true,
+                                                                                        true,
+                                                                                      );
+                                                                                      FFAppState().setEngine = _model.dropDownValue!;
+                                                                                    });
+                                                                                    await Future.delayed(const Duration(milliseconds: 500));
+
+                                                                                    final userPromptsCreateData = createUserPromptsRecordData(
+                                                                                      qid: FFAppState().setQid,
+                                                                                      prompt: _model.promptFieldController.text,
+                                                                                    );
+                                                                                    var userPromptsRecordReference = UserPromptsRecord.createDoc(currentUserReference!);
+                                                                                    await userPromptsRecordReference.set(userPromptsCreateData);
+                                                                                    _model.setPromptGPT = UserPromptsRecord.getDocumentFromData(userPromptsCreateData, userPromptsRecordReference);
+                                                                                    setState(() {
+                                                                                      _model.promptFieldController?.clear();
+                                                                                    });
+
+                                                                                    context.pushNamed('retreivingGPT');
+
+                                                                                    setState(() {});
+                                                                                  },
+                                                                                  text: 'OMP!',
+                                                                                  options: FFButtonOptions(
+                                                                                    width: 130,
+                                                                                    height: 40,
+                                                                                    color: FlutterFlowTheme.of(context).primaryColor,
+                                                                                    textStyle: FlutterFlowTheme.of(context).subtitle2.override(
+                                                                                          fontFamily: FlutterFlowTheme.of(context).subtitle2Family,
+                                                                                          color: Colors.white,
+                                                                                          fontSize: 20,
+                                                                                          fontWeight: FontWeight.bold,
+                                                                                          useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).subtitle2Family),
+                                                                                        ),
+                                                                                    borderSide: BorderSide(
+                                                                                      color: Colors.transparent,
+                                                                                      width: 1,
+                                                                                    ),
+                                                                                    borderRadius: BorderRadius.circular(0),
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                        ],
                                                                       ),
                                                                     ),
-                                                                  ),
                                                                   if ((valueOrDefault(
                                                                               currentUserDocument
                                                                                   ?.totalCredits,
@@ -596,7 +734,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                                 'My Data + GPT',
                                                                         options: [
                                                                           'My Data + GPT',
-                                                                          'GPT Only'
+                                                                          'GPT Only',
+                                                                          'Summarize'
                                                                         ],
                                                                         onChanged:
                                                                             (val) =>

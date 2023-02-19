@@ -1,7 +1,6 @@
 import '../auth/auth_util.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../components/main_menu_widget.dart';
-import '../components/payment_widget.dart';
 import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -12,19 +11,19 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'retreiving_model.dart';
-export 'retreiving_model.dart';
+import 'retreiving_m_i_x_model.dart';
+export 'retreiving_m_i_x_model.dart';
 
-class RetreivingWidget extends StatefulWidget {
-  const RetreivingWidget({Key? key}) : super(key: key);
+class RetreivingMIXWidget extends StatefulWidget {
+  const RetreivingMIXWidget({Key? key}) : super(key: key);
 
   @override
-  _RetreivingWidgetState createState() => _RetreivingWidgetState();
+  _RetreivingMIXWidgetState createState() => _RetreivingMIXWidgetState();
 }
 
-class _RetreivingWidgetState extends State<RetreivingWidget>
+class _RetreivingMIXWidgetState extends State<RetreivingMIXWidget>
     with TickerProviderStateMixin {
-  late RetreivingModel _model;
+  late RetreivingMIXModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _unfocusNode = FocusNode();
@@ -48,115 +47,50 @@ class _RetreivingWidgetState extends State<RetreivingWidget>
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => RetreivingModel());
+    _model = createModel(context, () => RetreivingMIXModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if ((valueOrDefault(currentUserDocument?.totalCredits, 0.0) <= 0.0) ||
-          (valueOrDefault(currentUserDocument?.totalCredits, 0.0) == null)) {
-        await showModalBottomSheet(
-          isScrollControlled: true,
-          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-          enableDrag: false,
-          context: context,
-          builder: (context) {
-            return Padding(
-              padding: MediaQuery.of(context).viewInsets,
-              child: Container(
-                height: 700,
-                child: PaymentWidget(),
-              ),
-            );
-          },
-        ).then((value) => setState(() {}));
-      } else {
-        if (FFAppState().setEngine == 'GPT Only') {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                'Please hold on while we are retreiving your results.',
-                style: TextStyle(
-                  color: FlutterFlowTheme.of(context).primaryText,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
-              duration: Duration(milliseconds: 4000),
-              backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'Please hold on while we are retreiving your results.',
+            style: TextStyle(
+              color: FlutterFlowTheme.of(context).primaryText,
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
             ),
-          );
-          _model.apiResultGPT = await GPTqueryCall.call(
-            qid: FFAppState().setQid,
-            idToken: currentJwtToken,
-          );
-          if ((_model.apiResultGPT?.succeeded ?? true)) {
-            context.pushNamed('Result');
-          } else {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(
-                  (_model.apiResultGPT?.statusCode ?? 200).toString(),
-                  style: TextStyle(
-                    color: FlutterFlowTheme.of(context).primaryText,
-                  ),
-                ),
-                duration: Duration(milliseconds: 4000),
-                backgroundColor: Color(0x00000000),
+          ),
+          duration: Duration(milliseconds: 7000),
+          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        ),
+      );
+      _model.apiResultdataGPT = await DatasetGPTserverCall.call(
+        qid: FFAppState().setQid,
+        datasetIdsList: FFAppState().selectedDataset,
+        topK: FFAppState().setTopK,
+        idToken: currentJwtToken,
+      );
+      if ((_model.apiResultdataGPT?.succeeded ?? true)) {
+        context.pushNamed('Result');
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              (_model.apiResultdataGPT?.statusCode ?? 200).toString(),
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).primaryText,
               ),
-            );
-            context.pop();
-            return;
-          }
-        } else {
-          if (FFAppState().setEngine == 'My Data + GPT') {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(
-                  'Please hold on while we are retreiving your results.',
-                  style: TextStyle(
-                    color: FlutterFlowTheme.of(context).primaryText,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                ),
-                duration: Duration(milliseconds: 7000),
-                backgroundColor:
-                    FlutterFlowTheme.of(context).secondaryBackground,
-              ),
-            );
-            _model.apiResultdataGPT = await DatasetGPTserverCall.call(
-              qid: FFAppState().setQid,
-              datasetIdsList: FFAppState().selectedDataset,
-              topK: FFAppState().setTopK,
-              idToken: currentJwtToken,
-            );
-            if ((_model.apiResultdataGPT?.succeeded ?? true)) {
-              context.pushNamed('Result');
-            } else {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    (_model.apiResultdataGPT?.statusCode ?? 200).toString(),
-                    style: TextStyle(
-                      color: FlutterFlowTheme.of(context).primaryText,
-                    ),
-                  ),
-                  duration: Duration(milliseconds: 4000),
-                  backgroundColor: Color(0x00000000),
-                ),
-              );
-              context.pop();
-              return;
-            }
-
-            context.pushNamed('Result');
-          } else {
-            context.pop();
-          }
-        }
-
+            ),
+            duration: Duration(milliseconds: 4000),
+            backgroundColor: Color(0x00000000),
+          ),
+        );
+        context.pop();
         return;
       }
+
+      context.pushNamed('Result');
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
