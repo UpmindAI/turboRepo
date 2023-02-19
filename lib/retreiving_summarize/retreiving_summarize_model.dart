@@ -1,7 +1,6 @@
 import '../auth/auth_util.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../components/main_menu_widget.dart';
-import '../components/payment_widget.dart';
 import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -13,12 +12,10 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class RetreivingModel extends FlutterFlowModel {
+class RetreivingSummarizeModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
-  // Stores action output result for [Backend Call - API (GPTquery)] action in retreiving widget.
-  ApiCallResponse? apiResultGPT;
-  // Stores action output result for [Backend Call - API (datasetGPTserver)] action in retreiving widget.
+  // Stores action output result for [Backend Call - API (recursiveSummarizer)] action in retreivingSummarize widget.
   ApiCallResponse? apiResultdataGPT;
   // Model for mainMenu component.
   late MainMenuModel mainMenuModel;

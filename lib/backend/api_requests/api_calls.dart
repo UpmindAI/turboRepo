@@ -188,6 +188,36 @@ class MultiUploadserverCall {
   }
 }
 
+class RecursiveSummarizerCall {
+  static Future<ApiCallResponse> call({
+    String? idToken = '',
+    List<String>? datasetIdsList,
+    String? qid = '',
+  }) {
+    final datasetIds = _serializeList(datasetIdsList);
+
+    final body = '''
+{
+  "id_token": "${idToken}",
+  "dataset_ids": ${datasetIds},
+  "qid": "${qid}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'recursiveSummarizer',
+      apiUrl: 'https://recursivesummarizer-p67td2b2aq-uc.a.run.app',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;

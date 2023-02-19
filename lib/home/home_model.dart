@@ -24,11 +24,15 @@ class HomeModel extends FlutterFlowModel {
   final formKey = GlobalKey<FormState>();
   // Model for mainMenu component.
   late MainMenuModel mainMenuModel;
-  // State field(s) for TextField widget.
-  TextEditingController? textController;
-  String? Function(BuildContext, String?)? textControllerValidator;
-  // Stores action output result for [Backend Call - Create Document] action in ButtonOn widget.
+  // State field(s) for PromptField widget.
+  TextEditingController? promptFieldController;
+  String? Function(BuildContext, String?)? promptFieldControllerValidator;
+  // Stores action output result for [Backend Call - Create Document] action in ButtonMix widget.
   UserPromptsRecord? setPrompt;
+  // Stores action output result for [Backend Call - Create Document] action in ButtonSummarize widget.
+  UserPromptsRecord? setPromptSummarize;
+  // Stores action output result for [Backend Call - Create Document] action in ButtonGPT widget.
+  UserPromptsRecord? setPromptGPT;
   // State field(s) for DropDown widget.
   String? dropDownValue;
   // State field(s) for Checkbox widget.
@@ -45,7 +49,7 @@ class HomeModel extends FlutterFlowModel {
 
   void dispose() {
     mainMenuModel.dispose();
-    textController?.dispose();
+    promptFieldController?.dispose();
   }
 
   /// Additional helper methods are added here.
