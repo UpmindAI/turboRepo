@@ -240,8 +240,9 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                                 OutlineInputBorder(
                                                               borderSide:
                                                                   BorderSide(
-                                                                color: Color(
-                                                                    0x00000000),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
                                                                 width: 1,
                                                               ),
                                                               borderRadius:
@@ -254,7 +255,7 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                               borderSide:
                                                                   BorderSide(
                                                                 color: Color(
-                                                                    0x00000000),
+                                                                    0xFF980000),
                                                                 width: 1,
                                                               ),
                                                               borderRadius:
@@ -267,7 +268,7 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                               borderSide:
                                                                   BorderSide(
                                                                 color: Color(
-                                                                    0x00000000),
+                                                                    0xFF980000),
                                                                 width: 1,
                                                               ),
                                                               borderRadius:
@@ -335,8 +336,9 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                                 OutlineInputBorder(
                                                               borderSide:
                                                                   BorderSide(
-                                                                color: Color(
-                                                                    0x00000000),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
                                                                 width: 1,
                                                               ),
                                                               borderRadius:
@@ -349,7 +351,7 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                               borderSide:
                                                                   BorderSide(
                                                                 color: Color(
-                                                                    0x00000000),
+                                                                    0xFF980000),
                                                                 width: 1,
                                                               ),
                                                               borderRadius:
@@ -362,7 +364,7 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                               borderSide:
                                                                   BorderSide(
                                                                 color: Color(
-                                                                    0x00000000),
+                                                                    0xFF980000),
                                                                 width: 1,
                                                               ),
                                                               borderRadius:
@@ -455,8 +457,9 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                               OutlineInputBorder(
                                                             borderSide:
                                                                 BorderSide(
-                                                              color: Color(
-                                                                  0x00000000),
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryText,
                                                               width: 1,
                                                             ),
                                                             borderRadius:
@@ -469,7 +472,7 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                             borderSide:
                                                                 BorderSide(
                                                               color: Color(
-                                                                  0x00000000),
+                                                                  0xFF980000),
                                                               width: 1,
                                                             ),
                                                             borderRadius:
@@ -482,7 +485,7 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                             borderSide:
                                                                 BorderSide(
                                                               color: Color(
-                                                                  0x00000000),
+                                                                  0xFF980000),
                                                               width: 1,
                                                             ),
                                                             borderRadius:
@@ -549,8 +552,9 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                                 OutlineInputBorder(
                                                               borderSide:
                                                                   BorderSide(
-                                                                color: Color(
-                                                                    0x00000000),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
                                                                 width: 1,
                                                               ),
                                                               borderRadius:
@@ -563,7 +567,7 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                               borderSide:
                                                                   BorderSide(
                                                                 color: Color(
-                                                                    0x00000000),
+                                                                    0xFF980000),
                                                                 width: 1,
                                                               ),
                                                               borderRadius:
@@ -576,7 +580,7 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                               borderSide:
                                                                   BorderSide(
                                                                 color: Color(
-                                                                    0x00000000),
+                                                                    0xFF980000),
                                                                 width: 1,
                                                               ),
                                                               borderRadius:
@@ -672,8 +676,9 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                                 OutlineInputBorder(
                                                               borderSide:
                                                                   BorderSide(
-                                                                color: Color(
-                                                                    0x00000000),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
                                                                 width: 1,
                                                               ),
                                                               borderRadius:
@@ -686,7 +691,7 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                               borderSide:
                                                                   BorderSide(
                                                                 color: Color(
-                                                                    0x00000000),
+                                                                    0xFF980000),
                                                                 width: 1,
                                                               ),
                                                               borderRadius:
@@ -699,7 +704,7 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                               borderSide:
                                                                   BorderSide(
                                                                 color: Color(
-                                                                    0x00000000),
+                                                                    0xFF980000),
                                                                 width: 1,
                                                               ),
                                                               borderRadius:
@@ -922,107 +927,126 @@ class _SupportWidgetState extends State<SupportWidget> {
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(20, 0, 0, 0),
-                                              child: Container(
-                                                width: 820,
-                                                decoration: BoxDecoration(),
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(0, 40, 0, 0),
-                                                  child: TextFormField(
-                                                    controller: _model
-                                                        .questionController,
-                                                    autofocus: true,
-                                                    obscureText: false,
-                                                    decoration: InputDecoration(
-                                                      labelText:
-                                                          'What can we help you with?',
-                                                      hintStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyText2,
-                                                      enabledBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .alternate,
-                                                          width: 1,
+                                            Align(
+                                              alignment:
+                                                  AlignmentDirectional(-1, 0),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(20, 0, 0, 0),
+                                                child: Container(
+                                                  width: 820,
+                                                  decoration: BoxDecoration(),
+                                                  child: Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            -1, 0),
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0, 40, 0, 0),
+                                                      child: TextFormField(
+                                                        controller: _model
+                                                            .questionController,
+                                                        autofocus: true,
+                                                        obscureText: false,
+                                                        decoration:
+                                                            InputDecoration(
+                                                          labelText:
+                                                              'What can we help you with?',
+                                                          hintStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyText2,
+                                                          enabledBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .alternate,
+                                                              width: 1,
+                                                            ),
+                                                            borderRadius:
+                                                                const BorderRadius
+                                                                    .only(
+                                                              topLeft: Radius
+                                                                  .circular(
+                                                                      4.0),
+                                                              topRight: Radius
+                                                                  .circular(
+                                                                      4.0),
+                                                            ),
+                                                          ),
+                                                          focusedBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryText,
+                                                              width: 1,
+                                                            ),
+                                                            borderRadius:
+                                                                const BorderRadius
+                                                                    .only(
+                                                              topLeft: Radius
+                                                                  .circular(
+                                                                      4.0),
+                                                              topRight: Radius
+                                                                  .circular(
+                                                                      4.0),
+                                                            ),
+                                                          ),
+                                                          errorBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: Color(
+                                                                  0xFF980000),
+                                                              width: 1,
+                                                            ),
+                                                            borderRadius:
+                                                                const BorderRadius
+                                                                    .only(
+                                                              topLeft: Radius
+                                                                  .circular(
+                                                                      4.0),
+                                                              topRight: Radius
+                                                                  .circular(
+                                                                      4.0),
+                                                            ),
+                                                          ),
+                                                          focusedErrorBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: Color(
+                                                                  0xFF980000),
+                                                              width: 1,
+                                                            ),
+                                                            borderRadius:
+                                                                const BorderRadius
+                                                                    .only(
+                                                              topLeft: Radius
+                                                                  .circular(
+                                                                      4.0),
+                                                              topRight: Radius
+                                                                  .circular(
+                                                                      4.0),
+                                                            ),
+                                                          ),
                                                         ),
-                                                        borderRadius:
-                                                            const BorderRadius
-                                                                .only(
-                                                          topLeft:
-                                                              Radius.circular(
-                                                                  4.0),
-                                                          topRight:
-                                                              Radius.circular(
-                                                                  4.0),
-                                                        ),
-                                                      ),
-                                                      focusedBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color:
-                                                              Color(0x00000000),
-                                                          width: 1,
-                                                        ),
-                                                        borderRadius:
-                                                            const BorderRadius
-                                                                .only(
-                                                          topLeft:
-                                                              Radius.circular(
-                                                                  4.0),
-                                                          topRight:
-                                                              Radius.circular(
-                                                                  4.0),
-                                                        ),
-                                                      ),
-                                                      errorBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color:
-                                                              Color(0x00000000),
-                                                          width: 1,
-                                                        ),
-                                                        borderRadius:
-                                                            const BorderRadius
-                                                                .only(
-                                                          topLeft:
-                                                              Radius.circular(
-                                                                  4.0),
-                                                          topRight:
-                                                              Radius.circular(
-                                                                  4.0),
-                                                        ),
-                                                      ),
-                                                      focusedErrorBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color:
-                                                              Color(0x00000000),
-                                                          width: 1,
-                                                        ),
-                                                        borderRadius:
-                                                            const BorderRadius
-                                                                .only(
-                                                          topLeft:
-                                                              Radius.circular(
-                                                                  4.0),
-                                                          topRight:
-                                                              Radius.circular(
-                                                                  4.0),
-                                                        ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyText1,
+                                                        validator: _model
+                                                            .questionControllerValidator
+                                                            .asValidator(
+                                                                context),
                                                       ),
                                                     ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyText1,
-                                                    validator: _model
-                                                        .questionControllerValidator
-                                                        .asValidator(context),
                                                   ),
                                                 ),
                                               ),
@@ -1032,7 +1056,7 @@ class _SupportWidgetState extends State<SupportWidget> {
                                               children: [
                                                 Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(0, 20, 0, 0),
+                                                      .fromSTEB(20, 20, 0, 0),
                                                   child: FFButtonWidget(
                                                     onPressed: () async {
                                                       final supportCreateData =
