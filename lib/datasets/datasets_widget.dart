@@ -787,43 +787,43 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                 mainAxisSize: MainAxisSize.max,
                                                                                 children: [
                                                                                   Padding(
-                                                                                    padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                                                                     child: Stack(
                                                                                       children: [
                                                                                         if (listViewUserDocsRecord.fileType == 'epub')
                                                                                           FaIcon(
                                                                                             FontAwesomeIcons.book,
-                                                                                            color: FlutterFlowTheme.of(context).alternate,
+                                                                                            color: FlutterFlowTheme.of(context).tertiaryColor,
                                                                                             size: 16,
                                                                                           ),
                                                                                         if (listViewUserDocsRecord.fileType == 'YouTube video')
                                                                                           FaIcon(
                                                                                             FontAwesomeIcons.youtube,
-                                                                                            color: FlutterFlowTheme.of(context).alternate,
+                                                                                            color: FlutterFlowTheme.of(context).tertiaryColor,
                                                                                             size: 16,
                                                                                           ),
                                                                                         if (listViewUserDocsRecord.fileType == 'pdf')
                                                                                           FaIcon(
                                                                                             FontAwesomeIcons.solidFilePdf,
-                                                                                            color: FlutterFlowTheme.of(context).alternate,
+                                                                                            color: FlutterFlowTheme.of(context).tertiaryColor,
                                                                                             size: 16,
                                                                                           ),
                                                                                         if (listViewUserDocsRecord.fileType == 'url')
                                                                                           FaIcon(
                                                                                             FontAwesomeIcons.globe,
-                                                                                            color: FlutterFlowTheme.of(context).alternate,
+                                                                                            color: FlutterFlowTheme.of(context).tertiaryColor,
                                                                                             size: 16,
                                                                                           ),
                                                                                         if (listViewUserDocsRecord.fileType == 'txt')
                                                                                           Icon(
                                                                                             Icons.text_snippet,
-                                                                                            color: FlutterFlowTheme.of(context).alternate,
+                                                                                            color: FlutterFlowTheme.of(context).tertiaryColor,
                                                                                             size: 16,
                                                                                           ),
                                                                                         if (listViewUserDocsRecord.fileType == 'docx')
                                                                                           FaIcon(
                                                                                             FontAwesomeIcons.fileWord,
-                                                                                            color: FlutterFlowTheme.of(context).alternate,
+                                                                                            color: FlutterFlowTheme.of(context).tertiaryColor,
                                                                                             size: 16,
                                                                                           ),
                                                                                       ],
