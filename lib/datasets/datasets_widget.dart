@@ -835,7 +835,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                     child: Align(
                                                                                       alignment: AlignmentDirectional(1, 0),
                                                                                       child: Padding(
-                                                                                        padding: EdgeInsetsDirectional.fromSTEB(0, 8, 5, 0),
+                                                                                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 5, 0),
                                                                                         child: InkWell(
                                                                                           onTap: () async {
                                                                                             await launchURL(listViewUserDocsRecord.url!);
@@ -852,7 +852,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                   Align(
                                                                                     alignment: AlignmentDirectional(1, 0),
                                                                                     child: Padding(
-                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0, 8, 20, 0),
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
                                                                                       child: InkWell(
                                                                                         onTap: () async {
                                                                                           await launchURL(listViewUserDocsRecord.url!);
@@ -870,23 +870,20 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                   ),
                                                                                   Align(
                                                                                     alignment: AlignmentDirectional(1, 0),
-                                                                                    child: Padding(
-                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                                                                                      child: Text(
-                                                                                        'Active',
-                                                                                        style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                              fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                              color: FlutterFlowTheme.of(context).alternate,
-                                                                                              fontWeight: FontWeight.normal,
-                                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                                            ),
-                                                                                      ),
+                                                                                    child: Text(
+                                                                                      'Active',
+                                                                                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                            fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                            color: FlutterFlowTheme.of(context).alternate,
+                                                                                            fontWeight: FontWeight.normal,
+                                                                                            useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                          ),
                                                                                     ),
                                                                                   ),
                                                                                   Align(
                                                                                     alignment: AlignmentDirectional(1, 0),
                                                                                     child: Padding(
-                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0, 8, 5, 0),
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 5, 0),
                                                                                       child: Theme(
                                                                                         data: ThemeData(
                                                                                           checkboxTheme: CheckboxThemeData(
@@ -933,7 +930,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                       child: Icon(
                                                                                         Icons.calendar_today_outlined,
                                                                                         color: FlutterFlowTheme.of(context).tertiaryColor,
-                                                                                        size: 16,
+                                                                                        size: 14,
                                                                                       ),
                                                                                     ),
                                                                                     Padding(
@@ -943,6 +940,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                         style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                               fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
                                                                                               color: FlutterFlowTheme.of(context).tertiaryColor,
+                                                                                              fontSize: 12,
                                                                                               fontWeight: FontWeight.normal,
                                                                                               useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
                                                                                             ),
@@ -955,6 +953,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                         style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                               fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
                                                                                               color: FlutterFlowTheme.of(context).tertiaryColor,
+                                                                                              fontSize: 12,
                                                                                               fontWeight: FontWeight.normal,
                                                                                               useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
                                                                                             ),
@@ -976,7 +975,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                         child: FaIcon(
                                                                                           FontAwesomeIcons.trashAlt,
                                                                                           color: FlutterFlowTheme.of(context).tertiaryColor,
-                                                                                          size: 16,
+                                                                                          size: 14,
                                                                                         ),
                                                                                       ),
                                                                                     ),
@@ -998,6 +997,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                           style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                                 fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
                                                                                                 color: FlutterFlowTheme.of(context).tertiaryColor,
+                                                                                                fontSize: 12,
                                                                                                 fontWeight: FontWeight.normal,
                                                                                                 useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
                                                                                               ),
@@ -1452,7 +1452,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                           child: Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    20, 0, 0, 0),
+                                                    15, 0, 5, 0),
                                             child: InkWell(
                                               onTap: () async {
                                                 await showModalBottomSheet(
@@ -1478,72 +1478,13 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                 ).then(
                                                     (value) => setState(() {}));
                                               },
-                                              child: Text(
-                                                '+',
-                                                textAlign: TextAlign.start,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyText1
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyText1Family,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .tertiaryColor,
-                                                          fontSize: 20,
-                                                          fontWeight:
-                                                              FontWeight.w900,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyText1Family),
-                                                        ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        Align(
-                                          alignment:
-                                              AlignmentDirectional(-1, 0),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    2, 0, 5, 0),
-                                            child: InkWell(
-                                              onTap: () async {
-                                                await showModalBottomSheet(
-                                                  isScrollControlled: true,
-                                                  backgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .secondaryBackground,
-                                                  enableDrag: false,
-                                                  context: context,
-                                                  builder: (context) {
-                                                    return Padding(
-                                                      padding:
-                                                          MediaQuery.of(context)
-                                                              .viewInsets,
-                                                      child: Container(
-                                                        height: 400,
-                                                        child:
-                                                            AddDatasetWidget(),
-                                                      ),
-                                                    );
-                                                  },
-                                                ).then(
-                                                    (value) => setState(() {}));
-                                              },
-                                              child: FaIcon(
-                                                FontAwesomeIcons.archive,
+                                              child: Icon(
+                                                Icons
+                                                    .create_new_folder_outlined,
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .tertiaryColor,
-                                                size: 18,
+                                                size: 24,
                                               ),
                                             ),
                                           ),
@@ -1639,7 +1580,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                           context)
                                                                       .size
                                                                       .width,
-                                                              height: 50,
+                                                              height: 40,
                                                               decoration:
                                                                   BoxDecoration(
                                                                 color: FlutterFlowTheme.of(
@@ -1662,7 +1603,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                 padding:
                                                                     EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            20,
+                                                                            5,
                                                                             0,
                                                                             0,
                                                                             0),
@@ -1671,6 +1612,23 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                       MainAxisSize
                                                                           .max,
                                                                   children: [
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              0,
+                                                                              0,
+                                                                              10,
+                                                                              0),
+                                                                      child:
+                                                                          Icon(
+                                                                        Icons
+                                                                            .folder,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .grayIcon,
+                                                                        size:
+                                                                            16,
+                                                                      ),
+                                                                    ),
                                                                     Align(
                                                                       alignment:
                                                                           AlignmentDirectional(
