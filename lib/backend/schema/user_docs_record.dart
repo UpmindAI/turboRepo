@@ -29,6 +29,9 @@ abstract class UserDocsRecord
 
   bool? get processing;
 
+  @BuiltValueField(wireName: 'file_type')
+  String? get fileType;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -41,7 +44,8 @@ abstract class UserDocsRecord
     ..docId = ''
     ..docTitle = ''
     ..url = ''
-    ..processing = false;
+    ..processing = false
+    ..fileType = '';
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
       parent != null
@@ -77,6 +81,7 @@ Map<String, dynamic> createUserDocsRecordData({
   DateTime? timestamp,
   String? url,
   bool? processing,
+  String? fileType,
 }) {
   final firestoreData = serializers.toFirestore(
     UserDocsRecord.serializer,
@@ -88,7 +93,8 @@ Map<String, dynamic> createUserDocsRecordData({
         ..docTitle = docTitle
         ..timestamp = timestamp
         ..url = url
-        ..processing = processing,
+        ..processing = processing
+        ..fileType = fileType,
     ),
   );
 

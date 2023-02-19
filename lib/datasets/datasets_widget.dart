@@ -786,21 +786,59 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                               Row(
                                                                                 mainAxisSize: MainAxisSize.max,
                                                                                 children: [
-                                                                                  Column(
-                                                                                    mainAxisSize: MainAxisSize.max,
-                                                                                    children: [
-                                                                                      Align(
-                                                                                        alignment: AlignmentDirectional(-1, 0),
-                                                                                        child: Padding(
-                                                                                          padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                                                                                          child: Text(
-                                                                                            listViewUserDocsRecord.docTitle!.maybeHandleOverflow(maxChars: 250),
-                                                                                            maxLines: 2,
-                                                                                            style: FlutterFlowTheme.of(context).bodyText1,
+                                                                                  Padding(
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                                                                                    child: Stack(
+                                                                                      children: [
+                                                                                        if (listViewUserDocsRecord.fileType == 'epub')
+                                                                                          FaIcon(
+                                                                                            FontAwesomeIcons.book,
+                                                                                            color: FlutterFlowTheme.of(context).alternate,
+                                                                                            size: 16,
                                                                                           ),
-                                                                                        ),
+                                                                                        if (listViewUserDocsRecord.fileType == 'YouTube video')
+                                                                                          FaIcon(
+                                                                                            FontAwesomeIcons.youtube,
+                                                                                            color: FlutterFlowTheme.of(context).alternate,
+                                                                                            size: 16,
+                                                                                          ),
+                                                                                        if (listViewUserDocsRecord.fileType == 'pdf')
+                                                                                          FaIcon(
+                                                                                            FontAwesomeIcons.solidFilePdf,
+                                                                                            color: FlutterFlowTheme.of(context).alternate,
+                                                                                            size: 16,
+                                                                                          ),
+                                                                                        if (listViewUserDocsRecord.fileType == 'url')
+                                                                                          FaIcon(
+                                                                                            FontAwesomeIcons.globe,
+                                                                                            color: FlutterFlowTheme.of(context).alternate,
+                                                                                            size: 16,
+                                                                                          ),
+                                                                                        if (listViewUserDocsRecord.fileType == 'txt')
+                                                                                          Icon(
+                                                                                            Icons.text_snippet,
+                                                                                            color: FlutterFlowTheme.of(context).alternate,
+                                                                                            size: 16,
+                                                                                          ),
+                                                                                        if (listViewUserDocsRecord.fileType == 'docx')
+                                                                                          FaIcon(
+                                                                                            FontAwesomeIcons.fileWord,
+                                                                                            color: FlutterFlowTheme.of(context).alternate,
+                                                                                            size: 16,
+                                                                                          ),
+                                                                                      ],
+                                                                                    ),
+                                                                                  ),
+                                                                                  Align(
+                                                                                    alignment: AlignmentDirectional(-1, 0),
+                                                                                    child: Padding(
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                                                                                      child: Text(
+                                                                                        listViewUserDocsRecord.docTitle!.maybeHandleOverflow(maxChars: 250),
+                                                                                        maxLines: 2,
+                                                                                        style: FlutterFlowTheme.of(context).bodyText1,
                                                                                       ),
-                                                                                    ],
+                                                                                    ),
                                                                                   ),
                                                                                   Padding(
                                                                                     padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),

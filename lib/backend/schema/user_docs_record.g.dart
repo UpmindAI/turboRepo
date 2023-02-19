@@ -70,6 +70,13 @@ class _$UserDocsRecordSerializer
         ..add(
             serializers.serialize(value, specifiedType: const FullType(bool)));
     }
+    value = object.fileType;
+    if (value != null) {
+      result
+        ..add('file_type')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -121,6 +128,10 @@ class _$UserDocsRecordSerializer
           result.processing = serializers.deserialize(value,
               specifiedType: const FullType(bool)) as bool?;
           break;
+        case 'file_type':
+          result.fileType = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -150,6 +161,8 @@ class _$UserDocsRecord extends UserDocsRecord {
   @override
   final bool? processing;
   @override
+  final String? fileType;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$UserDocsRecord([void Function(UserDocsRecordBuilder)? updates]) =>
@@ -163,6 +176,7 @@ class _$UserDocsRecord extends UserDocsRecord {
       this.timestamp,
       this.url,
       this.processing,
+      this.fileType,
       this.ffRef})
       : super._();
 
@@ -185,6 +199,7 @@ class _$UserDocsRecord extends UserDocsRecord {
         timestamp == other.timestamp &&
         url == other.url &&
         processing == other.processing &&
+        fileType == other.fileType &&
         ffRef == other.ffRef;
   }
 
@@ -195,12 +210,16 @@ class _$UserDocsRecord extends UserDocsRecord {
             $jc(
                 $jc(
                     $jc(
-                        $jc($jc($jc(0, datasetId.hashCode), isActive.hashCode),
-                            docId.hashCode),
-                        docTitle.hashCode),
-                    timestamp.hashCode),
-                url.hashCode),
-            processing.hashCode),
+                        $jc(
+                            $jc(
+                                $jc($jc(0, datasetId.hashCode),
+                                    isActive.hashCode),
+                                docId.hashCode),
+                            docTitle.hashCode),
+                        timestamp.hashCode),
+                    url.hashCode),
+                processing.hashCode),
+            fileType.hashCode),
         ffRef.hashCode));
   }
 
@@ -214,6 +233,7 @@ class _$UserDocsRecord extends UserDocsRecord {
           ..add('timestamp', timestamp)
           ..add('url', url)
           ..add('processing', processing)
+          ..add('fileType', fileType)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -251,6 +271,10 @@ class UserDocsRecordBuilder
   bool? get processing => _$this._processing;
   set processing(bool? processing) => _$this._processing = processing;
 
+  String? _fileType;
+  String? get fileType => _$this._fileType;
+  set fileType(String? fileType) => _$this._fileType = fileType;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -269,6 +293,7 @@ class UserDocsRecordBuilder
       _timestamp = $v.timestamp;
       _url = $v.url;
       _processing = $v.processing;
+      _fileType = $v.fileType;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -299,6 +324,7 @@ class UserDocsRecordBuilder
             timestamp: timestamp,
             url: url,
             processing: processing,
+            fileType: fileType,
             ffRef: ffRef);
     replace(_$result);
     return _$result;
