@@ -78,7 +78,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
               child: Text(
-                'v0.168',
+                'v0.170',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
@@ -290,7 +290,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                         BorderSide(
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
-                                                                          .lineColor,
+                                                                          .tertiaryColor,
                                                                       width: 2,
                                                                     ),
                                                                     borderRadius:
@@ -398,7 +398,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                           20,
                                                                           0,
                                                                           20,
-                                                                          0),
+                                                                          10),
                                                               child: Container(
                                                                 width: MediaQuery.of(
                                                                         context)

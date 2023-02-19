@@ -65,19 +65,19 @@ class _RetreivingMIXWidgetState extends State<RetreivingMIXWidget>
           backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         ),
       );
-      _model.apiResultdataGPT = await DatasetGPTserverCall.call(
+      _model.apiResultMIX = await DatasetGPTserverCall.call(
         qid: FFAppState().setQid,
         datasetIdsList: FFAppState().selectedDataset,
         topK: FFAppState().setTopK,
         idToken: currentJwtToken,
       );
-      if ((_model.apiResultdataGPT?.succeeded ?? true)) {
+      if ((_model.apiResultMIX?.succeeded ?? true)) {
         context.pushNamed('Result');
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              (_model.apiResultdataGPT?.statusCode ?? 200).toString(),
+              (_model.apiResultMIX?.statusCode ?? 200).toString(),
               style: TextStyle(
                 color: FlutterFlowTheme.of(context).primaryText,
               ),
@@ -312,7 +312,41 @@ class _RetreivingMIXWidgetState extends State<RetreivingMIXWidget>
                                         children: [
                                           Row(
                                             mainAxisSize: MainAxisSize.max,
-                                            children: [],
+                                            children: [
+                                              Expanded(
+                                                child: Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          0, 0),
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                0, 20, 0, 0),
+                                                    child: Text(
+                                                      'Generating completion...',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyText1Family,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .grayIcon,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyText1Family),
+                                                              ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                           Container(
                                             width: MediaQuery.of(context)
