@@ -75,12 +75,31 @@ class _HomeWidgetState extends State<HomeWidget> {
             fit: BoxFit.cover,
           ),
           actions: [
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
-              child: Text(
-                'v0.176',
-                style: FlutterFlowTheme.of(context).bodyText1,
-              ),
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                  child: Text(
+                    'Beta ',
+                    style: FlutterFlowTheme.of(context).bodyText1.override(
+                          fontFamily:
+                              FlutterFlowTheme.of(context).bodyText1Family,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w900,
+                          useGoogleFonts: GoogleFonts.asMap().containsKey(
+                              FlutterFlowTheme.of(context).bodyText1Family),
+                        ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
+                  child: Text(
+                    'v0.177',
+                    style: FlutterFlowTheme.of(context).bodyText1,
+                  ),
+                ),
+              ],
             ),
           ],
           centerTitle: true,
