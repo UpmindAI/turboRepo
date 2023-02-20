@@ -634,16 +634,16 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                               FFAppState()
                                                                   .selectedDataset = [];
                                                             });
+                                                            await Future.delayed(
+                                                                const Duration(
+                                                                    milliseconds:
+                                                                        500));
                                                             setState(() {
                                                               FFAppState()
                                                                   .addToSelectedDataset(widget
                                                                       .activeDataset!
                                                                       .datasetId!);
                                                             });
-                                                            await Future.delayed(
-                                                                const Duration(
-                                                                    milliseconds:
-                                                                        500));
 
                                                             context.pushNamed(
                                                                 'retreivingSummarize');
