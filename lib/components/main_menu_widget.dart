@@ -186,8 +186,8 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                 ),
                               ),
                             ),
-                            FaIcon(
-                              FontAwesomeIcons.archive,
+                            Icon(
+                              Icons.folder_rounded,
                               color: FlutterFlowTheme.of(context).secondaryText,
                               size: 28,
                             ),
