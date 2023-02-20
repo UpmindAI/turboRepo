@@ -12,6 +12,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../custom_code/widgets/index.dart' as custom_widgets;
+import '../flutter_flow/random_data_util.dart' as random_data;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -519,57 +520,138 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                       ),
                                                     ),
                                                   ),
+                                                  Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            -1, 0),
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0, 0, 10, 0),
+                                                      child: FFButtonWidget(
+                                                        onPressed: () async {
+                                                          await showModalBottomSheet(
+                                                            isScrollControlled:
+                                                                true,
+                                                            backgroundColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryBackground,
+                                                            enableDrag: false,
+                                                            context: context,
+                                                            builder: (context) {
+                                                              return Padding(
+                                                                padding: MediaQuery.of(
+                                                                        context)
+                                                                    .viewInsets,
+                                                                child:
+                                                                    Container(
+                                                                  height: 400,
+                                                                  child:
+                                                                      ConfirmDeleteWidget(
+                                                                    datasetRef:
+                                                                        columnUserDatasetsRecord
+                                                                            .reference,
+                                                                    datasetID:
+                                                                        columnUserDatasetsRecord
+                                                                            .datasetId,
+                                                                  ),
+                                                                ),
+                                                              );
+                                                            },
+                                                          ).then((value) =>
+                                                              setState(() {}));
+                                                        },
+                                                        text: 'Remove Dataset',
+                                                        icon: FaIcon(
+                                                          FontAwesomeIcons
+                                                              .trashAlt,
+                                                          size: 14,
+                                                        ),
+                                                        options:
+                                                            FFButtonOptions(
+                                                          width: 160,
+                                                          height: 30,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
+                                                          textStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .subtitle2
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .subtitle2Family,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .alternate,
+                                                                    fontSize:
+                                                                        12,
+                                                                    useGoogleFonts: GoogleFonts
+                                                                            .asMap()
+                                                                        .containsKey(
+                                                                            FlutterFlowTheme.of(context).subtitle2Family),
+                                                                  ),
+                                                          borderSide:
+                                                              BorderSide(
+                                                            color: Colors
+                                                                .transparent,
+                                                            width: 1,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(0),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
                                                   Expanded(
                                                     child: Align(
                                                       alignment:
                                                           AlignmentDirectional(
-                                                              -1, 0),
+                                                              1, 0),
                                                       child: Padding(
                                                         padding:
                                                             EdgeInsetsDirectional
                                                                 .fromSTEB(0, 0,
-                                                                    10, 0),
+                                                                    20, 0),
                                                         child: FFButtonWidget(
                                                           onPressed: () async {
-                                                            await showModalBottomSheet(
-                                                              isScrollControlled:
-                                                                  true,
-                                                              backgroundColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryBackground,
-                                                              enableDrag: false,
-                                                              context: context,
-                                                              builder:
-                                                                  (context) {
-                                                                return Padding(
-                                                                  padding: MediaQuery.of(
-                                                                          context)
-                                                                      .viewInsets,
-                                                                  child:
-                                                                      Container(
-                                                                    height: 400,
-                                                                    child:
-                                                                        ConfirmDeleteWidget(
-                                                                      datasetRef:
-                                                                          columnUserDatasetsRecord
-                                                                              .reference,
-                                                                      datasetID:
-                                                                          columnUserDatasetsRecord
-                                                                              .datasetId,
-                                                                    ),
-                                                                  ),
-                                                                );
-                                                              },
-                                                            ).then((value) =>
-                                                                setState(
-                                                                    () {}));
+                                                            FFAppState()
+                                                                .update(() {
+                                                              FFAppState()
+                                                                      .setQid =
+                                                                  random_data
+                                                                      .randomString(
+                                                                7,
+                                                                7,
+                                                                true,
+                                                                true,
+                                                                true,
+                                                              );
+                                                              FFAppState()
+                                                                  .selectedDataset = [];
+                                                            });
+                                                            setState(() {
+                                                              FFAppState()
+                                                                  .addToSelectedDataset(widget
+                                                                      .activeDataset!
+                                                                      .datasetId!);
+                                                            });
+                                                            await Future.delayed(
+                                                                const Duration(
+                                                                    milliseconds:
+                                                                        500));
+
+                                                            context.pushNamed(
+                                                                'retreivingSummarize');
                                                           },
-                                                          text:
-                                                              'Remove Dataset',
-                                                          icon: FaIcon(
-                                                            FontAwesomeIcons
-                                                                .trashAlt,
+                                                          text: 'Summarize',
+                                                          icon: Icon(
+                                                            Icons
+                                                                .featured_play_list_rounded,
                                                             size: 14,
                                                           ),
                                                           options:
