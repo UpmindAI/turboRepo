@@ -74,7 +74,10 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
         elevation: 1,
         child: Container(
           width: MediaQuery.of(context).size.width,
-          height: 800,
+          height: MediaQuery.of(context).size.height * 1,
+          constraints: BoxConstraints(
+            maxHeight: 800,
+          ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
             boxShadow: [
@@ -324,7 +327,7 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                                     currentUserDocument
                                                         ?.totalCredits,
                                                     0.0) <=
-                                                0.0) ||
+                                                1.0) ||
                                             (valueOrDefault(
                                                     currentUserDocument
                                                         ?.totalCredits,

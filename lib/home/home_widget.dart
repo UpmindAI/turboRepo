@@ -95,7 +95,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
                   child: Text(
-                    'v0.177',
+                    'v0.178',
                     style: FlutterFlowTheme.of(context).bodyText1,
                   ),
                 ),
@@ -132,10 +132,22 @@ class _HomeWidgetState extends State<HomeWidget> {
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
-                                  wrapWithModel(
-                                    model: _model.mainMenuModel,
-                                    updateCallback: () => setState(() {}),
-                                    child: MainMenuWidget(),
+                                  Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    height:
+                                        MediaQuery.of(context).size.height * 1,
+                                    constraints: BoxConstraints(
+                                      maxHeight: 800,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                    ),
+                                    child: wrapWithModel(
+                                      model: _model.mainMenuModel,
+                                      updateCallback: () => setState(() {}),
+                                      child: MainMenuWidget(),
+                                    ),
                                   ),
                                 ],
                               ),
@@ -642,7 +654,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                               currentUserDocument
                                                                                   ?.totalCredits,
                                                                               0.0) <=
-                                                                          0.0) ||
+                                                                          1.0) ||
                                                                       (valueOrDefault(
                                                                               currentUserDocument?.totalCredits,
                                                                               0.0) ==
