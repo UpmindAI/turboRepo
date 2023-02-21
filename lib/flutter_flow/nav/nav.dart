@@ -171,6 +171,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'retreivingSummarize',
               path: 'retreivingSummarize',
               builder: (context, params) => RetreivingSummarizeWidget(),
+            ),
+            FFRoute(
+              name: 'retreivingPinecone',
+              path: 'retreivingPinecone',
+              builder: (context, params) => RetreivingPineconeWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

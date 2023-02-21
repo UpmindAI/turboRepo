@@ -113,63 +113,134 @@ class _ChatWidgetState extends State<ChatWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
-                                      Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Expanded(
-                                            child: Align(
-                                              alignment:
-                                                  AlignmentDirectional(-1, 0),
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(20, 0, 60, 20),
-                                                child: Text(
-                                                  'Cras non lacinia nibh, et viverra neque. Maecenas volutpat egestas risus, a vehicula orci. Etiam volutpat justo felis, et finibus ipsum interdum at. Cras vel augue nisl. Suspendisse id eros ultrices, porta magna ac, tempus dui. Etiam felis ipsum, eleifend in varius id, facilisis vel urna. Fusce orci lorem, imperdiet sit amet neque sed, molestie convallis magna. Fusce ut viverra risus. Donec at elementum lorem. Suspendisse cursus posuere dignissim. Donec tempus dignissim sapien. Aliquam efficitur laoreet nunc ac congue. Mauris at dapibus turpis. Maecenas ac malesuada ante.',
-                                                  style: FlutterFlowTheme.of(
+                                      StreamBuilder<List<ChatsRecord>>(
+                                        stream: queryChatsRecord(
+                                          parent: currentUserReference,
+                                          queryBuilder: (chatsRecord) =>
+                                              chatsRecord.orderBy('timestamp',
+                                                  descending: true),
+                                          singleRecord: true,
+                                        ),
+                                        builder: (context, snapshot) {
+                                          // Customize what your widget looks like when it's loading.
+                                          if (!snapshot.hasData) {
+                                            return Center(
+                                              child: SizedBox(
+                                                width: 50,
+                                                height: 50,
+                                                child: SpinKitRipple(
+                                                  color: FlutterFlowTheme.of(
                                                           context)
-                                                      .bodyText1
-                                                      .override(
-                                                        fontFamily:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyText1Family,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .alternate,
-                                                        useGoogleFonts: GoogleFonts
-                                                                .asMap()
-                                                            .containsKey(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyText1Family),
+                                                      .primaryColor,
+                                                  size: 50,
+                                                ),
+                                              ),
+                                            );
+                                          }
+                                          List<ChatsRecord>
+                                              listViewChatsRecordList =
+                                              snapshot.data!;
+                                          // Return an empty Container when the item does not exist.
+                                          if (snapshot.data!.isEmpty) {
+                                            return Container();
+                                          }
+                                          final listViewChatsRecord =
+                                              listViewChatsRecordList.isNotEmpty
+                                                  ? listViewChatsRecordList
+                                                      .first
+                                                  : null;
+                                          return ListView(
+                                            padding: EdgeInsets.zero,
+                                            shrinkWrap: true,
+                                            scrollDirection: Axis.vertical,
+                                            children: [
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Expanded(
+                                                    child: Container(
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .width,
+                                                      decoration: BoxDecoration(
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
                                                       ),
-                                                ),
+                                                      child: Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Align(
+                                                            alignment:
+                                                                AlignmentDirectional(
+                                                                    -1, 0),
+                                                            child: Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          10,
+                                                                          0,
+                                                                          0,
+                                                                          0),
+                                                              child: Text(
+                                                                listViewChatsRecord!
+                                                                    .completions!
+                                                                    .toList()
+                                                                    .first,
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyText1,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Expanded(
-                                            child: Align(
-                                              alignment:
-                                                  AlignmentDirectional(1, 0),
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(60, 0, 20, 20),
-                                                child: Text(
-                                                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse convallis consequat justo, at volutpat ante pretium non. Donec non aliquet quam. Suspendisse sodales tellus ac dignissim luctus. Cras a erat orci. Fusce tempus vestibulum elit, ac dignissim nunc efficitur a. Aenean vitae rutrum nisi, eu egestas tellus. Integer sit amet euismod sem. Nunc consectetur eros ac purus rhoncus pretium. Etiam blandit nibh ut lorem dignissim, quis aliquet est tristique. Maecenas eu ex vitae leo rhoncus ultricies. Proin scelerisque eleifend auctor. Nulla vehicula nec libero vel lobortis. Curabitur semper pharetra ornare.',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyText1,
-                                                ),
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  Expanded(
+                                                    child: Container(
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .width,
+                                                      decoration: BoxDecoration(
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
+                                                      ),
+                                                      child: Align(
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                1, 0),
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      0, 10, 0),
+                                                          child: Text(
+                                                            'Hello World',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyText1,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
-                                            ),
-                                          ),
-                                        ],
+                                            ],
+                                          );
+                                        },
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
