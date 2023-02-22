@@ -67,9 +67,9 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                         child: Align(
                           alignment: AlignmentDirectional(0, 0),
                           child: Image.asset(
-                            'assets/images/OMP-188-60.png',
-                            width: 99,
-                            height: 30,
+                            'assets/images/Logo-OMP-122-40.png',
+                            width: 122,
+                            height: 40,
                             fit: BoxFit.cover,
                           ),
                         ),
