@@ -1,4 +1,5 @@
 import '../auth/auth_util.dart';
+import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../components/add_dataset_widget.dart';
 import '../components/chat_history_widget.dart';
@@ -32,6 +33,12 @@ class ChatModel extends FlutterFlowModel {
   ChatMetaRecord? createChat;
   // Stores action output result for [Backend Call - Create Document] action in Start widget.
   ChatsRecord? createMessage;
+  // Stores action output result for [Backend Call - API (chatServer)] action in Start widget.
+  ApiCallResponse? apiResultStart;
+  // Stores action output result for [Backend Call - Create Document] action in Send widget.
+  ChatsRecord? chatMessageNew;
+  // Stores action output result for [Backend Call - API (chatServer)] action in Send widget.
+  ApiCallResponse? apiResultzym;
   // State field(s) for Checkbox widget.
 
   Map<UserDatasetsRecord, bool> checkboxValueMap = {};

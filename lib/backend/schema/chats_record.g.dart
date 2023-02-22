@@ -70,6 +70,20 @@ class _$ChatsRecordSerializer implements StructuredSerializer<ChatsRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.prompt;
+    if (value != null) {
+      result
+        ..add('prompt')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.completion;
+    if (value != null) {
+      result
+        ..add('completion')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -124,6 +138,14 @@ class _$ChatsRecordSerializer implements StructuredSerializer<ChatsRecord> {
           result.qid = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'prompt':
+          result.prompt = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'completion':
+          result.completion = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -153,6 +175,10 @@ class _$ChatsRecord extends ChatsRecord {
   @override
   final String? qid;
   @override
+  final String? prompt;
+  @override
+  final String? completion;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$ChatsRecord([void Function(ChatsRecordBuilder)? updates]) =>
@@ -166,6 +192,8 @@ class _$ChatsRecord extends ChatsRecord {
       this.datasetIds,
       this.chunks,
       this.qid,
+      this.prompt,
+      this.completion,
       this.ffRef})
       : super._();
 
@@ -187,6 +215,8 @@ class _$ChatsRecord extends ChatsRecord {
         datasetIds == other.datasetIds &&
         chunks == other.chunks &&
         qid == other.qid &&
+        prompt == other.prompt &&
+        completion == other.completion &&
         ffRef == other.ffRef;
   }
 
@@ -197,12 +227,18 @@ class _$ChatsRecord extends ChatsRecord {
             $jc(
                 $jc(
                     $jc(
-                        $jc($jc($jc(0, cid.hashCode), timestamp.hashCode),
-                            message.hashCode),
-                        isCompletion.hashCode),
-                    datasetIds.hashCode),
-                chunks.hashCode),
-            qid.hashCode),
+                        $jc(
+                            $jc(
+                                $jc(
+                                    $jc($jc(0, cid.hashCode),
+                                        timestamp.hashCode),
+                                    message.hashCode),
+                                isCompletion.hashCode),
+                            datasetIds.hashCode),
+                        chunks.hashCode),
+                    qid.hashCode),
+                prompt.hashCode),
+            completion.hashCode),
         ffRef.hashCode));
   }
 
@@ -216,6 +252,8 @@ class _$ChatsRecord extends ChatsRecord {
           ..add('datasetIds', datasetIds)
           ..add('chunks', chunks)
           ..add('qid', qid)
+          ..add('prompt', prompt)
+          ..add('completion', completion)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -255,6 +293,14 @@ class ChatsRecordBuilder implements Builder<ChatsRecord, ChatsRecordBuilder> {
   String? get qid => _$this._qid;
   set qid(String? qid) => _$this._qid = qid;
 
+  String? _prompt;
+  String? get prompt => _$this._prompt;
+  set prompt(String? prompt) => _$this._prompt = prompt;
+
+  String? _completion;
+  String? get completion => _$this._completion;
+  set completion(String? completion) => _$this._completion = completion;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -273,6 +319,8 @@ class ChatsRecordBuilder implements Builder<ChatsRecord, ChatsRecordBuilder> {
       _datasetIds = $v.datasetIds?.toBuilder();
       _chunks = $v.chunks?.toBuilder();
       _qid = $v.qid;
+      _prompt = $v.prompt;
+      _completion = $v.completion;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -305,6 +353,8 @@ class ChatsRecordBuilder implements Builder<ChatsRecord, ChatsRecordBuilder> {
               datasetIds: _datasetIds?.build(),
               chunks: _chunks?.build(),
               qid: qid,
+              prompt: prompt,
+              completion: completion,
               ffRef: ffRef);
     } catch (_) {
       late String _$failedField;

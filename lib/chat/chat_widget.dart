@@ -1,4 +1,5 @@
 import '../auth/auth_util.dart';
+import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../components/add_dataset_widget.dart';
 import '../components/chat_history_widget.dart';
@@ -439,135 +440,138 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                               final listViewChatsRecord =
                                                                   listViewChatsRecordList[
                                                                       listViewIndex];
-                                                              return Stack(
-                                                                children: [
-                                                                  if (!listViewChatsRecord
-                                                                      .isCompletion!)
-                                                                    Row(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
-                                                                      children: [
-                                                                        Expanded(
-                                                                          child:
-                                                                              Container(
-                                                                            width:
-                                                                                MediaQuery.of(context).size.width,
-                                                                            decoration:
-                                                                                BoxDecoration(
-                                                                              color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                              return Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0,
+                                                                            10,
+                                                                            0,
+                                                                            0),
+                                                                child: Stack(
+                                                                  children: [
+                                                                    if (!listViewChatsRecord
+                                                                        .isCompletion!)
+                                                                      Row(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.max,
+                                                                        children: [
+                                                                          Expanded(
+                                                                            child:
+                                                                                Container(
+                                                                              width: MediaQuery.of(context).size.width,
+                                                                              decoration: BoxDecoration(
+                                                                                color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                              ),
+                                                                              child: Column(
+                                                                                mainAxisSize: MainAxisSize.max,
+                                                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                children: [
+                                                                                  Padding(
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                                                                    child: Text(
+                                                                                      'You:',
+                                                                                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                            fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                            fontWeight: FontWeight.bold,
+                                                                                            useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                          ),
+                                                                                    ),
+                                                                                  ),
+                                                                                  Padding(
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(10, 5, 10, 5),
+                                                                                    child: Text(
+                                                                                      listViewChatsRecord.message!,
+                                                                                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                            fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                            fontWeight: FontWeight.w500,
+                                                                                            useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                          ),
+                                                                                    ),
+                                                                                  ),
+                                                                                  Padding(
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                                                                    child: Text(
+                                                                                      dateTimeFormat('relative', listViewChatsRecord.timestamp!),
+                                                                                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                            fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                            color: FlutterFlowTheme.of(context).alternate,
+                                                                                            fontSize: 10,
+                                                                                            fontWeight: FontWeight.w300,
+                                                                                            useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                          ),
+                                                                                    ),
+                                                                                  ),
+                                                                                ],
+                                                                              ),
                                                                             ),
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                    if (listViewChatsRecord
+                                                                            .isCompletion ??
+                                                                        true)
+                                                                      Row(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.max,
+                                                                        children: [
+                                                                          Expanded(
                                                                             child:
                                                                                 Column(
                                                                               mainAxisSize: MainAxisSize.max,
-                                                                              crossAxisAlignment: CrossAxisAlignment.start,
                                                                               children: [
-                                                                                Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                                                                                  child: Text(
-                                                                                    'You:',
-                                                                                    style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                          fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                          fontWeight: FontWeight.bold,
-                                                                                          useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                                        ),
+                                                                                Align(
+                                                                                  alignment: AlignmentDirectional(-1, 0),
+                                                                                  child: Padding(
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(40, 20, 0, 0),
+                                                                                    child: Text(
+                                                                                      'Completion:',
+                                                                                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                            fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                            fontWeight: FontWeight.bold,
+                                                                                            useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                          ),
+                                                                                    ),
                                                                                   ),
                                                                                 ),
-                                                                                Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(10, 5, 10, 5),
-                                                                                  child: Text(
-                                                                                    listViewChatsRecord.message!,
-                                                                                    style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                          fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                          fontWeight: FontWeight.w500,
-                                                                                          useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                                        ),
+                                                                                Align(
+                                                                                  alignment: AlignmentDirectional(1, 0),
+                                                                                  child: Padding(
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(40, 5, 10, 5),
+                                                                                    child: Text(
+                                                                                      listViewChatsRecord.message!,
+                                                                                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                            fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                            color: FlutterFlowTheme.of(context).secondaryColor,
+                                                                                            fontWeight: FontWeight.w500,
+                                                                                            useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                          ),
+                                                                                    ),
                                                                                   ),
                                                                                 ),
-                                                                                Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                                                                                  child: Text(
-                                                                                    dateTimeFormat('relative', listViewChatsRecord.timestamp!),
-                                                                                    style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                          fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                          color: FlutterFlowTheme.of(context).alternate,
-                                                                                          fontSize: 10,
-                                                                                          fontWeight: FontWeight.w300,
-                                                                                          useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                                        ),
+                                                                                Align(
+                                                                                  alignment: AlignmentDirectional(1, 0),
+                                                                                  child: Padding(
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                                                                                    child: Text(
+                                                                                      dateTimeFormat('relative', listViewChatsRecord.timestamp!),
+                                                                                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                            fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                            color: FlutterFlowTheme.of(context).alternate,
+                                                                                            fontSize: 10,
+                                                                                            fontWeight: FontWeight.w300,
+                                                                                            useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                          ),
+                                                                                    ),
                                                                                   ),
                                                                                 ),
                                                                               ],
                                                                             ),
                                                                           ),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                  if (listViewChatsRecord
-                                                                          .isCompletion ??
-                                                                      true)
-                                                                    Row(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
-                                                                      children: [
-                                                                        Expanded(
-                                                                          child:
-                                                                              Column(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.max,
-                                                                            children: [
-                                                                              Align(
-                                                                                alignment: AlignmentDirectional(-1, 0),
-                                                                                child: Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(40, 20, 0, 0),
-                                                                                  child: Text(
-                                                                                    'Completion:',
-                                                                                    style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                          fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                          fontWeight: FontWeight.bold,
-                                                                                          useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                                        ),
-                                                                                  ),
-                                                                                ),
-                                                                              ),
-                                                                              Align(
-                                                                                alignment: AlignmentDirectional(1, 0),
-                                                                                child: Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(40, 5, 10, 5),
-                                                                                  child: Text(
-                                                                                    listViewChatsRecord.message!,
-                                                                                    style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                          fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                          color: FlutterFlowTheme.of(context).secondaryColor,
-                                                                                          fontWeight: FontWeight.w500,
-                                                                                          useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                                        ),
-                                                                                  ),
-                                                                                ),
-                                                                              ),
-                                                                              Align(
-                                                                                alignment: AlignmentDirectional(1, 0),
-                                                                                child: Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
-                                                                                  child: Text(
-                                                                                    dateTimeFormat('relative', listViewChatsRecord.timestamp!),
-                                                                                    style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                          fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                          color: FlutterFlowTheme.of(context).alternate,
-                                                                                          fontSize: 10,
-                                                                                          fontWeight: FontWeight.w300,
-                                                                                          useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                                        ),
-                                                                                  ),
-                                                                                ),
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                ],
+                                                                        ],
+                                                                      ),
+                                                                  ],
+                                                                ),
                                                               );
                                                             },
                                                           );
@@ -705,10 +709,6 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                         true,
                                                         true,
                                                       );
-                                                      await Future.delayed(
-                                                          const Duration(
-                                                              milliseconds:
-                                                                  250));
 
                                                       final chatMetaCreateData =
                                                           createChatMetaRecordData(
@@ -730,10 +730,6 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                           .getDocumentFromData(
                                                               chatMetaCreateData,
                                                               chatMetaRecordReference);
-                                                      await Future.delayed(
-                                                          const Duration(
-                                                              milliseconds:
-                                                                  100));
 
                                                       final chatsCreateData = {
                                                         ...createChatsRecordData(
@@ -770,14 +766,25 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                           .getDocumentFromData(
                                                               chatsCreateData,
                                                               chatsRecordReference);
-                                                      await Future.delayed(
-                                                          const Duration(
-                                                              milliseconds:
-                                                                  250));
                                                       setState(() {
                                                         _model.promptController
                                                             ?.clear();
                                                       });
+                                                      _model.apiResultStart =
+                                                          await ChatServerCall
+                                                              .call(
+                                                        idToken:
+                                                            currentJwtToken,
+                                                        qid: _model
+                                                            .createMessage!.qid,
+                                                        cid:
+                                                            FFAppState().setCid,
+                                                        datasetIdsList:
+                                                            FFAppState()
+                                                                .selectedDataset,
+                                                        topK: FFAppState()
+                                                            .setTopK,
+                                                      );
 
                                                       setState(() {});
                                                     },
@@ -850,13 +857,37 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                             .withoutNulls
                                                             .toList(),
                                                       };
-                                                      await ChatsRecord.createDoc(
-                                                              currentUserReference!)
+                                                      var chatsRecordReference =
+                                                          ChatsRecord.createDoc(
+                                                              currentUserReference!);
+                                                      await chatsRecordReference
                                                           .set(chatsCreateData);
+                                                      _model.chatMessageNew = ChatsRecord
+                                                          .getDocumentFromData(
+                                                              chatsCreateData,
+                                                              chatsRecordReference);
                                                       setState(() {
                                                         _model.promptController
                                                             ?.clear();
                                                       });
+                                                      _model.apiResultzym =
+                                                          await ChatServerCall
+                                                              .call(
+                                                        idToken:
+                                                            currentJwtToken,
+                                                        qid: _model
+                                                            .chatMessageNew!
+                                                            .qid,
+                                                        cid:
+                                                            FFAppState().setCid,
+                                                        datasetIdsList:
+                                                            FFAppState()
+                                                                .selectedDataset,
+                                                        topK: FFAppState()
+                                                            .setTopK,
+                                                      );
+
+                                                      setState(() {});
                                                     },
                                                     text: 'Send',
                                                     icon: Icon(
