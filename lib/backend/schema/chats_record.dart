@@ -11,11 +11,17 @@ abstract class ChatsRecord implements Built<ChatsRecord, ChatsRecordBuilder> {
 
   String? get cid;
 
-  BuiltList<String>? get prompts;
-
-  BuiltList<String>? get completions;
-
   DateTime? get timestamp;
+
+  String? get message;
+
+  @BuiltValueField(wireName: 'is_completion')
+  bool? get isCompletion;
+
+  @BuiltValueField(wireName: 'dataset_ids')
+  BuiltList<String>? get datasetIds;
+
+  BuiltList<String>? get chunks;
 
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
@@ -25,8 +31,10 @@ abstract class ChatsRecord implements Built<ChatsRecord, ChatsRecordBuilder> {
 
   static void _initializeBuilder(ChatsRecordBuilder builder) => builder
     ..cid = ''
-    ..prompts = ListBuilder()
-    ..completions = ListBuilder();
+    ..message = ''
+    ..isCompletion = false
+    ..datasetIds = ListBuilder()
+    ..chunks = ListBuilder();
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
       parent != null
@@ -57,15 +65,19 @@ abstract class ChatsRecord implements Built<ChatsRecord, ChatsRecordBuilder> {
 Map<String, dynamic> createChatsRecordData({
   String? cid,
   DateTime? timestamp,
+  String? message,
+  bool? isCompletion,
 }) {
   final firestoreData = serializers.toFirestore(
     ChatsRecord.serializer,
     ChatsRecord(
       (c) => c
         ..cid = cid
-        ..prompts = null
-        ..completions = null
-        ..timestamp = timestamp,
+        ..timestamp = timestamp
+        ..message = message
+        ..isCompletion = isCompletion
+        ..datasetIds = null
+        ..chunks = null,
     ),
   );
 
