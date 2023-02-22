@@ -429,6 +429,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                               .builder(
                                                             padding:
                                                                 EdgeInsets.zero,
+                                                            reverse: true,
                                                             shrinkWrap: true,
                                                             scrollDirection:
                                                                 Axis.vertical,
@@ -600,6 +601,63 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                 child: TextFormField(
                                                   controller:
                                                       _model.promptController,
+                                                  onFieldSubmitted: (_) async {
+                                                    final chatsCreateData = {
+                                                      ...createChatsRecordData(
+                                                        cid:
+                                                            FFAppState().setCid,
+                                                        timestamp:
+                                                            getCurrentTimestamp,
+                                                        isCompletion: false,
+                                                        qid: random_data
+                                                            .randomString(
+                                                          11,
+                                                          11,
+                                                          true,
+                                                          true,
+                                                          true,
+                                                        ),
+                                                        prompt: _model
+                                                            .promptController
+                                                            .text,
+                                                      ),
+                                                      'dataset_ids': _model
+                                                          .checkboxCheckedItems
+                                                          .map((e) =>
+                                                              e.datasetId)
+                                                          .withoutNulls
+                                                          .toList(),
+                                                    };
+                                                    var chatsRecordReference =
+                                                        ChatsRecord.createDoc(
+                                                            currentUserReference!);
+                                                    await chatsRecordReference
+                                                        .set(chatsCreateData);
+                                                    _model.chatMessageNewFromField =
+                                                        ChatsRecord
+                                                            .getDocumentFromData(
+                                                                chatsCreateData,
+                                                                chatsRecordReference);
+                                                    setState(() {
+                                                      _model.promptController
+                                                          ?.clear();
+                                                    });
+                                                    _model.apiResultzymFF =
+                                                        await ChatServerCall
+                                                            .call(
+                                                      idToken: currentJwtToken,
+                                                      qid: _model
+                                                          .chatMessageNew!.qid,
+                                                      cid: FFAppState().setCid,
+                                                      datasetIdsList:
+                                                          FFAppState()
+                                                              .selectedDataset,
+                                                      topK:
+                                                          FFAppState().setTopK,
+                                                    );
+
+                                                    setState(() {});
+                                                  },
                                                   autofocus: true,
                                                   obscureText: false,
                                                   decoration: InputDecoration(

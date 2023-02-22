@@ -29,6 +29,10 @@ class ChatModel extends FlutterFlowModel {
   // State field(s) for prompt widget.
   TextEditingController? promptController;
   String? Function(BuildContext, String?)? promptControllerValidator;
+  // Stores action output result for [Backend Call - Create Document] action in prompt widget.
+  ChatsRecord? chatMessageNewFromField;
+  // Stores action output result for [Backend Call - API (chatServer)] action in prompt widget.
+  ApiCallResponse? apiResultzymFF;
   // Stores action output result for [Backend Call - Create Document] action in Start widget.
   ChatMetaRecord? createChat;
   // Stores action output result for [Backend Call - Create Document] action in Start widget.
