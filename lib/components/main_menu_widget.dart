@@ -214,7 +214,7 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                     child: AuthUserStreamWidget(
                       builder: (context) => InkWell(
                         onTap: () async {
-                          context.pushNamed('History');
+                          context.pushNamed('Chat');
                         },
                         child: Container(
                           width: double.infinity,
