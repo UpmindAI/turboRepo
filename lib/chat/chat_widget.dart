@@ -329,7 +329,8 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                 FFButtonWidget(
                                                               onPressed:
                                                                   () async {
-                                                                setState(() {
+                                                                FFAppState()
+                                                                    .update(() {
                                                                   FFAppState()
                                                                       .setCid = '';
                                                                 });
@@ -687,126 +688,208 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                 ),
                                               ),
                                             ),
-                                            FFButtonWidget(
-                                              onPressed: () async {
+                                            Stack(
+                                              children: [
                                                 if (FFAppState().setCid ==
                                                         null ||
-                                                    FFAppState().setCid == '') {
-                                                  setState(() {
-                                                    FFAppState().setCid =
-                                                        random_data
-                                                            .randomString(
-                                                      9,
-                                                      9,
-                                                      true,
-                                                      true,
-                                                      true,
-                                                    );
-                                                  });
+                                                    FFAppState().setCid == '')
+                                                  FFButtonWidget(
+                                                    onPressed: () async {
+                                                      FFAppState().setCid =
+                                                          random_data
+                                                              .randomString(
+                                                        9,
+                                                        9,
+                                                        true,
+                                                        true,
+                                                        true,
+                                                      );
 
-                                                  final chatMetaCreateData =
-                                                      createChatMetaRecordData(
-                                                    createdOn:
-                                                        getCurrentTimestamp,
-                                                    cid: FFAppState().setCid,
-                                                    firstMessage: _model
-                                                        .promptController.text,
-                                                  );
-                                                  var chatMetaRecordReference =
-                                                      ChatMetaRecord.createDoc(
-                                                          currentUserReference!);
-                                                  await chatMetaRecordReference
-                                                      .set(chatMetaCreateData);
-                                                  _model.createChat = ChatMetaRecord
-                                                      .getDocumentFromData(
-                                                          chatMetaCreateData,
-                                                          chatMetaRecordReference);
+                                                      final chatMetaCreateData =
+                                                          createChatMetaRecordData(
+                                                        createdOn:
+                                                            getCurrentTimestamp,
+                                                        cid:
+                                                            FFAppState().setCid,
+                                                        firstMessage: _model
+                                                            .promptController
+                                                            .text,
+                                                      );
+                                                      var chatMetaRecordReference =
+                                                          ChatMetaRecord.createDoc(
+                                                              currentUserReference!);
+                                                      await chatMetaRecordReference
+                                                          .set(
+                                                              chatMetaCreateData);
+                                                      _model.createChat = ChatMetaRecord
+                                                          .getDocumentFromData(
+                                                              chatMetaCreateData,
+                                                              chatMetaRecordReference);
+                                                      await Future.delayed(
+                                                          const Duration(
+                                                              milliseconds:
+                                                                  100));
 
-                                                  final chatsCreateData1 = {
-                                                    ...createChatsRecordData(
-                                                      cid: _model.setCid,
-                                                      timestamp:
-                                                          getCurrentTimestamp,
-                                                      message: _model
-                                                          .promptController
-                                                          .text,
-                                                      isCompletion: false,
-                                                    ),
-                                                    'dataset_ids': _model
-                                                        .checkboxCheckedItems
-                                                        .map((e) => e.datasetId)
-                                                        .withoutNulls
-                                                        .toList(),
-                                                  };
-                                                  await ChatsRecord.createDoc(
-                                                          currentUserReference!)
-                                                      .set(chatsCreateData1);
-                                                  setState(() {
-                                                    _model.promptController
-                                                        ?.clear();
-                                                  });
-                                                } else {
-                                                  final chatsCreateData2 = {
-                                                    ...createChatsRecordData(
-                                                      cid: _model.setCid,
-                                                      timestamp:
-                                                          getCurrentTimestamp,
-                                                      message: _model
-                                                          .promptController
-                                                          .text,
-                                                      isCompletion: false,
-                                                    ),
-                                                    'dataset_ids': _model
-                                                        .checkboxCheckedItems
-                                                        .map((e) => e.datasetId)
-                                                        .withoutNulls
-                                                        .toList(),
-                                                  };
-                                                  await ChatsRecord.createDoc(
-                                                          currentUserReference!)
-                                                      .set(chatsCreateData2);
-                                                  setState(() {
-                                                    _model.promptController
-                                                        ?.clear();
-                                                  });
-                                                }
-
-                                                setState(() {});
-                                              },
-                                              text: 'Send',
-                                              icon: Icon(
-                                                Icons.send,
-                                                size: 15,
-                                              ),
-                                              options: FFButtonOptions(
-                                                width: 130,
-                                                height: 45,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryColor,
-                                                textStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .subtitle2
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .subtitle2Family,
-                                                          color: Colors.white,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .subtitle2Family),
+                                                      final chatsCreateData = {
+                                                        ...createChatsRecordData(
+                                                          cid: _model.setCid,
+                                                          timestamp:
+                                                              getCurrentTimestamp,
+                                                          message: _model
+                                                              .promptController
+                                                              .text,
+                                                          isCompletion: false,
+                                                          qid: random_data
+                                                              .randomString(
+                                                            11,
+                                                            11,
+                                                            true,
+                                                            true,
+                                                            true,
+                                                          ),
                                                         ),
-                                                borderSide: BorderSide(
-                                                  color: Colors.transparent,
-                                                  width: 1,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(0),
-                                              ),
+                                                        'dataset_ids': _model
+                                                            .checkboxCheckedItems
+                                                            .map((e) =>
+                                                                e.datasetId)
+                                                            .withoutNulls
+                                                            .toList(),
+                                                      };
+                                                      var chatsRecordReference =
+                                                          ChatsRecord.createDoc(
+                                                              currentUserReference!);
+                                                      await chatsRecordReference
+                                                          .set(chatsCreateData);
+                                                      _model.createMessage = ChatsRecord
+                                                          .getDocumentFromData(
+                                                              chatsCreateData,
+                                                              chatsRecordReference);
+                                                      await Future.delayed(
+                                                          const Duration(
+                                                              milliseconds:
+                                                                  250));
+                                                      setState(() {
+                                                        _model.promptController
+                                                            ?.clear();
+                                                      });
+
+                                                      setState(() {});
+                                                    },
+                                                    text: 'Start',
+                                                    icon: Icon(
+                                                      Icons.send,
+                                                      size: 15,
+                                                    ),
+                                                    options: FFButtonOptions(
+                                                      width: 130,
+                                                      height: 45,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryColor,
+                                                      textStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .subtitle2
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .subtitle2Family,
+                                                                color: Colors
+                                                                    .white,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .subtitle2Family),
+                                                              ),
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            Colors.transparent,
+                                                        width: 1,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              0),
+                                                    ),
+                                                  ),
+                                                if (FFAppState().setCid !=
+                                                        null &&
+                                                    FFAppState().setCid != '')
+                                                  FFButtonWidget(
+                                                    onPressed: () async {
+                                                      final chatsCreateData = {
+                                                        ...createChatsRecordData(
+                                                          cid: _model.setCid,
+                                                          timestamp:
+                                                              getCurrentTimestamp,
+                                                          message: _model
+                                                              .promptController
+                                                              .text,
+                                                          isCompletion: false,
+                                                          qid: random_data
+                                                              .randomString(
+                                                            11,
+                                                            11,
+                                                            true,
+                                                            true,
+                                                            true,
+                                                          ),
+                                                        ),
+                                                        'dataset_ids': _model
+                                                            .checkboxCheckedItems
+                                                            .map((e) =>
+                                                                e.datasetId)
+                                                            .withoutNulls
+                                                            .toList(),
+                                                      };
+                                                      await ChatsRecord.createDoc(
+                                                              currentUserReference!)
+                                                          .set(chatsCreateData);
+                                                      setState(() {
+                                                        _model.promptController
+                                                            ?.clear();
+                                                      });
+                                                    },
+                                                    text: 'Send',
+                                                    icon: Icon(
+                                                      Icons.send,
+                                                      size: 15,
+                                                    ),
+                                                    options: FFButtonOptions(
+                                                      width: 130,
+                                                      height: 45,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryColor,
+                                                      textStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .subtitle2
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .subtitle2Family,
+                                                                color: Colors
+                                                                    .white,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .subtitle2Family),
+                                                              ),
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            Colors.transparent,
+                                                        width: 1,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              0),
+                                                    ),
+                                                  ),
+                                              ],
                                             ),
                                           ],
                                         ),

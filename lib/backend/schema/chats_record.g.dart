@@ -63,6 +63,13 @@ class _$ChatsRecordSerializer implements StructuredSerializer<ChatsRecord> {
             specifiedType:
                 const FullType(BuiltList, const [const FullType(String)])));
     }
+    value = object.qid;
+    if (value != null) {
+      result
+        ..add('qid')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -113,6 +120,10 @@ class _$ChatsRecordSerializer implements StructuredSerializer<ChatsRecord> {
                       BuiltList, const [const FullType(String)]))!
               as BuiltList<Object?>);
           break;
+        case 'qid':
+          result.qid = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -140,6 +151,8 @@ class _$ChatsRecord extends ChatsRecord {
   @override
   final BuiltList<String>? chunks;
   @override
+  final String? qid;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$ChatsRecord([void Function(ChatsRecordBuilder)? updates]) =>
@@ -152,6 +165,7 @@ class _$ChatsRecord extends ChatsRecord {
       this.isCompletion,
       this.datasetIds,
       this.chunks,
+      this.qid,
       this.ffRef})
       : super._();
 
@@ -172,6 +186,7 @@ class _$ChatsRecord extends ChatsRecord {
         isCompletion == other.isCompletion &&
         datasetIds == other.datasetIds &&
         chunks == other.chunks &&
+        qid == other.qid &&
         ffRef == other.ffRef;
   }
 
@@ -181,11 +196,13 @@ class _$ChatsRecord extends ChatsRecord {
         $jc(
             $jc(
                 $jc(
-                    $jc($jc($jc(0, cid.hashCode), timestamp.hashCode),
-                        message.hashCode),
-                    isCompletion.hashCode),
-                datasetIds.hashCode),
-            chunks.hashCode),
+                    $jc(
+                        $jc($jc($jc(0, cid.hashCode), timestamp.hashCode),
+                            message.hashCode),
+                        isCompletion.hashCode),
+                    datasetIds.hashCode),
+                chunks.hashCode),
+            qid.hashCode),
         ffRef.hashCode));
   }
 
@@ -198,6 +215,7 @@ class _$ChatsRecord extends ChatsRecord {
           ..add('isCompletion', isCompletion)
           ..add('datasetIds', datasetIds)
           ..add('chunks', chunks)
+          ..add('qid', qid)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -233,6 +251,10 @@ class ChatsRecordBuilder implements Builder<ChatsRecord, ChatsRecordBuilder> {
       _$this._chunks ??= new ListBuilder<String>();
   set chunks(ListBuilder<String>? chunks) => _$this._chunks = chunks;
 
+  String? _qid;
+  String? get qid => _$this._qid;
+  set qid(String? qid) => _$this._qid = qid;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -250,6 +272,7 @@ class ChatsRecordBuilder implements Builder<ChatsRecord, ChatsRecordBuilder> {
       _isCompletion = $v.isCompletion;
       _datasetIds = $v.datasetIds?.toBuilder();
       _chunks = $v.chunks?.toBuilder();
+      _qid = $v.qid;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -281,6 +304,7 @@ class ChatsRecordBuilder implements Builder<ChatsRecord, ChatsRecordBuilder> {
               isCompletion: isCompletion,
               datasetIds: _datasetIds?.build(),
               chunks: _chunks?.build(),
+              qid: qid,
               ffRef: ffRef);
     } catch (_) {
       late String _$failedField;
