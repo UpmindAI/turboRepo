@@ -2,6 +2,7 @@ import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/add_dataset_widget.dart';
 import '../components/chat_history_widget.dart';
+import '../components/configure_bot_widget.dart';
 import '../components/main_menu_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -169,7 +170,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                           height:
                                                                               MediaQuery.of(context).size.height * 0.8,
                                                                           child:
-                                                                              ChatHistoryWidget(),
+                                                                              ConfigureBotWidget(),
                                                                         ),
                                                                       );
                                                                     },
@@ -178,10 +179,10 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                           () {}));
                                                                 },
                                                                 text:
-                                                                    'Chat History',
+                                                                    'Configure',
                                                                 icon: FaIcon(
                                                                   FontAwesomeIcons
-                                                                      .clock,
+                                                                      .robot,
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .secondaryColor,
@@ -231,6 +232,98 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                         10,
                                                                         5,
                                                                         10,
+                                                                        5),
+                                                            child:
+                                                                FFButtonWidget(
+                                                              onPressed:
+                                                                  () async {
+                                                                await showModalBottomSheet(
+                                                                  isScrollControlled:
+                                                                      true,
+                                                                  backgroundColor:
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryBackground,
+                                                                  enableDrag:
+                                                                      false,
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (context) {
+                                                                    return Padding(
+                                                                      padding: MediaQuery.of(
+                                                                              context)
+                                                                          .viewInsets,
+                                                                      child:
+                                                                          Container(
+                                                                        height: MediaQuery.of(context).size.height *
+                                                                            0.8,
+                                                                        child:
+                                                                            ChatHistoryWidget(),
+                                                                      ),
+                                                                    );
+                                                                  },
+                                                                ).then((value) =>
+                                                                    setState(
+                                                                        () {}));
+                                                              },
+                                                              text:
+                                                                  'Chat History',
+                                                              icon: FaIcon(
+                                                                FontAwesomeIcons
+                                                                    .clock,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryColor,
+                                                                size: 18,
+                                                              ),
+                                                              options:
+                                                                  FFButtonOptions(
+                                                                width: 130,
+                                                                height: 30,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryBackground,
+                                                                textStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .subtitle2
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .subtitle2Family,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryColor,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).subtitle2Family),
+                                                                    ),
+                                                                borderSide:
+                                                                    BorderSide(
+                                                                  color: Colors
+                                                                      .transparent,
+                                                                  width: 1,
+                                                                ),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            0),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Align(
+                                                          alignment:
+                                                              AlignmentDirectional(
+                                                                  1, 0),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        10,
+                                                                        5,
+                                                                        20,
                                                                         5),
                                                             child:
                                                                 FFButtonWidget(
@@ -600,8 +693,9 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                         null ||
                                                     FFAppState().setCid == '') {
                                                   setState(() {
-                                                    _model.setCid = random_data
-                                                        .randomString(
+                                                    FFAppState().setCid =
+                                                        random_data
+                                                            .randomString(
                                                       9,
                                                       9,
                                                       true,
@@ -609,6 +703,24 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                       true,
                                                     );
                                                   });
+
+                                                  final chatMetaCreateData =
+                                                      createChatMetaRecordData(
+                                                    createdOn:
+                                                        getCurrentTimestamp,
+                                                    cid: FFAppState().setCid,
+                                                    firstMessage: _model
+                                                        .promptController.text,
+                                                  );
+                                                  var chatMetaRecordReference =
+                                                      ChatMetaRecord.createDoc(
+                                                          currentUserReference!);
+                                                  await chatMetaRecordReference
+                                                      .set(chatMetaCreateData);
+                                                  _model.createChat = ChatMetaRecord
+                                                      .getDocumentFromData(
+                                                          chatMetaCreateData,
+                                                          chatMetaRecordReference);
 
                                                   final chatsCreateData1 = {
                                                     ...createChatsRecordData(
@@ -658,6 +770,8 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                         ?.clear();
                                                   });
                                                 }
+
+                                                setState(() {});
                                               },
                                               text: 'Send',
                                               icon: Icon(

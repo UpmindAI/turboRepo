@@ -14,6 +14,7 @@ import 'schema/user_temp_uploads_record.dart';
 import 'schema/support_record.dart';
 import 'schema/feature_record.dart';
 import 'schema/chats_record.dart';
+import 'schema/chat_meta_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -30,6 +31,7 @@ export 'schema/user_temp_uploads_record.dart';
 export 'schema/support_record.dart';
 export 'schema/feature_record.dart';
 export 'schema/chats_record.dart';
+export 'schema/chat_meta_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -517,6 +519,62 @@ Future<FFFirestorePage<ChatsRecord>> queryChatsRecordPage({
     queryCollectionPage(
       ChatsRecord.collection(parent),
       ChatsRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query ChatMetaRecords (as a Stream and as a Future).
+Future<int> queryChatMetaRecordCount({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      ChatMetaRecord.collection(parent),
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<ChatMetaRecord>> queryChatMetaRecord({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      ChatMetaRecord.collection(parent),
+      ChatMetaRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<ChatMetaRecord>> queryChatMetaRecordOnce({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      ChatMetaRecord.collection(parent),
+      ChatMetaRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<ChatMetaRecord>> queryChatMetaRecordPage({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+}) =>
+    queryCollectionPage(
+      ChatMetaRecord.collection(parent),
+      ChatMetaRecord.serializer,
       queryBuilder: queryBuilder,
       nextPageMarker: nextPageMarker,
       pageSize: pageSize,

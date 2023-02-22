@@ -10,6 +10,7 @@ import 'user_temp_uploads_record.dart';
 import 'support_record.dart';
 import 'feature_record.dart';
 import 'chats_record.dart';
+import 'chat_meta_record.dart';
 
 import 'index.dart';
 
@@ -29,6 +30,7 @@ const kDocumentReferenceField = 'Document__Reference__Field';
   SupportRecord,
   FeatureRecord,
   ChatsRecord,
+  ChatMetaRecord,
 ])
 final Serializers serializers = (_$serializers.toBuilder()
       ..add(DocumentReferenceSerializer())

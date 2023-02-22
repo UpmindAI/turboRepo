@@ -2,6 +2,7 @@ import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/add_dataset_widget.dart';
 import '../components/chat_history_widget.dart';
+import '../components/configure_bot_widget.dart';
 import '../components/main_menu_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -27,6 +28,8 @@ class ChatModel extends FlutterFlowModel {
   // State field(s) for prompt widget.
   TextEditingController? promptController;
   String? Function(BuildContext, String?)? promptControllerValidator;
+  // Stores action output result for [Backend Call - Create Document] action in Button widget.
+  ChatMetaRecord? createChat;
   // State field(s) for Checkbox widget.
 
   Map<UserDatasetsRecord, bool> checkboxValueMap = {};
