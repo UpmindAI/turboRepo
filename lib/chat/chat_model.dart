@@ -2,6 +2,7 @@ import '../auth/auth_util.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../components/add_dataset_widget.dart';
+import '../components/chat_chunks_widget.dart';
 import '../components/chat_history_widget.dart';
 import '../components/configure_bot_widget.dart';
 import '../components/main_menu_widget.dart';
