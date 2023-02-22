@@ -112,6 +112,7 @@ class DatasetGPTserverCall {
     List<String>? datasetIdsList,
     double? topK,
     String? idToken = '',
+    bool? guardrail = false,
   }) {
     final datasetIds = _serializeList(datasetIdsList);
 
@@ -120,7 +121,8 @@ class DatasetGPTserverCall {
   "qid": "${qid}",
   "dataset_ids": ${datasetIds},
   "top_k": ${topK},
-  "id_token": "${idToken}"
+  "id_token": "${idToken}",
+  "guardail": ${guardrail}
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'datasetGPTserver',
