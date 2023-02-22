@@ -2,6 +2,7 @@ import '../auth/auth_util.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../components/add_dataset_widget.dart';
+import '../components/chat_chunks_widget.dart';
 import '../components/chat_history_widget.dart';
 import '../components/configure_bot_widget.dart';
 import '../components/main_menu_widget.dart';
@@ -551,21 +552,56 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                                     ),
                                                                                   ),
                                                                                 ),
-                                                                                Align(
-                                                                                  alignment: AlignmentDirectional(1, 0),
-                                                                                  child: Padding(
-                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
-                                                                                    child: Text(
-                                                                                      dateTimeFormat('relative', listViewChatsRecord.timestamp!),
-                                                                                      style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                            fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                            color: FlutterFlowTheme.of(context).alternate,
-                                                                                            fontSize: 10,
-                                                                                            fontWeight: FontWeight.w300,
-                                                                                            useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                Row(
+                                                                                  mainAxisSize: MainAxisSize.max,
+                                                                                  children: [
+                                                                                    Expanded(
+                                                                                      child: Align(
+                                                                                        alignment: AlignmentDirectional(1, 0),
+                                                                                        child: Padding(
+                                                                                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                                                                                          child: Text(
+                                                                                            dateTimeFormat('relative', listViewChatsRecord.timestamp!),
+                                                                                            style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                  fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                                  color: FlutterFlowTheme.of(context).alternate,
+                                                                                                  fontSize: 10,
+                                                                                                  fontWeight: FontWeight.w300,
+                                                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                                ),
                                                                                           ),
+                                                                                        ),
+                                                                                      ),
                                                                                     ),
-                                                                                  ),
+                                                                                    Padding(
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                                                                                      child: InkWell(
+                                                                                        onTap: () async {
+                                                                                          await showModalBottomSheet(
+                                                                                            isScrollControlled: true,
+                                                                                            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                            enableDrag: false,
+                                                                                            context: context,
+                                                                                            builder: (context) {
+                                                                                              return Padding(
+                                                                                                padding: MediaQuery.of(context).viewInsets,
+                                                                                                child: Container(
+                                                                                                  height: MediaQuery.of(context).size.height * 0.8,
+                                                                                                  child: ChatChunksWidget(
+                                                                                                    chatDoc: listViewChatsRecord,
+                                                                                                  ),
+                                                                                                ),
+                                                                                              );
+                                                                                            },
+                                                                                          ).then((value) => setState(() {}));
+                                                                                        },
+                                                                                        child: Text(
+                                                                                          'Sources',
+                                                                                          style: FlutterFlowTheme.of(context).bodyText1,
+                                                                                        ),
+                                                                                      ),
+                                                                                    ),
+                                                                                  ],
                                                                                 ),
                                                                               ],
                                                                             ),

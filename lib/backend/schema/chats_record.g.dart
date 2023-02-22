@@ -84,6 +84,22 @@ class _$ChatsRecordSerializer implements StructuredSerializer<ChatsRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.datasetNames;
+    if (value != null) {
+      result
+        ..add('dataset_names')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    value = object.docTitles;
+    if (value != null) {
+      result
+        ..add('doc_titles')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -146,6 +162,18 @@ class _$ChatsRecordSerializer implements StructuredSerializer<ChatsRecord> {
           result.completion = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'dataset_names':
+          result.datasetNames.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'doc_titles':
+          result.docTitles.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -179,6 +207,10 @@ class _$ChatsRecord extends ChatsRecord {
   @override
   final String? completion;
   @override
+  final BuiltList<String>? datasetNames;
+  @override
+  final BuiltList<String>? docTitles;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$ChatsRecord([void Function(ChatsRecordBuilder)? updates]) =>
@@ -194,6 +226,8 @@ class _$ChatsRecord extends ChatsRecord {
       this.qid,
       this.prompt,
       this.completion,
+      this.datasetNames,
+      this.docTitles,
       this.ffRef})
       : super._();
 
@@ -217,6 +251,8 @@ class _$ChatsRecord extends ChatsRecord {
         qid == other.qid &&
         prompt == other.prompt &&
         completion == other.completion &&
+        datasetNames == other.datasetNames &&
+        docTitles == other.docTitles &&
         ffRef == other.ffRef;
   }
 
@@ -230,15 +266,19 @@ class _$ChatsRecord extends ChatsRecord {
                         $jc(
                             $jc(
                                 $jc(
-                                    $jc($jc(0, cid.hashCode),
-                                        timestamp.hashCode),
-                                    message.hashCode),
-                                isCompletion.hashCode),
-                            datasetIds.hashCode),
-                        chunks.hashCode),
-                    qid.hashCode),
-                prompt.hashCode),
-            completion.hashCode),
+                                    $jc(
+                                        $jc(
+                                            $jc($jc(0, cid.hashCode),
+                                                timestamp.hashCode),
+                                            message.hashCode),
+                                        isCompletion.hashCode),
+                                    datasetIds.hashCode),
+                                chunks.hashCode),
+                            qid.hashCode),
+                        prompt.hashCode),
+                    completion.hashCode),
+                datasetNames.hashCode),
+            docTitles.hashCode),
         ffRef.hashCode));
   }
 
@@ -254,6 +294,8 @@ class _$ChatsRecord extends ChatsRecord {
           ..add('qid', qid)
           ..add('prompt', prompt)
           ..add('completion', completion)
+          ..add('datasetNames', datasetNames)
+          ..add('docTitles', docTitles)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -301,6 +343,18 @@ class ChatsRecordBuilder implements Builder<ChatsRecord, ChatsRecordBuilder> {
   String? get completion => _$this._completion;
   set completion(String? completion) => _$this._completion = completion;
 
+  ListBuilder<String>? _datasetNames;
+  ListBuilder<String> get datasetNames =>
+      _$this._datasetNames ??= new ListBuilder<String>();
+  set datasetNames(ListBuilder<String>? datasetNames) =>
+      _$this._datasetNames = datasetNames;
+
+  ListBuilder<String>? _docTitles;
+  ListBuilder<String> get docTitles =>
+      _$this._docTitles ??= new ListBuilder<String>();
+  set docTitles(ListBuilder<String>? docTitles) =>
+      _$this._docTitles = docTitles;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -321,6 +375,8 @@ class ChatsRecordBuilder implements Builder<ChatsRecord, ChatsRecordBuilder> {
       _qid = $v.qid;
       _prompt = $v.prompt;
       _completion = $v.completion;
+      _datasetNames = $v.datasetNames?.toBuilder();
+      _docTitles = $v.docTitles?.toBuilder();
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -355,6 +411,8 @@ class ChatsRecordBuilder implements Builder<ChatsRecord, ChatsRecordBuilder> {
               qid: qid,
               prompt: prompt,
               completion: completion,
+              datasetNames: _datasetNames?.build(),
+              docTitles: _docTitles?.build(),
               ffRef: ffRef);
     } catch (_) {
       late String _$failedField;
@@ -363,6 +421,11 @@ class ChatsRecordBuilder implements Builder<ChatsRecord, ChatsRecordBuilder> {
         _datasetIds?.build();
         _$failedField = 'chunks';
         _chunks?.build();
+
+        _$failedField = 'datasetNames';
+        _datasetNames?.build();
+        _$failedField = 'docTitles';
+        _docTitles?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'ChatsRecord', _$failedField, e.toString());

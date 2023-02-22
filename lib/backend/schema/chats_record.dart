@@ -29,6 +29,12 @@ abstract class ChatsRecord implements Built<ChatsRecord, ChatsRecordBuilder> {
 
   String? get completion;
 
+  @BuiltValueField(wireName: 'dataset_names')
+  BuiltList<String>? get datasetNames;
+
+  @BuiltValueField(wireName: 'doc_titles')
+  BuiltList<String>? get docTitles;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -43,7 +49,9 @@ abstract class ChatsRecord implements Built<ChatsRecord, ChatsRecordBuilder> {
     ..chunks = ListBuilder()
     ..qid = ''
     ..prompt = ''
-    ..completion = '';
+    ..completion = ''
+    ..datasetNames = ListBuilder()
+    ..docTitles = ListBuilder();
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
       parent != null
@@ -92,7 +100,9 @@ Map<String, dynamic> createChatsRecordData({
         ..chunks = null
         ..qid = qid
         ..prompt = prompt
-        ..completion = completion,
+        ..completion = completion
+        ..datasetNames = null
+        ..docTitles = null,
     ),
   );
 
