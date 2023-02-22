@@ -235,7 +235,8 @@ class ChatServerCall {
   "id_token": "${idToken}",
   "qid": "${qid}",
   "cid": "${cid}",
-  "dataset_ids": ${datasetIds}
+  "dataset_ids": ${datasetIds},
+  "top_k": ${topK}
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'chatServer',
