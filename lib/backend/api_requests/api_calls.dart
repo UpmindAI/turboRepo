@@ -218,6 +218,32 @@ class RecursiveSummarizerCall {
   }
 }
 
+class ChatServerCall {
+  static Future<ApiCallResponse> call({
+    String? idToken = '',
+    String? qid = '',
+  }) {
+    final body = '''
+{
+  "id_token": "${idToken}",
+  "qid": "${qid}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'chatServer',
+      apiUrl: 'https://mixed-chat-omp-p67td2b2aq-uc.a.run.app',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;
