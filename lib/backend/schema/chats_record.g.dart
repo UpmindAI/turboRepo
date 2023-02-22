@@ -26,28 +26,42 @@ class _$ChatsRecordSerializer implements StructuredSerializer<ChatsRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.prompts;
-    if (value != null) {
-      result
-        ..add('prompts')
-        ..add(serializers.serialize(value,
-            specifiedType:
-                const FullType(BuiltList, const [const FullType(String)])));
-    }
-    value = object.completions;
-    if (value != null) {
-      result
-        ..add('completions')
-        ..add(serializers.serialize(value,
-            specifiedType:
-                const FullType(BuiltList, const [const FullType(String)])));
-    }
     value = object.timestamp;
     if (value != null) {
       result
         ..add('timestamp')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(DateTime)));
+    }
+    value = object.message;
+    if (value != null) {
+      result
+        ..add('message')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.isCompletion;
+    if (value != null) {
+      result
+        ..add('is_completion')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
+    value = object.datasetIds;
+    if (value != null) {
+      result
+        ..add('dataset_ids')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    value = object.chunks;
+    if (value != null) {
+      result
+        ..add('chunks')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
     }
     value = object.ffRef;
     if (value != null) {
@@ -75,21 +89,29 @@ class _$ChatsRecordSerializer implements StructuredSerializer<ChatsRecord> {
           result.cid = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'prompts':
-          result.prompts.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(String)]))!
-              as BuiltList<Object?>);
-          break;
-        case 'completions':
-          result.completions.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(String)]))!
-              as BuiltList<Object?>);
-          break;
         case 'timestamp':
           result.timestamp = serializers.deserialize(value,
               specifiedType: const FullType(DateTime)) as DateTime?;
+          break;
+        case 'message':
+          result.message = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'is_completion':
+          result.isCompletion = serializers.deserialize(value,
+              specifiedType: const FullType(bool)) as bool?;
+          break;
+        case 'dataset_ids':
+          result.datasetIds.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'chunks':
+          result.chunks.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
           break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
@@ -108,11 +130,15 @@ class _$ChatsRecord extends ChatsRecord {
   @override
   final String? cid;
   @override
-  final BuiltList<String>? prompts;
-  @override
-  final BuiltList<String>? completions;
-  @override
   final DateTime? timestamp;
+  @override
+  final String? message;
+  @override
+  final bool? isCompletion;
+  @override
+  final BuiltList<String>? datasetIds;
+  @override
+  final BuiltList<String>? chunks;
   @override
   final DocumentReference<Object?>? ffRef;
 
@@ -120,7 +146,13 @@ class _$ChatsRecord extends ChatsRecord {
       (new ChatsRecordBuilder()..update(updates))._build();
 
   _$ChatsRecord._(
-      {this.cid, this.prompts, this.completions, this.timestamp, this.ffRef})
+      {this.cid,
+      this.timestamp,
+      this.message,
+      this.isCompletion,
+      this.datasetIds,
+      this.chunks,
+      this.ffRef})
       : super._();
 
   @override
@@ -135,9 +167,11 @@ class _$ChatsRecord extends ChatsRecord {
     if (identical(other, this)) return true;
     return other is ChatsRecord &&
         cid == other.cid &&
-        prompts == other.prompts &&
-        completions == other.completions &&
         timestamp == other.timestamp &&
+        message == other.message &&
+        isCompletion == other.isCompletion &&
+        datasetIds == other.datasetIds &&
+        chunks == other.chunks &&
         ffRef == other.ffRef;
   }
 
@@ -145,9 +179,13 @@ class _$ChatsRecord extends ChatsRecord {
   int get hashCode {
     return $jf($jc(
         $jc(
-            $jc($jc($jc(0, cid.hashCode), prompts.hashCode),
-                completions.hashCode),
-            timestamp.hashCode),
+            $jc(
+                $jc(
+                    $jc($jc($jc(0, cid.hashCode), timestamp.hashCode),
+                        message.hashCode),
+                    isCompletion.hashCode),
+                datasetIds.hashCode),
+            chunks.hashCode),
         ffRef.hashCode));
   }
 
@@ -155,9 +193,11 @@ class _$ChatsRecord extends ChatsRecord {
   String toString() {
     return (newBuiltValueToStringHelper(r'ChatsRecord')
           ..add('cid', cid)
-          ..add('prompts', prompts)
-          ..add('completions', completions)
           ..add('timestamp', timestamp)
+          ..add('message', message)
+          ..add('isCompletion', isCompletion)
+          ..add('datasetIds', datasetIds)
+          ..add('chunks', chunks)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -170,20 +210,28 @@ class ChatsRecordBuilder implements Builder<ChatsRecord, ChatsRecordBuilder> {
   String? get cid => _$this._cid;
   set cid(String? cid) => _$this._cid = cid;
 
-  ListBuilder<String>? _prompts;
-  ListBuilder<String> get prompts =>
-      _$this._prompts ??= new ListBuilder<String>();
-  set prompts(ListBuilder<String>? prompts) => _$this._prompts = prompts;
-
-  ListBuilder<String>? _completions;
-  ListBuilder<String> get completions =>
-      _$this._completions ??= new ListBuilder<String>();
-  set completions(ListBuilder<String>? completions) =>
-      _$this._completions = completions;
-
   DateTime? _timestamp;
   DateTime? get timestamp => _$this._timestamp;
   set timestamp(DateTime? timestamp) => _$this._timestamp = timestamp;
+
+  String? _message;
+  String? get message => _$this._message;
+  set message(String? message) => _$this._message = message;
+
+  bool? _isCompletion;
+  bool? get isCompletion => _$this._isCompletion;
+  set isCompletion(bool? isCompletion) => _$this._isCompletion = isCompletion;
+
+  ListBuilder<String>? _datasetIds;
+  ListBuilder<String> get datasetIds =>
+      _$this._datasetIds ??= new ListBuilder<String>();
+  set datasetIds(ListBuilder<String>? datasetIds) =>
+      _$this._datasetIds = datasetIds;
+
+  ListBuilder<String>? _chunks;
+  ListBuilder<String> get chunks =>
+      _$this._chunks ??= new ListBuilder<String>();
+  set chunks(ListBuilder<String>? chunks) => _$this._chunks = chunks;
 
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
@@ -197,9 +245,11 @@ class ChatsRecordBuilder implements Builder<ChatsRecord, ChatsRecordBuilder> {
     final $v = _$v;
     if ($v != null) {
       _cid = $v.cid;
-      _prompts = $v.prompts?.toBuilder();
-      _completions = $v.completions?.toBuilder();
       _timestamp = $v.timestamp;
+      _message = $v.message;
+      _isCompletion = $v.isCompletion;
+      _datasetIds = $v.datasetIds?.toBuilder();
+      _chunks = $v.chunks?.toBuilder();
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -226,17 +276,19 @@ class ChatsRecordBuilder implements Builder<ChatsRecord, ChatsRecordBuilder> {
       _$result = _$v ??
           new _$ChatsRecord._(
               cid: cid,
-              prompts: _prompts?.build(),
-              completions: _completions?.build(),
               timestamp: timestamp,
+              message: message,
+              isCompletion: isCompletion,
+              datasetIds: _datasetIds?.build(),
+              chunks: _chunks?.build(),
               ffRef: ffRef);
     } catch (_) {
       late String _$failedField;
       try {
-        _$failedField = 'prompts';
-        _prompts?.build();
-        _$failedField = 'completions';
-        _completions?.build();
+        _$failedField = 'datasetIds';
+        _datasetIds?.build();
+        _$failedField = 'chunks';
+        _chunks?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'ChatsRecord', _$failedField, e.toString());
