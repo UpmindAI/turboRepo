@@ -222,11 +222,18 @@ class ChatServerCall {
   static Future<ApiCallResponse> call({
     String? idToken = '',
     String? qid = '',
+    String? cid = '',
+    List<String>? datasetIdsList,
+    double? topK,
   }) {
+    final datasetIds = _serializeList(datasetIdsList);
+
     final body = '''
 {
   "id_token": "${idToken}",
-  "qid": "${qid}"
+  "qid": "${qid}",
+  "cid": "${cid}",
+  "dataset_ids": ${datasetIds}
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'chatServer',
