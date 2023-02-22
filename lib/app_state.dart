@@ -22,6 +22,7 @@ class FFAppState extends ChangeNotifier {
     _setChunkSize = prefs.getDouble('ff_setChunkSize') ?? _setChunkSize;
     _selectedDocuments =
         prefs.getStringList('ff_selectedDocuments') ?? _selectedDocuments;
+    _setCid = prefs.getString('ff_setCid') ?? _setCid;
   }
 
   void update(VoidCallback callback) {
@@ -124,6 +125,13 @@ class FFAppState extends ChangeNotifier {
   bool get sourcesOn => _sourcesOn;
   set sourcesOn(bool _value) {
     _sourcesOn = _value;
+  }
+
+  String _setCid = '';
+  String get setCid => _setCid;
+  set setCid(String _value) {
+    _setCid = _value;
+    prefs.setString('ff_setCid', _value);
   }
 }
 

@@ -1,6 +1,7 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
 import '../components/add_dataset_widget.dart';
+import '../components/chat_history_widget.dart';
 import '../components/main_menu_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -127,6 +128,165 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                   mainAxisSize:
                                                       MainAxisSize.max,
                                                   children: [
+                                                    Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Expanded(
+                                                          child: Align(
+                                                            alignment:
+                                                                AlignmentDirectional(
+                                                                    1, 0),
+                                                            child: Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          10,
+                                                                          5,
+                                                                          10,
+                                                                          5),
+                                                              child:
+                                                                  FFButtonWidget(
+                                                                onPressed:
+                                                                    () async {
+                                                                  await showModalBottomSheet(
+                                                                    isScrollControlled:
+                                                                        true,
+                                                                    backgroundColor:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .secondaryBackground,
+                                                                    enableDrag:
+                                                                        false,
+                                                                    context:
+                                                                        context,
+                                                                    builder:
+                                                                        (context) {
+                                                                      return Padding(
+                                                                        padding:
+                                                                            MediaQuery.of(context).viewInsets,
+                                                                        child:
+                                                                            Container(
+                                                                          height:
+                                                                              MediaQuery.of(context).size.height * 0.8,
+                                                                          child:
+                                                                              ChatHistoryWidget(),
+                                                                        ),
+                                                                      );
+                                                                    },
+                                                                  ).then((value) =>
+                                                                      setState(
+                                                                          () {}));
+                                                                },
+                                                                text:
+                                                                    'Chat History',
+                                                                icon: FaIcon(
+                                                                  FontAwesomeIcons
+                                                                      .clock,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryColor,
+                                                                  size: 18,
+                                                                ),
+                                                                options:
+                                                                    FFButtonOptions(
+                                                                  width: 130,
+                                                                  height: 30,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryBackground,
+                                                                  textStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .subtitle2
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            FlutterFlowTheme.of(context).subtitle2Family,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .secondaryColor,
+                                                                        useGoogleFonts:
+                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).subtitle2Family),
+                                                                      ),
+                                                                  borderSide:
+                                                                      BorderSide(
+                                                                    color: Colors
+                                                                        .transparent,
+                                                                    width: 1,
+                                                                  ),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              0),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Align(
+                                                          alignment:
+                                                              AlignmentDirectional(
+                                                                  1, 0),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        10,
+                                                                        5,
+                                                                        10,
+                                                                        5),
+                                                            child:
+                                                                FFButtonWidget(
+                                                              onPressed:
+                                                                  () async {
+                                                                setState(() {
+                                                                  FFAppState()
+                                                                      .setCid = '';
+                                                                });
+                                                              },
+                                                              text: 'Clear',
+                                                              icon: Icon(
+                                                                Icons.close,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryColor,
+                                                                size: 18,
+                                                              ),
+                                                              options:
+                                                                  FFButtonOptions(
+                                                                width: 130,
+                                                                height: 30,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryBackground,
+                                                                textStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .subtitle2
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .subtitle2Family,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryColor,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).subtitle2Family),
+                                                                    ),
+                                                                borderSide:
+                                                                    BorderSide(
+                                                                  color: Colors
+                                                                      .transparent,
+                                                                  width: 1,
+                                                                ),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            0),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
                                                     Padding(
                                                       padding:
                                                           EdgeInsetsDirectional
@@ -207,13 +367,16 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                               mainAxisSize: MainAxisSize.max,
                                                                               crossAxisAlignment: CrossAxisAlignment.start,
                                                                               children: [
-                                                                                Text(
-                                                                                  'You:',
-                                                                                  style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                        fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                        fontWeight: FontWeight.bold,
-                                                                                        useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                                      ),
+                                                                                Padding(
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                                                                  child: Text(
+                                                                                    'You:',
+                                                                                    style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                          fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                          fontWeight: FontWeight.bold,
+                                                                                          useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                        ),
+                                                                                  ),
                                                                                 ),
                                                                                 Padding(
                                                                                   padding: EdgeInsetsDirectional.fromSTEB(10, 5, 10, 5),
@@ -233,7 +396,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                                     style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                           fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
                                                                                           color: FlutterFlowTheme.of(context).alternate,
-                                                                                          fontSize: 11,
+                                                                                          fontSize: 10,
                                                                                           fontWeight: FontWeight.w300,
                                                                                           useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
                                                                                         ),
@@ -260,11 +423,11 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                                 MainAxisSize.max,
                                                                             children: [
                                                                               Align(
-                                                                                alignment: AlignmentDirectional(1, 0),
+                                                                                alignment: AlignmentDirectional(-1, 0),
                                                                                 child: Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(40, 20, 0, 0),
                                                                                   child: Text(
-                                                                                    'Completion',
+                                                                                    'Completion:',
                                                                                     style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                           fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
                                                                                           fontWeight: FontWeight.bold,
@@ -433,8 +596,9 @@ class _ChatWidgetState extends State<ChatWidget> {
                                             ),
                                             FFButtonWidget(
                                               onPressed: () async {
-                                                if (_model.setCid == null ||
-                                                    _model.setCid == '') {
+                                                if (FFAppState().setCid ==
+                                                        null ||
+                                                    FFAppState().setCid == '') {
                                                   setState(() {
                                                     _model.setCid = random_data
                                                         .randomString(
@@ -612,7 +776,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                         Padding(
                                                           padding:
                                                               EdgeInsetsDirectional
-                                                                  .fromSTEB(15,
+                                                                  .fromSTEB(20,
                                                                       0, 0, 0),
                                                           child: InkWell(
                                                             onTap: () async {
@@ -646,75 +810,13 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                   setState(
                                                                       () {}));
                                                             },
-                                                            child: Text(
-                                                              '+',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyText1
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyText1Family,
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .tertiaryColor,
-                                                                    fontSize:
-                                                                        18,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w900,
-                                                                    useGoogleFonts: GoogleFonts
-                                                                            .asMap()
-                                                                        .containsKey(
-                                                                            FlutterFlowTheme.of(context).bodyText1Family),
-                                                                  ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(2,
-                                                                      0, 0, 0),
-                                                          child: InkWell(
-                                                            onTap: () async {
-                                                              await showModalBottomSheet(
-                                                                isScrollControlled:
-                                                                    true,
-                                                                backgroundColor:
-                                                                    FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryBackground,
-                                                                enableDrag:
-                                                                    false,
-                                                                context:
-                                                                    context,
-                                                                builder:
-                                                                    (context) {
-                                                                  return Padding(
-                                                                    padding: MediaQuery.of(
-                                                                            context)
-                                                                        .viewInsets,
-                                                                    child:
-                                                                        Container(
-                                                                      height:
-                                                                          400,
-                                                                      child:
-                                                                          AddDatasetWidget(),
-                                                                    ),
-                                                                  );
-                                                                },
-                                                              ).then((value) =>
-                                                                  setState(
-                                                                      () {}));
-                                                            },
-                                                            child: FaIcon(
-                                                              FontAwesomeIcons
-                                                                  .archive,
+                                                            child: Icon(
+                                                              Icons
+                                                                  .create_new_folder_outlined,
                                                               color: FlutterFlowTheme
                                                                       .of(context)
                                                                   .tertiaryColor,
-                                                              size: 18,
+                                                              size: 22,
                                                             ),
                                                           ),
                                                         ),
