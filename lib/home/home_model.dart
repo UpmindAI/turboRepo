@@ -33,6 +33,8 @@ class HomeModel extends FlutterFlowModel {
   UserPromptsRecord? setPromptSummarize;
   // Stores action output result for [Backend Call - Create Document] action in ButtonGPT widget.
   UserPromptsRecord? setPromptGPT;
+  // Stores action output result for [Backend Call - Create Document] action in ButtonMyData widget.
+  UserPromptsRecord? setPromptG;
   // State field(s) for DropDown widget.
   String? dropDownValue;
   // State field(s) for Checkbox widget.

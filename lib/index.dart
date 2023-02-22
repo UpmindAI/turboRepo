@@ -13,8 +13,8 @@ export 'feedback_private/feedback_private_widget.dart'
     show FeedbackPrivateWidget;
 export 'forgot_password/forgot_password_widget.dart' show ForgotPasswordWidget;
 export 'chat/chat_widget.dart' show ChatWidget;
-export 'retreiving_m_i_x/retreiving_m_i_x_widget.dart' show RetreivingMIXWidget;
 export 'retreiving_g_p_t/retreiving_g_p_t_widget.dart' show RetreivingGPTWidget;
+export 'retreiving_m_i_x/retreiving_m_i_x_widget.dart' show RetreivingMIXWidget;
 export 'retreiving_summarize/retreiving_summarize_widget.dart'
     show RetreivingSummarizeWidget;
 export 'retreiving_pinecone/retreiving_pinecone_widget.dart'

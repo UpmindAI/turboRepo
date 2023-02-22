@@ -95,7 +95,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
                   child: Text(
-                    'v0.188',
+                    'v0.189',
                     style: FlutterFlowTheme.of(context).bodyText1,
                   ),
                 ),
@@ -510,7 +510,15 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                                       _model.promptFieldController?.clear();
                                                                                     });
 
-                                                                                    context.pushNamed('retreivingMIX');
+                                                                                    context.pushNamed(
+                                                                                      'retreivingMIX',
+                                                                                      queryParams: {
+                                                                                        'guardrail': serializeParam(
+                                                                                          false,
+                                                                                          ParamType.bool,
+                                                                                        ),
+                                                                                      }.withoutNulls,
+                                                                                    );
 
                                                                                     setState(() {});
                                                                                   },
@@ -623,6 +631,70 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                                     });
 
                                                                                     context.pushNamed('retreivingGPT');
+
+                                                                                    setState(() {});
+                                                                                  },
+                                                                                  text: 'OMP!',
+                                                                                  options: FFButtonOptions(
+                                                                                    width: 130,
+                                                                                    height: 40,
+                                                                                    color: FlutterFlowTheme.of(context).primaryColor,
+                                                                                    textStyle: FlutterFlowTheme.of(context).subtitle2.override(
+                                                                                          fontFamily: FlutterFlowTheme.of(context).subtitle2Family,
+                                                                                          color: Colors.white,
+                                                                                          fontSize: 20,
+                                                                                          fontWeight: FontWeight.bold,
+                                                                                          useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).subtitle2Family),
+                                                                                        ),
+                                                                                    borderSide: BorderSide(
+                                                                                      color: Colors.transparent,
+                                                                                      width: 1,
+                                                                                    ),
+                                                                                    borderRadius: BorderRadius.circular(0),
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                          if (_model.dropDownValue ==
+                                                                              'My Data Only')
+                                                                            Align(
+                                                                              alignment: AlignmentDirectional(1, -1),
+                                                                              child: Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(20, 20, 0, 0),
+                                                                                child: FFButtonWidget(
+                                                                                  onPressed: () async {
+                                                                                    FFAppState().update(() {
+                                                                                      FFAppState().setQid = random_data.randomString(
+                                                                                        7,
+                                                                                        7,
+                                                                                        true,
+                                                                                        true,
+                                                                                        true,
+                                                                                      );
+                                                                                      FFAppState().setEngine = _model.dropDownValue!;
+                                                                                    });
+                                                                                    await Future.delayed(const Duration(milliseconds: 500));
+
+                                                                                    final userPromptsCreateData = createUserPromptsRecordData(
+                                                                                      qid: FFAppState().setQid,
+                                                                                      prompt: _model.promptFieldController.text,
+                                                                                    );
+                                                                                    var userPromptsRecordReference = UserPromptsRecord.createDoc(currentUserReference!);
+                                                                                    await userPromptsRecordReference.set(userPromptsCreateData);
+                                                                                    _model.setPromptG = UserPromptsRecord.getDocumentFromData(userPromptsCreateData, userPromptsRecordReference);
+                                                                                    setState(() {
+                                                                                      _model.promptFieldController?.clear();
+                                                                                    });
+
+                                                                                    context.pushNamed(
+                                                                                      'retreivingMIX',
+                                                                                      queryParams: {
+                                                                                        'guardrail': serializeParam(
+                                                                                          true,
+                                                                                          ParamType.bool,
+                                                                                        ),
+                                                                                      }.withoutNulls,
+                                                                                    );
 
                                                                                     setState(() {});
                                                                                   },
@@ -767,7 +839,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                         options: [
                                                                           'My Data + GPT',
                                                                           'GPT Only',
-                                                                          'Summarize'
+                                                                          'Summarize',
+                                                                          'My Data Only'
                                                                         ],
                                                                         onChanged:
                                                                             (val) =>

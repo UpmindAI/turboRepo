@@ -158,14 +158,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => ChatWidget(),
             ),
             FFRoute(
-              name: 'retreivingMIX',
-              path: 'retreivingMIX',
-              builder: (context, params) => RetreivingMIXWidget(),
-            ),
-            FFRoute(
               name: 'retreivingGPT',
               path: 'retreivingGPT',
               builder: (context, params) => RetreivingGPTWidget(),
+            ),
+            FFRoute(
+              name: 'retreivingMIX',
+              path: 'retreivingMIX',
+              builder: (context, params) => RetreivingMIXWidget(
+                guardrail: params.getParam('guardrail', ParamType.bool),
+              ),
             ),
             FFRoute(
               name: 'retreivingSummarize',
