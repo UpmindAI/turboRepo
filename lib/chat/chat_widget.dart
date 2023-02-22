@@ -481,7 +481,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                                   Padding(
                                                                                     padding: EdgeInsetsDirectional.fromSTEB(10, 5, 10, 5),
                                                                                     child: Text(
-                                                                                      listViewChatsRecord.message!,
+                                                                                      listViewChatsRecord.prompt!,
                                                                                       style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                             fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
                                                                                             fontWeight: FontWeight.w500,
@@ -539,7 +539,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                                   child: Padding(
                                                                                     padding: EdgeInsetsDirectional.fromSTEB(40, 5, 10, 5),
                                                                                     child: Text(
-                                                                                      listViewChatsRecord.message!,
+                                                                                      listViewChatsRecord.completion!,
                                                                                       style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                             fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
                                                                                             color: FlutterFlowTheme.of(context).secondaryColor,
@@ -737,9 +737,6 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                               .setCid,
                                                           timestamp:
                                                               getCurrentTimestamp,
-                                                          message: _model
-                                                              .promptController
-                                                              .text,
                                                           isCompletion: false,
                                                           qid: random_data
                                                               .randomString(
@@ -749,6 +746,9 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                             true,
                                                             true,
                                                           ),
+                                                          prompt: _model
+                                                              .promptController
+                                                              .text,
                                                         ),
                                                         'dataset_ids': _model
                                                             .checkboxCheckedItems
@@ -837,9 +837,6 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                               .setCid,
                                                           timestamp:
                                                               getCurrentTimestamp,
-                                                          message: _model
-                                                              .promptController
-                                                              .text,
                                                           isCompletion: false,
                                                           qid: random_data
                                                               .randomString(
@@ -849,6 +846,9 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                             true,
                                                             true,
                                                           ),
+                                                          prompt: _model
+                                                              .promptController
+                                                              .text,
                                                         ),
                                                         'dataset_ids': _model
                                                             .checkboxCheckedItems
