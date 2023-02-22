@@ -45,15 +45,24 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
     return Column(
       mainAxisSize: MainAxisSize.max,
       children: [
-        Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height * 1,
-          decoration: BoxDecoration(
-            color: FlutterFlowTheme.of(context).secondaryBackground,
-          ),
-          child: Text(
-            'Configure your Chatbot',
-            style: FlutterFlowTheme.of(context).bodyText1,
+        Align(
+          alignment: AlignmentDirectional(0, 0),
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height * 1,
+            constraints: BoxConstraints(
+              maxWidth: 800,
+            ),
+            decoration: BoxDecoration(
+              color: FlutterFlowTheme.of(context).secondaryBackground,
+            ),
+            child: Align(
+              alignment: AlignmentDirectional(0, 0),
+              child: Text(
+                'Configure your Chatbot',
+                style: FlutterFlowTheme.of(context).bodyText1,
+              ),
+            ),
           ),
         ),
       ],

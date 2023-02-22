@@ -60,7 +60,7 @@ class _ChatHistoryWidgetState extends State<ChatHistoryWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                 child: Text(
                   'Your Chats',
-                  style: FlutterFlowTheme.of(context).bodyText1,
+                  style: FlutterFlowTheme.of(context).title3,
                 ),
               ),
               Padding(
@@ -93,96 +93,105 @@ class _ChatHistoryWidgetState extends State<ChatHistoryWidget> {
                       itemBuilder: (context, listViewIndex) {
                         final listViewChatMetaRecord =
                             listViewChatMetaRecordList[listViewIndex];
-                        return InkWell(
-                          onTap: () async {
-                            setState(() {
-                              FFAppState().setCid = listViewChatMetaRecord.cid!;
-                            });
-                          },
-                          child: Container(
-                            width: MediaQuery.of(context).size.width,
-                            constraints: BoxConstraints(
-                              maxWidth: 800,
-                            ),
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                            ),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Icon(
-                                      Icons.chat_outlined,
-                                      color: Colors.black,
-                                      size: 24,
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          10, 0, 0, 0),
-                                      child: Text(
-                                        listViewChatMetaRecord.firstMessage!
-                                            .maybeHandleOverflow(
-                                          maxChars: 80,
-                                          replacement: '…',
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 0, 10),
-                                  child: Row(
+                        return Align(
+                          alignment: AlignmentDirectional(0, 0),
+                          child: InkWell(
+                            onTap: () async {
+                              _model.updatePage(() {
+                                FFAppState().setCid =
+                                    listViewChatMetaRecord.cid!;
+                              });
+                              await Future.delayed(
+                                  const Duration(milliseconds: 250));
+                              Navigator.pop(context);
+                            },
+                            child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              constraints: BoxConstraints(
+                                maxWidth: 800,
+                              ),
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                              ),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
-                                      Text(
-                                        'Created on: ',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1
-                                            .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyText1Family,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                              useGoogleFonts:
-                                                  GoogleFonts.asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyText1Family),
-                                            ),
+                                      Icon(
+                                        Icons.chat_outlined,
+                                        color: Colors.black,
+                                        size: 24,
                                       ),
-                                      Text(
-                                        dateTimeFormat('relative',
-                                            listViewChatMetaRecord.createdOn!),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1
-                                            .override(
-                                              fontFamily:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyText1Family,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .tertiaryColor,
-                                              useGoogleFonts:
-                                                  GoogleFonts.asMap()
-                                                      .containsKey(
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyText1Family),
-                                            ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            10, 0, 0, 0),
+                                        child: Text(
+                                          listViewChatMetaRecord.firstMessage!
+                                              .maybeHandleOverflow(
+                                            maxChars: 80,
+                                            replacement: '…',
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText1,
+                                        ),
                                       ),
                                     ],
                                   ),
-                                ),
-                              ],
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 0, 10),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Text(
+                                          'Created on: ',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText1
+                                              .override(
+                                                fontFamily:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1Family,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .alternate,
+                                                useGoogleFonts: GoogleFonts
+                                                        .asMap()
+                                                    .containsKey(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyText1Family),
+                                              ),
+                                        ),
+                                        Text(
+                                          dateTimeFormat(
+                                              'relative',
+                                              listViewChatMetaRecord
+                                                  .createdOn!),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyText1
+                                              .override(
+                                                fontFamily:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1Family,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .tertiaryColor,
+                                                useGoogleFonts: GoogleFonts
+                                                        .asMap()
+                                                    .containsKey(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyText1Family),
+                                              ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         );
