@@ -394,9 +394,10 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                               currentUserReference,
                                                           queryBuilder: (chatsRecord) =>
                                                               chatsRecord
-                                                                  .where('cid',
+                                                                  .where(
+                                                                      'cid',
                                                                       isEqualTo:
-                                                                          _model
+                                                                          FFAppState()
                                                                               .setCid)
                                                                   .orderBy(
                                                                       'timestamp'),
@@ -704,6 +705,10 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                         true,
                                                         true,
                                                       );
+                                                      await Future.delayed(
+                                                          const Duration(
+                                                              milliseconds:
+                                                                  250));
 
                                                       final chatMetaCreateData =
                                                           createChatMetaRecordData(
@@ -732,7 +737,8 @@ class _ChatWidgetState extends State<ChatWidget> {
 
                                                       final chatsCreateData = {
                                                         ...createChatsRecordData(
-                                                          cid: _model.setCid,
+                                                          cid: FFAppState()
+                                                              .setCid,
                                                           timestamp:
                                                               getCurrentTimestamp,
                                                           message: _model
@@ -820,7 +826,8 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                     onPressed: () async {
                                                       final chatsCreateData = {
                                                         ...createChatsRecordData(
-                                                          cid: _model.setCid,
+                                                          cid: FFAppState()
+                                                              .setCid,
                                                           timestamp:
                                                               getCurrentTimestamp,
                                                           message: _model
