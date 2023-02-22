@@ -24,14 +24,37 @@ class ChatModel extends FlutterFlowModel {
 
   ///  State fields for stateful widgets in this page.
 
+  final formKey1 = GlobalKey<FormState>();
+  final formKey2 = GlobalKey<FormState>();
   // Model for mainMenu component.
   late MainMenuModel mainMenuModel;
-  // State field(s) for prompt widget.
-  TextEditingController? promptController;
-  String? Function(BuildContext, String?)? promptControllerValidator;
-  // Stores action output result for [Backend Call - Create Document] action in prompt widget.
+  // State field(s) for promptStart widget.
+  TextEditingController? promptStartController;
+  String? Function(BuildContext, String?)? promptStartControllerValidator;
+  String? _promptStartControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    if (val.length < 3) {
+      return 'Requires at least 3 characters.';
+    }
+
+    return null;
+  }
+
+  // Stores action output result for [Backend Call - Create Document] action in promptStart widget.
+  ChatMetaRecord? createChatForm;
+  // Stores action output result for [Backend Call - Create Document] action in promptStart widget.
+  ChatsRecord? createMessageForm;
+  // Stores action output result for [Backend Call - API (chatServer)] action in promptStart widget.
+  ApiCallResponse? apiResultStartForm;
+  // State field(s) for promptSend widget.
+  TextEditingController? promptSendController;
+  String? Function(BuildContext, String?)? promptSendControllerValidator;
+  // Stores action output result for [Backend Call - Create Document] action in promptSend widget.
   ChatsRecord? chatMessageNewFromField;
-  // Stores action output result for [Backend Call - API (chatServer)] action in prompt widget.
+  // Stores action output result for [Backend Call - API (chatServer)] action in promptSend widget.
   ApiCallResponse? apiResultzymFF;
   // Stores action output result for [Backend Call - Create Document] action in Start widget.
   ChatMetaRecord? createChat;
@@ -53,11 +76,13 @@ class ChatModel extends FlutterFlowModel {
 
   void initState(BuildContext context) {
     mainMenuModel = createModel(context, () => MainMenuModel());
+    promptStartControllerValidator = _promptStartControllerValidator;
   }
 
   void dispose() {
     mainMenuModel.dispose();
-    promptController?.dispose();
+    promptStartController?.dispose();
+    promptSendController?.dispose();
   }
 
   /// Additional helper methods are added here.
