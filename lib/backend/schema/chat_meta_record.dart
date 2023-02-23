@@ -21,13 +21,15 @@ abstract class ChatMetaRecord
   @BuiltValueField(wireName: 'first_message')
   String? get firstMessage;
 
-  @BuiltValueField(wireName: 'last_message')
-  String? get lastMessage;
-
   BuiltList<String>? get prompts;
 
   @BuiltValueField(wireName: 'is_loading')
   bool? get isLoading;
+
+  BuiltList<String>? get completions;
+
+  @BuiltValueField(wireName: 'last_message')
+  DateTime? get lastMessage;
 
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
@@ -39,9 +41,9 @@ abstract class ChatMetaRecord
     ..cid = ''
     ..qids = ListBuilder()
     ..firstMessage = ''
-    ..lastMessage = ''
     ..prompts = ListBuilder()
-    ..isLoading = false;
+    ..isLoading = false
+    ..completions = ListBuilder();
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
       parent != null
@@ -73,8 +75,8 @@ Map<String, dynamic> createChatMetaRecordData({
   DateTime? createdOn,
   String? cid,
   String? firstMessage,
-  String? lastMessage,
   bool? isLoading,
+  DateTime? lastMessage,
 }) {
   final firestoreData = serializers.toFirestore(
     ChatMetaRecord.serializer,
@@ -84,9 +86,10 @@ Map<String, dynamic> createChatMetaRecordData({
         ..cid = cid
         ..qids = null
         ..firstMessage = firstMessage
-        ..lastMessage = lastMessage
         ..prompts = null
-        ..isLoading = isLoading,
+        ..isLoading = isLoading
+        ..completions = null
+        ..lastMessage = lastMessage,
     ),
   );
 
