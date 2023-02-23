@@ -336,6 +336,9 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                     .update(() {
                                                                   FFAppState()
                                                                       .setCid = '';
+                                                                  FFAppState()
+                                                                          .setChat =
+                                                                      null;
                                                                 });
                                                               },
                                                               text: 'Clear',
@@ -652,7 +655,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                       key: _model.formKey1,
                                                       autovalidateMode:
                                                           AutovalidateMode
-                                                              .always,
+                                                              .disabled,
                                                       child: Padding(
                                                         padding:
                                                             EdgeInsetsDirectional
@@ -675,15 +678,23 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                             );
 
                                                             final chatMetaCreateData =
-                                                                createChatMetaRecordData(
-                                                              createdOn:
-                                                                  getCurrentTimestamp,
-                                                              cid: FFAppState()
-                                                                  .setCid,
-                                                              firstMessage: _model
-                                                                  .promptSendController
-                                                                  .text,
-                                                            );
+                                                                {
+                                                              ...createChatMetaRecordData(
+                                                                createdOn:
+                                                                    getCurrentTimestamp,
+                                                                cid:
+                                                                    FFAppState()
+                                                                        .setCid,
+                                                                firstMessage: _model
+                                                                    .promptSendController
+                                                                    .text,
+                                                              ),
+                                                              'prompts': [
+                                                                _model
+                                                                    .promptStartController
+                                                                    .text
+                                                              ],
+                                                            };
                                                             var chatMetaRecordReference =
                                                                 ChatMetaRecord
                                                                     .createDoc(
@@ -696,6 +707,13 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                     .getDocumentFromData(
                                                                         chatMetaCreateData,
                                                                         chatMetaRecordReference);
+                                                            setState(() {
+                                                              FFAppState()
+                                                                      .setChat =
+                                                                  _model
+                                                                      .createChatForm!
+                                                                      .reference;
+                                                            });
 
                                                             final chatsCreateData =
                                                                 {
@@ -867,7 +885,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                       key: _model.formKey2,
                                                       autovalidateMode:
                                                           AutovalidateMode
-                                                              .always,
+                                                              .disabled,
                                                       child: Padding(
                                                         padding:
                                                             EdgeInsetsDirectional
@@ -918,6 +936,20 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                 ChatsRecord.getDocumentFromData(
                                                                     chatsCreateData,
                                                                     chatsRecordReference);
+
+                                                            final chatMetaUpdateData =
+                                                                {
+                                                              'prompts': FieldValue
+                                                                  .arrayUnion([
+                                                                _model
+                                                                    .promptSendController
+                                                                    .text
+                                                              ]),
+                                                            };
+                                                            await FFAppState()
+                                                                .setChat!
+                                                                .update(
+                                                                    chatMetaUpdateData);
                                                             setState(() {
                                                               _model
                                                                   .promptSendController

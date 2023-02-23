@@ -24,6 +24,8 @@ abstract class ChatMetaRecord
   @BuiltValueField(wireName: 'last_message')
   String? get lastMessage;
 
+  BuiltList<String>? get prompts;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -34,7 +36,8 @@ abstract class ChatMetaRecord
     ..cid = ''
     ..qids = ListBuilder()
     ..firstMessage = ''
-    ..lastMessage = '';
+    ..lastMessage = ''
+    ..prompts = ListBuilder();
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
       parent != null
@@ -76,7 +79,8 @@ Map<String, dynamic> createChatMetaRecordData({
         ..cid = cid
         ..qids = null
         ..firstMessage = firstMessage
-        ..lastMessage = lastMessage,
+        ..lastMessage = lastMessage
+        ..prompts = null,
     ),
   );
 
