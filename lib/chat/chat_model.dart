@@ -29,10 +29,10 @@ class ChatModel extends FlutterFlowModel {
   final formKey2 = GlobalKey<FormState>();
   // Model for mainMenu component.
   late MainMenuModel mainMenuModel;
-  // State field(s) for promptStart widget.
-  TextEditingController? promptStartController;
-  String? Function(BuildContext, String?)? promptStartControllerValidator;
-  String? _promptStartControllerValidator(BuildContext context, String? val) {
+  // State field(s) for startField widget.
+  TextEditingController? startFieldController;
+  String? Function(BuildContext, String?)? startFieldControllerValidator;
+  String? _startFieldControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return 'Field is required';
     }
@@ -44,29 +44,19 @@ class ChatModel extends FlutterFlowModel {
     return null;
   }
 
-  // Stores action output result for [Backend Call - Create Document] action in promptStart widget.
+  // Stores action output result for [Backend Call - Create Document] action in startField widget.
   ChatMetaRecord? createChatForm;
-  // Stores action output result for [Backend Call - Create Document] action in promptStart widget.
+  // Stores action output result for [Backend Call - Create Document] action in startField widget.
   ChatsRecord? createMessageForm;
-  // Stores action output result for [Backend Call - API (chatServer)] action in promptStart widget.
+  // Stores action output result for [Backend Call - API (chatServer)] action in startField widget.
   ApiCallResponse? apiResultStartForm;
-  // State field(s) for promptSend widget.
-  TextEditingController? promptSendController;
-  String? Function(BuildContext, String?)? promptSendControllerValidator;
-  // Stores action output result for [Backend Call - Create Document] action in promptSend widget.
+  // State field(s) for sendField widget.
+  TextEditingController? sendFieldController;
+  String? Function(BuildContext, String?)? sendFieldControllerValidator;
+  // Stores action output result for [Backend Call - Create Document] action in sendField widget.
   ChatsRecord? chatMessageNewFromField;
-  // Stores action output result for [Backend Call - API (chatServer)] action in promptSend widget.
+  // Stores action output result for [Backend Call - API (chatServer)] action in sendField widget.
   ApiCallResponse? apiResultzymFF;
-  // Stores action output result for [Backend Call - Create Document] action in Start widget.
-  ChatMetaRecord? createChatButton;
-  // Stores action output result for [Backend Call - Create Document] action in Start widget.
-  ChatsRecord? createMessageButton1;
-  // Stores action output result for [Backend Call - API (chatServer)] action in Start widget.
-  ApiCallResponse? apiResultStartButton;
-  // Stores action output result for [Backend Call - Create Document] action in Send widget.
-  ChatsRecord? chatMessageButton;
-  // Stores action output result for [Backend Call - API (chatServer)] action in Send widget.
-  ApiCallResponse? chatSendButton;
   // State field(s) for Checkbox widget.
 
   Map<UserDatasetsRecord, bool> checkboxValueMap = {};
@@ -77,13 +67,13 @@ class ChatModel extends FlutterFlowModel {
 
   void initState(BuildContext context) {
     mainMenuModel = createModel(context, () => MainMenuModel());
-    promptStartControllerValidator = _promptStartControllerValidator;
+    startFieldControllerValidator = _startFieldControllerValidator;
   }
 
   void dispose() {
     mainMenuModel.dispose();
-    promptStartController?.dispose();
-    promptSendController?.dispose();
+    startFieldController?.dispose();
+    sendFieldController?.dispose();
   }
 
   /// Additional helper methods are added here.
