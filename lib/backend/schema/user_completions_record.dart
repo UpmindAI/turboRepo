@@ -23,6 +23,15 @@ abstract class UserCompletionsRecord
 
   BuiltList<String>? get chunks;
 
+  @BuiltValueField(wireName: 'dataset_ids')
+  BuiltList<String>? get datasetIds;
+
+  @BuiltValueField(wireName: 'doc_titles')
+  BuiltList<String>? get docTitles;
+
+  @BuiltValueField(wireName: 'dataset_names')
+  BuiltList<String>? get datasetNames;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -35,7 +44,10 @@ abstract class UserCompletionsRecord
         ..prompt = ''
         ..completion = ''
         ..url = ''
-        ..chunks = ListBuilder();
+        ..chunks = ListBuilder()
+        ..datasetIds = ListBuilder()
+        ..docTitles = ListBuilder()
+        ..datasetNames = ListBuilder();
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
       parent != null
@@ -80,7 +92,10 @@ Map<String, dynamic> createUserCompletionsRecordData({
         ..completion = completion
         ..url = url
         ..timestamp = timestamp
-        ..chunks = null,
+        ..chunks = null
+        ..datasetIds = null
+        ..docTitles = null
+        ..datasetNames = null,
     ),
   );
 
