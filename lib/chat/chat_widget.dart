@@ -766,7 +766,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                               idToken:
                                                                   currentJwtToken,
                                                               qid: _model
-                                                                  .createMessage!
+                                                                  .createMessageForm!
                                                                   .qid,
                                                               cid: FFAppState()
                                                                   .setCid,
@@ -896,6 +896,8 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                               .promptSendController,
                                                           onFieldSubmitted:
                                                               (_) async {
+                                                            // createMessage
+
                                                             final chatsCreateData =
                                                                 {
                                                               ...createChatsRecordData(
@@ -964,7 +966,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                               idToken:
                                                                   currentJwtToken,
                                                               qid: _model
-                                                                  .chatMessageNew!
+                                                                  .chatMessageNewFromField!
                                                                   .qid,
                                                               cid: FFAppState()
                                                                   .setCid,
@@ -1097,25 +1099,39 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                       );
 
                                                       final chatMetaCreateData =
-                                                          createChatMetaRecordData(
-                                                        createdOn:
-                                                            getCurrentTimestamp,
-                                                        cid:
-                                                            FFAppState().setCid,
-                                                        firstMessage: _model
-                                                            .promptStartController
-                                                            .text,
-                                                      );
+                                                          {
+                                                        ...createChatMetaRecordData(
+                                                          createdOn:
+                                                              getCurrentTimestamp,
+                                                          cid: FFAppState()
+                                                              .setCid,
+                                                          firstMessage: _model
+                                                              .promptSendController
+                                                              .text,
+                                                        ),
+                                                        'prompts': [
+                                                          _model
+                                                              .promptStartController
+                                                              .text
+                                                        ],
+                                                      };
                                                       var chatMetaRecordReference =
                                                           ChatMetaRecord.createDoc(
                                                               currentUserReference!);
                                                       await chatMetaRecordReference
                                                           .set(
                                                               chatMetaCreateData);
-                                                      _model.createChat = ChatMetaRecord
-                                                          .getDocumentFromData(
-                                                              chatMetaCreateData,
-                                                              chatMetaRecordReference);
+                                                      _model.createChatButton =
+                                                          ChatMetaRecord
+                                                              .getDocumentFromData(
+                                                                  chatMetaCreateData,
+                                                                  chatMetaRecordReference);
+                                                      setState(() {
+                                                        FFAppState().setChat =
+                                                            _model
+                                                                .createChatForm!
+                                                                .reference;
+                                                      });
 
                                                       final chatsCreateData = {
                                                         ...createChatsRecordData(
@@ -1133,7 +1149,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                             true,
                                                           ),
                                                           prompt: _model
-                                                              .promptStartController
+                                                              .promptSendController
                                                               .text,
                                                         ),
                                                         'dataset_ids': _model
@@ -1148,25 +1164,24 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                               currentUserReference!);
                                                       await chatsRecordReference
                                                           .set(chatsCreateData);
-                                                      _model.createMessage = ChatsRecord
-                                                          .getDocumentFromData(
-                                                              chatsCreateData,
-                                                              chatsRecordReference);
+                                                      _model.createMessageButton1 =
+                                                          ChatsRecord
+                                                              .getDocumentFromData(
+                                                                  chatsCreateData,
+                                                                  chatsRecordReference);
                                                       setState(() {
-                                                        _model
-                                                            .promptStartController
-                                                            ?.clear();
                                                         _model
                                                             .promptSendController
                                                             ?.clear();
                                                       });
-                                                      _model.apiResultStart =
+                                                      _model.apiResultStartButton =
                                                           await ChatServerCall
                                                               .call(
                                                         idToken:
                                                             currentJwtToken,
                                                         qid: _model
-                                                            .createMessage!.qid,
+                                                            .createMessageButton1!
+                                                            .qid,
                                                         cid:
                                                             FFAppState().setCid,
                                                         datasetIdsList:
@@ -1237,7 +1252,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                             true,
                                                           ),
                                                           prompt: _model
-                                                              .promptStartController
+                                                              .promptSendController
                                                               .text,
                                                         ),
                                                         'dataset_ids': _model
@@ -1252,25 +1267,40 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                               currentUserReference!);
                                                       await chatsRecordReference
                                                           .set(chatsCreateData);
-                                                      _model.chatMessageNew = ChatsRecord
-                                                          .getDocumentFromData(
-                                                              chatsCreateData,
-                                                              chatsRecordReference);
+                                                      _model.chatMessageButton =
+                                                          ChatsRecord
+                                                              .getDocumentFromData(
+                                                                  chatsCreateData,
+                                                                  chatsRecordReference);
+
+                                                      final chatMetaUpdateData =
+                                                          {
+                                                        'prompts': FieldValue
+                                                            .arrayUnion([
+                                                          _model
+                                                              .promptSendController
+                                                              .text
+                                                        ]),
+                                                      };
+                                                      await FFAppState()
+                                                          .setChat!
+                                                          .update(
+                                                              chatMetaUpdateData);
                                                       setState(() {
-                                                        _model
-                                                            .promptStartController
-                                                            ?.clear();
                                                         _model
                                                             .promptSendController
                                                             ?.clear();
+                                                        _model
+                                                            .promptStartController
+                                                            ?.clear();
                                                       });
-                                                      _model.apiResultzym =
+                                                      _model.chatSendButton =
                                                           await ChatServerCall
                                                               .call(
                                                         idToken:
                                                             currentJwtToken,
                                                         qid: _model
-                                                            .chatMessageNew!
+                                                            .chatMessageButton!
                                                             .qid,
                                                         cid:
                                                             FFAppState().setCid,
