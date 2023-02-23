@@ -58,15 +58,15 @@ class ChatModel extends FlutterFlowModel {
   // Stores action output result for [Backend Call - API (chatServer)] action in promptSend widget.
   ApiCallResponse? apiResultzymFF;
   // Stores action output result for [Backend Call - Create Document] action in Start widget.
-  ChatMetaRecord? createChat;
+  ChatMetaRecord? createChatButton;
   // Stores action output result for [Backend Call - Create Document] action in Start widget.
-  ChatsRecord? createMessage;
+  ChatsRecord? createMessageButton1;
   // Stores action output result for [Backend Call - API (chatServer)] action in Start widget.
-  ApiCallResponse? apiResultStart;
+  ApiCallResponse? apiResultStartButton;
   // Stores action output result for [Backend Call - Create Document] action in Send widget.
-  ChatsRecord? chatMessageNew;
+  ChatsRecord? chatMessageButton;
   // Stores action output result for [Backend Call - API (chatServer)] action in Send widget.
-  ApiCallResponse? apiResultzym;
+  ApiCallResponse? chatSendButton;
   // State field(s) for Checkbox widget.
 
   Map<UserDatasetsRecord, bool> checkboxValueMap = {};
