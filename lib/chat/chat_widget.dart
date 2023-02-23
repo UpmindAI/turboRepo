@@ -38,8 +38,7 @@ class _ChatWidgetState extends State<ChatWidget> {
     super.initState();
     _model = createModel(context, () => ChatModel());
 
-    _model.promptStartController ??=
-        TextEditingController(text: 'Start a Chat');
+    _model.promptStartController ??= TextEditingController();
     _model.promptSendController ??= TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -766,6 +765,8 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                           obscureText: false,
                                                           decoration:
                                                               InputDecoration(
+                                                            hintText:
+                                                                'Start a Chat...',
                                                             hintStyle:
                                                                 FlutterFlowTheme.of(
                                                                         context)
