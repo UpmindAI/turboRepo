@@ -56,12 +56,51 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
             decoration: BoxDecoration(
               color: FlutterFlowTheme.of(context).secondaryBackground,
             ),
-            child: Align(
-              alignment: AlignmentDirectional(0, 0),
-              child: Text(
-                'Configure your Chatbot',
-                style: FlutterFlowTheme.of(context).bodyText1,
-              ),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+                  child: Text(
+                    'Configure your Chatbot',
+                    style: FlutterFlowTheme.of(context).title3,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
+                  child: Text(
+                    'Top K',
+                    style: FlutterFlowTheme.of(context).bodyText1,
+                  ),
+                ),
+                Text(
+                  formatNumber(
+                    FFAppState().setTopK,
+                    formatType: FormatType.custom,
+                    format: '33',
+                    locale: '',
+                  ),
+                  style: FlutterFlowTheme.of(context).bodyText1,
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                  child: Slider(
+                    activeColor: FlutterFlowTheme.of(context).primaryColor,
+                    inactiveColor: Color(0xFF9E9E9E),
+                    min: 1,
+                    max: 10,
+                    value: _model.sliderValue ??= FFAppState().setTopK,
+                    divisions: 9,
+                    onChanged: (newValue) async {
+                      newValue = double.parse(newValue.toStringAsFixed(4));
+                      setState(() => _model.sliderValue = newValue);
+                      setState(() {
+                        FFAppState().setTopK = _model.sliderValue!;
+                      });
+                    },
+                  ),
+                ),
+              ],
             ),
           ),
         ),

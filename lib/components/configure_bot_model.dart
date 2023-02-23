@@ -6,6 +6,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class ConfigureBotModel extends FlutterFlowModel {
+  ///  State fields for stateful widgets in this component.
+
+  // State field(s) for Slider widget.
+  double? sliderValue;
+
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {}
