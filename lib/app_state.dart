@@ -23,6 +23,7 @@ class FFAppState extends ChangeNotifier {
     _selectedDocuments =
         prefs.getStringList('ff_selectedDocuments') ?? _selectedDocuments;
     _setCid = prefs.getString('ff_setCid') ?? _setCid;
+    _setChat = prefs.getString('ff_setChat')?.ref ?? _setChat;
   }
 
   void update(VoidCallback callback) {
@@ -132,6 +133,15 @@ class FFAppState extends ChangeNotifier {
   set setCid(String _value) {
     _setCid = _value;
     prefs.setString('ff_setCid', _value);
+  }
+
+  DocumentReference? _setChat;
+  DocumentReference? get setChat => _setChat;
+  set setChat(DocumentReference? _value) {
+    _setChat = _value;
+    _value != null
+        ? prefs.setString('ff_setChat', _value.path)
+        : prefs.remove('ff_setChat');
   }
 }
 

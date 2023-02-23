@@ -77,7 +77,7 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                   formatNumber(
                     FFAppState().setTopK,
                     formatType: FormatType.custom,
-                    format: '33',
+                    format: '##',
                     locale: '',
                   ),
                   style: FlutterFlowTheme.of(context).bodyText1,

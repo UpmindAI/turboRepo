@@ -57,6 +57,14 @@ class _$ChatMetaRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.prompts;
+    if (value != null) {
+      result
+        ..add('prompts')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -102,6 +110,12 @@ class _$ChatMetaRecordSerializer
           result.lastMessage = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'prompts':
+          result.prompts.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -127,6 +141,8 @@ class _$ChatMetaRecord extends ChatMetaRecord {
   @override
   final String? lastMessage;
   @override
+  final BuiltList<String>? prompts;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$ChatMetaRecord([void Function(ChatMetaRecordBuilder)? updates]) =>
@@ -138,6 +154,7 @@ class _$ChatMetaRecord extends ChatMetaRecord {
       this.qids,
       this.firstMessage,
       this.lastMessage,
+      this.prompts,
       this.ffRef})
       : super._();
 
@@ -158,6 +175,7 @@ class _$ChatMetaRecord extends ChatMetaRecord {
         qids == other.qids &&
         firstMessage == other.firstMessage &&
         lastMessage == other.lastMessage &&
+        prompts == other.prompts &&
         ffRef == other.ffRef;
   }
 
@@ -166,10 +184,12 @@ class _$ChatMetaRecord extends ChatMetaRecord {
     return $jf($jc(
         $jc(
             $jc(
-                $jc($jc($jc(0, createdOn.hashCode), cid.hashCode),
-                    qids.hashCode),
-                firstMessage.hashCode),
-            lastMessage.hashCode),
+                $jc(
+                    $jc($jc($jc(0, createdOn.hashCode), cid.hashCode),
+                        qids.hashCode),
+                    firstMessage.hashCode),
+                lastMessage.hashCode),
+            prompts.hashCode),
         ffRef.hashCode));
   }
 
@@ -181,6 +201,7 @@ class _$ChatMetaRecord extends ChatMetaRecord {
           ..add('qids', qids)
           ..add('firstMessage', firstMessage)
           ..add('lastMessage', lastMessage)
+          ..add('prompts', prompts)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -210,6 +231,11 @@ class ChatMetaRecordBuilder
   String? get lastMessage => _$this._lastMessage;
   set lastMessage(String? lastMessage) => _$this._lastMessage = lastMessage;
 
+  ListBuilder<String>? _prompts;
+  ListBuilder<String> get prompts =>
+      _$this._prompts ??= new ListBuilder<String>();
+  set prompts(ListBuilder<String>? prompts) => _$this._prompts = prompts;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -226,6 +252,7 @@ class ChatMetaRecordBuilder
       _qids = $v.qids?.toBuilder();
       _firstMessage = $v.firstMessage;
       _lastMessage = $v.lastMessage;
+      _prompts = $v.prompts?.toBuilder();
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -256,12 +283,16 @@ class ChatMetaRecordBuilder
               qids: _qids?.build(),
               firstMessage: firstMessage,
               lastMessage: lastMessage,
+              prompts: _prompts?.build(),
               ffRef: ffRef);
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'qids';
         _qids?.build();
+
+        _$failedField = 'prompts';
+        _prompts?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'ChatMetaRecord', _$failedField, e.toString());
