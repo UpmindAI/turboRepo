@@ -574,6 +574,14 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                                       ),
                                                                                     ),
                                                                                     Padding(
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 5, 0),
+                                                                                      child: Icon(
+                                                                                        Icons.search,
+                                                                                        color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                        size: 14,
+                                                                                      ),
+                                                                                    ),
+                                                                                    Padding(
                                                                                       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
                                                                                       child: InkWell(
                                                                                         onTap: () async {
@@ -597,7 +605,11 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                                         },
                                                                                         child: Text(
                                                                                           'Sources',
-                                                                                          style: FlutterFlowTheme.of(context).bodyText1,
+                                                                                          style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                                color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                              ),
                                                                                         ),
                                                                                       ),
                                                                                     ),

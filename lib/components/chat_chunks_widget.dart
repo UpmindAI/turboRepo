@@ -48,275 +48,277 @@ class _ChatChunksWidgetState extends State<ChatChunksWidget> {
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return Column(
-      mainAxisSize: MainAxisSize.max,
-      children: [
-        Align(
-          alignment: AlignmentDirectional(0, 0),
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            height: 100,
-            constraints: BoxConstraints(
-              maxWidth: 1140,
-            ),
-            decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).secondaryBackground,
-            ),
-            child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-              child: ListView(
-                padding: EdgeInsets.zero,
-                scrollDirection: Axis.vertical,
-                children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                    child: Text(
-                      widget.chatDoc!.datasetNames!.toList().first,
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Align(
+            alignment: AlignmentDirectional(0, 0),
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              height: 100,
+              constraints: BoxConstraints(
+                maxWidth: 1140,
+              ),
+              decoration: BoxDecoration(
+                color: FlutterFlowTheme.of(context).secondaryBackground,
+              ),
+              child: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                child: ListView(
+                  padding: EdgeInsets.zero,
+                  scrollDirection: Axis.vertical,
+                  children: [
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                      child: Text(
+                        widget.chatDoc!.datasetNames!.toList().first,
+                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyText1Family,
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context).bodyText1Family),
+                            ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+                      child: Text(
+                        widget.chatDoc!.docTitles!.toList().first,
+                        style: FlutterFlowTheme.of(context).bodyText1,
+                      ),
+                    ),
+                    Text(
+                      widget.chatDoc!.chunks!.toList().first,
                       style: FlutterFlowTheme.of(context).bodyText1.override(
                             fontFamily:
                                 FlutterFlowTheme.of(context).bodyText1Family,
-                            fontSize: 13,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.normal,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
                                 FlutterFlowTheme.of(context).bodyText1Family),
                           ),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
-                    child: Text(
-                      widget.chatDoc!.docTitles!.toList().first,
-                      style: FlutterFlowTheme.of(context).bodyText1,
-                    ),
-                  ),
-                  Text(
-                    widget.chatDoc!.chunks!.toList().first,
-                    style: FlutterFlowTheme.of(context).bodyText1.override(
-                          fontFamily:
-                              FlutterFlowTheme.of(context).bodyText1Family,
-                          fontWeight: FontWeight.normal,
-                          useGoogleFonts: GoogleFonts.asMap().containsKey(
-                              FlutterFlowTheme.of(context).bodyText1Family),
-                        ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
-        ),
-        Align(
-          alignment: AlignmentDirectional(0, 0),
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            height: 100,
-            constraints: BoxConstraints(
-              maxWidth: 1140,
-            ),
-            decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).secondaryBackground,
-            ),
-            child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-              child: ListView(
-                padding: EdgeInsets.zero,
-                scrollDirection: Axis.vertical,
-                children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                    child: Text(
-                      widget.chatDoc!.datasetNames!.toList()[1],
+          Align(
+            alignment: AlignmentDirectional(0, 0),
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              height: 100,
+              constraints: BoxConstraints(
+                maxWidth: 1140,
+              ),
+              decoration: BoxDecoration(
+                color: FlutterFlowTheme.of(context).secondaryBackground,
+              ),
+              child: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                child: ListView(
+                  padding: EdgeInsets.zero,
+                  scrollDirection: Axis.vertical,
+                  children: [
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                      child: Text(
+                        widget.chatDoc!.datasetNames!.toList()[1],
+                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyText1Family,
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context).bodyText1Family),
+                            ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+                      child: Text(
+                        widget.chatDoc!.docTitles!.toList()[1],
+                        style: FlutterFlowTheme.of(context).bodyText1,
+                      ),
+                    ),
+                    Text(
+                      widget.chatDoc!.chunks!.toList()[1],
                       style: FlutterFlowTheme.of(context).bodyText1.override(
                             fontFamily:
                                 FlutterFlowTheme.of(context).bodyText1Family,
-                            fontSize: 13,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.normal,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
                                 FlutterFlowTheme.of(context).bodyText1Family),
                           ),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
-                    child: Text(
-                      widget.chatDoc!.docTitles!.toList()[1],
-                      style: FlutterFlowTheme.of(context).bodyText1,
-                    ),
-                  ),
-                  Text(
-                    widget.chatDoc!.chunks!.toList()[1],
-                    style: FlutterFlowTheme.of(context).bodyText1.override(
-                          fontFamily:
-                              FlutterFlowTheme.of(context).bodyText1Family,
-                          fontWeight: FontWeight.normal,
-                          useGoogleFonts: GoogleFonts.asMap().containsKey(
-                              FlutterFlowTheme.of(context).bodyText1Family),
-                        ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
-        ),
-        Align(
-          alignment: AlignmentDirectional(0, 0),
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            height: 100,
-            constraints: BoxConstraints(
-              maxWidth: 1140,
-            ),
-            decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).secondaryBackground,
-            ),
-            child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-              child: ListView(
-                padding: EdgeInsets.zero,
-                scrollDirection: Axis.vertical,
-                children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                    child: Text(
-                      widget.chatDoc!.datasetNames!.toList()[2],
+          Align(
+            alignment: AlignmentDirectional(0, 0),
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              height: 100,
+              constraints: BoxConstraints(
+                maxWidth: 1140,
+              ),
+              decoration: BoxDecoration(
+                color: FlutterFlowTheme.of(context).secondaryBackground,
+              ),
+              child: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                child: ListView(
+                  padding: EdgeInsets.zero,
+                  scrollDirection: Axis.vertical,
+                  children: [
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                      child: Text(
+                        widget.chatDoc!.datasetNames!.toList()[2],
+                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyText1Family,
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context).bodyText1Family),
+                            ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+                      child: Text(
+                        widget.chatDoc!.docTitles!.toList()[2],
+                        style: FlutterFlowTheme.of(context).bodyText1,
+                      ),
+                    ),
+                    Text(
+                      widget.chatDoc!.chunks!.toList()[2],
                       style: FlutterFlowTheme.of(context).bodyText1.override(
                             fontFamily:
                                 FlutterFlowTheme.of(context).bodyText1Family,
-                            fontSize: 13,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.normal,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
                                 FlutterFlowTheme.of(context).bodyText1Family),
                           ),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
-                    child: Text(
-                      widget.chatDoc!.docTitles!.toList()[2],
-                      style: FlutterFlowTheme.of(context).bodyText1,
-                    ),
-                  ),
-                  Text(
-                    widget.chatDoc!.chunks!.toList()[2],
-                    style: FlutterFlowTheme.of(context).bodyText1.override(
-                          fontFamily:
-                              FlutterFlowTheme.of(context).bodyText1Family,
-                          fontWeight: FontWeight.normal,
-                          useGoogleFonts: GoogleFonts.asMap().containsKey(
-                              FlutterFlowTheme.of(context).bodyText1Family),
-                        ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
-        ),
-        Align(
-          alignment: AlignmentDirectional(0, 0),
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            height: 100,
-            constraints: BoxConstraints(
-              maxWidth: 1140,
-            ),
-            decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).secondaryBackground,
-            ),
-            child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-              child: ListView(
-                padding: EdgeInsets.zero,
-                scrollDirection: Axis.vertical,
-                children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                    child: Text(
-                      widget.chatDoc!.datasetNames!.toList()[3],
+          Align(
+            alignment: AlignmentDirectional(0, 0),
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              height: 100,
+              constraints: BoxConstraints(
+                maxWidth: 1140,
+              ),
+              decoration: BoxDecoration(
+                color: FlutterFlowTheme.of(context).secondaryBackground,
+              ),
+              child: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                child: ListView(
+                  padding: EdgeInsets.zero,
+                  scrollDirection: Axis.vertical,
+                  children: [
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                      child: Text(
+                        widget.chatDoc!.datasetNames!.toList()[3],
+                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyText1Family,
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context).bodyText1Family),
+                            ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+                      child: Text(
+                        widget.chatDoc!.docTitles!.toList()[3],
+                        style: FlutterFlowTheme.of(context).bodyText1,
+                      ),
+                    ),
+                    Text(
+                      widget.chatDoc!.chunks!.toList()[3],
                       style: FlutterFlowTheme.of(context).bodyText1.override(
                             fontFamily:
                                 FlutterFlowTheme.of(context).bodyText1Family,
-                            fontSize: 13,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.normal,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
                                 FlutterFlowTheme.of(context).bodyText1Family),
                           ),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
-                    child: Text(
-                      widget.chatDoc!.docTitles!.toList()[3],
-                      style: FlutterFlowTheme.of(context).bodyText1,
-                    ),
-                  ),
-                  Text(
-                    widget.chatDoc!.chunks!.toList()[3],
-                    style: FlutterFlowTheme.of(context).bodyText1.override(
-                          fontFamily:
-                              FlutterFlowTheme.of(context).bodyText1Family,
-                          fontWeight: FontWeight.normal,
-                          useGoogleFonts: GoogleFonts.asMap().containsKey(
-                              FlutterFlowTheme.of(context).bodyText1Family),
-                        ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
-        ),
-        Align(
-          alignment: AlignmentDirectional(0, 0),
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            height: 100,
-            constraints: BoxConstraints(
-              maxWidth: 1140,
-            ),
-            decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).secondaryBackground,
-            ),
-            child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-              child: ListView(
-                padding: EdgeInsets.zero,
-                scrollDirection: Axis.vertical,
-                children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-                    child: Text(
-                      widget.chatDoc!.datasetNames!.toList()[4],
+          Align(
+            alignment: AlignmentDirectional(0, 0),
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              height: 100,
+              constraints: BoxConstraints(
+                maxWidth: 1140,
+              ),
+              decoration: BoxDecoration(
+                color: FlutterFlowTheme.of(context).secondaryBackground,
+              ),
+              child: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                child: ListView(
+                  padding: EdgeInsets.zero,
+                  scrollDirection: Axis.vertical,
+                  children: [
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                      child: Text(
+                        widget.chatDoc!.datasetNames!.toList()[4],
+                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).bodyText1Family,
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context).bodyText1Family),
+                            ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+                      child: Text(
+                        widget.chatDoc!.docTitles!.toList()[4],
+                        style: FlutterFlowTheme.of(context).bodyText1,
+                      ),
+                    ),
+                    Text(
+                      widget.chatDoc!.chunks!.toList()[4],
                       style: FlutterFlowTheme.of(context).bodyText1.override(
                             fontFamily:
                                 FlutterFlowTheme.of(context).bodyText1Family,
-                            fontSize: 13,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.normal,
                             useGoogleFonts: GoogleFonts.asMap().containsKey(
                                 FlutterFlowTheme.of(context).bodyText1Family),
                           ),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
-                    child: Text(
-                      widget.chatDoc!.docTitles!.toList()[4],
-                      style: FlutterFlowTheme.of(context).bodyText1,
-                    ),
-                  ),
-                  Text(
-                    widget.chatDoc!.chunks!.toList()[4],
-                    style: FlutterFlowTheme.of(context).bodyText1.override(
-                          fontFamily:
-                              FlutterFlowTheme.of(context).bodyText1Family,
-                          fontWeight: FontWeight.normal,
-                          useGoogleFonts: GoogleFonts.asMap().containsKey(
-                              FlutterFlowTheme.of(context).bodyText1Family),
-                        ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
