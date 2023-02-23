@@ -38,8 +38,8 @@ class _ChatWidgetState extends State<ChatWidget> {
     super.initState();
     _model = createModel(context, () => ChatModel());
 
-    _model.promptStartController ??= TextEditingController();
-    _model.promptSendController ??= TextEditingController();
+    _model.startFieldController ??= TextEditingController();
+    _model.sendFieldController ??= TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -660,10 +660,10 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                         padding:
                                                             EdgeInsetsDirectional
                                                                 .fromSTEB(0, 0,
-                                                                    20, 0),
+                                                                    10, 0),
                                                         child: TextFormField(
                                                           controller: _model
-                                                              .promptStartController,
+                                                              .startFieldController,
                                                           onFieldSubmitted:
                                                               (_) async {
                                                             FFAppState()
@@ -686,12 +686,13 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                     FFAppState()
                                                                         .setCid,
                                                                 firstMessage: _model
-                                                                    .promptSendController
+                                                                    .sendFieldController
                                                                     .text,
+                                                                isLoading: true,
                                                               ),
                                                               'prompts': [
                                                                 _model
-                                                                    .promptStartController
+                                                                    .startFieldController
                                                                     .text
                                                               ],
                                                             };
@@ -734,7 +735,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                   true,
                                                                 ),
                                                                 prompt: _model
-                                                                    .promptSendController
+                                                                    .startFieldController
                                                                     .text,
                                                               ),
                                                               'dataset_ids': _model
@@ -757,7 +758,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                     chatsRecordReference);
                                                             setState(() {
                                                               _model
-                                                                  .promptSendController
+                                                                  .sendFieldController
                                                                   ?.clear();
                                                             });
                                                             _model.apiResultStartForm =
@@ -872,7 +873,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                   .of(context)
                                                               .bodyText1,
                                                           validator: _model
-                                                              .promptStartControllerValidator
+                                                              .startFieldControllerValidator
                                                               .asValidator(
                                                                   context),
                                                         ),
@@ -890,13 +891,13 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                         padding:
                                                             EdgeInsetsDirectional
                                                                 .fromSTEB(0, 0,
-                                                                    20, 0),
+                                                                    10, 0),
                                                         child: TextFormField(
                                                           controller: _model
-                                                              .promptSendController,
+                                                              .sendFieldController,
                                                           onFieldSubmitted:
                                                               (_) async {
-                                                            // createMessage
+                                                            // sendMessage
 
                                                             final chatsCreateData =
                                                                 {
@@ -917,7 +918,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                   true,
                                                                 ),
                                                                 prompt: _model
-                                                                    .promptSendController
+                                                                    .sendFieldController
                                                                     .text,
                                                               ),
                                                               'dataset_ids': _model
@@ -944,7 +945,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                               'prompts': FieldValue
                                                                   .arrayUnion([
                                                                 _model
-                                                                    .promptSendController
+                                                                    .sendFieldController
                                                                     .text
                                                               ]),
                                                             };
@@ -954,10 +955,10 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                     chatMetaUpdateData);
                                                             setState(() {
                                                               _model
-                                                                  .promptSendController
+                                                                  .sendFieldController
                                                                   ?.clear();
                                                               _model
-                                                                  .promptStartController
+                                                                  .startFieldController
                                                                   ?.clear();
                                                             });
                                                             _model.apiResultzymFF =
@@ -1067,12 +1068,18 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                         4.0),
                                                               ),
                                                             ),
+                                                            suffixIcon: Icon(
+                                                              Icons.send,
+                                                              color: Color(
+                                                                  0xFF757575),
+                                                              size: 22,
+                                                            ),
                                                           ),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyText1,
                                                           validator: _model
-                                                              .promptSendControllerValidator
+                                                              .sendFieldControllerValidator
                                                               .asValidator(
                                                                   context),
                                                         ),
@@ -1080,278 +1087,6 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                     ),
                                                 ],
                                               ),
-                                            ),
-                                            Stack(
-                                              children: [
-                                                if (FFAppState().setCid ==
-                                                        null ||
-                                                    FFAppState().setCid == '')
-                                                  FFButtonWidget(
-                                                    onPressed: () async {
-                                                      FFAppState().setCid =
-                                                          random_data
-                                                              .randomString(
-                                                        9,
-                                                        9,
-                                                        true,
-                                                        true,
-                                                        true,
-                                                      );
-
-                                                      final chatMetaCreateData =
-                                                          {
-                                                        ...createChatMetaRecordData(
-                                                          createdOn:
-                                                              getCurrentTimestamp,
-                                                          cid: FFAppState()
-                                                              .setCid,
-                                                          firstMessage: _model
-                                                              .promptSendController
-                                                              .text,
-                                                        ),
-                                                        'prompts': [
-                                                          _model
-                                                              .promptStartController
-                                                              .text
-                                                        ],
-                                                      };
-                                                      var chatMetaRecordReference =
-                                                          ChatMetaRecord.createDoc(
-                                                              currentUserReference!);
-                                                      await chatMetaRecordReference
-                                                          .set(
-                                                              chatMetaCreateData);
-                                                      _model.createChatButton =
-                                                          ChatMetaRecord
-                                                              .getDocumentFromData(
-                                                                  chatMetaCreateData,
-                                                                  chatMetaRecordReference);
-                                                      setState(() {
-                                                        FFAppState().setChat =
-                                                            _model
-                                                                .createChatForm!
-                                                                .reference;
-                                                      });
-
-                                                      final chatsCreateData = {
-                                                        ...createChatsRecordData(
-                                                          cid: FFAppState()
-                                                              .setCid,
-                                                          timestamp:
-                                                              getCurrentTimestamp,
-                                                          isCompletion: false,
-                                                          qid: random_data
-                                                              .randomString(
-                                                            11,
-                                                            11,
-                                                            true,
-                                                            true,
-                                                            true,
-                                                          ),
-                                                          prompt: _model
-                                                              .promptSendController
-                                                              .text,
-                                                        ),
-                                                        'dataset_ids': _model
-                                                            .checkboxCheckedItems
-                                                            .map((e) =>
-                                                                e.datasetId)
-                                                            .withoutNulls
-                                                            .toList(),
-                                                      };
-                                                      var chatsRecordReference =
-                                                          ChatsRecord.createDoc(
-                                                              currentUserReference!);
-                                                      await chatsRecordReference
-                                                          .set(chatsCreateData);
-                                                      _model.createMessageButton1 =
-                                                          ChatsRecord
-                                                              .getDocumentFromData(
-                                                                  chatsCreateData,
-                                                                  chatsRecordReference);
-                                                      setState(() {
-                                                        _model
-                                                            .promptSendController
-                                                            ?.clear();
-                                                      });
-                                                      _model.apiResultStartButton =
-                                                          await ChatServerCall
-                                                              .call(
-                                                        idToken:
-                                                            currentJwtToken,
-                                                        qid: _model
-                                                            .createMessageButton1!
-                                                            .qid,
-                                                        cid:
-                                                            FFAppState().setCid,
-                                                        datasetIdsList:
-                                                            FFAppState()
-                                                                .selectedDataset,
-                                                        topK: FFAppState()
-                                                            .setTopK,
-                                                      );
-
-                                                      setState(() {});
-                                                    },
-                                                    text: 'Start',
-                                                    icon: Icon(
-                                                      Icons.send,
-                                                      size: 15,
-                                                    ),
-                                                    options: FFButtonOptions(
-                                                      width: 130,
-                                                      height: 45,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryColor,
-                                                      textStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .subtitle2
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .subtitle2Family,
-                                                                color: Colors
-                                                                    .white,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .subtitle2Family),
-                                                              ),
-                                                      borderSide: BorderSide(
-                                                        color:
-                                                            Colors.transparent,
-                                                        width: 1,
-                                                      ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              0),
-                                                    ),
-                                                  ),
-                                                if (FFAppState().setCid !=
-                                                        null &&
-                                                    FFAppState().setCid != '')
-                                                  FFButtonWidget(
-                                                    onPressed: () async {
-                                                      final chatsCreateData = {
-                                                        ...createChatsRecordData(
-                                                          cid: FFAppState()
-                                                              .setCid,
-                                                          timestamp:
-                                                              getCurrentTimestamp,
-                                                          isCompletion: false,
-                                                          qid: random_data
-                                                              .randomString(
-                                                            11,
-                                                            11,
-                                                            true,
-                                                            true,
-                                                            true,
-                                                          ),
-                                                          prompt: _model
-                                                              .promptSendController
-                                                              .text,
-                                                        ),
-                                                        'dataset_ids': _model
-                                                            .checkboxCheckedItems
-                                                            .map((e) =>
-                                                                e.datasetId)
-                                                            .withoutNulls
-                                                            .toList(),
-                                                      };
-                                                      var chatsRecordReference =
-                                                          ChatsRecord.createDoc(
-                                                              currentUserReference!);
-                                                      await chatsRecordReference
-                                                          .set(chatsCreateData);
-                                                      _model.chatMessageButton =
-                                                          ChatsRecord
-                                                              .getDocumentFromData(
-                                                                  chatsCreateData,
-                                                                  chatsRecordReference);
-
-                                                      final chatMetaUpdateData =
-                                                          {
-                                                        'prompts': FieldValue
-                                                            .arrayUnion([
-                                                          _model
-                                                              .promptSendController
-                                                              .text
-                                                        ]),
-                                                      };
-                                                      await FFAppState()
-                                                          .setChat!
-                                                          .update(
-                                                              chatMetaUpdateData);
-                                                      setState(() {
-                                                        _model
-                                                            .promptSendController
-                                                            ?.clear();
-                                                        _model
-                                                            .promptStartController
-                                                            ?.clear();
-                                                      });
-                                                      _model.chatSendButton =
-                                                          await ChatServerCall
-                                                              .call(
-                                                        idToken:
-                                                            currentJwtToken,
-                                                        qid: _model
-                                                            .chatMessageButton!
-                                                            .qid,
-                                                        cid:
-                                                            FFAppState().setCid,
-                                                        datasetIdsList:
-                                                            FFAppState()
-                                                                .selectedDataset,
-                                                        topK: FFAppState()
-                                                            .setTopK,
-                                                      );
-
-                                                      setState(() {});
-                                                    },
-                                                    text: 'Send',
-                                                    icon: Icon(
-                                                      Icons.send,
-                                                      size: 15,
-                                                    ),
-                                                    options: FFButtonOptions(
-                                                      width: 130,
-                                                      height: 45,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryColor,
-                                                      textStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .subtitle2
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .subtitle2Family,
-                                                                color: Colors
-                                                                    .white,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .subtitle2Family),
-                                                              ),
-                                                      borderSide: BorderSide(
-                                                        color:
-                                                            Colors.transparent,
-                                                        width: 1,
-                                                      ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              0),
-                                                    ),
-                                                  ),
-                                              ],
                                             ),
                                           ],
                                         ),
