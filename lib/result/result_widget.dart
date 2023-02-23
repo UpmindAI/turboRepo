@@ -6,6 +6,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -31,6 +32,13 @@ class _ResultWidgetState extends State<ResultWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ResultModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      setState(() {
+        FFAppState().sourcesOn = false;
+      });
+    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -844,90 +852,94 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                               alignment:
                                                                   AlignmentDirectional(
                                                                       0, 0),
-                                                              child: Container(
-                                                                width: MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .width,
-                                                                height: 150,
-                                                                constraints:
-                                                                    BoxConstraints(
-                                                                  maxWidth:
-                                                                      1140,
-                                                                ),
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryBackground,
-                                                                ),
-                                                                child: Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          10,
-                                                                          0,
-                                                                          10,
-                                                                          0),
-                                                                  child:
-                                                                      ListView(
-                                                                    padding:
-                                                                        EdgeInsets
-                                                                            .zero,
-                                                                    scrollDirection:
-                                                                        Axis.vertical,
-                                                                    children: [
-                                                                      Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                              child: Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
                                                                             0,
+                                                                            0,
+                                                                            0,
+                                                                            10),
+                                                                child:
+                                                                    Container(
+                                                                  width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width,
+                                                                  constraints:
+                                                                      BoxConstraints(
+                                                                    maxWidth:
+                                                                        1140,
+                                                                  ),
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryBackground,
+                                                                  ),
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
                                                                             10,
                                                                             0,
+                                                                            10,
                                                                             0),
-                                                                        child:
-                                                                            Text(
+                                                                    child:
+                                                                        ListView(
+                                                                      padding:
+                                                                          EdgeInsets
+                                                                              .zero,
+                                                                      shrinkWrap:
+                                                                          true,
+                                                                      scrollDirection:
+                                                                          Axis.vertical,
+                                                                      children: [
+                                                                        Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              0,
+                                                                              10,
+                                                                              0,
+                                                                              0),
+                                                                          child:
+                                                                              Text(
+                                                                            resultUserCompletionsRecord!.datasetNames!.toList().first,
+                                                                            style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                  fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                  fontSize: 13,
+                                                                                  fontWeight: FontWeight.bold,
+                                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                ),
+                                                                          ),
+                                                                        ),
+                                                                        Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              0,
+                                                                              10,
+                                                                              0,
+                                                                              10),
+                                                                          child:
+                                                                              Text(
+                                                                            resultUserCompletionsRecord!.docTitles!.toList().first,
+                                                                            style:
+                                                                                FlutterFlowTheme.of(context).bodyText1,
+                                                                          ),
+                                                                        ),
+                                                                        Text(
                                                                           resultUserCompletionsRecord!
-                                                                              .datasetNames!
+                                                                              .chunks!
                                                                               .toList()
                                                                               .first,
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodyText1
                                                                               .override(
                                                                                 fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                fontSize: 13,
-                                                                                fontWeight: FontWeight.bold,
+                                                                                fontWeight: FontWeight.normal,
                                                                                 useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
                                                                               ),
                                                                         ),
-                                                                      ),
-                                                                      Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            0,
-                                                                            10,
-                                                                            0,
-                                                                            10),
-                                                                        child:
-                                                                            Text(
-                                                                          resultUserCompletionsRecord!
-                                                                              .docTitles!
-                                                                              .toList()
-                                                                              .first,
-                                                                          style:
-                                                                              FlutterFlowTheme.of(context).bodyText1,
-                                                                        ),
-                                                                      ),
-                                                                      Text(
-                                                                        resultUserCompletionsRecord!
-                                                                            .chunks!
-                                                                            .toList()
-                                                                            .first,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyText1
-                                                                            .override(
-                                                                              fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                              fontWeight: FontWeight.normal,
-                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                            ),
-                                                                      ),
-                                                                    ],
+                                                                      ],
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),
@@ -936,87 +948,93 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                               alignment:
                                                                   AlignmentDirectional(
                                                                       0, 0),
-                                                              child: Container(
-                                                                width: MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .width,
-                                                                height: 150,
-                                                                constraints:
-                                                                    BoxConstraints(
-                                                                  maxWidth:
-                                                                      1140,
-                                                                ),
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryBackground,
-                                                                ),
-                                                                child: Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          10,
-                                                                          0,
-                                                                          10,
-                                                                          0),
-                                                                  child:
-                                                                      ListView(
-                                                                    padding:
-                                                                        EdgeInsets
-                                                                            .zero,
-                                                                    scrollDirection:
-                                                                        Axis.vertical,
-                                                                    children: [
-                                                                      Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                              child: Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
                                                                             0,
+                                                                            0,
+                                                                            0,
+                                                                            10),
+                                                                child:
+                                                                    Container(
+                                                                  width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width,
+                                                                  constraints:
+                                                                      BoxConstraints(
+                                                                    maxWidth:
+                                                                        1140,
+                                                                  ),
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryBackground,
+                                                                  ),
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
                                                                             10,
                                                                             0,
+                                                                            10,
                                                                             0),
-                                                                        child:
-                                                                            Text(
+                                                                    child:
+                                                                        ListView(
+                                                                      padding:
+                                                                          EdgeInsets
+                                                                              .zero,
+                                                                      shrinkWrap:
+                                                                          true,
+                                                                      scrollDirection:
+                                                                          Axis.vertical,
+                                                                      children: [
+                                                                        Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              0,
+                                                                              10,
+                                                                              0,
+                                                                              0),
+                                                                          child:
+                                                                              Text(
+                                                                            resultUserCompletionsRecord!.datasetNames!.toList()[1],
+                                                                            style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                  fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                  fontSize: 13,
+                                                                                  fontWeight: FontWeight.bold,
+                                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                ),
+                                                                          ),
+                                                                        ),
+                                                                        Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              0,
+                                                                              10,
+                                                                              0,
+                                                                              10),
+                                                                          child:
+                                                                              Text(
+                                                                            resultUserCompletionsRecord!.docTitles!.toList()[1],
+                                                                            style:
+                                                                                FlutterFlowTheme.of(context).bodyText1,
+                                                                          ),
+                                                                        ),
+                                                                        Text(
                                                                           resultUserCompletionsRecord!
-                                                                              .datasetNames!
+                                                                              .chunks!
                                                                               .toList()[1],
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodyText1
                                                                               .override(
                                                                                 fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                fontSize: 13,
-                                                                                fontWeight: FontWeight.bold,
+                                                                                fontWeight: FontWeight.normal,
                                                                                 useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
                                                                               ),
                                                                         ),
-                                                                      ),
-                                                                      Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            0,
-                                                                            10,
-                                                                            0,
-                                                                            10),
-                                                                        child:
-                                                                            Text(
-                                                                          resultUserCompletionsRecord!
-                                                                              .docTitles!
-                                                                              .toList()[1],
-                                                                          style:
-                                                                              FlutterFlowTheme.of(context).bodyText1,
-                                                                        ),
-                                                                      ),
-                                                                      Text(
-                                                                        resultUserCompletionsRecord!
-                                                                            .chunks!
-                                                                            .toList()[1],
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyText1
-                                                                            .override(
-                                                                              fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                              fontWeight: FontWeight.normal,
-                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                            ),
-                                                                      ),
-                                                                    ],
+                                                                      ],
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),
@@ -1025,87 +1043,93 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                               alignment:
                                                                   AlignmentDirectional(
                                                                       0, 0),
-                                                              child: Container(
-                                                                width: MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .width,
-                                                                height: 150,
-                                                                constraints:
-                                                                    BoxConstraints(
-                                                                  maxWidth:
-                                                                      1140,
-                                                                ),
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryBackground,
-                                                                ),
-                                                                child: Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          10,
-                                                                          0,
-                                                                          10,
-                                                                          0),
-                                                                  child:
-                                                                      ListView(
-                                                                    padding:
-                                                                        EdgeInsets
-                                                                            .zero,
-                                                                    scrollDirection:
-                                                                        Axis.vertical,
-                                                                    children: [
-                                                                      Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                              child: Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
                                                                             0,
+                                                                            0,
+                                                                            0,
+                                                                            10),
+                                                                child:
+                                                                    Container(
+                                                                  width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width,
+                                                                  constraints:
+                                                                      BoxConstraints(
+                                                                    maxWidth:
+                                                                        1140,
+                                                                  ),
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryBackground,
+                                                                  ),
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
                                                                             10,
                                                                             0,
+                                                                            10,
                                                                             0),
-                                                                        child:
-                                                                            Text(
+                                                                    child:
+                                                                        ListView(
+                                                                      padding:
+                                                                          EdgeInsets
+                                                                              .zero,
+                                                                      shrinkWrap:
+                                                                          true,
+                                                                      scrollDirection:
+                                                                          Axis.vertical,
+                                                                      children: [
+                                                                        Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              0,
+                                                                              10,
+                                                                              0,
+                                                                              0),
+                                                                          child:
+                                                                              Text(
+                                                                            resultUserCompletionsRecord!.datasetNames!.toList()[2],
+                                                                            style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                  fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                  fontSize: 13,
+                                                                                  fontWeight: FontWeight.bold,
+                                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                ),
+                                                                          ),
+                                                                        ),
+                                                                        Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              0,
+                                                                              10,
+                                                                              0,
+                                                                              10),
+                                                                          child:
+                                                                              Text(
+                                                                            resultUserCompletionsRecord!.docTitles!.toList()[2],
+                                                                            style:
+                                                                                FlutterFlowTheme.of(context).bodyText1,
+                                                                          ),
+                                                                        ),
+                                                                        Text(
                                                                           resultUserCompletionsRecord!
-                                                                              .datasetNames!
+                                                                              .chunks!
                                                                               .toList()[2],
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodyText1
                                                                               .override(
                                                                                 fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                fontSize: 13,
-                                                                                fontWeight: FontWeight.bold,
+                                                                                fontWeight: FontWeight.normal,
                                                                                 useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
                                                                               ),
                                                                         ),
-                                                                      ),
-                                                                      Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            0,
-                                                                            10,
-                                                                            0,
-                                                                            10),
-                                                                        child:
-                                                                            Text(
-                                                                          resultUserCompletionsRecord!
-                                                                              .docTitles!
-                                                                              .toList()[2],
-                                                                          style:
-                                                                              FlutterFlowTheme.of(context).bodyText1,
-                                                                        ),
-                                                                      ),
-                                                                      Text(
-                                                                        resultUserCompletionsRecord!
-                                                                            .chunks!
-                                                                            .toList()[2],
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyText1
-                                                                            .override(
-                                                                              fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                              fontWeight: FontWeight.normal,
-                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                            ),
-                                                                      ),
-                                                                    ],
+                                                                      ],
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),
@@ -1114,87 +1138,93 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                               alignment:
                                                                   AlignmentDirectional(
                                                                       0, 0),
-                                                              child: Container(
-                                                                width: MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .width,
-                                                                height: 150,
-                                                                constraints:
-                                                                    BoxConstraints(
-                                                                  maxWidth:
-                                                                      1140,
-                                                                ),
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryBackground,
-                                                                ),
-                                                                child: Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          10,
-                                                                          0,
-                                                                          10,
-                                                                          0),
-                                                                  child:
-                                                                      ListView(
-                                                                    padding:
-                                                                        EdgeInsets
-                                                                            .zero,
-                                                                    scrollDirection:
-                                                                        Axis.vertical,
-                                                                    children: [
-                                                                      Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                              child: Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
                                                                             0,
+                                                                            0,
+                                                                            0,
+                                                                            10),
+                                                                child:
+                                                                    Container(
+                                                                  width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width,
+                                                                  constraints:
+                                                                      BoxConstraints(
+                                                                    maxWidth:
+                                                                        1140,
+                                                                  ),
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryBackground,
+                                                                  ),
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
                                                                             10,
                                                                             0,
+                                                                            10,
                                                                             0),
-                                                                        child:
-                                                                            Text(
+                                                                    child:
+                                                                        ListView(
+                                                                      padding:
+                                                                          EdgeInsets
+                                                                              .zero,
+                                                                      shrinkWrap:
+                                                                          true,
+                                                                      scrollDirection:
+                                                                          Axis.vertical,
+                                                                      children: [
+                                                                        Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              0,
+                                                                              10,
+                                                                              0,
+                                                                              0),
+                                                                          child:
+                                                                              Text(
+                                                                            resultUserCompletionsRecord!.datasetNames!.toList()[3],
+                                                                            style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                  fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                  fontSize: 13,
+                                                                                  fontWeight: FontWeight.bold,
+                                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                ),
+                                                                          ),
+                                                                        ),
+                                                                        Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              0,
+                                                                              10,
+                                                                              0,
+                                                                              10),
+                                                                          child:
+                                                                              Text(
+                                                                            resultUserCompletionsRecord!.docTitles!.toList()[3],
+                                                                            style:
+                                                                                FlutterFlowTheme.of(context).bodyText1,
+                                                                          ),
+                                                                        ),
+                                                                        Text(
                                                                           resultUserCompletionsRecord!
-                                                                              .datasetNames!
+                                                                              .chunks!
                                                                               .toList()[3],
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodyText1
                                                                               .override(
                                                                                 fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                fontSize: 13,
-                                                                                fontWeight: FontWeight.bold,
+                                                                                fontWeight: FontWeight.normal,
                                                                                 useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
                                                                               ),
                                                                         ),
-                                                                      ),
-                                                                      Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            0,
-                                                                            10,
-                                                                            0,
-                                                                            10),
-                                                                        child:
-                                                                            Text(
-                                                                          resultUserCompletionsRecord!
-                                                                              .docTitles!
-                                                                              .toList()[3],
-                                                                          style:
-                                                                              FlutterFlowTheme.of(context).bodyText1,
-                                                                        ),
-                                                                      ),
-                                                                      Text(
-                                                                        resultUserCompletionsRecord!
-                                                                            .chunks!
-                                                                            .toList()[3],
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyText1
-                                                                            .override(
-                                                                              fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                              fontWeight: FontWeight.normal,
-                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                            ),
-                                                                      ),
-                                                                    ],
+                                                                      ],
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),
@@ -1203,87 +1233,93 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                               alignment:
                                                                   AlignmentDirectional(
                                                                       0, 0),
-                                                              child: Container(
-                                                                width: MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .width,
-                                                                height: 150,
-                                                                constraints:
-                                                                    BoxConstraints(
-                                                                  maxWidth:
-                                                                      1140,
-                                                                ),
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryBackground,
-                                                                ),
-                                                                child: Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          10,
-                                                                          0,
-                                                                          10,
-                                                                          0),
-                                                                  child:
-                                                                      ListView(
-                                                                    padding:
-                                                                        EdgeInsets
-                                                                            .zero,
-                                                                    scrollDirection:
-                                                                        Axis.vertical,
-                                                                    children: [
-                                                                      Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                              child: Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
                                                                             0,
+                                                                            0,
+                                                                            0,
+                                                                            10),
+                                                                child:
+                                                                    Container(
+                                                                  width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width,
+                                                                  constraints:
+                                                                      BoxConstraints(
+                                                                    maxWidth:
+                                                                        1140,
+                                                                  ),
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryBackground,
+                                                                  ),
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
                                                                             10,
                                                                             0,
+                                                                            10,
                                                                             0),
-                                                                        child:
-                                                                            Text(
+                                                                    child:
+                                                                        ListView(
+                                                                      padding:
+                                                                          EdgeInsets
+                                                                              .zero,
+                                                                      shrinkWrap:
+                                                                          true,
+                                                                      scrollDirection:
+                                                                          Axis.vertical,
+                                                                      children: [
+                                                                        Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              0,
+                                                                              10,
+                                                                              0,
+                                                                              0),
+                                                                          child:
+                                                                              Text(
+                                                                            resultUserCompletionsRecord!.datasetNames!.toList()[4],
+                                                                            style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                  fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                  fontSize: 13,
+                                                                                  fontWeight: FontWeight.bold,
+                                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                ),
+                                                                          ),
+                                                                        ),
+                                                                        Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              0,
+                                                                              10,
+                                                                              0,
+                                                                              10),
+                                                                          child:
+                                                                              Text(
+                                                                            resultUserCompletionsRecord!.docTitles!.toList()[4],
+                                                                            style:
+                                                                                FlutterFlowTheme.of(context).bodyText1,
+                                                                          ),
+                                                                        ),
+                                                                        Text(
                                                                           resultUserCompletionsRecord!
-                                                                              .datasetNames!
+                                                                              .chunks!
                                                                               .toList()[4],
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodyText1
                                                                               .override(
                                                                                 fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                fontSize: 13,
-                                                                                fontWeight: FontWeight.bold,
+                                                                                fontWeight: FontWeight.normal,
                                                                                 useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
                                                                               ),
                                                                         ),
-                                                                      ),
-                                                                      Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            0,
-                                                                            10,
-                                                                            0,
-                                                                            10),
-                                                                        child:
-                                                                            Text(
-                                                                          resultUserCompletionsRecord!
-                                                                              .datasetNames!
-                                                                              .toList()[4],
-                                                                          style:
-                                                                              FlutterFlowTheme.of(context).bodyText1,
-                                                                        ),
-                                                                      ),
-                                                                      Text(
-                                                                        resultUserCompletionsRecord!
-                                                                            .chunks!
-                                                                            .toList()[4],
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyText1
-                                                                            .override(
-                                                                              fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                              fontWeight: FontWeight.normal,
-                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                            ),
-                                                                      ),
-                                                                    ],
+                                                                      ],
+                                                                    ),
                                                                   ),
                                                                 ),
                                                               ),
