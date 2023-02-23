@@ -761,6 +761,10 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                   .sendFieldController
                                                                   ?.clear();
                                                             });
+                                                            await Future.delayed(
+                                                                const Duration(
+                                                                    milliseconds:
+                                                                        1000));
                                                             _model.apiResultStartForm =
                                                                 await ChatServerCall
                                                                     .call(
@@ -961,6 +965,10 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                   .startFieldController
                                                                   ?.clear();
                                                             });
+                                                            await Future.delayed(
+                                                                const Duration(
+                                                                    milliseconds:
+                                                                        1000));
                                                             _model.apiResultzymFF =
                                                                 await ChatServerCall
                                                                     .call(
