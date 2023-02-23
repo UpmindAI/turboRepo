@@ -100,6 +100,8 @@ class _ChatHistoryWidgetState extends State<ChatHistoryWidget> {
                               _model.updatePage(() {
                                 FFAppState().setCid =
                                     listViewChatMetaRecord.cid!;
+                                FFAppState().setChat =
+                                    listViewChatMetaRecord.reference;
                               });
                               await Future.delayed(
                                   const Duration(milliseconds: 250));
