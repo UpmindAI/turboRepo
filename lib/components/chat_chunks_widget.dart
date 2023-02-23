@@ -50,13 +50,13 @@ class _ChatChunksWidgetState extends State<ChatChunksWidget> {
 
     return SingleChildScrollView(
       child: Column(
-        mainAxisSize: MainAxisSize.max,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Align(
             alignment: AlignmentDirectional(0, 0),
             child: Container(
               width: MediaQuery.of(context).size.width,
-              height: 100,
+              height: 150,
               constraints: BoxConstraints(
                 maxWidth: 1140,
               ),
@@ -109,7 +109,7 @@ class _ChatChunksWidgetState extends State<ChatChunksWidget> {
             alignment: AlignmentDirectional(0, 0),
             child: Container(
               width: MediaQuery.of(context).size.width,
-              height: 100,
+              height: 150,
               constraints: BoxConstraints(
                 maxWidth: 1140,
               ),
@@ -162,7 +162,7 @@ class _ChatChunksWidgetState extends State<ChatChunksWidget> {
             alignment: AlignmentDirectional(0, 0),
             child: Container(
               width: MediaQuery.of(context).size.width,
-              height: 100,
+              height: 150,
               constraints: BoxConstraints(
                 maxWidth: 1140,
               ),
@@ -215,7 +215,7 @@ class _ChatChunksWidgetState extends State<ChatChunksWidget> {
             alignment: AlignmentDirectional(0, 0),
             child: Container(
               width: MediaQuery.of(context).size.width,
-              height: 100,
+              height: 150,
               constraints: BoxConstraints(
                 maxWidth: 1140,
               ),
@@ -268,7 +268,7 @@ class _ChatChunksWidgetState extends State<ChatChunksWidget> {
             alignment: AlignmentDirectional(0, 0),
             child: Container(
               width: MediaQuery.of(context).size.width,
-              height: 100,
+              height: 150,
               constraints: BoxConstraints(
                 maxWidth: 1140,
               ),
