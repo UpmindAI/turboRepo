@@ -72,6 +72,14 @@ class _$ChatMetaRecordSerializer
         ..add(
             serializers.serialize(value, specifiedType: const FullType(bool)));
     }
+    value = object.completions;
+    if (value != null) {
+      result
+        ..add('completions')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -127,6 +135,12 @@ class _$ChatMetaRecordSerializer
           result.isLoading = serializers.deserialize(value,
               specifiedType: const FullType(bool)) as bool?;
           break;
+        case 'completions':
+          result.completions.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -156,6 +170,8 @@ class _$ChatMetaRecord extends ChatMetaRecord {
   @override
   final bool? isLoading;
   @override
+  final BuiltList<String>? completions;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$ChatMetaRecord([void Function(ChatMetaRecordBuilder)? updates]) =>
@@ -169,6 +185,7 @@ class _$ChatMetaRecord extends ChatMetaRecord {
       this.lastMessage,
       this.prompts,
       this.isLoading,
+      this.completions,
       this.ffRef})
       : super._();
 
@@ -191,6 +208,7 @@ class _$ChatMetaRecord extends ChatMetaRecord {
         lastMessage == other.lastMessage &&
         prompts == other.prompts &&
         isLoading == other.isLoading &&
+        completions == other.completions &&
         ffRef == other.ffRef;
   }
 
@@ -201,12 +219,14 @@ class _$ChatMetaRecord extends ChatMetaRecord {
             $jc(
                 $jc(
                     $jc(
-                        $jc($jc($jc(0, createdOn.hashCode), cid.hashCode),
-                            qids.hashCode),
-                        firstMessage.hashCode),
-                    lastMessage.hashCode),
-                prompts.hashCode),
-            isLoading.hashCode),
+                        $jc(
+                            $jc($jc($jc(0, createdOn.hashCode), cid.hashCode),
+                                qids.hashCode),
+                            firstMessage.hashCode),
+                        lastMessage.hashCode),
+                    prompts.hashCode),
+                isLoading.hashCode),
+            completions.hashCode),
         ffRef.hashCode));
   }
 
@@ -220,6 +240,7 @@ class _$ChatMetaRecord extends ChatMetaRecord {
           ..add('lastMessage', lastMessage)
           ..add('prompts', prompts)
           ..add('isLoading', isLoading)
+          ..add('completions', completions)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -258,6 +279,12 @@ class ChatMetaRecordBuilder
   bool? get isLoading => _$this._isLoading;
   set isLoading(bool? isLoading) => _$this._isLoading = isLoading;
 
+  ListBuilder<String>? _completions;
+  ListBuilder<String> get completions =>
+      _$this._completions ??= new ListBuilder<String>();
+  set completions(ListBuilder<String>? completions) =>
+      _$this._completions = completions;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -276,6 +303,7 @@ class ChatMetaRecordBuilder
       _lastMessage = $v.lastMessage;
       _prompts = $v.prompts?.toBuilder();
       _isLoading = $v.isLoading;
+      _completions = $v.completions?.toBuilder();
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -308,6 +336,7 @@ class ChatMetaRecordBuilder
               lastMessage: lastMessage,
               prompts: _prompts?.build(),
               isLoading: isLoading,
+              completions: _completions?.build(),
               ffRef: ffRef);
     } catch (_) {
       late String _$failedField;
@@ -317,6 +346,9 @@ class ChatMetaRecordBuilder
 
         _$failedField = 'prompts';
         _prompts?.build();
+
+        _$failedField = 'completions';
+        _completions?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'ChatMetaRecord', _$failedField, e.toString());

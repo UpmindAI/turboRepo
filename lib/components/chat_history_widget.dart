@@ -131,14 +131,62 @@ class _ChatHistoryWidgetState extends State<ChatHistoryWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             10, 0, 0, 0),
                                         child: Text(
-                                          listViewChatMetaRecord.firstMessage!
+                                          listViewChatMetaRecord.completions!
+                                              .toList()
+                                              .last
                                               .maybeHandleOverflow(
-                                            maxChars: 80,
-                                            replacement: '…',
-                                          ),
+                                                maxChars: 80,
+                                                replacement: '…',
+                                              ),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyText1,
                                         ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Text(
+                                        'Last message: ',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText1Family,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .alternate,
+                                              useGoogleFonts:
+                                                  GoogleFonts.asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1Family),
+                                            ),
+                                      ),
+                                      Text(
+                                        dateTimeFormat(
+                                            'relative',
+                                            listViewChatMetaRecord
+                                                .lastMessage!),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyText1
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyText1Family,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .tertiaryColor,
+                                              useGoogleFonts:
+                                                  GoogleFonts.asMap()
+                                                      .containsKey(
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyText1Family),
+                                            ),
                                       ),
                                     ],
                                   ),
