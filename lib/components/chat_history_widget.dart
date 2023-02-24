@@ -104,18 +104,7 @@ class _ChatHistoryWidgetState extends State<ChatHistoryWidget> {
                                     listViewChatMetaRecord.reference;
                               });
 
-                              context.pushNamed(
-                                'Chat',
-                                queryParams: {
-                                  'chatMeta': serializeParam(
-                                    listViewChatMetaRecord,
-                                    ParamType.Document,
-                                  ),
-                                }.withoutNulls,
-                                extra: <String, dynamic>{
-                                  'chatMeta': listViewChatMetaRecord,
-                                },
-                              );
+                              context.pushNamed('Chat');
 
                               Navigator.pop(context);
                             },

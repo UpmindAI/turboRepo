@@ -155,13 +155,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'Chat',
               path: 'chat',
-              asyncParams: {
-                'chatMeta':
-                    getDoc(['users', 'chat_meta'], ChatMetaRecord.serializer),
-              },
-              builder: (context, params) => ChatWidget(
-                chatMeta: params.getParam('chatMeta', ParamType.Document),
-              ),
+              builder: (context, params) => ChatWidget(),
             ),
             FFRoute(
               name: 'retreivingGPT',
