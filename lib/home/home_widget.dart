@@ -95,7 +95,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
                   child: Text(
-                    'v0.214',
+                    'v0.215',
                     style: FlutterFlowTheme.of(context).bodyText1,
                   ),
                 ),
@@ -497,7 +497,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                                       );
                                                                                       FFAppState().setEngine = _model.dropDownValue!;
                                                                                     });
-                                                                                    await Future.delayed(const Duration(milliseconds: 500));
 
                                                                                     final userPromptsCreateData = createUserPromptsRecordData(
                                                                                       qid: FFAppState().setQid,
