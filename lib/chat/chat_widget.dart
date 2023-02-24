@@ -13,6 +13,7 @@ import '../flutter_flow/random_data_util.dart' as random_data;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -37,6 +38,15 @@ class _ChatWidgetState extends State<ChatWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ChatModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await _model.chatColumn?.animateTo(
+        _model.chatColumn!.position.maxScrollExtent,
+        duration: Duration(milliseconds: 100),
+        curve: Curves.ease,
+      );
+    });
 
     _model.startFieldController ??= TextEditingController();
     _model.sendFieldController ??= TextEditingController();
@@ -749,7 +759,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                           await Future.delayed(
                                                               const Duration(
                                                                   milliseconds:
-                                                                      1000));
+                                                                      2000));
                                                           _model.apiResultStartForm =
                                                               await ChatServerCall
                                                                   .call(
@@ -955,7 +965,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                           await Future.delayed(
                                                               const Duration(
                                                                   milliseconds:
-                                                                      1000));
+                                                                      2000));
                                                           await _model
                                                               .chatColumn
                                                               ?.animateTo(
