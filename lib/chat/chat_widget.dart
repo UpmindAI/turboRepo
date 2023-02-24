@@ -984,6 +984,42 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                             topK: FFAppState()
                                                                 .setTopK,
                                                           );
+                                                          await Future.delayed(
+                                                              const Duration(
+                                                                  milliseconds:
+                                                                      3000));
+                                                          await _model
+                                                              .chatColumn
+                                                              ?.animateTo(
+                                                            _model
+                                                                .chatColumn!
+                                                                .position
+                                                                .maxScrollExtent,
+                                                            duration: Duration(
+                                                                milliseconds:
+                                                                    100),
+                                                            curve: Curves.ease,
+                                                          );
+                                                          await Future.delayed(
+                                                              const Duration(
+                                                                  milliseconds:
+                                                                      5000));
+                                                          await _model
+                                                              .chatColumn
+                                                              ?.animateTo(
+                                                            _model
+                                                                .chatColumn!
+                                                                .position
+                                                                .maxScrollExtent,
+                                                            duration: Duration(
+                                                                milliseconds:
+                                                                    100),
+                                                            curve: Curves.ease,
+                                                          );
+                                                          await Future.delayed(
+                                                              const Duration(
+                                                                  milliseconds:
+                                                                      5000));
                                                           await _model
                                                               .chatColumn
                                                               ?.animateTo(
