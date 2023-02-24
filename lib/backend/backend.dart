@@ -15,6 +15,7 @@ import 'schema/support_record.dart';
 import 'schema/feature_record.dart';
 import 'schema/chats_record.dart';
 import 'schema/chat_meta_record.dart';
+import 'schema/summary_prompts_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -32,6 +33,7 @@ export 'schema/support_record.dart';
 export 'schema/feature_record.dart';
 export 'schema/chats_record.dart';
 export 'schema/chat_meta_record.dart';
+export 'schema/summary_prompts_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -575,6 +577,62 @@ Future<FFFirestorePage<ChatMetaRecord>> queryChatMetaRecordPage({
     queryCollectionPage(
       ChatMetaRecord.collection(parent),
       ChatMetaRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query SummaryPromptsRecords (as a Stream and as a Future).
+Future<int> querySummaryPromptsRecordCount({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      SummaryPromptsRecord.collection(parent),
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<SummaryPromptsRecord>> querySummaryPromptsRecord({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      SummaryPromptsRecord.collection(parent),
+      SummaryPromptsRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<SummaryPromptsRecord>> querySummaryPromptsRecordOnce({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      SummaryPromptsRecord.collection(parent),
+      SummaryPromptsRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<SummaryPromptsRecord>> querySummaryPromptsRecordPage({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+}) =>
+    queryCollectionPage(
+      SummaryPromptsRecord.collection(parent),
+      SummaryPromptsRecord.serializer,
       queryBuilder: queryBuilder,
       nextPageMarker: nextPageMarker,
       pageSize: pageSize,

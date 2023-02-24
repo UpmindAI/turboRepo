@@ -11,6 +11,7 @@ import 'support_record.dart';
 import 'feature_record.dart';
 import 'chats_record.dart';
 import 'chat_meta_record.dart';
+import 'summary_prompts_record.dart';
 
 import 'index.dart';
 
@@ -31,6 +32,7 @@ const kDocumentReferenceField = 'Document__Reference__Field';
   FeatureRecord,
   ChatsRecord,
   ChatMetaRecord,
+  SummaryPromptsRecord,
 ])
 final Serializers serializers = (_$serializers.toBuilder()
       ..add(DocumentReferenceSerializer())
