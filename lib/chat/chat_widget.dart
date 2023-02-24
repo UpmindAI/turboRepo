@@ -394,9 +394,11 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                         );
                                                       }
                                                       List<ChatsRecord>
-                                                          columnChatsRecordList =
+                                                          chatColumnChatsRecordList =
                                                           snapshot.data!;
                                                       return SingleChildScrollView(
+                                                        controller:
+                                                            _model.chatColumn,
                                                         child: Column(
                                                           mainAxisSize:
                                                               MainAxisSize.min,
@@ -404,12 +406,12 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                               MainAxisAlignment
                                                                   .end,
                                                           children: List.generate(
-                                                              columnChatsRecordList
+                                                              chatColumnChatsRecordList
                                                                   .length,
-                                                              (columnIndex) {
-                                                            final columnChatsRecord =
-                                                                columnChatsRecordList[
-                                                                    columnIndex];
+                                                              (chatColumnIndex) {
+                                                            final chatColumnChatsRecord =
+                                                                chatColumnChatsRecordList[
+                                                                    chatColumnIndex];
                                                             return Padding(
                                                               padding:
                                                                   EdgeInsetsDirectional
@@ -420,7 +422,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                           0),
                                                               child: Stack(
                                                                 children: [
-                                                                  if (!columnChatsRecord
+                                                                  if (!chatColumnChatsRecord
                                                                       .isCompletion!)
                                                                     Row(
                                                                       mainAxisSize:
@@ -455,7 +457,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                                 Padding(
                                                                                   padding: EdgeInsetsDirectional.fromSTEB(10, 5, 10, 5),
                                                                                   child: Text(
-                                                                                    columnChatsRecord.prompt!,
+                                                                                    chatColumnChatsRecord.prompt!,
                                                                                     style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                           fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
                                                                                           fontWeight: FontWeight.w500,
@@ -466,7 +468,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                                 Padding(
                                                                                   padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                                                                   child: Text(
-                                                                                    dateTimeFormat('relative', columnChatsRecord.timestamp!),
+                                                                                    dateTimeFormat('relative', chatColumnChatsRecord.timestamp!),
                                                                                     style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                           fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
                                                                                           color: FlutterFlowTheme.of(context).alternate,
@@ -482,7 +484,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                         ),
                                                                       ],
                                                                     ),
-                                                                  if (columnChatsRecord
+                                                                  if (chatColumnChatsRecord
                                                                           .isCompletion ??
                                                                       true)
                                                                     Row(
@@ -512,7 +514,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                               ),
                                                                               Stack(
                                                                                 children: [
-                                                                                  if (columnChatsRecord.isLoading ?? true)
+                                                                                  if (chatColumnChatsRecord.isLoading ?? true)
                                                                                     Align(
                                                                                       alignment: AlignmentDirectional(1, 0),
                                                                                       child: Padding(
@@ -528,13 +530,13 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                                         ),
                                                                                       ),
                                                                                     ),
-                                                                                  if (!columnChatsRecord.isLoading!)
+                                                                                  if (!chatColumnChatsRecord.isLoading!)
                                                                                     Align(
                                                                                       alignment: AlignmentDirectional(1, 0),
                                                                                       child: Padding(
                                                                                         padding: EdgeInsetsDirectional.fromSTEB(40, 5, 10, 5),
                                                                                         child: Text(
-                                                                                          columnChatsRecord.completion!,
+                                                                                          chatColumnChatsRecord.completion!,
                                                                                           style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                                 fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
                                                                                                 color: FlutterFlowTheme.of(context).secondaryColor,
@@ -555,7 +557,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                                       child: Padding(
                                                                                         padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
                                                                                         child: Text(
-                                                                                          dateTimeFormat('relative', columnChatsRecord.timestamp!),
+                                                                                          dateTimeFormat('relative', chatColumnChatsRecord.timestamp!),
                                                                                           style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                                 fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
                                                                                                 color: FlutterFlowTheme.of(context).alternate,
@@ -590,7 +592,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                                               child: Container(
                                                                                                 height: MediaQuery.of(context).size.height * 0.8,
                                                                                                 child: ChatChunksWidget(
-                                                                                                  chatDoc: columnChatsRecord,
+                                                                                                  chatDoc: chatColumnChatsRecord,
                                                                                                 ),
                                                                                               ),
                                                                                             );
@@ -954,6 +956,18 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                               const Duration(
                                                                   milliseconds:
                                                                       1000));
+                                                          await _model
+                                                              .chatColumn
+                                                              ?.animateTo(
+                                                            _model
+                                                                .chatColumn!
+                                                                .position
+                                                                .maxScrollExtent,
+                                                            duration: Duration(
+                                                                milliseconds:
+                                                                    100),
+                                                            curve: Curves.ease,
+                                                          );
                                                           _model.apiResultzymFF =
                                                               await ChatServerCall
                                                                   .call(
@@ -969,6 +983,18 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                     .selectedDataset,
                                                             topK: FFAppState()
                                                                 .setTopK,
+                                                          );
+                                                          await _model
+                                                              .chatColumn
+                                                              ?.animateTo(
+                                                            _model
+                                                                .chatColumn!
+                                                                .position
+                                                                .maxScrollExtent,
+                                                            duration: Duration(
+                                                                milliseconds:
+                                                                    100),
+                                                            curve: Curves.ease,
                                                           );
 
                                                           setState(() {});
@@ -1121,6 +1147,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                   ),
                                   child: SingleChildScrollView(
                                     primary: false,
+                                    controller: _model.columnController,
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
@@ -1515,6 +1542,8 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                       ),
                                                     );
                                                   },
+                                                  controller:
+                                                      _model.listViewController,
                                                 );
                                               },
                                             ),

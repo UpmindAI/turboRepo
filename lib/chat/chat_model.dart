@@ -29,6 +29,8 @@ class ChatModel extends FlutterFlowModel {
   final formKey2 = GlobalKey<FormState>();
   // Model for mainMenu component.
   late MainMenuModel mainMenuModel;
+  // State field(s) for chatColumn widget.
+  ScrollController? chatColumn;
   // State field(s) for startField widget.
   TextEditingController? startFieldController;
   String? Function(BuildContext, String?)? startFieldControllerValidator;
@@ -57,6 +59,10 @@ class ChatModel extends FlutterFlowModel {
   ChatsRecord? chatMessageNewFromField;
   // Stores action output result for [Backend Call - API (chatServer)] action in sendField widget.
   ApiCallResponse? apiResultzymFF;
+  // State field(s) for Column widget.
+  ScrollController? columnController;
+  // State field(s) for ListView widget.
+  ScrollController? listViewController;
   // State field(s) for Checkbox widget.
 
   Map<UserDatasetsRecord, bool> checkboxValueMap = {};
@@ -67,13 +73,19 @@ class ChatModel extends FlutterFlowModel {
 
   void initState(BuildContext context) {
     mainMenuModel = createModel(context, () => MainMenuModel());
+    chatColumn = ScrollController();
     startFieldControllerValidator = _startFieldControllerValidator;
+    columnController = ScrollController();
+    listViewController = ScrollController();
   }
 
   void dispose() {
     mainMenuModel.dispose();
+    chatColumn?.dispose();
     startFieldController?.dispose();
     sendFieldController?.dispose();
+    columnController?.dispose();
+    listViewController?.dispose();
   }
 
   /// Additional helper methods are added here.
