@@ -50,13 +50,6 @@ class _$ChatMetaRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.lastMessage;
-    if (value != null) {
-      result
-        ..add('last_message')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
     value = object.prompts;
     if (value != null) {
       result
@@ -79,6 +72,13 @@ class _$ChatMetaRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType:
                 const FullType(BuiltList, const [const FullType(String)])));
+    }
+    value = object.lastMessage;
+    if (value != null) {
+      result
+        ..add('last_message')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DateTime)));
     }
     value = object.ffRef;
     if (value != null) {
@@ -121,10 +121,6 @@ class _$ChatMetaRecordSerializer
           result.firstMessage = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'last_message':
-          result.lastMessage = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
         case 'prompts':
           result.prompts.replace(serializers.deserialize(value,
                   specifiedType: const FullType(
@@ -140,6 +136,10 @@ class _$ChatMetaRecordSerializer
                   specifiedType: const FullType(
                       BuiltList, const [const FullType(String)]))!
               as BuiltList<Object?>);
+          break;
+        case 'last_message':
+          result.lastMessage = serializers.deserialize(value,
+              specifiedType: const FullType(DateTime)) as DateTime?;
           break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
@@ -164,13 +164,13 @@ class _$ChatMetaRecord extends ChatMetaRecord {
   @override
   final String? firstMessage;
   @override
-  final String? lastMessage;
-  @override
   final BuiltList<String>? prompts;
   @override
   final bool? isLoading;
   @override
   final BuiltList<String>? completions;
+  @override
+  final DateTime? lastMessage;
   @override
   final DocumentReference<Object?>? ffRef;
 
@@ -182,10 +182,10 @@ class _$ChatMetaRecord extends ChatMetaRecord {
       this.cid,
       this.qids,
       this.firstMessage,
-      this.lastMessage,
       this.prompts,
       this.isLoading,
       this.completions,
+      this.lastMessage,
       this.ffRef})
       : super._();
 
@@ -205,10 +205,10 @@ class _$ChatMetaRecord extends ChatMetaRecord {
         cid == other.cid &&
         qids == other.qids &&
         firstMessage == other.firstMessage &&
-        lastMessage == other.lastMessage &&
         prompts == other.prompts &&
         isLoading == other.isLoading &&
         completions == other.completions &&
+        lastMessage == other.lastMessage &&
         ffRef == other.ffRef;
   }
 
@@ -223,10 +223,10 @@ class _$ChatMetaRecord extends ChatMetaRecord {
                             $jc($jc($jc(0, createdOn.hashCode), cid.hashCode),
                                 qids.hashCode),
                             firstMessage.hashCode),
-                        lastMessage.hashCode),
-                    prompts.hashCode),
-                isLoading.hashCode),
-            completions.hashCode),
+                        prompts.hashCode),
+                    isLoading.hashCode),
+                completions.hashCode),
+            lastMessage.hashCode),
         ffRef.hashCode));
   }
 
@@ -237,10 +237,10 @@ class _$ChatMetaRecord extends ChatMetaRecord {
           ..add('cid', cid)
           ..add('qids', qids)
           ..add('firstMessage', firstMessage)
-          ..add('lastMessage', lastMessage)
           ..add('prompts', prompts)
           ..add('isLoading', isLoading)
           ..add('completions', completions)
+          ..add('lastMessage', lastMessage)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -266,10 +266,6 @@ class ChatMetaRecordBuilder
   String? get firstMessage => _$this._firstMessage;
   set firstMessage(String? firstMessage) => _$this._firstMessage = firstMessage;
 
-  String? _lastMessage;
-  String? get lastMessage => _$this._lastMessage;
-  set lastMessage(String? lastMessage) => _$this._lastMessage = lastMessage;
-
   ListBuilder<String>? _prompts;
   ListBuilder<String> get prompts =>
       _$this._prompts ??= new ListBuilder<String>();
@@ -284,6 +280,10 @@ class ChatMetaRecordBuilder
       _$this._completions ??= new ListBuilder<String>();
   set completions(ListBuilder<String>? completions) =>
       _$this._completions = completions;
+
+  DateTime? _lastMessage;
+  DateTime? get lastMessage => _$this._lastMessage;
+  set lastMessage(DateTime? lastMessage) => _$this._lastMessage = lastMessage;
 
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
@@ -300,10 +300,10 @@ class ChatMetaRecordBuilder
       _cid = $v.cid;
       _qids = $v.qids?.toBuilder();
       _firstMessage = $v.firstMessage;
-      _lastMessage = $v.lastMessage;
       _prompts = $v.prompts?.toBuilder();
       _isLoading = $v.isLoading;
       _completions = $v.completions?.toBuilder();
+      _lastMessage = $v.lastMessage;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -333,10 +333,10 @@ class ChatMetaRecordBuilder
               cid: cid,
               qids: _qids?.build(),
               firstMessage: firstMessage,
-              lastMessage: lastMessage,
               prompts: _prompts?.build(),
               isLoading: isLoading,
               completions: _completions?.build(),
+              lastMessage: lastMessage,
               ffRef: ffRef);
     } catch (_) {
       late String _$failedField;
