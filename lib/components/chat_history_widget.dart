@@ -103,8 +103,20 @@ class _ChatHistoryWidgetState extends State<ChatHistoryWidget> {
                                 FFAppState().setChat =
                                     listViewChatMetaRecord.reference;
                               });
-                              await Future.delayed(
-                                  const Duration(milliseconds: 250));
+
+                              context.pushNamed(
+                                'Chat',
+                                queryParams: {
+                                  'chatMeta': serializeParam(
+                                    listViewChatMetaRecord,
+                                    ParamType.Document,
+                                  ),
+                                }.withoutNulls,
+                                extra: <String, dynamic>{
+                                  'chatMeta': listViewChatMetaRecord,
+                                },
+                              );
+
                               Navigator.pop(context);
                             },
                             child: Container(

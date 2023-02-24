@@ -21,7 +21,12 @@ import 'chat_model.dart';
 export 'chat_model.dart';
 
 class ChatWidget extends StatefulWidget {
-  const ChatWidget({Key? key}) : super(key: key);
+  const ChatWidget({
+    Key? key,
+    this.chatMeta,
+  }) : super(key: key);
+
+  final ChatMetaRecord? chatMeta;
 
   @override
   _ChatWidgetState createState() => _ChatWidgetState();
@@ -127,104 +132,17 @@ class _ChatWidgetState extends State<ChatWidget> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Expanded(
-                                              child: SingleChildScrollView(
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        Expanded(
-                                                          child: Align(
-                                                            alignment:
-                                                                AlignmentDirectional(
-                                                                    1, 0),
-                                                            child: Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          10,
-                                                                          5,
-                                                                          10,
-                                                                          5),
-                                                              child:
-                                                                  FFButtonWidget(
-                                                                onPressed:
-                                                                    () async {
-                                                                  await showModalBottomSheet(
-                                                                    isScrollControlled:
-                                                                        true,
-                                                                    backgroundColor:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .secondaryBackground,
-                                                                    enableDrag:
-                                                                        false,
-                                                                    context:
-                                                                        context,
-                                                                    builder:
-                                                                        (context) {
-                                                                      return Padding(
-                                                                        padding:
-                                                                            MediaQuery.of(context).viewInsets,
-                                                                        child:
-                                                                            Container(
-                                                                          height:
-                                                                              MediaQuery.of(context).size.height * 0.8,
-                                                                          child:
-                                                                              ConfigureBotWidget(),
-                                                                        ),
-                                                                      );
-                                                                    },
-                                                                  ).then((value) =>
-                                                                      setState(
-                                                                          () {}));
-                                                                },
-                                                                text:
-                                                                    'Configure',
-                                                                icon: FaIcon(
-                                                                  FontAwesomeIcons
-                                                                      .robot,
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryColor,
-                                                                  size: 18,
-                                                                ),
-                                                                options:
-                                                                    FFButtonOptions(
-                                                                  width: 130,
-                                                                  height: 30,
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryBackground,
-                                                                  textStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .subtitle2
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            FlutterFlowTheme.of(context).subtitle2Family,
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .secondaryColor,
-                                                                        useGoogleFonts:
-                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).subtitle2Family),
-                                                                      ),
-                                                                  borderSide:
-                                                                      BorderSide(
-                                                                    color: Colors
-                                                                        .transparent,
-                                                                    width: 1,
-                                                                  ),
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              0),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        Align(
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Expanded(
+                                                        child: Align(
                                                           alignment:
                                                               AlignmentDirectional(
                                                                   1, 0),
@@ -262,7 +180,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                         height: MediaQuery.of(context).size.height *
                                                                             0.8,
                                                                         child:
-                                                                            ChatHistoryWidget(),
+                                                                            ConfigureBotWidget(),
                                                                       ),
                                                                     );
                                                                   },
@@ -270,11 +188,10 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                     setState(
                                                                         () {}));
                                                               },
-                                                              text:
-                                                                  'Chat History',
+                                                              text: 'Configure',
                                                               icon: FaIcon(
                                                                 FontAwesomeIcons
-                                                                    .clock,
+                                                                    .robot,
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryColor,
@@ -316,320 +233,422 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                             ),
                                                           ),
                                                         ),
-                                                        Align(
-                                                          alignment:
-                                                              AlignmentDirectional(
-                                                                  1, 0),
-                                                          child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        10,
-                                                                        5,
-                                                                        20,
-                                                                        5),
-                                                            child:
-                                                                FFButtonWidget(
-                                                              onPressed:
-                                                                  () async {
-                                                                FFAppState()
-                                                                    .update(() {
-                                                                  FFAppState()
-                                                                      .setCid = '';
-                                                                  FFAppState()
-                                                                          .setChat =
-                                                                      null;
-                                                                });
-                                                              },
-                                                              text: 'Clear',
-                                                              icon: Icon(
-                                                                Icons.close,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryColor,
-                                                                size: 18,
-                                                              ),
-                                                              options:
-                                                                  FFButtonOptions(
-                                                                width: 130,
-                                                                height: 30,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryBackground,
-                                                                textStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .subtitle2
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .subtitle2Family,
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .secondaryColor,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).subtitle2Family),
+                                                      ),
+                                                      Align(
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                1, 0),
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(10,
+                                                                      5, 10, 5),
+                                                          child: FFButtonWidget(
+                                                            onPressed:
+                                                                () async {
+                                                              await showModalBottomSheet(
+                                                                isScrollControlled:
+                                                                    true,
+                                                                backgroundColor:
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryBackground,
+                                                                enableDrag:
+                                                                    false,
+                                                                context:
+                                                                    context,
+                                                                builder:
+                                                                    (context) {
+                                                                  return Padding(
+                                                                    padding: MediaQuery.of(
+                                                                            context)
+                                                                        .viewInsets,
+                                                                    child:
+                                                                        Container(
+                                                                      height: MediaQuery.of(context)
+                                                                              .size
+                                                                              .height *
+                                                                          0.8,
+                                                                      child:
+                                                                          ChatHistoryWidget(),
                                                                     ),
-                                                                borderSide:
-                                                                    BorderSide(
-                                                                  color: Colors
-                                                                      .transparent,
-                                                                  width: 1,
-                                                                ),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            0),
-                                                              ),
+                                                                  );
+                                                                },
+                                                              ).then((value) =>
+                                                                  setState(
+                                                                      () {}));
+                                                            },
+                                                            text:
+                                                                'Chat History',
+                                                            icon: FaIcon(
+                                                              FontAwesomeIcons
+                                                                  .clock,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryColor,
+                                                              size: 18,
                                                             ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(10, 20,
-                                                                  10, 10),
-                                                      child: StreamBuilder<
-                                                          List<ChatsRecord>>(
-                                                        stream:
-                                                            queryChatsRecord(
-                                                          parent:
-                                                              currentUserReference,
-                                                          queryBuilder: (chatsRecord) =>
-                                                              chatsRecord
-                                                                  .where(
-                                                                      'cid',
-                                                                      isEqualTo:
-                                                                          FFAppState()
-                                                                              .setCid)
-                                                                  .orderBy(
-                                                                      'timestamp'),
-                                                        ),
-                                                        builder: (context,
-                                                            snapshot) {
-                                                          // Customize what your widget looks like when it's loading.
-                                                          if (!snapshot
-                                                              .hasData) {
-                                                            return Center(
-                                                              child: SizedBox(
-                                                                width: 50,
-                                                                height: 50,
-                                                                child:
-                                                                    SpinKitRipple(
-                                                                  color: FlutterFlowTheme.of(
+                                                            options:
+                                                                FFButtonOptions(
+                                                              width: 130,
+                                                              height: 30,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryBackground,
+                                                              textStyle:
+                                                                  FlutterFlowTheme.of(
                                                                           context)
-                                                                      .primaryColor,
-                                                                  size: 50,
-                                                                ),
+                                                                      .subtitle2
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            FlutterFlowTheme.of(context).subtitle2Family,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .secondaryColor,
+                                                                        useGoogleFonts:
+                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).subtitle2Family),
+                                                                      ),
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: Colors
+                                                                    .transparent,
+                                                                width: 1,
                                                               ),
-                                                            );
-                                                          }
-                                                          List<ChatsRecord>
-                                                              columnChatsRecordList =
-                                                              snapshot.data!;
-                                                          return SingleChildScrollView(
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .min,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .end,
-                                                              children: List.generate(
-                                                                  columnChatsRecordList
-                                                                      .length,
-                                                                  (columnIndex) {
-                                                                final columnChatsRecord =
-                                                                    columnChatsRecordList[
-                                                                        columnIndex];
-                                                                return Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0,
-                                                                          10,
-                                                                          0,
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
                                                                           0),
-                                                                  child: Stack(
-                                                                    children: [
-                                                                      if (!columnChatsRecord
-                                                                          .isCompletion!)
-                                                                        Row(
-                                                                          mainAxisSize:
-                                                                              MainAxisSize.max,
-                                                                          children: [
-                                                                            Expanded(
-                                                                              child: Container(
-                                                                                width: MediaQuery.of(context).size.width,
-                                                                                decoration: BoxDecoration(
-                                                                                  color: FlutterFlowTheme.of(context).secondaryBackground,
-                                                                                ),
-                                                                                child: Column(
-                                                                                  mainAxisSize: MainAxisSize.max,
-                                                                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                                                                  children: [
-                                                                                    Padding(
-                                                                                      padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                                                                                      child: Text(
-                                                                                        'You:',
-                                                                                        style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                              fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                              fontWeight: FontWeight.bold,
-                                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                                            ),
-                                                                                      ),
-                                                                                    ),
-                                                                                    Padding(
-                                                                                      padding: EdgeInsetsDirectional.fromSTEB(10, 5, 10, 5),
-                                                                                      child: Text(
-                                                                                        columnChatsRecord.prompt!,
-                                                                                        style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                              fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                              fontWeight: FontWeight.w500,
-                                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                                            ),
-                                                                                      ),
-                                                                                    ),
-                                                                                    Padding(
-                                                                                      padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                                                                                      child: Text(
-                                                                                        dateTimeFormat('relative', columnChatsRecord.timestamp!),
-                                                                                        style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                              fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                              color: FlutterFlowTheme.of(context).alternate,
-                                                                                              fontSize: 10,
-                                                                                              fontWeight: FontWeight.w300,
-                                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                                            ),
-                                                                                      ),
-                                                                                    ),
-                                                                                  ],
-                                                                                ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Align(
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                1, 0),
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(10,
+                                                                      5, 20, 5),
+                                                          child: FFButtonWidget(
+                                                            onPressed:
+                                                                () async {
+                                                              FFAppState()
+                                                                  .update(() {
+                                                                FFAppState()
+                                                                    .setCid = '';
+                                                                FFAppState()
+                                                                        .setChat =
+                                                                    null;
+                                                              });
+                                                            },
+                                                            text: 'Clear',
+                                                            icon: Icon(
+                                                              Icons.close,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryColor,
+                                                              size: 18,
+                                                            ),
+                                                            options:
+                                                                FFButtonOptions(
+                                                              width: 130,
+                                                              height: 30,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryBackground,
+                                                              textStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .subtitle2
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            FlutterFlowTheme.of(context).subtitle2Family,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .secondaryColor,
+                                                                        useGoogleFonts:
+                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).subtitle2Family),
+                                                                      ),
+                                                              borderSide:
+                                                                  BorderSide(
+                                                                color: Colors
+                                                                    .transparent,
+                                                                width: 1,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          0),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                10, 20, 10, 10),
+                                                    child: StreamBuilder<
+                                                        List<ChatsRecord>>(
+                                                      stream: queryChatsRecord(
+                                                        parent:
+                                                            currentUserReference,
+                                                        queryBuilder: (chatsRecord) =>
+                                                            chatsRecord
+                                                                .where(
+                                                                    'cid',
+                                                                    isEqualTo:
+                                                                        FFAppState()
+                                                                            .setCid)
+                                                                .orderBy(
+                                                                    'timestamp'),
+                                                      ),
+                                                      builder:
+                                                          (context, snapshot) {
+                                                        // Customize what your widget looks like when it's loading.
+                                                        if (!snapshot.hasData) {
+                                                          return Center(
+                                                            child: SizedBox(
+                                                              width: 50,
+                                                              height: 50,
+                                                              child:
+                                                                  SpinKitRipple(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryColor,
+                                                                size: 50,
+                                                              ),
+                                                            ),
+                                                          );
+                                                        }
+                                                        List<ChatsRecord>
+                                                            columnChatsRecordList =
+                                                            snapshot.data!;
+                                                        return SingleChildScrollView(
+                                                          child: Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .end,
+                                                            children: List.generate(
+                                                                columnChatsRecordList
+                                                                    .length,
+                                                                (columnIndex) {
+                                                              final columnChatsRecord =
+                                                                  columnChatsRecordList[
+                                                                      columnIndex];
+                                                              return Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0,
+                                                                            10,
+                                                                            0,
+                                                                            0),
+                                                                child: Stack(
+                                                                  children: [
+                                                                    if (!columnChatsRecord
+                                                                        .isCompletion!)
+                                                                      Row(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.max,
+                                                                        children: [
+                                                                          Expanded(
+                                                                            child:
+                                                                                Container(
+                                                                              width: MediaQuery.of(context).size.width,
+                                                                              decoration: BoxDecoration(
+                                                                                color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                               ),
-                                                                            ),
-                                                                          ],
-                                                                        ),
-                                                                      if (columnChatsRecord
-                                                                              .isCompletion ??
-                                                                          true)
-                                                                        Row(
-                                                                          mainAxisSize:
-                                                                              MainAxisSize.max,
-                                                                          children: [
-                                                                            Expanded(
                                                                               child: Column(
                                                                                 mainAxisSize: MainAxisSize.max,
+                                                                                crossAxisAlignment: CrossAxisAlignment.start,
                                                                                 children: [
-                                                                                  Align(
-                                                                                    alignment: AlignmentDirectional(-1, 0),
-                                                                                    child: Padding(
-                                                                                      padding: EdgeInsetsDirectional.fromSTEB(40, 0, 0, 0),
-                                                                                      child: Text(
-                                                                                        'Completion:',
-                                                                                        style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                              fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                              fontWeight: FontWeight.bold,
-                                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                                            ),
-                                                                                      ),
-                                                                                    ),
-                                                                                  ),
-                                                                                  Align(
-                                                                                    alignment: AlignmentDirectional(1, 0),
-                                                                                    child: Padding(
-                                                                                      padding: EdgeInsetsDirectional.fromSTEB(40, 5, 10, 5),
-                                                                                      child: Text(
-                                                                                        columnChatsRecord.completion!,
-                                                                                        style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                              fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                              color: FlutterFlowTheme.of(context).secondaryColor,
-                                                                                              fontWeight: FontWeight.w500,
-                                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                                            ),
-                                                                                      ),
-                                                                                    ),
-                                                                                  ),
-                                                                                  Row(
-                                                                                    mainAxisSize: MainAxisSize.max,
-                                                                                    children: [
-                                                                                      Expanded(
-                                                                                        child: Align(
-                                                                                          alignment: AlignmentDirectional(1, 0),
-                                                                                          child: Padding(
-                                                                                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
-                                                                                            child: Text(
-                                                                                              dateTimeFormat('relative', columnChatsRecord.timestamp!),
-                                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                                    fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                                    color: FlutterFlowTheme.of(context).alternate,
-                                                                                                    fontSize: 10,
-                                                                                                    fontWeight: FontWeight.w300,
-                                                                                                    useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                                                  ),
-                                                                                            ),
+                                                                                  Padding(
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                                                                    child: Text(
+                                                                                      'You:',
+                                                                                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                            fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                            fontWeight: FontWeight.bold,
+                                                                                            useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
                                                                                           ),
-                                                                                        ),
-                                                                                      ),
-                                                                                      Padding(
-                                                                                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 5, 0),
-                                                                                        child: Icon(
-                                                                                          Icons.search,
-                                                                                          color: FlutterFlowTheme.of(context).secondaryText,
-                                                                                          size: 14,
-                                                                                        ),
-                                                                                      ),
-                                                                                      Padding(
-                                                                                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
-                                                                                        child: InkWell(
-                                                                                          onTap: () async {
-                                                                                            await showModalBottomSheet(
-                                                                                              isScrollControlled: true,
-                                                                                              backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-                                                                                              enableDrag: false,
-                                                                                              context: context,
-                                                                                              builder: (context) {
-                                                                                                return Padding(
-                                                                                                  padding: MediaQuery.of(context).viewInsets,
-                                                                                                  child: Container(
-                                                                                                    height: MediaQuery.of(context).size.height * 0.8,
-                                                                                                    child: ChatChunksWidget(
-                                                                                                      chatDoc: columnChatsRecord,
-                                                                                                    ),
-                                                                                                  ),
-                                                                                                );
-                                                                                              },
-                                                                                            ).then((value) => setState(() {}));
-                                                                                          },
+                                                                                    ),
+                                                                                  ),
+                                                                                  Padding(
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(10, 5, 10, 5),
+                                                                                    child: Text(
+                                                                                      columnChatsRecord.prompt!,
+                                                                                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                            fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                            fontWeight: FontWeight.w500,
+                                                                                            useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                          ),
+                                                                                    ),
+                                                                                  ),
+                                                                                  Padding(
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                                                                    child: Text(
+                                                                                      dateTimeFormat('relative', columnChatsRecord.timestamp!),
+                                                                                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                            fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                            color: FlutterFlowTheme.of(context).alternate,
+                                                                                            fontSize: 10,
+                                                                                            fontWeight: FontWeight.w300,
+                                                                                            useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                          ),
+                                                                                    ),
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                    if (columnChatsRecord
+                                                                            .isCompletion ??
+                                                                        true)
+                                                                      Row(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.max,
+                                                                        children: [
+                                                                          Expanded(
+                                                                            child:
+                                                                                Column(
+                                                                              mainAxisSize: MainAxisSize.max,
+                                                                              children: [
+                                                                                Align(
+                                                                                  alignment: AlignmentDirectional(1, 0),
+                                                                                  child: Padding(
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                                                                                    child: Text(
+                                                                                      'Completion:',
+                                                                                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                            fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                            fontWeight: FontWeight.bold,
+                                                                                            useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                          ),
+                                                                                    ),
+                                                                                  ),
+                                                                                ),
+                                                                                Stack(
+                                                                                  children: [
+                                                                                    if (columnChatsRecord.isLoading ?? true)
+                                                                                      Align(
+                                                                                        alignment: AlignmentDirectional(1, 0),
+                                                                                        child: Padding(
+                                                                                          padding: EdgeInsetsDirectional.fromSTEB(40, 5, 10, 5),
                                                                                           child: Text(
-                                                                                            'Sources',
+                                                                                            'Typing...',
                                                                                             style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                                   fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                                  color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                                  color: FlutterFlowTheme.of(context).customColor1,
+                                                                                                  fontWeight: FontWeight.w500,
                                                                                                   useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
                                                                                                 ),
                                                                                           ),
                                                                                         ),
                                                                                       ),
-                                                                                    ],
-                                                                                  ),
-                                                                                ],
-                                                                              ),
+                                                                                    if (!columnChatsRecord.isLoading!)
+                                                                                      Align(
+                                                                                        alignment: AlignmentDirectional(1, 0),
+                                                                                        child: Padding(
+                                                                                          padding: EdgeInsetsDirectional.fromSTEB(40, 5, 10, 5),
+                                                                                          child: Text(
+                                                                                            columnChatsRecord.completion!,
+                                                                                            style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                  fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                                  color: FlutterFlowTheme.of(context).secondaryColor,
+                                                                                                  fontWeight: FontWeight.w500,
+                                                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                                ),
+                                                                                          ),
+                                                                                        ),
+                                                                                      ),
+                                                                                  ],
+                                                                                ),
+                                                                                Row(
+                                                                                  mainAxisSize: MainAxisSize.max,
+                                                                                  children: [
+                                                                                    Expanded(
+                                                                                      child: Align(
+                                                                                        alignment: AlignmentDirectional(1, 0),
+                                                                                        child: Padding(
+                                                                                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                                                                                          child: Text(
+                                                                                            dateTimeFormat('relative', columnChatsRecord.timestamp!),
+                                                                                            style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                  fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                                  color: FlutterFlowTheme.of(context).alternate,
+                                                                                                  fontSize: 10,
+                                                                                                  fontWeight: FontWeight.w300,
+                                                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                                ),
+                                                                                          ),
+                                                                                        ),
+                                                                                      ),
+                                                                                    ),
+                                                                                    Padding(
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 5, 0),
+                                                                                      child: Icon(
+                                                                                        Icons.search,
+                                                                                        color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                        size: 14,
+                                                                                      ),
+                                                                                    ),
+                                                                                    Padding(
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                                                                                      child: InkWell(
+                                                                                        onTap: () async {
+                                                                                          await showModalBottomSheet(
+                                                                                            isScrollControlled: true,
+                                                                                            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                            enableDrag: false,
+                                                                                            context: context,
+                                                                                            builder: (context) {
+                                                                                              return Padding(
+                                                                                                padding: MediaQuery.of(context).viewInsets,
+                                                                                                child: Container(
+                                                                                                  height: MediaQuery.of(context).size.height * 0.8,
+                                                                                                  child: ChatChunksWidget(
+                                                                                                    chatDoc: columnChatsRecord,
+                                                                                                  ),
+                                                                                                ),
+                                                                                              );
+                                                                                            },
+                                                                                          ).then((value) => setState(() {}));
+                                                                                        },
+                                                                                        child: Text(
+                                                                                          'Sources',
+                                                                                          style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                                color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                              ),
+                                                                                        ),
+                                                                                      ),
+                                                                                    ),
+                                                                                  ],
+                                                                                ),
+                                                                              ],
                                                                             ),
-                                                                          ],
-                                                                        ),
-                                                                    ],
-                                                                  ),
-                                                                );
-                                                              }),
-                                                            ),
-                                                          );
-                                                        },
-                                                      ),
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                  ],
+                                                                ),
+                                                              );
+                                                            }),
+                                                          ),
+                                                        );
+                                                      },
                                                     ),
-                                                  ],
-                                                ),
+                                                  ),
+                                                ],
                                               ),
                                             ),
                                           ],
@@ -654,231 +673,247 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                       autovalidateMode:
                                                           AutovalidateMode
                                                               .disabled,
-                                                      child: Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(0, 0,
-                                                                    10, 0),
-                                                        child: TextFormField(
-                                                          controller: _model
-                                                              .startFieldController,
-                                                          onFieldSubmitted:
-                                                              (_) async {
-                                                            FFAppState()
-                                                                    .setCid =
-                                                                random_data
-                                                                    .randomString(
-                                                              9,
-                                                              9,
-                                                              true,
-                                                              true,
-                                                              true,
-                                                            );
+                                                      child: TextFormField(
+                                                        controller: _model
+                                                            .startFieldController,
+                                                        onFieldSubmitted:
+                                                            (_) async {
+                                                          FFAppState().setCid =
+                                                              random_data
+                                                                  .randomString(
+                                                            9,
+                                                            9,
+                                                            true,
+                                                            true,
+                                                            true,
+                                                          );
+                                                          // createMeta
 
-                                                            final chatMetaCreateData =
-                                                                {
-                                                              ...createChatMetaRecordData(
-                                                                createdOn:
-                                                                    getCurrentTimestamp,
-                                                                cid:
-                                                                    FFAppState()
-                                                                        .setCid,
-                                                                firstMessage: _model
-                                                                    .sendFieldController
-                                                                    .text,
-                                                                isLoading: true,
-                                                              ),
-                                                              'prompts': [
-                                                                _model
-                                                                    .startFieldController
-                                                                    .text
-                                                              ],
-                                                            };
-                                                            var chatMetaRecordReference =
-                                                                ChatMetaRecord
-                                                                    .createDoc(
-                                                                        currentUserReference!);
-                                                            await chatMetaRecordReference
-                                                                .set(
-                                                                    chatMetaCreateData);
-                                                            _model.createChatForm =
-                                                                ChatMetaRecord
-                                                                    .getDocumentFromData(
-                                                                        chatMetaCreateData,
-                                                                        chatMetaRecordReference);
-                                                            setState(() {
-                                                              FFAppState()
-                                                                      .setChat =
-                                                                  _model
-                                                                      .createChatForm!
-                                                                      .reference;
-                                                            });
-
-                                                            final chatsCreateData =
-                                                                {
-                                                              ...createChatsRecordData(
-                                                                cid:
-                                                                    FFAppState()
-                                                                        .setCid,
-                                                                timestamp:
-                                                                    getCurrentTimestamp,
-                                                                isCompletion:
-                                                                    false,
-                                                                qid: random_data
-                                                                    .randomString(
-                                                                  11,
-                                                                  11,
-                                                                  true,
-                                                                  true,
-                                                                  true,
-                                                                ),
-                                                                prompt: _model
-                                                                    .startFieldController
-                                                                    .text,
-                                                              ),
-                                                              'dataset_ids': _model
-                                                                  .checkboxCheckedItems
-                                                                  .map((e) => e
-                                                                      .datasetId)
-                                                                  .withoutNulls
-                                                                  .toList(),
-                                                            };
-                                                            var chatsRecordReference =
-                                                                ChatsRecord
-                                                                    .createDoc(
-                                                                        currentUserReference!);
-                                                            await chatsRecordReference
-                                                                .set(
-                                                                    chatsCreateData);
-                                                            _model.createMessageForm =
-                                                                ChatsRecord.getDocumentFromData(
-                                                                    chatsCreateData,
-                                                                    chatsRecordReference);
-                                                            setState(() {
-                                                              _model
-                                                                  .sendFieldController
-                                                                  ?.clear();
-                                                            });
-                                                            await Future.delayed(
-                                                                const Duration(
-                                                                    milliseconds:
-                                                                        1000));
-                                                            _model.apiResultStartForm =
-                                                                await ChatServerCall
-                                                                    .call(
-                                                              idToken:
-                                                                  currentJwtToken,
-                                                              qid: _model
-                                                                  .createMessageForm!
-                                                                  .qid,
+                                                          final chatMetaCreateData =
+                                                              {
+                                                            ...createChatMetaRecordData(
+                                                              createdOn:
+                                                                  getCurrentTimestamp,
                                                               cid: FFAppState()
                                                                   .setCid,
-                                                              datasetIdsList:
-                                                                  FFAppState()
-                                                                      .selectedDataset,
-                                                              topK: FFAppState()
-                                                                  .setTopK,
-                                                            );
+                                                              firstMessage: _model
+                                                                  .sendFieldController
+                                                                  .text,
+                                                              isLoading: true,
+                                                            ),
+                                                            'prompts': [
+                                                              _model
+                                                                  .startFieldController
+                                                                  .text
+                                                            ],
+                                                          };
+                                                          var chatMetaRecordReference =
+                                                              ChatMetaRecord
+                                                                  .createDoc(
+                                                                      currentUserReference!);
+                                                          await chatMetaRecordReference
+                                                              .set(
+                                                                  chatMetaCreateData);
+                                                          _model.createChatForm =
+                                                              ChatMetaRecord
+                                                                  .getDocumentFromData(
+                                                                      chatMetaCreateData,
+                                                                      chatMetaRecordReference);
+                                                          setState(() {
+                                                            FFAppState()
+                                                                    .setChat =
+                                                                _model
+                                                                    .createChatForm!
+                                                                    .reference;
+                                                          });
 
-                                                            setState(() {});
-                                                          },
-                                                          autofocus: true,
-                                                          obscureText: false,
-                                                          decoration:
-                                                              InputDecoration(
-                                                            hintText:
-                                                                'Start a Chat...',
-                                                            hintStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyText2,
-                                                            enabledBorder:
-                                                                OutlineInputBorder(
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .tertiaryColor,
-                                                                width: 1,
+                                                          final chatsCreateData =
+                                                              {
+                                                            ...createChatsRecordData(
+                                                              cid: FFAppState()
+                                                                  .setCid,
+                                                              timestamp:
+                                                                  getCurrentTimestamp,
+                                                              isCompletion:
+                                                                  false,
+                                                              qid: random_data
+                                                                  .randomString(
+                                                                11,
+                                                                11,
+                                                                true,
+                                                                true,
+                                                                true,
                                                               ),
-                                                              borderRadius:
-                                                                  const BorderRadius
-                                                                      .only(
-                                                                topLeft: Radius
-                                                                    .circular(
-                                                                        4.0),
-                                                                topRight: Radius
-                                                                    .circular(
-                                                                        4.0),
-                                                              ),
+                                                              prompt: _model
+                                                                  .startFieldController
+                                                                  .text,
                                                             ),
-                                                            focusedBorder:
-                                                                OutlineInputBorder(
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryColor,
-                                                                width: 1,
+                                                            'dataset_ids': _model
+                                                                .checkboxCheckedItems
+                                                                .map((e) =>
+                                                                    e.datasetId)
+                                                                .withoutNulls
+                                                                .toList(),
+                                                          };
+                                                          var chatsRecordReference =
+                                                              ChatsRecord.createDoc(
+                                                                  currentUserReference!);
+                                                          await chatsRecordReference
+                                                              .set(
+                                                                  chatsCreateData);
+                                                          _model.createMessageForm =
+                                                              ChatsRecord.getDocumentFromData(
+                                                                  chatsCreateData,
+                                                                  chatsRecordReference);
+                                                          setState(() {
+                                                            _model
+                                                                .sendFieldController
+                                                                ?.clear();
+                                                          });
+                                                          await Future.delayed(
+                                                              const Duration(
+                                                                  milliseconds:
+                                                                      1000));
+                                                          _model.apiResultStartForm =
+                                                              await ChatServerCall
+                                                                  .call(
+                                                            idToken:
+                                                                currentJwtToken,
+                                                            qid: _model
+                                                                .createMessageForm!
+                                                                .qid,
+                                                            cid: FFAppState()
+                                                                .setCid,
+                                                            datasetIdsList:
+                                                                FFAppState()
+                                                                    .selectedDataset,
+                                                            topK: FFAppState()
+                                                                .setTopK,
+                                                          );
+
+                                                          context.pushNamed(
+                                                            'Chat',
+                                                            queryParams: {
+                                                              'chatMeta':
+                                                                  serializeParam(
+                                                                _model
+                                                                    .createChatForm,
+                                                                ParamType
+                                                                    .Document,
                                                               ),
-                                                              borderRadius:
-                                                                  const BorderRadius
-                                                                      .only(
-                                                                topLeft: Radius
-                                                                    .circular(
-                                                                        4.0),
-                                                                topRight: Radius
-                                                                    .circular(
-                                                                        4.0),
-                                                              ),
+                                                            }.withoutNulls,
+                                                            extra: <String,
+                                                                dynamic>{
+                                                              'chatMeta': _model
+                                                                  .createChatForm,
+                                                            },
+                                                          );
+
+                                                          setState(() {});
+                                                        },
+                                                        autofocus: true,
+                                                        obscureText: false,
+                                                        decoration:
+                                                            InputDecoration(
+                                                          hintText:
+                                                              'Start a Chat...',
+                                                          hintStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyText2,
+                                                          enabledBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .tertiaryColor,
+                                                              width: 1,
                                                             ),
-                                                            errorBorder:
-                                                                OutlineInputBorder(
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: Color(
-                                                                    0xFF980000),
-                                                                width: 1,
-                                                              ),
-                                                              borderRadius:
-                                                                  const BorderRadius
-                                                                      .only(
-                                                                topLeft: Radius
-                                                                    .circular(
-                                                                        4.0),
-                                                                topRight: Radius
-                                                                    .circular(
-                                                                        4.0),
-                                                              ),
-                                                            ),
-                                                            focusedErrorBorder:
-                                                                OutlineInputBorder(
-                                                              borderSide:
-                                                                  BorderSide(
-                                                                color: Color(
-                                                                    0xFF980000),
-                                                                width: 1,
-                                                              ),
-                                                              borderRadius:
-                                                                  const BorderRadius
-                                                                      .only(
-                                                                topLeft: Radius
-                                                                    .circular(
-                                                                        4.0),
-                                                                topRight: Radius
-                                                                    .circular(
-                                                                        4.0),
-                                                              ),
+                                                            borderRadius:
+                                                                const BorderRadius
+                                                                    .only(
+                                                              topLeft: Radius
+                                                                  .circular(
+                                                                      4.0),
+                                                              topRight: Radius
+                                                                  .circular(
+                                                                      4.0),
                                                             ),
                                                           ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText1,
-                                                          validator: _model
-                                                              .startFieldControllerValidator
-                                                              .asValidator(
-                                                                  context),
+                                                          focusedBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryColor,
+                                                              width: 1,
+                                                            ),
+                                                            borderRadius:
+                                                                const BorderRadius
+                                                                    .only(
+                                                              topLeft: Radius
+                                                                  .circular(
+                                                                      4.0),
+                                                              topRight: Radius
+                                                                  .circular(
+                                                                      4.0),
+                                                            ),
+                                                          ),
+                                                          errorBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: Color(
+                                                                  0xFF980000),
+                                                              width: 1,
+                                                            ),
+                                                            borderRadius:
+                                                                const BorderRadius
+                                                                    .only(
+                                                              topLeft: Radius
+                                                                  .circular(
+                                                                      4.0),
+                                                              topRight: Radius
+                                                                  .circular(
+                                                                      4.0),
+                                                            ),
+                                                          ),
+                                                          focusedErrorBorder:
+                                                              OutlineInputBorder(
+                                                            borderSide:
+                                                                BorderSide(
+                                                              color: Color(
+                                                                  0xFF980000),
+                                                              width: 1,
+                                                            ),
+                                                            borderRadius:
+                                                                const BorderRadius
+                                                                    .only(
+                                                              topLeft: Radius
+                                                                  .circular(
+                                                                      4.0),
+                                                              topRight: Radius
+                                                                  .circular(
+                                                                      4.0),
+                                                            ),
+                                                          ),
+                                                          suffixIcon: Icon(
+                                                            Icons.send,
+                                                            color: Color(
+                                                                0xFF757575),
+                                                            size: 22,
+                                                          ),
                                                         ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyText1,
+                                                        validator: _model
+                                                            .startFieldControllerValidator
+                                                            .asValidator(
+                                                                context),
                                                       ),
                                                     ),
                                                   if (FFAppState().setCid !=
@@ -889,11 +924,10 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                       autovalidateMode:
                                                           AutovalidateMode
                                                               .disabled,
-                                                      child: Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(0, 0,
-                                                                    10, 0),
+                                                      child: Visibility(
+                                                        visible: !widget
+                                                            .chatMeta!
+                                                            .isLoading!,
                                                         child: TextFormField(
                                                           controller: _model
                                                               .sendFieldController,
