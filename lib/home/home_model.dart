@@ -27,6 +27,9 @@ class HomeModel extends FlutterFlowModel {
   // State field(s) for PromptField widget.
   TextEditingController? promptFieldController;
   String? Function(BuildContext, String?)? promptFieldControllerValidator;
+  // State field(s) for TextField widget.
+  TextEditingController? textController2;
+  String? Function(BuildContext, String?)? textController2Validator;
   // Stores action output result for [Backend Call - Create Document] action in ButtonMix widget.
   UserPromptsRecord? setPrompt;
   // Stores action output result for [Backend Call - Create Document] action in ButtonSummarize widget.
@@ -52,6 +55,7 @@ class HomeModel extends FlutterFlowModel {
   void dispose() {
     mainMenuModel.dispose();
     promptFieldController?.dispose();
+    textController2?.dispose();
   }
 
   /// Additional helper methods are added here.

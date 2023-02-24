@@ -46,6 +46,8 @@ class _HomeWidgetState extends State<HomeWidget> {
         text: widget.userCompletion != null
             ? '${widget.userCompletion!.prompt}${widget.userCompletion!.completion}'
             : '');
+    _model.textController2 ??=
+        TextEditingController(text: 'Write a detailed summary:');
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -95,7 +97,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
                   child: Text(
-                    'v0.215',
+                    'v0.216',
                     style: FlutterFlowTheme.of(context).bodyText1,
                   ),
                 ),
@@ -441,18 +443,162 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                     BoxDecoration(
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .primaryBackground,
+                                                                      .secondaryBackground,
                                                                 ),
-                                                                child: Align(
-                                                                  alignment:
-                                                                      AlignmentDirectional(
-                                                                          0, 0),
-                                                                  child: Text(
-                                                                    'Select one or multiple Datasets and create a full summary or its contents.',
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyText1,
-                                                                  ),
+                                                                child: Column(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  children: [
+                                                                    Align(
+                                                                      alignment:
+                                                                          AlignmentDirectional(
+                                                                              0,
+                                                                              0),
+                                                                      child:
+                                                                          Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0,
+                                                                            20,
+                                                                            0,
+                                                                            0),
+                                                                        child:
+                                                                            Text(
+                                                                          'Select one or multiple Datasets and create a full summary or its contents.',
+                                                                          style:
+                                                                              FlutterFlowTheme.of(context).bodyText1,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              10,
+                                                                              20,
+                                                                              10,
+                                                                              5),
+                                                                      child:
+                                                                          TextFormField(
+                                                                        controller:
+                                                                            _model.textController2,
+                                                                        autofocus:
+                                                                            true,
+                                                                        obscureText:
+                                                                            false,
+                                                                        decoration:
+                                                                            InputDecoration(
+                                                                          labelText:
+                                                                              'Configure your prompt',
+                                                                          hintStyle:
+                                                                              FlutterFlowTheme.of(context).bodyText2,
+                                                                          enabledBorder:
+                                                                              OutlineInputBorder(
+                                                                            borderSide:
+                                                                                BorderSide(
+                                                                              color: FlutterFlowTheme.of(context).secondaryColor,
+                                                                              width: 1,
+                                                                            ),
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(0),
+                                                                          ),
+                                                                          focusedBorder:
+                                                                              OutlineInputBorder(
+                                                                            borderSide:
+                                                                                BorderSide(
+                                                                              color: FlutterFlowTheme.of(context).primaryColor,
+                                                                              width: 1,
+                                                                            ),
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(0),
+                                                                          ),
+                                                                          errorBorder:
+                                                                              OutlineInputBorder(
+                                                                            borderSide:
+                                                                                BorderSide(
+                                                                              color: Color(0xFF980000),
+                                                                              width: 1,
+                                                                            ),
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(0),
+                                                                          ),
+                                                                          focusedErrorBorder:
+                                                                              OutlineInputBorder(
+                                                                            borderSide:
+                                                                                BorderSide(
+                                                                              color: Color(0xFF980000),
+                                                                              width: 1,
+                                                                            ),
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(0),
+                                                                          ),
+                                                                          filled:
+                                                                              true,
+                                                                          fillColor:
+                                                                              FlutterFlowTheme.of(context).secondaryBackground,
+                                                                        ),
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyText1,
+                                                                        validator: _model
+                                                                            .textController2Validator
+                                                                            .asValidator(context),
+                                                                      ),
+                                                                    ),
+                                                                    Row(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .max,
+                                                                      children: [
+                                                                        Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              10,
+                                                                              0,
+                                                                              0,
+                                                                              0),
+                                                                          child:
+                                                                              FFButtonWidget(
+                                                                            onPressed:
+                                                                                () async {
+                                                                              final summaryPromptsCreateData = createSummaryPromptsRecordData(
+                                                                                summaryPrompt: _model.textController2.text,
+                                                                              );
+                                                                              await SummaryPromptsRecord.createDoc(currentUserReference!).set(summaryPromptsCreateData);
+                                                                              ScaffoldMessenger.of(context).showSnackBar(
+                                                                                SnackBar(
+                                                                                  content: Text(
+                                                                                    'Prompt is set.',
+                                                                                    style: TextStyle(
+                                                                                      color: FlutterFlowTheme.of(context).primaryText,
+                                                                                      fontWeight: FontWeight.w600,
+                                                                                    ),
+                                                                                  ),
+                                                                                  duration: Duration(milliseconds: 4000),
+                                                                                  backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                ),
+                                                                              );
+                                                                            },
+                                                                            text:
+                                                                                'Set Prompt',
+                                                                            options:
+                                                                                FFButtonOptions(
+                                                                              width: 130,
+                                                                              height: 40,
+                                                                              color: FlutterFlowTheme.of(context).primaryColor,
+                                                                              textStyle: FlutterFlowTheme.of(context).subtitle2.override(
+                                                                                    fontFamily: FlutterFlowTheme.of(context).subtitle2Family,
+                                                                                    color: Colors.white,
+                                                                                    useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).subtitle2Family),
+                                                                                  ),
+                                                                              borderSide: BorderSide(
+                                                                                color: Colors.transparent,
+                                                                                width: 1,
+                                                                              ),
+                                                                              borderRadius: BorderRadius.circular(0),
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ],
                                                                 ),
                                                               ),
                                                             ),
