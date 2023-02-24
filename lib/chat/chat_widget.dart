@@ -128,7 +128,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                           children: [
                                             Expanded(
                                               child: Column(
-                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisSize: MainAxisSize.min,
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.start,
                                                 children: [
@@ -425,7 +425,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                           child: Column(
                                                             mainAxisSize:
                                                                 MainAxisSize
-                                                                    .max,
+                                                                    .min,
                                                             mainAxisAlignment:
                                                                 MainAxisAlignment
                                                                     .end,
