@@ -1,5 +1,6 @@
 import '../auth/auth_util.dart';
 import '../backend/api_requests/api_calls.dart';
+import '../components/error_message_widget.dart';
 import '../components/main_menu_widget.dart';
 import '../flutter_flow/flutter_flow_animations.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -71,20 +72,26 @@ class _RetreivingGPTWidgetState extends State<RetreivingGPTWidget>
       );
       if ((_model.apiResultGPT?.succeeded ?? true)) {
         context.pushNamed('Result');
+
+        return;
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              (_model.apiResultGPT?.statusCode ?? 200).toString(),
-              style: TextStyle(
-                color: FlutterFlowTheme.of(context).primaryText,
-              ),
-            ),
-            duration: Duration(milliseconds: 4000),
-            backgroundColor: Color(0x00000000),
-          ),
-        );
         context.pop();
+        await showModalBottomSheet(
+          isScrollControlled: true,
+          backgroundColor: Colors.transparent,
+          enableDrag: false,
+          context: context,
+          builder: (context) {
+            return Padding(
+              padding: MediaQuery.of(context).viewInsets,
+              child: Container(
+                height: MediaQuery.of(context).size.height * 1,
+                child: ErrorMessageWidget(),
+              ),
+            );
+          },
+        ).then((value) => setState(() {}));
+
         return;
       }
     });

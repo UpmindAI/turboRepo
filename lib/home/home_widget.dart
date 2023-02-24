@@ -97,7 +97,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
                   child: Text(
-                    'v0.216',
+                    'v0.217',
                     style: FlutterFlowTheme.of(context).bodyText1,
                   ),
                 ),
@@ -706,7 +706,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                                       );
                                                                                       FFAppState().setEngine = _model.dropDownValue!;
                                                                                     });
-                                                                                    await Future.delayed(const Duration(milliseconds: 500));
 
                                                                                     final userPromptsCreateData = createUserPromptsRecordData(
                                                                                       qid: FFAppState().setQid,
@@ -762,7 +761,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                                       );
                                                                                       FFAppState().setEngine = _model.dropDownValue!;
                                                                                     });
-                                                                                    await Future.delayed(const Duration(milliseconds: 500));
 
                                                                                     final userPromptsCreateData = createUserPromptsRecordData(
                                                                                       qid: FFAppState().setQid,
@@ -818,7 +816,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                                       );
                                                                                       FFAppState().setEngine = _model.dropDownValue!;
                                                                                     });
-                                                                                    await Future.delayed(const Duration(milliseconds: 500));
 
                                                                                     final userPromptsCreateData = createUserPromptsRecordData(
                                                                                       qid: FFAppState().setQid,
