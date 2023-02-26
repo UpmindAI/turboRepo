@@ -77,7 +77,12 @@ class _RetreivingSummarizeWidgetState extends State<RetreivingSummarizeWidget>
 
         return;
       } else {
-        context.pop();
+        if ((_model.apiResultdataSummarize?.statusCode ?? 200) != 200) {
+          context.pop();
+        } else {
+          return;
+        }
+
         await showModalBottomSheet(
           isScrollControlled: true,
           backgroundColor: Colors.transparent,

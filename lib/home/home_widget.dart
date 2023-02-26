@@ -96,7 +96,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
                   child: Text(
-                    'v0.221',
+                    'v0.222',
                     style: FlutterFlowTheme.of(context).bodyText1,
                   ),
                 ),
@@ -469,7 +469,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                                       child: Align(
                                                                                         alignment: AlignmentDirectional(0, 0),
                                                                                         child: Padding(
-                                                                                          padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+                                                                                          padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 30),
                                                                                           child: Text(
                                                                                             'Select one or multiple Datasets and create a full summary or its contents.',
                                                                                             textAlign: TextAlign.start,
@@ -563,7 +563,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                                 AlignmentDirectional(0, 0),
                                                                             child:
                                                                                 Padding(
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 10),
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
                                                                               child: FFButtonWidget(
                                                                                 onPressed: () async {
                                                                                   await showModalBottomSheet(
