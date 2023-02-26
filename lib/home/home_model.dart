@@ -4,6 +4,7 @@ import '../components/add_dataset_widget.dart';
 import '../components/main_menu_widget.dart';
 import '../components/payment_widget.dart';
 import '../components/prompt_config_widget.dart';
+import '../components/summary_prompt_field_widget.dart';
 import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -27,9 +28,6 @@ class HomeModel extends FlutterFlowModel {
   // State field(s) for PromptField widget.
   TextEditingController? promptFieldController;
   String? Function(BuildContext, String?)? promptFieldControllerValidator;
-  // State field(s) for summaryPomptField widget.
-  TextEditingController? summaryPomptFieldController;
-  String? Function(BuildContext, String?)? summaryPomptFieldControllerValidator;
   // Stores action output result for [Backend Call - Create Document] action in ButtonMix widget.
   UserPromptsRecord? setPrompt;
   // Stores action output result for [Backend Call - Create Document] action in ButtonSummarize widget.
@@ -55,7 +53,6 @@ class HomeModel extends FlutterFlowModel {
   void dispose() {
     mainMenuModel.dispose();
     promptFieldController?.dispose();
-    summaryPomptFieldController?.dispose();
   }
 
   /// Additional helper methods are added here.
