@@ -54,96 +54,102 @@ class _SummaryPromptFieldWidgetState extends State<SummaryPromptFieldWidget> {
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(),
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 10),
-            child: TextFormField(
-              controller: _model.textController,
-              autofocus: true,
-              obscureText: false,
-              decoration: InputDecoration(
-                labelText: 'Configure your prompt.',
-                hintStyle: FlutterFlowTheme.of(context).bodyText2,
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: FlutterFlowTheme.of(context).secondaryColor,
-                    width: 1,
+    return Align(
+      alignment: AlignmentDirectional(0, 0),
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        constraints: BoxConstraints(
+          maxWidth: 800,
+        ),
+        decoration: BoxDecoration(),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(10, 30, 10, 10),
+              child: TextFormField(
+                controller: _model.textController,
+                autofocus: true,
+                obscureText: false,
+                decoration: InputDecoration(
+                  labelText: 'Configure your prompt.',
+                  hintStyle: FlutterFlowTheme.of(context).bodyText2,
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: FlutterFlowTheme.of(context).secondaryColor,
+                      width: 1,
+                    ),
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(4.0),
+                      topRight: Radius.circular(4.0),
+                    ),
                   ),
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(4.0),
-                    topRight: Radius.circular(4.0),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: FlutterFlowTheme.of(context).primaryText,
+                      width: 1,
+                    ),
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(4.0),
+                      topRight: Radius.circular(4.0),
+                    ),
+                  ),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color(0xFF980000),
+                      width: 1,
+                    ),
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(4.0),
+                      topRight: Radius.circular(4.0),
+                    ),
+                  ),
+                  focusedErrorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color(0xFF980000),
+                      width: 1,
+                    ),
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(4.0),
+                      topRight: Radius.circular(4.0),
+                    ),
                   ),
                 ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: FlutterFlowTheme.of(context).primaryText,
-                    width: 1,
-                  ),
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(4.0),
-                    topRight: Radius.circular(4.0),
-                  ),
-                ),
-                errorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Color(0xFF980000),
-                    width: 1,
-                  ),
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(4.0),
-                    topRight: Radius.circular(4.0),
-                  ),
-                ),
-                focusedErrorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                    color: Color(0xFF980000),
-                    width: 1,
-                  ),
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(4.0),
-                    topRight: Radius.circular(4.0),
-                  ),
-                ),
+                style: FlutterFlowTheme.of(context).bodyText1,
+                validator: _model.textControllerValidator.asValidator(context),
               ),
-              style: FlutterFlowTheme.of(context).bodyText1,
-              validator: _model.textControllerValidator.asValidator(context),
             ),
-          ),
-          FFButtonWidget(
-            onPressed: () async {
-              final usersUpdateData = createUsersRecordData(
-                summaryPrompt: _model.textController.text,
-              );
-              await currentUserReference!.update(usersUpdateData);
-              setState(() {
-                FFAppState().setSummaryTemplate = _model.textController.text;
-              });
-              Navigator.pop(context);
-            },
-            text: 'Set Prompt',
-            options: FFButtonOptions(
-              width: 130,
-              height: 40,
-              color: FlutterFlowTheme.of(context).primaryColor,
-              textStyle: FlutterFlowTheme.of(context).subtitle2.override(
-                    fontFamily: FlutterFlowTheme.of(context).subtitle2Family,
-                    color: Colors.white,
-                    useGoogleFonts: GoogleFonts.asMap().containsKey(
-                        FlutterFlowTheme.of(context).subtitle2Family),
-                  ),
-              borderSide: BorderSide(
-                color: Colors.transparent,
-                width: 1,
+            FFButtonWidget(
+              onPressed: () async {
+                final usersUpdateData = createUsersRecordData(
+                  summaryPrompt: _model.textController.text,
+                );
+                await currentUserReference!.update(usersUpdateData);
+                setState(() {
+                  FFAppState().setSummaryTemplate = _model.textController.text;
+                });
+                Navigator.pop(context);
+              },
+              text: 'Set Prompt',
+              options: FFButtonOptions(
+                width: 130,
+                height: 40,
+                color: FlutterFlowTheme.of(context).primaryColor,
+                textStyle: FlutterFlowTheme.of(context).subtitle2.override(
+                      fontFamily: FlutterFlowTheme.of(context).subtitle2Family,
+                      color: Colors.white,
+                      useGoogleFonts: GoogleFonts.asMap().containsKey(
+                          FlutterFlowTheme.of(context).subtitle2Family),
+                    ),
+                borderSide: BorderSide(
+                  color: Colors.transparent,
+                  width: 1,
+                ),
+                borderRadius: BorderRadius.circular(0),
               ),
-              borderRadius: BorderRadius.circular(0),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
