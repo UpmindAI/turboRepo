@@ -153,16 +153,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => ForgotPasswordWidget(),
             ),
             FFRoute(
-              name: 'Chat',
-              path: 'chat',
-              builder: (context, params) => ChatWidget(),
-            ),
-            FFRoute(
               name: 'retreivingMIX',
               path: 'retreivingMIX',
               builder: (context, params) => RetreivingMIXWidget(
                 guardrail: params.getParam('guardrail', ParamType.bool),
               ),
+            ),
+            FFRoute(
+              name: 'Chat',
+              path: 'chat',
+              builder: (context, params) => ChatWidget(),
             ),
             FFRoute(
               name: 'retreivingGPT',
