@@ -117,6 +117,13 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
         ..add(
             serializers.serialize(value, specifiedType: const FullType(bool)));
     }
+    value = object.summaryPrompt;
+    if (value != null) {
+      result
+        ..add('summary_prompt')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -195,6 +202,10 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
           result.isAdmin = serializers.deserialize(value,
               specifiedType: const FullType(bool)) as bool?;
           break;
+        case 'summary_prompt':
+          result.summaryPrompt = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -238,6 +249,8 @@ class _$UsersRecord extends UsersRecord {
   @override
   final bool? isAdmin;
   @override
+  final String? summaryPrompt;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$UsersRecord([void Function(UsersRecordBuilder)? updates]) =>
@@ -258,6 +271,7 @@ class _$UsersRecord extends UsersRecord {
       this.totalCredits,
       this.firstLogin,
       this.isAdmin,
+      this.summaryPrompt,
       this.ffRef})
       : super._();
 
@@ -286,6 +300,7 @@ class _$UsersRecord extends UsersRecord {
         totalCredits == other.totalCredits &&
         firstLogin == other.firstLogin &&
         isAdmin == other.isAdmin &&
+        summaryPrompt == other.summaryPrompt &&
         ffRef == other.ffRef;
   }
 
@@ -305,22 +320,26 @@ class _$UsersRecord extends UsersRecord {
                                                 $jc(
                                                     $jc(
                                                         $jc(
-                                                            $jc(0,
-                                                                email.hashCode),
-                                                            displayName
-                                                                .hashCode),
-                                                        photoUrl.hashCode),
-                                                    uid.hashCode),
-                                                createdTime.hashCode),
-                                            phoneNumber.hashCode),
-                                        industry.hashCode),
-                                    role.hashCode),
-                                firstName.hashCode),
-                            lastName.hashCode),
-                        company.hashCode),
-                    totalCredits.hashCode),
-                firstLogin.hashCode),
-            isAdmin.hashCode),
+                                                            $jc(
+                                                                $jc(
+                                                                    0,
+                                                                    email
+                                                                        .hashCode),
+                                                                displayName
+                                                                    .hashCode),
+                                                            photoUrl.hashCode),
+                                                        uid.hashCode),
+                                                    createdTime.hashCode),
+                                                phoneNumber.hashCode),
+                                            industry.hashCode),
+                                        role.hashCode),
+                                    firstName.hashCode),
+                                lastName.hashCode),
+                            company.hashCode),
+                        totalCredits.hashCode),
+                    firstLogin.hashCode),
+                isAdmin.hashCode),
+            summaryPrompt.hashCode),
         ffRef.hashCode));
   }
 
@@ -341,6 +360,7 @@ class _$UsersRecord extends UsersRecord {
           ..add('totalCredits', totalCredits)
           ..add('firstLogin', firstLogin)
           ..add('isAdmin', isAdmin)
+          ..add('summaryPrompt', summaryPrompt)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -405,6 +425,11 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   bool? get isAdmin => _$this._isAdmin;
   set isAdmin(bool? isAdmin) => _$this._isAdmin = isAdmin;
 
+  String? _summaryPrompt;
+  String? get summaryPrompt => _$this._summaryPrompt;
+  set summaryPrompt(String? summaryPrompt) =>
+      _$this._summaryPrompt = summaryPrompt;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -430,6 +455,7 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
       _totalCredits = $v.totalCredits;
       _firstLogin = $v.firstLogin;
       _isAdmin = $v.isAdmin;
+      _summaryPrompt = $v.summaryPrompt;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -467,6 +493,7 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
             totalCredits: totalCredits,
             firstLogin: firstLogin,
             isAdmin: isAdmin,
+            summaryPrompt: summaryPrompt,
             ffRef: ffRef);
     replace(_$result);
     return _$result;
