@@ -10,6 +10,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(ChatMetaRecord.serializer)
       ..add(ChatsRecord.serializer)
       ..add(FeatureRecord.serializer)
+      ..add(SummarizerTemplatesRecord.serializer)
       ..add(SummaryPromptsRecord.serializer)
       ..add(SupportRecord.serializer)
       ..add(UserCompletionsRecord.serializer)
@@ -18,6 +19,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(UserPromptsRecord.serializer)
       ..add(UserTempUploadsRecord.serializer)
       ..add(UsersRecord.serializer)
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())

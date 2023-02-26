@@ -47,7 +47,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             ? '${widget.userCompletion!.prompt}${widget.userCompletion!.completion}'
             : '');
     _model.textController2 ??=
-        TextEditingController(text: 'Write a detailed summary:');
+        TextEditingController(text: FFAppState().setSummaryTemplate);
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -97,7 +97,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
                   child: Text(
-                    'v0.217',
+                    'v0.218',
                     style: FlutterFlowTheme.of(context).bodyText1,
                   ),
                 ),
@@ -559,7 +559,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                             onPressed:
                                                                                 () async {
                                                                               final summaryPromptsCreateData = createSummaryPromptsRecordData(
-                                                                                summaryPrompt: _model.textController2.text,
+                                                                                summaryPrompt: _model.promptFieldController.text,
                                                                               );
                                                                               await SummaryPromptsRecord.createDoc(currentUserReference!).set(summaryPromptsCreateData);
                                                                               ScaffoldMessenger.of(context).showSnackBar(
@@ -597,6 +597,118 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                           ),
                                                                         ),
                                                                       ],
+                                                                    ),
+                                                                    Row(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .max,
+                                                                      children: [
+                                                                        Expanded(
+                                                                          child:
+                                                                              Align(
+                                                                            alignment:
+                                                                                AlignmentDirectional(0, 0),
+                                                                            child:
+                                                                                Padding(
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                                                                              child: Text(
+                                                                                'Templates:',
+                                                                                style: FlutterFlowTheme.of(context).bodyText1,
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              0,
+                                                                              20,
+                                                                              0,
+                                                                              0),
+                                                                      child:
+                                                                          Row(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.max,
+                                                                        children: [
+                                                                          Expanded(
+                                                                            child:
+                                                                                StreamBuilder<List<SummarizerTemplatesRecord>>(
+                                                                              stream: querySummarizerTemplatesRecord(
+                                                                                singleRecord: true,
+                                                                              ),
+                                                                              builder: (context, snapshot) {
+                                                                                // Customize what your widget looks like when it's loading.
+                                                                                if (!snapshot.hasData) {
+                                                                                  return Center(
+                                                                                    child: SizedBox(
+                                                                                      width: 50,
+                                                                                      height: 50,
+                                                                                      child: SpinKitRipple(
+                                                                                        color: FlutterFlowTheme.of(context).primaryColor,
+                                                                                        size: 50,
+                                                                                      ),
+                                                                                    ),
+                                                                                  );
+                                                                                }
+                                                                                List<SummarizerTemplatesRecord> columnSummarizerTemplatesRecordList = snapshot.data!;
+                                                                                // Return an empty Container when the item does not exist.
+                                                                                if (snapshot.data!.isEmpty) {
+                                                                                  return Container();
+                                                                                }
+                                                                                final columnSummarizerTemplatesRecord = columnSummarizerTemplatesRecordList.isNotEmpty ? columnSummarizerTemplatesRecordList.first : null;
+                                                                                return Builder(
+                                                                                  builder: (context) {
+                                                                                    final templates = columnSummarizerTemplatesRecord!.template!.toList();
+                                                                                    return SingleChildScrollView(
+                                                                                      child: Column(
+                                                                                        mainAxisSize: MainAxisSize.max,
+                                                                                        children: List.generate(templates.length, (templatesIndex) {
+                                                                                          final templatesItem = templates[templatesIndex];
+                                                                                          return Padding(
+                                                                                            padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 10),
+                                                                                            child: InkWell(
+                                                                                              onTap: () async {
+                                                                                                setState(() {
+                                                                                                  FFAppState().setSummaryTemplate = templatesItem;
+                                                                                                });
+
+                                                                                                final summaryPromptsCreateData = createSummaryPromptsRecordData(
+                                                                                                  summaryPrompt: templatesItem,
+                                                                                                );
+                                                                                                await SummaryPromptsRecord.createDoc(currentUserReference!).set(summaryPromptsCreateData);
+                                                                                              },
+                                                                                              child: Material(
+                                                                                                color: Colors.transparent,
+                                                                                                elevation: 1,
+                                                                                                child: Container(
+                                                                                                  width: MediaQuery.of(context).size.width,
+                                                                                                  height: 30,
+                                                                                                  decoration: BoxDecoration(
+                                                                                                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                                  ),
+                                                                                                  child: Align(
+                                                                                                    alignment: AlignmentDirectional(0, 0),
+                                                                                                    child: Text(
+                                                                                                      templatesItem,
+                                                                                                      style: FlutterFlowTheme.of(context).bodyText1,
+                                                                                                    ),
+                                                                                                  ),
+                                                                                                ),
+                                                                                              ),
+                                                                                            ),
+                                                                                          );
+                                                                                        }),
+                                                                                      ),
+                                                                                    );
+                                                                                  },
+                                                                                );
+                                                                              },
+                                                                            ),
+                                                                          ),
+                                                                        ],
+                                                                      ),
                                                                     ),
                                                                   ],
                                                                 ),
