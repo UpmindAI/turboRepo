@@ -143,6 +143,12 @@ class FFAppState extends ChangeNotifier {
         ? prefs.setString('ff_setChat', _value.path)
         : prefs.remove('ff_setChat');
   }
+
+  String _setSummaryTemplate = 'Write a detailed summary:';
+  String get setSummaryTemplate => _setSummaryTemplate;
+  set setSummaryTemplate(String _value) {
+    _setSummaryTemplate = _value;
+  }
 }
 
 LatLng? _latLngFromString(String? val) {

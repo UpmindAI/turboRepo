@@ -16,6 +16,7 @@ import 'schema/feature_record.dart';
 import 'schema/chats_record.dart';
 import 'schema/chat_meta_record.dart';
 import 'schema/summary_prompts_record.dart';
+import 'schema/summarizer_templates_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -34,6 +35,7 @@ export 'schema/feature_record.dart';
 export 'schema/chats_record.dart';
 export 'schema/chat_meta_record.dart';
 export 'schema/summary_prompts_record.dart';
+export 'schema/summarizer_templates_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -638,6 +640,59 @@ Future<FFFirestorePage<SummaryPromptsRecord>> querySummaryPromptsRecordPage({
       pageSize: pageSize,
       isStream: isStream,
     );
+
+/// Functions to query SummarizerTemplatesRecords (as a Stream and as a Future).
+Future<int> querySummarizerTemplatesRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      SummarizerTemplatesRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<SummarizerTemplatesRecord>> querySummarizerTemplatesRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      SummarizerTemplatesRecord.collection,
+      SummarizerTemplatesRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<SummarizerTemplatesRecord>> querySummarizerTemplatesRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      SummarizerTemplatesRecord.collection,
+      SummarizerTemplatesRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<SummarizerTemplatesRecord>>
+    querySummarizerTemplatesRecordPage({
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+}) =>
+        queryCollectionPage(
+          SummarizerTemplatesRecord.collection,
+          SummarizerTemplatesRecord.serializer,
+          queryBuilder: queryBuilder,
+          nextPageMarker: nextPageMarker,
+          pageSize: pageSize,
+          isStream: isStream,
+        );
 
 Future<int> queryCollectionCount(
   Query collection, {
