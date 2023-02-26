@@ -96,7 +96,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
                   child: Text(
-                    'v0.220',
+                    'v0.221',
                     style: FlutterFlowTheme.of(context).bodyText1,
                   ),
                 ),
@@ -493,6 +493,27 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                       children: [
                                                                         Expanded(
                                                                           child:
+                                                                              Text(
+                                                                            'Prompt:',
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                            style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                  fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                  color: FlutterFlowTheme.of(context).primaryText,
+                                                                                  fontWeight: FontWeight.normal,
+                                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                ),
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                    Row(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .max,
+                                                                      children: [
+                                                                        Expanded(
+                                                                          child:
                                                                               InkWell(
                                                                             onTap:
                                                                                 () async {
@@ -521,6 +542,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                               style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                     fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
                                                                                     color: FlutterFlowTheme.of(context).primaryText,
+                                                                                    fontSize: 18,
                                                                                     fontWeight: FontWeight.bold,
                                                                                     useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
                                                                                   ),
@@ -562,13 +584,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                                     },
                                                                                   ).then((value) => setState(() {}));
                                                                                 },
-                                                                                text: 'Configure prompt',
+                                                                                text: 'Edit prompt',
                                                                                 icon: FaIcon(
                                                                                   FontAwesomeIcons.edit,
                                                                                   size: 16,
                                                                                 ),
                                                                                 options: FFButtonOptions(
-                                                                                  width: 220,
+                                                                                  width: 130,
                                                                                   height: 24,
                                                                                   color: FlutterFlowTheme.of(context).primaryBackground,
                                                                                   textStyle: FlutterFlowTheme.of(context).subtitle2.override(
@@ -581,7 +603,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                                     color: Colors.transparent,
                                                                                     width: 1,
                                                                                   ),
-                                                                                  borderRadius: BorderRadius.circular(8),
+                                                                                  borderRadius: BorderRadius.circular(0),
                                                                                 ),
                                                                               ),
                                                                             ),
@@ -604,8 +626,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                         child:
                                                                             Text(
                                                                           'Templates:',
-                                                                          style:
-                                                                              FlutterFlowTheme.of(context).bodyText1,
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodyText1
+                                                                              .override(
+                                                                                fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                fontWeight: FontWeight.normal,
+                                                                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                              ),
                                                                         ),
                                                                       ),
                                                                     ),
