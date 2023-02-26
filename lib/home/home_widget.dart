@@ -46,7 +46,7 @@ class _HomeWidgetState extends State<HomeWidget> {
         text: widget.userCompletion != null
             ? '${widget.userCompletion!.prompt}${widget.userCompletion!.completion}'
             : '');
-    _model.textController2 ??=
+    _model.summaryPomptFieldController ??=
         TextEditingController(text: FFAppState().setSummaryTemplate);
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -97,7 +97,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 10, 10, 0),
                   child: Text(
-                    'v0.218',
+                    'v0.219',
                     style: FlutterFlowTheme.of(context).bodyText1,
                   ),
                 ),
@@ -480,7 +480,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                       child:
                                                                           TextFormField(
                                                                         controller:
-                                                                            _model.textController2,
+                                                                            _model.summaryPomptFieldController,
                                                                         autofocus:
                                                                             true,
                                                                         obscureText:
@@ -539,7 +539,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyText1,
                                                                         validator: _model
-                                                                            .textController2Validator
+                                                                            .summaryPomptFieldControllerValidator
                                                                             .asValidator(context),
                                                                       ),
                                                                     ),
@@ -558,10 +558,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                               FFButtonWidget(
                                                                             onPressed:
                                                                                 () async {
-                                                                              final summaryPromptsCreateData = createSummaryPromptsRecordData(
-                                                                                summaryPrompt: _model.promptFieldController.text,
+                                                                              final usersUpdateData = createUsersRecordData(
+                                                                                summaryPrompt: _model.summaryPomptFieldController.text,
                                                                               );
-                                                                              await SummaryPromptsRecord.createDoc(currentUserReference!).set(summaryPromptsCreateData);
+                                                                              await currentUserReference!.update(usersUpdateData);
                                                                               ScaffoldMessenger.of(context).showSnackBar(
                                                                                 SnackBar(
                                                                                   content: Text(
@@ -674,10 +674,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                                                   FFAppState().setSummaryTemplate = templatesItem;
                                                                                                 });
 
-                                                                                                final summaryPromptsCreateData = createSummaryPromptsRecordData(
+                                                                                                final usersUpdateData = createUsersRecordData(
                                                                                                   summaryPrompt: templatesItem,
                                                                                                 );
-                                                                                                await SummaryPromptsRecord.createDoc(currentUserReference!).set(summaryPromptsCreateData);
+                                                                                                await currentUserReference!.update(usersUpdateData);
                                                                                               },
                                                                                               child: Material(
                                                                                                 color: Colors.transparent,
@@ -709,6 +709,33 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                           ),
                                                                         ],
                                                                       ),
+                                                                    ),
+                                                                    Row(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .max,
+                                                                      children: [
+                                                                        Expanded(
+                                                                          child:
+                                                                              Align(
+                                                                            alignment:
+                                                                                AlignmentDirectional(0, 0),
+                                                                            child:
+                                                                                Padding(
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                                                                              child: Text(
+                                                                                FFAppState().setSummaryTemplate,
+                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                      fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                      color: FlutterFlowTheme.of(context).tertiaryColor,
+                                                                                      fontWeight: FontWeight.normal,
+                                                                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                    ),
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                      ],
                                                                     ),
                                                                   ],
                                                                 ),
