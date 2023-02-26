@@ -72,17 +72,12 @@ class _RetreivingSummarizeWidgetState extends State<RetreivingSummarizeWidget>
         datasetIdsList: FFAppState().selectedDataset,
         qid: FFAppState().setQid,
       );
-      if ((_model.apiResultdataSummarize?.succeeded ?? true)) {
+      if ((_model.apiResultdataSummarize?.statusCode ?? 200) == 200) {
         context.pushNamed('Result');
 
         return;
       } else {
-        if ((_model.apiResultdataSummarize?.statusCode ?? 200) != 200) {
-          context.pop();
-        } else {
-          return;
-        }
-
+        context.pop();
         await showModalBottomSheet(
           isScrollControlled: true,
           backgroundColor: Colors.transparent,
