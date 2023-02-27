@@ -178,16 +178,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'retreivingPinecone',
               path: 'retreivingPinecone',
               builder: (context, params) => RetreivingPineconeWidget(),
-            ),
-            FFRoute(
-              name: 'apiTest',
-              path: 'apiTest',
-              builder: (context, params) => ApiTestWidget(),
-            ),
-            FFRoute(
-              name: 'retreivingTest',
-              path: 'retreivingTest',
-              builder: (context, params) => RetreivingTestWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

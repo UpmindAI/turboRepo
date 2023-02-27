@@ -1,7 +1,6 @@
 import '/auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/add_dataset_widget.dart';
-import '/components/add_list_widget.dart';
 import '/components/confirm_delete_widget.dart';
 import '/components/edit_dataset_title_widget.dart';
 import '/components/edit_title_widget.dart';
@@ -1356,143 +1355,99 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                               padding:
                                                                   EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          3,
+                                                                          10,
                                                                           0,
-                                                                          8,
+                                                                          10,
                                                                           0),
-                                                              child: InkWell(
-                                                                onTap:
+                                                              child:
+                                                                  FFButtonWidget(
+                                                                onPressed:
                                                                     () async {
-                                                                  await showModalBottomSheet(
-                                                                    isScrollControlled:
-                                                                        true,
-                                                                    backgroundColor:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .secondaryBackground,
-                                                                    enableDrag:
-                                                                        false,
-                                                                    context:
-                                                                        context,
-                                                                    builder:
-                                                                        (context) {
-                                                                      return Padding(
-                                                                        padding:
-                                                                            MediaQuery.of(context).viewInsets,
-                                                                        child:
-                                                                            Container(
-                                                                          height:
-                                                                              700,
-                                                                          child:
-                                                                              AddListWidget(
-                                                                            setDataset:
-                                                                                widget.activeDataset,
-                                                                          ),
-                                                                        ),
-                                                                      );
-                                                                    },
-                                                                  ).then((value) =>
-                                                                      setState(
-                                                                          () {}));
-                                                                },
-                                                                child: Icon(
-                                                                  Icons
-                                                                      .format_list_bulleted,
-                                                                  color: Colors
-                                                                      .black,
-                                                                  size: 24,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            FFButtonWidget(
-                                                              onPressed:
-                                                                  () async {
-                                                                if (_model.formKey
-                                                                            .currentState ==
-                                                                        null ||
-                                                                    !_model
-                                                                        .formKey
-                                                                        .currentState!
-                                                                        .validate()) {
-                                                                  return;
-                                                                }
+                                                                  if (_model.formKey
+                                                                              .currentState ==
+                                                                          null ||
+                                                                      !_model
+                                                                          .formKey
+                                                                          .currentState!
+                                                                          .validate()) {
+                                                                    return;
+                                                                  }
 
-                                                                final userTempUploadsCreateData =
-                                                                    createUserTempUploadsRecordData(
-                                                                  datasetId: widget
-                                                                      .activeDataset!
-                                                                      .datasetId,
-                                                                  urls: _model
-                                                                      .scrapeURLController
-                                                                      .text,
-                                                                  timestamp:
-                                                                      getCurrentTimestamp,
-                                                                  docTitle: '',
-                                                                  urlId: random_data
-                                                                      .randomString(
-                                                                    9,
-                                                                    9,
-                                                                    true,
-                                                                    true,
-                                                                    true,
-                                                                  ),
-                                                                );
-                                                                await UserTempUploadsRecord
-                                                                        .createDoc(
-                                                                            currentUserReference!)
-                                                                    .set(
-                                                                        userTempUploadsCreateData);
-                                                                setState(() {
-                                                                  _model
-                                                                      .scrapeURLController
-                                                                      ?.clear();
-                                                                });
-                                                              },
-                                                              text: 'Add URL',
-                                                              options:
-                                                                  FFButtonOptions(
-                                                                width: 130,
-                                                                height: 40,
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0,
-                                                                            0,
-                                                                            0,
-                                                                            0),
-                                                                iconPadding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0,
-                                                                            0,
-                                                                            0,
-                                                                            0),
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryColor,
-                                                                textStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .subtitle2
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .subtitle2Family,
-                                                                      color: Colors
-                                                                          .white,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).subtitle2Family),
+                                                                  final userTempUploadsCreateData =
+                                                                      createUserTempUploadsRecordData(
+                                                                    datasetId: widget
+                                                                        .activeDataset!
+                                                                        .datasetId,
+                                                                    urls: _model
+                                                                        .scrapeURLController
+                                                                        .text,
+                                                                    timestamp:
+                                                                        getCurrentTimestamp,
+                                                                    docTitle:
+                                                                        '',
+                                                                    urlId: random_data
+                                                                        .randomString(
+                                                                      9,
+                                                                      9,
+                                                                      true,
+                                                                      true,
+                                                                      true,
                                                                     ),
-                                                                borderSide:
-                                                                    BorderSide(
-                                                                  color: Colors
-                                                                      .transparent,
-                                                                  width: 1,
+                                                                  );
+                                                                  await UserTempUploadsRecord
+                                                                          .createDoc(
+                                                                              currentUserReference!)
+                                                                      .set(
+                                                                          userTempUploadsCreateData);
+                                                                  setState(() {
+                                                                    _model
+                                                                        .scrapeURLController
+                                                                        ?.clear();
+                                                                  });
+                                                                },
+                                                                text: 'Add URL',
+                                                                options:
+                                                                    FFButtonOptions(
+                                                                  width: 130,
+                                                                  height: 40,
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0,
+                                                                          0,
+                                                                          0,
+                                                                          0),
+                                                                  iconPadding:
+                                                                      EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                              0,
+                                                                              0,
+                                                                              0,
+                                                                              0),
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryColor,
+                                                                  textStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .subtitle2
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            FlutterFlowTheme.of(context).subtitle2Family,
+                                                                        color: Colors
+                                                                            .white,
+                                                                        useGoogleFonts:
+                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).subtitle2Family),
+                                                                      ),
+                                                                  borderSide:
+                                                                      BorderSide(
+                                                                    color: Colors
+                                                                        .transparent,
+                                                                    width: 1,
+                                                                  ),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              0),
                                                                 ),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            0),
                                                               ),
                                                             ),
                                                           ],
