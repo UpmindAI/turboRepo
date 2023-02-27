@@ -414,7 +414,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                               MainAxisSize.min,
                                                           mainAxisAlignment:
                                                               MainAxisAlignment
-                                                                  .end,
+                                                                  .start,
                                                           children: List.generate(
                                                               chatColumnChatsRecordList
                                                                   .length,

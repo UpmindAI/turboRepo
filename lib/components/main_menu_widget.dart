@@ -208,63 +208,57 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                     ),
                   ),
                 ),
-                if (valueOrDefault<bool>(currentUserDocument?.isAdmin, false))
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
-                    child: AuthUserStreamWidget(
-                      builder: (context) => InkWell(
-                        onTap: () async {
-                          context.pushNamed('Chat');
-                        },
-                        child: Container(
-                          width: double.infinity,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            borderRadius: BorderRadius.circular(12),
-                            shape: BoxShape.rectangle,
-                          ),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 12, 0),
-                                  child: Container(
-                                    width: 4,
-                                    height: 60,
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
-                                      borderRadius: BorderRadius.circular(4),
-                                    ),
-                                  ),
-                                ),
-                                Icon(
-                                  Icons.chat_sharp,
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+                  child: InkWell(
+                    onTap: () async {
+                      context.pushNamed('Chat');
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        borderRadius: BorderRadius.circular(12),
+                        shape: BoxShape.rectangle,
+                      ),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                              child: Container(
+                                width: 4,
+                                height: 60,
+                                decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  size: 28,
+                                      .primaryBackground,
+                                  borderRadius: BorderRadius.circular(4),
                                 ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      12, 0, 0, 0),
-                                  child: Text(
-                                    'Chat',
-                                    style:
-                                        FlutterFlowTheme.of(context).subtitle2,
-                                  ),
-                                ),
-                              ],
+                              ),
                             ),
-                          ),
+                            Icon(
+                              Icons.chat_sharp,
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              size: 28,
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                              child: Text(
+                                'Chat',
+                                style: FlutterFlowTheme.of(context).subtitle2,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
                   ),
+                ),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
                   child: InkWell(
