@@ -20,7 +20,7 @@ class AddListModel extends FlutterFlowModel {
   // Stores action output result for [Backend Call - Create Document] action in Button widget.
   UserTempUploadsRecord? setURLSdoc;
   // Stores action output result for [Backend Call - API (scrapeServer)] action in Button widget.
-  ApiCallResponse? scrapeAPIresult;
+  ApiCallResponse? scrapeAPIurls;
 
   /// Initialization and disposal methods.
 

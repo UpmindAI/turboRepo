@@ -155,16 +155,16 @@ class _AddListWidgetState extends State<AddListWidget> {
                           UserTempUploadsRecord.getDocumentFromData(
                               userTempUploadsCreateData,
                               userTempUploadsRecordReference);
-                      _model.scrapeAPIresult = await ScrapeServerCall.call(
+                      _model.scrapeAPIurls = await ScrapeServerCall.call(
                         idToken: currentJwtToken,
                         datasetId: widget.setDataset!.datasetId,
                         urlId: _model.setURLSdoc!.urlId,
                       );
-                      if ((_model.scrapeAPIresult?.succeeded ?? true)) {
+                      if ((_model.scrapeAPIurls?.succeeded ?? true)) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
-                              'Your URL was added as a source and is being processed.',
+                              'Your URLs where added as a source and is being processed.',
                               style: TextStyle(
                                 color: FlutterFlowTheme.of(context).primaryText,
                               ),
@@ -180,7 +180,7 @@ class _AddListWidgetState extends State<AddListWidget> {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
-                              (_model.scrapeAPIresult?.statusCode ?? 200)
+                              (_model.scrapeAPIurls?.statusCode ?? 200)
                                   .toString(),
                               style: TextStyle(
                                 color: FlutterFlowTheme.of(context).primaryText,
