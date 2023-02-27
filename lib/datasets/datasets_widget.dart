@@ -2,6 +2,7 @@ import '../auth/auth_util.dart';
 import '../backend/api_requests/api_calls.dart';
 import '../backend/backend.dart';
 import '../components/add_dataset_widget.dart';
+import '../components/add_list_widget.dart';
 import '../components/confirm_delete_widget.dart';
 import '../components/edit_dataset_title_widget.dart';
 import '../components/edit_title_widget.dart';
@@ -1214,7 +1215,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                         .fromSTEB(
                                                                             10,
                                                                             0,
-                                                                            20,
+                                                                            5,
                                                                             0),
                                                                 child:
                                                                     TextFormField(
@@ -1236,7 +1237,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                       borderSide:
                                                                           BorderSide(
                                                                         color: FlutterFlowTheme.of(context)
-                                                                            .primaryColor,
+                                                                            .secondaryColor,
                                                                         width:
                                                                             1,
                                                                       ),
@@ -1253,8 +1254,8 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                         OutlineInputBorder(
                                                                       borderSide:
                                                                           BorderSide(
-                                                                        color: Color(
-                                                                            0x00000000),
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryColor,
                                                                         width:
                                                                             1,
                                                                       ),
@@ -1272,7 +1273,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                       borderSide:
                                                                           BorderSide(
                                                                         color: Color(
-                                                                            0x00000000),
+                                                                            0xFF980000),
                                                                         width:
                                                                             1,
                                                                       ),
@@ -1290,7 +1291,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                       borderSide:
                                                                           BorderSide(
                                                                         color: Color(
-                                                                            0x00000000),
+                                                                            0xFF980000),
                                                                         width:
                                                                             1,
                                                                       ),
@@ -1313,6 +1314,57 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                       .scrapeURLControllerValidator
                                                                       .asValidator(
                                                                           context),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          3,
+                                                                          0,
+                                                                          8,
+                                                                          0),
+                                                              child: InkWell(
+                                                                onTap:
+                                                                    () async {
+                                                                  await showModalBottomSheet(
+                                                                    isScrollControlled:
+                                                                        true,
+                                                                    backgroundColor:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .secondaryBackground,
+                                                                    enableDrag:
+                                                                        false,
+                                                                    context:
+                                                                        context,
+                                                                    builder:
+                                                                        (context) {
+                                                                      return Padding(
+                                                                        padding:
+                                                                            MediaQuery.of(context).viewInsets,
+                                                                        child:
+                                                                            Container(
+                                                                          height:
+                                                                              600,
+                                                                          child:
+                                                                              AddListWidget(
+                                                                            setDataset:
+                                                                                widget.activeDataset,
+                                                                          ),
+                                                                        ),
+                                                                      );
+                                                                    },
+                                                                  ).then((value) =>
+                                                                      setState(
+                                                                          () {}));
+                                                                },
+                                                                child: Icon(
+                                                                  Icons
+                                                                      .format_list_bulleted,
+                                                                  color: Colors
+                                                                      .black,
+                                                                  size: 24,
                                                                 ),
                                                               ),
                                                             ),
