@@ -4,6 +4,7 @@ import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -129,6 +130,17 @@ class _AddListWidgetState extends State<AddListWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                   child: FFButtonWidget(
                     onPressed: () async {
+                      final userTempUploadsCreateData =
+                          createUserTempUploadsRecordData(
+                        datasetId: widget.setDataset!.datasetId,
+                        datasetName: widget.setDataset!.datasetName,
+                        timestamp: getCurrentTimestamp,
+                        chunkSize: FFAppState().setChunkSize,
+                        urls: _model.urlListFieldController.text,
+                      );
+                      await UserTempUploadsRecord.createDoc(
+                              currentUserReference!)
+                          .set(userTempUploadsCreateData);
                       _model.scrapeAPIresult = await ScrapeServerCall.call(
                         sourceUrl: _model.urlListFieldController.text,
                         idToken: currentJwtToken,
