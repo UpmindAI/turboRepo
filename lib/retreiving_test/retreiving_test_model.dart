@@ -17,11 +17,9 @@ class RetreivingTestModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Backend Call - API (testAPI)] action in retreivingTest widget.
-  ApiCallResponse? testAPIresult;
+  ApiCallResponse? testAPIpage;
   // Model for mainMenu component.
   late MainMenuModel mainMenuModel;
-  // Stores action output result for [Backend Call - API (testAPI)] action in Button widget.
-  ApiCallResponse? testAPIresult;
 
   /// Initialization and disposal methods.
 
