@@ -40,8 +40,6 @@ class DatasetsModel extends FlutterFlowModel {
   // State field(s) for scrapeURL widget.
   TextEditingController? scrapeURLController;
   String? Function(BuildContext, String?)? scrapeURLControllerValidator;
-  // Stores action output result for [Backend Call - Create Document] action in Button widget.
-  UserTempUploadsRecord? createURLdoc;
   // Stores action output result for [Backend Call - API (scrapeServer)] action in Button widget.
   ApiCallResponse? scrapeServer;
 

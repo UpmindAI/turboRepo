@@ -1422,45 +1422,20 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                         FFButtonWidget(
                                                                       onPressed:
                                                                           () async {
-                                                                        final userTempUploadsCreateData =
-                                                                            createUserTempUploadsRecordData(
-                                                                          datasetId: widget
-                                                                              .activeDataset!
-                                                                              .datasetId,
-                                                                          docTitle:
-                                                                              '',
-                                                                          datasetName:
-                                                                              columnUserDatasetsRecord.datasetName,
-                                                                          timestamp:
-                                                                              getCurrentTimestamp,
-                                                                          urlId:
-                                                                              random_data.randomString(
-                                                                            8,
-                                                                            8,
-                                                                            true,
-                                                                            true,
-                                                                            true,
-                                                                          ),
-                                                                          urls: _model
-                                                                              .scrapeURLController
-                                                                              .text,
-                                                                        );
-                                                                        var userTempUploadsRecordReference =
-                                                                            UserTempUploadsRecord.createDoc(currentUserReference!);
-                                                                        await userTempUploadsRecordReference
-                                                                            .set(userTempUploadsCreateData);
-                                                                        _model.createURLdoc = UserTempUploadsRecord.getDocumentFromData(
-                                                                            userTempUploadsCreateData,
-                                                                            userTempUploadsRecordReference);
                                                                         _model.scrapeServer =
                                                                             await ScrapeServerCall.call(
                                                                           idToken:
                                                                               currentJwtToken,
                                                                           datasetId:
                                                                               columnUserDatasetsRecord.datasetId,
-                                                                          urlId: _model
-                                                                              .createURLdoc!
-                                                                              .urlId,
+                                                                          urlId:
+                                                                              random_data.randomString(
+                                                                            7,
+                                                                            7,
+                                                                            true,
+                                                                            true,
+                                                                            true,
+                                                                          ),
                                                                         );
                                                                         if ((_model.scrapeServer?.succeeded ??
                                                                             true)) {
