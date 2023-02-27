@@ -1,5 +1,4 @@
 import '/auth/auth_util.dart';
-import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/components/add_dataset_widget.dart';
 import '/components/add_list_widget.dart';
@@ -1404,201 +1403,97 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                 ),
                                                               ),
                                                             ),
-                                                            Stack(
-                                                              children: [
-                                                                Align(
-                                                                  alignment:
-                                                                      AlignmentDirectional(
-                                                                          1, 0),
-                                                                  child:
-                                                                      Padding(
-                                                                    padding: EdgeInsetsDirectional
+                                                            FFButtonWidget(
+                                                              onPressed:
+                                                                  () async {
+                                                                if (_model.formKey
+                                                                            .currentState ==
+                                                                        null ||
+                                                                    !_model
+                                                                        .formKey
+                                                                        .currentState!
+                                                                        .validate()) {
+                                                                  return;
+                                                                }
+
+                                                                final userTempUploadsCreateData =
+                                                                    createUserTempUploadsRecordData(
+                                                                  datasetId: widget
+                                                                      .activeDataset!
+                                                                      .datasetId,
+                                                                  urls: _model
+                                                                      .scrapeURLController
+                                                                      .text,
+                                                                  timestamp:
+                                                                      getCurrentTimestamp,
+                                                                  docTitle: '',
+                                                                  urlId: random_data
+                                                                      .randomString(
+                                                                    9,
+                                                                    9,
+                                                                    true,
+                                                                    true,
+                                                                    true,
+                                                                  ),
+                                                                );
+                                                                await UserTempUploadsRecord
+                                                                        .createDoc(
+                                                                            currentUserReference!)
+                                                                    .set(
+                                                                        userTempUploadsCreateData);
+                                                                setState(() {
+                                                                  _model
+                                                                      .scrapeURLController
+                                                                      ?.clear();
+                                                                });
+                                                              },
+                                                              text: 'Add URL',
+                                                              options:
+                                                                  FFButtonOptions(
+                                                                width: 130,
+                                                                height: 40,
+                                                                padding:
+                                                                    EdgeInsetsDirectional
                                                                         .fromSTEB(
                                                                             0,
                                                                             0,
-                                                                            10,
+                                                                            0,
                                                                             0),
-                                                                    child:
-                                                                        FFButtonWidget(
-                                                                      onPressed:
-                                                                          () async {
-                                                                        _model.scrapeServer =
-                                                                            await ScrapeServerCall.call(
-                                                                          idToken:
-                                                                              currentJwtToken,
-                                                                          datasetId:
-                                                                              columnUserDatasetsRecord.datasetId,
-                                                                          urlId:
-                                                                              random_data.randomString(
-                                                                            7,
-                                                                            7,
-                                                                            true,
-                                                                            true,
-                                                                            true,
-                                                                          ),
-                                                                        );
-                                                                        if ((_model.scrapeServer?.succeeded ??
-                                                                            true)) {
-                                                                          ScaffoldMessenger.of(context)
-                                                                              .showSnackBar(
-                                                                            SnackBar(
-                                                                              content: Text(
-                                                                                'Your URL was added as a source and is being processed.',
-                                                                                style: TextStyle(
-                                                                                  color: FlutterFlowTheme.of(context).primaryText,
-                                                                                ),
-                                                                              ),
-                                                                              duration: Duration(milliseconds: 4000),
-                                                                              backgroundColor: Color(0x00000000),
-                                                                            ),
-                                                                          );
-                                                                          setState(
-                                                                              () {
-                                                                            _model.scrapeURLController?.clear();
-                                                                          });
-                                                                        } else {
-                                                                          ScaffoldMessenger.of(context)
-                                                                              .showSnackBar(
-                                                                            SnackBar(
-                                                                              content: Text(
-                                                                                (_model.scrapeServer?.statusCode ?? 200).toString(),
-                                                                                style: TextStyle(
-                                                                                  color: FlutterFlowTheme.of(context).primaryText,
-                                                                                ),
-                                                                              ),
-                                                                              duration: Duration(milliseconds: 4000),
-                                                                              backgroundColor: Color(0x00000000),
-                                                                            ),
-                                                                          );
-                                                                        }
-
-                                                                        setState(
-                                                                            () {});
-                                                                      },
-                                                                      text:
-                                                                          'Add URL',
-                                                                      options:
-                                                                          FFButtonOptions(
-                                                                        width:
-                                                                            140,
-                                                                        height:
-                                                                            40,
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                iconPadding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
                                                                             0,
                                                                             0,
                                                                             0,
                                                                             0),
-                                                                        iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                                                            0,
-                                                                            0,
-                                                                            0,
-                                                                            0),
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primaryColor,
-                                                                        textStyle: FlutterFlowTheme.of(context)
-                                                                            .subtitle2
-                                                                            .override(
-                                                                              fontFamily: FlutterFlowTheme.of(context).subtitle2Family,
-                                                                              color: Colors.white,
-                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).subtitle2Family),
-                                                                            ),
-                                                                        borderSide:
-                                                                            BorderSide(
-                                                                          color:
-                                                                              Colors.transparent,
-                                                                          width:
-                                                                              1,
-                                                                        ),
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(0),
-                                                                      ),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryColor,
+                                                                textStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .subtitle2
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .subtitle2Family,
+                                                                      color: Colors
+                                                                          .white,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).subtitle2Family),
                                                                     ),
-                                                                  ),
+                                                                borderSide:
+                                                                    BorderSide(
+                                                                  color: Colors
+                                                                      .transparent,
+                                                                  width: 1,
                                                                 ),
-                                                                if ((valueOrDefault(
-                                                                            currentUserDocument
-                                                                                ?.totalCredits,
-                                                                            0.0) <=
-                                                                        0.0) ||
-                                                                    (valueOrDefault(
-                                                                            currentUserDocument?.totalCredits,
-                                                                            0.0) ==
-                                                                        null))
-                                                                  Align(
-                                                                    alignment:
-                                                                        AlignmentDirectional(
-                                                                            1,
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
                                                                             0),
-                                                                    child:
-                                                                        Padding(
-                                                                      padding: EdgeInsetsDirectional
-                                                                          .fromSTEB(
-                                                                              0,
-                                                                              0,
-                                                                              20,
-                                                                              0),
-                                                                      child:
-                                                                          AuthUserStreamWidget(
-                                                                        builder:
-                                                                            (context) =>
-                                                                                FFButtonWidget(
-                                                                          onPressed:
-                                                                              () async {
-                                                                            await showModalBottomSheet(
-                                                                              isScrollControlled: true,
-                                                                              backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-                                                                              enableDrag: false,
-                                                                              context: context,
-                                                                              builder: (context) {
-                                                                                return Padding(
-                                                                                  padding: MediaQuery.of(context).viewInsets,
-                                                                                  child: Container(
-                                                                                    height: 700,
-                                                                                    child: PaymentWidget(),
-                                                                                  ),
-                                                                                );
-                                                                              },
-                                                                            ).then((value) =>
-                                                                                setState(() {}));
-                                                                          },
-                                                                          text:
-                                                                              'Add URL',
-                                                                          options:
-                                                                              FFButtonOptions(
-                                                                            width:
-                                                                                140,
-                                                                            height:
-                                                                                40,
-                                                                            padding: EdgeInsetsDirectional.fromSTEB(
-                                                                                0,
-                                                                                0,
-                                                                                0,
-                                                                                0),
-                                                                            iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                                                                0,
-                                                                                0,
-                                                                                0,
-                                                                                0),
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).primaryColor,
-                                                                            textStyle: FlutterFlowTheme.of(context).subtitle2.override(
-                                                                                  fontFamily: FlutterFlowTheme.of(context).subtitle2Family,
-                                                                                  color: Colors.white,
-                                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).subtitle2Family),
-                                                                                ),
-                                                                            borderSide:
-                                                                                BorderSide(
-                                                                              color: Colors.transparent,
-                                                                              width: 1,
-                                                                            ),
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(0),
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                              ],
+                                                              ),
                                                             ),
                                                           ],
                                                         ),
