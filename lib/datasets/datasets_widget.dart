@@ -1452,7 +1452,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                         _model.createURLdoc = UserTempUploadsRecord.getDocumentFromData(
                                                                             userTempUploadsCreateData,
                                                                             userTempUploadsRecordReference);
-                                                                        _model.apiResult8oi =
+                                                                        _model.scrapeServer =
                                                                             await ScrapeServerCall.call(
                                                                           idToken:
                                                                               currentJwtToken,
@@ -1462,7 +1462,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                               .createURLdoc!
                                                                               .urlId,
                                                                         );
-                                                                        if ((_model.apiResult8oi?.succeeded ??
+                                                                        if ((_model.scrapeServer?.succeeded ??
                                                                             true)) {
                                                                           ScaffoldMessenger.of(context)
                                                                               .showSnackBar(
@@ -1486,7 +1486,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                               .showSnackBar(
                                                                             SnackBar(
                                                                               content: Text(
-                                                                                (_model.apiResult8oi?.statusCode ?? 200).toString(),
+                                                                                (_model.scrapeServer?.statusCode ?? 200).toString(),
                                                                                 style: TextStyle(
                                                                                   color: FlutterFlowTheme.of(context).primaryText,
                                                                                 ),
