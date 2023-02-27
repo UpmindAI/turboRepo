@@ -21,5 +21,3 @@ export '/retreiving_summarize/retreiving_summarize_widget.dart'
     show RetreivingSummarizeWidget;
 export '/retreiving_pinecone/retreiving_pinecone_widget.dart'
     show RetreivingPineconeWidget;
-export '/api_test/api_test_widget.dart' show ApiTestWidget;
-export '/retreiving_test/retreiving_test_widget.dart' show RetreivingTestWidget;
