@@ -1,5 +1,4 @@
 import '/auth/auth_util.dart';
-import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/components/add_dataset_widget.dart';
 import '/components/add_list_widget.dart';
@@ -40,13 +39,19 @@ class DatasetsModel extends FlutterFlowModel {
   // State field(s) for scrapeURL widget.
   TextEditingController? scrapeURLController;
   String? Function(BuildContext, String?)? scrapeURLControllerValidator;
-  // Stores action output result for [Backend Call - API (scrapeServer)] action in Button widget.
-  ApiCallResponse? scrapeServer;
+  String? _scrapeURLControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    return null;
+  }
 
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {
     mainMenuModel = createModel(context, () => MainMenuModel());
+    scrapeURLControllerValidator = _scrapeURLControllerValidator;
   }
 
   void dispose() {
