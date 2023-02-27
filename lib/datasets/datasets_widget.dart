@@ -1,19 +1,19 @@
-import '../auth/auth_util.dart';
-import '../backend/api_requests/api_calls.dart';
-import '../backend/backend.dart';
-import '../components/add_dataset_widget.dart';
-import '../components/add_list_widget.dart';
-import '../components/confirm_delete_widget.dart';
-import '../components/edit_dataset_title_widget.dart';
-import '../components/edit_title_widget.dart';
-import '../components/main_menu_widget.dart';
-import '../components/payment_widget.dart';
-import '../components/upload_config_widget.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
-import '../custom_code/widgets/index.dart' as custom_widgets;
-import '../flutter_flow/random_data_util.dart' as random_data;
+import '/auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
+import '/backend/backend.dart';
+import '/components/add_dataset_widget.dart';
+import '/components/add_list_widget.dart';
+import '/components/confirm_delete_widget.dart';
+import '/components/edit_dataset_title_widget.dart';
+import '/components/edit_title_widget.dart';
+import '/components/main_menu_widget.dart';
+import '/components/payment_widget.dart';
+import '/components/upload_config_widget.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/widgets/index.dart' as custom_widgets;
+import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -429,6 +429,20 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                   FFButtonOptions(
                                                                 width: 210,
                                                                 height: 39,
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0,
+                                                                            0,
+                                                                            0,
+                                                                            0),
+                                                                iconPadding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0,
+                                                                            0,
+                                                                            0,
+                                                                            0),
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .primaryColor,
@@ -574,6 +588,14 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                             FFButtonOptions(
                                                           width: 160,
                                                           height: 30,
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      0, 0, 0),
+                                                          iconPadding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      0, 0, 0),
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .secondaryBackground,
@@ -659,6 +681,20 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                               FFButtonOptions(
                                                             width: 160,
                                                             height: 30,
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0,
+                                                                        0,
+                                                                        0,
+                                                                        0),
+                                                            iconPadding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0,
+                                                                        0,
+                                                                        0,
+                                                                        0),
                                                             color: FlutterFlowTheme
                                                                     .of(context)
                                                                 .secondaryBackground,
@@ -1472,6 +1508,16 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                             140,
                                                                         height:
                                                                             40,
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0,
+                                                                            0,
+                                                                            0,
+                                                                            0),
+                                                                        iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0,
+                                                                            0,
+                                                                            0,
+                                                                            0),
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .primaryColor,
                                                                         textStyle: FlutterFlowTheme.of(context)
@@ -1548,6 +1594,16 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                 140,
                                                                             height:
                                                                                 40,
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                                0,
+                                                                                0,
+                                                                                0,
+                                                                                0),
+                                                                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                                                                0,
+                                                                                0,
+                                                                                0,
+                                                                                0),
                                                                             color:
                                                                                 FlutterFlowTheme.of(context).primaryColor,
                                                                             textStyle: FlutterFlowTheme.of(context).subtitle2.override(

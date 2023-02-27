@@ -1,15 +1,15 @@
-import '../auth/auth_util.dart';
-import '../backend/api_requests/api_calls.dart';
-import '../backend/backend.dart';
-import '../components/add_dataset_widget.dart';
-import '../components/chat_chunks_widget.dart';
-import '../components/chat_history_widget.dart';
-import '../components/configure_bot_widget.dart';
-import '../components/main_menu_widget.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
-import '../flutter_flow/random_data_util.dart' as random_data;
+import '/auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
+import '/backend/backend.dart';
+import '/components/add_dataset_widget.dart';
+import '/components/chat_chunks_widget.dart';
+import '/components/chat_history_widget.dart';
+import '/components/configure_bot_widget.dart';
+import '/components/main_menu_widget.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -181,6 +181,14 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                   options: FFButtonOptions(
                                                     width: 130,
                                                     height: 30,
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                0, 0, 0, 0),
+                                                    iconPadding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                0, 0, 0, 0),
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primaryBackground,
@@ -261,6 +269,11 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                 options: FFButtonOptions(
                                                   width: 130,
                                                   height: 30,
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(0, 0, 0, 0),
+                                                  iconPadding:
+                                                      EdgeInsetsDirectional
+                                                          .fromSTEB(0, 0, 0, 0),
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primaryBackground,
@@ -317,6 +330,11 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                 options: FFButtonOptions(
                                                   width: 130,
                                                   height: 30,
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(0, 0, 0, 0),
+                                                  iconPadding:
+                                                      EdgeInsetsDirectional
+                                                          .fromSTEB(0, 0, 0, 0),
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primaryBackground,

@@ -1,7 +1,7 @@
-import '../auth/auth_util.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
+import '/auth/auth_util.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -179,6 +179,11 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       options: FFButtonOptions(
                                         width: 400,
                                         height: 55,
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 0, 0, 0),
+                                        iconPadding:
+                                            EdgeInsetsDirectional.fromSTEB(
+                                                0, 0, 8, 0),
                                         color: Colors.white,
                                         textStyle: GoogleFonts.getFont(
                                           'Roboto',
@@ -400,6 +405,9 @@ class _LoginWidgetState extends State<LoginWidget> {
                           options: FFButtonOptions(
                             width: 150,
                             height: 40,
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                            iconPadding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                             color: FlutterFlowTheme.of(context).primaryColor,
                             textStyle: FlutterFlowTheme.of(context)
                                 .subtitle1
@@ -435,6 +443,9 @@ class _LoginWidgetState extends State<LoginWidget> {
                           options: FFButtonOptions(
                             width: 150,
                             height: 50,
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                            iconPadding:
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                             color:
                                 FlutterFlowTheme.of(context).primaryBackground,
                             textStyle: FlutterFlowTheme.of(context)

@@ -1,8 +1,8 @@
-import '../auth/auth_util.dart';
-import '../flutter_flow/flutter_flow_icon_button.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
+import '/auth/auth_util.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -244,6 +244,8 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                   options: FFButtonOptions(
                     width: 270,
                     height: 50,
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                    iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                     color: FlutterFlowTheme.of(context).primaryText,
                     textStyle: FlutterFlowTheme.of(context).subtitle2.override(
                           fontFamily:

@@ -1,10 +1,10 @@
-import '../auth/auth_util.dart';
-import '../backend/api_requests/api_calls.dart';
-import '../backend/backend.dart';
-import '../components/main_menu_widget.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
+import '/auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
+import '/backend/backend.dart';
+import '/components/main_menu_widget.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -430,6 +430,11 @@ class _ResultWidgetState extends State<ResultWidget> {
                                               options: FFButtonOptions(
                                                 width: 220,
                                                 height: 40,
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 0, 0, 0),
+                                                iconPadding:
+                                                    EdgeInsetsDirectional
+                                                        .fromSTEB(0, 0, 0, 0),
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .primaryColor,
@@ -470,6 +475,11 @@ class _ResultWidgetState extends State<ResultWidget> {
                                               options: FFButtonOptions(
                                                 width: 200,
                                                 height: 40,
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 0, 0, 0),
+                                                iconPadding:
+                                                    EdgeInsetsDirectional
+                                                        .fromSTEB(0, 0, 0, 0),
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .primaryColor,
@@ -605,6 +615,14 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                       options: FFButtonOptions(
                                                         width: 200,
                                                         height: 40,
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0, 0, 0, 0),
+                                                        iconPadding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0, 0, 0, 0),
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -663,6 +681,14 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                             FFButtonOptions(
                                                           width: 200,
                                                           height: 40,
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      0, 0, 0),
+                                                          iconPadding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      0, 0, 0),
                                                           color:
                                                               Color(0xFF4EABF5),
                                                           textStyle:
