@@ -1,7 +1,7 @@
-import '../components/add_dataset_widget.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
+import '/components/add_dataset_widget.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -87,6 +87,8 @@ class _NewDatasetButtonWidgetState extends State<NewDatasetButtonWidget> {
             options: FFButtonOptions(
               width: 250,
               height: 40,
+              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+              iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
               color: FlutterFlowTheme.of(context).primaryColor,
               textStyle: FlutterFlowTheme.of(context).subtitle2.override(
                     fontFamily: FlutterFlowTheme.of(context).subtitle2Family,

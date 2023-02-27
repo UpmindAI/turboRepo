@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/lat_lng.dart';
+import 'dart:convert';
 
 class FFAppState extends ChangeNotifier {
   static final FFAppState _instance = FFAppState._internal();
@@ -148,6 +149,24 @@ class FFAppState extends ChangeNotifier {
   String get setSummaryTemplate => _setSummaryTemplate;
   set setSummaryTemplate(String _value) {
     _setSummaryTemplate = _value;
+  }
+
+  String _testAPI = '';
+  String get testAPI => _testAPI;
+  set testAPI(String _value) {
+    _testAPI = _value;
+  }
+
+  String _testAPIbody = '';
+  String get testAPIbody => _testAPIbody;
+  set testAPIbody(String _value) {
+    _testAPIbody = _value;
+  }
+
+  dynamic _testAPIjson;
+  dynamic get testAPIjson => _testAPIjson;
+  set testAPIjson(dynamic _value) {
+    _testAPIjson = _value;
   }
 }
 

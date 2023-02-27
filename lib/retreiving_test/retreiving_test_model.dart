@@ -1,10 +1,10 @@
 import '/auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
-import '/components/error_message_widget.dart';
 import '/components/main_menu_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -13,13 +13,15 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class RetreivingMIXModel extends FlutterFlowModel {
+class RetreivingTestModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
-  // Stores action output result for [Backend Call - API (datasetGPTserver)] action in retreivingMIX widget.
-  ApiCallResponse? apiResultMIX;
+  // Stores action output result for [Backend Call - API (testAPI)] action in retreivingTest widget.
+  ApiCallResponse? testAPIresult;
   // Model for mainMenu component.
   late MainMenuModel mainMenuModel;
+  // Stores action output result for [Backend Call - API (testAPI)] action in Button widget.
+  ApiCallResponse? testAPIresult;
 
   /// Initialization and disposal methods.
 
