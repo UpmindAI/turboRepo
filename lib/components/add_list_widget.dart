@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/random_data_util.dart' as random_data;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -131,34 +130,16 @@ class _AddListWidgetState extends State<AddListWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
                   child: FFButtonWidget(
                     onPressed: () async {
-                      final userTempUploadsCreateData =
-                          createUserTempUploadsRecordData(
+                      _model.scrapeAPIurls = await ScrapeServerCall.call(
+                        idToken: currentJwtToken,
                         datasetId: widget.setDataset!.datasetId,
-                        datasetName: widget.setDataset!.datasetName,
-                        timestamp: getCurrentTimestamp,
-                        chunkSize: FFAppState().setChunkSize,
-                        urls: _model.urlListFieldController.text,
                         urlId: random_data.randomString(
-                          8,
-                          8,
+                          7,
+                          7,
                           true,
                           true,
                           true,
                         ),
-                      );
-                      var userTempUploadsRecordReference =
-                          UserTempUploadsRecord.createDoc(
-                              currentUserReference!);
-                      await userTempUploadsRecordReference
-                          .set(userTempUploadsCreateData);
-                      _model.setURLSdoc =
-                          UserTempUploadsRecord.getDocumentFromData(
-                              userTempUploadsCreateData,
-                              userTempUploadsRecordReference);
-                      _model.scrapeAPIurls = await ScrapeServerCall.call(
-                        idToken: currentJwtToken,
-                        datasetId: widget.setDataset!.datasetId,
-                        urlId: _model.setURLSdoc!.urlId,
                       );
                       if ((_model.scrapeAPIurls?.succeeded ?? true)) {
                         ScaffoldMessenger.of(context).showSnackBar(
