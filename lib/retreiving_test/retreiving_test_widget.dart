@@ -52,32 +52,33 @@ class _RetreivingTestWidgetState extends State<RetreivingTestWidget>
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.testAPIresult = await TestAPICall.call(
+      _model.testAPIpage = await TestAPICall.call(
         idToken: currentJwtToken,
       );
-      if ((_model.testAPIresult?.succeeded ?? true)) {
+      if ((_model.testAPIpage?.succeeded ?? true)) {
+        // status
         setState(() {
           FFAppState().testAPI =
-              (_model.testAPIresult?.statusCode ?? 200).toString();
+              (_model.testAPIpage?.statusCode ?? 200).toString();
         });
         setState(() {
           FFAppState().testAPIbody =
-              (_model.testAPIresult?.jsonBody ?? '').toString();
+              (_model.testAPIpage?.jsonBody ?? '').toString();
         });
         setState(() {
-          FFAppState().testAPIjson = (_model.testAPIresult?.jsonBody ?? '');
+          FFAppState().testAPIjson = (_model.testAPIpage?.jsonBody ?? '');
         });
       } else {
         setState(() {
           FFAppState().testAPI =
-              (_model.testAPIresult?.statusCode ?? 200).toString();
+              'Fail: ${(_model.testAPIpage?.statusCode ?? 200).toString()}';
         });
         setState(() {
           FFAppState().testAPIbody =
-              (_model.testAPIresult?.jsonBody ?? '').toString();
+              'Fail: ${(_model.testAPIpage?.statusCode ?? 200).toString()}';
         });
         setState(() {
-          FFAppState().testAPIjson = (_model.testAPIresult?.jsonBody ?? '');
+          FFAppState().testAPIjson = (_model.testAPIpage?.jsonBody ?? '');
         });
       }
     });
@@ -325,66 +326,8 @@ class _RetreivingTestWidgetState extends State<RetreivingTestWidget>
                                                                     0, 0),
                                                         child: FFButtonWidget(
                                                           onPressed: () async {
-                                                            _model.testAPIresult =
-                                                                await TestAPICall
-                                                                    .call(
-                                                              idToken:
-                                                                  currentJwtToken,
-                                                            );
-                                                            if ((_model
-                                                                    .testAPIresult
-                                                                    ?.succeeded ??
-                                                                true)) {
-                                                              setState(() {
-                                                                FFAppState()
-                                                                    .testAPI = (_model
-                                                                            .testAPIresult
-                                                                            ?.statusCode ??
-                                                                        200)
-                                                                    .toString();
-                                                              });
-                                                              setState(() {
-                                                                FFAppState()
-                                                                    .testAPIbody = (_model
-                                                                            .testAPIresult
-                                                                            ?.jsonBody ??
-                                                                        '')
-                                                                    .toString();
-                                                              });
-                                                              setState(() {
-                                                                FFAppState()
-                                                                    .testAPIjson = (_model
-                                                                        .testAPIresult
-                                                                        ?.jsonBody ??
-                                                                    '');
-                                                              });
-                                                            } else {
-                                                              setState(() {
-                                                                FFAppState()
-                                                                    .testAPI = (_model
-                                                                            .testAPIresult
-                                                                            ?.statusCode ??
-                                                                        200)
-                                                                    .toString();
-                                                              });
-                                                              setState(() {
-                                                                FFAppState()
-                                                                    .testAPIbody = (_model
-                                                                            .testAPIresult
-                                                                            ?.jsonBody ??
-                                                                        '')
-                                                                    .toString();
-                                                              });
-                                                              setState(() {
-                                                                FFAppState()
-                                                                    .testAPIjson = (_model
-                                                                        .testAPIresult
-                                                                        ?.jsonBody ??
-                                                                    '');
-                                                              });
-                                                            }
-
-                                                            setState(() {});
+                                                            context.pushNamed(
+                                                                'retreivingTest');
                                                           },
                                                           text: 'Test API',
                                                           options:
