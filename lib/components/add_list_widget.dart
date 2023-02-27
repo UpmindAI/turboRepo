@@ -4,6 +4,7 @@ import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../flutter_flow/random_data_util.dart' as random_data;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -137,15 +138,27 @@ class _AddListWidgetState extends State<AddListWidget> {
                         timestamp: getCurrentTimestamp,
                         chunkSize: FFAppState().setChunkSize,
                         urls: _model.urlListFieldController.text,
+                        urlId: random_data.randomString(
+                          8,
+                          8,
+                          true,
+                          true,
+                          true,
+                        ),
                       );
-                      await UserTempUploadsRecord.createDoc(
-                              currentUserReference!)
+                      var userTempUploadsRecordReference =
+                          UserTempUploadsRecord.createDoc(
+                              currentUserReference!);
+                      await userTempUploadsRecordReference
                           .set(userTempUploadsCreateData);
+                      _model.setURLSdoc =
+                          UserTempUploadsRecord.getDocumentFromData(
+                              userTempUploadsCreateData,
+                              userTempUploadsRecordReference);
                       _model.scrapeAPIresult = await ScrapeServerCall.call(
-                        sourceUrl: _model.urlListFieldController.text,
                         idToken: currentJwtToken,
                         datasetId: widget.setDataset!.datasetId,
-                        datasetName: widget.setDataset!.datasetName,
+                        urlId: _model.setURLSdoc!.urlId,
                       );
                       if ((_model.scrapeAPIresult?.succeeded ?? true)) {
                         ScaffoldMessenger.of(context).showSnackBar(

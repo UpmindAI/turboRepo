@@ -1386,17 +1386,45 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                         FFButtonWidget(
                                                                       onPressed:
                                                                           () async {
-                                                                        _model.apiResult8oi =
-                                                                            await ScrapeServerCall.call(
-                                                                          sourceUrl: _model
+                                                                        final userTempUploadsCreateData =
+                                                                            createUserTempUploadsRecordData(
+                                                                          datasetId: widget
+                                                                              .activeDataset!
+                                                                              .datasetId,
+                                                                          docTitle:
+                                                                              '',
+                                                                          datasetName:
+                                                                              columnUserDatasetsRecord.datasetName,
+                                                                          timestamp:
+                                                                              getCurrentTimestamp,
+                                                                          urlId:
+                                                                              random_data.randomString(
+                                                                            8,
+                                                                            8,
+                                                                            true,
+                                                                            true,
+                                                                            true,
+                                                                          ),
+                                                                          urls: _model
                                                                               .scrapeURLController
                                                                               .text,
+                                                                        );
+                                                                        var userTempUploadsRecordReference =
+                                                                            UserTempUploadsRecord.createDoc(currentUserReference!);
+                                                                        await userTempUploadsRecordReference
+                                                                            .set(userTempUploadsCreateData);
+                                                                        _model.createURLdoc = UserTempUploadsRecord.getDocumentFromData(
+                                                                            userTempUploadsCreateData,
+                                                                            userTempUploadsRecordReference);
+                                                                        _model.apiResult8oi =
+                                                                            await ScrapeServerCall.call(
                                                                           idToken:
                                                                               currentJwtToken,
                                                                           datasetId:
                                                                               columnUserDatasetsRecord.datasetId,
-                                                                          datasetName:
-                                                                              columnUserDatasetsRecord.datasetName,
+                                                                          urlId: _model
+                                                                              .createURLdoc!
+                                                                              .urlId,
                                                                         );
                                                                         if ((_model.apiResult8oi?.succeeded ??
                                                                             true)) {

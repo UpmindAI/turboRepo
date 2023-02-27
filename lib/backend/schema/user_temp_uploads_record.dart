@@ -30,6 +30,9 @@ abstract class UserTempUploadsRecord
 
   String? get urls;
 
+  @BuiltValueField(wireName: 'url_id')
+  String? get urlId;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -43,7 +46,8 @@ abstract class UserTempUploadsRecord
         ..datasetName = ''
         ..datasetId = ''
         ..chunkSize = 0.0
-        ..urls = '';
+        ..urls = ''
+        ..urlId = '';
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
       parent != null
@@ -80,6 +84,7 @@ Map<String, dynamic> createUserTempUploadsRecordData({
   DateTime? timestamp,
   double? chunkSize,
   String? urls,
+  String? urlId,
 }) {
   final firestoreData = serializers.toFirestore(
     UserTempUploadsRecord.serializer,
@@ -91,7 +96,8 @@ Map<String, dynamic> createUserTempUploadsRecordData({
         ..datasetId = datasetId
         ..timestamp = timestamp
         ..chunkSize = chunkSize
-        ..urls = urls,
+        ..urls = urls
+        ..urlId = urlId,
     ),
   );
 

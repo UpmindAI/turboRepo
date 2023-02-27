@@ -53,18 +53,33 @@ class _$UserTempUploadsRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    value = object.chunkSize;
-    if (value != null) {
-      result
-        ..add('chunk_size')
-        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
-    }
     value = object.timestamp;
     if (value != null) {
       result
         ..add('timestamp')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(DateTime)));
+    }
+    value = object.chunkSize;
+    if (value != null) {
+      result
+        ..add('chunk_size')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(double)));
+    }
+    value = object.urls;
+    if (value != null) {
+      result
+        ..add('urls')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.urlId;
+    if (value != null) {
+      result
+        ..add('url_id')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
     }
     value = object.ffRef;
     if (value != null) {
@@ -105,13 +120,21 @@ class _$UserTempUploadsRecordSerializer
           result.datasetId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
-        case 'chunk_size':
-          result.chunkSize = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
-          break;
         case 'timestamp':
           result.timestamp = serializers.deserialize(value,
               specifiedType: const FullType(DateTime)) as DateTime?;
+          break;
+        case 'chunk_size':
+          result.chunkSize = serializers.deserialize(value,
+              specifiedType: const FullType(double)) as double?;
+          break;
+        case 'urls':
+          result.urls = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'url_id':
+          result.urlId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
@@ -136,9 +159,13 @@ class _$UserTempUploadsRecord extends UserTempUploadsRecord {
   @override
   final String? datasetId;
   @override
-  final int? chunkSize;
-  @override
   final DateTime? timestamp;
+  @override
+  final double? chunkSize;
+  @override
+  final String? urls;
+  @override
+  final String? urlId;
   @override
   final DocumentReference<Object?>? ffRef;
 
@@ -151,8 +178,10 @@ class _$UserTempUploadsRecord extends UserTempUploadsRecord {
       this.docId,
       this.datasetName,
       this.datasetId,
-      this.chunkSize,
       this.timestamp,
+      this.chunkSize,
+      this.urls,
+      this.urlId,
       this.ffRef})
       : super._();
 
@@ -173,8 +202,10 @@ class _$UserTempUploadsRecord extends UserTempUploadsRecord {
         docId == other.docId &&
         datasetName == other.datasetName &&
         datasetId == other.datasetId &&
-        chunkSize == other.chunkSize &&
         timestamp == other.timestamp &&
+        chunkSize == other.chunkSize &&
+        urls == other.urls &&
+        urlId == other.urlId &&
         ffRef == other.ffRef;
   }
 
@@ -184,11 +215,15 @@ class _$UserTempUploadsRecord extends UserTempUploadsRecord {
         $jc(
             $jc(
                 $jc(
-                    $jc($jc($jc(0, docTitle.hashCode), docId.hashCode),
-                        datasetName.hashCode),
-                    datasetId.hashCode),
-                chunkSize.hashCode),
-            timestamp.hashCode),
+                    $jc(
+                        $jc(
+                            $jc($jc($jc(0, docTitle.hashCode), docId.hashCode),
+                                datasetName.hashCode),
+                            datasetId.hashCode),
+                        timestamp.hashCode),
+                    chunkSize.hashCode),
+                urls.hashCode),
+            urlId.hashCode),
         ffRef.hashCode));
   }
 
@@ -199,8 +234,10 @@ class _$UserTempUploadsRecord extends UserTempUploadsRecord {
           ..add('docId', docId)
           ..add('datasetName', datasetName)
           ..add('datasetId', datasetId)
-          ..add('chunkSize', chunkSize)
           ..add('timestamp', timestamp)
+          ..add('chunkSize', chunkSize)
+          ..add('urls', urls)
+          ..add('urlId', urlId)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -226,13 +263,21 @@ class UserTempUploadsRecordBuilder
   String? get datasetId => _$this._datasetId;
   set datasetId(String? datasetId) => _$this._datasetId = datasetId;
 
-  int? _chunkSize;
-  int? get chunkSize => _$this._chunkSize;
-  set chunkSize(int? chunkSize) => _$this._chunkSize = chunkSize;
-
   DateTime? _timestamp;
   DateTime? get timestamp => _$this._timestamp;
   set timestamp(DateTime? timestamp) => _$this._timestamp = timestamp;
+
+  double? _chunkSize;
+  double? get chunkSize => _$this._chunkSize;
+  set chunkSize(double? chunkSize) => _$this._chunkSize = chunkSize;
+
+  String? _urls;
+  String? get urls => _$this._urls;
+  set urls(String? urls) => _$this._urls = urls;
+
+  String? _urlId;
+  String? get urlId => _$this._urlId;
+  set urlId(String? urlId) => _$this._urlId = urlId;
 
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
@@ -249,8 +294,10 @@ class UserTempUploadsRecordBuilder
       _docId = $v.docId;
       _datasetName = $v.datasetName;
       _datasetId = $v.datasetId;
-      _chunkSize = $v.chunkSize;
       _timestamp = $v.timestamp;
+      _chunkSize = $v.chunkSize;
+      _urls = $v.urls;
+      _urlId = $v.urlId;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -278,8 +325,10 @@ class UserTempUploadsRecordBuilder
             docId: docId,
             datasetName: datasetName,
             datasetId: datasetId,
-            chunkSize: chunkSize,
             timestamp: timestamp,
+            chunkSize: chunkSize,
+            urls: urls,
+            urlId: urlId,
             ffRef: ffRef);
     replace(_$result);
     return _$result;

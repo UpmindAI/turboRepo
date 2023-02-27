@@ -82,13 +82,13 @@ class ScrapeServerCall {
     String? idToken = '',
     String? datasetId = '',
     String? datasetName = '',
+    String? urlId = '',
   }) {
     final body = '''
 {
-  "source_url": "${sourceUrl}",
   "dataset_id": "${datasetId}",
   "id_token": "${idToken}",
-  "dataset_name": "${datasetName}"
+  "url_id": "${urlId}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'scrapeServer',
