@@ -4,6 +4,7 @@ import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../flutter_flow/random_data_util.dart' as random_data;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -16,6 +17,8 @@ class AddListModel extends FlutterFlowModel {
   // State field(s) for urlListField widget.
   TextEditingController? urlListFieldController;
   String? Function(BuildContext, String?)? urlListFieldControllerValidator;
+  // Stores action output result for [Backend Call - Create Document] action in Button widget.
+  UserTempUploadsRecord? setURLSdoc;
   // Stores action output result for [Backend Call - API (scrapeServer)] action in Button widget.
   ApiCallResponse? scrapeAPIresult;
 
