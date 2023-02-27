@@ -1346,7 +1346,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                         child:
                                                                             Container(
                                                                           height:
-                                                                              600,
+                                                                              700,
                                                                           child:
                                                                               AddListWidget(
                                                                             setDataset:
@@ -1380,7 +1380,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                         .fromSTEB(
                                                                             0,
                                                                             0,
-                                                                            20,
+                                                                            10,
                                                                             0),
                                                                     child:
                                                                         FFButtonWidget(
