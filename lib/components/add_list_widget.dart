@@ -73,7 +73,7 @@ class _AddListWidgetState extends State<AddListWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
                   child: Text(
-                    'Add a list of valid URLs, One URL per line.',
+                    'Add a list of valid URLs, one URL per line.',
                     style: FlutterFlowTheme.of(context).title3.override(
                           fontFamily: FlutterFlowTheme.of(context).title3Family,
                           fontSize: 16.0,

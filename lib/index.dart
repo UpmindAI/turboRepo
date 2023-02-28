@@ -19,5 +19,3 @@ export '/retreiving_g_p_t/retreiving_g_p_t_widget.dart'
     show RetreivingGPTWidget;
 export '/retreiving_summarize/retreiving_summarize_widget.dart'
     show RetreivingSummarizeWidget;
-export '/retreiving_pinecone/retreiving_pinecone_widget.dart'
-    show RetreivingPineconeWidget;
