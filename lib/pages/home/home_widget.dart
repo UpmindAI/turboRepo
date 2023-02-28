@@ -96,7 +96,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 10.0, 0.0),
                   child: Text(
-                    'v0.241',
+                    'v0.242',
                     style: FlutterFlowTheme.of(context).bodyText1,
                   ),
                 ),
@@ -1676,7 +1676,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                                     alignment: AlignmentDirectional(0.0, 0.0),
                                                                                     child: InkWell(
                                                                                       onTap: () async {
-                                                                                        FFAppState().activeDataset = listViewUserDatasetsRecord.reference;
+                                                                                        FFAppState().update(() {
+                                                                                          FFAppState().activeDataset = listViewUserDatasetsRecord.reference;
+                                                                                          FFAppState().selectedDocuments = listViewUserDatasetsRecord.activeDocs!.toList();
+                                                                                        });
 
                                                                                         context.pushNamed(
                                                                                           'Datasets',
