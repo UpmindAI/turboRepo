@@ -166,7 +166,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                       FFAppState().unsetDataset)
                                     StreamBuilder<UserDatasetsRecord>(
                                       stream: UserDatasetsRecord.getDocument(
-                                          widget.activeDataset!.reference),
+                                          FFAppState().activeDataset!),
                                       builder: (context, snapshot) {
                                         // Customize what your widget looks like when it's loading.
                                         if (!snapshot.hasData) {
