@@ -6,6 +6,7 @@ import '/components/add_list_widget.dart';
 import '/components/confirm_delete_widget.dart';
 import '/components/edit_dataset_title_widget.dart';
 import '/components/edit_title_widget.dart';
+import '/components/error_message_widget.dart';
 import '/components/main_menu_widget.dart';
 import '/components/payment_widget.dart';
 import '/components/upload_config_widget.dart';
@@ -50,6 +51,8 @@ class DatasetsModel extends FlutterFlowModel {
 
   // Stores action output result for [Backend Call - Create Document] action in Button widget.
   UserTempUploadsRecord? createURLdoc;
+  // Stores action output result for [Backend Call - API (scrapeServer)] action in Button widget.
+  ApiCallResponse? scrapeURL;
 
   /// Initialization and disposal methods.
 

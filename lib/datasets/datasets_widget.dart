@@ -6,6 +6,7 @@ import '/components/add_list_widget.dart';
 import '/components/confirm_delete_widget.dart';
 import '/components/edit_dataset_title_widget.dart';
 import '/components/edit_title_widget.dart';
+import '/components/error_message_widget.dart';
 import '/components/main_menu_widget.dart';
 import '/components/payment_widget.dart';
 import '/components/upload_config_widget.dart';
@@ -1475,6 +1476,8 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                   FFButtonWidget(
                                                                 onPressed:
                                                                     () async {
+                                                                  var _shouldSetState =
+                                                                      false;
                                                                   if (_model.formKey
                                                                               .currentState ==
                                                                           null ||
@@ -1544,8 +1547,11 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                       UserTempUploadsRecord.getDocumentFromData(
                                                                           userTempUploadsCreateData,
                                                                           userTempUploadsRecordReference);
-                                                                  await ScrapeServerCall
-                                                                      .call(
+                                                                  _shouldSetState =
+                                                                      true;
+                                                                  _model.scrapeURL =
+                                                                      await ScrapeServerCall
+                                                                          .call(
                                                                     urlId: _model
                                                                         .createURLdoc!
                                                                         .urlId,
@@ -1555,6 +1561,41 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                         .activeDataset!
                                                                         .datasetId,
                                                                   );
+                                                                  _shouldSetState =
+                                                                      true;
+                                                                  if (_model
+                                                                          .scrapeURL ==
+                                                                      null) {
+                                                                    await showModalBottomSheet(
+                                                                      isScrollControlled:
+                                                                          true,
+                                                                      enableDrag:
+                                                                          false,
+                                                                      context:
+                                                                          context,
+                                                                      builder:
+                                                                          (context) {
+                                                                        return Padding(
+                                                                          padding:
+                                                                              MediaQuery.of(context).viewInsets,
+                                                                          child:
+                                                                              Container(
+                                                                            height:
+                                                                                MediaQuery.of(context).size.height * 0.8,
+                                                                            child:
+                                                                                ErrorMessageWidget(),
+                                                                          ),
+                                                                        );
+                                                                      },
+                                                                    ).then((value) =>
+                                                                        setState(
+                                                                            () {}));
+
+                                                                    if (_shouldSetState)
+                                                                      setState(
+                                                                          () {});
+                                                                    return;
+                                                                  }
                                                                   setState(() {
                                                                     _model
                                                                         .scrapeURLController
@@ -1583,9 +1624,9 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                               .secondaryBackground,
                                                                     ),
                                                                   );
-
-                                                                  setState(
-                                                                      () {});
+                                                                  if (_shouldSetState)
+                                                                    setState(
+                                                                        () {});
                                                                 },
                                                                 text: 'Add URL',
                                                                 options:
