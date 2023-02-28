@@ -178,6 +178,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'ResultSummarizer',
               path: 'resultSummarizer',
               builder: (context, params) => ResultSummarizerWidget(),
+            ),
+            FFRoute(
+              name: 'testAPI',
+              path: 'testAPI',
+              builder: (context, params) => TestAPIWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),
