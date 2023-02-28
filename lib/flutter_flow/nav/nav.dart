@@ -173,6 +173,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'retreivingSummarize',
               path: 'retreivingSummarize',
               builder: (context, params) => RetreivingSummarizeWidget(),
+            ),
+            FFRoute(
+              name: 'ResultSummarizer',
+              path: 'resultSummarizer',
+              builder: (context, params) => ResultSummarizerWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),
