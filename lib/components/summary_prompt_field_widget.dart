@@ -55,18 +55,18 @@ class _SummaryPromptFieldWidgetState extends State<SummaryPromptFieldWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: AlignmentDirectional(0, 0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Container(
-        width: MediaQuery.of(context).size.width,
+        width: MediaQuery.of(context).size.width * 1.0,
         constraints: BoxConstraints(
-          maxWidth: 800,
+          maxWidth: 800.0,
         ),
         decoration: BoxDecoration(),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(10, 30, 10, 10),
+              padding: EdgeInsetsDirectional.fromSTEB(10.0, 30.0, 10.0, 10.0),
               child: TextFormField(
                 controller: _model.textController,
                 autofocus: true,
@@ -77,7 +77,7 @@ class _SummaryPromptFieldWidgetState extends State<SummaryPromptFieldWidget> {
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: FlutterFlowTheme.of(context).secondaryColor,
-                      width: 1,
+                      width: 1.0,
                     ),
                     borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(4.0),
@@ -87,7 +87,7 @@ class _SummaryPromptFieldWidgetState extends State<SummaryPromptFieldWidget> {
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: FlutterFlowTheme.of(context).primaryText,
-                      width: 1,
+                      width: 1.0,
                     ),
                     borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(4.0),
@@ -97,7 +97,7 @@ class _SummaryPromptFieldWidgetState extends State<SummaryPromptFieldWidget> {
                   errorBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: Color(0xFF980000),
-                      width: 1,
+                      width: 1.0,
                     ),
                     borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(4.0),
@@ -107,7 +107,7 @@ class _SummaryPromptFieldWidgetState extends State<SummaryPromptFieldWidget> {
                   focusedErrorBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: Color(0xFF980000),
-                      width: 1,
+                      width: 1.0,
                     ),
                     borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(4.0),
@@ -132,10 +132,10 @@ class _SummaryPromptFieldWidgetState extends State<SummaryPromptFieldWidget> {
               },
               text: 'Set Prompt',
               options: FFButtonOptions(
-                width: 130,
-                height: 40,
-                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                width: 130.0,
+                height: 40.0,
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                 color: FlutterFlowTheme.of(context).primaryColor,
                 textStyle: FlutterFlowTheme.of(context).subtitle2.override(
                       fontFamily: FlutterFlowTheme.of(context).subtitle2Family,
@@ -145,9 +145,9 @@ class _SummaryPromptFieldWidgetState extends State<SummaryPromptFieldWidget> {
                     ),
                 borderSide: BorderSide(
                   color: Colors.transparent,
-                  width: 1,
+                  width: 1.0,
                 ),
-                borderRadius: BorderRadius.circular(0),
+                borderRadius: BorderRadius.circular(0.0),
               ),
             ),
           ],

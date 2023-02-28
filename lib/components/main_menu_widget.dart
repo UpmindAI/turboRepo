@@ -35,7 +35,7 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
           delay: 0.ms,
           duration: 1000.ms,
           hz: 10,
-          offset: Offset(0, 0),
+          offset: Offset(0.0, 0.0),
           rotation: 0.087,
         ),
       ],
@@ -68,72 +68,73 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
     context.watch<FFAppState>();
 
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 4, 0),
+      padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
       child: Material(
         color: Colors.transparent,
-        elevation: 1,
+        elevation: 1.0,
         child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height * 1,
+          width: MediaQuery.of(context).size.width * 1.0,
+          height: MediaQuery.of(context).size.height * 1.0,
           constraints: BoxConstraints(
-            maxHeight: 800,
+            maxHeight: 800.0,
           ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
             boxShadow: [
               BoxShadow(
-                blurRadius: 4,
+                blurRadius: 4.0,
                 color: Color(0x33000000),
-                offset: Offset(0, 2),
+                offset: Offset(0.0, 2.0),
               )
             ],
           ),
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(16, 24, 16, 16),
+            padding: EdgeInsetsDirectional.fromSTEB(16.0, 24.0, 16.0, 16.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 12),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 12.0),
                   child: InkWell(
                     onTap: () async {
                       context.pushNamed('Home');
                     },
                     child: Container(
                       width: double.infinity,
-                      height: 50,
+                      height: 50.0,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(12.0),
                         shape: BoxShape.rectangle,
                       ),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 12.0, 0.0),
                               child: Container(
-                                width: 4,
-                                height: 60,
+                                width: 4.0,
+                                height: 60.0,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .primaryBackground,
-                                  borderRadius: BorderRadius.circular(4),
+                                  borderRadius: BorderRadius.circular(4.0),
                                 ),
                               ),
                             ),
                             Icon(
                               Icons.home_filled,
                               color: FlutterFlowTheme.of(context).secondaryText,
-                              size: 28,
+                              size: 28.0,
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  12.0, 0.0, 0.0, 0.0),
                               child: Text(
                                 'Play',
                                 style: FlutterFlowTheme.of(context)
@@ -158,45 +159,46 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                   child: InkWell(
                     onTap: () async {
                       context.pushNamed('Datasets');
                     },
                     child: Container(
                       width: double.infinity,
-                      height: 50,
+                      height: 50.0,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(12.0),
                         shape: BoxShape.rectangle,
                       ),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 12.0, 0.0),
                               child: Container(
-                                width: 4,
-                                height: 60,
+                                width: 4.0,
+                                height: 60.0,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .primaryBackground,
-                                  borderRadius: BorderRadius.circular(4),
+                                  borderRadius: BorderRadius.circular(4.0),
                                 ),
                               ),
                             ),
                             Icon(
                               Icons.folder_rounded,
                               color: FlutterFlowTheme.of(context).secondaryText,
-                              size: 28,
+                              size: 28.0,
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  12.0, 0.0, 0.0, 0.0),
                               child: Text(
                                 'Datasets',
                                 style: FlutterFlowTheme.of(context).subtitle2,
@@ -209,45 +211,46 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                   child: InkWell(
                     onTap: () async {
                       context.pushNamed('Chat');
                     },
                     child: Container(
                       width: double.infinity,
-                      height: 50,
+                      height: 50.0,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(12.0),
                         shape: BoxShape.rectangle,
                       ),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 12.0, 0.0),
                               child: Container(
-                                width: 4,
-                                height: 60,
+                                width: 4.0,
+                                height: 60.0,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .primaryBackground,
-                                  borderRadius: BorderRadius.circular(4),
+                                  borderRadius: BorderRadius.circular(4.0),
                                 ),
                               ),
                             ),
                             Icon(
                               Icons.chat_sharp,
                               color: FlutterFlowTheme.of(context).secondaryText,
-                              size: 28,
+                              size: 28.0,
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  12.0, 0.0, 0.0, 0.0),
                               child: Text(
                                 'Chat',
                                 style: FlutterFlowTheme.of(context).subtitle2,
@@ -260,45 +263,46 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                   child: InkWell(
                     onTap: () async {
                       context.pushNamed('History');
                     },
                     child: Container(
                       width: double.infinity,
-                      height: 50,
+                      height: 50.0,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(12.0),
                         shape: BoxShape.rectangle,
                       ),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 12.0, 0.0),
                               child: Container(
-                                width: 4,
-                                height: 60,
+                                width: 4.0,
+                                height: 60.0,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .primaryBackground,
-                                  borderRadius: BorderRadius.circular(4),
+                                  borderRadius: BorderRadius.circular(4.0),
                                 ),
                               ),
                             ),
                             FaIcon(
                               FontAwesomeIcons.clock,
                               color: FlutterFlowTheme.of(context).secondaryText,
-                              size: 28,
+                              size: 28.0,
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  12.0, 0.0, 0.0, 0.0),
                               child: Text(
                                 'History',
                                 style: FlutterFlowTheme.of(context).subtitle2,
@@ -314,15 +318,16 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(30, 0, 0, 0),
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(30.0, 0.0, 0.0, 0.0),
                       child: InkWell(
                         onTap: () async {
                           context.pushNamed('requestFeature');
                         },
                         child: Image.asset(
                           'assets/images/I-wish.png',
-                          width: 98,
-                          height: 63,
+                          width: 98.0,
+                          height: 63.0,
                           fit: BoxFit.cover,
                         ),
                       ).animateOnPageLoad(
@@ -332,13 +337,14 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                 ),
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Align(
-                          alignment: AlignmentDirectional(-1, 0),
+                          alignment: AlignmentDirectional(-1.0, 0.0),
                           child: InkWell(
                             onTap: () async {
                               await showModalBottomSheet(
@@ -351,7 +357,7 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                   return Padding(
                                     padding: MediaQuery.of(context).viewInsets,
                                     child: Container(
-                                      height: 700,
+                                      height: 700.0,
                                       child: PaymentWidget(),
                                     ),
                                   );
@@ -359,7 +365,7 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                               ).then((value) => setState(() {}));
                             },
                             child: Container(
-                              width: 300,
+                              width: 300.0,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
@@ -390,7 +396,8 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                               children: [
                                                 Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(10, 0, 0, 0),
+                                                      .fromSTEB(
+                                                          10.0, 0.0, 0.0, 0.0),
                                                   child: InkWell(
                                                     onTap: () async {
                                                       await showModalBottomSheet(
@@ -409,7 +416,7 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                                                         context)
                                                                     .viewInsets,
                                                             child: Container(
-                                                              height: 700,
+                                                              height: 700.0,
                                                               child:
                                                                   PaymentWidget(),
                                                             ),
@@ -424,13 +431,14 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .alternate,
-                                                      size: 24,
+                                                      size: 24.0,
                                                     ),
                                                   ),
                                                 ),
                                                 Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(5, 0, 5, 0),
+                                                      .fromSTEB(
+                                                          5.0, 0.0, 5.0, 0.0),
                                                   child: InkWell(
                                                     onTap: () async {
                                                       await showModalBottomSheet(
@@ -449,7 +457,7 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                                                         context)
                                                                     .viewInsets,
                                                             child: Container(
-                                                              height: 700,
+                                                              height: 700.0,
                                                               child:
                                                                   PaymentWidget(),
                                                             ),
@@ -494,7 +502,8 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                               children: [
                                                 Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(10, 0, 0, 0),
+                                                      .fromSTEB(
+                                                          10.0, 0.0, 0.0, 0.0),
                                                   child: InkWell(
                                                     onTap: () async {
                                                       context.pushNamed(
@@ -506,13 +515,14 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .alternate,
-                                                      size: 24,
+                                                      size: 24.0,
                                                     ),
                                                   ),
                                                 ),
                                                 Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(5, 0, 5, 0),
+                                                      .fromSTEB(
+                                                          5.0, 0.0, 5.0, 0.0),
                                                   child: InkWell(
                                                     onTap: () async {
                                                       context.pushNamed(
@@ -548,10 +558,11 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                   ),
                                   Expanded(
                                     child: Align(
-                                      alignment: AlignmentDirectional(-0.25, 0),
+                                      alignment:
+                                          AlignmentDirectional(-0.25, 0.0),
                                       child: Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            10, 0, 10, 0),
+                                            10.0, 0.0, 10.0, 0.0),
                                         child: InkWell(
                                           onTap: () async {
                                             context.pushNamed('Settings');
@@ -560,7 +571,7 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                             Icons.settings_outlined,
                                             color: FlutterFlowTheme.of(context)
                                                 .alternate,
-                                            size: 24,
+                                            size: 24.0,
                                           ),
                                         ),
                                       ),
@@ -572,12 +583,13 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                           ),
                         ),
                         Divider(
-                          height: 12,
-                          thickness: 2,
+                          height: 12.0,
+                          thickness: 2.0,
                           color: FlutterFlowTheme.of(context).lineColor,
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 12.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -587,11 +599,11 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                     context.pushNamed('Settings');
                                   },
                                   child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(50),
+                                    borderRadius: BorderRadius.circular(50.0),
                                     child: CachedNetworkImage(
                                       imageUrl: currentUserPhoto,
-                                      width: 44,
-                                      height: 44,
+                                      width: 44.0,
+                                      height: 44.0,
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -600,7 +612,7 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                               Expanded(
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      12, 0, 0, 0),
+                                      12.0, 0.0, 0.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     crossAxisAlignment:
@@ -608,7 +620,7 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                     children: [
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 0, 0, 10),
+                                            0.0, 0.0, 0.0, 10.0),
                                         child: AuthUserStreamWidget(
                                           builder: (context) => InkWell(
                                             onTap: () async {
@@ -635,7 +647,7 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                                 fontFamily:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyText2Family,
-                                                fontSize: 11,
+                                                fontSize: 11.0,
                                                 useGoogleFonts: GoogleFonts
                                                         .asMap()
                                                     .containsKey(

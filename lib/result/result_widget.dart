@@ -67,11 +67,11 @@ class _ResultWidgetState extends State<ResultWidget> {
         if (!snapshot.hasData) {
           return Center(
             child: SizedBox(
-              width: 50,
-              height: 50,
+              width: 50.0,
+              height: 50.0,
               child: SpinKitRipple(
                 color: FlutterFlowTheme.of(context).primaryColor,
-                size: 50,
+                size: 50.0,
               ),
             ),
           );
@@ -90,12 +90,12 @@ class _ResultWidgetState extends State<ResultWidget> {
           key: scaffoldKey,
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           appBar: PreferredSize(
-            preferredSize: Size.fromHeight(50),
+            preferredSize: Size.fromHeight(50.0),
             child: AppBar(
               backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
               automaticallyImplyLeading: false,
               actions: [],
-              elevation: 0,
+              elevation: 0.0,
             ),
           ),
           body: SafeArea(
@@ -127,18 +127,18 @@ class _ResultWidgetState extends State<ResultWidget> {
                           children: [
                             Material(
                               color: Colors.transparent,
-                              elevation: 1,
+                              elevation: 1.0,
                               child: Container(
-                                width: MediaQuery.of(context).size.width,
-                                height: 800,
+                                width: MediaQuery.of(context).size.width * 1.0,
+                                height: 800.0,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
                                   boxShadow: [
                                     BoxShadow(
-                                      blurRadius: 4,
+                                      blurRadius: 4.0,
                                       color: Color(0x33000000),
-                                      offset: Offset(0, 2),
+                                      offset: Offset(0.0, 2.0),
                                     )
                                   ],
                                 ),
@@ -147,18 +147,19 @@ class _ResultWidgetState extends State<ResultWidget> {
                                   children: [
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          20, 20, 20, 0),
+                                          20.0, 20.0, 20.0, 0.0),
                                       child: Container(
                                         width:
-                                            MediaQuery.of(context).size.width,
-                                        height: 650,
+                                            MediaQuery.of(context).size.width *
+                                                1.0,
+                                        height: 650.0,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
                                           border: Border.all(
                                             color: FlutterFlowTheme.of(context)
                                                 .alternate,
-                                            width: 1,
+                                            width: 1.0,
                                           ),
                                         ),
                                         child: SingleChildScrollView(
@@ -172,12 +173,15 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                     child: Align(
                                                       alignment:
                                                           AlignmentDirectional(
-                                                              1, 0),
+                                                              1.0, 0.0),
                                                       child: Padding(
                                                         padding:
                                                             EdgeInsetsDirectional
                                                                 .fromSTEB(
-                                                                    0, 8, 5, 0),
+                                                                    0.0,
+                                                                    8.0,
+                                                                    5.0,
+                                                                    0.0),
                                                         child: InkWell(
                                                           onTap: () async {
                                                             await Clipboard.setData(
@@ -233,8 +237,8 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                   Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 8, 8, 0),
+                                                            .fromSTEB(0.0, 8.0,
+                                                                8.0, 0.0),
                                                     child: InkWell(
                                                       onTap: () async {
                                                         await Clipboard.setData(
@@ -269,18 +273,19 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .tertiaryColor,
-                                                        size: 24,
+                                                        size: 24.0,
                                                       ),
                                                     ),
                                                   ),
                                                 ],
                                               ),
                                               Align(
-                                                alignment:
-                                                    AlignmentDirectional(-1, 0),
+                                                alignment: AlignmentDirectional(
+                                                    -1.0, 0.0),
                                                 child: Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(20, 0, 0, 0),
+                                                      .fromSTEB(
+                                                          20.0, 0.0, 0.0, 0.0),
                                                   child: SelectionArea(
                                                       child: Text(
                                                     'Prompt:',
@@ -292,7 +297,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                               FlutterFlowTheme.of(
                                                                       context)
                                                                   .bodyText1Family,
-                                                          fontSize: 18,
+                                                          fontSize: 18.0,
                                                           fontWeight:
                                                               FontWeight.bold,
                                                           useGoogleFonts: GoogleFonts
@@ -307,10 +312,11 @@ class _ResultWidgetState extends State<ResultWidget> {
                                               ),
                                               Align(
                                                 alignment: AlignmentDirectional(
-                                                    -1, -1),
+                                                    -1.0, -1.0),
                                                 child: Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(20, 0, 20, 10),
+                                                      .fromSTEB(20.0, 0.0, 20.0,
+                                                          10.0),
                                                   child: SelectionArea(
                                                       child: Text(
                                                     resultUserCompletionsRecord!
@@ -324,7 +330,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                               FlutterFlowTheme.of(
                                                                       context)
                                                                   .bodyText1Family,
-                                                          fontSize: 18,
+                                                          fontSize: 18.0,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
                                                               .containsKey(
@@ -336,11 +342,12 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                 ),
                                               ),
                                               Align(
-                                                alignment:
-                                                    AlignmentDirectional(-1, 0),
+                                                alignment: AlignmentDirectional(
+                                                    -1.0, 0.0),
                                                 child: Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(20, 0, 0, 0),
+                                                      .fromSTEB(
+                                                          20.0, 0.0, 0.0, 0.0),
                                                   child: SelectionArea(
                                                       child: Text(
                                                     'Completion:',
@@ -352,7 +359,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                               FlutterFlowTheme.of(
                                                                       context)
                                                                   .bodyText1Family,
-                                                          fontSize: 18,
+                                                          fontSize: 18.0,
                                                           fontWeight:
                                                               FontWeight.bold,
                                                           useGoogleFonts: GoogleFonts
@@ -366,11 +373,12 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                 ),
                                               ),
                                               Align(
-                                                alignment:
-                                                    AlignmentDirectional(-1, 0),
+                                                alignment: AlignmentDirectional(
+                                                    -1.0, 0.0),
                                                 child: Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(20, 0, 20, 0),
+                                                      .fromSTEB(
+                                                          20.0, 0.0, 20.0, 0.0),
                                                   child: SelectionArea(
                                                       child: Text(
                                                     resultUserCompletionsRecord!
@@ -383,7 +391,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                               FlutterFlowTheme.of(
                                                                       context)
                                                                   .bodyText1Family,
-                                                          fontSize: 18,
+                                                          fontSize: 18.0,
                                                           useGoogleFonts: GoogleFonts
                                                                   .asMap()
                                                               .containsKey(
@@ -401,14 +409,14 @@ class _ResultWidgetState extends State<ResultWidget> {
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          20, 0, 0, 0),
+                                          20.0, 0.0, 0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    0, 10, 20, 0),
+                                                    0.0, 10.0, 20.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () async {
                                                 context.pushNamed(
@@ -428,13 +436,15 @@ class _ResultWidgetState extends State<ResultWidget> {
                                               },
                                               text: 'Continue Prompt',
                                               options: FFButtonOptions(
-                                                width: 220,
-                                                height: 40,
+                                                width: 220.0,
+                                                height: 40.0,
                                                 padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 0, 0, 0),
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 0.0),
                                                 iconPadding:
                                                     EdgeInsetsDirectional
-                                                        .fromSTEB(0, 0, 0, 0),
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .primaryColor,
@@ -456,30 +466,32 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                         ),
                                                 borderSide: BorderSide(
                                                   color: Colors.transparent,
-                                                  width: 1,
+                                                  width: 1.0,
                                                 ),
                                                 borderRadius:
-                                                    BorderRadius.circular(0),
+                                                    BorderRadius.circular(0.0),
                                               ),
                                             ),
                                           ),
                                           Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    0, 10, 20, 0),
+                                                    0.0, 10.0, 20.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () async {
                                                 context.pushNamed('Home');
                                               },
                                               text: 'Start New Prompt',
                                               options: FFButtonOptions(
-                                                width: 200,
-                                                height: 40,
+                                                width: 200.0,
+                                                height: 40.0,
                                                 padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 0, 0, 0),
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 0.0),
                                                 iconPadding:
                                                     EdgeInsetsDirectional
-                                                        .fromSTEB(0, 0, 0, 0),
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .primaryColor,
@@ -501,10 +513,10 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                         ),
                                                 borderSide: BorderSide(
                                                   color: Colors.transparent,
-                                                  width: 1,
+                                                  width: 1.0,
                                                 ),
                                                 borderRadius:
-                                                    BorderRadius.circular(0),
+                                                    BorderRadius.circular(0.0),
                                               ),
                                             ),
                                           ),
@@ -514,12 +526,12 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                 Align(
                                                   alignment:
                                                       AlignmentDirectional(
-                                                          1, 0),
+                                                          1.0, 0.0),
                                                   child: Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 10, 20, 0),
+                                                            .fromSTEB(0.0, 10.0,
+                                                                20.0, 0.0),
                                                     child: FFButtonWidget(
                                                       onPressed: () async {
                                                         ScaffoldMessenger.of(
@@ -613,16 +625,22 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                       },
                                                       text: 'Generate .docx',
                                                       options: FFButtonOptions(
-                                                        width: 200,
-                                                        height: 40,
+                                                        width: 200.0,
+                                                        height: 40.0,
                                                         padding:
                                                             EdgeInsetsDirectional
                                                                 .fromSTEB(
-                                                                    0, 0, 0, 0),
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
                                                         iconPadding:
                                                             EdgeInsetsDirectional
                                                                 .fromSTEB(
-                                                                    0, 0, 0, 0),
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -646,11 +664,11 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                         borderSide: BorderSide(
                                                           color: Colors
                                                               .transparent,
-                                                          width: 1,
+                                                          width: 1.0,
                                                         ),
                                                         borderRadius:
                                                             BorderRadius
-                                                                .circular(0),
+                                                                .circular(0.0),
                                                       ),
                                                     ),
                                                   ),
@@ -664,12 +682,15 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                   Align(
                                                     alignment:
                                                         AlignmentDirectional(
-                                                            1, 0),
+                                                            1.0, 0.0),
                                                     child: Padding(
                                                       padding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
-                                                                  0, 10, 20, 0),
+                                                                  0.0,
+                                                                  10.0,
+                                                                  20.0,
+                                                                  0.0),
                                                       child: FFButtonWidget(
                                                         onPressed: () async {
                                                           await launchURL(
@@ -679,16 +700,22 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                         text: 'Download .docx',
                                                         options:
                                                             FFButtonOptions(
-                                                          width: 200,
-                                                          height: 40,
+                                                          width: 200.0,
+                                                          height: 40.0,
                                                           padding:
                                                               EdgeInsetsDirectional
-                                                                  .fromSTEB(0,
-                                                                      0, 0, 0),
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
                                                           iconPadding:
                                                               EdgeInsetsDirectional
-                                                                  .fromSTEB(0,
-                                                                      0, 0, 0),
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
                                                           color:
                                                               Color(0xFF4EABF5),
                                                           textStyle:
@@ -710,11 +737,12 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                               BorderSide(
                                                             color: Colors
                                                                 .transparent,
-                                                            width: 1,
+                                                            width: 1.0,
                                                           ),
                                                           borderRadius:
                                                               BorderRadius
-                                                                  .circular(0),
+                                                                  .circular(
+                                                                      0.0),
                                                         ),
                                                       ),
                                                     ),
@@ -738,22 +766,23 @@ class _ResultWidgetState extends State<ResultWidget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(10, 0, 20, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  10.0, 0.0, 20.0, 0.0),
                               child: Material(
                                 color: Colors.transparent,
-                                elevation: 1,
+                                elevation: 1.0,
                                 child: Container(
-                                  width: MediaQuery.of(context).size.width,
-                                  height: 800,
+                                  width:
+                                      MediaQuery.of(context).size.width * 1.0,
+                                  height: 800.0,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
                                     boxShadow: [
                                       BoxShadow(
-                                        blurRadius: 4,
+                                        blurRadius: 4.0,
                                         color: Color(0x33000000),
-                                        offset: Offset(0, 2),
+                                        offset: Offset(0.0, 2.0),
                                       )
                                     ],
                                   ),
@@ -762,13 +791,14 @@ class _ResultWidgetState extends State<ResultWidget> {
                                     children: [
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 30, 0, 0),
+                                            0.0, 30.0, 0.0, 0.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(20, 0, 5, 0),
+                                                  .fromSTEB(
+                                                      20.0, 0.0, 5.0, 0.0),
                                               child: InkWell(
                                                 onTap: () async {
                                                   FFAppState().update(() {
@@ -781,7 +811,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .tertiaryColor,
-                                                  size: 24,
+                                                  size: 24.0,
                                                 ),
                                               ),
                                             ),
@@ -818,12 +848,12 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                 child: Align(
                                                   alignment:
                                                       AlignmentDirectional(
-                                                          1, 0),
+                                                          1.0, 0.0),
                                                   child: Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 0, 10, 0),
+                                                            .fromSTEB(0.0, 0.0,
+                                                                10.0, 0.0),
                                                     child: InkWell(
                                                       onTap: () async {
                                                         setState(() {
@@ -838,7 +868,7 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .tertiaryColor,
-                                                        size: 24,
+                                                        size: 24.0,
                                                       ),
                                                     ),
                                                   ),
@@ -853,9 +883,10 @@ class _ResultWidgetState extends State<ResultWidget> {
                                           Expanded(
                                             child: Container(
                                               width: MediaQuery.of(context)
-                                                  .size
-                                                  .width,
-                                              height: 700,
+                                                      .size
+                                                      .width *
+                                                  1.0,
+                                              height: 700.0,
                                               decoration: BoxDecoration(
                                                 color:
                                                     FlutterFlowTheme.of(context)
@@ -877,25 +908,26 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                             Align(
                                                               alignment:
                                                                   AlignmentDirectional(
-                                                                      0, 0),
+                                                                      0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
                                                                     EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            0,
-                                                                            0,
-                                                                            0,
-                                                                            10),
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            10.0),
                                                                 child:
                                                                     Container(
                                                                   width: MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .width,
+                                                                              context)
+                                                                          .size
+                                                                          .width *
+                                                                      1.0,
                                                                   constraints:
                                                                       BoxConstraints(
                                                                     maxWidth:
-                                                                        1140,
+                                                                        1140.0,
                                                                   ),
                                                                   decoration:
                                                                       BoxDecoration(
@@ -907,10 +939,10 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                                       Padding(
                                                                     padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            10,
-                                                                            0,
-                                                                            10,
-                                                                            0),
+                                                                            10.0,
+                                                                            0.0,
+                                                                            10.0,
+                                                                            0.0),
                                                                     child:
                                                                         ListView(
                                                                       padding:
@@ -923,16 +955,16 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                                       children: [
                                                                         Padding(
                                                                           padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              0,
-                                                                              10,
-                                                                              0,
-                                                                              0),
+                                                                              0.0,
+                                                                              10.0,
+                                                                              0.0,
+                                                                              0.0),
                                                                           child:
                                                                               Text(
                                                                             resultUserCompletionsRecord!.datasetNames!.toList().first,
                                                                             style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                   fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                  fontSize: 13,
+                                                                                  fontSize: 13.0,
                                                                                   fontWeight: FontWeight.bold,
                                                                                   useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
                                                                                 ),
@@ -940,10 +972,10 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                                         ),
                                                                         Padding(
                                                                           padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              0,
-                                                                              10,
-                                                                              0,
-                                                                              10),
+                                                                              0.0,
+                                                                              10.0,
+                                                                              0.0,
+                                                                              10.0),
                                                                           child:
                                                                               Text(
                                                                             resultUserCompletionsRecord!.docTitles!.toList().first,
@@ -973,25 +1005,26 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                             Align(
                                                               alignment:
                                                                   AlignmentDirectional(
-                                                                      0, 0),
+                                                                      0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
                                                                     EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            0,
-                                                                            0,
-                                                                            0,
-                                                                            10),
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            10.0),
                                                                 child:
                                                                     Container(
                                                                   width: MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .width,
+                                                                              context)
+                                                                          .size
+                                                                          .width *
+                                                                      1.0,
                                                                   constraints:
                                                                       BoxConstraints(
                                                                     maxWidth:
-                                                                        1140,
+                                                                        1140.0,
                                                                   ),
                                                                   decoration:
                                                                       BoxDecoration(
@@ -1003,10 +1036,10 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                                       Padding(
                                                                     padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            10,
-                                                                            0,
-                                                                            10,
-                                                                            0),
+                                                                            10.0,
+                                                                            0.0,
+                                                                            10.0,
+                                                                            0.0),
                                                                     child:
                                                                         ListView(
                                                                       padding:
@@ -1019,16 +1052,16 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                                       children: [
                                                                         Padding(
                                                                           padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              0,
-                                                                              10,
-                                                                              0,
-                                                                              0),
+                                                                              0.0,
+                                                                              10.0,
+                                                                              0.0,
+                                                                              0.0),
                                                                           child:
                                                                               Text(
                                                                             resultUserCompletionsRecord!.datasetNames!.toList()[1],
                                                                             style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                   fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                  fontSize: 13,
+                                                                                  fontSize: 13.0,
                                                                                   fontWeight: FontWeight.bold,
                                                                                   useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
                                                                                 ),
@@ -1036,10 +1069,10 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                                         ),
                                                                         Padding(
                                                                           padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              0,
-                                                                              10,
-                                                                              0,
-                                                                              10),
+                                                                              0.0,
+                                                                              10.0,
+                                                                              0.0,
+                                                                              10.0),
                                                                           child:
                                                                               Text(
                                                                             resultUserCompletionsRecord!.docTitles!.toList()[1],
@@ -1068,25 +1101,26 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                             Align(
                                                               alignment:
                                                                   AlignmentDirectional(
-                                                                      0, 0),
+                                                                      0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
                                                                     EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            0,
-                                                                            0,
-                                                                            0,
-                                                                            10),
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            10.0),
                                                                 child:
                                                                     Container(
                                                                   width: MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .width,
+                                                                              context)
+                                                                          .size
+                                                                          .width *
+                                                                      1.0,
                                                                   constraints:
                                                                       BoxConstraints(
                                                                     maxWidth:
-                                                                        1140,
+                                                                        1140.0,
                                                                   ),
                                                                   decoration:
                                                                       BoxDecoration(
@@ -1098,10 +1132,10 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                                       Padding(
                                                                     padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            10,
-                                                                            0,
-                                                                            10,
-                                                                            0),
+                                                                            10.0,
+                                                                            0.0,
+                                                                            10.0,
+                                                                            0.0),
                                                                     child:
                                                                         ListView(
                                                                       padding:
@@ -1114,16 +1148,16 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                                       children: [
                                                                         Padding(
                                                                           padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              0,
-                                                                              10,
-                                                                              0,
-                                                                              0),
+                                                                              0.0,
+                                                                              10.0,
+                                                                              0.0,
+                                                                              0.0),
                                                                           child:
                                                                               Text(
                                                                             resultUserCompletionsRecord!.datasetNames!.toList()[2],
                                                                             style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                   fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                  fontSize: 13,
+                                                                                  fontSize: 13.0,
                                                                                   fontWeight: FontWeight.bold,
                                                                                   useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
                                                                                 ),
@@ -1131,10 +1165,10 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                                         ),
                                                                         Padding(
                                                                           padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              0,
-                                                                              10,
-                                                                              0,
-                                                                              10),
+                                                                              0.0,
+                                                                              10.0,
+                                                                              0.0,
+                                                                              10.0),
                                                                           child:
                                                                               Text(
                                                                             resultUserCompletionsRecord!.docTitles!.toList()[2],
@@ -1163,25 +1197,26 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                             Align(
                                                               alignment:
                                                                   AlignmentDirectional(
-                                                                      0, 0),
+                                                                      0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
                                                                     EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            0,
-                                                                            0,
-                                                                            0,
-                                                                            10),
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            10.0),
                                                                 child:
                                                                     Container(
                                                                   width: MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .width,
+                                                                              context)
+                                                                          .size
+                                                                          .width *
+                                                                      1.0,
                                                                   constraints:
                                                                       BoxConstraints(
                                                                     maxWidth:
-                                                                        1140,
+                                                                        1140.0,
                                                                   ),
                                                                   decoration:
                                                                       BoxDecoration(
@@ -1193,10 +1228,10 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                                       Padding(
                                                                     padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            10,
-                                                                            0,
-                                                                            10,
-                                                                            0),
+                                                                            10.0,
+                                                                            0.0,
+                                                                            10.0,
+                                                                            0.0),
                                                                     child:
                                                                         ListView(
                                                                       padding:
@@ -1209,16 +1244,16 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                                       children: [
                                                                         Padding(
                                                                           padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              0,
-                                                                              10,
-                                                                              0,
-                                                                              0),
+                                                                              0.0,
+                                                                              10.0,
+                                                                              0.0,
+                                                                              0.0),
                                                                           child:
                                                                               Text(
                                                                             resultUserCompletionsRecord!.datasetNames!.toList()[3],
                                                                             style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                   fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                  fontSize: 13,
+                                                                                  fontSize: 13.0,
                                                                                   fontWeight: FontWeight.bold,
                                                                                   useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
                                                                                 ),
@@ -1226,10 +1261,10 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                                         ),
                                                                         Padding(
                                                                           padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              0,
-                                                                              10,
-                                                                              0,
-                                                                              10),
+                                                                              0.0,
+                                                                              10.0,
+                                                                              0.0,
+                                                                              10.0),
                                                                           child:
                                                                               Text(
                                                                             resultUserCompletionsRecord!.docTitles!.toList()[3],
@@ -1258,25 +1293,26 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                             Align(
                                                               alignment:
                                                                   AlignmentDirectional(
-                                                                      0, 0),
+                                                                      0.0, 0.0),
                                                               child: Padding(
                                                                 padding:
                                                                     EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            0,
-                                                                            0,
-                                                                            0,
-                                                                            10),
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            10.0),
                                                                 child:
                                                                     Container(
                                                                   width: MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .width,
+                                                                              context)
+                                                                          .size
+                                                                          .width *
+                                                                      1.0,
                                                                   constraints:
                                                                       BoxConstraints(
                                                                     maxWidth:
-                                                                        1140,
+                                                                        1140.0,
                                                                   ),
                                                                   decoration:
                                                                       BoxDecoration(
@@ -1288,10 +1324,10 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                                       Padding(
                                                                     padding: EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            10,
-                                                                            0,
-                                                                            10,
-                                                                            0),
+                                                                            10.0,
+                                                                            0.0,
+                                                                            10.0,
+                                                                            0.0),
                                                                     child:
                                                                         ListView(
                                                                       padding:
@@ -1304,16 +1340,16 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                                       children: [
                                                                         Padding(
                                                                           padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              0,
-                                                                              10,
-                                                                              0,
-                                                                              0),
+                                                                              0.0,
+                                                                              10.0,
+                                                                              0.0,
+                                                                              0.0),
                                                                           child:
                                                                               Text(
                                                                             resultUserCompletionsRecord!.datasetNames!.toList()[4],
                                                                             style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                   fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                  fontSize: 13,
+                                                                                  fontSize: 13.0,
                                                                                   fontWeight: FontWeight.bold,
                                                                                   useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
                                                                                 ),
@@ -1321,10 +1357,10 @@ class _ResultWidgetState extends State<ResultWidget> {
                                                                         ),
                                                                         Padding(
                                                                           padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              0,
-                                                                              10,
-                                                                              0,
-                                                                              10),
+                                                                              0.0,
+                                                                              10.0,
+                                                                              0.0,
+                                                                              10.0),
                                                                           child:
                                                                               Text(
                                                                             resultUserCompletionsRecord!.docTitles!.toList()[4],

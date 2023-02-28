@@ -50,12 +50,12 @@ class _AddDatasetWidgetState extends State<AddDatasetWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: AlignmentDirectional(0, 0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Container(
-        width: 600,
+        width: 600.0,
         constraints: BoxConstraints(
-          maxWidth: 1240,
-          maxHeight: 600,
+          maxWidth: 1240.0,
+          maxHeight: 600.0,
         ),
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -65,11 +65,12 @@ class _AddDatasetWidgetState extends State<AddDatasetWidget> {
           children: [
             Expanded(
               child: Align(
-                alignment: AlignmentDirectional(0, 0),
+                alignment: AlignmentDirectional(0.0, 0.0),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
+                  padding:
+                      EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
                   child: Container(
-                    width: MediaQuery.of(context).size.width,
+                    width: MediaQuery.of(context).size.width * 1.0,
                     child: Form(
                       key: _model.formKey,
                       autovalidateMode: AutovalidateMode.disabled,
@@ -77,8 +78,8 @@ class _AddDatasetWidgetState extends State<AddDatasetWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 20.0),
                             child: Text(
                               'Add a new Dataset',
                               style: FlutterFlowTheme.of(context).bodyText1,
@@ -94,7 +95,7 @@ class _AddDatasetWidgetState extends State<AddDatasetWidget> {
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: FlutterFlowTheme.of(context).alternate,
-                                  width: 1,
+                                  width: 1.0,
                                 ),
                                 borderRadius: const BorderRadius.only(
                                   topLeft: Radius.circular(4.0),
@@ -104,7 +105,7 @@ class _AddDatasetWidgetState extends State<AddDatasetWidget> {
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: FlutterFlowTheme.of(context).alternate,
-                                  width: 1,
+                                  width: 1.0,
                                 ),
                                 borderRadius: const BorderRadius.only(
                                   topLeft: Radius.circular(4.0),
@@ -114,7 +115,7 @@ class _AddDatasetWidgetState extends State<AddDatasetWidget> {
                               errorBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0xFF980000),
-                                  width: 1,
+                                  width: 1.0,
                                 ),
                                 borderRadius: const BorderRadius.only(
                                   topLeft: Radius.circular(4.0),
@@ -124,7 +125,7 @@ class _AddDatasetWidgetState extends State<AddDatasetWidget> {
                               focusedErrorBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0xFF980000),
-                                  width: 1,
+                                  width: 1.0,
                                 ),
                                 borderRadius: const BorderRadius.only(
                                   topLeft: Radius.circular(4.0),
@@ -137,8 +138,8 @@ class _AddDatasetWidgetState extends State<AddDatasetWidget> {
                                 .asValidator(context),
                           ),
                           Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 20.0, 0.0, 0.0),
                             child: TextFormField(
                               controller: _model.textController2,
                               autofocus: true,
@@ -151,7 +152,7 @@ class _AddDatasetWidgetState extends State<AddDatasetWidget> {
                                   borderSide: BorderSide(
                                     color:
                                         FlutterFlowTheme.of(context).alternate,
-                                    width: 1,
+                                    width: 1.0,
                                   ),
                                   borderRadius: const BorderRadius.only(
                                     topLeft: Radius.circular(4.0),
@@ -162,7 +163,7 @@ class _AddDatasetWidgetState extends State<AddDatasetWidget> {
                                   borderSide: BorderSide(
                                     color:
                                         FlutterFlowTheme.of(context).alternate,
-                                    width: 1,
+                                    width: 1.0,
                                   ),
                                   borderRadius: const BorderRadius.only(
                                     topLeft: Radius.circular(4.0),
@@ -172,7 +173,7 @@ class _AddDatasetWidgetState extends State<AddDatasetWidget> {
                                 errorBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: Color(0xFF980000),
-                                    width: 1,
+                                    width: 1.0,
                                   ),
                                   borderRadius: const BorderRadius.only(
                                     topLeft: Radius.circular(4.0),
@@ -182,7 +183,7 @@ class _AddDatasetWidgetState extends State<AddDatasetWidget> {
                                 focusedErrorBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: Color(0xFF980000),
-                                    width: 1,
+                                    width: 1.0,
                                   ),
                                   borderRadius: const BorderRadius.only(
                                     topLeft: Radius.circular(4.0),
@@ -197,10 +198,10 @@ class _AddDatasetWidgetState extends State<AddDatasetWidget> {
                             ),
                           ),
                           Align(
-                            alignment: AlignmentDirectional(1, 0),
+                            alignment: AlignmentDirectional(1.0, 0.0),
                             child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 20.0, 0.0, 0.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
                                   final userDatasetsCreateData =
@@ -227,12 +228,12 @@ class _AddDatasetWidgetState extends State<AddDatasetWidget> {
                                 },
                                 text: 'Save',
                                 options: FFButtonOptions(
-                                  width: 130,
-                                  height: 40,
+                                  width: 130.0,
+                                  height: 40.0,
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 0, 0),
+                                      0.0, 0.0, 0.0, 0.0),
                                   iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 0, 0),
+                                      0.0, 0.0, 0.0, 0.0),
                                   color:
                                       FlutterFlowTheme.of(context).primaryColor,
                                   textStyle: FlutterFlowTheme.of(context)
@@ -248,9 +249,9 @@ class _AddDatasetWidgetState extends State<AddDatasetWidget> {
                                       ),
                                   borderSide: BorderSide(
                                     color: Colors.transparent,
-                                    width: 1,
+                                    width: 1.0,
                                   ),
-                                  borderRadius: BorderRadius.circular(20),
+                                  borderRadius: BorderRadius.circular(20.0),
                                 ),
                               ),
                             ),

@@ -49,13 +49,13 @@ class _HistoryWidgetState extends State<HistoryWidget> {
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(50),
+        preferredSize: Size.fromHeight(50.0),
         child: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
           actions: [],
           centerTitle: true,
-          elevation: 0,
+          elevation: 0.0,
         ),
       ),
       body: SafeArea(
@@ -87,8 +87,8 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: 800,
+                            width: MediaQuery.of(context).size.width * 1.0,
+                            height: 800.0,
                             decoration: BoxDecoration(),
                             child: StreamBuilder<List<UserCompletionsRecord>>(
                               stream: queryUserCompletionsRecord(
@@ -102,12 +102,12 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                 if (!snapshot.hasData) {
                                   return Center(
                                     child: SizedBox(
-                                      width: 50,
-                                      height: 50,
+                                      width: 50.0,
+                                      height: 50.0,
                                       child: SpinKitRipple(
                                         color: FlutterFlowTheme.of(context)
                                             .primaryColor,
-                                        size: 50,
+                                        size: 50.0,
                                       ),
                                     ),
                                   );
@@ -127,20 +127,20 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                             listViewIndex];
                                     return Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          10, 0, 10, 10),
+                                          10.0, 0.0, 10.0, 10.0),
                                       child: Material(
                                         color: Colors.transparent,
-                                        elevation: 1,
+                                        elevation: 1.0,
                                         child: Container(
-                                          width: 100,
+                                          width: 100.0,
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
                                             boxShadow: [
                                               BoxShadow(
-                                                blurRadius: 4,
+                                                blurRadius: 4.0,
                                                 color: Color(0x33000000),
-                                                offset: Offset(0, 2),
+                                                offset: Offset(0.0, 2.0),
                                               )
                                             ],
                                           ),
@@ -149,7 +149,8 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                             children: [
                                               Padding(
                                                 padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 5, 0, 0),
+                                                    .fromSTEB(
+                                                        0.0, 5.0, 0.0, 0.0),
                                                 child: Row(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -158,12 +159,15 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                       child: Align(
                                                         alignment:
                                                             AlignmentDirectional(
-                                                                1, 0),
+                                                                1.0, 0.0),
                                                         child: Padding(
                                                           padding:
                                                               EdgeInsetsDirectional
-                                                                  .fromSTEB(0,
-                                                                      2, 15, 0),
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      2.0,
+                                                                      15.0,
+                                                                      0.0),
                                                           child: Text(
                                                             dateTimeFormat(
                                                                 'MMMMEEEEd',
@@ -196,7 +200,10 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                       padding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
-                                                                  0, 3, 8, 0),
+                                                                  0.0,
+                                                                  3.0,
+                                                                  8.0,
+                                                                  0.0),
                                                       child: InkWell(
                                                         onTap: () async {
                                                           await listViewUserCompletionsRecord
@@ -209,7 +216,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .grayIcon,
-                                                          size: 18,
+                                                          size: 18.0,
                                                         ),
                                                       ),
                                                     ),
@@ -223,7 +230,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                     child: Align(
                                                       alignment:
                                                           AlignmentDirectional(
-                                                              -1, 0),
+                                                              -1.0, 0.0),
                                                       child: Column(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
@@ -232,10 +239,10 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                             padding:
                                                                 EdgeInsetsDirectional
                                                                     .fromSTEB(
-                                                                        20,
-                                                                        10,
-                                                                        20,
-                                                                        5),
+                                                                        20.0,
+                                                                        10.0,
+                                                                        20.0,
+                                                                        5.0),
                                                             child:
                                                                 SelectionArea(
                                                                     child: Text(
@@ -257,7 +264,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                                         FlutterFlowTheme.of(context)
                                                                             .title1Family,
                                                                     fontSize:
-                                                                        16,
+                                                                        16.0,
                                                                     useGoogleFonts: GoogleFonts
                                                                             .asMap()
                                                                         .containsKey(
@@ -278,7 +285,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                     child: Align(
                                                       alignment:
                                                           AlignmentDirectional(
-                                                              -1, 0),
+                                                              -1.0, 0.0),
                                                       child: Column(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
@@ -287,10 +294,10 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                             padding:
                                                                 EdgeInsetsDirectional
                                                                     .fromSTEB(
-                                                                        20,
-                                                                        0,
-                                                                        20,
-                                                                        20),
+                                                                        20.0,
+                                                                        0.0,
+                                                                        20.0,
+                                                                        20.0),
                                                             child:
                                                                 SelectionArea(
                                                                     child: Text(
@@ -329,12 +336,15 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                     child: Align(
                                                       alignment:
                                                           AlignmentDirectional(
-                                                              1, 0),
+                                                              1.0, 0.0),
                                                       child: Padding(
                                                         padding:
                                                             EdgeInsetsDirectional
                                                                 .fromSTEB(
-                                                                    0, 0, 0, 5),
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    5.0),
                                                         child: InkWell(
                                                           onTap: () async {
                                                             await Clipboard.setData(
@@ -390,8 +400,8 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                   Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                5, 0, 8, 5),
+                                                            .fromSTEB(5.0, 0.0,
+                                                                8.0, 5.0),
                                                     child: InkWell(
                                                       onTap: () async {
                                                         await Clipboard.setData(
@@ -426,7 +436,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .grayIcon,
-                                                        size: 18,
+                                                        size: 18.0,
                                                       ),
                                                     ),
                                                   ),

@@ -1,6 +1,8 @@
 import '/auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/components/add_dataset_widget.dart';
+import '/components/add_list_widget.dart';
 import '/components/confirm_delete_widget.dart';
 import '/components/edit_dataset_title_widget.dart';
 import '/components/edit_title_widget.dart';
@@ -72,7 +74,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(50),
+        preferredSize: Size.fromHeight(50.0),
         child: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
@@ -82,7 +84,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
           ),
           actions: [],
           centerTitle: true,
-          elevation: 0,
+          elevation: 0.0,
         ),
       ),
       body: SafeArea(
@@ -112,21 +114,22 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              5.0, 0.0, 5.0, 0.0),
                           child: Material(
                             color: Colors.transparent,
-                            elevation: 1,
+                            elevation: 1.0,
                             child: Container(
                               width: MediaQuery.of(context).size.width * 0.98,
-                              height: 800,
+                              height: 800.0,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
                                 boxShadow: [
                                   BoxShadow(
-                                    blurRadius: 4,
+                                    blurRadius: 4.0,
                                     color: Color(0x33000000),
-                                    offset: Offset(0, 2),
+                                    offset: Offset(0.0, 2.0),
                                   )
                                 ],
                               ),
@@ -143,7 +146,8 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                             Expanded(
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 50, 0, 0),
+                                                    .fromSTEB(
+                                                        0.0, 50.0, 0.0, 0.0),
                                                 child: Text(
                                                   'Select a Dataset from the right',
                                                   textAlign: TextAlign.center,
@@ -161,19 +165,19 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                       FFAppState().unsetDataset)
                                     StreamBuilder<UserDatasetsRecord>(
                                       stream: UserDatasetsRecord.getDocument(
-                                          FFAppState().activeDataset!),
+                                          widget.activeDataset!.reference),
                                       builder: (context, snapshot) {
                                         // Customize what your widget looks like when it's loading.
                                         if (!snapshot.hasData) {
                                           return Center(
                                             child: SizedBox(
-                                              width: 50,
-                                              height: 50,
+                                              width: 50.0,
+                                              height: 50.0,
                                               child: SpinKitRipple(
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .primaryColor,
-                                                size: 50,
+                                                size: 50.0,
                                               ),
                                             ),
                                           );
@@ -185,15 +189,16 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                           children: [
                                             Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 20, 0, 0),
+                                                  .fromSTEB(
+                                                      0.0, 20.0, 0.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                10, 8, 0, 0),
+                                                            .fromSTEB(10.0, 8.0,
+                                                                0.0, 0.0),
                                                     child: Text(
                                                       columnUserDatasetsRecord
                                                           .datasetName!,
@@ -206,8 +211,8 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                   Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                5, 0, 0, 0),
+                                                            .fromSTEB(5.0, 0.0,
+                                                                0.0, 0.0),
                                                     child: InkWell(
                                                       onTap: () async {
                                                         await showModalBottomSheet(
@@ -225,7 +230,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                       .of(context)
                                                                   .viewInsets,
                                                               child: Container(
-                                                                height: 700,
+                                                                height: 700.0,
                                                                 child:
                                                                     EditDatasetTitleWidget(
                                                                   activeDatasetT:
@@ -240,19 +245,22 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                       child: FaIcon(
                                                         FontAwesomeIcons.edit,
                                                         color: Colors.black,
-                                                        size: 12,
+                                                        size: 12.0,
                                                       ),
                                                     ),
                                                   ),
                                                   Align(
                                                     alignment:
                                                         AlignmentDirectional(
-                                                            -1, 0),
+                                                            -1.0, 0.0),
                                                     child: Padding(
                                                       padding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
-                                                                  25, 10, 2, 0),
+                                                                  25.0,
+                                                                  10.0,
+                                                                  2.0,
+                                                                  0.0),
                                                       child: Icon(
                                                         Icons
                                                             .calendar_today_outlined,
@@ -260,15 +268,15 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .alternate,
-                                                        size: 16,
+                                                        size: 16.0,
                                                       ),
                                                     ),
                                                   ),
                                                   Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                5, 10, 5, 0),
+                                                            .fromSTEB(5.0, 10.0,
+                                                                5.0, 0.0),
                                                     child: Text(
                                                       dateTimeFormat(
                                                           'jm',
@@ -285,7 +293,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .alternate,
-                                                                fontSize: 12,
+                                                                fontSize: 12.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .normal,
@@ -300,8 +308,8 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                   Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 10, 10, 0),
+                                                            .fromSTEB(0.0, 10.0,
+                                                                10.0, 0.0),
                                                     child: Text(
                                                       dateTimeFormat(
                                                           'MMMMEEEEd',
@@ -318,7 +326,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .alternate,
-                                                                fontSize: 12,
+                                                                fontSize: 12.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .normal,
@@ -335,7 +343,8 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                             ),
                                             Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(10, 10, 0, 10),
+                                                  .fromSTEB(
+                                                      10.0, 10.0, 0.0, 10.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
@@ -349,14 +358,14 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                         Align(
                                                           alignment:
                                                               AlignmentDirectional(
-                                                                  0, 0),
+                                                                  0.0, 0.0),
                                                           child: Container(
-                                                            width: 190,
-                                                            height: 37,
+                                                            width: 190.0,
+                                                            height: 37.0,
                                                             child: custom_widgets
                                                                 .SelectAndUploadFiles(
-                                                              width: 190,
-                                                              height: 37,
+                                                              width: 190.0,
+                                                              height: 37.0,
                                                               userId:
                                                                   currentUserUid,
                                                               datasetId:
@@ -406,7 +415,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                       child:
                                                                           Container(
                                                                         height:
-                                                                            700,
+                                                                            700.0,
                                                                         child:
                                                                             PaymentWidget(),
                                                                       ),
@@ -421,26 +430,26 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                               icon: Icon(
                                                                 Icons
                                                                     .file_copy_outlined,
-                                                                size: 15,
+                                                                size: 15.0,
                                                               ),
                                                               options:
                                                                   FFButtonOptions(
-                                                                width: 210,
-                                                                height: 39,
+                                                                width: 210.0,
+                                                                height: 39.0,
                                                                 padding:
                                                                     EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            0,
-                                                                            0,
-                                                                            0,
-                                                                            0),
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
                                                                 iconPadding:
                                                                     EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            0,
-                                                                            0,
-                                                                            0,
-                                                                            0),
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .primaryColor,
@@ -454,7 +463,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                       color: Colors
                                                                           .white,
                                                                       fontSize:
-                                                                          16,
+                                                                          16.0,
                                                                       useGoogleFonts: GoogleFonts
                                                                               .asMap()
                                                                           .containsKey(
@@ -464,12 +473,12 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                     BorderSide(
                                                                   color: Colors
                                                                       .transparent,
-                                                                  width: 1,
+                                                                  width: 1.0,
                                                                 ),
                                                                 borderRadius:
                                                                     BorderRadius
                                                                         .circular(
-                                                                            0),
+                                                                            0.0),
                                                               ),
                                                             ),
                                                           ),
@@ -489,12 +498,15 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                   Align(
                                                     alignment:
                                                         AlignmentDirectional(
-                                                            1, 0),
+                                                            1.0, 0.0),
                                                     child: Padding(
                                                       padding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
-                                                                  10, 0, 20, 0),
+                                                                  10.0,
+                                                                  0.0,
+                                                                  20.0,
+                                                                  0.0),
                                                       child: InkWell(
                                                         onTap: () async {
                                                           await showModalBottomSheet(
@@ -513,7 +525,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                     .viewInsets,
                                                                 child:
                                                                     Container(
-                                                                  height: 500,
+                                                                  height: 500.0,
                                                                   child:
                                                                       UploadConfigWidget(),
                                                                 ),
@@ -528,7 +540,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .alternate,
-                                                          size: 24,
+                                                          size: 24.0,
                                                         ),
                                                       ),
                                                     ),
@@ -536,12 +548,15 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                   Align(
                                                     alignment:
                                                         AlignmentDirectional(
-                                                            -1, 0),
+                                                            -1.0, 0.0),
                                                     child: Padding(
                                                       padding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
-                                                                  0, 0, 10, 0),
+                                                                  0.0,
+                                                                  0.0,
+                                                                  10.0,
+                                                                  0.0),
                                                       child: FFButtonWidget(
                                                         onPressed: () async {
                                                           await showModalBottomSheet(
@@ -560,7 +575,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                     .viewInsets,
                                                                 child:
                                                                     Container(
-                                                                  height: 400,
+                                                                  height: 400.0,
                                                                   child:
                                                                       ConfirmDeleteWidget(
                                                                     datasetRef:
@@ -580,20 +595,26 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                         icon: FaIcon(
                                                           FontAwesomeIcons
                                                               .trashAlt,
-                                                          size: 14,
+                                                          size: 14.0,
                                                         ),
                                                         options:
                                                             FFButtonOptions(
-                                                          width: 160,
-                                                          height: 30,
+                                                          width: 160.0,
+                                                          height: 30.0,
                                                           padding:
                                                               EdgeInsetsDirectional
-                                                                  .fromSTEB(0,
-                                                                      0, 0, 0),
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
                                                           iconPadding:
                                                               EdgeInsetsDirectional
-                                                                  .fromSTEB(0,
-                                                                      0, 0, 0),
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .secondaryBackground,
@@ -609,7 +630,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                             context)
                                                                         .alternate,
                                                                     fontSize:
-                                                                        12,
+                                                                        12.0,
                                                                     useGoogleFonts: GoogleFonts
                                                                             .asMap()
                                                                         .containsKey(
@@ -619,11 +640,12 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                               BorderSide(
                                                             color: Colors
                                                                 .transparent,
-                                                            width: 1,
+                                                            width: 1.0,
                                                           ),
                                                           borderRadius:
                                                               BorderRadius
-                                                                  .circular(0),
+                                                                  .circular(
+                                                                      0.0),
                                                         ),
                                                       ),
                                                     ),
@@ -632,12 +654,15 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                     child: Align(
                                                       alignment:
                                                           AlignmentDirectional(
-                                                              1, 0),
+                                                              1.0, 0.0),
                                                       child: Padding(
                                                         padding:
                                                             EdgeInsetsDirectional
-                                                                .fromSTEB(0, 0,
-                                                                    20, 0),
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    20.0,
+                                                                    0.0),
                                                         child: FFButtonWidget(
                                                           onPressed: () async {
                                                             FFAppState()
@@ -673,26 +698,26 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                           icon: Icon(
                                                             Icons
                                                                 .featured_play_list_rounded,
-                                                            size: 14,
+                                                            size: 14.0,
                                                           ),
                                                           options:
                                                               FFButtonOptions(
-                                                            width: 160,
-                                                            height: 30,
+                                                            width: 160.0,
+                                                            height: 30.0,
                                                             padding:
                                                                 EdgeInsetsDirectional
                                                                     .fromSTEB(
-                                                                        0,
-                                                                        0,
-                                                                        0,
-                                                                        0),
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0),
                                                             iconPadding:
                                                                 EdgeInsetsDirectional
                                                                     .fromSTEB(
-                                                                        0,
-                                                                        0,
-                                                                        0,
-                                                                        0),
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0),
                                                             color: FlutterFlowTheme
                                                                     .of(context)
                                                                 .secondaryBackground,
@@ -708,7 +733,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                               context)
                                                                           .alternate,
                                                                       fontSize:
-                                                                          12,
+                                                                          12.0,
                                                                       useGoogleFonts: GoogleFonts
                                                                               .asMap()
                                                                           .containsKey(
@@ -718,12 +743,12 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                 BorderSide(
                                                               color: Colors
                                                                   .transparent,
-                                                              width: 1,
+                                                              width: 1.0,
                                                             ),
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        0),
+                                                                        0.0),
                                                           ),
                                                         ),
                                                       ),
@@ -732,8 +757,8 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                   Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 0, 10, 0),
+                                                            .fromSTEB(0.0, 0.0,
+                                                                10.0, 0.0),
                                                     child: InkWell(
                                                       onTap: () async {
                                                         context
@@ -745,7 +770,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .tertiaryColor,
-                                                        size: 36,
+                                                        size: 36.0,
                                                       ),
                                                     ),
                                                   ),
@@ -757,7 +782,8 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                               children: [
                                                 Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(10, 10, 0, 5),
+                                                      .fromSTEB(
+                                                          10.0, 10.0, 0.0, 5.0),
                                                   child: Text(
                                                     'Documents in this dataset:',
                                                     style: FlutterFlowTheme.of(
@@ -789,17 +815,18 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                   child: Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 0, 0, 20),
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 20.0),
                                                     child: Container(
                                                       width:
                                                           MediaQuery.of(context)
-                                                              .size
-                                                              .width,
-                                                      height: 700,
+                                                                  .size
+                                                                  .width *
+                                                              1.0,
+                                                      height: 700.0,
                                                       constraints:
                                                           BoxConstraints(
-                                                        maxHeight: 550,
+                                                        maxHeight: 550.0,
                                                       ),
                                                       decoration:
                                                           BoxDecoration(),
@@ -830,15 +857,16 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                   return Center(
                                                                     child:
                                                                         SizedBox(
-                                                                      width: 50,
+                                                                      width:
+                                                                          50.0,
                                                                       height:
-                                                                          50,
+                                                                          50.0,
                                                                       child:
                                                                           SpinKitRipple(
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .primaryColor,
                                                                         size:
-                                                                            50,
+                                                                            50.0,
                                                                       ),
                                                                     ),
                                                                   );
@@ -866,32 +894,30 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                         listViewUserDocsRecordList[
                                                                             listViewIndex];
                                                                     return Padding(
-                                                                      padding: EdgeInsetsDirectional
-                                                                          .fromSTEB(
-                                                                              10,
-                                                                              0,
-                                                                              10,
-                                                                              20),
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          10.0,
+                                                                          0.0,
+                                                                          10.0,
+                                                                          20.0),
                                                                       child:
                                                                           Material(
                                                                         color: Colors
                                                                             .transparent,
                                                                         elevation:
-                                                                            1,
+                                                                            1.0,
                                                                         child:
                                                                             Container(
-                                                                          width: MediaQuery.of(context)
-                                                                              .size
-                                                                              .width,
+                                                                          width:
+                                                                              MediaQuery.of(context).size.width * 1.0,
                                                                           decoration:
                                                                               BoxDecoration(
                                                                             color:
                                                                                 FlutterFlowTheme.of(context).secondaryBackground,
                                                                             boxShadow: [
                                                                               BoxShadow(
-                                                                                blurRadius: 4,
+                                                                                blurRadius: 4.0,
                                                                                 color: Color(0x33000000),
-                                                                                offset: Offset(0, 2),
+                                                                                offset: Offset(0.0, 2.0),
                                                                               )
                                                                             ],
                                                                           ),
@@ -904,52 +930,52 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                 mainAxisSize: MainAxisSize.max,
                                                                                 children: [
                                                                                   Padding(
-                                                                                    padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                                                                     child: Stack(
                                                                                       children: [
                                                                                         if (listViewUserDocsRecord.fileType == 'epub')
                                                                                           FaIcon(
                                                                                             FontAwesomeIcons.book,
                                                                                             color: FlutterFlowTheme.of(context).tertiaryColor,
-                                                                                            size: 16,
+                                                                                            size: 16.0,
                                                                                           ),
                                                                                         if (listViewUserDocsRecord.fileType == 'YouTube video')
                                                                                           FaIcon(
                                                                                             FontAwesomeIcons.youtube,
                                                                                             color: FlutterFlowTheme.of(context).tertiaryColor,
-                                                                                            size: 16,
+                                                                                            size: 16.0,
                                                                                           ),
                                                                                         if (listViewUserDocsRecord.fileType == 'pdf')
                                                                                           FaIcon(
                                                                                             FontAwesomeIcons.solidFilePdf,
                                                                                             color: FlutterFlowTheme.of(context).tertiaryColor,
-                                                                                            size: 16,
+                                                                                            size: 16.0,
                                                                                           ),
                                                                                         if (listViewUserDocsRecord.fileType == 'url')
                                                                                           FaIcon(
                                                                                             FontAwesomeIcons.globe,
                                                                                             color: FlutterFlowTheme.of(context).tertiaryColor,
-                                                                                            size: 16,
+                                                                                            size: 16.0,
                                                                                           ),
                                                                                         if (listViewUserDocsRecord.fileType == 'txt')
                                                                                           Icon(
                                                                                             Icons.text_snippet,
                                                                                             color: FlutterFlowTheme.of(context).tertiaryColor,
-                                                                                            size: 16,
+                                                                                            size: 16.0,
                                                                                           ),
                                                                                         if (listViewUserDocsRecord.fileType == 'docx')
                                                                                           FaIcon(
                                                                                             FontAwesomeIcons.fileWord,
                                                                                             color: FlutterFlowTheme.of(context).tertiaryColor,
-                                                                                            size: 16,
+                                                                                            size: 16.0,
                                                                                           ),
                                                                                       ],
                                                                                     ),
                                                                                   ),
                                                                                   Align(
-                                                                                    alignment: AlignmentDirectional(-1, 0),
+                                                                                    alignment: AlignmentDirectional(-1.0, 0.0),
                                                                                     child: Padding(
-                                                                                      padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                                                                                       child: Text(
                                                                                         listViewUserDocsRecord.docTitle!.maybeHandleOverflow(maxChars: 250),
                                                                                         maxLines: 2,
@@ -958,7 +984,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                     ),
                                                                                   ),
                                                                                   Padding(
-                                                                                    padding: EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
                                                                                     child: InkWell(
                                                                                       onTap: () async {
                                                                                         await showModalBottomSheet(
@@ -970,7 +996,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                             return Padding(
                                                                                               padding: MediaQuery.of(context).viewInsets,
                                                                                               child: Container(
-                                                                                                height: 700,
+                                                                                                height: 700.0,
                                                                                                 child: EditTitleWidget(
                                                                                                   activeDoc: listViewUserDocsRecord,
                                                                                                 ),
@@ -982,15 +1008,15 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                       child: FaIcon(
                                                                                         FontAwesomeIcons.edit,
                                                                                         color: FlutterFlowTheme.of(context).tertiaryColor,
-                                                                                        size: 12,
+                                                                                        size: 12.0,
                                                                                       ),
                                                                                     ),
                                                                                   ),
                                                                                   Expanded(
                                                                                     child: Align(
-                                                                                      alignment: AlignmentDirectional(1, 0),
+                                                                                      alignment: AlignmentDirectional(1.0, 0.0),
                                                                                       child: Padding(
-                                                                                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 5, 0),
+                                                                                        padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
                                                                                         child: InkWell(
                                                                                           onTap: () async {
                                                                                             await launchURL(listViewUserDocsRecord.url!);
@@ -998,16 +1024,16 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                           child: Icon(
                                                                                             Icons.open_in_new,
                                                                                             color: FlutterFlowTheme.of(context).alternate,
-                                                                                            size: 24,
+                                                                                            size: 24.0,
                                                                                           ),
                                                                                         ),
                                                                                       ),
                                                                                     ),
                                                                                   ),
                                                                                   Align(
-                                                                                    alignment: AlignmentDirectional(1, 0),
+                                                                                    alignment: AlignmentDirectional(1.0, 0.0),
                                                                                     child: Padding(
-                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 20.0, 0.0),
                                                                                       child: InkWell(
                                                                                         onTap: () async {
                                                                                           await launchURL(listViewUserDocsRecord.url!);
@@ -1024,7 +1050,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                     ),
                                                                                   ),
                                                                                   Align(
-                                                                                    alignment: AlignmentDirectional(1, 0),
+                                                                                    alignment: AlignmentDirectional(1.0, 0.0),
                                                                                     child: Text(
                                                                                       'Active',
                                                                                       style: FlutterFlowTheme.of(context).bodyText1.override(
@@ -1036,14 +1062,14 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                     ),
                                                                                   ),
                                                                                   Align(
-                                                                                    alignment: AlignmentDirectional(1, 0),
+                                                                                    alignment: AlignmentDirectional(1.0, 0.0),
                                                                                     child: Padding(
-                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 5, 0),
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
                                                                                       child: Theme(
                                                                                         data: ThemeData(
                                                                                           checkboxTheme: CheckboxThemeData(
                                                                                             shape: RoundedRectangleBorder(
-                                                                                              borderRadius: BorderRadius.circular(0),
+                                                                                              borderRadius: BorderRadius.circular(0.0),
                                                                                             ),
                                                                                           ),
                                                                                           unselectedWidgetColor: FlutterFlowTheme.of(context).secondaryColor,
@@ -1076,46 +1102,46 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                 ],
                                                                               ),
                                                                               Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                                                                                 child: Row(
                                                                                   mainAxisSize: MainAxisSize.max,
                                                                                   children: [
                                                                                     Padding(
-                                                                                      padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                                                                       child: Icon(
                                                                                         Icons.calendar_today_outlined,
                                                                                         color: FlutterFlowTheme.of(context).tertiaryColor,
-                                                                                        size: 14,
+                                                                                        size: 14.0,
                                                                                       ),
                                                                                     ),
                                                                                     Padding(
-                                                                                      padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                                                                                       child: Text(
                                                                                         dateTimeFormat('jm', listViewUserDocsRecord.timestamp!),
                                                                                         style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                               fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
                                                                                               color: FlutterFlowTheme.of(context).tertiaryColor,
-                                                                                              fontSize: 12,
+                                                                                              fontSize: 12.0,
                                                                                               fontWeight: FontWeight.normal,
                                                                                               useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
                                                                                             ),
                                                                                       ),
                                                                                     ),
                                                                                     Padding(
-                                                                                      padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                                                                                       child: Text(
                                                                                         dateTimeFormat('yMMMd', listViewUserDocsRecord.timestamp!),
                                                                                         style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                               fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
                                                                                               color: FlutterFlowTheme.of(context).tertiaryColor,
-                                                                                              fontSize: 12,
+                                                                                              fontSize: 12.0,
                                                                                               fontWeight: FontWeight.normal,
                                                                                               useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
                                                                                             ),
                                                                                       ),
                                                                                     ),
                                                                                     Padding(
-                                                                                      padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                                                                                       child: InkWell(
                                                                                         onTap: () async {
                                                                                           await listViewUserDocsRecord.reference.delete();
@@ -1130,12 +1156,12 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                         child: FaIcon(
                                                                                           FontAwesomeIcons.trashAlt,
                                                                                           color: FlutterFlowTheme.of(context).tertiaryColor,
-                                                                                          size: 14,
+                                                                                          size: 14.0,
                                                                                         ),
                                                                                       ),
                                                                                     ),
                                                                                     Padding(
-                                                                                      padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                                                                                       child: InkWell(
                                                                                         onTap: () async {
                                                                                           await listViewUserDocsRecord.reference.delete();
@@ -1152,7 +1178,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                           style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                                 fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
                                                                                                 color: FlutterFlowTheme.of(context).tertiaryColor,
-                                                                                                fontSize: 12,
+                                                                                                fontSize: 12.0,
                                                                                                 fontWeight: FontWeight.normal,
                                                                                                 useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
                                                                                               ),
@@ -1161,7 +1187,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                     ),
                                                                                     if (listViewUserDocsRecord.processing ?? true)
                                                                                       Padding(
-                                                                                        padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
+                                                                                        padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
                                                                                         child: Text(
                                                                                           'Processing',
                                                                                           style: FlutterFlowTheme.of(context).bodyText1.override(
@@ -1212,34 +1238,34 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                               padding:
                                                                   EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          10,
-                                                                          0,
-                                                                          0,
-                                                                          0),
+                                                                          10.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
                                                               child: FaIcon(
                                                                 FontAwesomeIcons
                                                                     .youtube,
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .alternate,
-                                                                size: 36,
+                                                                size: 36.0,
                                                               ),
                                                             ),
                                                             Padding(
                                                               padding:
                                                                   EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          10,
-                                                                          0,
-                                                                          0,
-                                                                          0),
+                                                                          10.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
                                                               child: FaIcon(
                                                                 FontAwesomeIcons
                                                                     .globe,
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .alternate,
-                                                                size: 30,
+                                                                size: 30.0,
                                                               ),
                                                             ),
                                                             Expanded(
@@ -1247,14 +1273,57 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                 padding:
                                                                     EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            10,
-                                                                            0,
-                                                                            5,
-                                                                            0),
+                                                                            10.0,
+                                                                            0.0,
+                                                                            5.0,
+                                                                            0.0),
                                                                 child:
                                                                     TextFormField(
                                                                   controller: _model
                                                                       .scrapeURLController,
+                                                                  onFieldSubmitted:
+                                                                      (_) async {
+                                                                    if (_model.formKey.currentState ==
+                                                                            null ||
+                                                                        !_model
+                                                                            .formKey
+                                                                            .currentState!
+                                                                            .validate()) {
+                                                                      return;
+                                                                    }
+
+                                                                    final userTempUploadsCreateData =
+                                                                        createUserTempUploadsRecordData(
+                                                                      datasetId: widget
+                                                                          .activeDataset!
+                                                                          .datasetId,
+                                                                      urls: _model
+                                                                          .scrapeURLController
+                                                                          .text,
+                                                                      timestamp:
+                                                                          getCurrentTimestamp,
+                                                                      docTitle:
+                                                                          '',
+                                                                      urlId: random_data
+                                                                          .randomString(
+                                                                        9,
+                                                                        9,
+                                                                        true,
+                                                                        true,
+                                                                        true,
+                                                                      ),
+                                                                    );
+                                                                    await UserTempUploadsRecord.createDoc(
+                                                                            currentUserReference!)
+                                                                        .set(
+                                                                            userTempUploadsCreateData);
+                                                                    setState(
+                                                                        () {
+                                                                      _model
+                                                                          .scrapeURLController
+                                                                          ?.clear();
+                                                                    });
+                                                                  },
                                                                   obscureText:
                                                                       false,
                                                                   decoration:
@@ -1273,7 +1342,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .secondaryColor,
                                                                         width:
-                                                                            1,
+                                                                            1.0,
                                                                       ),
                                                                       borderRadius:
                                                                           const BorderRadius
@@ -1291,7 +1360,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .primaryColor,
                                                                         width:
-                                                                            1,
+                                                                            1.0,
                                                                       ),
                                                                       borderRadius:
                                                                           const BorderRadius
@@ -1309,7 +1378,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                         color: Color(
                                                                             0xFF980000),
                                                                         width:
-                                                                            1,
+                                                                            1.0,
                                                                       ),
                                                                       borderRadius:
                                                                           const BorderRadius
@@ -1327,7 +1396,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                         color: Color(
                                                                             0xFF980000),
                                                                         width:
-                                                                            1,
+                                                                            1.0,
                                                                       ),
                                                                       borderRadius:
                                                                           const BorderRadius
@@ -1351,14 +1420,57 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                 ),
                                                               ),
                                                             ),
+                                                            InkWell(
+                                                              onTap: () async {
+                                                                await showModalBottomSheet(
+                                                                  isScrollControlled:
+                                                                      true,
+                                                                  backgroundColor:
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryBackground,
+                                                                  enableDrag:
+                                                                      false,
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (context) {
+                                                                    return Padding(
+                                                                      padding: MediaQuery.of(
+                                                                              context)
+                                                                          .viewInsets,
+                                                                      child:
+                                                                          Container(
+                                                                        height:
+                                                                            700.0,
+                                                                        child:
+                                                                            AddListWidget(
+                                                                          setDataset:
+                                                                              widget.activeDataset,
+                                                                        ),
+                                                                      ),
+                                                                    );
+                                                                  },
+                                                                ).then((value) =>
+                                                                    setState(
+                                                                        () {}));
+                                                              },
+                                                              child: Icon(
+                                                                Icons
+                                                                    .format_list_bulleted,
+                                                                color: Colors
+                                                                    .black,
+                                                                size: 24.0,
+                                                              ),
+                                                            ),
                                                             Padding(
                                                               padding:
                                                                   EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          10,
-                                                                          0,
-                                                                          10,
-                                                                          0),
+                                                                          10.0,
+                                                                          0.0,
+                                                                          10.0,
+                                                                          0.0),
                                                               child:
                                                                   FFButtonWidget(
                                                                 onPressed:
@@ -1372,57 +1484,126 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                           .validate()) {
                                                                     return;
                                                                   }
+                                                                  ScaffoldMessenger.of(
+                                                                          context)
+                                                                      .showSnackBar(
+                                                                    SnackBar(
+                                                                      content:
+                                                                          Text(
+                                                                        'Scraping started...',
+                                                                        style:
+                                                                            TextStyle(
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).primaryText,
+                                                                          fontWeight:
+                                                                              FontWeight.bold,
+                                                                        ),
+                                                                      ),
+                                                                      duration: Duration(
+                                                                          milliseconds:
+                                                                              4000),
+                                                                      backgroundColor:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .secondaryBackground,
+                                                                    ),
+                                                                  );
 
                                                                   final userTempUploadsCreateData =
                                                                       createUserTempUploadsRecordData(
-                                                                    datasetId: widget
-                                                                        .activeDataset!
-                                                                        .datasetId,
                                                                     urls: _model
                                                                         .scrapeURLController
                                                                         .text,
+                                                                    datasetId: widget
+                                                                        .activeDataset!
+                                                                        .datasetId,
                                                                     timestamp:
                                                                         getCurrentTimestamp,
-                                                                    docTitle:
-                                                                        '',
                                                                     urlId: random_data
                                                                         .randomString(
-                                                                      9,
-                                                                      9,
+                                                                      8,
+                                                                      8,
                                                                       true,
                                                                       true,
                                                                       true,
                                                                     ),
+                                                                    datasetName: widget
+                                                                        .activeDataset!
+                                                                        .datasetName,
+                                                                    chunkSize:
+                                                                        FFAppState()
+                                                                            .setChunkSize,
                                                                   );
-                                                                  await UserTempUploadsRecord
+                                                                  var userTempUploadsRecordReference =
+                                                                      UserTempUploadsRecord
                                                                           .createDoc(
-                                                                              currentUserReference!)
+                                                                              currentUserReference!);
+                                                                  await userTempUploadsRecordReference
                                                                       .set(
                                                                           userTempUploadsCreateData);
+                                                                  _model.createURLdoc =
+                                                                      UserTempUploadsRecord.getDocumentFromData(
+                                                                          userTempUploadsCreateData,
+                                                                          userTempUploadsRecordReference);
+                                                                  await ScrapeServerCall
+                                                                      .call(
+                                                                    urlId: _model
+                                                                        .createURLdoc!
+                                                                        .urlId,
+                                                                    idToken:
+                                                                        currentJwtToken,
+                                                                    datasetId: widget
+                                                                        .activeDataset!
+                                                                        .datasetId,
+                                                                  );
                                                                   setState(() {
                                                                     _model
                                                                         .scrapeURLController
                                                                         ?.clear();
                                                                   });
+                                                                  ScaffoldMessenger.of(
+                                                                          context)
+                                                                      .showSnackBar(
+                                                                    SnackBar(
+                                                                      content:
+                                                                          Text(
+                                                                        'Processing... Your results will be available in your dataset shortly.',
+                                                                        style:
+                                                                            TextStyle(
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).primaryText,
+                                                                          fontWeight:
+                                                                              FontWeight.bold,
+                                                                        ),
+                                                                      ),
+                                                                      duration: Duration(
+                                                                          milliseconds:
+                                                                              4000),
+                                                                      backgroundColor:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .secondaryBackground,
+                                                                    ),
+                                                                  );
+
+                                                                  setState(
+                                                                      () {});
                                                                 },
                                                                 text: 'Add URL',
                                                                 options:
                                                                     FFButtonOptions(
-                                                                  width: 130,
-                                                                  height: 40,
+                                                                  width: 130.0,
+                                                                  height: 40.0,
                                                                   padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          0,
-                                                                          0,
-                                                                          0,
-                                                                          0),
-                                                                  iconPadding:
-                                                                      EdgeInsetsDirectional
-                                                                          .fromSTEB(
-                                                                              0,
-                                                                              0,
-                                                                              0,
-                                                                              0),
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                  iconPadding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .primaryColor,
@@ -1441,12 +1622,12 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                       BorderSide(
                                                                     color: Colors
                                                                         .transparent,
-                                                                    width: 1,
+                                                                    width: 1.0,
                                                                   ),
                                                                   borderRadius:
                                                                       BorderRadius
                                                                           .circular(
-                                                                              0),
+                                                                              0.0),
                                                                 ),
                                                               ),
                                                             ),
@@ -1476,21 +1657,22 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(5, 0, 10, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              5.0, 0.0, 10.0, 0.0),
                           child: Material(
                             color: Colors.transparent,
-                            elevation: 1,
+                            elevation: 1.0,
                             child: Container(
                               width: MediaQuery.of(context).size.width * 0.98,
-                              height: 800,
+                              height: 800.0,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
                                 boxShadow: [
                                   BoxShadow(
-                                    blurRadius: 4,
+                                    blurRadius: 4.0,
                                     color: Color(0x33000000),
-                                    offset: Offset(0, 2),
+                                    offset: Offset(0.0, 2.0),
                                   )
                                 ],
                               ),
@@ -1501,14 +1683,14 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                   children: [
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          10, 0, 0, 0),
+                                          10.0, 0.0, 0.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    0, 10, 0, 10),
+                                                    0.0, 10.0, 0.0, 10.0),
                                             child: Text(
                                               'Datasets',
                                               style:
@@ -1519,7 +1701,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .bodyText1Family,
-                                                        fontSize: 15,
+                                                        fontSize: 15.0,
                                                         fontWeight:
                                                             FontWeight.bold,
                                                         useGoogleFonts: GoogleFonts
@@ -1533,10 +1715,11 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                           ),
                                           Align(
                                             alignment:
-                                                AlignmentDirectional(-1, 0),
+                                                AlignmentDirectional(-1.0, 0.0),
                                             child: Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(15, 0, 5, 0),
+                                                  .fromSTEB(
+                                                      15.0, 0.0, 5.0, 0.0),
                                               child: InkWell(
                                                 onTap: () async {
                                                   await showModalBottomSheet(
@@ -1553,7 +1736,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                 context)
                                                             .viewInsets,
                                                         child: Container(
-                                                          height: 400,
+                                                          height: 400.0,
                                                           child:
                                                               AddDatasetWidget(),
                                                         ),
@@ -1568,7 +1751,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .tertiaryColor,
-                                                  size: 24,
+                                                  size: 24.0,
                                                 ),
                                               ),
                                             ),
@@ -1578,11 +1761,12 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          10, 0, 10, 0),
+                                          10.0, 0.0, 10.0, 0.0),
                                       child: Container(
                                         width:
-                                            MediaQuery.of(context).size.width,
-                                        height: 700,
+                                            MediaQuery.of(context).size.width *
+                                                1.0,
+                                        height: 700.0,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
@@ -1601,13 +1785,13 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                             if (!snapshot.hasData) {
                                               return Center(
                                                 child: SizedBox(
-                                                  width: 50,
-                                                  height: 50,
+                                                  width: 50.0,
+                                                  height: 50.0,
                                                   child: SpinKitRipple(
                                                     color: FlutterFlowTheme.of(
                                                             context)
                                                         .primaryColor,
-                                                    size: 50,
+                                                    size: 50.0,
                                                   ),
                                                 ),
                                               );
@@ -1636,8 +1820,11 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                       Padding(
                                                         padding:
                                                             EdgeInsetsDirectional
-                                                                .fromSTEB(0, 5,
-                                                                    0, 15),
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    5.0,
+                                                                    0.0,
+                                                                    15.0),
                                                         child: InkWell(
                                                           onTap: () async {
                                                             FFAppState()
@@ -1652,18 +1839,35 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                       .activeDocs!
                                                                       .toList();
                                                             });
+
+                                                            context.pushNamed(
+                                                              'Datasets',
+                                                              queryParams: {
+                                                                'activeDataset':
+                                                                    serializeParam(
+                                                                  listViewUserDatasetsRecord,
+                                                                  ParamType
+                                                                      .Document,
+                                                                ),
+                                                              }.withoutNulls,
+                                                              extra: <String,
+                                                                  dynamic>{
+                                                                'activeDataset':
+                                                                    listViewUserDatasetsRecord,
+                                                              },
+                                                            );
                                                           },
                                                           child: Material(
                                                             color: Colors
                                                                 .transparent,
-                                                            elevation: 2,
+                                                            elevation: 2.0,
                                                             child: Container(
-                                                              width:
-                                                                  MediaQuery.of(
+                                                              width: MediaQuery.of(
                                                                           context)
                                                                       .size
-                                                                      .width,
-                                                              height: 40,
+                                                                      .width *
+                                                                  1.0,
+                                                              height: 40.0,
                                                               decoration:
                                                                   BoxDecoration(
                                                                 color: FlutterFlowTheme.of(
@@ -1672,13 +1876,13 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                 boxShadow: [
                                                                   BoxShadow(
                                                                     blurRadius:
-                                                                        4,
+                                                                        4.0,
                                                                     color: Color(
                                                                         0x33000000),
                                                                     offset:
                                                                         Offset(
-                                                                            0,
-                                                                            2),
+                                                                            0.0,
+                                                                            2.0),
                                                                   )
                                                                 ],
                                                               ),
@@ -1686,22 +1890,21 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                 padding:
                                                                     EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            5,
-                                                                            0,
-                                                                            0,
-                                                                            0),
+                                                                            5.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
                                                                 child: Row(
                                                                   mainAxisSize:
                                                                       MainAxisSize
                                                                           .max,
                                                                   children: [
                                                                     Padding(
-                                                                      padding: EdgeInsetsDirectional
-                                                                          .fromSTEB(
-                                                                              0,
-                                                                              0,
-                                                                              10,
-                                                                              0),
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          10.0,
+                                                                          0.0),
                                                                       child:
                                                                           Icon(
                                                                         Icons
@@ -1709,14 +1912,14 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                         color: FlutterFlowTheme.of(context)
                                                                             .grayIcon,
                                                                         size:
-                                                                            16,
+                                                                            16.0,
                                                                       ),
                                                                     ),
                                                                     Align(
                                                                       alignment:
                                                                           AlignmentDirectional(
-                                                                              0,
-                                                                              0),
+                                                                              0.0,
+                                                                              0.0),
                                                                       child:
                                                                           AutoSizeText(
                                                                         listViewUserDatasetsRecord

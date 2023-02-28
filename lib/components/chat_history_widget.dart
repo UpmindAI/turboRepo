@@ -48,8 +48,8 @@ class _ChatHistoryWidgetState extends State<ChatHistoryWidget> {
       mainAxisSize: MainAxisSize.max,
       children: [
         Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height * 1,
+          width: MediaQuery.of(context).size.width * 1.0,
+          height: MediaQuery.of(context).size.height * 1.0,
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
           ),
@@ -57,14 +57,14 @@ class _ChatHistoryWidgetState extends State<ChatHistoryWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                 child: Text(
                   'Your Chats',
                   style: FlutterFlowTheme.of(context).title3,
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                 child: StreamBuilder<List<ChatMetaRecord>>(
                   stream: queryChatMetaRecord(
                     parent: currentUserReference,
@@ -74,11 +74,11 @@ class _ChatHistoryWidgetState extends State<ChatHistoryWidget> {
                     if (!snapshot.hasData) {
                       return Center(
                         child: SizedBox(
-                          width: 50,
-                          height: 50,
+                          width: 50.0,
+                          height: 50.0,
                           child: SpinKitRipple(
                             color: FlutterFlowTheme.of(context).primaryColor,
-                            size: 50,
+                            size: 50.0,
                           ),
                         ),
                       );
@@ -94,7 +94,7 @@ class _ChatHistoryWidgetState extends State<ChatHistoryWidget> {
                         final listViewChatMetaRecord =
                             listViewChatMetaRecordList[listViewIndex];
                         return Align(
-                          alignment: AlignmentDirectional(0, 0),
+                          alignment: AlignmentDirectional(0.0, 0.0),
                           child: InkWell(
                             onTap: () async {
                               _model.updatePage(() {
@@ -109,9 +109,9 @@ class _ChatHistoryWidgetState extends State<ChatHistoryWidget> {
                               Navigator.pop(context);
                             },
                             child: Container(
-                              width: MediaQuery.of(context).size.width,
+                              width: MediaQuery.of(context).size.width * 1.0,
                               constraints: BoxConstraints(
-                                maxWidth: 800,
+                                maxWidth: 800.0,
                               ),
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
@@ -126,11 +126,11 @@ class _ChatHistoryWidgetState extends State<ChatHistoryWidget> {
                                       Icon(
                                         Icons.chat_outlined,
                                         color: Colors.black,
-                                        size: 24,
+                                        size: 24.0,
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            10, 0, 0, 0),
+                                            10.0, 0.0, 0.0, 0.0),
                                         child: Text(
                                           listViewChatMetaRecord.completions!
                                               .toList()
@@ -193,7 +193,7 @@ class _ChatHistoryWidgetState extends State<ChatHistoryWidget> {
                                   ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 0, 0, 10),
+                                        0.0, 0.0, 0.0, 10.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [

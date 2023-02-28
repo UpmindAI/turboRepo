@@ -45,8 +45,8 @@ class _NewDatasetButtonWidgetState extends State<NewDatasetButtonWidget> {
     context.watch<FFAppState>();
 
     return Container(
-      width: MediaQuery.of(context).size.width * 4,
-      height: MediaQuery.of(context).size.height * 4,
+      width: MediaQuery.of(context).size.width * 4.0,
+      height: MediaQuery.of(context).size.height * 4.0,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
       ),
@@ -54,7 +54,7 @@ class _NewDatasetButtonWidgetState extends State<NewDatasetButtonWidget> {
         mainAxisSize: MainAxisSize.max,
         children: [
           Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 20.0),
             child: Text(
               'No Datasets yet.',
               style: FlutterFlowTheme.of(context).bodyText1,
@@ -72,7 +72,7 @@ class _NewDatasetButtonWidgetState extends State<NewDatasetButtonWidget> {
                   return Padding(
                     padding: MediaQuery.of(context).viewInsets,
                     child: Container(
-                      height: 400,
+                      height: 400.0,
                       child: AddDatasetWidget(),
                     ),
                   );
@@ -82,13 +82,13 @@ class _NewDatasetButtonWidgetState extends State<NewDatasetButtonWidget> {
             text: 'Add a new Dataset',
             icon: Icon(
               Icons.add_circle_outline,
-              size: 15,
+              size: 15.0,
             ),
             options: FFButtonOptions(
-              width: 250,
-              height: 40,
-              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-              iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+              width: 250.0,
+              height: 40.0,
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+              iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
               color: FlutterFlowTheme.of(context).primaryColor,
               textStyle: FlutterFlowTheme.of(context).subtitle2.override(
                     fontFamily: FlutterFlowTheme.of(context).subtitle2Family,
@@ -98,9 +98,9 @@ class _NewDatasetButtonWidgetState extends State<NewDatasetButtonWidget> {
                   ),
               borderSide: BorderSide(
                 color: Colors.transparent,
-                width: 1,
+                width: 1.0,
               ),
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(20.0),
             ),
           ),
         ],

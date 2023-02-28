@@ -119,49 +119,49 @@ class MobileTypography extends Typography {
         'Work Sans',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
-        fontSize: 24,
+        fontSize: 24.0,
       );
   String get title2Family => 'Work Sans';
   TextStyle get title2 => GoogleFonts.getFont(
         'Work Sans',
         color: theme.secondaryText,
         fontWeight: FontWeight.w600,
-        fontSize: 22,
+        fontSize: 22.0,
       );
   String get title3Family => 'Work Sans';
   TextStyle get title3 => GoogleFonts.getFont(
         'Work Sans',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
-        fontSize: 20,
+        fontSize: 20.0,
       );
   String get subtitle1Family => 'Work Sans';
   TextStyle get subtitle1 => GoogleFonts.getFont(
         'Work Sans',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
-        fontSize: 18,
+        fontSize: 18.0,
       );
   String get subtitle2Family => 'Work Sans';
   TextStyle get subtitle2 => GoogleFonts.getFont(
         'Work Sans',
         color: theme.secondaryText,
         fontWeight: FontWeight.w600,
-        fontSize: 16,
+        fontSize: 16.0,
       );
   String get bodyText1Family => 'Work Sans';
   TextStyle get bodyText1 => GoogleFonts.getFont(
         'Work Sans',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
-        fontSize: 11,
+        fontSize: 11.0,
       );
   String get bodyText2Family => 'Work Sans';
   TextStyle get bodyText2 => GoogleFonts.getFont(
         'Work Sans',
         color: theme.secondaryText,
         fontWeight: FontWeight.w600,
-        fontSize: 9,
+        fontSize: 9.0,
       );
 }
 
@@ -175,49 +175,49 @@ class TabletTypography extends Typography {
         'Work Sans',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
-        fontSize: 24,
+        fontSize: 24.0,
       );
   String get title2Family => 'Work Sans';
   TextStyle get title2 => GoogleFonts.getFont(
         'Work Sans',
         color: theme.secondaryText,
         fontWeight: FontWeight.w600,
-        fontSize: 22,
+        fontSize: 22.0,
       );
   String get title3Family => 'Work Sans';
   TextStyle get title3 => GoogleFonts.getFont(
         'Work Sans',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
-        fontSize: 20,
+        fontSize: 20.0,
       );
   String get subtitle1Family => 'Work Sans';
   TextStyle get subtitle1 => GoogleFonts.getFont(
         'Work Sans',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
-        fontSize: 18,
+        fontSize: 18.0,
       );
   String get subtitle2Family => 'Work Sans';
   TextStyle get subtitle2 => GoogleFonts.getFont(
         'Work Sans',
         color: theme.secondaryText,
         fontWeight: FontWeight.w600,
-        fontSize: 16,
+        fontSize: 16.0,
       );
   String get bodyText1Family => 'Work Sans';
   TextStyle get bodyText1 => GoogleFonts.getFont(
         'Work Sans',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
-        fontSize: 12,
+        fontSize: 12.0,
       );
   String get bodyText2Family => 'Work Sans';
   TextStyle get bodyText2 => GoogleFonts.getFont(
         'Work Sans',
         color: theme.secondaryText,
         fontWeight: FontWeight.w600,
-        fontSize: 10,
+        fontSize: 10.0,
       );
 }
 
@@ -231,49 +231,49 @@ class DesktopTypography extends Typography {
         'Work Sans',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
-        fontSize: 24,
+        fontSize: 24.0,
       );
   String get title2Family => 'Work Sans';
   TextStyle get title2 => GoogleFonts.getFont(
         'Work Sans',
         color: theme.secondaryText,
         fontWeight: FontWeight.w600,
-        fontSize: 22,
+        fontSize: 22.0,
       );
   String get title3Family => 'Work Sans';
   TextStyle get title3 => GoogleFonts.getFont(
         'Work Sans',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
-        fontSize: 20,
+        fontSize: 20.0,
       );
   String get subtitle1Family => 'Work Sans';
   TextStyle get subtitle1 => GoogleFonts.getFont(
         'Work Sans',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
-        fontSize: 18,
+        fontSize: 18.0,
       );
   String get subtitle2Family => 'Work Sans';
   TextStyle get subtitle2 => GoogleFonts.getFont(
         'Work Sans',
         color: theme.secondaryText,
         fontWeight: FontWeight.w600,
-        fontSize: 16,
+        fontSize: 16.0,
       );
   String get bodyText1Family => 'Work Sans';
   TextStyle get bodyText1 => GoogleFonts.getFont(
         'Work Sans',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
-        fontSize: 14,
+        fontSize: 14.0,
       );
   String get bodyText2Family => 'Work Sans';
   TextStyle get bodyText2 => GoogleFonts.getFont(
         'Work Sans',
         color: theme.secondaryText,
         fontWeight: FontWeight.w600,
-        fontSize: 14,
+        fontSize: 14.0,
       );
 }
 

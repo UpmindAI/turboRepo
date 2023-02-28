@@ -355,8 +355,8 @@ class FFRoute {
                   child: Center(
                     child: Image.asset(
                       'assets/images/Logo-OMP-122-40.png',
-                      width: 122,
-                      height: 40,
+                      width: 122.0,
+                      height: 40.0,
                       fit: BoxFit.contain,
                     ),
                   ),

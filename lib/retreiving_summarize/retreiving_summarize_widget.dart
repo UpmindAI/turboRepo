@@ -39,8 +39,8 @@ class _RetreivingSummarizeWidgetState extends State<RetreivingSummarizeWidget>
           curve: Curves.easeInOut,
           delay: 0.ms,
           duration: 1550.ms,
-          begin: Offset(0, 900),
-          end: Offset(0, -900),
+          begin: Offset(0.0, 900.0),
+          end: Offset(0.0, -900.0),
         ),
       ],
     ),
@@ -60,7 +60,7 @@ class _RetreivingSummarizeWidgetState extends State<RetreivingSummarizeWidget>
             style: TextStyle(
               color: FlutterFlowTheme.of(context).primaryText,
               fontWeight: FontWeight.bold,
-              fontSize: 16,
+              fontSize: 16.0,
             ),
           ),
           duration: Duration(milliseconds: 7000),
@@ -87,7 +87,7 @@ class _RetreivingSummarizeWidgetState extends State<RetreivingSummarizeWidget>
             return Padding(
               padding: MediaQuery.of(context).viewInsets,
               child: Container(
-                height: MediaQuery.of(context).size.height * 1,
+                height: MediaQuery.of(context).size.height * 1.0,
                 child: ErrorMessageWidget(),
               ),
             );
@@ -117,19 +117,19 @@ class _RetreivingSummarizeWidgetState extends State<RetreivingSummarizeWidget>
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(60),
+        preferredSize: Size.fromHeight(60.0),
         child: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
           actions: [],
-          elevation: 0,
+          elevation: 0.0,
         ),
       ),
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
           child: Container(
-            width: MediaQuery.of(context).size.width,
+            width: MediaQuery.of(context).size.width * 1.0,
             decoration: BoxDecoration(),
             child: Column(
               mainAxisSize: MainAxisSize.max,
@@ -158,22 +158,22 @@ class _RetreivingSummarizeWidgetState extends State<RetreivingSummarizeWidget>
                           children: [
                             Expanded(
                               child: Align(
-                                alignment: AlignmentDirectional(0, -1),
+                                alignment: AlignmentDirectional(0.0, -1.0),
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      5, 0, 5, 0),
+                                      5.0, 0.0, 5.0, 0.0),
                                   child: Container(
                                     width: MediaQuery.of(context).size.width *
                                         0.98,
-                                    height: 800,
+                                    height: 800.0,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
                                       boxShadow: [
                                         BoxShadow(
-                                          blurRadius: 4,
+                                          blurRadius: 4.0,
                                           color: Color(0x33000000),
-                                          offset: Offset(0, 2),
+                                          offset: Offset(0.0, 2.0),
                                         )
                                       ],
                                     ),
@@ -183,12 +183,13 @@ class _RetreivingSummarizeWidgetState extends State<RetreivingSummarizeWidget>
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  20, 20, 20, 0),
+                                                  20.0, 20.0, 20.0, 0.0),
                                           child: Container(
                                             width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            height: 650,
+                                                    .size
+                                                    .width *
+                                                1.0,
+                                            height: 650.0,
                                             decoration: BoxDecoration(
                                               color:
                                                   FlutterFlowTheme.of(context)
@@ -197,19 +198,19 @@ class _RetreivingSummarizeWidgetState extends State<RetreivingSummarizeWidget>
                                             child: ClipRect(
                                               child: ImageFiltered(
                                                 imageFilter: ImageFilter.blur(
-                                                  sigmaX: 75,
-                                                  sigmaY: 50,
+                                                  sigmaX: 75.0,
+                                                  sigmaY: 50.0,
                                                 ),
                                                 child: Align(
                                                   alignment:
                                                       AlignmentDirectional(
-                                                          -0.15, 0),
+                                                          -0.15, 0.0),
                                                   child: Transform.rotate(
                                                     angle: 2.1118,
                                                     child: Image.asset(
                                                       'assets/images/Rectangle_1.jpg',
-                                                      width: 1000,
-                                                      height: 200,
+                                                      width: 1000.0,
+                                                      height: 200.0,
                                                       fit: BoxFit.cover,
                                                     ).animateOnPageLoad(
                                                         animationsMap[
@@ -223,7 +224,7 @@ class _RetreivingSummarizeWidgetState extends State<RetreivingSummarizeWidget>
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  20, 10, 20, 0),
+                                                  20.0, 10.0, 20.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             crossAxisAlignment:
@@ -231,10 +232,11 @@ class _RetreivingSummarizeWidgetState extends State<RetreivingSummarizeWidget>
                                             children: [
                                               Padding(
                                                 padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 0, 20, 0),
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 20.0, 0.0),
                                                 child: Container(
-                                                  width: 220,
-                                                  height: 40,
+                                                  width: 220.0,
+                                                  height: 40.0,
                                                   decoration: BoxDecoration(
                                                     color: FlutterFlowTheme.of(
                                                             context)
@@ -244,10 +246,11 @@ class _RetreivingSummarizeWidgetState extends State<RetreivingSummarizeWidget>
                                               ),
                                               Padding(
                                                 padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 0, 20, 0),
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 20.0, 0.0),
                                                 child: Container(
-                                                  width: 220,
-                                                  height: 40,
+                                                  width: 220.0,
+                                                  height: 40.0,
                                                   decoration: BoxDecoration(
                                                     color: FlutterFlowTheme.of(
                                                             context)
@@ -259,10 +262,10 @@ class _RetreivingSummarizeWidgetState extends State<RetreivingSummarizeWidget>
                                                 child: Align(
                                                   alignment:
                                                       AlignmentDirectional(
-                                                          1, 0),
+                                                          1.0, 0.0),
                                                   child: Container(
-                                                    width: 220,
-                                                    height: 40,
+                                                    width: 220.0,
+                                                    height: 40.0,
                                                     decoration: BoxDecoration(
                                                       color:
                                                           FlutterFlowTheme.of(
@@ -291,22 +294,22 @@ class _RetreivingSummarizeWidgetState extends State<RetreivingSummarizeWidget>
                           children: [
                             Expanded(
                               child: Align(
-                                alignment: AlignmentDirectional(0, -1),
+                                alignment: AlignmentDirectional(0.0, -1.0),
                                 child: Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      5, 0, 10, 0),
+                                      5.0, 0.0, 10.0, 0.0),
                                   child: Container(
                                     width: MediaQuery.of(context).size.width *
                                         0.98,
-                                    height: 800,
+                                    height: 800.0,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
                                       boxShadow: [
                                         BoxShadow(
-                                          blurRadius: 4,
+                                          blurRadius: 4.0,
                                           color: Color(0x33000000),
-                                          offset: Offset(0, 2),
+                                          offset: Offset(0.0, 2.0),
                                         )
                                       ],
                                     ),
@@ -322,12 +325,12 @@ class _RetreivingSummarizeWidgetState extends State<RetreivingSummarizeWidget>
                                                 child: Align(
                                                   alignment:
                                                       AlignmentDirectional(
-                                                          0, 0),
+                                                          0.0, 0.0),
                                                   child: Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0, 20, 0, 0),
+                                                            .fromSTEB(0.0, 20.0,
+                                                                0.0, 0.0),
                                                     child: Text(
                                                       'Creating your Summary. Please hold on.',
                                                       style:
@@ -355,9 +358,10 @@ class _RetreivingSummarizeWidgetState extends State<RetreivingSummarizeWidget>
                                           ),
                                           Container(
                                             width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            height: 350,
+                                                    .size
+                                                    .width *
+                                                1.0,
+                                            height: 350.0,
                                             decoration: BoxDecoration(
                                               color:
                                                   FlutterFlowTheme.of(context)
@@ -365,7 +369,7 @@ class _RetreivingSummarizeWidgetState extends State<RetreivingSummarizeWidget>
                                             ),
                                           ),
                                           Container(
-                                            width: 260,
+                                            width: 260.0,
                                             decoration: BoxDecoration(
                                               color:
                                                   FlutterFlowTheme.of(context)

@@ -51,50 +51,52 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: AlignmentDirectional(0, -1),
+      alignment: AlignmentDirectional(0.0, -1.0),
       child: Container(
-        width: MediaQuery.of(context).size.width,
+        width: MediaQuery.of(context).size.width * 1.0,
         constraints: BoxConstraints(
-          maxWidth: 1240,
+          maxWidth: 1240.0,
         ),
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).primaryBackground,
         ),
         child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+          padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 1, 16, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 1.0, 16.0, 0.0),
                 child: Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                     boxShadow: [
                       BoxShadow(
-                        blurRadius: 0,
+                        blurRadius: 0.0,
                         color: FlutterFlowTheme.of(context).tertiaryColor,
-                        offset: Offset(0, 1),
+                        offset: Offset(0.0, 1.0),
                       )
                     ],
-                    borderRadius: BorderRadius.circular(24),
+                    borderRadius: BorderRadius.circular(24.0),
                   ),
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(16, 8, 16, 8),
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 8.0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Card(
                           clipBehavior: Clip.antiAliasWithSaveLayer,
                           color: FlutterFlowTheme.of(context).secondaryColor,
-                          elevation: 2,
+                          elevation: 2.0,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50),
+                            borderRadius: BorderRadius.circular(50.0),
                           ),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                2.0, 2.0, 2.0, 2.0),
                             child: AuthUserStreamWidget(
                               builder: (context) => InkWell(
                                 onTap: () async {
@@ -161,11 +163,11 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                       .update(usersUpdateData);
                                 },
                                 child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(40),
+                                  borderRadius: BorderRadius.circular(40.0),
                                   child: CachedNetworkImage(
                                     imageUrl: currentUserPhoto,
-                                    width: 60,
-                                    height: 60,
+                                    width: 60.0,
+                                    height: 60.0,
                                     fit: BoxFit.cover,
                                   ),
                                 ),
@@ -174,7 +176,8 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              16.0, 0.0, 0.0, 0.0),
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -187,8 +190,8 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                 ),
                               ),
                               Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 4.0, 0.0, 0.0),
                                 child: Text(
                                   currentUserEmail,
                                   style: FlutterFlowTheme.of(context).bodyText2,
@@ -203,14 +206,14 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 16, 0, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 0.0),
                 child: Text(
                   'Account',
                   style: FlutterFlowTheme.of(context).subtitle2,
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
                 child: InkWell(
                   onTap: () async {
                     await showModalBottomSheet(
@@ -223,7 +226,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                         return Padding(
                           padding: MediaQuery.of(context).viewInsets,
                           child: Container(
-                            height: 700,
+                            height: 700.0,
                             child: PaymentWidget(),
                           ),
                         );
@@ -232,21 +235,22 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                   },
                   child: Container(
                     width: double.infinity,
-                    height: 60,
+                    height: 60.0,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                       boxShadow: [
                         BoxShadow(
-                          blurRadius: 5,
+                          blurRadius: 5.0,
                           color: Color(0x3416202A),
-                          offset: Offset(0, 2),
+                          offset: Offset(0.0, 2.0),
                         )
                       ],
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(12.0),
                       shape: BoxShape.rectangle,
                     ),
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -259,7 +263,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                       .bodyText1Family,
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryText,
-                                  fontSize: 24,
+                                  fontSize: 24.0,
                                   fontWeight: FontWeight.w600,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
@@ -267,8 +271,8 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                                 ),
                           ),
                           Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                12.0, 0.0, 0.0, 0.0),
                             child: Text(
                               '30 day Beta Access',
                               style: FlutterFlowTheme.of(context).bodyText2,
@@ -276,12 +280,12 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                           ),
                           Expanded(
                             child: Align(
-                              alignment: AlignmentDirectional(0.9, 0),
+                              alignment: AlignmentDirectional(0.9, 0.0),
                               child: Icon(
                                 Icons.arrow_forward_ios,
                                 color:
                                     FlutterFlowTheme.of(context).secondaryText,
-                                size: 18,
+                                size: 18.0,
                               ),
                             ),
                           ),
@@ -292,39 +296,40 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
                 child: InkWell(
                   onTap: () async {
                     context.pushNamed('editProfile');
                   },
                   child: Container(
                     width: double.infinity,
-                    height: 60,
+                    height: 60.0,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                       boxShadow: [
                         BoxShadow(
-                          blurRadius: 5,
+                          blurRadius: 5.0,
                           color: Color(0x3416202A),
-                          offset: Offset(0, 2),
+                          offset: Offset(0.0, 2.0),
                         )
                       ],
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(12.0),
                       shape: BoxShape.rectangle,
                     ),
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Icon(
                             Icons.account_circle_outlined,
                             color: FlutterFlowTheme.of(context).secondaryText,
-                            size: 24,
+                            size: 24.0,
                           ),
                           Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                12.0, 0.0, 0.0, 0.0),
                             child: Text(
                               'Edit Profile',
                               style: FlutterFlowTheme.of(context).bodyText2,
@@ -332,12 +337,12 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                           ),
                           Expanded(
                             child: Align(
-                              alignment: AlignmentDirectional(0.9, 0),
+                              alignment: AlignmentDirectional(0.9, 0.0),
                               child: Icon(
                                 Icons.arrow_forward_ios,
                                 color:
                                     FlutterFlowTheme.of(context).secondaryText,
-                                size: 18,
+                                size: 18.0,
                               ),
                             ),
                           ),
@@ -348,46 +353,47 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 16, 0, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 0.0),
                 child: Text(
                   'General',
                   style: FlutterFlowTheme.of(context).subtitle2,
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
                 child: InkWell(
                   onTap: () async {
                     context.pushNamed('support');
                   },
                   child: Container(
                     width: double.infinity,
-                    height: 60,
+                    height: 60.0,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                       boxShadow: [
                         BoxShadow(
-                          blurRadius: 5,
+                          blurRadius: 5.0,
                           color: Color(0x3416202A),
-                          offset: Offset(0, 2),
+                          offset: Offset(0.0, 2.0),
                         )
                       ],
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(12.0),
                       shape: BoxShape.rectangle,
                     ),
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Icon(
                             Icons.help_outline_rounded,
                             color: FlutterFlowTheme.of(context).secondaryText,
-                            size: 24,
+                            size: 24.0,
                           ),
                           Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                12.0, 0.0, 0.0, 0.0),
                             child: Text(
                               'Support',
                               style: FlutterFlowTheme.of(context).bodyText2,
@@ -395,12 +401,12 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                           ),
                           Expanded(
                             child: Align(
-                              alignment: AlignmentDirectional(0.9, 0),
+                              alignment: AlignmentDirectional(0.9, 0.0),
                               child: Icon(
                                 Icons.arrow_forward_ios,
                                 color:
                                     FlutterFlowTheme.of(context).secondaryText,
-                                size: 18,
+                                size: 18.0,
                               ),
                             ),
                           ),
@@ -411,7 +417,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
                 child: InkWell(
                   onTap: () async {
                     await showModalBottomSheet(
@@ -424,7 +430,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                         return Padding(
                           padding: MediaQuery.of(context).viewInsets,
                           child: Container(
-                            height: 700,
+                            height: 700.0,
                             child: TermsServiceWidget(),
                           ),
                         );
@@ -433,32 +439,33 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                   },
                   child: Container(
                     width: double.infinity,
-                    height: 60,
+                    height: 60.0,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                       boxShadow: [
                         BoxShadow(
-                          blurRadius: 5,
+                          blurRadius: 5.0,
                           color: Color(0x3416202A),
-                          offset: Offset(0, 2),
+                          offset: Offset(0.0, 2.0),
                         )
                       ],
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(12.0),
                       shape: BoxShape.rectangle,
                     ),
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Icon(
                             Icons.privacy_tip_rounded,
                             color: FlutterFlowTheme.of(context).secondaryText,
-                            size: 24,
+                            size: 24.0,
                           ),
                           Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                12.0, 0.0, 0.0, 0.0),
                             child: Text(
                               'Terms of Service',
                               style: FlutterFlowTheme.of(context).bodyText2,
@@ -466,12 +473,12 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                           ),
                           Expanded(
                             child: Align(
-                              alignment: AlignmentDirectional(0.9, 0),
+                              alignment: AlignmentDirectional(0.9, 0.0),
                               child: Icon(
                                 Icons.arrow_forward_ios,
                                 color:
                                     FlutterFlowTheme.of(context).secondaryText,
-                                size: 18,
+                                size: 18.0,
                               ),
                             ),
                           ),

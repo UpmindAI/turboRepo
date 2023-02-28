@@ -46,12 +46,12 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
       mainAxisSize: MainAxisSize.max,
       children: [
         Align(
-          alignment: AlignmentDirectional(0, 0),
+          alignment: AlignmentDirectional(0.0, 0.0),
           child: Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height * 1,
+            width: MediaQuery.of(context).size.width * 1.0,
+            height: MediaQuery.of(context).size.height * 1.0,
             constraints: BoxConstraints(
-              maxWidth: 800,
+              maxWidth: 800.0,
             ),
             decoration: BoxDecoration(
               color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -60,14 +60,14 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
                   child: Text(
                     'Configure your Chatbot',
                     style: FlutterFlowTheme.of(context).title3,
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                   child: Text(
                     'Top K',
                     style: FlutterFlowTheme.of(context).bodyText1,
@@ -83,12 +83,12 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                   style: FlutterFlowTheme.of(context).bodyText1,
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
                   child: Slider(
                     activeColor: FlutterFlowTheme.of(context).primaryColor,
                     inactiveColor: Color(0xFF9E9E9E),
-                    min: 1,
-                    max: 10,
+                    min: 1.0,
+                    max: 10.0,
                     value: _model.sliderValue ??= FFAppState().setTopK,
                     divisions: 9,
                     onChanged: (newValue) async {

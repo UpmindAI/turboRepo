@@ -47,13 +47,13 @@ class _ErrorMessageWidgetState extends State<ErrorMessageWidget> {
       children: [
         Expanded(
           child: Align(
-            alignment: AlignmentDirectional(0, 0),
+            alignment: AlignmentDirectional(0.0, 0.0),
             child: Container(
-              width: 400,
-              height: 100,
+              width: 400.0,
+              height: 100.0,
               decoration: BoxDecoration(
                 color: FlutterFlowTheme.of(context).secondaryBackground,
-                borderRadius: BorderRadius.circular(25),
+                borderRadius: BorderRadius.circular(25.0),
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
@@ -63,16 +63,18 @@ class _ErrorMessageWidgetState extends State<ErrorMessageWidget> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
                         child: Icon(
                           Icons.error_outline,
                           color: Color(0xFF980000),
-                          size: 36,
+                          size: 36.0,
                         ),
                       ),
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              10.0, 0.0, 10.0, 0.0),
                           child: Text(
                             'Due to high demand, our AI engines are currently at full capacity. Please try again later.',
                             style: FlutterFlowTheme.of(context)
@@ -80,7 +82,7 @@ class _ErrorMessageWidgetState extends State<ErrorMessageWidget> {
                                 .override(
                                   fontFamily: FlutterFlowTheme.of(context)
                                       .bodyText1Family,
-                                  fontSize: 14,
+                                  fontSize: 14.0,
                                   fontWeight: FontWeight.bold,
                                   useGoogleFonts: GoogleFonts.asMap()
                                       .containsKey(FlutterFlowTheme.of(context)
