@@ -52,21 +52,21 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(50),
+        preferredSize: Size.fromHeight(50.0),
         child: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
           actions: [],
-          elevation: 0,
+          elevation: 0.0,
         ),
       ),
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
           child: Align(
-            alignment: AlignmentDirectional(0, 0),
+            alignment: AlignmentDirectional(0.0, 0.0),
             child: Container(
-              width: MediaQuery.of(context).size.width,
+              width: MediaQuery.of(context).size.width * 1.0,
               decoration: BoxDecoration(),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
@@ -95,22 +95,22 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                             children: [
                               Expanded(
                                 child: Align(
-                                  alignment: AlignmentDirectional(0, -1),
+                                  alignment: AlignmentDirectional(0.0, -1.0),
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        5, 0, 5, 0),
+                                        5.0, 0.0, 5.0, 0.0),
                                     child: Container(
                                       width: MediaQuery.of(context).size.width *
                                           0.98,
-                                      height: 800,
+                                      height: 800.0,
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
                                         boxShadow: [
                                           BoxShadow(
-                                            blurRadius: 4,
+                                            blurRadius: 4.0,
                                             color: Color(0x33000000),
-                                            offset: Offset(0, 2),
+                                            offset: Offset(0.0, 2.0),
                                           )
                                         ],
                                       ),
@@ -123,7 +123,8 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                           children: [
                                             Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 20, 0, 0),
+                                                  .fromSTEB(
+                                                      0.0, 20.0, 0.0, 0.0),
                                               child: Text(
                                                 'Request a Feature',
                                                 style:
@@ -133,7 +134,8 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                             ),
                                             Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(20, 20, 20, 20),
+                                                  .fromSTEB(
+                                                      20.0, 20.0, 20.0, 20.0),
                                               child: TextFormField(
                                                 controller:
                                                     _model.textController1,
@@ -152,7 +154,7 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .tertiaryColor,
-                                                      width: 1,
+                                                      width: 1.0,
                                                     ),
                                                     borderRadius:
                                                         const BorderRadius.only(
@@ -169,7 +171,7 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .alternate,
-                                                      width: 1,
+                                                      width: 1.0,
                                                     ),
                                                     borderRadius:
                                                         const BorderRadius.only(
@@ -183,7 +185,7 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                                       OutlineInputBorder(
                                                     borderSide: BorderSide(
                                                       color: Color(0xFF980000),
-                                                      width: 1,
+                                                      width: 1.0,
                                                     ),
                                                     borderRadius:
                                                         const BorderRadius.only(
@@ -197,7 +199,7 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                                       OutlineInputBorder(
                                                     borderSide: BorderSide(
                                                       color: Color(0xFF980000),
-                                                      width: 1,
+                                                      width: 1.0,
                                                     ),
                                                     borderRadius:
                                                         const BorderRadius.only(
@@ -218,7 +220,8 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                             ),
                                             Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(20, 0, 20, 20),
+                                                  .fromSTEB(
+                                                      20.0, 0.0, 20.0, 20.0),
                                               child: TextFormField(
                                                 controller:
                                                     _model.textController2,
@@ -237,7 +240,7 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .tertiaryColor,
-                                                      width: 1,
+                                                      width: 1.0,
                                                     ),
                                                     borderRadius:
                                                         const BorderRadius.only(
@@ -254,7 +257,7 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .alternate,
-                                                      width: 1,
+                                                      width: 1.0,
                                                     ),
                                                     borderRadius:
                                                         const BorderRadius.only(
@@ -268,7 +271,7 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                                       OutlineInputBorder(
                                                     borderSide: BorderSide(
                                                       color: Color(0xFF980000),
-                                                      width: 1,
+                                                      width: 1.0,
                                                     ),
                                                     borderRadius:
                                                         const BorderRadius.only(
@@ -282,7 +285,7 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                                       OutlineInputBorder(
                                                     borderSide: BorderSide(
                                                       color: Color(0xFF980000),
-                                                      width: 1,
+                                                      width: 1.0,
                                                     ),
                                                     borderRadius:
                                                         const BorderRadius.only(
@@ -303,7 +306,8 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                             ),
                                             Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(20, 0, 20, 20),
+                                                  .fromSTEB(
+                                                      20.0, 0.0, 20.0, 20.0),
                                               child: TextFormField(
                                                 controller:
                                                     _model.textController3,
@@ -323,7 +327,7 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .tertiaryColor,
-                                                      width: 1,
+                                                      width: 1.0,
                                                     ),
                                                     borderRadius:
                                                         const BorderRadius.only(
@@ -340,7 +344,7 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .alternate,
-                                                      width: 1,
+                                                      width: 1.0,
                                                     ),
                                                     borderRadius:
                                                         const BorderRadius.only(
@@ -354,7 +358,7 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                                       OutlineInputBorder(
                                                     borderSide: BorderSide(
                                                       color: Color(0xFF980000),
-                                                      width: 1,
+                                                      width: 1.0,
                                                     ),
                                                     borderRadius:
                                                         const BorderRadius.only(
@@ -368,7 +372,7 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                                       OutlineInputBorder(
                                                     borderSide: BorderSide(
                                                       color: Color(0xFF980000),
-                                                      width: 1,
+                                                      width: 1.0,
                                                     ),
                                                     borderRadius:
                                                         const BorderRadius.only(
@@ -419,7 +423,7 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                                                 .primaryText,
                                                         fontWeight:
                                                             FontWeight.bold,
-                                                        fontSize: 18,
+                                                        fontSize: 18.0,
                                                       ),
                                                     ),
                                                     duration: Duration(
@@ -441,13 +445,15 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                               },
                                               text: 'Send',
                                               options: FFButtonOptions(
-                                                width: 130,
-                                                height: 40,
+                                                width: 130.0,
+                                                height: 40.0,
                                                 padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 0, 0, 0),
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 0.0),
                                                 iconPadding:
                                                     EdgeInsetsDirectional
-                                                        .fromSTEB(0, 0, 0, 0),
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .primaryColor,
@@ -469,10 +475,10 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                                                         ),
                                                 borderSide: BorderSide(
                                                   color: Colors.transparent,
-                                                  width: 1,
+                                                  width: 1.0,
                                                 ),
                                                 borderRadius:
-                                                    BorderRadius.circular(0),
+                                                    BorderRadius.circular(0.0),
                                               ),
                                             ),
                                           ],
@@ -492,22 +498,22 @@ class _RequestFeatureWidgetState extends State<RequestFeatureWidget> {
                             children: [
                               Expanded(
                                 child: Align(
-                                  alignment: AlignmentDirectional(0, -1),
+                                  alignment: AlignmentDirectional(0.0, -1.0),
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        5, 0, 10, 0),
+                                        5.0, 0.0, 10.0, 0.0),
                                     child: Container(
                                       width: MediaQuery.of(context).size.width *
                                           0.98,
-                                      height: 800,
+                                      height: 800.0,
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
                                         boxShadow: [
                                           BoxShadow(
-                                            blurRadius: 4,
+                                            blurRadius: 4.0,
                                             color: Color(0x33000000),
-                                            offset: Offset(0, 2),
+                                            offset: Offset(0.0, 2.0),
                                           )
                                         ],
                                       ),

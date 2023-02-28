@@ -48,21 +48,21 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(50),
+        preferredSize: Size.fromHeight(50.0),
         child: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
           actions: [],
-          elevation: 0,
+          elevation: 0.0,
         ),
       ),
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
           child: Align(
-            alignment: AlignmentDirectional(0, 0),
+            alignment: AlignmentDirectional(0.0, 0.0),
             child: Container(
-              width: MediaQuery.of(context).size.width,
+              width: MediaQuery.of(context).size.width * 1.0,
               decoration: BoxDecoration(),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
@@ -91,22 +91,22 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                             children: [
                               Expanded(
                                 child: Align(
-                                  alignment: AlignmentDirectional(0, -1),
+                                  alignment: AlignmentDirectional(0.0, -1.0),
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        5, 0, 5, 0),
+                                        5.0, 0.0, 5.0, 0.0),
                                     child: Container(
                                       width: MediaQuery.of(context).size.width *
                                           0.98,
-                                      height: 800,
+                                      height: 800.0,
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
                                         boxShadow: [
                                           BoxShadow(
-                                            blurRadius: 4,
+                                            blurRadius: 4.0,
                                             color: Color(0x33000000),
-                                            offset: Offset(0, 2),
+                                            offset: Offset(0.0, 2.0),
                                           )
                                         ],
                                       ),
@@ -121,13 +121,13 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                           if (!snapshot.hasData) {
                                             return Center(
                                               child: SizedBox(
-                                                width: 50,
-                                                height: 50,
+                                                width: 50.0,
+                                                height: 50.0,
                                                 child: SpinKitRipple(
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primaryColor,
-                                                  size: 50,
+                                                  size: 50.0,
                                                 ),
                                               ),
                                             );
@@ -145,15 +145,17 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                       columnIndex];
                                               return Padding(
                                                 padding: EdgeInsetsDirectional
-                                                    .fromSTEB(20, 20, 20, 0),
+                                                    .fromSTEB(
+                                                        20.0, 20.0, 20.0, 0.0),
                                                 child: Material(
                                                   color: Colors.transparent,
-                                                  elevation: 1,
+                                                  elevation: 1.0,
                                                   child: Container(
                                                     width:
                                                         MediaQuery.of(context)
-                                                            .size
-                                                            .width,
+                                                                .size
+                                                                .width *
+                                                            1.0,
                                                     decoration: BoxDecoration(
                                                       color: FlutterFlowTheme
                                                               .of(context)
@@ -166,15 +168,15 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                         Align(
                                                           alignment:
                                                               AlignmentDirectional(
-                                                                  -1, 0),
+                                                                  -1.0, 0.0),
                                                           child: Padding(
                                                             padding:
                                                                 EdgeInsetsDirectional
                                                                     .fromSTEB(
-                                                                        10,
-                                                                        10,
-                                                                        10,
-                                                                        10),
+                                                                        10.0,
+                                                                        10.0,
+                                                                        10.0,
+                                                                        10.0),
                                                             child: Text(
                                                               'I want: ${columnFeatureRecord.iwant}',
                                                               style: FlutterFlowTheme
@@ -186,15 +188,15 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                         Align(
                                                           alignment:
                                                               AlignmentDirectional(
-                                                                  -1, 0),
+                                                                  -1.0, 0.0),
                                                           child: Padding(
                                                             padding:
                                                                 EdgeInsetsDirectional
                                                                     .fromSTEB(
-                                                                        10,
-                                                                        10,
-                                                                        10,
-                                                                        10),
+                                                                        10.0,
+                                                                        10.0,
+                                                                        10.0,
+                                                                        10.0),
                                                             child: Text(
                                                               'Because: ${columnFeatureRecord.because}',
                                                               style: FlutterFlowTheme
@@ -206,15 +208,15 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                         Align(
                                                           alignment:
                                                               AlignmentDirectional(
-                                                                  -1, 0),
+                                                                  -1.0, 0.0),
                                                           child: Padding(
                                                             padding:
                                                                 EdgeInsetsDirectional
                                                                     .fromSTEB(
-                                                                        10,
-                                                                        10,
-                                                                        10,
-                                                                        10),
+                                                                        10.0,
+                                                                        10.0,
+                                                                        10.0,
+                                                                        10.0),
                                                             child: Text(
                                                               'Additional:${columnFeatureRecord.additional}',
                                                               style: FlutterFlowTheme
@@ -226,8 +228,11 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                         Padding(
                                                           padding:
                                                               EdgeInsetsDirectional
-                                                                  .fromSTEB(0,
-                                                                      0, 0, 10),
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      10.0),
                                                           child: StreamBuilder<
                                                               UsersRecord>(
                                                             stream: UsersRecord
@@ -242,14 +247,16 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                                 return Center(
                                                                   child:
                                                                       SizedBox(
-                                                                    width: 50,
-                                                                    height: 50,
+                                                                    width: 50.0,
+                                                                    height:
+                                                                        50.0,
                                                                     child:
                                                                         SpinKitRipple(
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
                                                                           .primaryColor,
-                                                                      size: 50,
+                                                                      size:
+                                                                          50.0,
                                                                     ),
                                                                   ),
                                                                 );
@@ -263,9 +270,10 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                                         .max,
                                                                 children: [
                                                                   Wrap(
-                                                                    spacing: 0,
+                                                                    spacing:
+                                                                        0.0,
                                                                     runSpacing:
-                                                                        0,
+                                                                        0.0,
                                                                     alignment:
                                                                         WrapAlignment
                                                                             .start,
@@ -285,10 +293,10 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                                     children: [
                                                                       Padding(
                                                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            10,
-                                                                            0,
-                                                                            10,
-                                                                            0),
+                                                                            10.0,
+                                                                            0.0,
+                                                                            10.0,
+                                                                            0.0),
                                                                         child:
                                                                             Text(
                                                                           rowUsersRecord
@@ -304,10 +312,10 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                                       ),
                                                                       Padding(
                                                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            0,
-                                                                            0,
-                                                                            10,
-                                                                            0),
+                                                                            0.0,
+                                                                            0.0,
+                                                                            10.0,
+                                                                            0.0),
                                                                         child:
                                                                             Text(
                                                                           rowUsersRecord
@@ -323,10 +331,10 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                                       ),
                                                                       Padding(
                                                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            0,
-                                                                            0,
-                                                                            2,
-                                                                            0),
+                                                                            0.0,
+                                                                            0.0,
+                                                                            2.0,
+                                                                            0.0),
                                                                         child: SelectionArea(
                                                                             child: Text(
                                                                           rowUsersRecord
@@ -342,10 +350,10 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                                       ),
                                                                       Padding(
                                                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            0,
-                                                                            0,
-                                                                            10,
-                                                                            0),
+                                                                            0.0,
+                                                                            0.0,
+                                                                            10.0,
+                                                                            0.0),
                                                                         child:
                                                                             InkWell(
                                                                           onTap:
@@ -358,16 +366,16 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                                             color:
                                                                                 FlutterFlowTheme.of(context).alternate,
                                                                             size:
-                                                                                14,
+                                                                                14.0,
                                                                           ),
                                                                         ),
                                                                       ),
                                                                       Padding(
                                                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            0,
-                                                                            0,
-                                                                            10,
-                                                                            0),
+                                                                            0.0,
+                                                                            0.0,
+                                                                            10.0,
+                                                                            0.0),
                                                                         child:
                                                                             Text(
                                                                           rowUsersRecord
@@ -416,12 +424,12 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                               if (!snapshot.hasData) {
                                 return Center(
                                   child: SizedBox(
-                                    width: 50,
-                                    height: 50,
+                                    width: 50.0,
+                                    height: 50.0,
                                     child: SpinKitRipple(
                                       color: FlutterFlowTheme.of(context)
                                           .primaryColor,
-                                      size: 50,
+                                      size: 50.0,
                                     ),
                                   ),
                                 );
@@ -437,10 +445,11 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                       columnSupportRecordList[columnIndex];
                                   return Expanded(
                                     child: Align(
-                                      alignment: AlignmentDirectional(0, -1),
+                                      alignment:
+                                          AlignmentDirectional(0.0, -1.0),
                                       child: Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            5, 0, 10, 0),
+                                            5.0, 0.0, 10.0, 0.0),
                                         child: Container(
                                           width: MediaQuery.of(context)
                                                   .size
@@ -451,9 +460,9 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                 .secondaryBackground,
                                             boxShadow: [
                                               BoxShadow(
-                                                blurRadius: 4,
+                                                blurRadius: 4.0,
                                                 color: Color(0x33000000),
-                                                offset: Offset(0, 2),
+                                                offset: Offset(0.0, 2.0),
                                               )
                                             ],
                                           ),
@@ -461,11 +470,12 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Align(
-                                                alignment:
-                                                    AlignmentDirectional(-1, 0),
+                                                alignment: AlignmentDirectional(
+                                                    -1.0, 0.0),
                                                 child: Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(10, 10, 10, 10),
+                                                      .fromSTEB(10.0, 10.0,
+                                                          10.0, 10.0),
                                                   child: Text(
                                                     columnSupportRecord
                                                         .question!,
@@ -477,7 +487,8 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                               ),
                                               Padding(
                                                 padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 0, 0, 10),
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 10.0),
                                                 child:
                                                     StreamBuilder<UsersRecord>(
                                                   stream:
@@ -489,13 +500,13 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                     if (!snapshot.hasData) {
                                                       return Center(
                                                         child: SizedBox(
-                                                          width: 50,
-                                                          height: 50,
+                                                          width: 50.0,
+                                                          height: 50.0,
                                                           child: SpinKitRipple(
                                                             color: FlutterFlowTheme
                                                                     .of(context)
                                                                 .primaryColor,
-                                                            size: 50,
+                                                            size: 50.0,
                                                           ),
                                                         ),
                                                       );
@@ -507,8 +518,8 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                           MainAxisSize.max,
                                                       children: [
                                                         Wrap(
-                                                          spacing: 0,
-                                                          runSpacing: 0,
+                                                          spacing: 0.0,
+                                                          runSpacing: 0.0,
                                                           alignment:
                                                               WrapAlignment
                                                                   .start,
@@ -530,10 +541,10 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                               padding:
                                                                   EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          10,
-                                                                          0,
-                                                                          10,
-                                                                          0),
+                                                                          10.0,
+                                                                          0.0,
+                                                                          10.0,
+                                                                          0.0),
                                                               child: Text(
                                                                 rowUsersRecord
                                                                     .firstName!,
@@ -558,10 +569,10 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                               padding:
                                                                   EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          0,
-                                                                          0,
-                                                                          10,
-                                                                          0),
+                                                                          0.0,
+                                                                          0.0,
+                                                                          10.0,
+                                                                          0.0),
                                                               child: Text(
                                                                 rowUsersRecord
                                                                     .lastName!,
@@ -586,10 +597,10 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                               padding:
                                                                   EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          0,
-                                                                          0,
-                                                                          2,
-                                                                          0),
+                                                                          0.0,
+                                                                          0.0,
+                                                                          2.0,
+                                                                          0.0),
                                                               child:
                                                                   SelectionArea(
                                                                       child:
@@ -617,10 +628,10 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                               padding:
                                                                   EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          0,
-                                                                          0,
-                                                                          10,
-                                                                          0),
+                                                                          0.0,
+                                                                          0.0,
+                                                                          10.0,
+                                                                          0.0),
                                                               child: InkWell(
                                                                 onTap:
                                                                     () async {
@@ -635,7 +646,7 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
                                                                       .alternate,
-                                                                  size: 14,
+                                                                  size: 14.0,
                                                                 ),
                                                               ),
                                                             ),
@@ -643,10 +654,10 @@ class _FeedbackPrivateWidgetState extends State<FeedbackPrivateWidget> {
                                                               padding:
                                                                   EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          0,
-                                                                          0,
-                                                                          10,
-                                                                          0),
+                                                                          0.0,
+                                                                          0.0,
+                                                                          10.0,
+                                                                          0.0),
                                                               child: Text(
                                                                 rowUsersRecord
                                                                     .phoneNumber!,

@@ -47,12 +47,12 @@ class _PaymentWidgetState extends State<PaymentWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: AlignmentDirectional(0, 0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Container(
-        width: 700,
-        height: 700,
+        width: 700.0,
+        height: 700.0,
         constraints: BoxConstraints(
-          maxWidth: 700,
+          maxWidth: 700.0,
         ),
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -61,19 +61,19 @@ class _PaymentWidgetState extends State<PaymentWidget> {
           mainAxisSize: MainAxisSize.max,
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 20.0),
               child: Text(
                 'Buy Access',
                 style: FlutterFlowTheme.of(context).title3,
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
               child: Text(
                 '\$5.00 for 30 days',
                 style: FlutterFlowTheme.of(context).bodyText1.override(
                       fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                      fontSize: 16,
+                      fontSize: 16.0,
                       fontWeight: FontWeight.bold,
                       useGoogleFonts: GoogleFonts.asMap().containsKey(
                           FlutterFlowTheme.of(context).bodyText1Family),
@@ -81,14 +81,14 @@ class _PaymentWidgetState extends State<PaymentWidget> {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
               child: Text(
                 'beta access for unlimited uploads & prompts/queries',
                 style: FlutterFlowTheme.of(context).bodyText1,
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
               child: Text(
                 'Total:  \$ 5',
                 style: FlutterFlowTheme.of(context).bodyText1,
@@ -131,7 +131,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                               style: TextStyle(
                                 color: FlutterFlowTheme.of(context).primaryText,
                                 fontWeight: FontWeight.bold,
-                                fontSize: 22,
+                                fontSize: 22.0,
                               ),
                             ),
                             duration: Duration(milliseconds: 4000),
@@ -152,7 +152,7 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                                   color:
                                       FlutterFlowTheme.of(context).primaryText,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 24,
+                                  fontSize: 24.0,
                                 ),
                               ),
                               duration: Duration(milliseconds: 7000),
@@ -168,10 +168,12 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                       },
                       text: 'Buy Now',
                       options: FFButtonOptions(
-                        width: 130,
-                        height: 40,
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                        iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                        width: 130.0,
+                        height: 40.0,
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        iconPadding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).primaryColor,
                         textStyle: FlutterFlowTheme.of(context)
                             .subtitle2
@@ -184,9 +186,9 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                             ),
                         borderSide: BorderSide(
                           color: Colors.transparent,
-                          width: 1,
+                          width: 1.0,
                         ),
-                        borderRadius: BorderRadius.circular(0),
+                        borderRadius: BorderRadius.circular(0.0),
                       ),
                     ),
                   ),
@@ -199,10 +201,12 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                       },
                       text: 'Beta Access Granted!',
                       options: FFButtonOptions(
-                        width: 250,
-                        height: 40,
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                        iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                        width: 250.0,
+                        height: 40.0,
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        iconPadding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         color: FlutterFlowTheme.of(context).tertiary400,
                         textStyle: FlutterFlowTheme.of(context)
                             .subtitle2
@@ -215,20 +219,20 @@ class _PaymentWidgetState extends State<PaymentWidget> {
                             ),
                         borderSide: BorderSide(
                           color: Colors.transparent,
-                          width: 1,
+                          width: 1.0,
                         ),
-                        borderRadius: BorderRadius.circular(0),
+                        borderRadius: BorderRadius.circular(0.0),
                       ),
                     ),
                   ),
               ],
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
               child: Image.asset(
                 'assets/images/secure-stripe-payment-logo.png',
-                width: 300,
-                height: 43,
+                width: 300.0,
+                height: 43.0,
                 fit: BoxFit.cover,
               ),
             ),

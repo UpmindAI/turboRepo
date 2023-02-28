@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/random_data_util.dart' as random_data;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -57,11 +58,11 @@ class _AddListWidgetState extends State<AddListWidget> {
       mainAxisSize: MainAxisSize.max,
       children: [
         Align(
-          alignment: AlignmentDirectional(0, 0),
+          alignment: AlignmentDirectional(0.0, 0.0),
           child: Container(
-            width: MediaQuery.of(context).size.width,
+            width: MediaQuery.of(context).size.width * 1.0,
             constraints: BoxConstraints(
-              maxWidth: 780,
+              maxWidth: 780.0,
             ),
             decoration: BoxDecoration(
               color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -70,7 +71,20 @@ class _AddListWidgetState extends State<AddListWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
+                  child: Text(
+                    'Add a list of valid URLs, One URL per line.',
+                    style: FlutterFlowTheme.of(context).title3.override(
+                          fontFamily: FlutterFlowTheme.of(context).title3Family,
+                          fontSize: 16.0,
+                          useGoogleFonts: GoogleFonts.asMap().containsKey(
+                              FlutterFlowTheme.of(context).title3Family),
+                        ),
+                  ),
+                ),
+                Padding(
+                  padding:
+                      EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
                   child: TextFormField(
                     controller: _model.urlListFieldController,
                     autofocus: true,
@@ -81,7 +95,7 @@ class _AddListWidgetState extends State<AddListWidget> {
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                           color: FlutterFlowTheme.of(context).secondaryColor,
-                          width: 1,
+                          width: 1.0,
                         ),
                         borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(4.0),
@@ -91,7 +105,7 @@ class _AddListWidgetState extends State<AddListWidget> {
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                           color: FlutterFlowTheme.of(context).primaryColor,
-                          width: 1,
+                          width: 1.0,
                         ),
                         borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(4.0),
@@ -101,7 +115,7 @@ class _AddListWidgetState extends State<AddListWidget> {
                       errorBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                           color: Color(0x00000000),
-                          width: 1,
+                          width: 1.0,
                         ),
                         borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(4.0),
@@ -111,7 +125,7 @@ class _AddListWidgetState extends State<AddListWidget> {
                       focusedErrorBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                           color: Color(0x00000000),
-                          width: 1,
+                          width: 1.0,
                         ),
                         borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(4.0),
@@ -127,60 +141,79 @@ class _AddListWidgetState extends State<AddListWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
                   child: FFButtonWidget(
                     onPressed: () async {
-                      _model.scrapeAPIurls = await ScrapeServerCall.call(
-                        idToken: currentJwtToken,
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'Scraping started...',
+                            style: TextStyle(
+                              color: FlutterFlowTheme.of(context).primaryText,
+                            ),
+                          ),
+                          duration: Duration(milliseconds: 4000),
+                          backgroundColor: Color(0x00000000),
+                        ),
+                      );
+
+                      final userTempUploadsCreateData =
+                          createUserTempUploadsRecordData(
+                        urls: _model.urlListFieldController.text,
                         datasetId: widget.setDataset!.datasetId,
+                        timestamp: getCurrentTimestamp,
                         urlId: random_data.randomString(
-                          7,
-                          7,
+                          8,
+                          8,
                           true,
                           true,
                           true,
                         ),
+                        datasetName: widget.setDataset!.datasetName,
+                        chunkSize: FFAppState().setChunkSize,
                       );
-                      if ((_model.scrapeAPIurls?.succeeded ?? true)) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              'Your URLs where added as a source and is being processed.',
-                              style: TextStyle(
-                                color: FlutterFlowTheme.of(context).primaryText,
-                              ),
+                      var userTempUploadsRecordReference =
+                          UserTempUploadsRecord.createDoc(
+                              currentUserReference!);
+                      await userTempUploadsRecordReference
+                          .set(userTempUploadsCreateData);
+                      _model.createURLsdoc =
+                          UserTempUploadsRecord.getDocumentFromData(
+                              userTempUploadsCreateData,
+                              userTempUploadsRecordReference);
+                      await ScrapeServerCall.call(
+                        urlId: _model.createURLsdoc!.urlId,
+                        idToken: currentJwtToken,
+                        datasetId: widget.setDataset!.datasetId,
+                      );
+                      setState(() {
+                        _model.urlListFieldController?.clear();
+                      });
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'Processing... Your results will be available in your dataset shortly.',
+                            style: TextStyle(
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              fontWeight: FontWeight.bold,
                             ),
-                            duration: Duration(milliseconds: 4000),
-                            backgroundColor: Color(0x00000000),
                           ),
-                        );
-                        setState(() {
-                          _model.urlListFieldController?.clear();
-                        });
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              (_model.scrapeAPIurls?.statusCode ?? 200)
-                                  .toString(),
-                              style: TextStyle(
-                                color: FlutterFlowTheme.of(context).primaryText,
-                              ),
-                            ),
-                            duration: Duration(milliseconds: 4000),
-                            backgroundColor: Color(0x00000000),
-                          ),
-                        );
-                      }
+                          duration: Duration(milliseconds: 4000),
+                          backgroundColor:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                        ),
+                      );
 
                       setState(() {});
                     },
                     text: 'Send',
                     options: FFButtonOptions(
-                      width: 130,
-                      height: 40,
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                      iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                      width: 130.0,
+                      height: 40.0,
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      iconPadding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       color: FlutterFlowTheme.of(context).primaryColor,
                       textStyle: FlutterFlowTheme.of(context)
                           .subtitle2
@@ -193,9 +226,9 @@ class _AddListWidgetState extends State<AddListWidget> {
                           ),
                       borderSide: BorderSide(
                         color: Colors.transparent,
-                        width: 1,
+                        width: 1.0,
                       ),
-                      borderRadius: BorderRadius.circular(0),
+                      borderRadius: BorderRadius.circular(0.0),
                     ),
                   ),
                 ),

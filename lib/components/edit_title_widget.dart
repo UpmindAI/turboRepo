@@ -57,10 +57,10 @@ class _EditTitleWidgetState extends State<EditTitleWidget> {
       mainAxisSize: MainAxisSize.max,
       children: [
         Container(
-          width: MediaQuery.of(context).size.width * 7,
-          height: MediaQuery.of(context).size.height * 1,
+          width: MediaQuery.of(context).size.width * 7.0,
+          height: MediaQuery.of(context).size.height * 1.0,
           constraints: BoxConstraints(
-            maxWidth: 700,
+            maxWidth: 700.0,
           ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -69,14 +69,14 @@ class _EditTitleWidgetState extends State<EditTitleWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                 child: Text(
                   'Edit Document Title',
                   style: FlutterFlowTheme.of(context).title3,
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
                 child: TextFormField(
                   controller: _model.textController,
                   autofocus: true,
@@ -86,7 +86,7 @@ class _EditTitleWidgetState extends State<EditTitleWidget> {
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                         color: FlutterFlowTheme.of(context).alternate,
-                        width: 1,
+                        width: 1.0,
                       ),
                       borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(4.0),
@@ -96,7 +96,7 @@ class _EditTitleWidgetState extends State<EditTitleWidget> {
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                         color: FlutterFlowTheme.of(context).alternate,
-                        width: 1,
+                        width: 1.0,
                       ),
                       borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(4.0),
@@ -106,7 +106,7 @@ class _EditTitleWidgetState extends State<EditTitleWidget> {
                     errorBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                         color: Color(0x00000000),
-                        width: 1,
+                        width: 1.0,
                       ),
                       borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(4.0),
@@ -116,7 +116,7 @@ class _EditTitleWidgetState extends State<EditTitleWidget> {
                     focusedErrorBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                         color: Color(0x00000000),
-                        width: 1,
+                        width: 1.0,
                       ),
                       borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(4.0),
@@ -130,7 +130,7 @@ class _EditTitleWidgetState extends State<EditTitleWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                 child: FFButtonWidget(
                   onPressed: () async {
                     final userDocsUpdateData = createUserDocsRecordData(
@@ -143,10 +143,11 @@ class _EditTitleWidgetState extends State<EditTitleWidget> {
                   },
                   text: 'Save',
                   options: FFButtonOptions(
-                    width: 130,
-                    height: 40,
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                    iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                    width: 130.0,
+                    height: 40.0,
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    iconPadding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).primaryColor,
                     textStyle: FlutterFlowTheme.of(context).subtitle2.override(
                           fontFamily:
@@ -157,9 +158,9 @@ class _EditTitleWidgetState extends State<EditTitleWidget> {
                         ),
                     borderSide: BorderSide(
                       color: Colors.transparent,
-                      width: 1,
+                      width: 1.0,
                     ),
-                    borderRadius: BorderRadius.circular(0),
+                    borderRadius: BorderRadius.circular(0.0),
                   ),
                 ),
               ),

@@ -44,21 +44,21 @@ class _PromptConfigWidgetState extends State<PromptConfigWidget> {
     context.watch<FFAppState>();
 
     return Container(
-      width: 600,
-      height: 600,
+      width: 600.0,
+      height: 600.0,
       constraints: BoxConstraints(
-        maxWidth: 600,
+        maxWidth: 600.0,
       ),
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
       ),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+        padding: EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
             Container(
-              width: 260,
+              width: 260.0,
               decoration: BoxDecoration(
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
@@ -77,7 +77,7 @@ class _PromptConfigWidgetState extends State<PromptConfigWidget> {
                         ),
                         Expanded(
                           child: Align(
-                            alignment: AlignmentDirectional(1, 0),
+                            alignment: AlignmentDirectional(1.0, 0.0),
                             child: Text(
                               valueOrDefault<String>(
                                 formatNumber(
@@ -97,8 +97,8 @@ class _PromptConfigWidgetState extends State<PromptConfigWidget> {
                     Slider(
                       activeColor: FlutterFlowTheme.of(context).primaryColor,
                       inactiveColor: Color(0xFF9E9E9E),
-                      min: 5,
-                      max: 25,
+                      min: 5.0,
+                      max: 25.0,
                       value: _model.topKValue ??= FFAppState().setTopK,
                       label: _model.topKValue.toString(),
                       divisions: 20,
@@ -122,10 +122,10 @@ class _PromptConfigWidgetState extends State<PromptConfigWidget> {
               },
               text: 'Save',
               options: FFButtonOptions(
-                width: 130,
-                height: 40,
-                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                width: 130.0,
+                height: 40.0,
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                 color: FlutterFlowTheme.of(context).primaryColor,
                 textStyle: FlutterFlowTheme.of(context).subtitle2.override(
                       fontFamily: FlutterFlowTheme.of(context).subtitle2Family,
@@ -135,9 +135,9 @@ class _PromptConfigWidgetState extends State<PromptConfigWidget> {
                     ),
                 borderSide: BorderSide(
                   color: Colors.transparent,
-                  width: 1,
+                  width: 1.0,
                 ),
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(20.0),
               ),
             ),
           ],

@@ -50,19 +50,19 @@ class _SettingsWidgetState extends State<SettingsWidget> {
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(50),
+        preferredSize: Size.fromHeight(50.0),
         child: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
-            borderRadius: 30,
-            borderWidth: 1,
-            buttonSize: 60,
+            borderRadius: 30.0,
+            borderWidth: 1.0,
+            buttonSize: 60.0,
             icon: Icon(
               Icons.arrow_back_rounded,
               color: FlutterFlowTheme.of(context).primaryText,
-              size: 30,
+              size: 30.0,
             ),
             onPressed: () async {
               context.pop();
@@ -74,7 +74,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
           ),
           actions: [],
           centerTitle: true,
-          elevation: 0,
+          elevation: 0.0,
         ),
       ),
       body: SafeArea(
@@ -102,7 +102,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Align(
-                      alignment: AlignmentDirectional(0, -1),
+                      alignment: AlignmentDirectional(0.0, -1.0),
                       child: wrapWithModel(
                         model: _model.settingsPageModel,
                         updateCallback: () => setState(() {}),
@@ -110,7 +110,8 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
                           GoRouter.of(context).prepareAuthEvent();
@@ -120,11 +121,12 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                         },
                         text: 'Logout',
                         options: FFButtonOptions(
-                          width: 130,
-                          height: 40,
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                          iconPadding:
-                              EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                          width: 130.0,
+                          height: 40.0,
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).primaryColor,
                           textStyle: FlutterFlowTheme.of(context)
                               .subtitle2
@@ -138,16 +140,17 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                               ),
                           borderSide: BorderSide(
                             color: Colors.transparent,
-                            width: 1,
+                            width: 1.0,
                           ),
-                          borderRadius: BorderRadius.circular(0),
+                          borderRadius: BorderRadius.circular(0.0),
                         ),
                       ),
                     ),
                     Align(
-                      alignment: AlignmentDirectional(0.15, 0),
+                      alignment: AlignmentDirectional(0.15, 0.0),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -155,7 +158,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                 currentUserDocument?.isAdmin, false))
                               Expanded(
                                 child: Align(
-                                  alignment: AlignmentDirectional(0, 0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: AuthUserStreamWidget(
                                     builder: (context) => FFButtonWidget(
                                       onPressed: () async {
@@ -163,13 +166,13 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                       },
                                       text: 'Feedback (Admin)',
                                       options: FFButtonOptions(
-                                        width: 200,
-                                        height: 40,
+                                        width: 200.0,
+                                        height: 40.0,
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 0, 0, 0),
+                                            0.0, 0.0, 0.0, 0.0),
                                         iconPadding:
                                             EdgeInsetsDirectional.fromSTEB(
-                                                0, 0, 0, 0),
+                                                0.0, 0.0, 0.0, 0.0),
                                         color: FlutterFlowTheme.of(context)
                                             .primaryColor,
                                         textStyle: FlutterFlowTheme.of(context)
@@ -188,9 +191,10 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                             ),
                                         borderSide: BorderSide(
                                           color: Colors.transparent,
-                                          width: 1,
+                                          width: 1.0,
                                         ),
-                                        borderRadius: BorderRadius.circular(0),
+                                        borderRadius:
+                                            BorderRadius.circular(0.0),
                                       ),
                                     ),
                                   ),
@@ -200,7 +204,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                 currentUserDocument?.isAdmin, false))
                               Expanded(
                                 child: Align(
-                                  alignment: AlignmentDirectional(0, 0),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
                                   child: AuthUserStreamWidget(
                                     builder: (context) => FFButtonWidget(
                                       onPressed: () async {
@@ -216,7 +220,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                               padding: MediaQuery.of(context)
                                                   .viewInsets,
                                               child: Container(
-                                                height: 700,
+                                                height: 700.0,
                                                 child: PaymentWidget(),
                                               ),
                                             );
@@ -225,13 +229,13 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                       },
                                       text: 'Test Stripe (Admin)',
                                       options: FFButtonOptions(
-                                        width: 200,
-                                        height: 40,
+                                        width: 200.0,
+                                        height: 40.0,
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 0, 0, 0),
+                                            0.0, 0.0, 0.0, 0.0),
                                         iconPadding:
                                             EdgeInsetsDirectional.fromSTEB(
-                                                0, 0, 0, 0),
+                                                0.0, 0.0, 0.0, 0.0),
                                         color: FlutterFlowTheme.of(context)
                                             .primaryColor,
                                         textStyle: FlutterFlowTheme.of(context)
@@ -250,9 +254,10 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                             ),
                                         borderSide: BorderSide(
                                           color: Colors.transparent,
-                                          width: 1,
+                                          width: 1.0,
                                         ),
-                                        borderRadius: BorderRadius.circular(0),
+                                        borderRadius:
+                                            BorderRadius.circular(0.0),
                                       ),
                                     ),
                                   ),

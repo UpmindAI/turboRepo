@@ -55,8 +55,8 @@ class _ConfirmDeleteWidgetState extends State<ConfirmDeleteWidget> {
       mainAxisSize: MainAxisSize.max,
       children: [
         Container(
-          width: MediaQuery.of(context).size.width * 4,
-          height: 400,
+          width: MediaQuery.of(context).size.width * 4.0,
+          height: 400.0,
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
           ),
@@ -64,7 +64,7 @@ class _ConfirmDeleteWidgetState extends State<ConfirmDeleteWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 0.0),
                 child: Text(
                   'Are you sure you want to delete this Dataset?',
                   textAlign: TextAlign.center,
@@ -72,32 +72,32 @@ class _ConfirmDeleteWidgetState extends State<ConfirmDeleteWidget> {
                 ),
               ),
               Container(
-                width: MediaQuery.of(context).size.width,
-                height: 100,
+                width: MediaQuery.of(context).size.width * 1.0,
+                height: 100.0,
                 constraints: BoxConstraints(
-                  maxWidth: 600,
+                  maxWidth: 600.0,
                 ),
                 decoration: BoxDecoration(),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Expanded(
                         child: Align(
-                          alignment: AlignmentDirectional(0, 0),
+                          alignment: AlignmentDirectional(0.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
                               Navigator.pop(context);
                             },
                             text: 'No',
                             options: FFButtonOptions(
-                              width: 130,
-                              height: 40,
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                              iconPadding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                              width: 130.0,
+                              height: 40.0,
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).primaryColor,
                               textStyle: FlutterFlowTheme.of(context)
                                   .subtitle2
@@ -112,16 +112,16 @@ class _ConfirmDeleteWidgetState extends State<ConfirmDeleteWidget> {
                                   ),
                               borderSide: BorderSide(
                                 color: Colors.transparent,
-                                width: 1,
+                                width: 1.0,
                               ),
-                              borderRadius: BorderRadius.circular(0),
+                              borderRadius: BorderRadius.circular(0.0),
                             ),
                           ),
                         ),
                       ),
                       Expanded(
                         child: Align(
-                          alignment: AlignmentDirectional(0, 0),
+                          alignment: AlignmentDirectional(0.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
                               await widget.datasetRef!.delete();
@@ -132,12 +132,12 @@ class _ConfirmDeleteWidgetState extends State<ConfirmDeleteWidget> {
                             },
                             text: 'Yes',
                             options: FFButtonOptions(
-                              width: 130,
-                              height: 40,
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                              iconPadding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                              width: 130.0,
+                              height: 40.0,
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
                               color: FlutterFlowTheme.of(context).primaryColor,
                               textStyle: FlutterFlowTheme.of(context)
                                   .subtitle2
@@ -152,9 +152,9 @@ class _ConfirmDeleteWidgetState extends State<ConfirmDeleteWidget> {
                                   ),
                               borderSide: BorderSide(
                                 color: Colors.transparent,
-                                width: 1,
+                                width: 1.0,
                               ),
-                              borderRadius: BorderRadius.circular(0),
+                              borderRadius: BorderRadius.circular(0.0),
                             ),
                           ),
                         ),

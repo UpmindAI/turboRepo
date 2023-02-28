@@ -44,12 +44,12 @@ class _UploadConfigWidgetState extends State<UploadConfigWidget> {
     context.watch<FFAppState>();
 
     return Align(
-      alignment: AlignmentDirectional(0, 0),
+      alignment: AlignmentDirectional(0.0, 0.0),
       child: Container(
-        width: 500,
-        height: 500,
+        width: 500.0,
+        height: 500.0,
         constraints: BoxConstraints(
-          maxWidth: 500,
+          maxWidth: 500.0,
         ),
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -58,12 +58,13 @@ class _UploadConfigWidgetState extends State<UploadConfigWidget> {
           mainAxisSize: MainAxisSize.max,
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+              padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                     child: Text(
                       'Chunk Size',
                       style: FlutterFlowTheme.of(context).bodyText1,
@@ -71,9 +72,10 @@ class _UploadConfigWidgetState extends State<UploadConfigWidget> {
                   ),
                   Expanded(
                     child: Align(
-                      alignment: AlignmentDirectional(1, 0),
+                      alignment: AlignmentDirectional(1.0, 0.0),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                         child: Text(
                           valueOrDefault<String>(
                             formatNumber(
@@ -95,8 +97,8 @@ class _UploadConfigWidgetState extends State<UploadConfigWidget> {
             Slider(
               activeColor: FlutterFlowTheme.of(context).primaryColor,
               inactiveColor: Color(0xFF9E9E9E),
-              min: 0,
-              max: 4000,
+              min: 0.0,
+              max: 4000.0,
               value: _model.sliderValue ??= FFAppState().setChunkSize,
               label: _model.sliderValue.toString(),
               divisions: 80,
@@ -114,10 +116,10 @@ class _UploadConfigWidgetState extends State<UploadConfigWidget> {
               },
               text: 'Save',
               options: FFButtonOptions(
-                width: 130,
-                height: 40,
-                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                width: 130.0,
+                height: 40.0,
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                 color: FlutterFlowTheme.of(context).primaryColor,
                 textStyle: FlutterFlowTheme.of(context).subtitle2.override(
                       fontFamily: FlutterFlowTheme.of(context).subtitle2Family,
@@ -127,9 +129,9 @@ class _UploadConfigWidgetState extends State<UploadConfigWidget> {
                     ),
                 borderSide: BorderSide(
                   color: Colors.transparent,
-                  width: 1,
+                  width: 1.0,
                 ),
-                borderRadius: BorderRadius.circular(0),
+                borderRadius: BorderRadius.circular(0.0),
               ),
             ),
           ],

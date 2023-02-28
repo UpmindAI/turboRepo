@@ -61,12 +61,12 @@ class _SupportWidgetState extends State<SupportWidget> {
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(50),
+        preferredSize: Size.fromHeight(50.0),
         child: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
           actions: [],
-          elevation: 0,
+          elevation: 0.0,
         ),
       ),
       body: SafeArea(
@@ -97,21 +97,22 @@ class _SupportWidgetState extends State<SupportWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(10, 0, 20, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              10.0, 0.0, 20.0, 0.0),
                           child: Material(
                             color: Colors.transparent,
-                            elevation: 1,
+                            elevation: 1.0,
                             child: Container(
                               width: double.infinity,
-                              height: 800,
+                              height: 800.0,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
                                 boxShadow: [
                                   BoxShadow(
-                                    blurRadius: 4,
+                                    blurRadius: 4.0,
                                     color: Color(0x33000000),
-                                    offset: Offset(0, 2),
+                                    offset: Offset(0.0, 2.0),
                                   )
                                 ],
                               ),
@@ -124,16 +125,17 @@ class _SupportWidgetState extends State<SupportWidget> {
                                       Expanded(
                                         child: Align(
                                           alignment:
-                                              AlignmentDirectional(-1, 0),
+                                              AlignmentDirectional(-1.0, 0.0),
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Align(
-                                                alignment:
-                                                    AlignmentDirectional(-1, 0),
+                                                alignment: AlignmentDirectional(
+                                                    -1.0, 0.0),
                                                 child: Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(25, 20, 0, 0),
+                                                      .fromSTEB(
+                                                          25.0, 20.0, 0.0, 0.0),
                                                   child: Text(
                                                     'Support',
                                                     textAlign: TextAlign.start,
@@ -144,11 +146,12 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                 ),
                                               ),
                                               Align(
-                                                alignment:
-                                                    AlignmentDirectional(-1, 0),
+                                                alignment: AlignmentDirectional(
+                                                    -1.0, 0.0),
                                                 child: Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(25, 10, 0, 20),
+                                                      .fromSTEB(25.0, 10.0, 0.0,
+                                                          20.0),
                                                   child: Text(
                                                     'First, please make sure your personal information is up to date!',
                                                     style: FlutterFlowTheme.of(
@@ -172,14 +175,14 @@ class _SupportWidgetState extends State<SupportWidget> {
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  20, 0, 0, 0),
+                                                  20.0, 0.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Expanded(
                                                 child: Wrap(
-                                                  spacing: 20,
-                                                  runSpacing: 20,
+                                                  spacing: 20.0,
+                                                  runSpacing: 20.0,
                                                   alignment:
                                                       WrapAlignment.start,
                                                   crossAxisAlignment:
@@ -192,7 +195,7 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                   clipBehavior: Clip.none,
                                                   children: [
                                                     Container(
-                                                      width: 400,
+                                                      width: 400.0,
                                                       constraints:
                                                           BoxConstraints(
                                                         maxWidth: MediaQuery.of(
@@ -229,12 +232,12 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .alternate,
-                                                                width: 1,
+                                                                width: 1.0,
                                                               ),
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .circular(
-                                                                          0),
+                                                                          0.0),
                                                             ),
                                                             focusedBorder:
                                                                 OutlineInputBorder(
@@ -243,12 +246,12 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,
-                                                                width: 1,
+                                                                width: 1.0,
                                                               ),
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .circular(
-                                                                          0),
+                                                                          0.0),
                                                             ),
                                                             errorBorder:
                                                                 OutlineInputBorder(
@@ -256,12 +259,12 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                                   BorderSide(
                                                                 color: Color(
                                                                     0xFF980000),
-                                                                width: 1,
+                                                                width: 1.0,
                                                               ),
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .circular(
-                                                                          0),
+                                                                          0.0),
                                                             ),
                                                             focusedErrorBorder:
                                                                 OutlineInputBorder(
@@ -269,12 +272,12 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                                   BorderSide(
                                                                 color: Color(
                                                                     0xFF980000),
-                                                                width: 1,
+                                                                width: 1.0,
                                                               ),
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .circular(
-                                                                          0),
+                                                                          0.0),
                                                             ),
                                                           ),
                                                           style: FlutterFlowTheme
@@ -288,7 +291,7 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                       ),
                                                     ),
                                                     Container(
-                                                      width: 400,
+                                                      width: 400.0,
                                                       constraints:
                                                           BoxConstraints(
                                                         maxWidth: MediaQuery.of(
@@ -325,12 +328,12 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .alternate,
-                                                                width: 1,
+                                                                width: 1.0,
                                                               ),
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .circular(
-                                                                          0),
+                                                                          0.0),
                                                             ),
                                                             focusedBorder:
                                                                 OutlineInputBorder(
@@ -339,12 +342,12 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,
-                                                                width: 1,
+                                                                width: 1.0,
                                                               ),
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .circular(
-                                                                          0),
+                                                                          0.0),
                                                             ),
                                                             errorBorder:
                                                                 OutlineInputBorder(
@@ -352,12 +355,12 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                                   BorderSide(
                                                                 color: Color(
                                                                     0xFF980000),
-                                                                width: 1,
+                                                                width: 1.0,
                                                               ),
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .circular(
-                                                                          0),
+                                                                          0.0),
                                                             ),
                                                             focusedErrorBorder:
                                                                 OutlineInputBorder(
@@ -365,12 +368,12 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                                   BorderSide(
                                                                 color: Color(
                                                                     0xFF980000),
-                                                                width: 1,
+                                                                width: 1.0,
                                                               ),
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .circular(
-                                                                          0),
+                                                                          0.0),
                                                             ),
                                                           ),
                                                           style: FlutterFlowTheme
@@ -392,14 +395,14 @@ class _SupportWidgetState extends State<SupportWidget> {
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  20, 20, 0, 0),
+                                                  20.0, 20.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Expanded(
                                                 child: Wrap(
-                                                  spacing: 20,
-                                                  runSpacing: 20,
+                                                  spacing: 20.0,
+                                                  runSpacing: 20.0,
                                                   alignment:
                                                       WrapAlignment.start,
                                                   crossAxisAlignment:
@@ -414,11 +417,12 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                     Container(
                                                       width:
                                                           MediaQuery.of(context)
-                                                              .size
-                                                              .width,
+                                                                  .size
+                                                                  .width *
+                                                              1.0,
                                                       constraints:
                                                           BoxConstraints(
-                                                        maxWidth: 400,
+                                                        maxWidth: 400.0,
                                                       ),
                                                       decoration: BoxDecoration(
                                                         color: FlutterFlowTheme
@@ -446,12 +450,12 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                               color: FlutterFlowTheme
                                                                       .of(context)
                                                                   .alternate,
-                                                              width: 1,
+                                                              width: 1.0,
                                                             ),
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        0),
+                                                                        0.0),
                                                           ),
                                                           focusedBorder:
                                                               OutlineInputBorder(
@@ -460,12 +464,12 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                               color: FlutterFlowTheme
                                                                       .of(context)
                                                                   .secondaryText,
-                                                              width: 1,
+                                                              width: 1.0,
                                                             ),
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        0),
+                                                                        0.0),
                                                           ),
                                                           errorBorder:
                                                               OutlineInputBorder(
@@ -473,12 +477,12 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                                 BorderSide(
                                                               color: Color(
                                                                   0xFF980000),
-                                                              width: 1,
+                                                              width: 1.0,
                                                             ),
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        0),
+                                                                        0.0),
                                                           ),
                                                           focusedErrorBorder:
                                                               OutlineInputBorder(
@@ -486,12 +490,12 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                                 BorderSide(
                                                               color: Color(
                                                                   0xFF980000),
-                                                              width: 1,
+                                                              width: 1.0,
                                                             ),
                                                             borderRadius:
                                                                 BorderRadius
                                                                     .circular(
-                                                                        0),
+                                                                        0.0),
                                                           ),
                                                         ),
                                                         style:
@@ -507,11 +511,12 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                     Container(
                                                       width:
                                                           MediaQuery.of(context)
-                                                              .size
-                                                              .width,
+                                                                  .size
+                                                                  .width *
+                                                              1.0,
                                                       constraints:
                                                           BoxConstraints(
-                                                        maxWidth: 400,
+                                                        maxWidth: 400.0,
                                                       ),
                                                       decoration: BoxDecoration(
                                                         color: FlutterFlowTheme
@@ -541,12 +546,12 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .alternate,
-                                                                width: 1,
+                                                                width: 1.0,
                                                               ),
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .circular(
-                                                                          0),
+                                                                          0.0),
                                                             ),
                                                             focusedBorder:
                                                                 OutlineInputBorder(
@@ -555,12 +560,12 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,
-                                                                width: 1,
+                                                                width: 1.0,
                                                               ),
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .circular(
-                                                                          0),
+                                                                          0.0),
                                                             ),
                                                             errorBorder:
                                                                 OutlineInputBorder(
@@ -568,12 +573,12 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                                   BorderSide(
                                                                 color: Color(
                                                                     0xFF980000),
-                                                                width: 1,
+                                                                width: 1.0,
                                                               ),
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .circular(
-                                                                          0),
+                                                                          0.0),
                                                             ),
                                                             focusedErrorBorder:
                                                                 OutlineInputBorder(
@@ -581,12 +586,12 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                                   BorderSide(
                                                                 color: Color(
                                                                     0xFF980000),
-                                                                width: 1,
+                                                                width: 1.0,
                                                               ),
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .circular(
-                                                                          0),
+                                                                          0.0),
                                                             ),
                                                           ),
                                                           style: FlutterFlowTheme
@@ -608,14 +613,14 @@ class _SupportWidgetState extends State<SupportWidget> {
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  20, 20, 0, 0),
+                                                  20.0, 20.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Expanded(
                                                 child: Wrap(
-                                                  spacing: 20,
-                                                  runSpacing: 20,
+                                                  spacing: 20.0,
+                                                  runSpacing: 20.0,
                                                   alignment:
                                                       WrapAlignment.start,
                                                   crossAxisAlignment:
@@ -628,7 +633,7 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                   clipBehavior: Clip.none,
                                                   children: [
                                                     Container(
-                                                      width: 400,
+                                                      width: 400.0,
                                                       constraints:
                                                           BoxConstraints(
                                                         maxWidth: MediaQuery.of(
@@ -665,12 +670,12 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .alternate,
-                                                                width: 1,
+                                                                width: 1.0,
                                                               ),
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .circular(
-                                                                          0),
+                                                                          0.0),
                                                             ),
                                                             focusedBorder:
                                                                 OutlineInputBorder(
@@ -679,12 +684,12 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,
-                                                                width: 1,
+                                                                width: 1.0,
                                                               ),
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .circular(
-                                                                          0),
+                                                                          0.0),
                                                             ),
                                                             errorBorder:
                                                                 OutlineInputBorder(
@@ -692,12 +697,12 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                                   BorderSide(
                                                                 color: Color(
                                                                     0xFF980000),
-                                                                width: 1,
+                                                                width: 1.0,
                                                               ),
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .circular(
-                                                                          0),
+                                                                          0.0),
                                                             ),
                                                             focusedErrorBorder:
                                                                 OutlineInputBorder(
@@ -705,12 +710,12 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                                   BorderSide(
                                                                 color: Color(
                                                                     0xFF980000),
-                                                                width: 1,
+                                                                width: 1.0,
                                                               ),
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .circular(
-                                                                          0),
+                                                                          0.0),
                                                             ),
                                                           ),
                                                           style: FlutterFlowTheme
@@ -724,7 +729,7 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                       ),
                                                     ),
                                                     Container(
-                                                      width: 400,
+                                                      width: 400.0,
                                                       constraints:
                                                           BoxConstraints(
                                                         maxWidth: MediaQuery.of(
@@ -761,12 +766,12 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .alternate,
-                                                                width: 1,
+                                                                width: 1.0,
                                                               ),
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .circular(
-                                                                          0),
+                                                                          0.0),
                                                             ),
                                                             focusedBorder:
                                                                 OutlineInputBorder(
@@ -774,12 +779,12 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                                   BorderSide(
                                                                 color: Color(
                                                                     0x00000000),
-                                                                width: 1,
+                                                                width: 1.0,
                                                               ),
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .circular(
-                                                                          0),
+                                                                          0.0),
                                                             ),
                                                             errorBorder:
                                                                 OutlineInputBorder(
@@ -787,12 +792,12 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                                   BorderSide(
                                                                 color: Color(
                                                                     0x00000000),
-                                                                width: 1,
+                                                                width: 1.0,
                                                               ),
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .circular(
-                                                                          0),
+                                                                          0.0),
                                                             ),
                                                             focusedErrorBorder:
                                                                 OutlineInputBorder(
@@ -800,12 +805,12 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                                   BorderSide(
                                                                 color: Color(
                                                                     0x00000000),
-                                                                width: 1,
+                                                                width: 1.0,
                                                               ),
                                                               borderRadius:
                                                                   BorderRadius
                                                                       .circular(
-                                                                          0),
+                                                                          0.0),
                                                             ),
                                                           ),
                                                           style: FlutterFlowTheme
@@ -839,11 +844,11 @@ class _SupportWidgetState extends State<SupportWidget> {
                                         ),
                                         Align(
                                           alignment:
-                                              AlignmentDirectional(-1, 0),
+                                              AlignmentDirectional(-1.0, 0.0),
                                           child: Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    20, 10, 0, 0),
+                                                    20.0, 10.0, 0.0, 0.0),
                                             child: FFButtonWidget(
                                               onPressed: () async {
                                                 final usersUpdateData =
@@ -863,13 +868,15 @@ class _SupportWidgetState extends State<SupportWidget> {
                                               },
                                               text: 'Save',
                                               options: FFButtonOptions(
-                                                width: 100,
-                                                height: 40,
+                                                width: 100.0,
+                                                height: 40.0,
                                                 padding: EdgeInsetsDirectional
-                                                    .fromSTEB(0, 0, 0, 0),
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 0.0),
                                                 iconPadding:
                                                     EdgeInsetsDirectional
-                                                        .fromSTEB(0, 0, 0, 0),
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .primaryColor,
@@ -891,10 +898,10 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                         ),
                                                 borderSide: BorderSide(
                                                   color: Colors.transparent,
-                                                  width: 1,
+                                                  width: 1.0,
                                                 ),
                                                 borderRadius:
-                                                    BorderRadius.circular(0),
+                                                    BorderRadius.circular(0.0),
                                               ),
                                             ),
                                           ),
@@ -902,16 +909,17 @@ class _SupportWidgetState extends State<SupportWidget> {
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  20, 20, 0, 0),
+                                                  20.0, 20.0, 0.0, 0.0),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Container(
                                                 width: MediaQuery.of(context)
-                                                    .size
-                                                    .width,
+                                                        .size
+                                                        .width *
+                                                    1.0,
                                                 constraints: BoxConstraints(
-                                                  maxWidth: 820,
+                                                  maxWidth: 820.0,
                                                 ),
                                                 decoration: BoxDecoration(
                                                   color: FlutterFlowTheme.of(
@@ -933,23 +941,27 @@ class _SupportWidgetState extends State<SupportWidget> {
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Align(
-                                              alignment:
-                                                  AlignmentDirectional(-1, 0),
+                                              alignment: AlignmentDirectional(
+                                                  -1.0, 0.0),
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
-                                                    .fromSTEB(20, 0, 0, 0),
+                                                    .fromSTEB(
+                                                        20.0, 0.0, 0.0, 0.0),
                                                 child: Container(
-                                                  width: 820,
+                                                  width: 820.0,
                                                   decoration: BoxDecoration(),
                                                   child: Align(
                                                     alignment:
                                                         AlignmentDirectional(
-                                                            -1, 0),
+                                                            -1.0, 0.0),
                                                     child: Padding(
                                                       padding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
-                                                                  0, 40, 0, 0),
+                                                                  0.0,
+                                                                  40.0,
+                                                                  0.0,
+                                                                  0.0),
                                                       child: TextFormField(
                                                         controller: _model
                                                             .questionController,
@@ -970,7 +982,7 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                               color: FlutterFlowTheme
                                                                       .of(context)
                                                                   .alternate,
-                                                              width: 1,
+                                                              width: 1.0,
                                                             ),
                                                             borderRadius:
                                                                 const BorderRadius
@@ -990,7 +1002,7 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                               color: FlutterFlowTheme
                                                                       .of(context)
                                                                   .secondaryText,
-                                                              width: 1,
+                                                              width: 1.0,
                                                             ),
                                                             borderRadius:
                                                                 const BorderRadius
@@ -1009,7 +1021,7 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                                 BorderSide(
                                                               color: Color(
                                                                   0xFF980000),
-                                                              width: 1,
+                                                              width: 1.0,
                                                             ),
                                                             borderRadius:
                                                                 const BorderRadius
@@ -1028,7 +1040,7 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                                 BorderSide(
                                                               color: Color(
                                                                   0xFF980000),
-                                                              width: 1,
+                                                              width: 1.0,
                                                             ),
                                                             borderRadius:
                                                                 const BorderRadius
@@ -1061,7 +1073,8 @@ class _SupportWidgetState extends State<SupportWidget> {
                                               children: [
                                                 Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(20, 20, 0, 0),
+                                                      .fromSTEB(
+                                                          20.0, 20.0, 0.0, 0.0),
                                                   child: FFButtonWidget(
                                                     onPressed: () async {
                                                       final supportCreateData =
@@ -1092,7 +1105,7 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w600,
-                                                              fontSize: 20,
+                                                              fontSize: 20.0,
                                                             ),
                                                           ),
                                                           duration: Duration(
@@ -1118,16 +1131,22 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                     },
                                                     text: 'Submit Question',
                                                     options: FFButtonOptions(
-                                                      width: 180,
-                                                      height: 40,
+                                                      width: 180.0,
+                                                      height: 40.0,
                                                       padding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
-                                                                  0, 0, 0, 0),
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
                                                       iconPadding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
-                                                                  0, 0, 0, 0),
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
                                                       color:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -1151,11 +1170,11 @@ class _SupportWidgetState extends State<SupportWidget> {
                                                       borderSide: BorderSide(
                                                         color:
                                                             Colors.transparent,
-                                                        width: 1,
+                                                        width: 1.0,
                                                       ),
                                                       borderRadius:
                                                           BorderRadius.circular(
-                                                              0),
+                                                              0.0),
                                                     ),
                                                   ),
                                                 ),
