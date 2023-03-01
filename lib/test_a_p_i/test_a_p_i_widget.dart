@@ -509,6 +509,51 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
                                             await TestAPICall.call(
                                           idToken: currentJwtToken,
                                         );
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                              (_model.testAPIresult
+                                                          ?.statusCode ??
+                                                      200)
+                                                  .toString(),
+                                              style: TextStyle(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .tertiary400,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 22.0,
+                                              ),
+                                            ),
+                                            duration:
+                                                Duration(milliseconds: 4000),
+                                            backgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .customColor1,
+                                          ),
+                                        );
+                                        await Future.delayed(
+                                            const Duration(milliseconds: 3000));
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                              (_model.testAPIresult?.jsonBody ??
+                                                      '')
+                                                  .toString(),
+                                              style: TextStyle(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .tertiary400,
+                                              ),
+                                            ),
+                                            duration:
+                                                Duration(milliseconds: 4000),
+                                            backgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .customColor1,
+                                          ),
+                                        );
                                         if ((_model.testAPIresult?.succeeded ??
                                             true)) {
                                           ScaffoldMessenger.of(context)
