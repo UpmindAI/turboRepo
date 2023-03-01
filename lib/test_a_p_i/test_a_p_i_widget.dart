@@ -520,7 +520,7 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
                                               style: TextStyle(
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .tertiary400,
+                                                        .primaryBackground,
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 22.0,
                                               ),
@@ -529,11 +529,13 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
                                                 Duration(milliseconds: 4000),
                                             backgroundColor:
                                                 FlutterFlowTheme.of(context)
-                                                    .customColor1,
+                                                    .tertiary400,
                                           ),
                                         );
                                         await Future.delayed(
                                             const Duration(milliseconds: 3000));
+                                        ScaffoldMessenger.of(context)
+                                            .clearSnackBars();
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
                                           SnackBar(
@@ -544,7 +546,7 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
                                               style: TextStyle(
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .tertiary400,
+                                                        .secondaryBackground,
                                               ),
                                             ),
                                             duration:
@@ -556,6 +558,8 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
                                         );
                                         if ((_model.testAPIresult?.succeeded ??
                                             true)) {
+                                          ScaffoldMessenger.of(context)
+                                              .clearSnackBars();
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(
                                             SnackBar(
@@ -582,6 +586,8 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
                                           await Future.delayed(const Duration(
                                               milliseconds: 3000));
                                           ScaffoldMessenger.of(context)
+                                              .clearSnackBars();
+                                          ScaffoldMessenger.of(context)
                                               .showSnackBar(
                                             SnackBar(
                                               content: Text(
@@ -603,6 +609,8 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
                                             ),
                                           );
                                         } else {
+                                          ScaffoldMessenger.of(context)
+                                              .clearSnackBars();
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(
                                             SnackBar(
@@ -627,6 +635,8 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
                                           );
                                           await Future.delayed(const Duration(
                                               milliseconds: 3000));
+                                          ScaffoldMessenger.of(context)
+                                              .clearSnackBars();
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(
                                             SnackBar(
