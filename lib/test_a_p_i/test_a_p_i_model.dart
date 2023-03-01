@@ -15,6 +15,8 @@ class TestAPIModel extends FlutterFlowModel {
 
   // Stores action output result for [Backend Call - API (GPTquery)] action in Button widget.
   ApiCallResponse? apiResulteme;
+  // Stores action output result for [Backend Call - API (chatServer)] action in Button widget.
+  ApiCallResponse? chatAPItest;
   // Stores action output result for [Backend Call - API (testAPI)] action in Button widget.
   ApiCallResponse? testAPIresult;
 
