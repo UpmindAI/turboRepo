@@ -232,7 +232,7 @@ class TestAPICall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'testAPI',
-      apiUrl: 'https://testapis-p67td2b2aq-uw.a.run.app',
+      apiUrl: 'https://testapi-p67td2b2aq-uc.a.run.app',
       callType: ApiCallType.POST,
       headers: {},
       params: {},

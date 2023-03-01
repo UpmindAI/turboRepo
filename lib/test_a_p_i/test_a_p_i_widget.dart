@@ -504,8 +504,109 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         10.0, 0.0, 10.0, 20.0),
                                     child: FFButtonWidget(
-                                      onPressed: () {
-                                        print('Button pressed ...');
+                                      onPressed: () async {
+                                        _model.testAPIresult =
+                                            await TestAPICall.call(
+                                          idToken: currentJwtToken,
+                                        );
+                                        if ((_model.testAPIresult?.succeeded ??
+                                            true)) {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            SnackBar(
+                                              content: Text(
+                                                (_model.testAPIresult
+                                                            ?.statusCode ??
+                                                        200)
+                                                    .toString(),
+                                                style: TextStyle(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryBackground,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 22.0,
+                                                ),
+                                              ),
+                                              duration:
+                                                  Duration(milliseconds: 4000),
+                                              backgroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .customColor1,
+                                            ),
+                                          );
+                                          await Future.delayed(const Duration(
+                                              milliseconds: 3000));
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            SnackBar(
+                                              content: Text(
+                                                (_model.testAPIresult
+                                                            ?.jsonBody ??
+                                                        '')
+                                                    .toString(),
+                                                style: TextStyle(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryBackground,
+                                                ),
+                                              ),
+                                              duration:
+                                                  Duration(milliseconds: 4000),
+                                              backgroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .customColor1,
+                                            ),
+                                          );
+                                        } else {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            SnackBar(
+                                              content: Text(
+                                                (_model.testAPIresult
+                                                            ?.statusCode ??
+                                                        200)
+                                                    .toString(),
+                                                style: TextStyle(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryBackground,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 22.0,
+                                                ),
+                                              ),
+                                              duration:
+                                                  Duration(milliseconds: 4000),
+                                              backgroundColor:
+                                                  Color(0xFF980000),
+                                            ),
+                                          );
+                                          await Future.delayed(const Duration(
+                                              milliseconds: 3000));
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            SnackBar(
+                                              content: Text(
+                                                (_model.testAPIresult
+                                                            ?.jsonBody ??
+                                                        '')
+                                                    .toString(),
+                                                style: TextStyle(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryBackground,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 22.0,
+                                                ),
+                                              ),
+                                              duration:
+                                                  Duration(milliseconds: 4000),
+                                              backgroundColor:
+                                                  Color(0xFF980000),
+                                            ),
+                                          );
+                                        }
+
+                                        setState(() {});
                                       },
                                       text: 'Test',
                                       options: FFButtonOptions(
