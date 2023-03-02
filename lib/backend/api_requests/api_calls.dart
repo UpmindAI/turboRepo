@@ -250,11 +250,19 @@ class TestMIXEDGPTCall {
   static Future<ApiCallResponse> call({
     String? qid = '',
     String? idToken = '',
+    int? topK,
+    bool? gaurdrail = false,
+    List<String>? datasetIdsList,
   }) {
+    final datasetIds = _serializeList(datasetIdsList);
+
     final body = '''
 {
   "qid": "${qid}",
-  "id_token": "${idToken}"
+  "id_token": "${idToken}",
+  "top_k": ${topK},
+  "guardrail": ${gaurdrail},
+  "dataset_ids": ${datasetIds}
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'testMIXEDGPT',
