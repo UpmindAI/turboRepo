@@ -94,7 +94,7 @@ class DatasetGPTserverCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'datasetGPTserver',
-      apiUrl: 'https://turbomixedquery-p67td2b2aq-uc.a.run.app',
+      apiUrl: 'https://mixed-query-omp-p67td2b2aq-uc.a.run.app',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
