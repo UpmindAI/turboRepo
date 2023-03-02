@@ -158,9 +158,10 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
                                                 FFAppState().selectedDataset,
                                           );
                                           _shouldSetState = true;
-                                          if ((_model
-                                                  .apiResultMIXtest?.jsonBody ??
-                                              '')) {
+                                          if ((_model.apiResultMIXtest
+                                                      ?.jsonBody ??
+                                                  '') ==
+                                              null) {
                                             ScaffoldMessenger.of(context)
                                                 .showSnackBar(
                                               SnackBar(
@@ -215,29 +216,6 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
                                               setState(() {});
                                             return;
                                           } else {
-                                            await showModalBottomSheet(
-                                              isScrollControlled: true,
-                                              backgroundColor:
-                                                  Colors.transparent,
-                                              enableDrag: false,
-                                              context: context,
-                                              builder: (context) {
-                                                return Padding(
-                                                  padding:
-                                                      MediaQuery.of(context)
-                                                          .viewInsets,
-                                                  child: Container(
-                                                    height:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .height *
-                                                            1.0,
-                                                    child: ErrorMessageWidget(),
-                                                  ),
-                                                );
-                                              },
-                                            ).then((value) => setState(() {}));
-
                                             ScaffoldMessenger.of(context)
                                                 .showSnackBar(
                                               SnackBar(
@@ -284,6 +262,29 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
                                                     Color(0xFF980000),
                                               ),
                                             );
+                                            await showModalBottomSheet(
+                                              isScrollControlled: true,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              enableDrag: false,
+                                              context: context,
+                                              builder: (context) {
+                                                return Padding(
+                                                  padding:
+                                                      MediaQuery.of(context)
+                                                          .viewInsets,
+                                                  child: Container(
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            1.0,
+                                                    child: ErrorMessageWidget(),
+                                                  ),
+                                                );
+                                              },
+                                            ).then((value) => setState(() {}));
+
                                             if (_shouldSetState)
                                               setState(() {});
                                             return;
