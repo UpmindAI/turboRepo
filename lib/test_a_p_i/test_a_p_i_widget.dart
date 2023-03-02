@@ -143,19 +143,16 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
                                                   currentUserReference!);
                                           await userPromptsRecordReference
                                               .set(userPromptsCreateData);
-                                          _model.setPrompt = UserPromptsRecord
-                                              .getDocumentFromData(
-                                                  userPromptsCreateData,
-                                                  userPromptsRecordReference);
+                                          _model.setPrompttextMIX =
+                                              UserPromptsRecord
+                                                  .getDocumentFromData(
+                                                      userPromptsCreateData,
+                                                      userPromptsRecordReference);
                                           _shouldSetState = true;
                                           _model.apiResultMIXtest =
-                                              await DatasetGPTserverCall.call(
-                                            qid: FFAppState().setQid,
-                                            datasetIdsList:
-                                                FFAppState().selectedDataset,
-                                            topK: FFAppState().setTopK,
+                                              await TestMIXEDGPTCall.call(
+                                            qid: _model.setPrompttextMIX!.qid,
                                             idToken: currentJwtToken,
-                                            guardrail: false,
                                           );
                                           _shouldSetState = true;
                                           if ((_model.apiResultMIXtest
