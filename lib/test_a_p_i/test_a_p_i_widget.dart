@@ -7,7 +7,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -153,6 +152,10 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
                                               await TestMIXEDGPTCall.call(
                                             qid: _model.setPrompttextMIX!.qid,
                                             idToken: currentJwtToken,
+                                            topK: 5,
+                                            gaurdrail: _model.guardrailValue,
+                                            datasetIdsList:
+                                                FFAppState().selectedDataset,
                                           );
                                           _shouldSetState = true;
                                           if ((_model.apiResultMIXtest
@@ -1166,58 +1169,25 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 20.0),
-                          child: RichText(
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: 'Status: ',
-                                  style: TextStyle(),
-                                ),
-                                TextSpan(
-                                  text: FFAppState().testAPI,
-                                  style: TextStyle(),
-                                )
-                              ],
-                              style: FlutterFlowTheme.of(context).bodyText1,
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 20.0),
-                          child: RichText(
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: 'Body: ',
-                                  style: TextStyle(),
-                                ),
-                                TextSpan(
-                                  text: FFAppState().testAPIbody,
-                                  style: TextStyle(),
-                                )
-                              ],
-                              style: FlutterFlowTheme.of(context).bodyText1,
-                            ),
-                          ),
-                        ),
-                        RichText(
-                          text: TextSpan(
-                            children: [
-                              TextSpan(
-                                text: 'JSON: ',
-                                style: TextStyle(),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  20.0, 0.0, 0.0, 0.0),
+                              child: Text(
+                                'Guardrail',
+                                style: FlutterFlowTheme.of(context).bodyText1,
                               ),
-                              TextSpan(
-                                text: FFAppState().testAPIjson.toString(),
-                                style: TextStyle(),
-                              )
-                            ],
-                            style: FlutterFlowTheme.of(context).bodyText1,
-                          ),
+                            ),
+                            Switch(
+                              value: _model.guardrailValue ??= true,
+                              onChanged: (newValue) async {
+                                setState(
+                                    () => _model.guardrailValue = newValue!);
+                              },
+                            ),
+                          ],
                         ),
                       ],
                     ),
