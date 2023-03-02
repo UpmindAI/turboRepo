@@ -77,7 +77,6 @@ class _RetreivingSummarizeWidgetState extends State<RetreivingSummarizeWidget>
 
         return;
       } else {
-        context.pop();
         await showModalBottomSheet(
           isScrollControlled: true,
           backgroundColor: Colors.transparent,
@@ -94,6 +93,8 @@ class _RetreivingSummarizeWidgetState extends State<RetreivingSummarizeWidget>
           },
         ).then((value) => setState(() {}));
 
+        await Future.delayed(const Duration(milliseconds: 5000));
+        context.pop();
         return;
       }
     });
