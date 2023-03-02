@@ -158,9 +158,9 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
                                                 FFAppState().selectedDataset,
                                           );
                                           _shouldSetState = true;
-                                          if ((_model.apiResultMIXtest
-                                                  ?.succeeded ??
-                                              true)) {
+                                          if ((_model
+                                                  .apiResultMIXtest?.jsonBody ??
+                                              '')) {
                                             ScaffoldMessenger.of(context)
                                                 .showSnackBar(
                                               SnackBar(
