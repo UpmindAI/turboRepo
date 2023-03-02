@@ -163,10 +163,16 @@ class FFAppState extends ChangeNotifier {
     _testAPIbody = _value;
   }
 
-  dynamic _testAPIjson;
+  dynamic _testAPIjson = jsonDecode('{\"message\":\"success\"}');
   dynamic get testAPIjson => _testAPIjson;
   set testAPIjson(dynamic _value) {
     _testAPIjson = _value;
+  }
+
+  dynamic _apiFalse = jsonDecode('{\"message\":\"failure\"}');
+  dynamic get apiFalse => _apiFalse;
+  set apiFalse(dynamic _value) {
+    _apiFalse = _value;
   }
 }
 

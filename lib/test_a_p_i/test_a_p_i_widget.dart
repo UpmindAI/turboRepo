@@ -1,9 +1,12 @@
 import '/auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
+import '/backend/backend.dart';
+import '/components/error_message/error_message_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/random_data_util.dart' as random_data;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -108,7 +111,7 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 20.0, 0.0, 20.0),
                                       child: Text(
-                                        'GPTquery',
+                                        'MIXGPTquery',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1,
                                       ),
@@ -118,45 +121,175 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
                                           10.0, 0.0, 10.0, 10.0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
-                                          setState(() {
+                                          var _shouldSetState = false;
+                                          FFAppState().update(() {
                                             FFAppState().setQid =
                                                 random_data.randomString(
-                                              8,
-                                              9,
+                                              7,
+                                              7,
                                               true,
                                               true,
                                               true,
                                             );
                                           });
-                                          _model.apiResulteme =
-                                              await GPTqueryCall.call(
+
+                                          final userPromptsCreateData =
+                                              createUserPromptsRecordData(
                                             qid: FFAppState().setQid,
-                                            idToken: currentJwtToken,
+                                            prompt: 'Test',
                                           );
-                                          if ((_model.apiResulteme?.succeeded ??
+                                          var userPromptsRecordReference =
+                                              UserPromptsRecord.createDoc(
+                                                  currentUserReference!);
+                                          await userPromptsRecordReference
+                                              .set(userPromptsCreateData);
+                                          _model.setPrompt = UserPromptsRecord
+                                              .getDocumentFromData(
+                                                  userPromptsCreateData,
+                                                  userPromptsRecordReference);
+                                          _shouldSetState = true;
+                                          _model.apiResultMIXtest =
+                                              await DatasetGPTserverCall.call(
+                                            qid: FFAppState().setQid,
+                                            datasetIdsList:
+                                                FFAppState().selectedDataset,
+                                            topK: FFAppState().setTopK,
+                                            idToken: currentJwtToken,
+                                            guardrail: false,
+                                          );
+                                          _shouldSetState = true;
+                                          if ((_model.apiResultMIXtest
+                                                  ?.succeeded ??
                                               true)) {
-                                            setState(() {
-                                              FFAppState().testAPI = (_model
-                                                          .apiResulteme
-                                                          ?.statusCode ??
-                                                      200)
-                                                  .toString();
-                                            });
-                                            setState(() {
-                                              FFAppState().testAPIbody = (_model
-                                                          .apiResulteme
-                                                          ?.jsonBody ??
-                                                      '')
-                                                  .toString();
-                                            });
-                                            setState(() {
-                                              FFAppState().testAPIjson = (_model
-                                                      .apiResulteme?.jsonBody ??
-                                                  '');
-                                            });
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  (_model.apiResultMIXtest
+                                                              ?.statusCode ??
+                                                          200)
+                                                      .toString(),
+                                                  style: TextStyle(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryBackground,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 22.0,
+                                                  ),
+                                                ),
+                                                duration: Duration(
+                                                    milliseconds: 4000),
+                                                backgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .customColor1,
+                                              ),
+                                            );
+                                            await Future.delayed(const Duration(
+                                                milliseconds: 3000));
+                                            ScaffoldMessenger.of(context)
+                                                .clearSnackBars();
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  (_model.apiResultMIXtest
+                                                              ?.jsonBody ??
+                                                          '')
+                                                      .toString(),
+                                                  style: TextStyle(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryBackground,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 22.0,
+                                                  ),
+                                                ),
+                                                duration: Duration(
+                                                    milliseconds: 4000),
+                                                backgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .customColor1,
+                                              ),
+                                            );
+                                            if (_shouldSetState)
+                                              setState(() {});
+                                            return;
+                                          } else {
+                                            await showModalBottomSheet(
+                                              isScrollControlled: true,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              enableDrag: false,
+                                              context: context,
+                                              builder: (context) {
+                                                return Padding(
+                                                  padding:
+                                                      MediaQuery.of(context)
+                                                          .viewInsets,
+                                                  child: Container(
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            1.0,
+                                                    child: ErrorMessageWidget(),
+                                                  ),
+                                                );
+                                              },
+                                            ).then((value) => setState(() {}));
+
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  (_model.apiResultMIXtest
+                                                              ?.statusCode ??
+                                                          200)
+                                                      .toString(),
+                                                  style: TextStyle(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryBackground,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 22.0,
+                                                  ),
+                                                ),
+                                                duration: Duration(
+                                                    milliseconds: 4000),
+                                                backgroundColor:
+                                                    Color(0xFF980000),
+                                              ),
+                                            );
+                                            ScaffoldMessenger.of(context)
+                                                .clearSnackBars();
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  (_model.apiResultMIXtest
+                                                              ?.jsonBody ??
+                                                          '')
+                                                      .toString(),
+                                                  style: TextStyle(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryBackground,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 22.0,
+                                                  ),
+                                                ),
+                                                duration: Duration(
+                                                    milliseconds: 4000),
+                                                backgroundColor:
+                                                    Color(0xFF980000),
+                                              ),
+                                            );
+                                            if (_shouldSetState)
+                                              setState(() {});
+                                            return;
                                           }
 
-                                          setState(() {});
+                                          if (_shouldSetState) setState(() {});
                                         },
                                         text: 'Test',
                                         options: FFButtonOptions(
@@ -655,6 +788,26 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
                                                     Color(0xFF980000),
                                               ),
                                             );
+                                            await showModalBottomSheet(
+                                              isScrollControlled: true,
+                                              backgroundColor:
+                                                  Color(0x3C000000),
+                                              barrierColor: Color(0x3C000000),
+                                              enableDrag: false,
+                                              context: context,
+                                              builder: (context) {
+                                                return Padding(
+                                                  padding:
+                                                      MediaQuery.of(context)
+                                                          .viewInsets,
+                                                  child: Container(
+                                                    height: 700.0,
+                                                    child: ErrorMessageWidget(),
+                                                  ),
+                                                );
+                                              },
+                                            ).then((value) => setState(() {}));
+
                                             await Future.delayed(const Duration(
                                                 milliseconds: 3000));
                                             ScaffoldMessenger.of(context)
@@ -803,8 +956,7 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
                                               duration:
                                                   Duration(milliseconds: 4000),
                                               backgroundColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .customColor1,
+                                                  Color(0xFF987100),
                                             ),
                                           );
                                           if ((_model
@@ -860,6 +1012,58 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
                                                         .customColor1,
                                               ),
                                             );
+                                            await Future.delayed(const Duration(
+                                                milliseconds: 2000));
+                                            if ((_model.testAPIresult
+                                                        ?.jsonBody ??
+                                                    '') ==
+                                                FFAppState().testAPIjson) {
+                                              ScaffoldMessenger.of(context)
+                                                  .clearSnackBars();
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(
+                                                SnackBar(
+                                                  content: Text(
+                                                    (_model.testAPIresult
+                                                                ?.jsonBody ??
+                                                            '')
+                                                        .toString(),
+                                                    style: TextStyle(
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                  duration: Duration(
+                                                      milliseconds: 4000),
+                                                  backgroundColor:
+                                                      Color(0xFF987100),
+                                                ),
+                                              );
+                                            } else {
+                                              await showModalBottomSheet(
+                                                isScrollControlled: true,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                enableDrag: false,
+                                                context: context,
+                                                builder: (context) {
+                                                  return Padding(
+                                                    padding:
+                                                        MediaQuery.of(context)
+                                                            .viewInsets,
+                                                    child: Container(
+                                                      height: 700.0,
+                                                      child:
+                                                          ErrorMessageWidget(),
+                                                    ),
+                                                  );
+                                                },
+                                              ).then(
+                                                  (value) => setState(() {}));
+                                            }
                                           } else {
                                             ScaffoldMessenger.of(context)
                                                 .clearSnackBars();
