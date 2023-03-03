@@ -60,7 +60,7 @@ class ScrapeServerCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'scrapeServer',
-      apiUrl: 'https://dvscrapeserver-p67td2b2aq-uc.a.run.app',
+      apiUrl: 'https://scrape-url-youtube-omp-p67td2b2aq-uc.a.run.app',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -120,7 +120,7 @@ class DownloadServerCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'downloadServer',
-      apiUrl: 'https://dvdownloads-p67td2b2aq-uc.a.run.app',
+      apiUrl: 'https://downloads-omp-p67td2b2aq-uc.a.run.app',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
