@@ -24,3 +24,5 @@ export '/pages/retrieving/retreiving_summarize/retreiving_summarize_widget.dart'
 export '/pages/results/result_summarizer/result_summarizer_widget.dart'
     show ResultSummarizerWidget;
 export '/test_a_p_i/test_a_p_i_widget.dart' show TestAPIWidget;
+export '/pages/results/result_g_p_tonly/result_g_p_tonly_widget.dart'
+    show ResultGPTonlyWidget;
