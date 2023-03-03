@@ -30,7 +30,7 @@ class GPTqueryCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'GPTquery',
-      apiUrl: 'https://turbogpt3query-p67td2b2aq-uc.a.run.app',
+      apiUrl: 'https://gpt-query-omp-p67td2b2aq-uc.a.run.app',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
