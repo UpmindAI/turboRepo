@@ -72,7 +72,8 @@ class _RetreivingSummarizeWidgetState extends State<RetreivingSummarizeWidget>
         datasetIdsList: FFAppState().selectedDataset,
         qid: FFAppState().setQid,
       );
-      if ((_model.apiResultdataSummarize?.jsonBody ?? '') == null) {
+      if ((_model.apiResultdataSummarize?.jsonBody ?? '') ==
+          FFAppState().apiSuccess) {
         context.pushNamed('ResultSummarizer');
 
         return;

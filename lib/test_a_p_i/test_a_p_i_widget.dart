@@ -1018,7 +1018,7 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
                                             if ((_model.testAPIresult
                                                         ?.jsonBody ??
                                                     '') ==
-                                                FFAppState().testAPIjson) {
+                                                FFAppState().apiSuccess) {
                                               ScaffoldMessenger.of(context)
                                                   .clearSnackBars();
                                               ScaffoldMessenger.of(context)
