@@ -3,7 +3,7 @@ name: Build and deploy to Firebase Hosting
 on:
   push:
    branches:
-#     - main
+     - main
 jobs:
   build:
     runs-on: ubuntu-latest
