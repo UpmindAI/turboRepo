@@ -70,7 +70,7 @@ class _RetreivingGPTWidgetState extends State<RetreivingGPTWidget>
         qid: FFAppState().setQid,
         idToken: currentJwtToken,
       );
-      if ((_model.apiResultGPT?.jsonBody ?? '') == FFAppState().apiSuccess) {
+      if ((_model.apiResultGPT?.jsonBody ?? '') == FFAppState().apiError) {
         context.pushNamed('Result');
 
         return;

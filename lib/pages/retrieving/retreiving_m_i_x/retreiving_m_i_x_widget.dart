@@ -78,7 +78,7 @@ class _RetreivingMIXWidgetState extends State<RetreivingMIXWidget>
         idToken: currentJwtToken,
         guardrail: widget.guardrail,
       );
-      if ((_model.apiResultMIX?.jsonBody ?? '') == FFAppState().apiSuccess) {
+      if ((_model.apiResultMIX?.jsonBody ?? '') == FFAppState().apiError) {
         context.pushNamed('Result');
 
         return;
