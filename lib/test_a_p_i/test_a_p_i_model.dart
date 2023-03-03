@@ -17,9 +17,9 @@ class TestAPIModel extends FlutterFlowModel {
 
   // Stores action output result for [Backend Call - Create Document] action in Button widget.
   UserPromptsRecord? setPrompttextMIX;
-  // Stores action output result for [Backend Call - API (testMIXEDGPT)] action in Button widget.
+  // Stores action output result for [Backend Call - API (MixedQuery)] action in Button widget.
   ApiCallResponse? apiResultMIXtest;
-  // Stores action output result for [Backend Call - API (chatServer)] action in Button widget.
+  // Stores action output result for [Backend Call - API (MixedChat)] action in Button widget.
   ApiCallResponse? chatAPItest;
   // Stores action output result for [Backend Call - API (testAPI)] action in Button widget.
   ApiCallResponse? testAPIresult;

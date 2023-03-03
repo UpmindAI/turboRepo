@@ -134,7 +134,7 @@ class DownloadServerCall {
   }
 }
 
-class MultiUploadserverCall {
+class MultipleFileUploadCall {
   static Future<ApiCallResponse> call({
     String? idToken = '',
   }) {
@@ -143,8 +143,8 @@ class MultiUploadserverCall {
   "id_token": "${idToken}"
 }''';
     return ApiManager.instance.makeApiCall(
-      callName: 'multiUploadserver',
-      apiUrl: 'https://dvmultipleuploads-p67td2b2aq-uc.a.run.app',
+      callName: 'MultipleFileUpload',
+      apiUrl: 'https://multiple-file-upload-omp-p67td2b2aq-uc.a.run.app',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -174,7 +174,7 @@ class RecursiveSummarizerCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'recursiveSummarizer',
-      apiUrl: 'https://recursivesummarizer-p67td2b2aq-uc.a.run.app',
+      apiUrl: 'https://summarizer-omp-p67td2b2aq-uc.a.run.app',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -188,7 +188,7 @@ class RecursiveSummarizerCall {
   }
 }
 
-class ChatServerCall {
+class MixedChatCall {
   static Future<ApiCallResponse> call({
     String? idToken = '',
     String? qid = '',
@@ -207,7 +207,7 @@ class ChatServerCall {
   "top_k": ${topK}
 }''';
     return ApiManager.instance.makeApiCall(
-      callName: 'chatServer',
+      callName: 'MixedChat',
       apiUrl: 'https://mixed-chat-omp-p67td2b2aq-uc.a.run.app',
       callType: ApiCallType.POST,
       headers: {},
@@ -246,7 +246,7 @@ class TestAPICall {
   }
 }
 
-class TestMIXEDGPTCall {
+class MixedQueryCall {
   static Future<ApiCallResponse> call({
     String? qid = '',
     String? idToken = '',
@@ -265,7 +265,7 @@ class TestMIXEDGPTCall {
   "dataset_ids": ${datasetIds}
 }''';
     return ApiManager.instance.makeApiCall(
-      callName: 'testMIXEDGPT',
+      callName: 'MixedQuery',
       apiUrl: 'https://mixed-query-omp-p67td2b2aq-uc.a.run.app',
       callType: ApiCallType.POST,
       headers: {},

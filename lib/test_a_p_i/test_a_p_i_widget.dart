@@ -149,7 +149,7 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
                                                       userPromptsRecordReference);
                                           _shouldSetState = true;
                                           _model.apiResultMIXtest =
-                                              await TestMIXEDGPTCall.call(
+                                              await MixedQueryCall.call(
                                             qid: _model.setPrompttextMIX!.qid,
                                             idToken: currentJwtToken,
                                             topK: 5,
@@ -651,7 +651,7 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
                                       child: FFButtonWidget(
                                         onPressed: () async {
                                           _model.chatAPItest =
-                                              await ChatServerCall.call(
+                                              await MixedChatCall.call(
                                             idToken: currentJwtToken,
                                             qid: random_data.randomString(
                                               6,
