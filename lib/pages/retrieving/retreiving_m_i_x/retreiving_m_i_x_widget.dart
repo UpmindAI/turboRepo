@@ -87,8 +87,8 @@ class _RetreivingMIXWidgetState extends State<RetreivingMIXWidget>
               (_model.apiResultMIX?.jsonBody ?? '').toString(),
               style: TextStyle(
                 color: FlutterFlowTheme.of(context).customColor1,
-                fontWeight: FontWeight.bold,
-                fontSize: 22.0,
+                fontWeight: FontWeight.normal,
+                fontSize: 16.0,
               ),
             ),
             duration: Duration(milliseconds: 8000),
@@ -119,8 +119,8 @@ class _RetreivingMIXWidgetState extends State<RetreivingMIXWidget>
               (_model.apiResultMIX?.jsonBody ?? '').toString(),
               style: TextStyle(
                 color: Color(0xFF980000),
-                fontWeight: FontWeight.bold,
-                fontSize: 22.0,
+                fontWeight: FontWeight.normal,
+                fontSize: 16.0,
               ),
             ),
             duration: Duration(milliseconds: 8000),
