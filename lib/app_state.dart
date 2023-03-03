@@ -25,6 +25,13 @@ class FFAppState extends ChangeNotifier {
         prefs.getStringList('ff_selectedDocuments') ?? _selectedDocuments;
     _setCid = prefs.getString('ff_setCid') ?? _setCid;
     _setChat = prefs.getString('ff_setChat')?.ref ?? _setChat;
+    if (prefs.containsKey('ff_apiSuccess')) {
+      try {
+        _apiSuccess = jsonDecode(prefs.getString('ff_apiSuccess') ?? '');
+      } catch (e) {
+        print("Can't decode persisted json. Error: $e.");
+      }
+    }
   }
 
   void update(VoidCallback callback) {
@@ -163,16 +170,17 @@ class FFAppState extends ChangeNotifier {
     _testAPIbody = _value;
   }
 
-  dynamic _apiSuccess = jsonDecode('{\"message\":\"success\"}');
-  dynamic get apiSuccess => _apiSuccess;
-  set apiSuccess(dynamic _value) {
-    _apiSuccess = _value;
-  }
-
   dynamic _apiError = jsonDecode('{\"message\":\"error\"}');
   dynamic get apiError => _apiError;
   set apiError(dynamic _value) {
     _apiError = _value;
+  }
+
+  dynamic _apiSuccess = jsonDecode('{\"message\":\"success\"}');
+  dynamic get apiSuccess => _apiSuccess;
+  set apiSuccess(dynamic _value) {
+    _apiSuccess = _value;
+    prefs.setString('ff_apiSuccess', jsonEncode(_value));
   }
 }
 

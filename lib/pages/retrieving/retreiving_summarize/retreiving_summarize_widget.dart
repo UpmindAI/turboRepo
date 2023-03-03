@@ -72,10 +72,24 @@ class _RetreivingSummarizeWidgetState extends State<RetreivingSummarizeWidget>
         datasetIdsList: FFAppState().selectedDataset,
         qid: FFAppState().setQid,
       );
-      if ((_model.apiResultdataSummarize?.jsonBody ?? '') ==
-          FFAppState().apiSuccess) {
+      if ((_model.apiResultdataSummarize?.jsonBody ?? '') !=
+          FFAppState().apiError) {
         context.pushNamed('ResultSummarizer');
 
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              (_model.apiResultdataSummarize?.jsonBody ?? '').toString(),
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).customColor1,
+                fontWeight: FontWeight.bold,
+                fontSize: 22.0,
+              ),
+            ),
+            duration: Duration(milliseconds: 8000),
+            backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
+          ),
+        );
         return;
       } else {
         await showModalBottomSheet(
@@ -94,6 +108,20 @@ class _RetreivingSummarizeWidgetState extends State<RetreivingSummarizeWidget>
           },
         ).then((value) => setState(() {}));
 
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              (_model.apiResultdataSummarize?.jsonBody ?? '').toString(),
+              style: TextStyle(
+                color: Color(0xFF980000),
+                fontWeight: FontWeight.bold,
+                fontSize: 22.0,
+              ),
+            ),
+            duration: Duration(milliseconds: 8000),
+            backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
+          ),
+        );
         await Future.delayed(const Duration(milliseconds: 5000));
         context.pop();
         return;
