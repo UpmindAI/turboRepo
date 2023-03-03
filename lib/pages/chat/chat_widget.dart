@@ -790,7 +790,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                   milliseconds:
                                                                       2000));
                                                           _model.apiResultStartForm =
-                                                              await ChatServerCall
+                                                              await MixedChatCall
                                                                   .call(
                                                             idToken:
                                                                 currentJwtToken,
@@ -1008,7 +1008,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                             curve: Curves.ease,
                                                           );
                                                           _model.apiResultzymFF =
-                                                              await ChatServerCall
+                                                              await MixedChatCall
                                                                   .call(
                                                             idToken:
                                                                 currentJwtToken,
