@@ -183,6 +183,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'testAPI',
               path: 'testAPI',
               builder: (context, params) => TestAPIWidget(),
+            ),
+            FFRoute(
+              name: 'ResultGPTonly',
+              path: 'resultGPTonly',
+              builder: (context, params) => ResultGPTonlyWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

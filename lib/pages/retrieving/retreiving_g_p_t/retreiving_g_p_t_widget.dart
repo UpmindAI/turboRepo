@@ -71,7 +71,7 @@ class _RetreivingGPTWidgetState extends State<RetreivingGPTWidget>
         idToken: currentJwtToken,
       );
       if ((_model.apiResultGPT?.jsonBody ?? '') != FFAppState().apiError) {
-        context.pushNamed('Result');
+        context.pushNamed('ResultGPTonly');
 
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
