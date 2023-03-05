@@ -1,10 +1,15 @@
+import '/auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/main_menu/main_menu_widget.dart';
+import '/components/summary_prompt_field/summary_prompt_field_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/random_data_util.dart' as random_data;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'summarize_model.dart';
@@ -120,8 +125,8 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                               },
                                               text: 'Templates',
                                               options: FFButtonOptions(
-                                                width: 130.0,
-                                                height: 34.0,
+                                                width: 90.0,
+                                                height: 30.0,
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(
                                                         0.0, 0.0, 0.0, 0.0),
@@ -160,14 +165,63 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                               ),
                                             ),
                                           ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 10.0, 0.0),
+                                            child: FFButtonWidget(
+                                              onPressed: () {
+                                                print('Button pressed ...');
+                                              },
+                                              text: 'Favorites',
+                                              options: FFButtonOptions(
+                                                width: 90.0,
+                                                height: 30.0,
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 0.0),
+                                                iconPadding:
+                                                    EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .lineColor,
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .subtitle2
+                                                        .override(
+                                                          fontFamily:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .subtitle2Family,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryColor,
+                                                          useGoogleFonts: GoogleFonts
+                                                                  .asMap()
+                                                              .containsKey(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .subtitle2Family),
+                                                        ),
+                                                borderSide: BorderSide(
+                                                  color: Colors.transparent,
+                                                  width: 1.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(0.0),
+                                              ),
+                                            ),
+                                          ),
                                           FFButtonWidget(
                                             onPressed: () {
                                               print('Button pressed ...');
                                             },
-                                            text: 'Saved Prompts',
+                                            text: 'History',
                                             options: FFButtonOptions(
-                                              width: 130.0,
-                                              height: 34.0,
+                                              width: 90.0,
+                                              height: 30.0,
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               iconPadding: EdgeInsetsDirectional
@@ -347,9 +401,237 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                 ),
                                 Expanded(
                                   flex: 2,
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [],
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        5.0, 0.0, 0.0, 0.0),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Text(
+                                              FFAppState().setSummaryTemplate,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .title3,
+                                            ),
+                                            if (_model.dropDownValue ==
+                                                'Summarize')
+                                              Expanded(
+                                                child: Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          1.0, -1.0),
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                20.0,
+                                                                10.0,
+                                                                10.0,
+                                                                0.0),
+                                                    child: FFButtonWidget(
+                                                      onPressed: () async {
+                                                        FFAppState().update(() {
+                                                          FFAppState().setQid =
+                                                              random_data
+                                                                  .randomString(
+                                                            7,
+                                                            7,
+                                                            true,
+                                                            true,
+                                                            true,
+                                                          );
+                                                          FFAppState()
+                                                                  .setEngine =
+                                                              _model
+                                                                  .dropDownValue!;
+                                                        });
+
+                                                        final userPromptsCreateData =
+                                                            createUserPromptsRecordData(
+                                                          qid: FFAppState()
+                                                              .setQid,
+                                                          prompt: _model
+                                                              .promptFieldController
+                                                              .text,
+                                                        );
+                                                        var userPromptsRecordReference =
+                                                            UserPromptsRecord
+                                                                .createDoc(
+                                                                    currentUserReference!);
+                                                        await userPromptsRecordReference
+                                                            .set(
+                                                                userPromptsCreateData);
+                                                        _model.setPromptSummarize =
+                                                            UserPromptsRecord
+                                                                .getDocumentFromData(
+                                                                    userPromptsCreateData,
+                                                                    userPromptsRecordReference);
+                                                        setState(() {
+                                                          _model
+                                                              .promptFieldController
+                                                              ?.clear();
+                                                        });
+
+                                                        context.pushNamed(
+                                                            'retreivingSummarize');
+
+                                                        setState(() {});
+                                                      },
+                                                      text: 'OMP!',
+                                                      options: FFButtonOptions(
+                                                        width: 130.0,
+                                                        height: 40.0,
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        iconPadding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryColor,
+                                                        textStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .subtitle2
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .subtitle2Family,
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontSize:
+                                                                      20.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .subtitle2Family),
+                                                                ),
+                                                        borderSide: BorderSide(
+                                                          color: Colors
+                                                              .transparent,
+                                                          width: 1.0,
+                                                        ),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(0.0),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                          ],
+                                        ),
+                                        Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Align(
+                                              alignment: AlignmentDirectional(
+                                                  0.0, 0.0),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 5.0, 0.0, 5.0),
+                                                child: FFButtonWidget(
+                                                  onPressed: () async {
+                                                    await showModalBottomSheet(
+                                                      isScrollControlled: true,
+                                                      backgroundColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryBackground,
+                                                      enableDrag: false,
+                                                      context: context,
+                                                      builder: (context) {
+                                                        return Padding(
+                                                          padding:
+                                                              MediaQuery.of(
+                                                                      context)
+                                                                  .viewInsets,
+                                                          child: Container(
+                                                            height: 300.0,
+                                                            child:
+                                                                SummaryPromptFieldWidget(
+                                                              summaryPrompt:
+                                                                  FFAppState()
+                                                                      .setSummaryTemplate,
+                                                            ),
+                                                          ),
+                                                        );
+                                                      },
+                                                    ).then((value) =>
+                                                        setState(() {}));
+                                                  },
+                                                  text: 'Edit prompt',
+                                                  icon: FaIcon(
+                                                    FontAwesomeIcons.edit,
+                                                    size: 16.0,
+                                                  ),
+                                                  options: FFButtonOptions(
+                                                    width: 130.0,
+                                                    height: 24.0,
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 0.0),
+                                                    iconPadding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 0.0),
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryBackground,
+                                                    textStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .subtitle2
+                                                            .override(
+                                                              fontFamily:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .subtitle2Family,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryColor,
+                                                              fontSize: 14.0,
+                                                              useGoogleFonts: GoogleFonts
+                                                                      .asMap()
+                                                                  .containsKey(
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .subtitle2Family),
+                                                            ),
+                                                    borderSide: BorderSide(
+                                                      color: Colors.transparent,
+                                                      width: 1.0,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            0.0),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ],
