@@ -1,11 +1,13 @@
 import '/auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/components/add_dataset/add_dataset_widget.dart';
 import '/components/main_menu/main_menu_widget.dart';
 import '/components/summary_prompt_field/summary_prompt_field_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/random_data_util.dart' as random_data;
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -425,144 +427,19 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                       ),
                                                       child: StreamBuilder<
                                                           List<
-                                                              SummarizerTemplatesRecord>>(
-                                                        stream:
-                                                            querySummarizerTemplatesRecord(
-                                                          singleRecord: true,
-                                                        ),
-                                                        builder: (context,
-                                                            snapshot) {
-                                                          // Customize what your widget looks like when it's loading.
-                                                          if (!snapshot
-                                                              .hasData) {
-                                                            return Center(
-                                                              child: SizedBox(
-                                                                width: 50.0,
-                                                                height: 50.0,
-                                                                child:
-                                                                    SpinKitRipple(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryColor,
-                                                                  size: 50.0,
-                                                                ),
-                                                              ),
-                                                            );
-                                                          }
-                                                          List<SummarizerTemplatesRecord>
-                                                              columnSummarizerTemplatesRecordList =
-                                                              snapshot.data!;
-                                                          // Return an empty Container when the item does not exist.
-                                                          if (snapshot
-                                                              .data!.isEmpty) {
-                                                            return Container();
-                                                          }
-                                                          final columnSummarizerTemplatesRecord =
-                                                              columnSummarizerTemplatesRecordList
-                                                                      .isNotEmpty
-                                                                  ? columnSummarizerTemplatesRecordList
-                                                                      .first
-                                                                  : null;
-                                                          return SingleChildScrollView(
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              children: [
-                                                                Builder(
-                                                                  builder:
-                                                                      (context) {
-                                                                    final templateItems =
-                                                                        columnSummarizerTemplatesRecord!
-                                                                            .template!
-                                                                            .toList();
-                                                                    return ListView
-                                                                        .builder(
-                                                                      padding:
-                                                                          EdgeInsets
-                                                                              .zero,
-                                                                      shrinkWrap:
-                                                                          true,
-                                                                      scrollDirection:
-                                                                          Axis.vertical,
-                                                                      itemCount:
-                                                                          templateItems
-                                                                              .length,
-                                                                      itemBuilder:
-                                                                          (context,
-                                                                              templateItemsIndex) {
-                                                                        final templateItemsItem =
-                                                                            templateItems[templateItemsIndex];
-                                                                        return Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              0.0,
-                                                                              0.0,
-                                                                              0.0,
-                                                                              5.0),
-                                                                          child:
-                                                                              InkWell(
-                                                                            onTap:
-                                                                                () async {
-                                                                              setState(() {
-                                                                                FFAppState().setSummaryTemplate = templateItemsItem;
-                                                                              });
-                                                                            },
-                                                                            child:
-                                                                                Container(
-                                                                              width: MediaQuery.of(context).size.width * 1.0,
-                                                                              decoration: BoxDecoration(
-                                                                                color: FlutterFlowTheme.of(context).primaryBackground,
-                                                                              ),
-                                                                              child: Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 5.0),
-                                                                                child: Text(
-                                                                                  templateItemsItem,
-                                                                                  style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                        fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                        fontWeight: FontWeight.normal,
-                                                                                        useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                                      ),
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                        );
-                                                                      },
-                                                                    );
-                                                                  },
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          );
-                                                        },
-                                                      ),
-                                                    ),
-                                                  ),
-                                                if (_model.setTab == 'History')
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(10.0, 0.0,
-                                                                10.0, 0.0),
-                                                    child: Container(
-                                                      width:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .width *
-                                                              1.0,
-                                                      height: 700.0,
-                                                      decoration: BoxDecoration(
-                                                        color: FlutterFlowTheme
-                                                                .of(context)
-                                                            .secondaryBackground,
-                                                      ),
-                                                      child: StreamBuilder<
-                                                          List<
                                                               SummPromptHistoryRecord>>(
                                                         stream:
                                                             querySummPromptHistoryRecord(
                                                           parent:
                                                               currentUserReference,
+                                                          queryBuilder: (summPromptHistoryRecord) =>
+                                                              summPromptHistoryRecord
+                                                                  .where(
+                                                                      'is_favorite',
+                                                                      isEqualTo:
+                                                                          true)
+                                                                  .orderBy(
+                                                                      'timestamp'),
                                                         ),
                                                         builder: (context,
                                                             snapshot) {
@@ -645,6 +522,161 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                                 useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
                                                                               ),
                                                                         ),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                );
+                                                              }),
+                                                            ),
+                                                          );
+                                                        },
+                                                      ),
+                                                    ),
+                                                  ),
+                                                if (_model.setTab == 'History')
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(10.0, 0.0,
+                                                                10.0, 0.0),
+                                                    child: Container(
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              1.0,
+                                                      height: 700.0,
+                                                      decoration: BoxDecoration(
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
+                                                      ),
+                                                      child: StreamBuilder<
+                                                          List<
+                                                              SummPromptHistoryRecord>>(
+                                                        stream:
+                                                            querySummPromptHistoryRecord(
+                                                          parent:
+                                                              currentUserReference,
+                                                          queryBuilder:
+                                                              (summPromptHistoryRecord) =>
+                                                                  summPromptHistoryRecord
+                                                                      .orderBy(
+                                                                          'timestamp'),
+                                                        ),
+                                                        builder: (context,
+                                                            snapshot) {
+                                                          // Customize what your widget looks like when it's loading.
+                                                          if (!snapshot
+                                                              .hasData) {
+                                                            return Center(
+                                                              child: SizedBox(
+                                                                width: 50.0,
+                                                                height: 50.0,
+                                                                child:
+                                                                    SpinKitRipple(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryColor,
+                                                                  size: 50.0,
+                                                                ),
+                                                              ),
+                                                            );
+                                                          }
+                                                          List<SummPromptHistoryRecord>
+                                                              columnSummPromptHistoryRecordList =
+                                                              snapshot.data!;
+                                                          return SingleChildScrollView(
+                                                            child: Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              children: List.generate(
+                                                                  columnSummPromptHistoryRecordList
+                                                                      .length,
+                                                                  (columnIndex) {
+                                                                final columnSummPromptHistoryRecord =
+                                                                    columnSummPromptHistoryRecordList[
+                                                                        columnIndex];
+                                                                return Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          5.0),
+                                                                  child:
+                                                                      InkWell(
+                                                                    onTap:
+                                                                        () async {
+                                                                      setState(
+                                                                          () {
+                                                                        FFAppState().setSummaryTemplate =
+                                                                            columnSummPromptHistoryRecord.prompt!;
+                                                                      });
+                                                                    },
+                                                                    child:
+                                                                        Container(
+                                                                      width: MediaQuery.of(context)
+                                                                              .size
+                                                                              .width *
+                                                                          1.0,
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryBackground,
+                                                                      ),
+                                                                      child:
+                                                                          Row(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.max,
+                                                                        children: [
+                                                                          Expanded(
+                                                                            child:
+                                                                                Padding(
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 5.0),
+                                                                              child: Text(
+                                                                                columnSummPromptHistoryRecord.prompt!,
+                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                      fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                      fontWeight: FontWeight.normal,
+                                                                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                    ),
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                          Stack(
+                                                                            children: [
+                                                                              InkWell(
+                                                                                onTap: () async {
+                                                                                  final summPromptHistoryUpdateData = createSummPromptHistoryRecordData(
+                                                                                    isFavorite: true,
+                                                                                  );
+                                                                                  await columnSummPromptHistoryRecord.reference.update(summPromptHistoryUpdateData);
+                                                                                },
+                                                                                child: Icon(
+                                                                                  Icons.favorite_border_rounded,
+                                                                                  color: Colors.black,
+                                                                                  size: 18.0,
+                                                                                ),
+                                                                              ),
+                                                                              if (columnSummPromptHistoryRecord.isFavorite ?? true)
+                                                                                InkWell(
+                                                                                  onTap: () async {
+                                                                                    final summPromptHistoryUpdateData = createSummPromptHistoryRecordData(
+                                                                                      isFavorite: false,
+                                                                                    );
+                                                                                    await columnSummPromptHistoryRecord.reference.update(summPromptHistoryUpdateData);
+                                                                                  },
+                                                                                  child: Icon(
+                                                                                    Icons.favorite_rounded,
+                                                                                    color: Colors.black,
+                                                                                    size: 18.0,
+                                                                                  ),
+                                                                                ),
+                                                                            ],
+                                                                          ),
+                                                                        ],
                                                                       ),
                                                                     ),
                                                                   ),
@@ -912,6 +944,427 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                     offset: Offset(0.0, 2.0),
                                   )
                                 ],
+                              ),
+                              child: SingleChildScrollView(
+                                primary: false,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 5.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Align(
+                                            alignment:
+                                                AlignmentDirectional(-1.0, 0.0),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      10.0, 10.0, 0.0, 10.0),
+                                              child: Text(
+                                                'Datasets',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyText1,
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Align(
+                                              alignment: AlignmentDirectional(
+                                                  -1.0, 0.0),
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryBackground,
+                                                ),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          20.0, 0.0, 0.0, 0.0),
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    2.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        child: InkWell(
+                                                          onTap: () async {
+                                                            await showModalBottomSheet(
+                                                              isScrollControlled:
+                                                                  true,
+                                                              backgroundColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryBackground,
+                                                              enableDrag: false,
+                                                              context: context,
+                                                              builder:
+                                                                  (context) {
+                                                                return Padding(
+                                                                  padding: MediaQuery.of(
+                                                                          context)
+                                                                      .viewInsets,
+                                                                  child:
+                                                                      Container(
+                                                                    height:
+                                                                        400.0,
+                                                                    child:
+                                                                        AddDatasetWidget(),
+                                                                  ),
+                                                                );
+                                                              },
+                                                            ).then((value) =>
+                                                                setState(
+                                                                    () {}));
+                                                          },
+                                                          child: Icon(
+                                                            Icons
+                                                                .create_new_folder_outlined,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .tertiaryColor,
+                                                            size: 24.0,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      if (FFAppState()
+                                                              .selectedDataset
+                                                              .length >=
+                                                          1)
+                                                        Expanded(
+                                                          child: Align(
+                                                            alignment:
+                                                                AlignmentDirectional(
+                                                                    1.0, 0.0),
+                                                            child: Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          10.0,
+                                                                          0.0),
+                                                              child: InkWell(
+                                                                onTap:
+                                                                    () async {
+                                                                  FFAppState()
+                                                                      .update(
+                                                                          () {
+                                                                    FFAppState()
+                                                                        .selectedDataset = [];
+                                                                  });
+
+                                                                  context
+                                                                      .pushNamed(
+                                                                          'Home');
+                                                                },
+                                                                child: Text(
+                                                                  'Clear',
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyText1
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            FlutterFlowTheme.of(context).bodyText1Family,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .tertiaryColor,
+                                                                        fontSize:
+                                                                            11.0,
+                                                                        useGoogleFonts:
+                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                      ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      width: MediaQuery.of(context).size.width *
+                                          1.0,
+                                      height: 780.0,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            10.0, 0.0, 10.0, 0.0),
+                                        child: StreamBuilder<
+                                            List<UserDatasetsRecord>>(
+                                          stream: queryUserDatasetsRecord(
+                                            parent: currentUserReference,
+                                            queryBuilder:
+                                                (userDatasetsRecord) =>
+                                                    userDatasetsRecord.orderBy(
+                                                        'dataset_name'),
+                                          ),
+                                          builder: (context, snapshot) {
+                                            // Customize what your widget looks like when it's loading.
+                                            if (!snapshot.hasData) {
+                                              return Center(
+                                                child: SizedBox(
+                                                  width: 50.0,
+                                                  height: 50.0,
+                                                  child: SpinKitRipple(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primaryColor,
+                                                    size: 50.0,
+                                                  ),
+                                                ),
+                                              );
+                                            }
+                                            List<UserDatasetsRecord>
+                                                listViewUserDatasetsRecordList =
+                                                snapshot.data!;
+                                            return ListView.builder(
+                                              padding: EdgeInsets.zero,
+                                              primary: false,
+                                              scrollDirection: Axis.vertical,
+                                              itemCount:
+                                                  listViewUserDatasetsRecordList
+                                                      .length,
+                                              itemBuilder:
+                                                  (context, listViewIndex) {
+                                                final listViewUserDatasetsRecord =
+                                                    listViewUserDatasetsRecordList[
+                                                        listViewIndex];
+                                                return Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 0.0, 10.0),
+                                                  child: Material(
+                                                    color: Colors.transparent,
+                                                    elevation: 2.0,
+                                                    child: Container(
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              1.0,
+                                                      height: 40.0,
+                                                      decoration: BoxDecoration(
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .primaryBackground,
+                                                      ),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              Expanded(
+                                                                child: Align(
+                                                                  alignment:
+                                                                      AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            5.0,
+                                                                            0.0,
+                                                                            5.0,
+                                                                            0.0),
+                                                                    child:
+                                                                        Theme(
+                                                                      data:
+                                                                          ThemeData(
+                                                                        checkboxTheme:
+                                                                            CheckboxThemeData(
+                                                                          shape:
+                                                                              RoundedRectangleBorder(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(0.0),
+                                                                          ),
+                                                                        ),
+                                                                        unselectedWidgetColor:
+                                                                            FlutterFlowTheme.of(context).secondaryColor,
+                                                                      ),
+                                                                      child:
+                                                                          Checkbox(
+                                                                        value: _model.checkboxValueMap[listViewUserDatasetsRecord] ??= FFAppState()
+                                                                            .selectedDataset
+                                                                            .contains(listViewUserDatasetsRecord.datasetId),
+                                                                        onChanged:
+                                                                            (newValue) async {
+                                                                          setState(() =>
+                                                                              _model.checkboxValueMap[listViewUserDatasetsRecord] = newValue!);
+                                                                          if (newValue!) {
+                                                                            setState(() {
+                                                                              FFAppState().addToSelectedDataset(listViewUserDatasetsRecord.datasetId!);
+                                                                            });
+                                                                          } else {
+                                                                            setState(() {
+                                                                              FFAppState().removeFromSelectedDataset(listViewUserDatasetsRecord.datasetId!);
+                                                                            });
+                                                                          }
+                                                                        },
+                                                                        activeColor:
+                                                                            FlutterFlowTheme.of(context).primaryColor,
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                          Expanded(
+                                                            flex: 7,
+                                                            child: Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              children: [
+                                                                Expanded(
+                                                                  child: Row(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    children: [
+                                                                      Align(
+                                                                        alignment: AlignmentDirectional(
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            InkWell(
+                                                                          onTap:
+                                                                              () async {
+                                                                            FFAppState().update(() {
+                                                                              FFAppState().activeDataset = listViewUserDatasetsRecord.reference;
+                                                                              FFAppState().selectedDocuments = listViewUserDatasetsRecord.activeDocs!.toList();
+                                                                            });
+
+                                                                            context.pushNamed(
+                                                                              'Datasets',
+                                                                              queryParams: {
+                                                                                'activeDataset': serializeParam(
+                                                                                  listViewUserDatasetsRecord,
+                                                                                  ParamType.Document,
+                                                                                ),
+                                                                              }.withoutNulls,
+                                                                              extra: <String, dynamic>{
+                                                                                'activeDataset': listViewUserDatasetsRecord,
+                                                                              },
+                                                                            );
+                                                                          },
+                                                                          child:
+                                                                              AutoSizeText(
+                                                                            listViewUserDatasetsRecord.datasetName!,
+                                                                            maxLines:
+                                                                                1,
+                                                                            style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                  fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                  fontSize: 14.0,
+                                                                                  fontWeight: FontWeight.normal,
+                                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                ),
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              Expanded(
+                                                                child: Align(
+                                                                  alignment:
+                                                                      AlignmentDirectional(
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            5.0,
+                                                                            0.0,
+                                                                            5.0,
+                                                                            0.0),
+                                                                    child:
+                                                                        InkWell(
+                                                                      onTap:
+                                                                          () async {
+                                                                        FFAppState().activeDataset =
+                                                                            listViewUserDatasetsRecord.reference;
+
+                                                                        context
+                                                                            .pushNamed(
+                                                                          'Datasets',
+                                                                          queryParams:
+                                                                              {
+                                                                            'activeDataset':
+                                                                                serializeParam(
+                                                                              listViewUserDatasetsRecord,
+                                                                              ParamType.Document,
+                                                                            ),
+                                                                          }.withoutNulls,
+                                                                          extra: <
+                                                                              String,
+                                                                              dynamic>{
+                                                                            'activeDataset':
+                                                                                listViewUserDatasetsRecord,
+                                                                          },
+                                                                        );
+                                                                      },
+                                                                      child:
+                                                                          Icon(
+                                                                        Icons
+                                                                            .settings_outlined,
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .secondaryColor,
+                                                                        size:
+                                                                            24.0,
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                );
+                                              },
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),

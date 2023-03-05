@@ -13,6 +13,20 @@
           "order": "ASCENDING"
         }
       ]
+    },
+    {
+      "collectionGroup": "summ_prompt_history",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "is_favorite",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "timestamp",
+          "order": "ASCENDING"
+        }
+      ]
     }
   ]
 }

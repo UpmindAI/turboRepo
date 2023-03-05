@@ -39,6 +39,13 @@ class _$SummPromptHistoryRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(DateTime)));
     }
+    value = object.isFavorite;
+    if (value != null) {
+      result
+        ..add('is_favorite')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -70,6 +77,10 @@ class _$SummPromptHistoryRecordSerializer
           result.timestamp = serializers.deserialize(value,
               specifiedType: const FullType(DateTime)) as DateTime?;
           break;
+        case 'is_favorite':
+          result.isFavorite = serializers.deserialize(value,
+              specifiedType: const FullType(bool)) as bool?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -89,13 +100,16 @@ class _$SummPromptHistoryRecord extends SummPromptHistoryRecord {
   @override
   final DateTime? timestamp;
   @override
+  final bool? isFavorite;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$SummPromptHistoryRecord(
           [void Function(SummPromptHistoryRecordBuilder)? updates]) =>
       (new SummPromptHistoryRecordBuilder()..update(updates))._build();
 
-  _$SummPromptHistoryRecord._({this.prompt, this.timestamp, this.ffRef})
+  _$SummPromptHistoryRecord._(
+      {this.prompt, this.timestamp, this.isFavorite, this.ffRef})
       : super._();
 
   @override
@@ -113,13 +127,16 @@ class _$SummPromptHistoryRecord extends SummPromptHistoryRecord {
     return other is SummPromptHistoryRecord &&
         prompt == other.prompt &&
         timestamp == other.timestamp &&
+        isFavorite == other.isFavorite &&
         ffRef == other.ffRef;
   }
 
   @override
   int get hashCode {
-    return $jf(
-        $jc($jc($jc(0, prompt.hashCode), timestamp.hashCode), ffRef.hashCode));
+    return $jf($jc(
+        $jc($jc($jc(0, prompt.hashCode), timestamp.hashCode),
+            isFavorite.hashCode),
+        ffRef.hashCode));
   }
 
   @override
@@ -127,6 +144,7 @@ class _$SummPromptHistoryRecord extends SummPromptHistoryRecord {
     return (newBuiltValueToStringHelper(r'SummPromptHistoryRecord')
           ..add('prompt', prompt)
           ..add('timestamp', timestamp)
+          ..add('isFavorite', isFavorite)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -145,6 +163,10 @@ class SummPromptHistoryRecordBuilder
   DateTime? get timestamp => _$this._timestamp;
   set timestamp(DateTime? timestamp) => _$this._timestamp = timestamp;
 
+  bool? _isFavorite;
+  bool? get isFavorite => _$this._isFavorite;
+  set isFavorite(bool? isFavorite) => _$this._isFavorite = isFavorite;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -158,6 +180,7 @@ class SummPromptHistoryRecordBuilder
     if ($v != null) {
       _prompt = $v.prompt;
       _timestamp = $v.timestamp;
+      _isFavorite = $v.isFavorite;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -181,7 +204,10 @@ class SummPromptHistoryRecordBuilder
   _$SummPromptHistoryRecord _build() {
     final _$result = _$v ??
         new _$SummPromptHistoryRecord._(
-            prompt: prompt, timestamp: timestamp, ffRef: ffRef);
+            prompt: prompt,
+            timestamp: timestamp,
+            isFavorite: isFavorite,
+            ffRef: ffRef);
     replace(_$result);
     return _$result;
   }
