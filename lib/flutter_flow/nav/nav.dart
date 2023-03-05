@@ -189,6 +189,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'ResultGPTonly',
               path: 'resultGPTonly',
               builder: (context, params) => ResultGPTonlyWidget(),
+            ),
+            FFRoute(
+              name: 'Summarize',
+              path: 'summarize',
+              builder: (context, params) => SummarizeWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),

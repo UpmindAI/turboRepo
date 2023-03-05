@@ -150,7 +150,7 @@ class _MainMenuWidgetState extends State<MainMenuWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                   child: InkWell(
                     onTap: () async {
-                      context.pushNamed('Home');
+                      context.pushNamed('Summarize');
                     },
                     child: Container(
                       width: double.infinity,
