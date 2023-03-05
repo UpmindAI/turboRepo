@@ -80,7 +80,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
           title: Text(
-            'Datasets',
+            'My Datasets',
             style: FlutterFlowTheme.of(context).title1,
           ),
           actions: [],
@@ -681,10 +681,6 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                               FFAppState()
                                                                   .selectedDataset = [];
                                                             });
-                                                            await Future.delayed(
-                                                                const Duration(
-                                                                    milliseconds:
-                                                                        500));
                                                             setState(() {
                                                               FFAppState()
                                                                   .addToSelectedDataset(widget

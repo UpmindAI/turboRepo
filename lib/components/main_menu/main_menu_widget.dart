@@ -242,58 +242,6 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                   child: InkWell(
                     onTap: () async {
-                      context.pushNamed('Datasets');
-                    },
-                    child: Container(
-                      width: double.infinity,
-                      height: 50.0,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                        borderRadius: BorderRadius.circular(12.0),
-                        shape: BoxShape.rectangle,
-                      ),
-                      child: Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 12.0, 0.0),
-                              child: Container(
-                                width: 4.0,
-                                height: 60.0,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                  borderRadius: BorderRadius.circular(4.0),
-                                ),
-                              ),
-                            ),
-                            Icon(
-                              Icons.folder_rounded,
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                              size: 28.0,
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  12.0, 0.0, 0.0, 0.0),
-                              child: Text(
-                                'Datasets',
-                                style: FlutterFlowTheme.of(context).subtitle2,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
-                  child: InkWell(
-                    onTap: () async {
                       context.pushNamed('Chat');
                     },
                     child: Container(
@@ -333,6 +281,58 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                   12.0, 0.0, 0.0, 0.0),
                               child: Text(
                                 'Chat',
+                                style: FlutterFlowTheme.of(context).subtitle2,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                  child: InkWell(
+                    onTap: () async {
+                      context.pushNamed('Datasets');
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      height: 50.0,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        borderRadius: BorderRadius.circular(12.0),
+                        shape: BoxShape.rectangle,
+                      ),
+                      child: Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 12.0, 0.0),
+                              child: Container(
+                                width: 4.0,
+                                height: 60.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                  borderRadius: BorderRadius.circular(4.0),
+                                ),
+                              ),
+                            ),
+                            Icon(
+                              Icons.folder_rounded,
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              size: 28.0,
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  12.0, 0.0, 0.0, 0.0),
+                              child: Text(
+                                'Datasets',
                                 style: FlutterFlowTheme.of(context).subtitle2,
                               ),
                             ),
