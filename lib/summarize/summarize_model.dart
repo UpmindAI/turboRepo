@@ -14,6 +14,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class SummarizeModel extends FlutterFlowModel {
+  ///  Local state fields for this page.
+
+  String setTab = 'Templates';
+
   ///  State fields for stateful widgets in this page.
 
   // Model for mainMenu component.
