@@ -99,7 +99,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 10.0, 0.0),
                   child: Text(
-                    'v0.266',
+                    'v0.269',
                     style: FlutterFlowTheme.of(context).bodyText1,
                   ),
                 ),
@@ -1096,7 +1096,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                             0.0,
                                                                             5.0),
                                                                     child: Text(
-                                                                      'Select Chain:',
+                                                                      'Target:',
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
                                                                           .bodyText1
@@ -1126,10 +1126,12 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                           String>(
                                                                         initialOption:
                                                                             _model.dropDownValue ??=
-                                                                                widget.dropdownItem,
-                                                                        options: FFAppState()
-                                                                            .chainDropdown
-                                                                            .toList(),
+                                                                                'My Data + GPT',
+                                                                        options: [
+                                                                          'My Data + GPT',
+                                                                          'GPT Only',
+                                                                          'My Data Only'
+                                                                        ],
                                                                         onChanged:
                                                                             (val) =>
                                                                                 setState(() => _model.dropDownValue = val),

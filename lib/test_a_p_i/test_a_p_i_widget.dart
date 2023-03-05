@@ -10,6 +10,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'test_a_p_i_model.dart';
 export 'test_a_p_i_model.dart';
@@ -1189,6 +1190,41 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
                               },
                             ),
                           ],
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              20.0, 0.0, 0.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              LinearPercentIndicator(
+                                percent: 0.1,
+                                width: 120.0,
+                                lineHeight: 11.0,
+                                animation: true,
+                                progressColor:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                                backgroundColor: Color(0xFFF1F4F8),
+                                center: Text(
+                                  '50%',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyText1
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .bodyText1Family,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryColor,
+                                        fontSize: 8.0,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyText1Family),
+                                      ),
+                                ),
+                                padding: EdgeInsets.zero,
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
