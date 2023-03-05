@@ -16,6 +16,8 @@ import 'schema/feature_record.dart';
 import 'schema/chats_record.dart';
 import 'schema/chat_meta_record.dart';
 import 'schema/summarizer_templates_record.dart';
+import 'schema/summ_prompt_history_record.dart';
+import 'schema/summ_prompt_favs_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -34,6 +36,8 @@ export 'schema/feature_record.dart';
 export 'schema/chats_record.dart';
 export 'schema/chat_meta_record.dart';
 export 'schema/summarizer_templates_record.dart';
+export 'schema/summ_prompt_history_record.dart';
+export 'schema/summ_prompt_favs_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -635,6 +639,119 @@ Future<FFFirestorePage<SummarizerTemplatesRecord>>
           pageSize: pageSize,
           isStream: isStream,
         );
+
+/// Functions to query SummPromptHistoryRecords (as a Stream and as a Future).
+Future<int> querySummPromptHistoryRecordCount({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      SummPromptHistoryRecord.collection(parent),
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<SummPromptHistoryRecord>> querySummPromptHistoryRecord({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      SummPromptHistoryRecord.collection(parent),
+      SummPromptHistoryRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<SummPromptHistoryRecord>> querySummPromptHistoryRecordOnce({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      SummPromptHistoryRecord.collection(parent),
+      SummPromptHistoryRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<SummPromptHistoryRecord>>
+    querySummPromptHistoryRecordPage({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+}) =>
+        queryCollectionPage(
+          SummPromptHistoryRecord.collection(parent),
+          SummPromptHistoryRecord.serializer,
+          queryBuilder: queryBuilder,
+          nextPageMarker: nextPageMarker,
+          pageSize: pageSize,
+          isStream: isStream,
+        );
+
+/// Functions to query SummPromptFavsRecords (as a Stream and as a Future).
+Future<int> querySummPromptFavsRecordCount({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      SummPromptFavsRecord.collection(parent),
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<SummPromptFavsRecord>> querySummPromptFavsRecord({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      SummPromptFavsRecord.collection(parent),
+      SummPromptFavsRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<SummPromptFavsRecord>> querySummPromptFavsRecordOnce({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      SummPromptFavsRecord.collection(parent),
+      SummPromptFavsRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<SummPromptFavsRecord>> querySummPromptFavsRecordPage({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+}) =>
+    queryCollectionPage(
+      SummPromptFavsRecord.collection(parent),
+      SummPromptFavsRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
 
 Future<int> queryCollectionCount(
   Query collection, {
