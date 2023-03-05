@@ -15,6 +15,9 @@ abstract class SummPromptHistoryRecord
 
   DateTime? get timestamp;
 
+  @BuiltValueField(wireName: 'is_favorite')
+  bool? get isFavorite;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -22,7 +25,9 @@ abstract class SummPromptHistoryRecord
   DocumentReference get parentReference => reference.parent.parent!;
 
   static void _initializeBuilder(SummPromptHistoryRecordBuilder builder) =>
-      builder..prompt = '';
+      builder
+        ..prompt = ''
+        ..isFavorite = false;
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
       parent != null
@@ -55,13 +60,15 @@ abstract class SummPromptHistoryRecord
 Map<String, dynamic> createSummPromptHistoryRecordData({
   String? prompt,
   DateTime? timestamp,
+  bool? isFavorite,
 }) {
   final firestoreData = serializers.toFirestore(
     SummPromptHistoryRecord.serializer,
     SummPromptHistoryRecord(
       (s) => s
         ..prompt = prompt
-        ..timestamp = timestamp,
+        ..timestamp = timestamp
+        ..isFavorite = isFavorite,
     ),
   );
 
