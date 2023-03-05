@@ -92,5 +92,19 @@ service cloud.firestore {
       allow write: if false;
       allow delete: if false;
     }
+
+    match /users/{parent}/summ_prompt_history/{document} {
+      allow create: if request.auth.uid == parent;
+      allow read: if request.auth.uid == parent;
+      allow write: if request.auth.uid == parent;
+      allow delete: if false;
+    }
+
+    match /users/{parent}/summ_prompt_favs/{document} {
+      allow create: if request.auth.uid == parent;
+      allow read: if request.auth.uid == parent;
+      allow write: if request.auth.uid == parent;
+      allow delete: if false;
+    }
   }
 }

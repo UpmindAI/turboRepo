@@ -125,6 +125,15 @@ class _SummaryPromptFieldWidgetState extends State<SummaryPromptFieldWidget> {
                   summaryPrompt: _model.textController.text,
                 );
                 await currentUserReference!.update(usersUpdateData);
+
+                final summPromptHistoryCreateData = {
+                  ...createSummPromptHistoryRecordData(
+                    prompt: _model.textController.text,
+                  ),
+                  'timestamp': FieldValue.serverTimestamp(),
+                };
+                await SummPromptHistoryRecord.createDoc(currentUserReference!)
+                    .set(summPromptHistoryCreateData);
                 setState(() {
                   FFAppState().setSummaryTemplate = _model.textController.text;
                 });
