@@ -182,6 +182,29 @@ class FFAppState extends ChangeNotifier {
     _apiSuccess = _value;
     prefs.setString('ff_apiSuccess', jsonEncode(_value));
   }
+
+  List<String> _chainDropdown = [
+    'My Data + GPT',
+    'GPT Only',
+    'Summarize',
+    'My Data Only'
+  ];
+  List<String> get chainDropdown => _chainDropdown;
+  set chainDropdown(List<String> _value) {
+    _chainDropdown = _value;
+  }
+
+  void addToChainDropdown(String _value) {
+    _chainDropdown.add(_value);
+  }
+
+  void removeFromChainDropdown(String _value) {
+    _chainDropdown.remove(_value);
+  }
+
+  void removeAtIndexFromChainDropdown(int _index) {
+    _chainDropdown.removeAt(_index);
+  }
 }
 
 LatLng? _latLngFromString(String? val) {
