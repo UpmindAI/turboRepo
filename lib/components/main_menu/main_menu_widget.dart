@@ -1,13 +1,10 @@
 import '/auth/auth_util.dart';
 import '/components/payment/payment_widget.dart';
-import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -22,25 +19,8 @@ class MainMenuWidget extends StatefulWidget {
   _MainMenuWidgetState createState() => _MainMenuWidgetState();
 }
 
-class _MainMenuWidgetState extends State<MainMenuWidget>
-    with TickerProviderStateMixin {
+class _MainMenuWidgetState extends State<MainMenuWidget> {
   late MainMenuModel _model;
-
-  final animationsMap = {
-    'imageOnPageLoadAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        ShakeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 1000.ms,
-          hz: 10,
-          offset: Offset(0.0, 0.0),
-          rotation: 0.087,
-        ),
-      ],
-    ),
-  };
 
   @override
   void setState(VoidCallback callback) {
@@ -170,15 +150,7 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                   child: InkWell(
                     onTap: () async {
-                      context.pushNamed(
-                        'Home',
-                        queryParams: {
-                          'dropdownItem': serializeParam(
-                            'Summarize',
-                            ParamType.String,
-                          ),
-                        }.withoutNulls,
-                      );
+                      context.pushNamed('Home');
                     },
                     child: Container(
                       width: double.infinity,
@@ -294,58 +266,6 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
                   child: InkWell(
                     onTap: () async {
-                      context.pushNamed('Datasets');
-                    },
-                    child: Container(
-                      width: double.infinity,
-                      height: 50.0,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                        borderRadius: BorderRadius.circular(12.0),
-                        shape: BoxShape.rectangle,
-                      ),
-                      child: Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 12.0, 0.0),
-                              child: Container(
-                                width: 4.0,
-                                height: 60.0,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                  borderRadius: BorderRadius.circular(4.0),
-                                ),
-                              ),
-                            ),
-                            Icon(
-                              Icons.folder_rounded,
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                              size: 28.0,
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  12.0, 0.0, 0.0, 0.0),
-                              child: Text(
-                                'Datasets',
-                                style: FlutterFlowTheme.of(context).subtitle2,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
-                  child: InkWell(
-                    onTap: () async {
                       context.pushNamed('History');
                     },
                     child: Container(
@@ -393,27 +313,6 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                       ),
                     ),
                   ),
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(30.0, 0.0, 0.0, 0.0),
-                      child: InkWell(
-                        onTap: () async {
-                          context.pushNamed('requestFeature');
-                        },
-                        child: Image.asset(
-                          'assets/images/I-wish.png',
-                          width: 98.0,
-                          height: 63.0,
-                          fit: BoxFit.cover,
-                        ),
-                      ).animateOnPageLoad(
-                          animationsMap['imageOnPageLoadAnimation']!),
-                    ),
-                  ],
                 ),
                 Expanded(
                   child: Padding(

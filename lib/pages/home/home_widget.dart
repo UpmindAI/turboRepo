@@ -99,7 +99,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 10.0, 0.0),
                   child: Text(
-                    'v0.267',
+                    'v0.269',
                     style: FlutterFlowTheme.of(context).bodyText1,
                   ),
                 ),
@@ -1126,7 +1126,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                           String>(
                                                                         initialOption:
                                                                             _model.dropDownValue ??=
-                                                                                widget.dropdownItem,
+                                                                                'My Data + GPT',
                                                                         options: [
                                                                           'My Data + GPT',
                                                                           'GPT Only',
