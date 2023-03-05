@@ -25,9 +25,12 @@ class HomeWidget extends StatefulWidget {
   const HomeWidget({
     Key? key,
     this.userCompletion,
-  }) : super(key: key);
+    String? dropdownItem,
+  })  : this.dropdownItem = dropdownItem ?? 'My Data + GPT',
+        super(key: key);
 
   final UserCompletionsRecord? userCompletion;
+  final String dropdownItem;
 
   @override
   _HomeWidgetState createState() => _HomeWidgetState();
@@ -96,7 +99,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 10.0, 0.0),
                   child: Text(
-                    'v0.264',
+                    'v0.265',
                     style: FlutterFlowTheme.of(context).bodyText1,
                   ),
                 ),
@@ -1123,13 +1126,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                           String>(
                                                                         initialOption:
                                                                             _model.dropDownValue ??=
-                                                                                'My Data + GPT',
-                                                                        options: [
-                                                                          'My Data + GPT',
-                                                                          'GPT Only',
-                                                                          'Summarize',
-                                                                          'My Data Only'
-                                                                        ],
+                                                                                widget.dropdownItem,
+                                                                        options: FFAppState()
+                                                                            .chainDropdown
+                                                                            .toList(),
                                                                         onChanged:
                                                                             (val) =>
                                                                                 setState(() => _model.dropDownValue = val),

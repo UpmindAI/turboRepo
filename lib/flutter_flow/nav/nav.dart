@@ -125,6 +125,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => HomeWidget(
                 userCompletion:
                     params.getParam('userCompletion', ParamType.Document),
+                dropdownItem: params.getParam('dropdownItem', ParamType.String),
               ),
             ),
             FFRoute(

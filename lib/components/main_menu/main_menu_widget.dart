@@ -98,7 +98,15 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 12.0),
                   child: InkWell(
                     onTap: () async {
-                      context.pushNamed('Home');
+                      context.pushNamed(
+                        'Home',
+                        queryParams: {
+                          'dropdownItem': serializeParam(
+                            FFAppState().chainDropdown.first,
+                            ParamType.String,
+                          ),
+                        }.withoutNulls,
+                      );
                     },
                     child: Container(
                       width: double.infinity,
@@ -137,6 +145,78 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                                   12.0, 0.0, 0.0, 0.0),
                               child: Text(
                                 'Play',
+                                style: FlutterFlowTheme.of(context)
+                                    .subtitle2
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .subtitle2Family,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      fontWeight: FontWeight.bold,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .subtitle2Family),
+                                    ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 12.0),
+                  child: InkWell(
+                    onTap: () async {
+                      context.pushNamed(
+                        'Home',
+                        queryParams: {
+                          'dropdownItem': serializeParam(
+                            FFAppState().chainDropdown[3],
+                            ParamType.String,
+                          ),
+                        }.withoutNulls,
+                      );
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      height: 50.0,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        borderRadius: BorderRadius.circular(12.0),
+                        shape: BoxShape.rectangle,
+                      ),
+                      child: Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 12.0, 0.0),
+                              child: Container(
+                                width: 4.0,
+                                height: 60.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
+                                  borderRadius: BorderRadius.circular(4.0),
+                                ),
+                              ),
+                            ),
+                            Icon(
+                              Icons.text_snippet_outlined,
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              size: 28.0,
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  12.0, 0.0, 0.0, 0.0),
+                              child: Text(
+                                'Summarize',
                                 style: FlutterFlowTheme.of(context)
                                     .subtitle2
                                     .override(
