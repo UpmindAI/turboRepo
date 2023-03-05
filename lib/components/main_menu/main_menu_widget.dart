@@ -174,7 +174,7 @@ class _MainMenuWidgetState extends State<MainMenuWidget>
                         'Home',
                         queryParams: {
                           'dropdownItem': serializeParam(
-                            FFAppState().chainDropdown[3],
+                            'Summarize',
                             ParamType.String,
                           ),
                         }.withoutNulls,
