@@ -4,7 +4,6 @@ import '/components/add_dataset/add_dataset_widget.dart';
 import '/components/main_menu/main_menu_widget.dart';
 import '/components/payment/payment_widget.dart';
 import '/components/prompt_config/prompt_config_widget.dart';
-import '/components/summary_prompt_field/summary_prompt_field_widget.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -30,8 +29,6 @@ class HomeModel extends FlutterFlowModel {
   String? Function(BuildContext, String?)? promptFieldControllerValidator;
   // Stores action output result for [Backend Call - Create Document] action in ButtonMix widget.
   UserPromptsRecord? setPrompt;
-  // Stores action output result for [Backend Call - Create Document] action in ButtonSummarize widget.
-  UserPromptsRecord? setPromptSummarize;
   // Stores action output result for [Backend Call - Create Document] action in ButtonGPT widget.
   UserPromptsRecord? setPromptGPT;
   // Stores action output result for [Backend Call - Create Document] action in ButtonMyData widget.
