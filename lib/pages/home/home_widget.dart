@@ -4,7 +4,6 @@ import '/components/add_dataset/add_dataset_widget.dart';
 import '/components/main_menu/main_menu_widget.dart';
 import '/components/payment/payment_widget.dart';
 import '/components/prompt_config/prompt_config_widget.dart';
-import '/components/summary_prompt_field/summary_prompt_field_widget.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -99,7 +98,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 10.0, 0.0),
                   child: Text(
-                    'v0.274',
+                    'v0.275',
                     style: FlutterFlowTheme.of(context).bodyText1,
                   ),
                 ),
@@ -431,317 +430,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                         context),
                                                               ),
                                                             ),
-                                                          if (_model
-                                                                  .dropDownValue ==
-                                                              'Summarize')
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          20.0,
-                                                                          0.0,
-                                                                          20.0,
-                                                                          10.0),
-                                                              child: Container(
-                                                                width: MediaQuery.of(
-                                                                            context)
-                                                                        .size
-                                                                        .width *
-                                                                    1.0,
-                                                                height: 652.0,
-                                                                decoration:
-                                                                    BoxDecoration(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryBackground,
-                                                                ),
-                                                                child: Column(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  children: [
-                                                                    Row(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
-                                                                      children: [
-                                                                        Expanded(
-                                                                          child:
-                                                                              Column(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.max,
-                                                                            children: [
-                                                                              Align(
-                                                                                alignment: AlignmentDirectional(0.0, 0.0),
-                                                                                child: Row(
-                                                                                  mainAxisSize: MainAxisSize.max,
-                                                                                  children: [
-                                                                                    Expanded(
-                                                                                      child: Align(
-                                                                                        alignment: AlignmentDirectional(0.0, 0.0),
-                                                                                        child: Padding(
-                                                                                          padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 30.0),
-                                                                                          child: Text(
-                                                                                            'Select one or multiple Datasets and create a full summary or its contents.',
-                                                                                            textAlign: TextAlign.start,
-                                                                                            style: FlutterFlowTheme.of(context).bodyText1,
-                                                                                          ),
-                                                                                        ),
-                                                                                      ),
-                                                                                    ),
-                                                                                  ],
-                                                                                ),
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                    Row(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
-                                                                      children: [
-                                                                        Expanded(
-                                                                          child:
-                                                                              Text(
-                                                                            'Prompt:',
-                                                                            textAlign:
-                                                                                TextAlign.center,
-                                                                            style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                  fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                  color: FlutterFlowTheme.of(context).primaryText,
-                                                                                  fontWeight: FontWeight.normal,
-                                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                                ),
-                                                                          ),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                    Row(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
-                                                                      children: [
-                                                                        Expanded(
-                                                                          child:
-                                                                              InkWell(
-                                                                            onTap:
-                                                                                () async {
-                                                                              await showModalBottomSheet(
-                                                                                isScrollControlled: true,
-                                                                                backgroundColor: Colors.transparent,
-                                                                                enableDrag: false,
-                                                                                context: context,
-                                                                                builder: (context) {
-                                                                                  return Padding(
-                                                                                    padding: MediaQuery.of(context).viewInsets,
-                                                                                    child: Container(
-                                                                                      height: 300.0,
-                                                                                      child: SummaryPromptFieldWidget(
-                                                                                        summaryPrompt: FFAppState().setSummaryTemplate,
-                                                                                      ),
-                                                                                    ),
-                                                                                  );
-                                                                                },
-                                                                              ).then((value) => setState(() {}));
-                                                                            },
-                                                                            child:
-                                                                                Text(
-                                                                              FFAppState().setSummaryTemplate,
-                                                                              textAlign: TextAlign.center,
-                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                    fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                    color: FlutterFlowTheme.of(context).primaryText,
-                                                                                    fontSize: 18.0,
-                                                                                    fontWeight: FontWeight.bold,
-                                                                                    useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                                  ),
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                    Row(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
-                                                                      children: [
-                                                                        Expanded(
-                                                                          child:
-                                                                              Align(
-                                                                            alignment:
-                                                                                AlignmentDirectional(0.0, 0.0),
-                                                                            child:
-                                                                                Padding(
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
-                                                                              child: FFButtonWidget(
-                                                                                onPressed: () async {
-                                                                                  await showModalBottomSheet(
-                                                                                    isScrollControlled: true,
-                                                                                    backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-                                                                                    enableDrag: false,
-                                                                                    context: context,
-                                                                                    builder: (context) {
-                                                                                      return Padding(
-                                                                                        padding: MediaQuery.of(context).viewInsets,
-                                                                                        child: Container(
-                                                                                          height: 300.0,
-                                                                                          child: SummaryPromptFieldWidget(
-                                                                                            summaryPrompt: FFAppState().setSummaryTemplate,
-                                                                                          ),
-                                                                                        ),
-                                                                                      );
-                                                                                    },
-                                                                                  ).then((value) => setState(() {}));
-                                                                                },
-                                                                                text: 'Edit prompt',
-                                                                                icon: FaIcon(
-                                                                                  FontAwesomeIcons.edit,
-                                                                                  size: 16.0,
-                                                                                ),
-                                                                                options: FFButtonOptions(
-                                                                                  width: 130.0,
-                                                                                  height: 24.0,
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                                                                  iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                                                                  color: FlutterFlowTheme.of(context).primaryBackground,
-                                                                                  textStyle: FlutterFlowTheme.of(context).subtitle2.override(
-                                                                                        fontFamily: FlutterFlowTheme.of(context).subtitle2Family,
-                                                                                        color: FlutterFlowTheme.of(context).secondaryColor,
-                                                                                        fontSize: 14.0,
-                                                                                        useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).subtitle2Family),
-                                                                                      ),
-                                                                                  borderSide: BorderSide(
-                                                                                    color: Colors.transparent,
-                                                                                    width: 1.0,
-                                                                                  ),
-                                                                                  borderRadius: BorderRadius.circular(0.0),
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                    Align(
-                                                                      alignment:
-                                                                          AlignmentDirectional(
-                                                                              0.0,
-                                                                              0.0),
-                                                                      child:
-                                                                          Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            20.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            Text(
-                                                                          'Templates:',
-                                                                          style: FlutterFlowTheme.of(context)
-                                                                              .bodyText1
-                                                                              .override(
-                                                                                fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                fontWeight: FontWeight.normal,
-                                                                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                              ),
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                    Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          0.0,
-                                                                          10.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                      child:
-                                                                          Row(
-                                                                        mainAxisSize:
-                                                                            MainAxisSize.max,
-                                                                        children: [
-                                                                          Expanded(
-                                                                            child:
-                                                                                StreamBuilder<List<SummarizerTemplatesRecord>>(
-                                                                              stream: querySummarizerTemplatesRecord(
-                                                                                singleRecord: true,
-                                                                              ),
-                                                                              builder: (context, snapshot) {
-                                                                                // Customize what your widget looks like when it's loading.
-                                                                                if (!snapshot.hasData) {
-                                                                                  return Center(
-                                                                                    child: SizedBox(
-                                                                                      width: 50.0,
-                                                                                      height: 50.0,
-                                                                                      child: SpinKitRipple(
-                                                                                        color: FlutterFlowTheme.of(context).primaryColor,
-                                                                                        size: 50.0,
-                                                                                      ),
-                                                                                    ),
-                                                                                  );
-                                                                                }
-                                                                                List<SummarizerTemplatesRecord> columnSummarizerTemplatesRecordList = snapshot.data!;
-                                                                                // Return an empty Container when the item does not exist.
-                                                                                if (snapshot.data!.isEmpty) {
-                                                                                  return Container();
-                                                                                }
-                                                                                final columnSummarizerTemplatesRecord = columnSummarizerTemplatesRecordList.isNotEmpty ? columnSummarizerTemplatesRecordList.first : null;
-                                                                                return Builder(
-                                                                                  builder: (context) {
-                                                                                    final templates = columnSummarizerTemplatesRecord!.template!.toList();
-                                                                                    return SingleChildScrollView(
-                                                                                      child: Column(
-                                                                                        mainAxisSize: MainAxisSize.max,
-                                                                                        children: List.generate(templates.length, (templatesIndex) {
-                                                                                          final templatesItem = templates[templatesIndex];
-                                                                                          return Padding(
-                                                                                            padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 10.0),
-                                                                                            child: InkWell(
-                                                                                              onTap: () async {
-                                                                                                setState(() {
-                                                                                                  FFAppState().setSummaryTemplate = templatesItem;
-                                                                                                });
-
-                                                                                                final usersUpdateData = createUsersRecordData(
-                                                                                                  summaryPrompt: templatesItem,
-                                                                                                );
-                                                                                                await currentUserReference!.update(usersUpdateData);
-                                                                                              },
-                                                                                              child: Material(
-                                                                                                color: Colors.transparent,
-                                                                                                elevation: 1.0,
-                                                                                                child: Container(
-                                                                                                  width: MediaQuery.of(context).size.width * 1.0,
-                                                                                                  height: 30.0,
-                                                                                                  decoration: BoxDecoration(
-                                                                                                    color: FlutterFlowTheme.of(context).secondaryBackground,
-                                                                                                  ),
-                                                                                                  child: Align(
-                                                                                                    alignment: AlignmentDirectional(0.0, 0.0),
-                                                                                                    child: Text(
-                                                                                                      templatesItem,
-                                                                                                      style: FlutterFlowTheme.of(context).bodyText1,
-                                                                                                    ),
-                                                                                                  ),
-                                                                                                ),
-                                                                                              ),
-                                                                                            ),
-                                                                                          );
-                                                                                        }),
-                                                                                      ),
-                                                                                    );
-                                                                                  },
-                                                                                );
-                                                                              },
-                                                                            ),
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                            ),
                                                         ],
                                                       ),
                                                       Column(
@@ -804,63 +492,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                                         ),
                                                                                       }.withoutNulls,
                                                                                     );
-
-                                                                                    setState(() {});
-                                                                                  },
-                                                                                  text: 'OMP!',
-                                                                                  options: FFButtonOptions(
-                                                                                    width: 130.0,
-                                                                                    height: 40.0,
-                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                                                                    iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                                                                    color: FlutterFlowTheme.of(context).primaryColor,
-                                                                                    textStyle: FlutterFlowTheme.of(context).subtitle2.override(
-                                                                                          fontFamily: FlutterFlowTheme.of(context).subtitle2Family,
-                                                                                          color: Colors.white,
-                                                                                          fontSize: 20.0,
-                                                                                          fontWeight: FontWeight.bold,
-                                                                                          useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).subtitle2Family),
-                                                                                        ),
-                                                                                    borderSide: BorderSide(
-                                                                                      color: Colors.transparent,
-                                                                                      width: 1.0,
-                                                                                    ),
-                                                                                    borderRadius: BorderRadius.circular(0.0),
-                                                                                  ),
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                          if (_model.dropDownValue ==
-                                                                              'Summarize')
-                                                                            Align(
-                                                                              alignment: AlignmentDirectional(1.0, -1.0),
-                                                                              child: Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 0.0, 0.0),
-                                                                                child: FFButtonWidget(
-                                                                                  onPressed: () async {
-                                                                                    FFAppState().update(() {
-                                                                                      FFAppState().setQid = random_data.randomString(
-                                                                                        7,
-                                                                                        7,
-                                                                                        true,
-                                                                                        true,
-                                                                                        true,
-                                                                                      );
-                                                                                      FFAppState().setEngine = _model.dropDownValue!;
-                                                                                    });
-
-                                                                                    final userPromptsCreateData = createUserPromptsRecordData(
-                                                                                      qid: FFAppState().setQid,
-                                                                                      prompt: _model.promptFieldController.text,
-                                                                                    );
-                                                                                    var userPromptsRecordReference = UserPromptsRecord.createDoc(currentUserReference!);
-                                                                                    await userPromptsRecordReference.set(userPromptsCreateData);
-                                                                                    _model.setPromptSummarize = UserPromptsRecord.getDocumentFromData(userPromptsCreateData, userPromptsRecordReference);
-                                                                                    setState(() {
-                                                                                      _model.promptFieldController?.clear();
-                                                                                    });
-
-                                                                                    context.pushNamed('retreivingSummarize');
 
                                                                                     setState(() {});
                                                                                   },
@@ -1217,6 +848,121 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                     size: 36.0,
                                                                   ),
                                                                 ),
+                                                              ),
+                                                              Stack(
+                                                                children: [
+                                                                  if (_model
+                                                                          .dropDownValue ==
+                                                                      'My Data + GPT')
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          20.0,
+                                                                          20.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width:
+                                                                            300.0,
+                                                                        height:
+                                                                            40.0,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).secondaryBackground,
+                                                                        ),
+                                                                        child:
+                                                                            Column(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          children: [
+                                                                            Text(
+                                                                              'Your completion will include context from your selected dataset(s) + data in GPT',
+                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                    fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                    color: FlutterFlowTheme.of(context).secondaryColor,
+                                                                                    useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                  ),
+                                                                            ),
+                                                                          ],
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  if (_model
+                                                                          .dropDownValue ==
+                                                                      'GPT Only')
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          20.0,
+                                                                          20.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width:
+                                                                            300.0,
+                                                                        height:
+                                                                            40.0,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).secondaryBackground,
+                                                                        ),
+                                                                        child:
+                                                                            Column(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          children: [
+                                                                            Text(
+                                                                              'Your completion will only include context from GPT.',
+                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                    fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                    color: FlutterFlowTheme.of(context).secondaryColor,
+                                                                                    useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                  ),
+                                                                            ),
+                                                                          ],
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  if (_model
+                                                                          .dropDownValue ==
+                                                                      'My Data Only')
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          20.0,
+                                                                          20.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                      child:
+                                                                          Container(
+                                                                        width:
+                                                                            300.0,
+                                                                        height:
+                                                                            40.0,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).secondaryBackground,
+                                                                        ),
+                                                                        child:
+                                                                            Column(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          children: [
+                                                                            Text(
+                                                                              'Your completion will be only include context from your selected dataset(s).',
+                                                                              style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                    fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                    color: FlutterFlowTheme.of(context).secondaryColor,
+                                                                                    useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                  ),
+                                                                            ),
+                                                                          ],
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                ],
                                                               ),
                                                             ],
                                                           ),
