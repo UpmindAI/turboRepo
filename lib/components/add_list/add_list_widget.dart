@@ -157,8 +157,8 @@ class _AddListWidgetState extends State<AddListWidget> {
                         ),
                       );
 
-                      final userTempUploadsCreateData =
-                          createUserTempUploadsRecordData(
+                      final userTempUrlsCreateData =
+                          createUserTempUrlsRecordData(
                         urls: _model.urlListFieldController.text,
                         datasetId: widget.setDataset!.datasetId,
                         timestamp: getCurrentTimestamp,
@@ -172,15 +172,14 @@ class _AddListWidgetState extends State<AddListWidget> {
                         datasetName: widget.setDataset!.datasetName,
                         chunkSize: FFAppState().setChunkSize,
                       );
-                      var userTempUploadsRecordReference =
-                          UserTempUploadsRecord.createDoc(
-                              currentUserReference!);
-                      await userTempUploadsRecordReference
-                          .set(userTempUploadsCreateData);
+                      var userTempUrlsRecordReference =
+                          UserTempUrlsRecord.createDoc(currentUserReference!);
+                      await userTempUrlsRecordReference
+                          .set(userTempUrlsCreateData);
                       _model.createURLsdoc =
-                          UserTempUploadsRecord.getDocumentFromData(
-                              userTempUploadsCreateData,
-                              userTempUploadsRecordReference);
+                          UserTempUrlsRecord.getDocumentFromData(
+                              userTempUrlsCreateData,
+                              userTempUrlsRecordReference);
                       await ScrapeServerCall.call(
                         urlId: _model.createURLsdoc!.urlId,
                         idToken: currentJwtToken,
