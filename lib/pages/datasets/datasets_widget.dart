@@ -666,21 +666,6 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                     0.0),
                                                         child: FFButtonWidget(
                                                           onPressed: () async {
-                                                            FFAppState()
-                                                                .update(() {
-                                                              FFAppState()
-                                                                      .setQid =
-                                                                  random_data
-                                                                      .randomString(
-                                                                7,
-                                                                7,
-                                                                true,
-                                                                true,
-                                                                true,
-                                                              );
-                                                              FFAppState()
-                                                                  .selectedDataset = [];
-                                                            });
                                                             setState(() {
                                                               FFAppState()
                                                                   .addToSelectedDataset(widget
@@ -689,17 +674,16 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                             });
 
                                                             context.pushNamed(
-                                                                'retreivingSummarize');
+                                                                'Chat');
                                                           },
-                                                          text: 'Summarize',
+                                                          text: 'Chat',
                                                           icon: Icon(
-                                                            Icons
-                                                                .featured_play_list_rounded,
+                                                            Icons.chat,
                                                             size: 14.0,
                                                           ),
                                                           options:
                                                               FFButtonOptions(
-                                                            width: 160.0,
+                                                            width: 80.0,
                                                             height: 30.0,
                                                             padding:
                                                                 EdgeInsetsDirectional
@@ -747,6 +731,88 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                     .circular(
                                                                         0.0),
                                                           ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            1.0, 0.0),
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  20.0,
+                                                                  0.0),
+                                                      child: FFButtonWidget(
+                                                        onPressed: () async {
+                                                          setState(() {
+                                                            FFAppState()
+                                                                .addToSelectedDataset(widget
+                                                                    .activeDataset!
+                                                                    .datasetId!);
+                                                          });
+
+                                                          context.pushNamed(
+                                                              'Summarize');
+                                                        },
+                                                        text: 'Summarize',
+                                                        icon: Icon(
+                                                          Icons.text_snippet,
+                                                          size: 14.0,
+                                                        ),
+                                                        options:
+                                                            FFButtonOptions(
+                                                          width: 120.0,
+                                                          height: 30.0,
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          iconPadding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
+                                                          textStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .subtitle2
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .subtitle2Family,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .alternate,
+                                                                    fontSize:
+                                                                        12.0,
+                                                                    useGoogleFonts: GoogleFonts
+                                                                            .asMap()
+                                                                        .containsKey(
+                                                                            FlutterFlowTheme.of(context).subtitle2Family),
+                                                                  ),
+                                                          borderSide:
+                                                              BorderSide(
+                                                            color: Colors
+                                                                .transparent,
+                                                            width: 1.0,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      0.0),
                                                         ),
                                                       ),
                                                     ),
