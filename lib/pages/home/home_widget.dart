@@ -98,7 +98,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 10.0, 0.0),
                   child: Text(
-                    'v0.275',
+                    'v0.276',
                     style: FlutterFlowTheme.of(context).bodyText1,
                   ),
                 ),
@@ -755,9 +755,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                           0.0),
                                                                       child: FlutterFlowDropDown<
                                                                           String>(
-                                                                        initialOption:
-                                                                            _model.dropDownValue ??=
-                                                                                'My Data + GPT',
                                                                         options: [
                                                                           'My Data + GPT',
                                                                           'GPT Only',
@@ -881,6 +878,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                               style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                     fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
                                                                                     color: FlutterFlowTheme.of(context).secondaryColor,
+                                                                                    fontWeight: FontWeight.normal,
                                                                                     useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
                                                                                   ),
                                                                             ),
@@ -918,6 +916,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                               style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                     fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
                                                                                     color: FlutterFlowTheme.of(context).secondaryColor,
+                                                                                    fontWeight: FontWeight.normal,
                                                                                     useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
                                                                                   ),
                                                                             ),
@@ -955,6 +954,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                               style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                     fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
                                                                                     color: FlutterFlowTheme.of(context).secondaryColor,
+                                                                                    fontWeight: FontWeight.normal,
                                                                                     useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
                                                                                   ),
                                                                             ),
