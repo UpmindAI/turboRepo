@@ -77,6 +77,19 @@ class _$UserDocsRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.progressStatus;
+    if (value != null) {
+      result
+        ..add('progress_status')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.progressPercentage;
+    if (value != null) {
+      result
+        ..add('progress_percentage')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -132,6 +145,14 @@ class _$UserDocsRecordSerializer
           result.fileType = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'progress_status':
+          result.progressStatus = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'progress_percentage':
+          result.progressPercentage = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -163,6 +184,10 @@ class _$UserDocsRecord extends UserDocsRecord {
   @override
   final String? fileType;
   @override
+  final String? progressStatus;
+  @override
+  final int? progressPercentage;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$UserDocsRecord([void Function(UserDocsRecordBuilder)? updates]) =>
@@ -177,6 +202,8 @@ class _$UserDocsRecord extends UserDocsRecord {
       this.url,
       this.processing,
       this.fileType,
+      this.progressStatus,
+      this.progressPercentage,
       this.ffRef})
       : super._();
 
@@ -200,6 +227,8 @@ class _$UserDocsRecord extends UserDocsRecord {
         url == other.url &&
         processing == other.processing &&
         fileType == other.fileType &&
+        progressStatus == other.progressStatus &&
+        progressPercentage == other.progressPercentage &&
         ffRef == other.ffRef;
   }
 
@@ -212,14 +241,18 @@ class _$UserDocsRecord extends UserDocsRecord {
                     $jc(
                         $jc(
                             $jc(
-                                $jc($jc(0, datasetId.hashCode),
-                                    isActive.hashCode),
-                                docId.hashCode),
-                            docTitle.hashCode),
-                        timestamp.hashCode),
-                    url.hashCode),
-                processing.hashCode),
-            fileType.hashCode),
+                                $jc(
+                                    $jc(
+                                        $jc($jc(0, datasetId.hashCode),
+                                            isActive.hashCode),
+                                        docId.hashCode),
+                                    docTitle.hashCode),
+                                timestamp.hashCode),
+                            url.hashCode),
+                        processing.hashCode),
+                    fileType.hashCode),
+                progressStatus.hashCode),
+            progressPercentage.hashCode),
         ffRef.hashCode));
   }
 
@@ -234,6 +267,8 @@ class _$UserDocsRecord extends UserDocsRecord {
           ..add('url', url)
           ..add('processing', processing)
           ..add('fileType', fileType)
+          ..add('progressStatus', progressStatus)
+          ..add('progressPercentage', progressPercentage)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -275,6 +310,16 @@ class UserDocsRecordBuilder
   String? get fileType => _$this._fileType;
   set fileType(String? fileType) => _$this._fileType = fileType;
 
+  String? _progressStatus;
+  String? get progressStatus => _$this._progressStatus;
+  set progressStatus(String? progressStatus) =>
+      _$this._progressStatus = progressStatus;
+
+  int? _progressPercentage;
+  int? get progressPercentage => _$this._progressPercentage;
+  set progressPercentage(int? progressPercentage) =>
+      _$this._progressPercentage = progressPercentage;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -294,6 +339,8 @@ class UserDocsRecordBuilder
       _url = $v.url;
       _processing = $v.processing;
       _fileType = $v.fileType;
+      _progressStatus = $v.progressStatus;
+      _progressPercentage = $v.progressPercentage;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -325,6 +372,8 @@ class UserDocsRecordBuilder
             url: url,
             processing: processing,
             fileType: fileType,
+            progressStatus: progressStatus,
+            progressPercentage: progressPercentage,
             ffRef: ffRef);
     replace(_$result);
     return _$result;

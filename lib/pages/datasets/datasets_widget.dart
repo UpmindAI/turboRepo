@@ -1040,8 +1040,11 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                     child: Padding(
                                                                                       padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
                                                                                       child: Text(
-                                                                                        listViewUserDocsRecord.docTitle!.maybeHandleOverflow(maxChars: 250),
-                                                                                        maxLines: 2,
+                                                                                        listViewUserDocsRecord.docTitle!.maybeHandleOverflow(
+                                                                                          maxChars: 90,
+                                                                                          replacement: '…',
+                                                                                        ),
+                                                                                        maxLines: 1,
                                                                                         style: FlutterFlowTheme.of(context).bodyText1,
                                                                                       ),
                                                                                     ),
@@ -1248,18 +1251,24 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                         ),
                                                                                       ),
                                                                                     ),
-                                                                                    if (listViewUserDocsRecord.processing ?? true)
-                                                                                      Padding(
-                                                                                        padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
-                                                                                        child: Text(
-                                                                                          'Processing',
-                                                                                          style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                                fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                                color: Color(0xFF980000),
-                                                                                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                                              ),
-                                                                                        ),
+                                                                                    Padding(
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
+                                                                                      child: Text(
+                                                                                        listViewUserDocsRecord.progressStatus!,
+                                                                                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                              fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                              fontSize: 13.0,
+                                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                            ),
                                                                                       ),
+                                                                                    ),
+                                                                                    Padding(
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
+                                                                                      child: Text(
+                                                                                        '${listViewUserDocsRecord.progressPercentage.toString()} %',
+                                                                                        style: FlutterFlowTheme.of(context).bodyText1,
+                                                                                      ),
+                                                                                    ),
                                                                                   ],
                                                                                 ),
                                                                               ),
