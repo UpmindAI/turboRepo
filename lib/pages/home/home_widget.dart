@@ -98,7 +98,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 10.0, 0.0),
                   child: Text(
-                    'v0.280',
+                    'v0.283',
                     style: FlutterFlowTheme.of(context).bodyText1,
                   ),
                 ),
@@ -755,6 +755,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                           0.0),
                                                                       child: FlutterFlowDropDown<
                                                                           String>(
+                                                                        initialOption:
+                                                                            _model.dropDownValue ??=
+                                                                                'My Data + GPT',
                                                                         options: [
                                                                           'My Data + GPT',
                                                                           'GPT Only',
@@ -774,8 +777,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                               color: Colors.black,
                                                                               useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
                                                                             ),
-                                                                        hintText:
-                                                                            'Select Prompt Target...',
+                                                                        icon:
+                                                                            FaIcon(
+                                                                          FontAwesomeIcons
+                                                                              .bullseye,
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).alternate,
+                                                                        ),
                                                                         fillColor:
                                                                             Colors.white,
                                                                         elevation:
@@ -1146,11 +1154,17 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                       10.0,
                                                                       0.0,
                                                                       10.0),
-                                                          child: Text(
-                                                            'Datasets',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1,
+                                                          child: InkWell(
+                                                            onTap: () async {
+                                                              context.pushNamed(
+                                                                  'Datasets');
+                                                            },
+                                                            child: Text(
+                                                              'Datasets',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyText1,
+                                                            ),
                                                           ),
                                                         ),
                                                       ),

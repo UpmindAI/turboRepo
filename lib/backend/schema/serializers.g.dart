@@ -19,6 +19,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(UserDocsRecord.serializer)
       ..add(UserPromptsRecord.serializer)
       ..add(UserTempUploadsRecord.serializer)
+      ..add(UserTempUrlsRecord.serializer)
       ..add(UsersRecord.serializer)
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),

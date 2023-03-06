@@ -18,7 +18,7 @@ class AddListModel extends FlutterFlowModel {
   TextEditingController? urlListFieldController;
   String? Function(BuildContext, String?)? urlListFieldControllerValidator;
   // Stores action output result for [Backend Call - Create Document] action in Button widget.
-  UserTempUploadsRecord? createURLsdoc;
+  UserTempUrlsRecord? createURLsdoc;
 
   /// Initialization and disposal methods.
 
