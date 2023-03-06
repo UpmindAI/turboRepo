@@ -251,7 +251,7 @@ class _AddDatasetWidgetState extends State<AddDatasetWidget> {
                                     color: Colors.transparent,
                                     width: 1.0,
                                   ),
-                                  borderRadius: BorderRadius.circular(20.0),
+                                  borderRadius: BorderRadius.circular(0.0),
                                 ),
                               ),
                             ),
