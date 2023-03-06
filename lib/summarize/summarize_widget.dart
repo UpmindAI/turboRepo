@@ -963,11 +963,16 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       10.0, 10.0, 0.0, 10.0),
-                                              child: Text(
-                                                'Datasets',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyText1,
+                                              child: InkWell(
+                                                onTap: () async {
+                                                  context.pushNamed('Datasets');
+                                                },
+                                                child: Text(
+                                                  'Datasets',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyText1,
+                                                ),
                                               ),
                                             ),
                                           ),
