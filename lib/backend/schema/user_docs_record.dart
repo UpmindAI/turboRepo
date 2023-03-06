@@ -32,6 +32,12 @@ abstract class UserDocsRecord
   @BuiltValueField(wireName: 'file_type')
   String? get fileType;
 
+  @BuiltValueField(wireName: 'progress_status')
+  String? get progressStatus;
+
+  @BuiltValueField(wireName: 'progress_percentage')
+  int? get progressPercentage;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -45,7 +51,9 @@ abstract class UserDocsRecord
     ..docTitle = ''
     ..url = ''
     ..processing = false
-    ..fileType = '';
+    ..fileType = ''
+    ..progressStatus = ''
+    ..progressPercentage = 0;
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
       parent != null
@@ -82,6 +90,8 @@ Map<String, dynamic> createUserDocsRecordData({
   String? url,
   bool? processing,
   String? fileType,
+  String? progressStatus,
+  int? progressPercentage,
 }) {
   final firestoreData = serializers.toFirestore(
     UserDocsRecord.serializer,
@@ -94,7 +104,9 @@ Map<String, dynamic> createUserDocsRecordData({
         ..timestamp = timestamp
         ..url = url
         ..processing = processing
-        ..fileType = fileType,
+        ..fileType = fileType
+        ..progressStatus = progressStatus
+        ..progressPercentage = progressPercentage,
     ),
   );
 
