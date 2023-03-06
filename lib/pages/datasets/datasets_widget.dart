@@ -13,6 +13,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
+import '/flutter_flow/custom_functions.dart' as functions;
 import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -21,6 +22,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'datasets_model.dart';
 export 'datasets_model.dart';
@@ -1256,18 +1258,46 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                         listViewUserDocsRecord.progressStatus!,
                                                                                         style: FlutterFlowTheme.of(context).bodyText1.override(
                                                                                               fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                              fontSize: 13.0,
+                                                                                              fontSize: 12.0,
                                                                                               useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
                                                                                             ),
                                                                                       ),
                                                                                     ),
-                                                                                    Padding(
-                                                                                      padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
-                                                                                      child: Text(
-                                                                                        '${listViewUserDocsRecord.progressPercentage.toString()} %',
-                                                                                        style: FlutterFlowTheme.of(context).bodyText1,
+                                                                                    if (listViewUserDocsRecord.progressPercentage.toString() != '100')
+                                                                                      Padding(
+                                                                                        padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
+                                                                                        child: Container(
+                                                                                          width: 121.0,
+                                                                                          height: 12.0,
+                                                                                          decoration: BoxDecoration(
+                                                                                            color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                            border: Border.all(
+                                                                                              color: FlutterFlowTheme.of(context).secondaryColor,
+                                                                                            ),
+                                                                                          ),
+                                                                                          child: Padding(
+                                                                                            padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 1.0, 0.0),
+                                                                                            child: LinearPercentIndicator(
+                                                                                              percent: functions.getPercentage(listViewUserDocsRecord.progressPercentage!)!,
+                                                                                              width: 120.0,
+                                                                                              lineHeight: 12.0,
+                                                                                              animation: true,
+                                                                                              progressColor: FlutterFlowTheme.of(context).tertiaryColor,
+                                                                                              backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
+                                                                                              center: Text(
+                                                                                                '${listViewUserDocsRecord.progressPercentage.toString()} %',
+                                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                      fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                                      color: FlutterFlowTheme.of(context).primaryColor,
+                                                                                                      fontSize: 12.0,
+                                                                                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                                    ),
+                                                                                              ),
+                                                                                              padding: EdgeInsets.zero,
+                                                                                            ),
+                                                                                          ),
+                                                                                        ),
                                                                                       ),
-                                                                                    ),
                                                                                   ],
                                                                                 ),
                                                                               ),

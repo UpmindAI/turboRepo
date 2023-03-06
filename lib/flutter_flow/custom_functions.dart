@@ -18,3 +18,7 @@ int getPrice(double? price) {
   double ret = price * 100;
   return ret.toInt();
 }
+
+double? getPercentage(int percentage) {
+  return percentage / 100;
+}
