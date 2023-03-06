@@ -707,15 +707,12 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                           final chatMetaCreateData =
                                                               {
                                                             ...createChatMetaRecordData(
+                                                              createdOn:
+                                                                  getCurrentTimestamp,
                                                               cid: FFAppState()
                                                                   .setCid,
-                                                              firstMessage: _model
-                                                                  .sendFieldController
-                                                                  .text,
                                                               isLoading: true,
                                                             ),
-                                                            'created_on': FieldValue
-                                                                .serverTimestamp(),
                                                             'prompts': [
                                                               _model
                                                                   .startFieldController
@@ -785,10 +782,6 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                 .sendFieldController
                                                                 ?.clear();
                                                           });
-                                                          await Future.delayed(
-                                                              const Duration(
-                                                                  milliseconds:
-                                                                      2000));
                                                           _model.apiResultStartForm =
                                                               await MixedChatCall
                                                                   .call(
@@ -936,6 +929,8 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                             ...createChatsRecordData(
                                                               cid: FFAppState()
                                                                   .setCid,
+                                                              timestamp:
+                                                                  getCurrentTimestamp,
                                                               isCompletion:
                                                                   false,
                                                               qid: random_data
@@ -950,8 +945,6 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                   .sendFieldController
                                                                   .text,
                                                             ),
-                                                            'timestamp': FieldValue
-                                                                .serverTimestamp(),
                                                             'dataset_ids': _model
                                                                 .checkboxCheckedItems
                                                                 .map((e) =>
@@ -991,10 +984,6 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                 .startFieldController
                                                                 ?.clear();
                                                           });
-                                                          await Future.delayed(
-                                                              const Duration(
-                                                                  milliseconds:
-                                                                      2000));
                                                           await _model
                                                               .chatColumn
                                                               ?.animateTo(
