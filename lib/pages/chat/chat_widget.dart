@@ -781,6 +781,9 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                             _model
                                                                 .sendFieldController
                                                                 ?.clear();
+                                                            _model
+                                                                .startFieldController
+                                                                ?.clear();
                                                           });
                                                           _model.apiResultStartForm =
                                                               await MixedChatCall
