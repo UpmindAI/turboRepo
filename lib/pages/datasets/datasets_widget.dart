@@ -662,7 +662,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
-                                                                    20.0,
+                                                                    10.0,
                                                                     0.0),
                                                         child: FFButtonWidget(
                                                           onPressed: () async {
