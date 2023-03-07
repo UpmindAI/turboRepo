@@ -227,7 +227,7 @@ class MixedQueryCall {
   "qid": "${qid}",
   "id_token": "${idToken}",
   "top_k": ${topK},
-  "guardrail": "<gaurdrail>",
+  "guardrail": "${guardrail}",
   "dataset_ids": ${datasetIds}
 }''';
     return ApiManager.instance.makeApiCall(
