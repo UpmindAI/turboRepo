@@ -224,11 +224,11 @@ class MixedQueryCall {
 
     final body = '''
 {
-  "qid": "${qid}",
   "id_token": "${idToken}",
+  "qid": "${qid}",
+  "dataset_ids": ${datasetIds},
   "top_k": ${topK},
-  "guardrail": "${gaurdrail}",
-  "dataset_ids": ${datasetIds}
+  "gaurdrail": "${gaurdrail}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'MixedQuery',
