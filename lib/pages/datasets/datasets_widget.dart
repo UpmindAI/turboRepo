@@ -1609,8 +1609,8 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                     ),
                                                                   );
 
-                                                                  final userTempUploadsCreateData =
-                                                                      createUserTempUploadsRecordData(
+                                                                  final userTempUrlsCreateData =
+                                                                      createUserTempUrlsRecordData(
                                                                     urls: _model
                                                                         .scrapeURLController
                                                                         .text,
@@ -1634,17 +1634,17 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                         FFAppState()
                                                                             .setChunkSize,
                                                                   );
-                                                                  var userTempUploadsRecordReference =
-                                                                      UserTempUploadsRecord
+                                                                  var userTempUrlsRecordReference =
+                                                                      UserTempUrlsRecord
                                                                           .createDoc(
                                                                               currentUserReference!);
-                                                                  await userTempUploadsRecordReference
+                                                                  await userTempUrlsRecordReference
                                                                       .set(
-                                                                          userTempUploadsCreateData);
+                                                                          userTempUrlsCreateData);
                                                                   _model.createURLdoc =
-                                                                      UserTempUploadsRecord.getDocumentFromData(
-                                                                          userTempUploadsCreateData,
-                                                                          userTempUploadsRecordReference);
+                                                                      UserTempUrlsRecord.getDocumentFromData(
+                                                                          userTempUrlsCreateData,
+                                                                          userTempUrlsRecordReference);
                                                                   setState(() {
                                                                     _model
                                                                         .scrapeURLController

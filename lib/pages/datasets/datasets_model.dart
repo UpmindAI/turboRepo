@@ -51,7 +51,7 @@ class DatasetsModel extends FlutterFlowModel {
   }
 
   // Stores action output result for [Backend Call - Create Document] action in Button widget.
-  UserTempUploadsRecord? createURLdoc;
+  UserTempUrlsRecord? createURLdoc;
   // Stores action output result for [Backend Call - API (scrapeServer)] action in Button widget.
   ApiCallResponse? scrapeURL;
 
