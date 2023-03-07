@@ -157,7 +157,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'retreivingMIX',
               path: 'retreivingMIX',
               builder: (context, params) => RetreivingMIXWidget(
-                guardrail: params.getParam('guardrail', ParamType.bool),
+                gr: params.getParam('gr', ParamType.bool),
               ),
             ),
             FFRoute(
