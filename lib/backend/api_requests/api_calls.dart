@@ -214,11 +214,11 @@ class TestAPICall {
 
 class MixedQueryCall {
   static Future<ApiCallResponse> call({
-    String? qid = '',
     String? idToken = '',
+    String? qid = '',
+    List<String>? datasetIdsList,
     double? topK,
     String? gaurdrail = '',
-    List<String>? datasetIdsList,
   }) {
     final datasetIds = _serializeList(datasetIdsList);
 

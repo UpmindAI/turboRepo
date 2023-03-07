@@ -74,7 +74,7 @@ class _RetreivingMIXWidgetState extends State<RetreivingMIXWidget>
       _model.apiResultMIX = await MixedQueryCall.call(
         qid: FFAppState().setQid,
         idToken: currentJwtToken,
-        topK: FFAppState().setTopK,
+        topK: 5.0,
         gaurdrail: widget.gr,
         datasetIdsList: FFAppState().selectedDataset,
       );
