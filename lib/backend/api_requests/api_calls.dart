@@ -217,7 +217,7 @@ class MixedQueryCall {
     String? qid = '',
     String? idToken = '',
     double? topK,
-    String? guardrail = '',
+    String? gaurdrail = '',
     List<String>? datasetIdsList,
   }) {
     final datasetIds = _serializeList(datasetIdsList);
@@ -227,7 +227,7 @@ class MixedQueryCall {
   "qid": "${qid}",
   "id_token": "${idToken}",
   "top_k": ${topK},
-  "guardrail": "${guardrail}",
+  "guardrail": "${gaurdrail}",
   "dataset_ids": ${datasetIds}
 }''';
     return ApiManager.instance.makeApiCall(
