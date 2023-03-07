@@ -153,8 +153,9 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
                                               await MixedQueryCall.call(
                                             qid: _model.setPrompttextMIX!.qid,
                                             idToken: currentJwtToken,
-                                            topK: 5,
-                                            gaurdrail: _model.guardrailValue,
+                                            topK: 5.0,
+                                            gaurdrail: _model.guardrailValue
+                                                ?.toString(),
                                             datasetIdsList:
                                                 FFAppState().selectedDataset,
                                           );
