@@ -1263,7 +1263,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                             ),
                                                                                       ),
                                                                                     ),
-                                                                                    if (listViewUserDocsRecord.progressPercentage.toString() != '100')
+                                                                                    if ((listViewUserDocsRecord.progressPercentage != null) && (listViewUserDocsRecord.progressPercentage.toString() == '100'))
                                                                                       Padding(
                                                                                         padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
                                                                                         child: Container(
