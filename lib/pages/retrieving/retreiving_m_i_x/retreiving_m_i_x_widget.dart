@@ -21,7 +21,7 @@ class RetreivingMIXWidget extends StatefulWidget {
     this.gr,
   }) : super(key: key);
 
-  final bool? gr;
+  final String? gr;
 
   @override
   _RetreivingMIXWidgetState createState() => _RetreivingMIXWidgetState();
@@ -71,12 +71,12 @@ class _RetreivingMIXWidgetState extends State<RetreivingMIXWidget>
           backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         ),
       );
-      _model.apiResultMIX = await DatasetGPTserverCall.call(
+      _model.apiResultMIX = await MixedQueryCall.call(
         qid: FFAppState().setQid,
-        datasetIdsList: FFAppState().selectedDataset,
-        topK: FFAppState().setTopK,
         idToken: currentJwtToken,
-        guardrail: widget.gr,
+        topK: FFAppState().setTopK,
+        gaurdrail: widget.gr,
+        datasetIdsList: FFAppState().selectedDataset,
       );
       if ((_model.apiResultMIX?.jsonBody ?? '') != FFAppState().apiError) {
         context.pushNamed('Result');
