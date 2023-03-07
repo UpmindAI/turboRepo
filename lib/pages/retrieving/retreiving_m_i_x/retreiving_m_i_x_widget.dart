@@ -75,7 +75,7 @@ class _RetreivingMIXWidgetState extends State<RetreivingMIXWidget>
         qid: FFAppState().setQid,
         idToken: currentJwtToken,
         topK: FFAppState().setTopK,
-        guardrail: widget.gr,
+        gaurdrail: widget.gr,
         datasetIdsList: FFAppState().selectedDataset,
       );
       if ((_model.apiResultMIX?.jsonBody ?? '') != FFAppState().apiError) {

@@ -98,7 +98,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 10.0, 0.0),
                   child: Text(
-                    'v0.290',
+                    'v0.292',
                     style: FlutterFlowTheme.of(context).bodyText1,
                   ),
                 ),
@@ -591,7 +591,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                                         true,
                                                                                         true,
                                                                                       );
-                                                                                      FFAppState().setEngine = _model.dropDownValue!;
                                                                                     });
 
                                                                                     final userPromptsCreateData = createUserPromptsRecordData(
