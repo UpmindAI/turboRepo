@@ -1263,37 +1263,47 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                             ),
                                                                                       ),
                                                                                     ),
-                                                                                    if ((listViewUserDocsRecord.progressPercentage != null) && (listViewUserDocsRecord.progressPercentage.toString() == '100'))
-                                                                                      Padding(
-                                                                                        padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
-                                                                                        child: Container(
-                                                                                          width: 121.0,
-                                                                                          height: 12.0,
-                                                                                          decoration: BoxDecoration(
-                                                                                            color: FlutterFlowTheme.of(context).secondaryBackground,
-                                                                                            border: Border.all(
-                                                                                              color: FlutterFlowTheme.of(context).secondaryColor,
-                                                                                            ),
-                                                                                          ),
+                                                                                    if (listViewUserDocsRecord.progressPercentage != null)
+                                                                                      Container(
+                                                                                        width: 120.0,
+                                                                                        height: 12.0,
+                                                                                        decoration: BoxDecoration(
+                                                                                          color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                        ),
+                                                                                        child: Visibility(
+                                                                                          visible: listViewUserDocsRecord.progressPercentage != 100,
                                                                                           child: Padding(
-                                                                                            padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 1.0, 0.0),
-                                                                                            child: LinearPercentIndicator(
-                                                                                              percent: functions.getPercentage(listViewUserDocsRecord.progressPercentage!)!,
+                                                                                            padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
+                                                                                            child: Container(
                                                                                               width: 120.0,
-                                                                                              lineHeight: 12.0,
-                                                                                              animation: true,
-                                                                                              progressColor: FlutterFlowTheme.of(context).tertiaryColor,
-                                                                                              backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
-                                                                                              center: Text(
-                                                                                                '${listViewUserDocsRecord.progressPercentage.toString()} %',
-                                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                                      fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                                      color: FlutterFlowTheme.of(context).primaryColor,
-                                                                                                      fontSize: 12.0,
-                                                                                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                                                    ),
+                                                                                              height: 12.0,
+                                                                                              decoration: BoxDecoration(
+                                                                                                color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                                border: Border.all(
+                                                                                                  color: FlutterFlowTheme.of(context).secondaryColor,
+                                                                                                ),
                                                                                               ),
-                                                                                              padding: EdgeInsets.zero,
+                                                                                              child: Padding(
+                                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 1.0, 0.0),
+                                                                                                child: LinearPercentIndicator(
+                                                                                                  percent: functions.getPercentage(listViewUserDocsRecord.progressPercentage!)!,
+                                                                                                  width: 120.0,
+                                                                                                  lineHeight: 12.0,
+                                                                                                  animation: true,
+                                                                                                  progressColor: FlutterFlowTheme.of(context).tertiaryColor,
+                                                                                                  backgroundColor: FlutterFlowTheme.of(context).primaryBtnText,
+                                                                                                  center: Text(
+                                                                                                    '${listViewUserDocsRecord.progressPercentage.toString()} %',
+                                                                                                    style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                          fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                                          color: FlutterFlowTheme.of(context).primaryColor,
+                                                                                                          fontSize: 12.0,
+                                                                                                          useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                                        ),
+                                                                                                  ),
+                                                                                                  padding: EdgeInsets.zero,
+                                                                                                ),
+                                                                                              ),
                                                                                             ),
                                                                                           ),
                                                                                         ),
