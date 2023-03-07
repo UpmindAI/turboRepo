@@ -74,40 +74,6 @@ class ScrapeServerCall {
   }
 }
 
-class DatasetGPTserverCall {
-  static Future<ApiCallResponse> call({
-    String? qid = '',
-    List<String>? datasetIdsList,
-    double? topK,
-    String? idToken = '',
-    bool? guardrail = false,
-  }) {
-    final datasetIds = _serializeList(datasetIdsList);
-
-    final body = '''
-{
-  "qid": "${qid}",
-  "dataset_ids": ${datasetIds},
-  "top_k": ${topK},
-  "id_token": "${idToken}",
-  "guardail": ${guardrail}
-}''';
-    return ApiManager.instance.makeApiCall(
-      callName: 'datasetGPTserver',
-      apiUrl: 'https://mixed-query-omp-p67td2b2aq-uc.a.run.app',
-      callType: ApiCallType.POST,
-      headers: {},
-      params: {},
-      body: body,
-      bodyType: BodyType.JSON,
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-    );
-  }
-}
-
 class DownloadServerCall {
   static Future<ApiCallResponse> call({
     String? qid = '',
@@ -251,7 +217,7 @@ class MixedQueryCall {
     String? qid = '',
     String? idToken = '',
     double? topK,
-    String? gaurdrail = '',
+    String? guardrail = '',
     List<String>? datasetIdsList,
   }) {
     final datasetIds = _serializeList(datasetIdsList);
@@ -261,7 +227,7 @@ class MixedQueryCall {
   "qid": "${qid}",
   "id_token": "${idToken}",
   "top_k": ${topK},
-  "guardrail": "${gaurdrail}",
+  "guardrail": "<gaurdrail>",
   "dataset_ids": ${datasetIds}
 }''';
     return ApiManager.instance.makeApiCall(
