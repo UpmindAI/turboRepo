@@ -18,10 +18,10 @@ export 'retreiving_m_i_x_model.dart';
 class RetreivingMIXWidget extends StatefulWidget {
   const RetreivingMIXWidget({
     Key? key,
-    this.guardrail,
+    this.gr,
   }) : super(key: key);
 
-  final bool? guardrail;
+  final bool? gr;
 
   @override
   _RetreivingMIXWidgetState createState() => _RetreivingMIXWidgetState();
@@ -76,7 +76,7 @@ class _RetreivingMIXWidgetState extends State<RetreivingMIXWidget>
         datasetIdsList: FFAppState().selectedDataset,
         topK: FFAppState().setTopK,
         idToken: currentJwtToken,
-        guardrail: widget.guardrail,
+        guardrail: widget.gr,
       );
       if ((_model.apiResultMIX?.jsonBody ?? '') != FFAppState().apiError) {
         context.pushNamed('Result');
