@@ -464,83 +464,87 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                 children: [
                                                                   if (!chatColumnChatsRecord
                                                                       .isCompletion!)
-                                                                    Row(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
-                                                                      children: [
-                                                                        Expanded(
-                                                                          child:
-                                                                              Container(
-                                                                            width:
-                                                                                MediaQuery.of(context).size.width * 1.0,
-                                                                            decoration:
-                                                                                BoxDecoration(
-                                                                              color: FlutterFlowTheme.of(context).secondaryBackground,
-                                                                            ),
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          15.0),
+                                                                      child:
+                                                                          Row(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.max,
+                                                                        children: [
+                                                                          Expanded(
                                                                             child:
-                                                                                Column(
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                                                              children: [
-                                                                                Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
-                                                                                  child: Text(
-                                                                                    'You:',
-                                                                                    style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                          fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                          fontWeight: FontWeight.bold,
-                                                                                          useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                                        ),
+                                                                                Container(
+                                                                              width: MediaQuery.of(context).size.width * 1.0,
+                                                                              decoration: BoxDecoration(
+                                                                                color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                              ),
+                                                                              child: Column(
+                                                                                mainAxisSize: MainAxisSize.max,
+                                                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                children: [
+                                                                                  Padding(
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                    child: Text(
+                                                                                      'You:',
+                                                                                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                            fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                            fontWeight: FontWeight.bold,
+                                                                                            useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                          ),
+                                                                                    ),
                                                                                   ),
-                                                                                ),
-                                                                                Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
-                                                                                  child: Text(
-                                                                                    chatColumnChatsRecord.prompt!,
-                                                                                    style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                          fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                          fontWeight: FontWeight.w500,
-                                                                                          useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                                        ),
+                                                                                  Padding(
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 10.0, 5.0),
+                                                                                    child: Text(
+                                                                                      chatColumnChatsRecord.prompt!,
+                                                                                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                            fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                            fontWeight: FontWeight.w500,
+                                                                                            useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                          ),
+                                                                                    ),
                                                                                   ),
-                                                                                ),
-                                                                                Row(
-                                                                                  mainAxisSize: MainAxisSize.max,
-                                                                                  children: [
-                                                                                    Padding(
-                                                                                      padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
-                                                                                      child: InkWell(
-                                                                                        onTap: () async {
-                                                                                          await Clipboard.setData(ClipboardData(text: chatColumnChatsRecord.prompt!));
-                                                                                        },
-                                                                                        child: FaIcon(
-                                                                                          FontAwesomeIcons.copy,
-                                                                                          color: FlutterFlowTheme.of(context).alternate,
-                                                                                          size: 14.0,
+                                                                                  Row(
+                                                                                    mainAxisSize: MainAxisSize.max,
+                                                                                    children: [
+                                                                                      Padding(
+                                                                                        padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                        child: InkWell(
+                                                                                          onTap: () async {
+                                                                                            await Clipboard.setData(ClipboardData(text: chatColumnChatsRecord.prompt!));
+                                                                                          },
+                                                                                          child: FaIcon(
+                                                                                            FontAwesomeIcons.copy,
+                                                                                            color: FlutterFlowTheme.of(context).alternate,
+                                                                                            size: 14.0,
+                                                                                          ),
                                                                                         ),
                                                                                       ),
-                                                                                    ),
-                                                                                    Padding(
-                                                                                      padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
-                                                                                      child: Text(
-                                                                                        dateTimeFormat('relative', chatColumnChatsRecord.timestamp!),
-                                                                                        style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                              fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                              color: FlutterFlowTheme.of(context).alternate,
-                                                                                              fontSize: 10.0,
-                                                                                              fontWeight: FontWeight.w300,
-                                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                                            ),
+                                                                                      Padding(
+                                                                                        padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                        child: Text(
+                                                                                          dateTimeFormat('relative', chatColumnChatsRecord.timestamp!),
+                                                                                          style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                                fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                                color: FlutterFlowTheme.of(context).alternate,
+                                                                                                fontSize: 10.0,
+                                                                                                fontWeight: FontWeight.w300,
+                                                                                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                              ),
+                                                                                        ),
                                                                                       ),
-                                                                                    ),
-                                                                                  ],
-                                                                                ),
-                                                                              ],
+                                                                                    ],
+                                                                                  ),
+                                                                                ],
+                                                                              ),
                                                                             ),
                                                                           ),
-                                                                        ),
-                                                                      ],
+                                                                        ],
+                                                                      ),
                                                                     ),
                                                                   if (chatColumnChatsRecord
                                                                           .isCompletion ??
@@ -550,7 +554,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                           40.0,
                                                                           0.0,
                                                                           0.0,
-                                                                          0.0),
+                                                                          15.0),
                                                                       child:
                                                                           Row(
                                                                         mainAxisSize:
