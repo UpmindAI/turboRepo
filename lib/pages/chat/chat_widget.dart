@@ -510,10 +510,15 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                                   children: [
                                                                                     Padding(
                                                                                       padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
-                                                                                      child: FaIcon(
-                                                                                        FontAwesomeIcons.copy,
-                                                                                        color: FlutterFlowTheme.of(context).alternate,
-                                                                                        size: 14.0,
+                                                                                      child: InkWell(
+                                                                                        onTap: () async {
+                                                                                          await Clipboard.setData(ClipboardData(text: chatColumnChatsRecord.prompt!));
+                                                                                        },
+                                                                                        child: FaIcon(
+                                                                                          FontAwesomeIcons.copy,
+                                                                                          color: FlutterFlowTheme.of(context).alternate,
+                                                                                          size: 14.0,
+                                                                                        ),
                                                                                       ),
                                                                                     ),
                                                                                     Padding(
@@ -664,7 +669,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                                   ),
                                                                                   InkWell(
                                                                                     onTap: () async {
-                                                                                      await Clipboard.setData(ClipboardData(text: chatColumnChatsRecord.message!));
+                                                                                      await Clipboard.setData(ClipboardData(text: chatColumnChatsRecord.completion!));
                                                                                     },
                                                                                     child: FaIcon(
                                                                                       FontAwesomeIcons.copy,
