@@ -505,6 +505,12 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                                         ),
                                                                                   ),
                                                                                 ),
+                                                                                Divider(
+                                                                                  height: 5.0,
+                                                                                  thickness: 1.0,
+                                                                                  endIndent: 40.0,
+                                                                                  color: FlutterFlowTheme.of(context).lineColor,
+                                                                                ),
                                                                                 Row(
                                                                                   mainAxisSize: MainAxisSize.max,
                                                                                   children: [
@@ -610,6 +616,12 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                                         ),
                                                                                       ),
                                                                                   ],
+                                                                                ),
+                                                                                Divider(
+                                                                                  height: 5.0,
+                                                                                  thickness: 1.0,
+                                                                                  indent: 40.0,
+                                                                                  color: FlutterFlowTheme.of(context).lineColor,
                                                                                 ),
                                                                                 Row(
                                                                                   mainAxisSize: MainAxisSize.max,
