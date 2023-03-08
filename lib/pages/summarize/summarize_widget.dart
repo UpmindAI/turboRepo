@@ -128,8 +128,12 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                 });
                                               },
                                               text: 'Templates',
+                                              icon: FaIcon(
+                                                FontAwesomeIcons.fileAlt,
+                                                size: 14.0,
+                                              ),
                                               options: FFButtonOptions(
-                                                width: 90.0,
+                                                width: 110.0,
                                                 height: 30.0,
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(
@@ -176,12 +180,16 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                             child: FFButtonWidget(
                                               onPressed: () async {
                                                 setState(() {
-                                                  _model.setTab = 'Favorites';
+                                                  _model.setTab = 'History';
                                                 });
                                               },
-                                              text: 'Favorites',
+                                              text: 'History',
+                                              icon: FaIcon(
+                                                FontAwesomeIcons.clock,
+                                                size: 14.0,
+                                              ),
                                               options: FFButtonOptions(
-                                                width: 90.0,
+                                                width: 110.0,
                                                 height: 30.0,
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(
@@ -223,12 +231,16 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                           FFButtonWidget(
                                             onPressed: () async {
                                               setState(() {
-                                                _model.setTab = 'History';
+                                                _model.setTab = 'Favorites';
                                               });
                                             },
-                                            text: 'History',
+                                            text: 'Favorites',
+                                            icon: Icon(
+                                              Icons.star_outline_sharp,
+                                              size: 17.0,
+                                            ),
                                             options: FFButtonOptions(
-                                              width: 90.0,
+                                              width: 110.0,
                                               height: 30.0,
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
@@ -278,7 +290,7 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                     padding:
                                                         EdgeInsetsDirectional
                                                             .fromSTEB(10.0, 0.0,
-                                                                10.0, 0.0),
+                                                                0.0, 0.0),
                                                     child: Container(
                                                       width:
                                                           MediaQuery.of(context)
@@ -412,7 +424,7 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                     padding:
                                                         EdgeInsetsDirectional
                                                             .fromSTEB(10.0, 0.0,
-                                                                10.0, 0.0),
+                                                                0.0, 0.0),
                                                     child: Container(
                                                       width:
                                                           MediaQuery.of(context)
@@ -538,7 +550,7 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                     padding:
                                                         EdgeInsetsDirectional
                                                             .fromSTEB(10.0, 0.0,
-                                                                10.0, 0.0),
+                                                                0.0, 0.0),
                                                     child: Container(
                                                       width:
                                                           MediaQuery.of(context)
@@ -616,67 +628,77 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                       });
                                                                     },
                                                                     child:
-                                                                        Container(
-                                                                      width: MediaQuery.of(context)
-                                                                              .size
-                                                                              .width *
+                                                                        Material(
+                                                                      color: Colors
+                                                                          .transparent,
+                                                                      elevation:
                                                                           1.0,
-                                                                      decoration:
-                                                                          BoxDecoration(
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primaryBackground,
-                                                                      ),
                                                                       child:
-                                                                          Row(
-                                                                        mainAxisSize:
-                                                                            MainAxisSize.max,
-                                                                        children: [
-                                                                          Expanded(
-                                                                            child:
-                                                                                Padding(
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 5.0),
-                                                                              child: Text(
-                                                                                columnSummPromptHistoryRecord.prompt!,
-                                                                                style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                      fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                      fontWeight: FontWeight.normal,
-                                                                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                                    ),
+                                                                          Container(
+                                                                        width: MediaQuery.of(context).size.width *
+                                                                            1.0,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).primaryBackground,
+                                                                        ),
+                                                                        child:
+                                                                            Row(
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
+                                                                          children: [
+                                                                            Expanded(
+                                                                              child: Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(5.0, 5.0, 5.0, 5.0),
+                                                                                child: Text(
+                                                                                  columnSummPromptHistoryRecord.prompt!,
+                                                                                  style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                        fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                        fontWeight: FontWeight.normal,
+                                                                                        useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                      ),
+                                                                                ),
                                                                               ),
                                                                             ),
-                                                                          ),
-                                                                          Stack(
-                                                                            children: [
-                                                                              InkWell(
-                                                                                onTap: () async {
-                                                                                  final summPromptHistoryUpdateData = createSummPromptHistoryRecordData(
-                                                                                    isFavorite: true,
-                                                                                  );
-                                                                                  await columnSummPromptHistoryRecord.reference.update(summPromptHistoryUpdateData);
-                                                                                },
-                                                                                child: Icon(
-                                                                                  Icons.favorite_border_rounded,
-                                                                                  color: Colors.black,
-                                                                                  size: 18.0,
-                                                                                ),
-                                                                              ),
-                                                                              if (columnSummPromptHistoryRecord.isFavorite ?? true)
-                                                                                InkWell(
-                                                                                  onTap: () async {
-                                                                                    final summPromptHistoryUpdateData = createSummPromptHistoryRecordData(
-                                                                                      isFavorite: false,
-                                                                                    );
-                                                                                    await columnSummPromptHistoryRecord.reference.update(summPromptHistoryUpdateData);
-                                                                                  },
-                                                                                  child: Icon(
-                                                                                    Icons.favorite_rounded,
-                                                                                    color: Colors.black,
-                                                                                    size: 18.0,
+                                                                            Stack(
+                                                                              children: [
+                                                                                Padding(
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                                                                                  child: InkWell(
+                                                                                    onTap: () async {
+                                                                                      final summPromptHistoryUpdateData = createSummPromptHistoryRecordData(
+                                                                                        isFavorite: true,
+                                                                                      );
+                                                                                      await columnSummPromptHistoryRecord.reference.update(summPromptHistoryUpdateData);
+                                                                                    },
+                                                                                    child: FaIcon(
+                                                                                      FontAwesomeIcons.star,
+                                                                                      color: Colors.black,
+                                                                                      size: 16.0,
+                                                                                    ),
                                                                                   ),
                                                                                 ),
-                                                                            ],
-                                                                          ),
-                                                                        ],
+                                                                                if (columnSummPromptHistoryRecord.isFavorite ?? true)
+                                                                                  Padding(
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 5.0, 0.0),
+                                                                                    child: InkWell(
+                                                                                      onTap: () async {
+                                                                                        final summPromptHistoryUpdateData = createSummPromptHistoryRecordData(
+                                                                                          isFavorite: false,
+                                                                                        );
+                                                                                        await columnSummPromptHistoryRecord.reference.update(summPromptHistoryUpdateData);
+                                                                                      },
+                                                                                      child: FaIcon(
+                                                                                        FontAwesomeIcons.solidStar,
+                                                                                        color: Colors.black,
+                                                                                        size: 16.0,
+                                                                                      ),
+                                                                                    ),
+                                                                                  ),
+                                                                              ],
+                                                                            ),
+                                                                          ],
+                                                                        ),
                                                                       ),
                                                                     ),
                                                                   ),
@@ -700,7 +722,7 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                   flex: 2,
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        5.0, 0.0, 0.0, 0.0),
+                                        15.0, 0.0, 0.0, 0.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
