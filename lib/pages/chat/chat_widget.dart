@@ -14,6 +14,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -504,18 +505,31 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                                         ),
                                                                                   ),
                                                                                 ),
-                                                                                Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
-                                                                                  child: Text(
-                                                                                    dateTimeFormat('relative', chatColumnChatsRecord.timestamp!),
-                                                                                    style: FlutterFlowTheme.of(context).bodyText1.override(
-                                                                                          fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
-                                                                                          color: FlutterFlowTheme.of(context).alternate,
-                                                                                          fontSize: 10.0,
-                                                                                          fontWeight: FontWeight.w300,
-                                                                                          useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
-                                                                                        ),
-                                                                                  ),
+                                                                                Row(
+                                                                                  mainAxisSize: MainAxisSize.max,
+                                                                                  children: [
+                                                                                    Padding(
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                      child: FaIcon(
+                                                                                        FontAwesomeIcons.copy,
+                                                                                        color: FlutterFlowTheme.of(context).alternate,
+                                                                                        size: 14.0,
+                                                                                      ),
+                                                                                    ),
+                                                                                    Padding(
+                                                                                      padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                                                                                      child: Text(
+                                                                                        dateTimeFormat('relative', chatColumnChatsRecord.timestamp!),
+                                                                                        style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                              fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                              color: FlutterFlowTheme.of(context).alternate,
+                                                                                              fontSize: 10.0,
+                                                                                              fontWeight: FontWeight.w300,
+                                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                            ),
+                                                                                      ),
+                                                                                    ),
+                                                                                  ],
                                                                                 ),
                                                                               ],
                                                                             ),
@@ -538,9 +552,9 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                                 MainAxisSize.max,
                                                                             children: [
                                                                               Align(
-                                                                                alignment: AlignmentDirectional(1.0, 0.0),
+                                                                                alignment: AlignmentDirectional(-1.0, 0.0),
                                                                                 child: Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(40.0, 0.0, 10.0, 0.0),
                                                                                   child: Text(
                                                                                     'Completion:',
                                                                                     style: FlutterFlowTheme.of(context).bodyText1.override(
@@ -571,7 +585,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                                     ),
                                                                                   if (!chatColumnChatsRecord.isLoading!)
                                                                                     Align(
-                                                                                      alignment: AlignmentDirectional(1.0, 0.0),
+                                                                                      alignment: AlignmentDirectional(-1.0, 0.0),
                                                                                       child: Padding(
                                                                                         padding: EdgeInsetsDirectional.fromSTEB(40.0, 5.0, 10.0, 5.0),
                                                                                         child: Text(
@@ -646,6 +660,16 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                                               useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
                                                                                             ),
                                                                                       ),
+                                                                                    ),
+                                                                                  ),
+                                                                                  InkWell(
+                                                                                    onTap: () async {
+                                                                                      await Clipboard.setData(ClipboardData(text: chatColumnChatsRecord.message!));
+                                                                                    },
+                                                                                    child: FaIcon(
+                                                                                      FontAwesomeIcons.copy,
+                                                                                      color: FlutterFlowTheme.of(context).alternate,
+                                                                                      size: 14.0,
                                                                                     ),
                                                                                   ),
                                                                                 ],
