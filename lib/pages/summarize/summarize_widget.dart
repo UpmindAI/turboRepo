@@ -731,11 +731,16 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                         Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
-                                            Text(
-                                              FFAppState().setSummaryTemplate,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .title3,
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      20.0, 0.0, 0.0, 0.0),
+                                              child: Text(
+                                                FFAppState().setSummaryTemplate,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .title3,
+                                              ),
                                             ),
                                             Expanded(
                                               child: Align(
@@ -883,7 +888,7 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(
-                                                        0.0, 5.0, 0.0, 5.0),
+                                                        20.0, 5.0, 0.0, 5.0),
                                                 child: FFButtonWidget(
                                                   onPressed: () async {
                                                     await showModalBottomSheet(
@@ -1227,59 +1232,6 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                       },
                                                                       text:
                                                                           'Continue Prompt',
-                                                                      options:
-                                                                          FFButtonOptions(
-                                                                        width:
-                                                                            140.0,
-                                                                        height:
-                                                                            40.0,
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                        iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primaryColor,
-                                                                        textStyle: FlutterFlowTheme.of(context)
-                                                                            .subtitle2
-                                                                            .override(
-                                                                              fontFamily: FlutterFlowTheme.of(context).subtitle2Family,
-                                                                              color: Colors.white,
-                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).subtitle2Family),
-                                                                            ),
-                                                                        borderSide:
-                                                                            BorderSide(
-                                                                          color:
-                                                                              Colors.transparent,
-                                                                          width:
-                                                                              1.0,
-                                                                        ),
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(0.0),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  Padding(
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            10.0,
-                                                                            20.0,
-                                                                            0.0),
-                                                                    child:
-                                                                        FFButtonWidget(
-                                                                      onPressed:
-                                                                          () async {
-                                                                        context.pushNamed(
-                                                                            'Home');
-                                                                      },
-                                                                      text:
-                                                                          'Start New Prompt',
                                                                       options:
                                                                           FFButtonOptions(
                                                                         width:
