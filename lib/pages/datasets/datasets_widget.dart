@@ -872,45 +872,60 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                     ),
                                                   ),
                                                 ),
-                                                InkWell(
-                                                  onTap: () async {
-                                                    setState(() {
-                                                      FFAppState()
-                                                          .selectedDataset = [];
-                                                    });
+                                                if (FFAppState()
+                                                        .selectedDocuments
+                                                        .length >=
+                                                    1)
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(5.0, 0.0,
+                                                                10.0, 0.0),
+                                                    child: InkWell(
+                                                      onTap: () async {
+                                                        final userDatasetsUpdateData =
+                                                            {
+                                                          'active_docs':
+                                                              FieldValue
+                                                                  .delete(),
+                                                        };
+                                                        await widget
+                                                            .activeDataset!
+                                                            .reference
+                                                            .update(
+                                                                userDatasetsUpdateData);
+                                                        setState(() {
+                                                          FFAppState()
+                                                                  .selectedDocuments =
+                                                              widget
+                                                                  .activeDataset!
+                                                                  .activeDocs!
+                                                                  .toList();
+                                                        });
 
-                                                    final userDatasetsUpdateData =
-                                                        {
-                                                      'active_docs':
-                                                          FieldValue.delete(),
-                                                    };
-                                                    await widget.activeDataset!
-                                                        .reference
-                                                        .update(
-                                                            userDatasetsUpdateData);
-                                                  },
-                                                  child: Container(
-                                                    decoration: BoxDecoration(
-                                                      color: FlutterFlowTheme
-                                                              .of(context)
-                                                          .secondaryBackground,
-                                                    ),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      5.0,
-                                                                      0.0,
-                                                                      10.0,
-                                                                      0.0),
-                                                          child: Text(
-                                                            'Unselect all',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
+                                                        context.pushNamed(
+                                                          'Datasets',
+                                                          queryParams: {
+                                                            'activeDataset':
+                                                                serializeParam(
+                                                              widget
+                                                                  .activeDataset,
+                                                              ParamType
+                                                                  .Document,
+                                                            ),
+                                                          }.withoutNulls,
+                                                          extra: <String,
+                                                              dynamic>{
+                                                            'activeDataset': widget
+                                                                .activeDataset,
+                                                          },
+                                                        );
+                                                      },
+                                                      child: Text(
+                                                        'clear',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
                                                                 .bodyText1
                                                                 .override(
                                                                   fontFamily: FlutterFlowTheme.of(
@@ -927,12 +942,9 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                           FlutterFlowTheme.of(context)
                                                                               .bodyText1Family),
                                                                 ),
-                                                          ),
-                                                        ),
-                                                      ],
+                                                      ),
                                                     ),
                                                   ),
-                                                ),
                                               ],
                                             ),
                                             Row(
