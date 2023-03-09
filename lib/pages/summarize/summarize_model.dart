@@ -1,4 +1,5 @@
 import '/auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/components/add_dataset/add_dataset_widget.dart';
 import '/components/main_menu/main_menu_widget.dart';
@@ -10,6 +11,7 @@ import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -26,6 +28,10 @@ class SummarizeModel extends FlutterFlowModel {
   late MainMenuModel mainMenuModel;
   // Stores action output result for [Backend Call - Create Document] action in ButtonSummarize widget.
   UserPromptsRecord? setPromptSummarize;
+  // Stores action output result for [Backend Call - API (recursiveSummarizer)] action in ButtonSummarize widget.
+  ApiCallResponse? apiResultdataSummarizeBTN;
+  // Stores action output result for [Backend Call - API (downloadServer)] action in Button widget.
+  ApiCallResponse? apiResult4sp;
   // State field(s) for Checkbox widget.
 
   Map<UserDatasetsRecord, bool> checkboxValueMap = {};

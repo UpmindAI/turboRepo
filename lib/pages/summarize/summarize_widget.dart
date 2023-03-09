@@ -1,4 +1,5 @@
 import '/auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/components/add_dataset/add_dataset_widget.dart';
 import '/components/main_menu/main_menu_widget.dart';
@@ -10,6 +11,7 @@ import '/flutter_flow/random_data_util.dart' as random_data;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -776,9 +778,42 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                               .getDocumentFromData(
                                                                   userPromptsCreateData,
                                                                   userPromptsRecordReference);
-
-                                                      context.pushNamed(
-                                                          'retreivingSummarize');
+                                                      ScaffoldMessenger.of(
+                                                              context)
+                                                          .showSnackBar(
+                                                        SnackBar(
+                                                          content: Text(
+                                                            'Please hold on while we are retreiving your results.',
+                                                            style: TextStyle(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryText,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              fontSize: 1.0,
+                                                            ),
+                                                          ),
+                                                          duration: Duration(
+                                                              milliseconds:
+                                                                  7000),
+                                                          backgroundColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .secondaryBackground,
+                                                        ),
+                                                      );
+                                                      _model.apiResultdataSummarizeBTN =
+                                                          await RecursiveSummarizerCall
+                                                              .call(
+                                                        idToken:
+                                                            currentJwtToken,
+                                                        datasetIdsList:
+                                                            FFAppState()
+                                                                .selectedDataset,
+                                                        qid:
+                                                            FFAppState().setQid,
+                                                      );
 
                                                       setState(() {});
                                                     },
@@ -927,6 +962,495 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                             0.0),
                                                   ),
                                                 ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Expanded(
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Container(
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            1.0,
+                                                    decoration: BoxDecoration(
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                      boxShadow: [
+                                                        BoxShadow(
+                                                          color:
+                                                              Color(0x33000000),
+                                                        )
+                                                      ],
+                                                    ),
+                                                    child: StreamBuilder<
+                                                        List<
+                                                            UserCompletionsRecord>>(
+                                                      stream:
+                                                          queryUserCompletionsRecord(
+                                                        parent:
+                                                            currentUserReference,
+                                                        queryBuilder: (userCompletionsRecord) =>
+                                                            userCompletionsRecord.where(
+                                                                'qid',
+                                                                isEqualTo:
+                                                                    FFAppState()
+                                                                        .setQid),
+                                                        singleRecord: true,
+                                                      ),
+                                                      builder:
+                                                          (context, snapshot) {
+                                                        // Customize what your widget looks like when it's loading.
+                                                        if (!snapshot.hasData) {
+                                                          return Center(
+                                                            child: SizedBox(
+                                                              width: 50.0,
+                                                              height: 50.0,
+                                                              child:
+                                                                  SpinKitRipple(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryColor,
+                                                                size: 50.0,
+                                                              ),
+                                                            ),
+                                                          );
+                                                        }
+                                                        List<UserCompletionsRecord>
+                                                            columnUserCompletionsRecordList =
+                                                            snapshot.data!;
+                                                        // Return an empty Container when the item does not exist.
+                                                        if (snapshot
+                                                            .data!.isEmpty) {
+                                                          return Container();
+                                                        }
+                                                        final columnUserCompletionsRecord =
+                                                            columnUserCompletionsRecordList
+                                                                    .isNotEmpty
+                                                                ? columnUserCompletionsRecordList
+                                                                    .first
+                                                                : null;
+                                                        return Column(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          20.0,
+                                                                          20.0,
+                                                                          20.0,
+                                                                          0.0),
+                                                              child: Container(
+                                                                width: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    1.0,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryBackground,
+                                                                ),
+                                                                child:
+                                                                    SingleChildScrollView(
+                                                                  child: Column(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    children: [
+                                                                      Row(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.max,
+                                                                        children: [
+                                                                          Expanded(
+                                                                            child:
+                                                                                Align(
+                                                                              alignment: AlignmentDirectional(1.0, 0.0),
+                                                                              child: Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 5.0, 0.0),
+                                                                                child: InkWell(
+                                                                                  onTap: () async {
+                                                                                    await Clipboard.setData(ClipboardData(text: 'Prompt:     ${columnUserCompletionsRecord!.prompt}Completion:     ${columnUserCompletionsRecord!.completion}'));
+                                                                                    ScaffoldMessenger.of(context).showSnackBar(
+                                                                                      SnackBar(
+                                                                                        content: Text(
+                                                                                          'Copied to Clipboard!',
+                                                                                          style: TextStyle(
+                                                                                            color: FlutterFlowTheme.of(context).primaryText,
+                                                                                          ),
+                                                                                        ),
+                                                                                        duration: Duration(milliseconds: 4000),
+                                                                                        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                      ),
+                                                                                    );
+                                                                                  },
+                                                                                  child: Text(
+                                                                                    'Copy',
+                                                                                    style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                          fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                          color: FlutterFlowTheme.of(context).tertiaryColor,
+                                                                                          useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                        ),
+                                                                                  ),
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                          Padding(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                                0.0,
+                                                                                8.0,
+                                                                                8.0,
+                                                                                0.0),
+                                                                            child:
+                                                                                InkWell(
+                                                                              onTap: () async {
+                                                                                await Clipboard.setData(ClipboardData(text: 'Prompt:     ${columnUserCompletionsRecord!.prompt}Completion:     ${columnUserCompletionsRecord!.completion}'));
+                                                                                ScaffoldMessenger.of(context).showSnackBar(
+                                                                                  SnackBar(
+                                                                                    content: Text(
+                                                                                      'Copied to Clipboard!',
+                                                                                      style: TextStyle(
+                                                                                        color: FlutterFlowTheme.of(context).primaryText,
+                                                                                      ),
+                                                                                    ),
+                                                                                    duration: Duration(milliseconds: 4000),
+                                                                                    backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                  ),
+                                                                                );
+                                                                              },
+                                                                              child: FaIcon(
+                                                                                FontAwesomeIcons.copy,
+                                                                                color: FlutterFlowTheme.of(context).tertiaryColor,
+                                                                                size: 16.0,
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                      Align(
+                                                                        alignment: AlignmentDirectional(
+                                                                            -1.0,
+                                                                            0.0),
+                                                                        child: SelectionArea(
+                                                                            child: Text(
+                                                                          'Summary:',
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodyText1
+                                                                              .override(
+                                                                                fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                fontSize: 18.0,
+                                                                                fontWeight: FontWeight.bold,
+                                                                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                              ),
+                                                                        )),
+                                                                      ),
+                                                                      Align(
+                                                                        alignment: AlignmentDirectional(
+                                                                            -1.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              0.0,
+                                                                              0.0,
+                                                                              20.0,
+                                                                              40.0),
+                                                                          child: SelectionArea(
+                                                                              child: Text(
+                                                                            columnUserCompletionsRecord!.completion!,
+                                                                            style: FlutterFlowTheme.of(context).bodyText1.override(
+                                                                                  fontFamily: FlutterFlowTheme.of(context).bodyText1Family,
+                                                                                  fontSize: 18.0,
+                                                                                  useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyText1Family),
+                                                                                ),
+                                                                          )),
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          20.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              child: Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                children: [
+                                                                  Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            10.0,
+                                                                            20.0,
+                                                                            0.0),
+                                                                    child:
+                                                                        FFButtonWidget(
+                                                                      onPressed:
+                                                                          () async {
+                                                                        context
+                                                                            .pushNamed(
+                                                                          'Home',
+                                                                          queryParams:
+                                                                              {
+                                                                            'userCompletion':
+                                                                                serializeParam(
+                                                                              columnUserCompletionsRecord,
+                                                                              ParamType.Document,
+                                                                            ),
+                                                                          }.withoutNulls,
+                                                                          extra: <
+                                                                              String,
+                                                                              dynamic>{
+                                                                            'userCompletion':
+                                                                                columnUserCompletionsRecord,
+                                                                          },
+                                                                        );
+                                                                      },
+                                                                      text:
+                                                                          'Continue Prompt',
+                                                                      options:
+                                                                          FFButtonOptions(
+                                                                        width:
+                                                                            140.0,
+                                                                        height:
+                                                                            40.0,
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                        iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryColor,
+                                                                        textStyle: FlutterFlowTheme.of(context)
+                                                                            .subtitle2
+                                                                            .override(
+                                                                              fontFamily: FlutterFlowTheme.of(context).subtitle2Family,
+                                                                              color: Colors.white,
+                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).subtitle2Family),
+                                                                            ),
+                                                                        borderSide:
+                                                                            BorderSide(
+                                                                          color:
+                                                                              Colors.transparent,
+                                                                          width:
+                                                                              1.0,
+                                                                        ),
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(0.0),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                  Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            10.0,
+                                                                            20.0,
+                                                                            0.0),
+                                                                    child:
+                                                                        FFButtonWidget(
+                                                                      onPressed:
+                                                                          () async {
+                                                                        context.pushNamed(
+                                                                            'Home');
+                                                                      },
+                                                                      text:
+                                                                          'Start New Prompt',
+                                                                      options:
+                                                                          FFButtonOptions(
+                                                                        width:
+                                                                            140.0,
+                                                                        height:
+                                                                            40.0,
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                        iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryColor,
+                                                                        textStyle: FlutterFlowTheme.of(context)
+                                                                            .subtitle2
+                                                                            .override(
+                                                                              fontFamily: FlutterFlowTheme.of(context).subtitle2Family,
+                                                                              color: Colors.white,
+                                                                              useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).subtitle2Family),
+                                                                            ),
+                                                                        borderSide:
+                                                                            BorderSide(
+                                                                          color:
+                                                                              Colors.transparent,
+                                                                          width:
+                                                                              1.0,
+                                                                        ),
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(0.0),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                  Expanded(
+                                                                    child:
+                                                                        Stack(
+                                                                      children: [
+                                                                        Align(
+                                                                          alignment: AlignmentDirectional(
+                                                                              1.0,
+                                                                              0.0),
+                                                                          child:
+                                                                              Padding(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                                0.0,
+                                                                                10.0,
+                                                                                20.0,
+                                                                                0.0),
+                                                                            child:
+                                                                                FFButtonWidget(
+                                                                              onPressed: () async {
+                                                                                ScaffoldMessenger.of(context).showSnackBar(
+                                                                                  SnackBar(
+                                                                                    content: Text(
+                                                                                      'Generating .docx document.',
+                                                                                      style: TextStyle(
+                                                                                        color: FlutterFlowTheme.of(context).primaryColor,
+                                                                                      ),
+                                                                                    ),
+                                                                                    duration: Duration(milliseconds: 4000),
+                                                                                    backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                  ),
+                                                                                );
+                                                                                _model.apiResult4sp = await DownloadServerCall.call(
+                                                                                  qid: FFAppState().setQid,
+                                                                                  idToken: currentJwtToken,
+                                                                                );
+                                                                                if ((_model.apiResult4sp?.succeeded ?? true)) {
+                                                                                  ScaffoldMessenger.of(context).clearSnackBars();
+                                                                                  ScaffoldMessenger.of(context).showSnackBar(
+                                                                                    SnackBar(
+                                                                                      content: Text(
+                                                                                        'Your docx have been generated! Click Download .docx to download your document.',
+                                                                                        style: TextStyle(
+                                                                                          color: FlutterFlowTheme.of(context).primaryText,
+                                                                                          fontWeight: FontWeight.bold,
+                                                                                        ),
+                                                                                      ),
+                                                                                      duration: Duration(milliseconds: 4000),
+                                                                                      backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                    ),
+                                                                                  );
+                                                                                } else {
+                                                                                  ScaffoldMessenger.of(context).showSnackBar(
+                                                                                    SnackBar(
+                                                                                      content: Text(
+                                                                                        (_model.apiResult4sp?.statusCode ?? 200).toString(),
+                                                                                        style: TextStyle(
+                                                                                          color: FlutterFlowTheme.of(context).primaryText,
+                                                                                        ),
+                                                                                      ),
+                                                                                      duration: Duration(milliseconds: 4000),
+                                                                                      backgroundColor: Color(0x00000000),
+                                                                                    ),
+                                                                                  );
+                                                                                }
+
+                                                                                setState(() {});
+                                                                              },
+                                                                              text: 'Generate .docx',
+                                                                              options: FFButtonOptions(
+                                                                                width: 140.0,
+                                                                                height: 40.0,
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                                                                iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                                                                color: FlutterFlowTheme.of(context).primaryColor,
+                                                                                textStyle: FlutterFlowTheme.of(context).subtitle2.override(
+                                                                                      fontFamily: FlutterFlowTheme.of(context).subtitle2Family,
+                                                                                      color: Colors.white,
+                                                                                      useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).subtitle2Family),
+                                                                                    ),
+                                                                                borderSide: BorderSide(
+                                                                                  color: Colors.transparent,
+                                                                                  width: 1.0,
+                                                                                ),
+                                                                                borderRadius: BorderRadius.circular(0.0),
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                        ),
+                                                                        if (columnUserCompletionsRecord!.url !=
+                                                                                null &&
+                                                                            columnUserCompletionsRecord!.url !=
+                                                                                '')
+                                                                          Align(
+                                                                            alignment:
+                                                                                AlignmentDirectional(1.0, 0.0),
+                                                                            child:
+                                                                                Padding(
+                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 20.0, 0.0),
+                                                                              child: FFButtonWidget(
+                                                                                onPressed: () async {
+                                                                                  await launchURL(columnUserCompletionsRecord!.url!);
+                                                                                },
+                                                                                text: 'Download .docx',
+                                                                                options: FFButtonOptions(
+                                                                                  width: 140.0,
+                                                                                  height: 40.0,
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                                                                  iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                                                                  color: Color(0xFF4EABF5),
+                                                                                  textStyle: FlutterFlowTheme.of(context).subtitle2.override(
+                                                                                        fontFamily: FlutterFlowTheme.of(context).subtitle2Family,
+                                                                                        color: Colors.white,
+                                                                                        useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).subtitle2Family),
+                                                                                      ),
+                                                                                  borderSide: BorderSide(
+                                                                                    color: Colors.transparent,
+                                                                                    width: 1.0,
+                                                                                  ),
+                                                                                  borderRadius: BorderRadius.circular(0.0),
+                                                                                ),
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        );
+                                                      },
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                             ),
                                           ],
