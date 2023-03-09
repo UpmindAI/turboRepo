@@ -872,79 +872,6 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                     ),
                                                   ),
                                                 ),
-                                                if (FFAppState()
-                                                        .selectedDocuments
-                                                        .length >=
-                                                    1)
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(5.0, 0.0,
-                                                                10.0, 0.0),
-                                                    child: InkWell(
-                                                      onTap: () async {
-                                                        final userDatasetsUpdateData =
-                                                            {
-                                                          'active_docs':
-                                                              FieldValue
-                                                                  .delete(),
-                                                        };
-                                                        await widget
-                                                            .activeDataset!
-                                                            .reference
-                                                            .update(
-                                                                userDatasetsUpdateData);
-                                                        setState(() {
-                                                          FFAppState()
-                                                                  .selectedDocuments =
-                                                              widget
-                                                                  .activeDataset!
-                                                                  .activeDocs!
-                                                                  .toList();
-                                                        });
-
-                                                        context.pushNamed(
-                                                          'Datasets',
-                                                          queryParams: {
-                                                            'activeDataset':
-                                                                serializeParam(
-                                                              widget
-                                                                  .activeDataset,
-                                                              ParamType
-                                                                  .Document,
-                                                            ),
-                                                          }.withoutNulls,
-                                                          extra: <String,
-                                                              dynamic>{
-                                                            'activeDataset': widget
-                                                                .activeDataset,
-                                                          },
-                                                        );
-                                                      },
-                                                      child: Text(
-                                                        'clear',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyText1Family,
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .tertiaryColor,
-                                                                  fontSize:
-                                                                      12.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyText1Family),
-                                                                ),
-                                                      ),
-                                                    ),
-                                                  ),
                                               ],
                                             ),
                                             Row(
@@ -1340,7 +1267,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                     ),
                                                                                     if (listViewUserDocsRecord.progressPercentage != null)
                                                                                       Container(
-                                                                                        width: 120.0,
+                                                                                        width: 124.0,
                                                                                         height: 12.0,
                                                                                         decoration: BoxDecoration(
                                                                                           color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -1350,7 +1277,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                           child: Padding(
                                                                                             padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
                                                                                             child: Container(
-                                                                                              width: 120.0,
+                                                                                              width: 130.0,
                                                                                               height: 12.0,
                                                                                               decoration: BoxDecoration(
                                                                                                 color: FlutterFlowTheme.of(context).secondaryBackground,
