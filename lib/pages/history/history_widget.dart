@@ -343,39 +343,29 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                                 .fromSTEB(
                                                                     0.0,
                                                                     0.0,
-                                                                    0.0,
-                                                                    5.0),
+                                                                    10.0,
+                                                                    0.0),
                                                         child: InkWell(
                                                           onTap: () async {
-                                                            await Clipboard.setData(
-                                                                ClipboardData(
-                                                                    text:
-                                                                        'Prompt:     ${listViewUserCompletionsRecord.prompt}Completion:     ${listViewUserCompletionsRecord.completion}'));
-                                                            ScaffoldMessenger
-                                                                    .of(context)
-                                                                .showSnackBar(
-                                                              SnackBar(
-                                                                content: Text(
-                                                                  'Copied to Clipboard!',
-                                                                  style:
-                                                                      TextStyle(
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryColor,
-                                                                  ),
+                                                            context.pushNamed(
+                                                              'Home',
+                                                              queryParams: {
+                                                                'userCompletion':
+                                                                    serializeParam(
+                                                                  listViewUserCompletionsRecord,
+                                                                  ParamType
+                                                                      .Document,
                                                                 ),
-                                                                duration: Duration(
-                                                                    milliseconds:
-                                                                        4000),
-                                                                backgroundColor:
-                                                                    FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryBackground,
-                                                              ),
+                                                              }.withoutNulls,
+                                                              extra: <String,
+                                                                  dynamic>{
+                                                                'userCompletion':
+                                                                    listViewUserCompletionsRecord,
+                                                              },
                                                             );
                                                           },
                                                           child: Text(
-                                                            'Copy',
+                                                            'Continue prompt',
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .bodyText1
@@ -393,6 +383,69 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                                               .bodyText1Family),
                                                                 ),
                                                           ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            1.0, 0.0),
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  5.0),
+                                                      child: InkWell(
+                                                        onTap: () async {
+                                                          await Clipboard.setData(
+                                                              ClipboardData(
+                                                                  text:
+                                                                      'Prompt:     ${listViewUserCompletionsRecord.prompt}Completion:     ${listViewUserCompletionsRecord.completion}'));
+                                                          ScaffoldMessenger.of(
+                                                                  context)
+                                                              .showSnackBar(
+                                                            SnackBar(
+                                                              content: Text(
+                                                                'Copied to Clipboard!',
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryColor,
+                                                                ),
+                                                              ),
+                                                              duration: Duration(
+                                                                  milliseconds:
+                                                                      4000),
+                                                              backgroundColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryBackground,
+                                                            ),
+                                                          );
+                                                        },
+                                                        child: Text(
+                                                          'Copy',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyText1Family,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .grayIcon,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyText1Family),
+                                                              ),
                                                         ),
                                                       ),
                                                     ),
