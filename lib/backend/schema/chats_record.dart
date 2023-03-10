@@ -38,6 +38,8 @@ abstract class ChatsRecord implements Built<ChatsRecord, ChatsRecordBuilder> {
   @BuiltValueField(wireName: 'is_loading')
   bool? get isLoading;
 
+  String? get uid;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -55,7 +57,8 @@ abstract class ChatsRecord implements Built<ChatsRecord, ChatsRecordBuilder> {
     ..completion = ''
     ..datasetNames = ListBuilder()
     ..docTitles = ListBuilder()
-    ..isLoading = false;
+    ..isLoading = false
+    ..uid = '';
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
       parent != null
@@ -92,6 +95,7 @@ Map<String, dynamic> createChatsRecordData({
   String? prompt,
   String? completion,
   bool? isLoading,
+  String? uid,
 }) {
   final firestoreData = serializers.toFirestore(
     ChatsRecord.serializer,
@@ -108,7 +112,8 @@ Map<String, dynamic> createChatsRecordData({
         ..completion = completion
         ..datasetNames = null
         ..docTitles = null
-        ..isLoading = isLoading,
+        ..isLoading = isLoading
+        ..uid = uid,
     ),
   );
 

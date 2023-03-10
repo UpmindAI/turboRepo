@@ -912,6 +912,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                               createdOn: getCurrentTimestamp,
                                                                               cid: FFAppState().setCid,
                                                                               isLoading: true,
+                                                                              uid: currentUserUid,
                                                                             ),
                                                                             'prompts':
                                                                                 [
@@ -945,6 +946,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                                 true,
                                                                               ),
                                                                               prompt: _model.startFieldMLController.text,
+                                                                              uid: currentUserUid,
                                                                             ),
                                                                             'dataset_ids':
                                                                                 _model.checkboxCheckedItems.map((e) => e.datasetId).withoutNulls.toList(),
@@ -1188,6 +1190,8 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                               .text,
                                                                           message:
                                                                               '',
+                                                                          uid:
+                                                                              currentUserUid,
                                                                         ),
                                                                         'dataset_ids': _model
                                                                             .checkboxCheckedItems
@@ -1396,6 +1400,8 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                         .setCid,
                                                                     isLoading:
                                                                         true,
+                                                                    uid:
+                                                                        currentUserUid,
                                                                   ),
                                                                   'prompts': [
                                                                     _model
@@ -1442,6 +1448,8 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                     prompt: _model
                                                                         .startFieldController
                                                                         .text,
+                                                                    uid:
+                                                                        currentUserUid,
                                                                   ),
                                                                   'dataset_ids': _model
                                                                       .checkboxCheckedItems
@@ -1591,6 +1599,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyText1,
+                                                              minLines: 1,
                                                               validator: _model
                                                                   .startFieldControllerValidator
                                                                   .asValidator(
@@ -1637,6 +1646,8 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                     prompt: _model
                                                                         .sendFieldController
                                                                         .text,
+                                                                    uid:
+                                                                        currentUserUid,
                                                                   ),
                                                                   'dataset_ids': _model
                                                                       .checkboxCheckedItems

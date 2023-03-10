@@ -107,6 +107,13 @@ class _$ChatsRecordSerializer implements StructuredSerializer<ChatsRecord> {
         ..add(
             serializers.serialize(value, specifiedType: const FullType(bool)));
     }
+    value = object.uid;
+    if (value != null) {
+      result
+        ..add('uid')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -185,6 +192,10 @@ class _$ChatsRecordSerializer implements StructuredSerializer<ChatsRecord> {
           result.isLoading = serializers.deserialize(value,
               specifiedType: const FullType(bool)) as bool?;
           break;
+        case 'uid':
+          result.uid = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -224,6 +235,8 @@ class _$ChatsRecord extends ChatsRecord {
   @override
   final bool? isLoading;
   @override
+  final String? uid;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$ChatsRecord([void Function(ChatsRecordBuilder)? updates]) =>
@@ -242,6 +255,7 @@ class _$ChatsRecord extends ChatsRecord {
       this.datasetNames,
       this.docTitles,
       this.isLoading,
+      this.uid,
       this.ffRef})
       : super._();
 
@@ -268,6 +282,7 @@ class _$ChatsRecord extends ChatsRecord {
         datasetNames == other.datasetNames &&
         docTitles == other.docTitles &&
         isLoading == other.isLoading &&
+        uid == other.uid &&
         ffRef == other.ffRef;
   }
 
@@ -284,18 +299,20 @@ class _$ChatsRecord extends ChatsRecord {
                                     $jc(
                                         $jc(
                                             $jc(
-                                                $jc($jc(0, cid.hashCode),
-                                                    timestamp.hashCode),
-                                                message.hashCode),
-                                            isCompletion.hashCode),
-                                        datasetIds.hashCode),
-                                    chunks.hashCode),
-                                qid.hashCode),
-                            prompt.hashCode),
-                        completion.hashCode),
-                    datasetNames.hashCode),
-                docTitles.hashCode),
-            isLoading.hashCode),
+                                                $jc(
+                                                    $jc($jc(0, cid.hashCode),
+                                                        timestamp.hashCode),
+                                                    message.hashCode),
+                                                isCompletion.hashCode),
+                                            datasetIds.hashCode),
+                                        chunks.hashCode),
+                                    qid.hashCode),
+                                prompt.hashCode),
+                            completion.hashCode),
+                        datasetNames.hashCode),
+                    docTitles.hashCode),
+                isLoading.hashCode),
+            uid.hashCode),
         ffRef.hashCode));
   }
 
@@ -314,6 +331,7 @@ class _$ChatsRecord extends ChatsRecord {
           ..add('datasetNames', datasetNames)
           ..add('docTitles', docTitles)
           ..add('isLoading', isLoading)
+          ..add('uid', uid)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -377,6 +395,10 @@ class ChatsRecordBuilder implements Builder<ChatsRecord, ChatsRecordBuilder> {
   bool? get isLoading => _$this._isLoading;
   set isLoading(bool? isLoading) => _$this._isLoading = isLoading;
 
+  String? _uid;
+  String? get uid => _$this._uid;
+  set uid(String? uid) => _$this._uid = uid;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -400,6 +422,7 @@ class ChatsRecordBuilder implements Builder<ChatsRecord, ChatsRecordBuilder> {
       _datasetNames = $v.datasetNames?.toBuilder();
       _docTitles = $v.docTitles?.toBuilder();
       _isLoading = $v.isLoading;
+      _uid = $v.uid;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -437,6 +460,7 @@ class ChatsRecordBuilder implements Builder<ChatsRecord, ChatsRecordBuilder> {
               datasetNames: _datasetNames?.build(),
               docTitles: _docTitles?.build(),
               isLoading: isLoading,
+              uid: uid,
               ffRef: ffRef);
     } catch (_) {
       late String _$failedField;

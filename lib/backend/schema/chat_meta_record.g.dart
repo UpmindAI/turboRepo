@@ -80,6 +80,13 @@ class _$ChatMetaRecordSerializer
         ..add(serializers.serialize(value,
             specifiedType: const FullType(DateTime)));
     }
+    value = object.uid;
+    if (value != null) {
+      result
+        ..add('uid')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -141,6 +148,10 @@ class _$ChatMetaRecordSerializer
           result.lastMessage = serializers.deserialize(value,
               specifiedType: const FullType(DateTime)) as DateTime?;
           break;
+        case 'uid':
+          result.uid = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -172,6 +183,8 @@ class _$ChatMetaRecord extends ChatMetaRecord {
   @override
   final DateTime? lastMessage;
   @override
+  final String? uid;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$ChatMetaRecord([void Function(ChatMetaRecordBuilder)? updates]) =>
@@ -186,6 +199,7 @@ class _$ChatMetaRecord extends ChatMetaRecord {
       this.isLoading,
       this.completions,
       this.lastMessage,
+      this.uid,
       this.ffRef})
       : super._();
 
@@ -209,6 +223,7 @@ class _$ChatMetaRecord extends ChatMetaRecord {
         isLoading == other.isLoading &&
         completions == other.completions &&
         lastMessage == other.lastMessage &&
+        uid == other.uid &&
         ffRef == other.ffRef;
   }
 
@@ -220,13 +235,17 @@ class _$ChatMetaRecord extends ChatMetaRecord {
                 $jc(
                     $jc(
                         $jc(
-                            $jc($jc($jc(0, createdOn.hashCode), cid.hashCode),
-                                qids.hashCode),
-                            firstMessage.hashCode),
-                        prompts.hashCode),
-                    isLoading.hashCode),
-                completions.hashCode),
-            lastMessage.hashCode),
+                            $jc(
+                                $jc(
+                                    $jc($jc(0, createdOn.hashCode),
+                                        cid.hashCode),
+                                    qids.hashCode),
+                                firstMessage.hashCode),
+                            prompts.hashCode),
+                        isLoading.hashCode),
+                    completions.hashCode),
+                lastMessage.hashCode),
+            uid.hashCode),
         ffRef.hashCode));
   }
 
@@ -241,6 +260,7 @@ class _$ChatMetaRecord extends ChatMetaRecord {
           ..add('isLoading', isLoading)
           ..add('completions', completions)
           ..add('lastMessage', lastMessage)
+          ..add('uid', uid)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -285,6 +305,10 @@ class ChatMetaRecordBuilder
   DateTime? get lastMessage => _$this._lastMessage;
   set lastMessage(DateTime? lastMessage) => _$this._lastMessage = lastMessage;
 
+  String? _uid;
+  String? get uid => _$this._uid;
+  set uid(String? uid) => _$this._uid = uid;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -304,6 +328,7 @@ class ChatMetaRecordBuilder
       _isLoading = $v.isLoading;
       _completions = $v.completions?.toBuilder();
       _lastMessage = $v.lastMessage;
+      _uid = $v.uid;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -337,6 +362,7 @@ class ChatMetaRecordBuilder
               isLoading: isLoading,
               completions: _completions?.build(),
               lastMessage: lastMessage,
+              uid: uid,
               ffRef: ffRef);
     } catch (_) {
       late String _$failedField;
