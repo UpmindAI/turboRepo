@@ -98,7 +98,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 10.0, 0.0),
                   child: Text(
-                    'v0.313',
+                    'v0.314',
                     style: FlutterFlowTheme.of(context).bodyText1,
                   ),
                 ),
@@ -756,15 +756,22 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                           String>(
                                                                         initialOption:
                                                                             _model.dropDownValue ??=
-                                                                                'My Data + GPT',
+                                                                                FFAppState().setDropdown,
                                                                         options: [
                                                                           'My Data + GPT',
                                                                           'GPT Only',
                                                                           'My Data Only'
                                                                         ],
                                                                         onChanged:
-                                                                            (val) =>
-                                                                                setState(() => _model.dropDownValue = val),
+                                                                            (val) async {
+                                                                          setState(() =>
+                                                                              _model.dropDownValue = val);
+                                                                          setState(
+                                                                              () {
+                                                                            FFAppState().setDropdown =
+                                                                                _model.dropDownValue!;
+                                                                          });
+                                                                        },
                                                                         width:
                                                                             280.0,
                                                                         height:
