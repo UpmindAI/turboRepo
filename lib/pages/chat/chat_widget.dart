@@ -1186,6 +1186,8 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                           prompt: _model
                                                                               .sendFieldMLController
                                                                               .text,
+                                                                          message:
+                                                                              '',
                                                                         ),
                                                                         'dataset_ids': _model
                                                                             .checkboxCheckedItems
