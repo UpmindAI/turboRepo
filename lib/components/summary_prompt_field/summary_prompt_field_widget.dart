@@ -116,6 +116,8 @@ class _SummaryPromptFieldWidgetState extends State<SummaryPromptFieldWidget> {
                   ),
                 ),
                 style: FlutterFlowTheme.of(context).bodyText1,
+                maxLines: null,
+                minLines: 8,
                 validator: _model.textControllerValidator.asValidator(context),
               ),
             ),
