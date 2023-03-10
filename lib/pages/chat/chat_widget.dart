@@ -786,249 +786,234 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                             autovalidateMode:
                                                                 AutovalidateMode
                                                                     .disabled,
-                                                            child: Container(
-                                                              width: MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .width *
-                                                                  1.0,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground,
-                                                              ),
-                                                              child:
-                                                                  TextFormField(
-                                                                controller: _model
-                                                                    .startFieldController1,
-                                                                onFieldSubmitted:
-                                                                    (_) async {
-                                                                  FFAppState()
-                                                                          .setCid =
-                                                                      random_data
-                                                                          .randomString(
-                                                                    9,
-                                                                    9,
-                                                                    true,
-                                                                    true,
-                                                                    true,
-                                                                  );
-                                                                  // createMeta
-
-                                                                  final chatMetaCreateData =
-                                                                      {
-                                                                    ...createChatMetaRecordData(
-                                                                      createdOn:
-                                                                          getCurrentTimestamp,
-                                                                      cid: FFAppState()
-                                                                          .setCid,
-                                                                      isLoading:
-                                                                          true,
-                                                                    ),
-                                                                    'prompts': [
-                                                                      _model
-                                                                          .startFieldController1
-                                                                          .text
-                                                                    ],
-                                                                  };
-                                                                  var chatMetaRecordReference =
-                                                                      ChatMetaRecord
-                                                                          .createDoc(
-                                                                              currentUserReference!);
-                                                                  await chatMetaRecordReference
-                                                                      .set(
-                                                                          chatMetaCreateData);
-                                                                  _model.createChatFormML =
-                                                                      ChatMetaRecord.getDocumentFromData(
-                                                                          chatMetaCreateData,
-                                                                          chatMetaRecordReference);
-                                                                  setState(() {
-                                                                    FFAppState()
-                                                                            .setChat =
-                                                                        _model
-                                                                            .createChatFormML!
-                                                                            .reference;
-                                                                  });
-
-                                                                  final chatsCreateData =
-                                                                      {
-                                                                    ...createChatsRecordData(
-                                                                      cid: FFAppState()
-                                                                          .setCid,
-                                                                      timestamp:
-                                                                          getCurrentTimestamp,
-                                                                      isCompletion:
-                                                                          false,
-                                                                      qid: random_data
-                                                                          .randomString(
-                                                                        11,
-                                                                        11,
-                                                                        true,
-                                                                        true,
-                                                                        true,
+                                                            child: Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              children: [
+                                                                Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .min,
+                                                                  children: [
+                                                                    Expanded(
+                                                                      child:
+                                                                          Container(
+                                                                        width: MediaQuery.of(context).size.width *
+                                                                            1.0,
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).secondaryBackground,
+                                                                        ),
+                                                                        child:
+                                                                            TextFormField(
+                                                                          controller:
+                                                                              _model.startFieldController1,
+                                                                          autofocus:
+                                                                              true,
+                                                                          obscureText:
+                                                                              false,
+                                                                          decoration:
+                                                                              InputDecoration(
+                                                                            hintText:
+                                                                                'Start a Chat...',
+                                                                            hintStyle:
+                                                                                FlutterFlowTheme.of(context).bodyText2,
+                                                                            enabledBorder:
+                                                                                OutlineInputBorder(
+                                                                              borderSide: BorderSide(
+                                                                                color: FlutterFlowTheme.of(context).tertiaryColor,
+                                                                                width: 1.0,
+                                                                              ),
+                                                                              borderRadius: const BorderRadius.only(
+                                                                                topLeft: Radius.circular(4.0),
+                                                                                topRight: Radius.circular(4.0),
+                                                                              ),
+                                                                            ),
+                                                                            focusedBorder:
+                                                                                OutlineInputBorder(
+                                                                              borderSide: BorderSide(
+                                                                                color: FlutterFlowTheme.of(context).secondaryColor,
+                                                                                width: 1.0,
+                                                                              ),
+                                                                              borderRadius: const BorderRadius.only(
+                                                                                topLeft: Radius.circular(4.0),
+                                                                                topRight: Radius.circular(4.0),
+                                                                              ),
+                                                                            ),
+                                                                            errorBorder:
+                                                                                OutlineInputBorder(
+                                                                              borderSide: BorderSide(
+                                                                                color: Color(0xFF980000),
+                                                                                width: 1.0,
+                                                                              ),
+                                                                              borderRadius: const BorderRadius.only(
+                                                                                topLeft: Radius.circular(4.0),
+                                                                                topRight: Radius.circular(4.0),
+                                                                              ),
+                                                                            ),
+                                                                            focusedErrorBorder:
+                                                                                OutlineInputBorder(
+                                                                              borderSide: BorderSide(
+                                                                                color: Color(0xFF980000),
+                                                                                width: 1.0,
+                                                                              ),
+                                                                              borderRadius: const BorderRadius.only(
+                                                                                topLeft: Radius.circular(4.0),
+                                                                                topRight: Radius.circular(4.0),
+                                                                              ),
+                                                                            ),
+                                                                          ),
+                                                                          style:
+                                                                              FlutterFlowTheme.of(context).bodyText1,
+                                                                          maxLines:
+                                                                              8,
+                                                                          minLines:
+                                                                              4,
+                                                                          validator: _model
+                                                                              .startFieldController1Validator
+                                                                              .asValidator(context),
+                                                                        ),
                                                                       ),
-                                                                      prompt: _model
-                                                                          .startFieldController1
-                                                                          .text,
                                                                     ),
-                                                                    'dataset_ids': _model
-                                                                        .checkboxCheckedItems
-                                                                        .map((e) =>
-                                                                            e.datasetId)
-                                                                        .withoutNulls
-                                                                        .toList(),
-                                                                  };
-                                                                  var chatsRecordReference =
-                                                                      ChatsRecord
-                                                                          .createDoc(
-                                                                              currentUserReference!);
-                                                                  await chatsRecordReference
-                                                                      .set(
-                                                                          chatsCreateData);
-                                                                  _model.createMessageFormML =
-                                                                      ChatsRecord.getDocumentFromData(
-                                                                          chatsCreateData,
-                                                                          chatsRecordReference);
-                                                                  setState(() {
-                                                                    _model
-                                                                        .sendFieldController1
-                                                                        ?.clear();
-                                                                  });
-                                                                  _model.apiResultStartFormML =
-                                                                      await MixedChatCall
-                                                                          .call(
-                                                                    idToken:
-                                                                        currentJwtToken,
-                                                                    qid: _model
-                                                                        .createMessageFormML!
-                                                                        .qid,
-                                                                    cid: FFAppState()
-                                                                        .setCid,
-                                                                    datasetIdsList:
-                                                                        FFAppState()
-                                                                            .selectedDataset,
-                                                                    topK: FFAppState()
-                                                                        .setTopK,
-                                                                  );
+                                                                    Padding(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          10.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                      child:
+                                                                          FFButtonWidget(
+                                                                        onPressed:
+                                                                            () async {
+                                                                          FFAppState().setCid =
+                                                                              random_data.randomString(
+                                                                            9,
+                                                                            9,
+                                                                            true,
+                                                                            true,
+                                                                            true,
+                                                                          );
+                                                                          // createMeta
 
-                                                                  context
-                                                                      .pushNamed(
-                                                                          'Chat');
+                                                                          final chatMetaCreateData =
+                                                                              {
+                                                                            ...createChatMetaRecordData(
+                                                                              createdOn: getCurrentTimestamp,
+                                                                              cid: FFAppState().setCid,
+                                                                              isLoading: true,
+                                                                            ),
+                                                                            'prompts':
+                                                                                [
+                                                                              _model.startFieldController1.text
+                                                                            ],
+                                                                          };
+                                                                          var chatMetaRecordReference =
+                                                                              ChatMetaRecord.createDoc(currentUserReference!);
+                                                                          await chatMetaRecordReference
+                                                                              .set(chatMetaCreateData);
+                                                                          _model.createChatFormML = ChatMetaRecord.getDocumentFromData(
+                                                                              chatMetaCreateData,
+                                                                              chatMetaRecordReference);
+                                                                          setState(
+                                                                              () {
+                                                                            FFAppState().setChat =
+                                                                                _model.createChatFormML!.reference;
+                                                                          });
 
-                                                                  setState(
-                                                                      () {});
-                                                                },
-                                                                autofocus: true,
-                                                                obscureText:
-                                                                    false,
-                                                                decoration:
-                                                                    InputDecoration(
-                                                                  hintText:
-                                                                      'Start a Chat...',
-                                                                  hintStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyText2,
-                                                                  enabledBorder:
-                                                                      OutlineInputBorder(
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .tertiaryColor,
-                                                                      width:
-                                                                          1.0,
+                                                                          final chatsCreateData =
+                                                                              {
+                                                                            ...createChatsRecordData(
+                                                                              cid: FFAppState().setCid,
+                                                                              timestamp: getCurrentTimestamp,
+                                                                              isCompletion: false,
+                                                                              qid: random_data.randomString(
+                                                                                11,
+                                                                                11,
+                                                                                true,
+                                                                                true,
+                                                                                true,
+                                                                              ),
+                                                                              prompt: _model.startFieldController1.text,
+                                                                            ),
+                                                                            'dataset_ids':
+                                                                                _model.checkboxCheckedItems.map((e) => e.datasetId).withoutNulls.toList(),
+                                                                          };
+                                                                          var chatsRecordReference =
+                                                                              ChatsRecord.createDoc(currentUserReference!);
+                                                                          await chatsRecordReference
+                                                                              .set(chatsCreateData);
+                                                                          _model.createMessageFormML = ChatsRecord.getDocumentFromData(
+                                                                              chatsCreateData,
+                                                                              chatsRecordReference);
+                                                                          setState(
+                                                                              () {
+                                                                            _model.startFieldController2?.clear();
+                                                                            _model.sendFieldController2?.clear();
+                                                                          });
+                                                                          _model.apiResultStartFormML =
+                                                                              await MixedChatCall.call(
+                                                                            idToken:
+                                                                                currentJwtToken,
+                                                                            qid:
+                                                                                _model.createMessageFormML!.qid,
+                                                                            cid:
+                                                                                FFAppState().setCid,
+                                                                            datasetIdsList:
+                                                                                FFAppState().selectedDataset,
+                                                                            topK:
+                                                                                FFAppState().setTopK,
+                                                                          );
+
+                                                                          context
+                                                                              .pushNamed('Chat');
+
+                                                                          setState(
+                                                                              () {});
+                                                                        },
+                                                                        text:
+                                                                            'Send',
+                                                                        options:
+                                                                            FFButtonOptions(
+                                                                          width:
+                                                                              60.0,
+                                                                          height:
+                                                                              40.0,
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0),
+                                                                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0),
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).primaryColor,
+                                                                          textStyle: FlutterFlowTheme.of(context)
+                                                                              .subtitle2
+                                                                              .override(
+                                                                                fontFamily: FlutterFlowTheme.of(context).subtitle2Family,
+                                                                                color: Colors.white,
+                                                                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).subtitle2Family),
+                                                                              ),
+                                                                          borderSide:
+                                                                              BorderSide(
+                                                                            color:
+                                                                                Colors.transparent,
+                                                                            width:
+                                                                                1.0,
+                                                                          ),
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(0.0),
+                                                                        ),
+                                                                      ),
                                                                     ),
-                                                                    borderRadius:
-                                                                        const BorderRadius
-                                                                            .only(
-                                                                      topLeft: Radius
-                                                                          .circular(
-                                                                              4.0),
-                                                                      topRight:
-                                                                          Radius.circular(
-                                                                              4.0),
-                                                                    ),
-                                                                  ),
-                                                                  focusedBorder:
-                                                                      OutlineInputBorder(
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .secondaryColor,
-                                                                      width:
-                                                                          1.0,
-                                                                    ),
-                                                                    borderRadius:
-                                                                        const BorderRadius
-                                                                            .only(
-                                                                      topLeft: Radius
-                                                                          .circular(
-                                                                              4.0),
-                                                                      topRight:
-                                                                          Radius.circular(
-                                                                              4.0),
-                                                                    ),
-                                                                  ),
-                                                                  errorBorder:
-                                                                      OutlineInputBorder(
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: Color(
-                                                                          0xFF980000),
-                                                                      width:
-                                                                          1.0,
-                                                                    ),
-                                                                    borderRadius:
-                                                                        const BorderRadius
-                                                                            .only(
-                                                                      topLeft: Radius
-                                                                          .circular(
-                                                                              4.0),
-                                                                      topRight:
-                                                                          Radius.circular(
-                                                                              4.0),
-                                                                    ),
-                                                                  ),
-                                                                  focusedErrorBorder:
-                                                                      OutlineInputBorder(
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: Color(
-                                                                          0xFF980000),
-                                                                      width:
-                                                                          1.0,
-                                                                    ),
-                                                                    borderRadius:
-                                                                        const BorderRadius
-                                                                            .only(
-                                                                      topLeft: Radius
-                                                                          .circular(
-                                                                              4.0),
-                                                                      topRight:
-                                                                          Radius.circular(
-                                                                              4.0),
-                                                                    ),
-                                                                  ),
-                                                                  suffixIcon:
-                                                                      Icon(
-                                                                    Icons.send,
-                                                                    color: Color(
-                                                                        0xFF757575),
-                                                                    size: 22.0,
-                                                                  ),
+                                                                  ],
                                                                 ),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyText1,
-                                                                maxLines: 8,
-                                                                minLines: 4,
-                                                                validator: _model
-                                                                    .startFieldController1Validator
-                                                                    .asValidator(
-                                                                        context),
-                                                              ),
+                                                              ],
                                                             ),
                                                           ),
                                                         if (FFAppState()
@@ -1043,261 +1028,319 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                             autovalidateMode:
                                                                 AutovalidateMode
                                                                     .disabled,
-                                                            child:
-                                                                TextFormField(
-                                                              controller: _model
-                                                                  .sendFieldController1,
-                                                              onFieldSubmitted:
-                                                                  (_) async {
-                                                                // sendMessage
-
-                                                                final chatsCreateData =
-                                                                    {
-                                                                  ...createChatsRecordData(
-                                                                    cid: FFAppState()
-                                                                        .setCid,
-                                                                    timestamp:
-                                                                        getCurrentTimestamp,
-                                                                    isCompletion:
-                                                                        false,
-                                                                    qid: random_data
-                                                                        .randomString(
-                                                                      11,
-                                                                      11,
-                                                                      true,
-                                                                      true,
-                                                                      true,
+                                                            child: Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              children: [
+                                                                Expanded(
+                                                                  child:
+                                                                      Container(
+                                                                    width: MediaQuery.of(context)
+                                                                            .size
+                                                                            .width *
+                                                                        1.0,
+                                                                    height:
+                                                                        100.0,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryBackground,
                                                                     ),
-                                                                    prompt: _model
-                                                                        .sendFieldController1
-                                                                        .text,
+                                                                    child:
+                                                                        TextFormField(
+                                                                      controller:
+                                                                          _model
+                                                                              .sendFieldController1,
+                                                                      autofocus:
+                                                                          true,
+                                                                      obscureText:
+                                                                          false,
+                                                                      decoration:
+                                                                          InputDecoration(
+                                                                        hintText:
+                                                                            'Continue your chat...',
+                                                                        hintStyle:
+                                                                            FlutterFlowTheme.of(context).bodyText2,
+                                                                        enabledBorder:
+                                                                            OutlineInputBorder(
+                                                                          borderSide:
+                                                                              BorderSide(
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).tertiaryColor,
+                                                                            width:
+                                                                                1.0,
+                                                                          ),
+                                                                          borderRadius:
+                                                                              const BorderRadius.only(
+                                                                            topLeft:
+                                                                                Radius.circular(4.0),
+                                                                            topRight:
+                                                                                Radius.circular(4.0),
+                                                                          ),
+                                                                        ),
+                                                                        focusedBorder:
+                                                                            OutlineInputBorder(
+                                                                          borderSide:
+                                                                              BorderSide(
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).secondaryColor,
+                                                                            width:
+                                                                                1.0,
+                                                                          ),
+                                                                          borderRadius:
+                                                                              const BorderRadius.only(
+                                                                            topLeft:
+                                                                                Radius.circular(4.0),
+                                                                            topRight:
+                                                                                Radius.circular(4.0),
+                                                                          ),
+                                                                        ),
+                                                                        errorBorder:
+                                                                            OutlineInputBorder(
+                                                                          borderSide:
+                                                                              BorderSide(
+                                                                            color:
+                                                                                Color(0xFF980000),
+                                                                            width:
+                                                                                1.0,
+                                                                          ),
+                                                                          borderRadius:
+                                                                              const BorderRadius.only(
+                                                                            topLeft:
+                                                                                Radius.circular(4.0),
+                                                                            topRight:
+                                                                                Radius.circular(4.0),
+                                                                          ),
+                                                                        ),
+                                                                        focusedErrorBorder:
+                                                                            OutlineInputBorder(
+                                                                          borderSide:
+                                                                              BorderSide(
+                                                                            color:
+                                                                                Color(0xFF980000),
+                                                                            width:
+                                                                                1.0,
+                                                                          ),
+                                                                          borderRadius:
+                                                                              const BorderRadius.only(
+                                                                            topLeft:
+                                                                                Radius.circular(4.0),
+                                                                            topRight:
+                                                                                Radius.circular(4.0),
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyText1,
+                                                                      maxLines:
+                                                                          8,
+                                                                      minLines:
+                                                                          4,
+                                                                      validator: _model
+                                                                          .sendFieldController1Validator
+                                                                          .asValidator(
+                                                                              context),
+                                                                    ),
                                                                   ),
-                                                                  'dataset_ids': _model
-                                                                      .checkboxCheckedItems
-                                                                      .map((e) =>
-                                                                          e.datasetId)
-                                                                      .withoutNulls
-                                                                      .toList(),
-                                                                };
-                                                                var chatsRecordReference =
-                                                                    ChatsRecord
-                                                                        .createDoc(
-                                                                            currentUserReference!);
-                                                                await chatsRecordReference
-                                                                    .set(
-                                                                        chatsCreateData);
-                                                                _model.chatMessageNewFromFieldSL =
-                                                                    ChatsRecord.getDocumentFromData(
-                                                                        chatsCreateData,
-                                                                        chatsRecordReference);
+                                                                ),
+                                                                Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          10.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      FFButtonWidget(
+                                                                    onPressed:
+                                                                        () async {
+                                                                      // sendMessage
 
-                                                                final chatMetaUpdateData =
-                                                                    {
-                                                                  'prompts':
-                                                                      FieldValue
-                                                                          .arrayUnion([
-                                                                    _model
-                                                                        .sendFieldController1
-                                                                        .text
-                                                                  ]),
-                                                                };
-                                                                await FFAppState()
-                                                                    .setChat!
-                                                                    .update(
-                                                                        chatMetaUpdateData);
-                                                                setState(() {
-                                                                  _model
-                                                                      .sendFieldController1
-                                                                      ?.clear();
-                                                                });
-                                                                await _model
-                                                                    .chatColumn
-                                                                    ?.animateTo(
-                                                                  _model
-                                                                      .chatColumn!
-                                                                      .position
-                                                                      .maxScrollExtent,
-                                                                  duration: Duration(
-                                                                      milliseconds:
-                                                                          100),
-                                                                  curve: Curves
-                                                                      .ease,
-                                                                );
-                                                                _model.apiResulchatSL =
-                                                                    await MixedChatCall
-                                                                        .call(
-                                                                  idToken:
-                                                                      currentJwtToken,
-                                                                  qid: _model
-                                                                      .chatMessageNewFromFieldSL!
-                                                                      .qid,
-                                                                  cid: FFAppState()
-                                                                      .setCid,
-                                                                  datasetIdsList:
-                                                                      FFAppState()
-                                                                          .selectedDataset,
-                                                                  topK: FFAppState()
-                                                                      .setTopK,
-                                                                );
-                                                                await Future.delayed(
-                                                                    const Duration(
-                                                                        milliseconds:
-                                                                            3000));
-                                                                await _model
-                                                                    .chatColumn
-                                                                    ?.animateTo(
-                                                                  _model
-                                                                      .chatColumn!
-                                                                      .position
-                                                                      .maxScrollExtent,
-                                                                  duration: Duration(
-                                                                      milliseconds:
-                                                                          100),
-                                                                  curve: Curves
-                                                                      .ease,
-                                                                );
-                                                                await Future.delayed(
-                                                                    const Duration(
-                                                                        milliseconds:
-                                                                            5000));
-                                                                await _model
-                                                                    .chatColumn
-                                                                    ?.animateTo(
-                                                                  _model
-                                                                      .chatColumn!
-                                                                      .position
-                                                                      .maxScrollExtent,
-                                                                  duration: Duration(
-                                                                      milliseconds:
-                                                                          100),
-                                                                  curve: Curves
-                                                                      .ease,
-                                                                );
-                                                                await Future.delayed(
-                                                                    const Duration(
-                                                                        milliseconds:
-                                                                            5000));
-                                                                await _model
-                                                                    .chatColumn
-                                                                    ?.animateTo(
-                                                                  _model
-                                                                      .chatColumn!
-                                                                      .position
-                                                                      .maxScrollExtent,
-                                                                  duration: Duration(
-                                                                      milliseconds:
-                                                                          100),
-                                                                  curve: Curves
-                                                                      .ease,
-                                                                );
+                                                                      final chatsCreateData =
+                                                                          {
+                                                                        ...createChatsRecordData(
+                                                                          cid: FFAppState()
+                                                                              .setCid,
+                                                                          timestamp:
+                                                                              getCurrentTimestamp,
+                                                                          isCompletion:
+                                                                              false,
+                                                                          qid: random_data
+                                                                              .randomString(
+                                                                            11,
+                                                                            11,
+                                                                            true,
+                                                                            true,
+                                                                            true,
+                                                                          ),
+                                                                          prompt: _model
+                                                                              .sendFieldController1
+                                                                              .text,
+                                                                        ),
+                                                                        'dataset_ids': _model
+                                                                            .checkboxCheckedItems
+                                                                            .map((e) =>
+                                                                                e.datasetId)
+                                                                            .withoutNulls
+                                                                            .toList(),
+                                                                      };
+                                                                      var chatsRecordReference =
+                                                                          ChatsRecord.createDoc(
+                                                                              currentUserReference!);
+                                                                      await chatsRecordReference
+                                                                          .set(
+                                                                              chatsCreateData);
+                                                                      _model.chatMessageNewFromFieldSL = ChatsRecord.getDocumentFromData(
+                                                                          chatsCreateData,
+                                                                          chatsRecordReference);
 
-                                                                setState(() {});
-                                                              },
-                                                              autofocus: true,
-                                                              obscureText:
-                                                                  false,
-                                                              decoration:
-                                                                  InputDecoration(
-                                                                hintText:
-                                                                    'Continue your chat...',
-                                                                hintStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyText2,
-                                                                enabledBorder:
-                                                                    OutlineInputBorder(
-                                                                  borderSide:
-                                                                      BorderSide(
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .tertiaryColor,
-                                                                    width: 1.0,
-                                                                  ),
-                                                                  borderRadius:
-                                                                      const BorderRadius
-                                                                          .only(
-                                                                    topLeft: Radius
-                                                                        .circular(
-                                                                            4.0),
-                                                                    topRight: Radius
-                                                                        .circular(
-                                                                            4.0),
+                                                                      final chatMetaUpdateData =
+                                                                          {
+                                                                        'prompts':
+                                                                            FieldValue.arrayUnion([
+                                                                          _model
+                                                                              .sendFieldController1
+                                                                              .text
+                                                                        ]),
+                                                                      };
+                                                                      await FFAppState()
+                                                                          .setChat!
+                                                                          .update(
+                                                                              chatMetaUpdateData);
+                                                                      setState(
+                                                                          () {
+                                                                        _model
+                                                                            .startFieldController2
+                                                                            ?.clear();
+                                                                        _model
+                                                                            .sendFieldController2
+                                                                            ?.clear();
+                                                                      });
+                                                                      await _model
+                                                                          .chatColumn
+                                                                          ?.animateTo(
+                                                                        _model
+                                                                            .chatColumn!
+                                                                            .position
+                                                                            .maxScrollExtent,
+                                                                        duration:
+                                                                            Duration(milliseconds: 100),
+                                                                        curve: Curves
+                                                                            .ease,
+                                                                      );
+                                                                      _model.apiResulchatSL =
+                                                                          await MixedChatCall
+                                                                              .call(
+                                                                        idToken:
+                                                                            currentJwtToken,
+                                                                        qid: _model
+                                                                            .createMessageFormML!
+                                                                            .qid,
+                                                                        cid: FFAppState()
+                                                                            .setCid,
+                                                                        datasetIdsList:
+                                                                            FFAppState().selectedDataset,
+                                                                        topK: FFAppState()
+                                                                            .setTopK,
+                                                                      );
+                                                                      await Future.delayed(const Duration(
+                                                                          milliseconds:
+                                                                              3000));
+                                                                      await _model
+                                                                          .chatColumn
+                                                                          ?.animateTo(
+                                                                        _model
+                                                                            .chatColumn!
+                                                                            .position
+                                                                            .maxScrollExtent,
+                                                                        duration:
+                                                                            Duration(milliseconds: 100),
+                                                                        curve: Curves
+                                                                            .ease,
+                                                                      );
+                                                                      await Future.delayed(const Duration(
+                                                                          milliseconds:
+                                                                              5000));
+                                                                      await _model
+                                                                          .chatColumn
+                                                                          ?.animateTo(
+                                                                        _model
+                                                                            .chatColumn!
+                                                                            .position
+                                                                            .maxScrollExtent,
+                                                                        duration:
+                                                                            Duration(milliseconds: 100),
+                                                                        curve: Curves
+                                                                            .ease,
+                                                                      );
+                                                                      await Future.delayed(const Duration(
+                                                                          milliseconds:
+                                                                              5000));
+                                                                      await _model
+                                                                          .chatColumn
+                                                                          ?.animateTo(
+                                                                        _model
+                                                                            .chatColumn!
+                                                                            .position
+                                                                            .maxScrollExtent,
+                                                                        duration:
+                                                                            Duration(milliseconds: 100),
+                                                                        curve: Curves
+                                                                            .ease,
+                                                                      );
+
+                                                                      setState(
+                                                                          () {});
+                                                                    },
+                                                                    text:
+                                                                        'Send',
+                                                                    options:
+                                                                        FFButtonOptions(
+                                                                      width:
+                                                                          60.0,
+                                                                      height:
+                                                                          40.0,
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                      iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryColor,
+                                                                      textStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .subtitle2
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                FlutterFlowTheme.of(context).subtitle2Family,
+                                                                            color:
+                                                                                Colors.white,
+                                                                            useGoogleFonts:
+                                                                                GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).subtitle2Family),
+                                                                          ),
+                                                                      borderSide:
+                                                                          BorderSide(
+                                                                        color: Colors
+                                                                            .transparent,
+                                                                        width:
+                                                                            1.0,
+                                                                      ),
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              0.0),
+                                                                    ),
                                                                   ),
                                                                 ),
-                                                                focusedBorder:
-                                                                    OutlineInputBorder(
-                                                                  borderSide:
-                                                                      BorderSide(
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryColor,
-                                                                    width: 1.0,
-                                                                  ),
-                                                                  borderRadius:
-                                                                      const BorderRadius
-                                                                          .only(
-                                                                    topLeft: Radius
-                                                                        .circular(
-                                                                            4.0),
-                                                                    topRight: Radius
-                                                                        .circular(
-                                                                            4.0),
-                                                                  ),
-                                                                ),
-                                                                errorBorder:
-                                                                    OutlineInputBorder(
-                                                                  borderSide:
-                                                                      BorderSide(
-                                                                    color: Color(
-                                                                        0xFF980000),
-                                                                    width: 1.0,
-                                                                  ),
-                                                                  borderRadius:
-                                                                      const BorderRadius
-                                                                          .only(
-                                                                    topLeft: Radius
-                                                                        .circular(
-                                                                            4.0),
-                                                                    topRight: Radius
-                                                                        .circular(
-                                                                            4.0),
-                                                                  ),
-                                                                ),
-                                                                focusedErrorBorder:
-                                                                    OutlineInputBorder(
-                                                                  borderSide:
-                                                                      BorderSide(
-                                                                    color: Color(
-                                                                        0xFF980000),
-                                                                    width: 1.0,
-                                                                  ),
-                                                                  borderRadius:
-                                                                      const BorderRadius
-                                                                          .only(
-                                                                    topLeft: Radius
-                                                                        .circular(
-                                                                            4.0),
-                                                                    topRight: Radius
-                                                                        .circular(
-                                                                            4.0),
-                                                                  ),
-                                                                ),
-                                                                suffixIcon:
-                                                                    Icon(
-                                                                  Icons.send,
-                                                                  color: Color(
-                                                                      0xFF757575),
-                                                                  size: 22.0,
-                                                                ),
-                                                              ),
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyText1,
-                                                              maxLines: 8,
-                                                              minLines: 4,
-                                                              validator: _model
-                                                                  .sendFieldController1Validator
-                                                                  .asValidator(
-                                                                      context),
+                                                              ],
                                                             ),
                                                           ),
                                                       ],
@@ -1411,7 +1454,10 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                         chatsRecordReference);
                                                                 setState(() {
                                                                   _model
-                                                                      .sendFieldController1
+                                                                      .startFieldController2
+                                                                      ?.clear();
+                                                                  _model
+                                                                      .sendFieldController2
                                                                       ?.clear();
                                                                 });
                                                                 _model.apiResultStartForm =
@@ -1618,7 +1664,10 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                         chatMetaUpdateData);
                                                                 setState(() {
                                                                   _model
-                                                                      .sendFieldController1
+                                                                      .startFieldController2
+                                                                      ?.clear();
+                                                                  _model
+                                                                      .sendFieldController2
                                                                       ?.clear();
                                                                 });
                                                                 await _model

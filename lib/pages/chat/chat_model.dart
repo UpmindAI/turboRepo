@@ -52,18 +52,18 @@ class ChatModel extends FlutterFlowModel {
     return null;
   }
 
-  // Stores action output result for [Backend Call - Create Document] action in startField widget.
+  // Stores action output result for [Backend Call - Create Document] action in Button widget.
   ChatMetaRecord? createChatFormML;
-  // Stores action output result for [Backend Call - Create Document] action in startField widget.
+  // Stores action output result for [Backend Call - Create Document] action in Button widget.
   ChatsRecord? createMessageFormML;
-  // Stores action output result for [Backend Call - API (MixedChat)] action in startField widget.
+  // Stores action output result for [Backend Call - API (MixedChat)] action in Button widget.
   ApiCallResponse? apiResultStartFormML;
   // State field(s) for sendField widget.
   TextEditingController? sendFieldController1;
   String? Function(BuildContext, String?)? sendFieldController1Validator;
-  // Stores action output result for [Backend Call - Create Document] action in sendField widget.
+  // Stores action output result for [Backend Call - Create Document] action in Button widget.
   ChatsRecord? chatMessageNewFromFieldSL;
-  // Stores action output result for [Backend Call - API (MixedChat)] action in sendField widget.
+  // Stores action output result for [Backend Call - API (MixedChat)] action in Button widget.
   ApiCallResponse? apiResulchatSL;
   // State field(s) for startField widget.
   TextEditingController? startFieldController2;
