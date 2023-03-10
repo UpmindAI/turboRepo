@@ -32,6 +32,8 @@ class FFAppState extends ChangeNotifier {
         print("Can't decode persisted json. Error: $e.");
       }
     }
+
+    _setDropdown = prefs.getString('ff_setDropdown') ?? _setDropdown;
   }
 
   void update(VoidCallback callback) {
@@ -204,6 +206,13 @@ class FFAppState extends ChangeNotifier {
 
   void removeAtIndexFromChainDropdown(int _index) {
     _chainDropdown.removeAt(_index);
+  }
+
+  String _setDropdown = 'My Data + GPT';
+  String get setDropdown => _setDropdown;
+  set setDropdown(String _value) {
+    _setDropdown = _value;
+    prefs.setString('ff_setDropdown', _value);
   }
 }
 
