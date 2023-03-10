@@ -37,10 +37,10 @@ class ChatModel extends FlutterFlowModel {
   late MainMenuModel mainMenuModel;
   // State field(s) for chatColumn widget.
   ScrollController? chatColumn;
-  // State field(s) for startField widget.
-  TextEditingController? startFieldController1;
-  String? Function(BuildContext, String?)? startFieldController1Validator;
-  String? _startFieldController1Validator(BuildContext context, String? val) {
+  // State field(s) for startFieldML widget.
+  TextEditingController? startFieldMLController;
+  String? Function(BuildContext, String?)? startFieldMLControllerValidator;
+  String? _startFieldMLControllerValidator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return 'Field is required';
     }
@@ -58,16 +58,16 @@ class ChatModel extends FlutterFlowModel {
   ChatsRecord? createMessageFormML;
   // Stores action output result for [Backend Call - API (MixedChat)] action in Button widget.
   ApiCallResponse? apiResultStartFormML;
-  // State field(s) for sendField widget.
-  TextEditingController? sendFieldController1;
-  String? Function(BuildContext, String?)? sendFieldController1Validator;
+  // State field(s) for sendFieldML widget.
+  TextEditingController? sendFieldMLController;
+  String? Function(BuildContext, String?)? sendFieldMLControllerValidator;
   // Stores action output result for [Backend Call - Create Document] action in Button widget.
-  ChatsRecord? chatMessageNewFromFieldSL;
+  ChatsRecord? chatMessageNewFromFieldML;
   // Stores action output result for [Backend Call - API (MixedChat)] action in Button widget.
-  ApiCallResponse? apiResulchatSL;
+  ApiCallResponse? apiResulchatML;
   // State field(s) for startField widget.
-  TextEditingController? startFieldController2;
-  String? Function(BuildContext, String?)? startFieldController2Validator;
+  TextEditingController? startFieldController;
+  String? Function(BuildContext, String?)? startFieldControllerValidator;
   // Stores action output result for [Backend Call - Create Document] action in startField widget.
   ChatMetaRecord? createChatForm;
   // Stores action output result for [Backend Call - Create Document] action in startField widget.
@@ -75,8 +75,8 @@ class ChatModel extends FlutterFlowModel {
   // Stores action output result for [Backend Call - API (MixedChat)] action in startField widget.
   ApiCallResponse? apiResultStartForm;
   // State field(s) for sendField widget.
-  TextEditingController? sendFieldController2;
-  String? Function(BuildContext, String?)? sendFieldController2Validator;
+  TextEditingController? sendFieldController;
+  String? Function(BuildContext, String?)? sendFieldControllerValidator;
   // Stores action output result for [Backend Call - Create Document] action in sendField widget.
   ChatsRecord? chatMessageNewFromField;
   // Stores action output result for [Backend Call - API (MixedChat)] action in sendField widget.
@@ -96,7 +96,7 @@ class ChatModel extends FlutterFlowModel {
   void initState(BuildContext context) {
     mainMenuModel = createModel(context, () => MainMenuModel());
     chatColumn = ScrollController();
-    startFieldController1Validator = _startFieldController1Validator;
+    startFieldMLControllerValidator = _startFieldMLControllerValidator;
     columnController = ScrollController();
     listViewController = ScrollController();
   }
@@ -104,10 +104,10 @@ class ChatModel extends FlutterFlowModel {
   void dispose() {
     mainMenuModel.dispose();
     chatColumn?.dispose();
-    startFieldController1?.dispose();
-    sendFieldController1?.dispose();
-    startFieldController2?.dispose();
-    sendFieldController2?.dispose();
+    startFieldMLController?.dispose();
+    sendFieldMLController?.dispose();
+    startFieldController?.dispose();
+    sendFieldController?.dispose();
     columnController?.dispose();
     listViewController?.dispose();
   }

@@ -49,10 +49,10 @@ class _ChatWidgetState extends State<ChatWidget> {
       );
     });
 
-    _model.startFieldController1 ??= TextEditingController();
-    _model.sendFieldController1 ??= TextEditingController();
-    _model.startFieldController2 ??= TextEditingController();
-    _model.sendFieldController2 ??= TextEditingController();
+    _model.startFieldMLController ??= TextEditingController();
+    _model.sendFieldMLController ??= TextEditingController();
+    _model.startFieldController ??= TextEditingController();
+    _model.sendFieldController ??= TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -719,48 +719,61 @@ class _ChatWidgetState extends State<ChatWidget> {
                                             Column(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 0.0, 10.0, 0.0),
-                                                  child: InkWell(
-                                                    onTap: () async {
-                                                      setState(() {
-                                                        _model.multiLine = true;
-                                                      });
-                                                    },
-                                                    child: Icon(
-                                                      Icons
-                                                          .format_line_spacing_rounded,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryColor,
-                                                      size: 24.0,
-                                                    ),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 0.0, 10.0, 10.0),
-                                                  child: InkWell(
-                                                    onTap: () async {
-                                                      setState(() {
-                                                        _model.multiLine =
-                                                            false;
-                                                      });
-                                                    },
-                                                    child: FaIcon(
-                                                      FontAwesomeIcons
-                                                          .gripLines,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryColor,
-                                                      size: 24.0,
-                                                    ),
-                                                  ),
+                                                Stack(
+                                                  children: [
+                                                    if (_model.multiLine)
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    10.0,
+                                                                    10.0),
+                                                        child: InkWell(
+                                                          onTap: () async {
+                                                            setState(() {
+                                                              _model.multiLine =
+                                                                  false;
+                                                            });
+                                                          },
+                                                          child: FaIcon(
+                                                            FontAwesomeIcons
+                                                                .gripLines,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryColor,
+                                                            size: 24.0,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    if (!_model.multiLine)
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    10.0,
+                                                                    0.0),
+                                                        child: InkWell(
+                                                          onTap: () async {
+                                                            setState(() {
+                                                              _model.multiLine =
+                                                                  true;
+                                                            });
+                                                          },
+                                                          child: Icon(
+                                                            Icons
+                                                                .format_line_spacing_rounded,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryColor,
+                                                            size: 24.0,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                  ],
                                                 ),
                                               ],
                                             ),
@@ -805,7 +818,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                         child:
                                                                             TextFormField(
                                                                           controller:
-                                                                              _model.startFieldController1,
+                                                                              _model.startFieldMLController,
                                                                           autofocus:
                                                                               true,
                                                                           obscureText:
@@ -868,7 +881,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                           minLines:
                                                                               6,
                                                                           validator: _model
-                                                                              .startFieldController1Validator
+                                                                              .startFieldMLControllerValidator
                                                                               .asValidator(context),
                                                                         ),
                                                                       ),
@@ -902,7 +915,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                             ),
                                                                             'prompts':
                                                                                 [
-                                                                              _model.startFieldController1.text
+                                                                              _model.startFieldMLController.text
                                                                             ],
                                                                           };
                                                                           var chatMetaRecordReference =
@@ -931,7 +944,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                                 true,
                                                                                 true,
                                                                               ),
-                                                                              prompt: _model.startFieldController1.text,
+                                                                              prompt: _model.startFieldMLController.text,
                                                                             ),
                                                                             'dataset_ids':
                                                                                 _model.checkboxCheckedItems.map((e) => e.datasetId).withoutNulls.toList(),
@@ -945,8 +958,8 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                               chatsRecordReference);
                                                                           setState(
                                                                               () {
-                                                                            _model.startFieldController2?.clear();
-                                                                            _model.sendFieldController2?.clear();
+                                                                            _model.startFieldMLController?.clear();
+                                                                            _model.sendFieldMLController?.clear();
                                                                           });
                                                                           _model.apiResultStartFormML =
                                                                               await MixedChatCall.call(
@@ -1046,7 +1059,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                         TextFormField(
                                                                       controller:
                                                                           _model
-                                                                              .sendFieldController1,
+                                                                              .sendFieldMLController,
                                                                       autofocus:
                                                                           true,
                                                                       obscureText:
@@ -1134,7 +1147,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                       minLines:
                                                                           6,
                                                                       validator: _model
-                                                                          .sendFieldController1Validator
+                                                                          .sendFieldMLControllerValidator
                                                                           .asValidator(
                                                                               context),
                                                                     ),
@@ -1171,7 +1184,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                             true,
                                                                           ),
                                                                           prompt: _model
-                                                                              .sendFieldController1
+                                                                              .sendFieldMLController
                                                                               .text,
                                                                         ),
                                                                         'dataset_ids': _model
@@ -1187,7 +1200,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                       await chatsRecordReference
                                                                           .set(
                                                                               chatsCreateData);
-                                                                      _model.chatMessageNewFromFieldSL = ChatsRecord.getDocumentFromData(
+                                                                      _model.chatMessageNewFromFieldML = ChatsRecord.getDocumentFromData(
                                                                           chatsCreateData,
                                                                           chatsRecordReference);
 
@@ -1196,7 +1209,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                         'prompts':
                                                                             FieldValue.arrayUnion([
                                                                           _model
-                                                                              .sendFieldController1
+                                                                              .sendFieldMLController
                                                                               .text
                                                                         ]),
                                                                       };
@@ -1207,10 +1220,10 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                       setState(
                                                                           () {
                                                                         _model
-                                                                            .startFieldController2
+                                                                            .startFieldMLController
                                                                             ?.clear();
                                                                         _model
-                                                                            .sendFieldController2
+                                                                            .sendFieldMLController
                                                                             ?.clear();
                                                                       });
                                                                       await _model
@@ -1225,7 +1238,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                         curve: Curves
                                                                             .ease,
                                                                       );
-                                                                      _model.apiResulchatSL =
+                                                                      _model.apiResulchatML =
                                                                           await MixedChatCall
                                                                               .call(
                                                                         idToken:
@@ -1242,7 +1255,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                       );
                                                                       await Future.delayed(const Duration(
                                                                           milliseconds:
-                                                                              3000));
+                                                                              1000));
                                                                       await _model
                                                                           .chatColumn
                                                                           ?.animateTo(
@@ -1257,7 +1270,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                       );
                                                                       await Future.delayed(const Duration(
                                                                           milliseconds:
-                                                                              5000));
+                                                                              1000));
                                                                       await _model
                                                                           .chatColumn
                                                                           ?.animateTo(
@@ -1272,7 +1285,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                       );
                                                                       await Future.delayed(const Duration(
                                                                           milliseconds:
-                                                                              5000));
+                                                                              1000));
                                                                       await _model
                                                                           .chatColumn
                                                                           ?.animateTo(
@@ -1357,7 +1370,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                             child:
                                                                 TextFormField(
                                                               controller: _model
-                                                                  .startFieldController2,
+                                                                  .startFieldController,
                                                               onFieldSubmitted:
                                                                   (_) async {
                                                                 FFAppState()
@@ -1384,7 +1397,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                   ),
                                                                   'prompts': [
                                                                     _model
-                                                                        .startFieldController2
+                                                                        .startFieldController
                                                                         .text
                                                                   ],
                                                                 };
@@ -1425,7 +1438,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                       true,
                                                                     ),
                                                                     prompt: _model
-                                                                        .startFieldController2
+                                                                        .startFieldController
                                                                         .text,
                                                                   ),
                                                                   'dataset_ids': _model
@@ -1448,10 +1461,10 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                         chatsRecordReference);
                                                                 setState(() {
                                                                   _model
-                                                                      .startFieldController2
+                                                                      .startFieldController
                                                                       ?.clear();
                                                                   _model
-                                                                      .sendFieldController2
+                                                                      .sendFieldController
                                                                       ?.clear();
                                                                 });
                                                                 _model.apiResultStartForm =
@@ -1577,7 +1590,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                       .of(context)
                                                                   .bodyText1,
                                                               validator: _model
-                                                                  .startFieldController2Validator
+                                                                  .startFieldControllerValidator
                                                                   .asValidator(
                                                                       context),
                                                             ),
@@ -1597,7 +1610,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                             child:
                                                                 TextFormField(
                                                               controller: _model
-                                                                  .sendFieldController2,
+                                                                  .sendFieldController,
                                                               onFieldSubmitted:
                                                                   (_) async {
                                                                 // sendMessage
@@ -1620,7 +1633,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                       true,
                                                                     ),
                                                                     prompt: _model
-                                                                        .sendFieldController2
+                                                                        .sendFieldController
                                                                         .text,
                                                                   ),
                                                                   'dataset_ids': _model
@@ -1648,7 +1661,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                       FieldValue
                                                                           .arrayUnion([
                                                                     _model
-                                                                        .sendFieldController2
+                                                                        .sendFieldController
                                                                         .text
                                                                   ]),
                                                                 };
@@ -1658,10 +1671,10 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                         chatMetaUpdateData);
                                                                 setState(() {
                                                                   _model
-                                                                      .startFieldController2
+                                                                      .startFieldController
                                                                       ?.clear();
                                                                   _model
-                                                                      .sendFieldController2
+                                                                      .sendFieldController
                                                                       ?.clear();
                                                                 });
                                                                 await _model
@@ -1696,7 +1709,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                 await Future.delayed(
                                                                     const Duration(
                                                                         milliseconds:
-                                                                            3000));
+                                                                            1000));
                                                                 await _model
                                                                     .chatColumn
                                                                     ?.animateTo(
@@ -1713,7 +1726,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                 await Future.delayed(
                                                                     const Duration(
                                                                         milliseconds:
-                                                                            5000));
+                                                                            1000));
                                                                 await _model
                                                                     .chatColumn
                                                                     ?.animateTo(
@@ -1730,7 +1743,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                 await Future.delayed(
                                                                     const Duration(
                                                                         milliseconds:
-                                                                            5000));
+                                                                            1000));
                                                                 await _model
                                                                     .chatColumn
                                                                     ?.animateTo(
@@ -1847,7 +1860,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                       .of(context)
                                                                   .bodyText1,
                                                               validator: _model
-                                                                  .sendFieldController2Validator
+                                                                  .sendFieldControllerValidator
                                                                   .asValidator(
                                                                       context),
                                                             ),
