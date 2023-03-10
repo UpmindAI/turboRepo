@@ -716,56 +716,52 @@ class _ChatWidgetState extends State<ChatWidget> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.end,
                                           children: [
-                                            Stack(
+                                            Column(
+                                              mainAxisSize: MainAxisSize.max,
                                               children: [
-                                                if (_model.multiLine)
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                10.0, 10.0),
-                                                    child: InkWell(
-                                                      onTap: () async {
-                                                        setState(() {
-                                                          _model.multiLine =
-                                                              true;
-                                                        });
-                                                      },
-                                                      child: FaIcon(
-                                                        FontAwesomeIcons
-                                                            .gripLines,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryColor,
-                                                        size: 24.0,
-                                                      ),
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 10.0, 0.0),
+                                                  child: InkWell(
+                                                    onTap: () async {
+                                                      setState(() {
+                                                        _model.multiLine = true;
+                                                      });
+                                                    },
+                                                    child: Icon(
+                                                      Icons
+                                                          .format_line_spacing_rounded,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryColor,
+                                                      size: 24.0,
                                                     ),
                                                   ),
-                                                if (_model.multiLine)
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                10.0, 10.0),
-                                                    child: InkWell(
-                                                      onTap: () async {
-                                                        setState(() {
-                                                          _model.multiLine =
-                                                              true;
-                                                        });
-                                                      },
-                                                      child: Icon(
-                                                        Icons
-                                                            .format_line_spacing_rounded,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryColor,
-                                                        size: 24.0,
-                                                      ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 10.0, 10.0),
+                                                  child: InkWell(
+                                                    onTap: () async {
+                                                      setState(() {
+                                                        _model.multiLine =
+                                                            false;
+                                                      });
+                                                    },
+                                                    child: FaIcon(
+                                                      FontAwesomeIcons
+                                                          .gripLines,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryColor,
+                                                      size: 24.0,
                                                     ),
                                                   ),
+                                                ),
                                               ],
                                             ),
                                             Expanded(
@@ -868,9 +864,9 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                           style:
                                                                               FlutterFlowTheme.of(context).bodyText1,
                                                                           maxLines:
-                                                                              8,
+                                                                              6,
                                                                           minLines:
-                                                                              4,
+                                                                              6,
                                                                           validator: _model
                                                                               .startFieldController1Validator
                                                                               .asValidator(context),
@@ -1040,8 +1036,6 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                             .size
                                                                             .width *
                                                                         1.0,
-                                                                    height:
-                                                                        100.0,
                                                                     decoration:
                                                                         BoxDecoration(
                                                                       color: FlutterFlowTheme.of(
@@ -1136,9 +1130,9 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                               context)
                                                                           .bodyText1,
                                                                       maxLines:
-                                                                          8,
+                                                                          6,
                                                                       minLines:
-                                                                          4,
+                                                                          6,
                                                                       validator: _model
                                                                           .sendFieldController1Validator
                                                                           .asValidator(
