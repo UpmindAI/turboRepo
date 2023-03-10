@@ -25,18 +25,22 @@ class ChatModel extends FlutterFlowModel {
 
   String? setCid;
 
+  bool multiLine = false;
+
   ///  State fields for stateful widgets in this page.
 
   final formKey1 = GlobalKey<FormState>();
   final formKey2 = GlobalKey<FormState>();
+  final formKey3 = GlobalKey<FormState>();
+  final formKey4 = GlobalKey<FormState>();
   // Model for mainMenu component.
   late MainMenuModel mainMenuModel;
   // State field(s) for chatColumn widget.
   ScrollController? chatColumn;
   // State field(s) for startField widget.
-  TextEditingController? startFieldController;
-  String? Function(BuildContext, String?)? startFieldControllerValidator;
-  String? _startFieldControllerValidator(BuildContext context, String? val) {
+  TextEditingController? startFieldController1;
+  String? Function(BuildContext, String?)? startFieldController1Validator;
+  String? _startFieldController1Validator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return 'Field is required';
     }
@@ -49,14 +53,30 @@ class ChatModel extends FlutterFlowModel {
   }
 
   // Stores action output result for [Backend Call - Create Document] action in startField widget.
+  ChatMetaRecord? createChatFormML;
+  // Stores action output result for [Backend Call - Create Document] action in startField widget.
+  ChatsRecord? createMessageFormML;
+  // Stores action output result for [Backend Call - API (MixedChat)] action in startField widget.
+  ApiCallResponse? apiResultStartFormML;
+  // State field(s) for sendField widget.
+  TextEditingController? sendFieldController1;
+  String? Function(BuildContext, String?)? sendFieldController1Validator;
+  // Stores action output result for [Backend Call - Create Document] action in sendField widget.
+  ChatsRecord? chatMessageNewFromFieldSL;
+  // Stores action output result for [Backend Call - API (MixedChat)] action in sendField widget.
+  ApiCallResponse? apiResulchatSL;
+  // State field(s) for startField widget.
+  TextEditingController? startFieldController2;
+  String? Function(BuildContext, String?)? startFieldController2Validator;
+  // Stores action output result for [Backend Call - Create Document] action in startField widget.
   ChatMetaRecord? createChatForm;
   // Stores action output result for [Backend Call - Create Document] action in startField widget.
   ChatsRecord? createMessageForm;
   // Stores action output result for [Backend Call - API (MixedChat)] action in startField widget.
   ApiCallResponse? apiResultStartForm;
   // State field(s) for sendField widget.
-  TextEditingController? sendFieldController;
-  String? Function(BuildContext, String?)? sendFieldControllerValidator;
+  TextEditingController? sendFieldController2;
+  String? Function(BuildContext, String?)? sendFieldController2Validator;
   // Stores action output result for [Backend Call - Create Document] action in sendField widget.
   ChatsRecord? chatMessageNewFromField;
   // Stores action output result for [Backend Call - API (MixedChat)] action in sendField widget.
@@ -76,7 +96,7 @@ class ChatModel extends FlutterFlowModel {
   void initState(BuildContext context) {
     mainMenuModel = createModel(context, () => MainMenuModel());
     chatColumn = ScrollController();
-    startFieldControllerValidator = _startFieldControllerValidator;
+    startFieldController1Validator = _startFieldController1Validator;
     columnController = ScrollController();
     listViewController = ScrollController();
   }
@@ -84,8 +104,10 @@ class ChatModel extends FlutterFlowModel {
   void dispose() {
     mainMenuModel.dispose();
     chatColumn?.dispose();
-    startFieldController?.dispose();
-    sendFieldController?.dispose();
+    startFieldController1?.dispose();
+    sendFieldController1?.dispose();
+    startFieldController2?.dispose();
+    sendFieldController2?.dispose();
     columnController?.dispose();
     listViewController?.dispose();
   }
