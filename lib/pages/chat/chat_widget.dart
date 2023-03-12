@@ -974,7 +974,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                             datasetIdsList:
                                                                                 FFAppState().selectedDataset,
                                                                             topK:
-                                                                                FFAppState().setTopK,
+                                                                                FFAppState().setTopKchat,
                                                                           );
 
                                                                           context
@@ -1257,7 +1257,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                         datasetIdsList:
                                                                             FFAppState().selectedDataset,
                                                                         topK: FFAppState()
-                                                                            .setTopK,
+                                                                            .setTopKchat,
                                                                       );
                                                                       await Future.delayed(const Duration(
                                                                           milliseconds:
@@ -1491,7 +1491,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                       FFAppState()
                                                                           .selectedDataset,
                                                                   topK: FFAppState()
-                                                                      .setTopK,
+                                                                      .setTopKchat,
                                                                 );
 
                                                                 context
@@ -1717,7 +1717,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                                       FFAppState()
                                                                           .selectedDataset,
                                                                   topK: FFAppState()
-                                                                      .setTopK,
+                                                                      .setTopKchat,
                                                                 );
                                                                 await Future.delayed(
                                                                     const Duration(

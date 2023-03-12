@@ -112,8 +112,8 @@ class _PromptConfigWidgetState extends State<PromptConfigWidget> {
                                     FlutterFlowTheme.of(context).bodyText2,
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryColor,
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
                                     width: 1.0,
                                   ),
                                   borderRadius: const BorderRadius.only(
@@ -123,7 +123,8 @@ class _PromptConfigWidgetState extends State<PromptConfigWidget> {
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Color(0x00000000),
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
                                     width: 1.0,
                                   ),
                                   borderRadius: const BorderRadius.only(
