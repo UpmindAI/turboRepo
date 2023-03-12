@@ -664,7 +664,7 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
                                             cid: FFAppState().setCid,
                                             datasetIdsList:
                                                 FFAppState().selectedDataset,
-                                            topK: FFAppState().setTopK.round(),
+                                            topK: FFAppState().setTopKplay,
                                           );
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(

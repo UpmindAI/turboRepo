@@ -11,17 +11,35 @@ class PromptConfigModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this component.
 
   final formKey = GlobalKey<FormState>();
-  // State field(s) for TextField widget.
-  TextEditingController? textController;
-  final textFieldMask = MaskTextInputFormatter(mask: '#');
-  String? Function(BuildContext, String?)? textControllerValidator;
+  // State field(s) for topK widget.
+  TextEditingController? topKController;
+  final topKMask = MaskTextInputFormatter(mask: '#');
+  String? Function(BuildContext, String?)? topKControllerValidator;
+  String? _topKControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    if (val.length < 1) {
+      return 'Numbers only, lowest value is 1, highest value is 9.';
+    }
+    if (val.length > 1) {
+      return 'Numbers only, lowest value is 1, highest value is 9.';
+    }
+    if (!RegExp('^[0-9]{1,9}\$').hasMatch(val)) {
+      return 'Numbers only, lowest value is 1, highest value is 9.';
+    }
+    return null;
+  }
 
   /// Initialization and disposal methods.
 
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    topKControllerValidator = _topKControllerValidator;
+  }
 
   void dispose() {
-    textController?.dispose();
+    topKController?.dispose();
   }
 
   /// Additional helper methods are added here.
