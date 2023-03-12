@@ -1,8 +1,10 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
 import 'configure_bot_model.dart';
 export 'configure_bot_model.dart';
@@ -28,6 +30,13 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
     super.initState();
     _model = createModel(context, () => ConfigureBotModel());
 
+    _model.textController ??= TextEditingController(
+        text: formatNumber(
+      FFAppState().setTopKchat,
+      formatType: FormatType.custom,
+      format: '#',
+      locale: '',
+    ));
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -67,37 +76,117 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
-                  child: Text(
-                    'Top K',
-                    style: FlutterFlowTheme.of(context).bodyText1,
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
+                        child: Text(
+                          'Top K',
+                          style: FlutterFlowTheme.of(context)
+                              .bodyText1
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyText1Family,
+                                fontSize: 16.0,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .bodyText1Family),
+                              ),
+                        ),
+                      ),
+                      Container(
+                        width: 50.0,
+                        child: TextFormField(
+                          controller: _model.textController,
+                          autofocus: true,
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            hintStyle: FlutterFlowTheme.of(context).bodyText2,
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).alternate,
+                                width: 1.0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color:
+                                    FlutterFlowTheme.of(context).primaryColor,
+                                width: 1.0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 1.0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0x00000000),
+                                width: 1.0,
+                              ),
+                              borderRadius: const BorderRadius.only(
+                                topLeft: Radius.circular(4.0),
+                                topRight: Radius.circular(4.0),
+                              ),
+                            ),
+                          ),
+                          style: FlutterFlowTheme.of(context).bodyText1,
+                          keyboardType: TextInputType.number,
+                          validator: _model.textControllerValidator
+                              .asValidator(context),
+                          inputFormatters: [_model.textFieldMask],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                Text(
-                  formatNumber(
-                    FFAppState().setTopK,
-                    formatType: FormatType.custom,
-                    format: '##',
-                    locale: '',
-                  ),
-                  style: FlutterFlowTheme.of(context).bodyText1,
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
-                  child: Slider(
-                    activeColor: FlutterFlowTheme.of(context).primaryColor,
-                    inactiveColor: Color(0xFF9E9E9E),
-                    min: 1.0,
-                    max: 10.0,
-                    value: _model.sliderValue ??= FFAppState().setTopK,
-                    divisions: 9,
-                    onChanged: (newValue) async {
-                      newValue = double.parse(newValue.toStringAsFixed(4));
-                      setState(() => _model.sliderValue = newValue);
-                      setState(() {
-                        FFAppState().setTopK = _model.sliderValue!;
-                      });
-                    },
+                FFButtonWidget(
+                  onPressed: () async {
+                    setState(() {
+                      FFAppState().setTopKchat =
+                          int.parse(_model.textController.text);
+                    });
+                    await Future.delayed(const Duration(milliseconds: 250));
+                    Navigator.pop(context);
+                  },
+                  text: 'Save',
+                  options: FFButtonOptions(
+                    width: 70.0,
+                    height: 40.0,
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    iconPadding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    color: FlutterFlowTheme.of(context).primaryColor,
+                    textStyle: FlutterFlowTheme.of(context).subtitle2.override(
+                          fontFamily:
+                              FlutterFlowTheme.of(context).subtitle2Family,
+                          color: Colors.white,
+                          useGoogleFonts: GoogleFonts.asMap().containsKey(
+                              FlutterFlowTheme.of(context).subtitle2Family),
+                        ),
+                    borderSide: BorderSide(
+                      color: Colors.transparent,
+                      width: 1.0,
+                    ),
+                    borderRadius: BorderRadius.circular(0.0),
                   ),
                 ),
               ],

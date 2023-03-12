@@ -160,7 +160,7 @@ class MixedChatCall {
     String? qid = '',
     String? cid = '',
     List<String>? datasetIdsList,
-    double? topK,
+    int? topK,
   }) {
     final datasetIds = _serializeList(datasetIdsList);
 
@@ -217,7 +217,7 @@ class MixedQueryCall {
     String? idToken = '',
     String? qid = '',
     List<String>? datasetIdsList,
-    double? topK,
+    int? topK,
     String? gaurdrail = '',
   }) {
     final datasetIds = _serializeList(datasetIdsList);

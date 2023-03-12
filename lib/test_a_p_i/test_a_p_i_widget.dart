@@ -153,7 +153,7 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
                                               await MixedQueryCall.call(
                                             qid: _model.setPrompttextMIX!.qid,
                                             idToken: currentJwtToken,
-                                            topK: 5.0,
+                                            topK: 5,
                                             gaurdrail: 'yes',
                                             datasetIdsList:
                                                 FFAppState().selectedDataset,
@@ -664,7 +664,7 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
                                             cid: FFAppState().setCid,
                                             datasetIdsList:
                                                 FFAppState().selectedDataset,
-                                            topK: FFAppState().setTopK,
+                                            topK: FFAppState().setTopK.round(),
                                           );
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(
