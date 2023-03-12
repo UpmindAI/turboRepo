@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
 import 'prompt_config_model.dart';
 export 'prompt_config_model.dart';
@@ -29,6 +30,13 @@ class _PromptConfigWidgetState extends State<PromptConfigWidget> {
     super.initState();
     _model = createModel(context, () => PromptConfigModel());
 
+    _model.textController ??= TextEditingController(
+        text: formatNumber(
+      FFAppState().setTopKplay,
+      formatType: FormatType.custom,
+      format: '#',
+      locale: '',
+    ));
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -68,45 +76,91 @@ class _PromptConfigWidgetState extends State<PromptConfigWidget> {
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Text(
-                          'Top K',
-                          style: FlutterFlowTheme.of(context).bodyText1,
-                        ),
-                        Expanded(
-                          child: Align(
-                            alignment: AlignmentDirectional(1.0, 0.0),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 10.0, 0.0),
                             child: Text(
-                              valueOrDefault<String>(
-                                formatNumber(
-                                  _model.topKValue,
-                                  formatType: FormatType.custom,
-                                  format: '#',
-                                  locale: '',
-                                ),
-                                '1',
-                              ),
-                              style: FlutterFlowTheme.of(context).bodyText1,
+                              'Top K',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyText1
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .bodyText1Family,
+                                    fontSize: 16.0,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .bodyText1Family),
+                                  ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    Slider(
-                      activeColor: FlutterFlowTheme.of(context).primaryColor,
-                      inactiveColor: Color(0xFF9E9E9E),
-                      min: 0.0,
-                      max: 20.0,
-                      value: _model.topKValue ??= FFAppState().setTopK,
-                      label: _model.topKValue.toString(),
-                      divisions: 20,
-                      onChanged: (newValue) async {
-                        newValue = double.parse(newValue.toStringAsFixed(0));
-                        setState(() => _model.topKValue = newValue);
-                        FFAppState().setTopK = _model.topKValue!;
-                      },
+                          Container(
+                            width: 50.0,
+                            child: TextFormField(
+                              controller: _model.textController,
+                              autofocus: true,
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                hintStyle:
+                                    FlutterFlowTheme.of(context).bodyText2,
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(4.0),
+                                    topRight: Radius.circular(4.0),
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0x00000000),
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(4.0),
+                                    topRight: Radius.circular(4.0),
+                                  ),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0x00000000),
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(4.0),
+                                    topRight: Radius.circular(4.0),
+                                  ),
+                                ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0x00000000),
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(4.0),
+                                    topRight: Radius.circular(4.0),
+                                  ),
+                                ),
+                              ),
+                              style: FlutterFlowTheme.of(context).bodyText1,
+                              keyboardType: TextInputType.number,
+                              validator: _model.textControllerValidator
+                                  .asValidator(context),
+                              inputFormatters: [_model.textFieldMask],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -115,7 +169,8 @@ class _PromptConfigWidgetState extends State<PromptConfigWidget> {
             FFButtonWidget(
               onPressed: () async {
                 FFAppState().update(() {
-                  FFAppState().setTopK = _model.topKValue!;
+                  FFAppState().setTopKplay =
+                      int.parse(_model.textController.text);
                 });
                 await Future.delayed(const Duration(milliseconds: 500));
                 Navigator.pop(context);

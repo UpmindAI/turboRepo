@@ -74,7 +74,7 @@ class _RetreivingMIXWidgetState extends State<RetreivingMIXWidget>
       _model.apiResultMIX = await MixedQueryCall.call(
         qid: FFAppState().setQid,
         idToken: currentJwtToken,
-        topK: 5.0,
+        topK: FFAppState().setTopKplay.toDouble(),
         gaurdrail: widget.gr,
         datasetIdsList: FFAppState().selectedDataset,
       );
@@ -390,34 +390,6 @@ class _RetreivingMIXWidgetState extends State<RetreivingMIXWidget>
                                                 ),
                                               ),
                                             ],
-                                          ),
-                                          Container(
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                1.0,
-                                            height: 350.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                            ),
-                                            child: Text(
-                                              (_model.apiResultMIX?.jsonBody ??
-                                                      '')
-                                                  .toString(),
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyText1,
-                                            ),
-                                          ),
-                                          Container(
-                                            width: 260.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                            ),
                                           ),
                                         ],
                                       ),

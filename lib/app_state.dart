@@ -34,6 +34,7 @@ class FFAppState extends ChangeNotifier {
     }
 
     _setDropdown = prefs.getString('ff_setDropdown') ?? _setDropdown;
+    _setTopKplay = prefs.getInt('ff_setTopKplay') ?? _setTopKplay;
   }
 
   void update(VoidCallback callback) {
@@ -213,6 +214,13 @@ class FFAppState extends ChangeNotifier {
   set setDropdown(String _value) {
     _setDropdown = _value;
     prefs.setString('ff_setDropdown', _value);
+  }
+
+  int _setTopKplay = 5;
+  int get setTopKplay => _setTopKplay;
+  set setTopKplay(int _value) {
+    _setTopKplay = _value;
+    prefs.setInt('ff_setTopKplay', _value);
   }
 }
 
