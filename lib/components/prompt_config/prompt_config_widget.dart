@@ -30,7 +30,7 @@ class _PromptConfigWidgetState extends State<PromptConfigWidget> {
     super.initState();
     _model = createModel(context, () => PromptConfigModel());
 
-    _model.textController ??= TextEditingController(
+    _model.topKController ??= TextEditingController(
         text: formatNumber(
       FFAppState().setTopKplay,
       formatType: FormatType.custom,
@@ -72,7 +72,7 @@ class _PromptConfigWidgetState extends State<PromptConfigWidget> {
               ),
               child: Form(
                 key: _model.formKey,
-                autovalidateMode: AutovalidateMode.disabled,
+                autovalidateMode: AutovalidateMode.always,
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -104,7 +104,7 @@ class _PromptConfigWidgetState extends State<PromptConfigWidget> {
                           Container(
                             width: 50.0,
                             child: TextFormField(
-                              controller: _model.textController,
+                              controller: _model.topKController,
                               autofocus: true,
                               obscureText: false,
                               decoration: InputDecoration(
@@ -134,7 +134,7 @@ class _PromptConfigWidgetState extends State<PromptConfigWidget> {
                                 ),
                                 errorBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Color(0x00000000),
+                                    color: Color(0xFF980000),
                                     width: 1.0,
                                   ),
                                   borderRadius: const BorderRadius.only(
@@ -144,7 +144,7 @@ class _PromptConfigWidgetState extends State<PromptConfigWidget> {
                                 ),
                                 focusedErrorBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Color(0x00000000),
+                                    color: Color(0xFF980000),
                                     width: 1.0,
                                   ),
                                   borderRadius: const BorderRadius.only(
@@ -155,9 +155,9 @@ class _PromptConfigWidgetState extends State<PromptConfigWidget> {
                               ),
                               style: FlutterFlowTheme.of(context).bodyText1,
                               keyboardType: TextInputType.number,
-                              validator: _model.textControllerValidator
+                              validator: _model.topKControllerValidator
                                   .asValidator(context),
-                              inputFormatters: [_model.textFieldMask],
+                              inputFormatters: [_model.topKMask],
                             ),
                           ),
                         ],
@@ -171,14 +171,14 @@ class _PromptConfigWidgetState extends State<PromptConfigWidget> {
               onPressed: () async {
                 FFAppState().update(() {
                   FFAppState().setTopKplay =
-                      int.parse(_model.textController.text);
+                      int.parse(_model.topKController.text);
                 });
-                await Future.delayed(const Duration(milliseconds: 500));
+                await Future.delayed(const Duration(milliseconds: 250));
                 Navigator.pop(context);
               },
               text: 'Save',
               options: FFButtonOptions(
-                width: 130.0,
+                width: 70.0,
                 height: 40.0,
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                 iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),

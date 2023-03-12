@@ -30,7 +30,7 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
     super.initState();
     _model = createModel(context, () => ConfigureBotModel());
 
-    _model.textController ??= TextEditingController(
+    _model.topKController ??= TextEditingController(
         text: formatNumber(
       FFAppState().setTopKchat,
       formatType: FormatType.custom,
@@ -75,94 +75,103 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                     style: FlutterFlowTheme.of(context).title3,
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 10.0, 0.0),
-                        child: Text(
-                          'Top K',
-                          style: FlutterFlowTheme.of(context)
-                              .bodyText1
-                              .override(
-                                fontFamily: FlutterFlowTheme.of(context)
-                                    .bodyText1Family,
-                                fontSize: 16.0,
-                                useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                    FlutterFlowTheme.of(context)
-                                        .bodyText1Family),
-                              ),
-                        ),
-                      ),
-                      Container(
-                        width: 50.0,
-                        child: TextFormField(
-                          controller: _model.textController,
-                          autofocus: true,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            hintStyle: FlutterFlowTheme.of(context).bodyText2,
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).alternate,
-                                width: 1.0,
-                              ),
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(4.0),
-                                topRight: Radius.circular(4.0),
-                              ),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color:
-                                    FlutterFlowTheme.of(context).primaryColor,
-                                width: 1.0,
-                              ),
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(4.0),
-                                topRight: Radius.circular(4.0),
-                              ),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 1.0,
-                              ),
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(4.0),
-                                topRight: Radius.circular(4.0),
-                              ),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0x00000000),
-                                width: 1.0,
-                              ),
-                              borderRadius: const BorderRadius.only(
-                                topLeft: Radius.circular(4.0),
-                                topRight: Radius.circular(4.0),
-                              ),
-                            ),
+                Form(
+                  key: _model.formKey,
+                  autovalidateMode: AutovalidateMode.always,
+                  child: Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 10.0, 0.0),
+                          child: Text(
+                            'Top K',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyText1
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyText1Family,
+                                  fontSize: 16.0,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyText1Family),
+                                ),
                           ),
-                          style: FlutterFlowTheme.of(context).bodyText1,
-                          keyboardType: TextInputType.number,
-                          validator: _model.textControllerValidator
-                              .asValidator(context),
-                          inputFormatters: [_model.textFieldMask],
                         ),
-                      ),
-                    ],
+                        Container(
+                          width: 50.0,
+                          child: TextFormField(
+                            controller: _model.topKController,
+                            autofocus: true,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              hintStyle: FlutterFlowTheme.of(context).bodyText2,
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).alternate,
+                                  width: 1.0,
+                                ),
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(4.0),
+                                  topRight: Radius.circular(4.0),
+                                ),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryColor,
+                                  width: 1.0,
+                                ),
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(4.0),
+                                  topRight: Radius.circular(4.0),
+                                ),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0xFF980000),
+                                  width: 1.0,
+                                ),
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(4.0),
+                                  topRight: Radius.circular(4.0),
+                                ),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0xFF980000),
+                                  width: 1.0,
+                                ),
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(4.0),
+                                  topRight: Radius.circular(4.0),
+                                ),
+                              ),
+                            ),
+                            style: FlutterFlowTheme.of(context).bodyText1,
+                            keyboardType: TextInputType.number,
+                            validator: _model.topKControllerValidator
+                                .asValidator(context),
+                            inputFormatters: [_model.topKMask],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 FFButtonWidget(
                   onPressed: () async {
+                    if (_model.formKey.currentState == null ||
+                        !_model.formKey.currentState!.validate()) {
+                      return;
+                    }
                     setState(() {
                       FFAppState().setTopKchat =
-                          int.parse(_model.textController.text);
+                          int.parse(_model.topKController.text);
                     });
                     await Future.delayed(const Duration(milliseconds: 250));
                     Navigator.pop(context);
