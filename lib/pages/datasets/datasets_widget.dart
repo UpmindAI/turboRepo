@@ -1273,7 +1273,7 @@ class _DatasetsWidgetState extends State<DatasetsWidget> {
                                                                                           color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                         ),
                                                                                         child: Visibility(
-                                                                                          visible: listViewUserDocsRecord.progressPercentage != 100,
+                                                                                          visible: (listViewUserDocsRecord.progressPercentage != null) && (listViewUserDocsRecord.progressPercentage != 100),
                                                                                           child: Padding(
                                                                                             padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
                                                                                             child: Container(
