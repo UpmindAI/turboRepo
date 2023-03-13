@@ -43,6 +43,7 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
       locale: '',
     ));
     _model.textController2 ??= TextEditingController();
+    _model.textController3 ??= TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -281,6 +282,14 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                                 setState(() =>
                                     _model.costumCompletionConfinementValue =
                                         newValue!);
+
+                                if (!newValue!) {
+                                  final usersUpdateData = {
+                                    'chat_gr': FieldValue.delete(),
+                                  };
+                                  await currentUserReference!
+                                      .update(usersUpdateData);
+                                }
                               },
                             ),
                           ],
@@ -288,22 +297,21 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                       ),
                   ],
                 ),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: 500.0,
-                      height: 100.0,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                      ),
-                      child: Visibility(
-                        visible:
-                            _model.costumCompletionConfinementValue ?? true,
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 10.0, 0.0, 0.0),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: 600.0,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                        ),
+                        child: Visibility(
+                          visible: (_model.dropDownValue == 'My Data Only') &&
+                              _model.costumCompletionConfinementValue!,
                           child: TextFormField(
                             controller: _model.textController2,
                             autofocus: true,
@@ -357,17 +365,123 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                             ),
                             style: FlutterFlowTheme.of(context).bodyText1,
                             maxLines: null,
-                            minLines: 3,
+                            minLines: 5,
                             validator: _model.textController2Validator
                                 .asValidator(context),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 Divider(
                   thickness: 1.0,
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 5.0),
+                          child: Text(
+                            'Costum Personality',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyText1
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyText1Family,
+                                  color: FlutterFlowTheme.of(context)
+                                      .tertiaryColor,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyText1Family),
+                                ),
+                          ),
+                        ),
+                        Switch(
+                          value: _model.switchValue ??= false,
+                          onChanged: (newValue) async {
+                            setState(() => _model.switchValue = newValue!);
+
+                            if (!newValue!) {
+                              final usersUpdateData = {
+                                'chat_personality': FieldValue.delete(),
+                              };
+                              await currentUserReference!
+                                  .update(usersUpdateData);
+                            }
+                          },
+                        ),
+                        if (_model.switchValue ?? true)
+                          Container(
+                            width: 600.0,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                            ),
+                            child: TextFormField(
+                              controller: _model.textController3,
+                              autofocus: true,
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                hintText: 'Set your Costum Personality...',
+                                hintStyle:
+                                    FlutterFlowTheme.of(context).bodyText2,
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context)
+                                        .tertiaryColor,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(4.0),
+                                    topRight: Radius.circular(4.0),
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(4.0),
+                                    topRight: Radius.circular(4.0),
+                                  ),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0x00000000),
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(4.0),
+                                    topRight: Radius.circular(4.0),
+                                  ),
+                                ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0x00000000),
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(4.0),
+                                    topRight: Radius.circular(4.0),
+                                  ),
+                                ),
+                              ),
+                              style: FlutterFlowTheme.of(context).bodyText1,
+                              validator: _model.textController3Validator
+                                  .asValidator(context),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ],
                 ),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
@@ -384,6 +498,7 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
 
                       final usersUpdateData = createUsersRecordData(
                         chatGr: _model.textController2.text,
+                        chatPersonality: _model.textController3.text,
                       );
                       await currentUserReference!.update(usersUpdateData);
                       await Future.delayed(const Duration(milliseconds: 250));
