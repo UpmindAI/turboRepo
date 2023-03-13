@@ -154,7 +154,7 @@ class _TestAPIWidgetState extends State<TestAPIWidget> {
                                             qid: _model.setPrompttextMIX!.qid,
                                             idToken: currentJwtToken,
                                             topK: 5,
-                                            gaurdrail: 'yes',
+                                            guardrail: 'yes',
                                             datasetIdsList:
                                                 FFAppState().selectedDataset,
                                           );

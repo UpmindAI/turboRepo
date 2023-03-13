@@ -124,6 +124,20 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.chatGr;
+    if (value != null) {
+      result
+        ..add('chat_gr')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.chatPersonality;
+    if (value != null) {
+      result
+        ..add('chat_personality')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     value = object.ffRef;
     if (value != null) {
       result
@@ -206,6 +220,14 @@ class _$UsersRecordSerializer implements StructuredSerializer<UsersRecord> {
           result.summaryPrompt = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'chat_gr':
+          result.chatGr = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'chat_personality':
+          result.chatPersonality = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
         case 'Document__Reference__Field':
           result.ffRef = serializers.deserialize(value,
               specifiedType: const FullType(DocumentReference, const [
@@ -251,6 +273,10 @@ class _$UsersRecord extends UsersRecord {
   @override
   final String? summaryPrompt;
   @override
+  final String? chatGr;
+  @override
+  final String? chatPersonality;
+  @override
   final DocumentReference<Object?>? ffRef;
 
   factory _$UsersRecord([void Function(UsersRecordBuilder)? updates]) =>
@@ -272,6 +298,8 @@ class _$UsersRecord extends UsersRecord {
       this.firstLogin,
       this.isAdmin,
       this.summaryPrompt,
+      this.chatGr,
+      this.chatPersonality,
       this.ffRef})
       : super._();
 
@@ -301,6 +329,8 @@ class _$UsersRecord extends UsersRecord {
         firstLogin == other.firstLogin &&
         isAdmin == other.isAdmin &&
         summaryPrompt == other.summaryPrompt &&
+        chatGr == other.chatGr &&
+        chatPersonality == other.chatPersonality &&
         ffRef == other.ffRef;
   }
 
@@ -322,24 +352,30 @@ class _$UsersRecord extends UsersRecord {
                                                         $jc(
                                                             $jc(
                                                                 $jc(
-                                                                    0,
-                                                                    email
+                                                                    $jc(
+                                                                        $jc(
+                                                                            0,
+                                                                            email
+                                                                                .hashCode),
+                                                                        displayName
+                                                                            .hashCode),
+                                                                    photoUrl
                                                                         .hashCode),
-                                                                displayName
-                                                                    .hashCode),
-                                                            photoUrl.hashCode),
-                                                        uid.hashCode),
-                                                    createdTime.hashCode),
-                                                phoneNumber.hashCode),
-                                            industry.hashCode),
-                                        role.hashCode),
-                                    firstName.hashCode),
-                                lastName.hashCode),
-                            company.hashCode),
-                        totalCredits.hashCode),
-                    firstLogin.hashCode),
-                isAdmin.hashCode),
-            summaryPrompt.hashCode),
+                                                                uid.hashCode),
+                                                            createdTime
+                                                                .hashCode),
+                                                        phoneNumber.hashCode),
+                                                    industry.hashCode),
+                                                role.hashCode),
+                                            firstName.hashCode),
+                                        lastName.hashCode),
+                                    company.hashCode),
+                                totalCredits.hashCode),
+                            firstLogin.hashCode),
+                        isAdmin.hashCode),
+                    summaryPrompt.hashCode),
+                chatGr.hashCode),
+            chatPersonality.hashCode),
         ffRef.hashCode));
   }
 
@@ -361,6 +397,8 @@ class _$UsersRecord extends UsersRecord {
           ..add('firstLogin', firstLogin)
           ..add('isAdmin', isAdmin)
           ..add('summaryPrompt', summaryPrompt)
+          ..add('chatGr', chatGr)
+          ..add('chatPersonality', chatPersonality)
           ..add('ffRef', ffRef))
         .toString();
   }
@@ -430,6 +468,15 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
   set summaryPrompt(String? summaryPrompt) =>
       _$this._summaryPrompt = summaryPrompt;
 
+  String? _chatGr;
+  String? get chatGr => _$this._chatGr;
+  set chatGr(String? chatGr) => _$this._chatGr = chatGr;
+
+  String? _chatPersonality;
+  String? get chatPersonality => _$this._chatPersonality;
+  set chatPersonality(String? chatPersonality) =>
+      _$this._chatPersonality = chatPersonality;
+
   DocumentReference<Object?>? _ffRef;
   DocumentReference<Object?>? get ffRef => _$this._ffRef;
   set ffRef(DocumentReference<Object?>? ffRef) => _$this._ffRef = ffRef;
@@ -456,6 +503,8 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
       _firstLogin = $v.firstLogin;
       _isAdmin = $v.isAdmin;
       _summaryPrompt = $v.summaryPrompt;
+      _chatGr = $v.chatGr;
+      _chatPersonality = $v.chatPersonality;
       _ffRef = $v.ffRef;
       _$v = null;
     }
@@ -494,6 +543,8 @@ class UsersRecordBuilder implements Builder<UsersRecord, UsersRecordBuilder> {
             firstLogin: firstLogin,
             isAdmin: isAdmin,
             summaryPrompt: summaryPrompt,
+            chatGr: chatGr,
+            chatPersonality: chatPersonality,
             ffRef: ffRef);
     replace(_$result);
     return _$result;

@@ -161,6 +161,7 @@ class MixedChatCall {
     String? cid = '',
     List<String>? datasetIdsList,
     int? topK,
+    String? guardrail = '',
   }) {
     final datasetIds = _serializeList(datasetIdsList);
 
@@ -170,7 +171,8 @@ class MixedChatCall {
   "qid": "${qid}",
   "cid": "${cid}",
   "dataset_ids": ${datasetIds},
-  "top_k": ${topK}
+  "top_k": ${topK},
+  "guardrail": "${guardrail}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'MixedChat',
@@ -218,7 +220,7 @@ class MixedQueryCall {
     String? qid = '',
     List<String>? datasetIdsList,
     int? topK,
-    String? gaurdrail = '',
+    String? guardrail = '',
   }) {
     final datasetIds = _serializeList(datasetIdsList);
 
@@ -228,7 +230,7 @@ class MixedQueryCall {
   "qid": "${qid}",
   "dataset_ids": ${datasetIds},
   "top_k": ${topK},
-  "gaurdrail": "${gaurdrail}"
+  "guardrail": "${guardrail}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'MixedQuery',

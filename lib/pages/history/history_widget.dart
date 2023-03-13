@@ -147,34 +147,29 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 5.0, 0.0, 0.0),
-                                                child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Expanded(
-                                                      child: Align(
-                                                        alignment:
-                                                            AlignmentDirectional(
-                                                                1.0, 0.0),
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      2.0,
-                                                                      15.0,
-                                                                      0.0),
-                                                          child: Text(
-                                                            dateTimeFormat(
-                                                                'MMMMEEEEd',
-                                                                listViewUserCompletionsRecord
-                                                                    .timestamp!),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
+                                              Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            1.0, 0.0),
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  10.0,
+                                                                  4.0,
+                                                                  15.0,
+                                                                  0.0),
+                                                      child: Text(
+                                                        dateTimeFormat(
+                                                            'MMMMEEEEd',
+                                                            listViewUserCompletionsRecord
+                                                                .timestamp!),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
                                                                 .bodyText1
                                                                 .override(
                                                                   fontFamily: FlutterFlowTheme.of(
@@ -192,36 +187,157 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                                           FlutterFlowTheme.of(context)
                                                                               .bodyText1Family),
                                                                 ),
-                                                          ),
-                                                        ),
                                                       ),
                                                     ),
-                                                    Padding(
+                                                  ),
+                                                  Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            1.0, 0.0),
+                                                    child: Padding(
                                                       padding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
                                                                   0.0,
-                                                                  3.0,
-                                                                  8.0,
+                                                                  4.0,
+                                                                  10.0,
                                                                   0.0),
                                                       child: InkWell(
                                                         onTap: () async {
-                                                          await listViewUserCompletionsRecord
-                                                              .reference
-                                                              .delete();
+                                                          context.pushNamed(
+                                                            'Home',
+                                                            queryParams: {
+                                                              'userCompletion':
+                                                                  serializeParam(
+                                                                listViewUserCompletionsRecord,
+                                                                ParamType
+                                                                    .Document,
+                                                              ),
+                                                            }.withoutNulls,
+                                                            extra: <String,
+                                                                dynamic>{
+                                                              'userCompletion':
+                                                                  listViewUserCompletionsRecord,
+                                                            },
+                                                          );
                                                         },
-                                                        child: FaIcon(
-                                                          FontAwesomeIcons
-                                                              .trashAlt,
-                                                          color: FlutterFlowTheme
+                                                        child: Text(
+                                                          'Prompt',
+                                                          style: FlutterFlowTheme
                                                                   .of(context)
-                                                              .grayIcon,
-                                                          size: 18.0,
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyText1Family,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .grayIcon,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyText1Family),
+                                                              ),
                                                         ),
                                                       ),
                                                     ),
-                                                  ],
-                                                ),
+                                                  ),
+                                                  Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            1.0, 0.0),
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  4.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: InkWell(
+                                                        onTap: () async {
+                                                          await Clipboard.setData(
+                                                              ClipboardData(
+                                                                  text:
+                                                                      'Prompt:     ${listViewUserCompletionsRecord.prompt}Completion:     ${listViewUserCompletionsRecord.completion}'));
+                                                          ScaffoldMessenger.of(
+                                                                  context)
+                                                              .showSnackBar(
+                                                            SnackBar(
+                                                              content: Text(
+                                                                'Copied to Clipboard!',
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryColor,
+                                                                ),
+                                                              ),
+                                                              duration: Duration(
+                                                                  milliseconds:
+                                                                      4000),
+                                                              backgroundColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryBackground,
+                                                            ),
+                                                          );
+                                                        },
+                                                        child: Text(
+                                                          'Copy',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyText1
+                                                              .override(
+                                                                fontFamily: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyText1Family,
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .grayIcon,
+                                                                useGoogleFonts: GoogleFonts
+                                                                        .asMap()
+                                                                    .containsKey(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .bodyText1Family),
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    child: Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              1.0, 0.0),
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    4.0,
+                                                                    8.0,
+                                                                    0.0),
+                                                        child: InkWell(
+                                                          onTap: () async {
+                                                            await listViewUserCompletionsRecord
+                                                                .reference
+                                                                .delete();
+                                                          },
+                                                          child: FaIcon(
+                                                            FontAwesomeIcons
+                                                                .trashAlt,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .grayIcon,
+                                                            size: 18.0,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                               Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -239,8 +355,8 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                             padding:
                                                                 EdgeInsetsDirectional
                                                                     .fromSTEB(
-                                                                        20.0,
                                                                         10.0,
+                                                                        5.0,
                                                                         20.0,
                                                                         5.0),
                                                             child:
@@ -294,7 +410,7 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                             padding:
                                                                 EdgeInsetsDirectional
                                                                     .fromSTEB(
-                                                                        20.0,
+                                                                        10.0,
                                                                         0.0,
                                                                         20.0,
                                                                         20.0),
@@ -324,172 +440,6 @@ class _HistoryWidgetState extends State<HistoryWidget> {
                                                             )),
                                                           ),
                                                         ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Expanded(
-                                                    child: Align(
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              1.0, 0.0),
-                                                      child: Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    0.0,
-                                                                    10.0,
-                                                                    0.0),
-                                                        child: InkWell(
-                                                          onTap: () async {
-                                                            context.pushNamed(
-                                                              'Home',
-                                                              queryParams: {
-                                                                'userCompletion':
-                                                                    serializeParam(
-                                                                  listViewUserCompletionsRecord,
-                                                                  ParamType
-                                                                      .Document,
-                                                                ),
-                                                              }.withoutNulls,
-                                                              extra: <String,
-                                                                  dynamic>{
-                                                                'userCompletion':
-                                                                    listViewUserCompletionsRecord,
-                                                              },
-                                                            );
-                                                          },
-                                                          child: Text(
-                                                            'Continue prompt',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyText1
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyText1Family,
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .grayIcon,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyText1Family),
-                                                                ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Align(
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                            1.0, 0.0),
-                                                    child: Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  5.0),
-                                                      child: InkWell(
-                                                        onTap: () async {
-                                                          await Clipboard.setData(
-                                                              ClipboardData(
-                                                                  text:
-                                                                      'Prompt:     ${listViewUserCompletionsRecord.prompt}Completion:     ${listViewUserCompletionsRecord.completion}'));
-                                                          ScaffoldMessenger.of(
-                                                                  context)
-                                                              .showSnackBar(
-                                                            SnackBar(
-                                                              content: Text(
-                                                                'Copied to Clipboard!',
-                                                                style:
-                                                                    TextStyle(
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryColor,
-                                                                ),
-                                                              ),
-                                                              duration: Duration(
-                                                                  milliseconds:
-                                                                      4000),
-                                                              backgroundColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryBackground,
-                                                            ),
-                                                          );
-                                                        },
-                                                        child: Text(
-                                                          'Copy',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyText1
-                                                              .override(
-                                                                fontFamily: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyText1Family,
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .grayIcon,
-                                                                useGoogleFonts: GoogleFonts
-                                                                        .asMap()
-                                                                    .containsKey(
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .bodyText1Family),
-                                                              ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(5.0, 0.0,
-                                                                8.0, 5.0),
-                                                    child: InkWell(
-                                                      onTap: () async {
-                                                        await Clipboard.setData(
-                                                            ClipboardData(
-                                                                text:
-                                                                    'Prompt:     ${listViewUserCompletionsRecord.prompt}Completion:     ${listViewUserCompletionsRecord.completion}'));
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                          SnackBar(
-                                                            content: Text(
-                                                              'Copied to Clipboard!',
-                                                              style: TextStyle(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryColor,
-                                                              ),
-                                                            ),
-                                                            duration: Duration(
-                                                                milliseconds:
-                                                                    4000),
-                                                            backgroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground,
-                                                          ),
-                                                        );
-                                                      },
-                                                      child: FaIcon(
-                                                        FontAwesomeIcons.copy,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .grayIcon,
-                                                        size: 18.0,
                                                       ),
                                                     ),
                                                   ),

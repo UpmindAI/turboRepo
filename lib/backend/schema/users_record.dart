@@ -49,6 +49,12 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
   @BuiltValueField(wireName: 'summary_prompt')
   String? get summaryPrompt;
 
+  @BuiltValueField(wireName: 'chat_gr')
+  String? get chatGr;
+
+  @BuiltValueField(wireName: 'chat_personality')
+  String? get chatPersonality;
+
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
@@ -67,7 +73,9 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
     ..totalCredits = 0.0
     ..firstLogin = false
     ..isAdmin = false
-    ..summaryPrompt = '';
+    ..summaryPrompt = ''
+    ..chatGr = ''
+    ..chatPersonality = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('users');
@@ -106,6 +114,8 @@ Map<String, dynamic> createUsersRecordData({
   bool? firstLogin,
   bool? isAdmin,
   String? summaryPrompt,
+  String? chatGr,
+  String? chatPersonality,
 }) {
   final firestoreData = serializers.toFirestore(
     UsersRecord.serializer,
@@ -125,7 +135,9 @@ Map<String, dynamic> createUsersRecordData({
         ..totalCredits = totalCredits
         ..firstLogin = firstLogin
         ..isAdmin = isAdmin
-        ..summaryPrompt = summaryPrompt,
+        ..summaryPrompt = summaryPrompt
+        ..chatGr = chatGr
+        ..chatPersonality = chatPersonality,
     ),
   );
 
