@@ -36,6 +36,9 @@ class FFAppState extends ChangeNotifier {
     _setDropdown = prefs.getString('ff_setDropdown') ?? _setDropdown;
     _setTopKplay = prefs.getInt('ff_setTopKplay') ?? _setTopKplay;
     _setTopKchat = prefs.getInt('ff_setTopKchat') ?? _setTopKchat;
+    _setChatDropdown =
+        prefs.getString('ff_setChatDropdown') ?? _setChatDropdown;
+    _setChatGR = prefs.getString('ff_setChatGR') ?? _setChatGR;
   }
 
   void update(VoidCallback callback) {
@@ -229,6 +232,20 @@ class FFAppState extends ChangeNotifier {
   set setTopKchat(int _value) {
     _setTopKchat = _value;
     prefs.setInt('ff_setTopKchat', _value);
+  }
+
+  String _setChatDropdown = 'My Data + GPT';
+  String get setChatDropdown => _setChatDropdown;
+  set setChatDropdown(String _value) {
+    _setChatDropdown = _value;
+    prefs.setString('ff_setChatDropdown', _value);
+  }
+
+  String _setChatGR = 'no';
+  String get setChatGR => _setChatGR;
+  set setChatGR(String _value) {
+    _setChatGR = _value;
+    prefs.setString('ff_setChatGR', _value);
   }
 }
 
