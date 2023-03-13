@@ -44,6 +44,11 @@ class ConfigureBotModel extends FlutterFlowModel {
   // State field(s) for TextField widget.
   TextEditingController? textController2;
   String? Function(BuildContext, String?)? textController2Validator;
+  // State field(s) for Switch widget.
+  bool? switchValue;
+  // State field(s) for TextField widget.
+  TextEditingController? textController3;
+  String? Function(BuildContext, String?)? textController3Validator;
 
   /// Initialization and disposal methods.
 
@@ -54,6 +59,7 @@ class ConfigureBotModel extends FlutterFlowModel {
   void dispose() {
     topKController?.dispose();
     textController2?.dispose();
+    textController3?.dispose();
   }
 
   /// Additional helper methods are added here.

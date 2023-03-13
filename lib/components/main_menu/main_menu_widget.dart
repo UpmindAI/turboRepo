@@ -151,6 +151,10 @@ class _MainMenuWidgetState extends State<MainMenuWidget> {
                   child: InkWell(
                     onTap: () async {
                       context.pushNamed('Summarize');
+
+                      setState(() {
+                        FFAppState().setQid = '';
+                      });
                     },
                     child: Container(
                       width: double.infinity,
