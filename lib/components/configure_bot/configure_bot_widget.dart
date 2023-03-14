@@ -235,7 +235,7 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 5.0),
                           child: Text(
-                            'Target:',
+                            'Prompt Target:',
                             style: FlutterFlowTheme.of(context)
                                 .bodyText1
                                 .override(
@@ -306,7 +306,7 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 5.0),
                               child: Text(
-                                'Costum Completion Confinement',
+                                'Guardrail',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyText1
                                     .override(
@@ -423,59 +423,57 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                     ],
                   ),
                 ),
-                if (_model.costumCompletionConfinementValue ?? true)
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
-                    child: FFButtonWidget(
-                      onPressed: () async {
-                        setState(() {
-                          FFAppState().setChatGR =
-                              _model.guardRailController.text;
-                        });
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                  child: FFButtonWidget(
+                    onPressed: () async {
+                      setState(() {
+                        FFAppState().setChatGR =
+                            _model.guardRailController.text;
+                      });
 
-                        final usersUpdateData = createUsersRecordData(
-                          chatGr: _model.guardRailController.text,
-                        );
-                        await currentUserReference!.update(usersUpdateData);
+                      final usersUpdateData = createUsersRecordData(
+                        chatGr: _model.guardRailController.text,
+                      );
+                      await currentUserReference!.update(usersUpdateData);
 
-                        final chatGrHistoryCreateData =
-                            createChatGrHistoryRecordData(
-                          timestamp: getCurrentTimestamp,
-                          isFavorite: false,
-                          gr: _model.guardRailController.text,
-                        );
-                        await ChatGrHistoryRecord.createDoc(
-                                currentUserReference!)
-                            .set(chatGrHistoryCreateData);
-                        await Future.delayed(const Duration(milliseconds: 250));
-                        Navigator.pop(context);
-                      },
-                      text: 'Save',
-                      options: FFButtonOptions(
-                        width: 70.0,
-                        height: 40.0,
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        iconPadding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: FlutterFlowTheme.of(context).primaryBackground,
-                        textStyle: FlutterFlowTheme.of(context)
-                            .subtitle2
-                            .override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).subtitle2Family,
-                              color: FlutterFlowTheme.of(context).primaryColor,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context).subtitle2Family),
-                            ),
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1.0,
-                        ),
-                        borderRadius: BorderRadius.circular(0.0),
+                      final chatGrHistoryCreateData =
+                          createChatGrHistoryRecordData(
+                        timestamp: getCurrentTimestamp,
+                        isFavorite: false,
+                        gr: _model.guardRailController.text,
+                      );
+                      await ChatGrHistoryRecord.createDoc(currentUserReference!)
+                          .set(chatGrHistoryCreateData);
+                      await Future.delayed(const Duration(milliseconds: 250));
+                      Navigator.pop(context);
+                    },
+                    text: 'Save',
+                    options: FFButtonOptions(
+                      width: 70.0,
+                      height: 40.0,
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      iconPadding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      color: FlutterFlowTheme.of(context).primaryBackground,
+                      textStyle: FlutterFlowTheme.of(context)
+                          .subtitle2
+                          .override(
+                            fontFamily:
+                                FlutterFlowTheme.of(context).subtitle2Family,
+                            color: FlutterFlowTheme.of(context).primaryColor,
+                            useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                FlutterFlowTheme.of(context).subtitle2Family),
+                          ),
+                      borderSide: BorderSide(
+                        color: Colors.transparent,
+                        width: 1.0,
                       ),
+                      borderRadius: BorderRadius.circular(0.0),
                     ),
                   ),
+                ),
                 Divider(
                   height: 20.0,
                   thickness: 1.0,
@@ -491,7 +489,7 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 5.0),
                           child: Text(
-                            'Costum Personality',
+                            'Custom Personality',
                             style: FlutterFlowTheme.of(context)
                                 .bodyText1
                                 .override(
