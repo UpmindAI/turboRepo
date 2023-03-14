@@ -42,8 +42,10 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
       format: '#',
       locale: '',
     ));
-    _model.textController2 ??= TextEditingController();
-    _model.textController3 ??= TextEditingController();
+    _model.guardRailController ??= TextEditingController(
+        text: valueOrDefault(currentUserDocument?.chatGr, ''));
+    _model.chatPersonalityController ??= TextEditingController(
+        text: valueOrDefault(currentUserDocument?.chatPersonality, ''));
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -167,6 +169,49 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                             validator: _model.topKControllerValidator
                                 .asValidator(context),
                             inputFormatters: [_model.topKMask],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              5.0, 0.0, 0.0, 0.0),
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              setState(() {
+                                FFAppState().setTopKchat =
+                                    int.parse(_model.topKController.text);
+                              });
+                              await Future.delayed(
+                                  const Duration(milliseconds: 250));
+                              Navigator.pop(context);
+                            },
+                            text: 'Save',
+                            options: FFButtonOptions(
+                              width: 70.0,
+                              height: 40.0,
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context)
+                                  .primaryBackground,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .subtitle2
+                                  .override(
+                                    fontFamily: FlutterFlowTheme.of(context)
+                                        .subtitle2Family,
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryColor,
+                                    useGoogleFonts: GoogleFonts.asMap()
+                                        .containsKey(
+                                            FlutterFlowTheme.of(context)
+                                                .subtitle2Family),
+                                  ),
+                              borderSide: BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(0.0),
+                            ),
                           ),
                         ),
                       ],
@@ -313,124 +358,14 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                         child: Visibility(
                           visible: (_model.dropDownValue == 'My Data Only') &&
                               _model.costumCompletionConfinementValue!,
-                          child: TextFormField(
-                            controller: _model.textController2,
-                            autofocus: true,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              hintText:
-                                  'Set your Costum Completion Confinement...',
-                              hintStyle: FlutterFlowTheme.of(context).bodyText2,
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context)
-                                      .tertiaryColor,
-                                  width: 1.0,
-                                ),
-                                borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(4.0),
-                                  topRight: Radius.circular(4.0),
-                                ),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryColor,
-                                  width: 1.0,
-                                ),
-                                borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(4.0),
-                                  topRight: Radius.circular(4.0),
-                                ),
-                              ),
-                              errorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color(0x00000000),
-                                  width: 1.0,
-                                ),
-                                borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(4.0),
-                                  topRight: Radius.circular(4.0),
-                                ),
-                              ),
-                              focusedErrorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color(0x00000000),
-                                  width: 1.0,
-                                ),
-                                borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(4.0),
-                                  topRight: Radius.circular(4.0),
-                                ),
-                              ),
-                            ),
-                            style: FlutterFlowTheme.of(context).bodyText1,
-                            maxLines: null,
-                            minLines: 5,
-                            validator: _model.textController2Validator
-                                .asValidator(context),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Divider(
-                  height: 20.0,
-                  thickness: 1.0,
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 5.0),
-                          child: Text(
-                            'Costum Personality',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyText1
-                                .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .bodyText1Family,
-                                  color: FlutterFlowTheme.of(context)
-                                      .tertiaryColor,
-                                  useGoogleFonts: GoogleFonts.asMap()
-                                      .containsKey(FlutterFlowTheme.of(context)
-                                          .bodyText1Family),
-                                ),
-                          ),
-                        ),
-                        Switch(
-                          value: _model.switchValue ??= false,
-                          onChanged: (newValue) async {
-                            setState(() => _model.switchValue = newValue!);
-
-                            if (!newValue!) {
-                              final usersUpdateData = {
-                                'chat_personality': FieldValue.delete(),
-                              };
-                              await currentUserReference!
-                                  .update(usersUpdateData);
-                            }
-                          },
-                        ),
-                        if (_model.switchValue ?? true)
-                          Container(
-                            width: 600.0,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                            ),
-                            child: TextFormField(
-                              controller: _model.textController3,
+                          child: AuthUserStreamWidget(
+                            builder: (context) => TextFormField(
+                              controller: _model.guardRailController,
                               autofocus: true,
                               obscureText: false,
                               decoration: InputDecoration(
-                                hintText: 'Set your Costum Personality...',
+                                hintText:
+                                    'Set your Costum Completion Confinement...',
                                 hintStyle:
                                     FlutterFlowTheme.of(context).bodyText2,
                                 enabledBorder: OutlineInputBorder(
@@ -477,61 +412,232 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                                 ),
                               ),
                               style: FlutterFlowTheme.of(context).bodyText1,
-                              validator: _model.textController3Validator
+                              maxLines: null,
+                              minLines: 5,
+                              validator: _model.guardRailControllerValidator
                                   .asValidator(context),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                if (_model.costumCompletionConfinementValue ?? true)
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                    child: FFButtonWidget(
+                      onPressed: () async {
+                        setState(() {
+                          FFAppState().setChatGR =
+                              _model.guardRailController.text;
+                        });
+
+                        final usersUpdateData = createUsersRecordData(
+                          chatGr: _model.guardRailController.text,
+                        );
+                        await currentUserReference!.update(usersUpdateData);
+
+                        final chatGrHistoryCreateData =
+                            createChatGrHistoryRecordData(
+                          timestamp: getCurrentTimestamp,
+                          isFavorite: false,
+                          gr: _model.guardRailController.text,
+                        );
+                        await ChatGrHistoryRecord.createDoc(
+                                currentUserReference!)
+                            .set(chatGrHistoryCreateData);
+                        await Future.delayed(const Duration(milliseconds: 250));
+                        Navigator.pop(context);
+                      },
+                      text: 'Save',
+                      options: FFButtonOptions(
+                        width: 70.0,
+                        height: 40.0,
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        iconPadding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: FlutterFlowTheme.of(context).primaryBackground,
+                        textStyle: FlutterFlowTheme.of(context)
+                            .subtitle2
+                            .override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).subtitle2Family,
+                              color: FlutterFlowTheme.of(context).primaryColor,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context).subtitle2Family),
+                            ),
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(0.0),
+                      ),
+                    ),
+                  ),
+                Divider(
+                  height: 20.0,
+                  thickness: 1.0,
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 5.0),
+                          child: Text(
+                            'Costum Personality',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyText1
+                                .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .bodyText1Family,
+                                  color: FlutterFlowTheme.of(context)
+                                      .tertiaryColor,
+                                  useGoogleFonts: GoogleFonts.asMap()
+                                      .containsKey(FlutterFlowTheme.of(context)
+                                          .bodyText1Family),
+                                ),
+                          ),
+                        ),
+                        Switch(
+                          value: _model.persSwitchValue ??= false,
+                          onChanged: (newValue) async {
+                            setState(() => _model.persSwitchValue = newValue!);
+
+                            if (!newValue!) {
+                              final usersUpdateData = {
+                                'chat_personality': FieldValue.delete(),
+                              };
+                              await currentUserReference!
+                                  .update(usersUpdateData);
+                            }
+                          },
+                        ),
+                        if (_model.persSwitchValue ?? true)
+                          Container(
+                            width: 600.0,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                            ),
+                            child: AuthUserStreamWidget(
+                              builder: (context) => TextFormField(
+                                controller: _model.chatPersonalityController,
+                                autofocus: true,
+                                obscureText: false,
+                                decoration: InputDecoration(
+                                  hintText: 'Set your Costum Personality...',
+                                  hintStyle:
+                                      FlutterFlowTheme.of(context).bodyText2,
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context)
+                                          .tertiaryColor,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(4.0),
+                                      topRight: Radius.circular(4.0),
+                                    ),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryColor,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(4.0),
+                                      topRight: Radius.circular(4.0),
+                                    ),
+                                  ),
+                                  errorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Color(0x00000000),
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(4.0),
+                                      topRight: Radius.circular(4.0),
+                                    ),
+                                  ),
+                                  focusedErrorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Color(0x00000000),
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(4.0),
+                                      topRight: Radius.circular(4.0),
+                                    ),
+                                  ),
+                                ),
+                                style: FlutterFlowTheme.of(context).bodyText1,
+                                validator: _model
+                                    .chatPersonalityControllerValidator
+                                    .asValidator(context),
+                              ),
                             ),
                           ),
                       ],
                     ),
                   ],
                 ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
-                  child: FFButtonWidget(
-                    onPressed: () async {
-                      if (_model.formKey.currentState == null ||
-                          !_model.formKey.currentState!.validate()) {
-                        return;
-                      }
-                      setState(() {
-                        FFAppState().setTopKchat =
-                            int.parse(_model.topKController.text);
-                      });
+                if (_model.persSwitchValue ?? true)
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                    child: FFButtonWidget(
+                      onPressed: () async {
+                        final usersUpdateData = createUsersRecordData(
+                          chatPersonality:
+                              _model.chatPersonalityController.text,
+                        );
+                        await currentUserReference!.update(usersUpdateData);
 
-                      final usersUpdateData = createUsersRecordData(
-                        chatGr: _model.textController2.text,
-                        chatPersonality: _model.textController3.text,
-                      );
-                      await currentUserReference!.update(usersUpdateData);
-                      await Future.delayed(const Duration(milliseconds: 250));
-                      Navigator.pop(context);
-                    },
-                    text: 'Save',
-                    options: FFButtonOptions(
-                      width: 70.0,
-                      height: 40.0,
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: FlutterFlowTheme.of(context).primaryColor,
-                      textStyle: FlutterFlowTheme.of(context)
-                          .subtitle2
-                          .override(
-                            fontFamily:
-                                FlutterFlowTheme.of(context).subtitle2Family,
-                            color: Colors.white,
-                            useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                FlutterFlowTheme.of(context).subtitle2Family),
-                          ),
-                      borderSide: BorderSide(
-                        color: Colors.transparent,
-                        width: 1.0,
+                        final chatPersHistoryCreateData =
+                            createChatPersHistoryRecordData(
+                          timestamp: getCurrentTimestamp,
+                          isFavorite: false,
+                          personality: _model.chatPersonalityController.text,
+                        );
+                        await ChatPersHistoryRecord.createDoc(
+                                currentUserReference!)
+                            .set(chatPersHistoryCreateData);
+                        await Future.delayed(const Duration(milliseconds: 250));
+                        Navigator.pop(context);
+                      },
+                      text: 'Save',
+                      options: FFButtonOptions(
+                        width: 70.0,
+                        height: 40.0,
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        iconPadding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: FlutterFlowTheme.of(context).primaryBackground,
+                        textStyle: FlutterFlowTheme.of(context)
+                            .subtitle2
+                            .override(
+                              fontFamily:
+                                  FlutterFlowTheme.of(context).subtitle2Family,
+                              color: FlutterFlowTheme.of(context).primaryColor,
+                              useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                  FlutterFlowTheme.of(context).subtitle2Family),
+                            ),
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(0.0),
                       ),
-                      borderRadius: BorderRadius.circular(0.0),
                     ),
                   ),
-                ),
               ],
             ),
           ),

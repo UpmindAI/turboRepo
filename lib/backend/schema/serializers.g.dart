@@ -7,7 +7,9 @@ part of 'serializers.dart';
 // **************************************************************************
 
 Serializers _$serializers = (new Serializers().toBuilder()
+      ..add(ChatGrHistoryRecord.serializer)
       ..add(ChatMetaRecord.serializer)
+      ..add(ChatPersHistoryRecord.serializer)
       ..add(ChatsRecord.serializer)
       ..add(FeatureRecord.serializer)
       ..add(SummPromptFavsRecord.serializer)
