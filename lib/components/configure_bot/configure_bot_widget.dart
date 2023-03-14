@@ -255,17 +255,8 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                             initialOption: _model.dropDownValue ??=
                                 FFAppState().setChatDropdown,
                             options: ['My Data + GPT', 'My Data Only'],
-                            onChanged: (val) async {
-                              setState(() => _model.dropDownValue = val);
-                              setState(() {
-                                FFAppState().setChatGR =
-                                    _model.dropDownValue == 'My Data + GPT'
-                                        ? 'no'
-                                        : 'yes';
-                                FFAppState().setChatDropdown =
-                                    _model.dropDownValue!;
-                              });
-                            },
+                            onChanged: (val) =>
+                                setState(() => _model.dropDownValue = val),
                             width: 280.0,
                             height: 50.0,
                             textStyle: FlutterFlowTheme.of(context)
@@ -306,7 +297,7 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 5.0),
                               child: Text(
-                                'Guardrail',
+                                'Custom Guardrail',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyText1
                                     .override(
@@ -428,8 +419,13 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                   child: FFButtonWidget(
                     onPressed: () async {
                       setState(() {
+                        FFAppState().setChatDropdown = _model.dropDownValue!;
+                      });
+                      setState(() {
                         FFAppState().setChatGR =
-                            _model.guardRailController.text;
+                            _model.dropDownValue == 'My Data + GPT'
+                                ? 'no'
+                                : 'yes';
                       });
 
                       final usersUpdateData = createUsersRecordData(
