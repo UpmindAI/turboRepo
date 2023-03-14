@@ -76,7 +76,7 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 10.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                   child: Text(
                     'Configure your Chatbot',
                     style: FlutterFlowTheme.of(context).title3,
@@ -174,6 +174,7 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                   ),
                 ),
                 Divider(
+                  height: 20.0,
                   thickness: 1.0,
                 ),
                 Row(
@@ -212,12 +213,12 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                             onChanged: (val) async {
                               setState(() => _model.dropDownValue = val);
                               setState(() {
-                                FFAppState().setDropdown =
-                                    _model.dropDownValue!;
                                 FFAppState().setChatGR =
                                     _model.dropDownValue == 'My Data + GPT'
                                         ? 'no'
                                         : 'yes';
+                                FFAppState().setChatDropdown =
+                                    _model.dropDownValue!;
                               });
                             },
                             width: 280.0,
@@ -375,6 +376,7 @@ class _ConfigureBotWidgetState extends State<ConfigureBotWidget> {
                   ),
                 ),
                 Divider(
+                  height: 20.0,
                   thickness: 1.0,
                 ),
                 Row(
