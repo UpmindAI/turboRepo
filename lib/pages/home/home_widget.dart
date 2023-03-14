@@ -98,7 +98,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 10.0, 0.0),
                   child: Text(
-                    'v0.325',
+                    'v0.326',
                     style: FlutterFlowTheme.of(context).bodyText1,
                   ),
                 ),
@@ -726,7 +726,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                             0.0,
                                                                             5.0),
                                                                     child: Text(
-                                                                      'Target:',
+                                                                      'Prompt Target:',
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
                                                                           .bodyText1
