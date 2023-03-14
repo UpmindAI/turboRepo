@@ -41,14 +41,14 @@ class ConfigureBotModel extends FlutterFlowModel {
   String? dropDownValue;
   // State field(s) for CostumCompletionConfinement widget.
   bool? costumCompletionConfinementValue;
-  // State field(s) for TextField widget.
-  TextEditingController? textController2;
-  String? Function(BuildContext, String?)? textController2Validator;
-  // State field(s) for Switch widget.
-  bool? switchValue;
-  // State field(s) for TextField widget.
-  TextEditingController? textController3;
-  String? Function(BuildContext, String?)? textController3Validator;
+  // State field(s) for guardRail widget.
+  TextEditingController? guardRailController;
+  String? Function(BuildContext, String?)? guardRailControllerValidator;
+  // State field(s) for persSwitch widget.
+  bool? persSwitchValue;
+  // State field(s) for chatPersonality widget.
+  TextEditingController? chatPersonalityController;
+  String? Function(BuildContext, String?)? chatPersonalityControllerValidator;
 
   /// Initialization and disposal methods.
 
@@ -58,8 +58,8 @@ class ConfigureBotModel extends FlutterFlowModel {
 
   void dispose() {
     topKController?.dispose();
-    textController2?.dispose();
-    textController3?.dispose();
+    guardRailController?.dispose();
+    chatPersonalityController?.dispose();
   }
 
   /// Additional helper methods are added here.

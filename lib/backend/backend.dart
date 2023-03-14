@@ -19,6 +19,8 @@ import 'schema/summarizer_templates_record.dart';
 import 'schema/summ_prompt_history_record.dart';
 import 'schema/summ_prompt_favs_record.dart';
 import 'schema/user_temp_urls_record.dart';
+import 'schema/chat_gr_history_record.dart';
+import 'schema/chat_pers_history_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -40,6 +42,8 @@ export 'schema/summarizer_templates_record.dart';
 export 'schema/summ_prompt_history_record.dart';
 export 'schema/summ_prompt_favs_record.dart';
 export 'schema/user_temp_urls_record.dart';
+export 'schema/chat_gr_history_record.dart';
+export 'schema/chat_pers_history_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -805,6 +809,118 @@ Future<FFFirestorePage<UserTempUrlsRecord>> queryUserTempUrlsRecordPage({
     queryCollectionPage(
       UserTempUrlsRecord.collection(parent),
       UserTempUrlsRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query ChatGrHistoryRecords (as a Stream and as a Future).
+Future<int> queryChatGrHistoryRecordCount({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      ChatGrHistoryRecord.collection(parent),
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<ChatGrHistoryRecord>> queryChatGrHistoryRecord({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      ChatGrHistoryRecord.collection(parent),
+      ChatGrHistoryRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<ChatGrHistoryRecord>> queryChatGrHistoryRecordOnce({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      ChatGrHistoryRecord.collection(parent),
+      ChatGrHistoryRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<ChatGrHistoryRecord>> queryChatGrHistoryRecordPage({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+}) =>
+    queryCollectionPage(
+      ChatGrHistoryRecord.collection(parent),
+      ChatGrHistoryRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query ChatPersHistoryRecords (as a Stream and as a Future).
+Future<int> queryChatPersHistoryRecordCount({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      ChatPersHistoryRecord.collection(parent),
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<ChatPersHistoryRecord>> queryChatPersHistoryRecord({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      ChatPersHistoryRecord.collection(parent),
+      ChatPersHistoryRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<ChatPersHistoryRecord>> queryChatPersHistoryRecordOnce({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      ChatPersHistoryRecord.collection(parent),
+      ChatPersHistoryRecord.serializer,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<FFFirestorePage<ChatPersHistoryRecord>> queryChatPersHistoryRecordPage({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+}) =>
+    queryCollectionPage(
+      ChatPersHistoryRecord.collection(parent),
+      ChatPersHistoryRecord.serializer,
       queryBuilder: queryBuilder,
       nextPageMarker: nextPageMarker,
       pageSize: pageSize,
