@@ -978,6 +978,16 @@ class _SummarizeWidgetState extends State<SummarizeWidget> {
                                                                 );
                                                               });
 
+                                                              final usersUpdateData =
+                                                                  createUsersRecordData(
+                                                                summaryPrompt:
+                                                                    FFAppState()
+                                                                        .setSummaryTemplate,
+                                                              );
+                                                              await currentUserReference!
+                                                                  .update(
+                                                                      usersUpdateData);
+
                                                               final userPromptsCreateData =
                                                                   createUserPromptsRecordData(
                                                                 qid:
